@@ -1,0 +1,182 @@
+<resources>
+    <string name="app_name" translatable="false">Cleaner Plus</string>
+    <string name="app_version">Version %1$s (%2$d)</string>
+    <string name="app_description">The last Android Cleaner you will ever need with Google inspired material design made by D4rK to be more simplistic and easy to use!</string>
+    <string name="copyright">© Copyright %1s made by D4rK!</string>
+    <string name="made_in">Made with ❤ in Romania!</string>
+    <string name="clean">Clean</string>
+    <string name="analyze">Analyze</string>
+    <string name="appearance">Appearance</string>
+    <string name="follow_system">Follow System Mode</string>
+    <string name="light_mode">Light Mode</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="auto_battery_mode">Auto Battery Dark Mode</string>
+    <string name="status">Status: Idle…</string>
+    <string name="status_running">Status: Running.</string>
+    <string name="filters">Filters</string>
+    <string name="found">Found: </string>
+    <string name="freed">Freed: </string>
+    <string name="settings">Settings</string>
+    <string name="theme">Theme</string>
+    <string name="generic_filter">Generic filter</string>
+    <string name="aggressive_filter">Aggressive filter</string>
+    <string name="advanced">Advanced</string>
+    <string name="firebase">Firebase</string>
+    <string name="daily_clean">Daily Clean</string>
+    <string name="rate_us">Rate our app!</string>
+    <string name="one_click_clean">One click clean</string>
+    <string name="auto_whitelist">Auto whitelist</string>
+    <string name="double_checker">Double checker</string>
+    <string name="scanner">Scanner</string>
+    <string name="clipboard_clean">Clipboard clean</string>
+    <string name="clipboard_clean_failed">Clipboard clean failed.</string>
+    <string name="swap_buttons">Swap buttons</string>
+    <string name="warning">Warning!</string>
+    <string name="delete_empty_folders">Delete empty folders</string>
+    <string name="delete_corpse_files">Delete corpse files</string>
+    <string name="delete_apk_files">Delete APK files</string>
+    <string name="whitelist">Whitelist</string>
+    <string name="remove">Remove?</string>
+    <string name="empty_whitelist">Empty whitelist?</string>
+    <string name="add_to_whitelist">Add to whitelist…</string>
+    <string name="close">Close?</string>
+    <string name="browse_terms_of_service_and_privacy_policy">Browse the <i><u>Terms of Service</u></i> and <i><u>Privacy Policy</u></i></string>
+    <string name="welcome">Welcome</string>
+    <string name="agree">Agree</string>
+    <string name="language">Language</string>
+    <string name="app_updates">App updates</string>
+    <string name="check_for_updates">Check for updates…</string>
+    <string name="subscribe_to_beta">Subscribe to beta updates</string>
+    <string name="changelog">Changelog</string>
+    <string name="open_me">Open me :)</string>
+    <string name="music_sleep_timer" translatable="false">Music Sleep Timer Plus</string>
+    <string name="english_with_lidia" translatable="false">English with Lidia Plus</string>
+    <string name="qr_code_scanner" translatable="false">QR &amp; Bar Code Scanner Plus</string>
+    <string name="low_brightness" translatable="false">Low Brightness</string>
+    <string name="android_studio_tutorials" translatable="false">Android Studio Tutorials</string>
+    <string name="twitter" translatable="false">Twitter</string>
+    <string name="youtube" translatable="false">YouTube</string>
+    <string name="github" translatable="false">GitHub</string>
+    <string name="xda" translatable="false">XDA</string>
+    <string name="mail_to_dev">Email to dev</string>
+    <string name="all_languages">All languages</string>
+    <string name="current_language">Current in-app language is %1$s!</string>
+    <string name="recommended">Recommended</string>
+    <string name="system_default">System default</string>
+    <string name="faq">FAQ</string>
+    <string name="more_apps">More apps…</string>
+    <string name="more">More</string>
+    <string name="feedback">Feedback</string>
+    <string name="support_me">Support me.</string>
+    <string name="share">Share</string>
+    <string name="share_subject">Try it now!!!</string>
+    <string name="share_using">Share using…</string>
+    <string name="google_dev">Google Dev</string>
+    <string name="about">About</string>
+    <string name="home">Home</string>
+    <string name="image_optimizer">Image optimizer</string>
+    <string name="original">Original</string>
+    <string name="optimized">Optimized</string>
+    <string name="choose_image">Choose image</string>
+    <string name="optimize_image">Optimize image</string>
+    <string name="copied_to_clipboard">Copied to clipboard!</string>
+    <string name="permissions">Permissions</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="license">License</string>
+    <string name="terms_of_service">Terms of service</string>
+    <string name="code_of_conduct">Code of conduct</string>
+    <string name="privacy_and_security">Privacy and security</string>
+    <string name="internet">Internet [INTERNET]</string>
+    <string name="normal">Normal</string>
+    <string name="require_restart">Require restart!</string>
+    <string name="ad_id">Ad id [AD_ID]</string>
+    <string name="post_notifications">Post notifications [POST_NOTIFICATIONS]</string>
+    <string name="runtime">Runtime</string>
+    <string name="notification_last_time_used_title">It\'s been a while!</string>
+    <string name="notification_update_title">A new update available!</string>
+    <string name="summary_notification_last_time_used"> Let\'s free up some space! We are happy you are back!</string>
+    <string name="summary_notification_update">A new version of the app is available. Click to update!</string>
+    <string name="receive_boot_completed">Receive boot completed [RECEIVE_BOOT_COMPLETED]</string>
+    <string name="storage">Storage</string>
+    <string name="error_requesting_review_flow">An error occurred while requesting the review flow. Please try again later.</string>
+    <string name="rate_now_content_description">Rate the app now. This will open a dialog for rating the app in the Google Play Store.</string>
+    <string name="read_media_audio">Read media audio [READ_MEDIA_AUDIO]</string>
+    <string name="read_media_images">Read media images [READ_MEDIA_IMAGES]</string>
+    <string name="read_media_video">Read media video [READ_MEDIA_VIDEO]</string>
+    <string name="read_external_storage">Read external storage [READ_EXTERNAL_STORAGE]</string>
+    <string name="write_external_storage">Write external storage [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="manage_external_storage">Manage external storage [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="foreground_service">Foreground service [FOREGROUND_SERVICE]</string>
+    <string name="access_network_state">Access network state [ACCESS_NETWORK_STATE]</string>
+    <string name="query_all_packages">Query all packages [QUERY_ALL_PACKAGES]</string>
+    <string name="access_media_location">Access media location [ACCESS_MEDIA_LOCATION]</string>
+    <string name="action_open_document_tree">Action open document tree [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="check_license">Check license [CHECK_LICENSE]</string>
+    <string name="question_1">What is Cleaner Plus?</string>
+    <string name="question_2">Is Cleaner Plus safe to use?</string>
+    <string name="question_3">How do I use Cleaner Plus?</string>
+    <string name="question_4">Can Cleaner Plus delete app cache?</string>
+    <string name="question_5">Does Cleaner Plus require root access?</string>
+    <string name="question_6">Is Cleaner Plus available for iOS?</string>
+    <string name="question_7">Does Cleaner Plus improve battery life?</string>
+    <string name="question_8">How often should I use Cleaner Plus?</string>
+    <string name="question_9">Is Cleaner Plus compatible with all Android devices?</string>
+    <string name="summary_browse_terms_of_service_and_privacy_policy">Read and agree to our Terms of Service and Privacy Policy to continue.</string>
+    <string name="summary_close">Are you sure you want to exit?</string>
+    <string name="summary_dialog_button_clean">Are you sure? Files deleted cannot be restored after clean process.</string>
+    <string name="summary_preference_settings_language">Set application language.</string>
+    <string name="summary_preference_settings_delete_corpse_files">Files left over from uninstalled/removed apps.</string>
+    <string name="summary_preference_settings_delete_apk_files">Installer files (.apk) files for Android.</string>
+    <string name="summary_preference_settings_double_checker">Will rerun scan each time something is found with a limit of 10 scans.</string>
+    <string name="summary_preference_settings_auto_whitelist">Detect folders that should be protected automatically.</string>
+    <string name="summary_preference_settings_one_click_clean">No dialog menu when clicking \"Clean\" button.</string>
+    <string name="summary_preference_settings_aggressive_filter">Delete every type of file from your device.</string>
+    <string name="summary_preference_settings_generic_filter">Delete temp, log, logs, &amp; other useless files &amp; folders.</string>
+    <string name="summary_preference_settings_firebase">This let us collect information about app performance and crash logs.</string>
+    <string name="summary_preference_settings_daily_clean">Automatically runs daily, without you having to open the app.</string>
+    <string name="summary_preference_settings_swap_buttons">Swap \"Clean\" and \"Analyze\" buttons.</string>
+    <string name="summary_preference_settings_license" translatable="false">General Public License-3.0</string>
+    <string name="summary_preference_settings_support_me">Click here if you want to support me without paying money. Just some time for viewing an add.</string>
+    <string name="summary_preference_permissions_update">Used to check app for updates.</string>
+    <string name="summary_preference_permissions_internet">Used to send error reports.</string>
+    <string name="summary_preference_permissions_ad_id">Used to allow ads to be shown in Android 13+ devices.</string>
+    <string name="summary_preference_permissions_receive_boot_completed">Used to start app when the device boots u.</string>
+    <string name="summary_preference_permissions_post_notifications">Used to allow app show notifications on Android 13+ devices.</string>
+    <string name="summary_preference_permissions_read_media_audio">Used for allowing app to read audio files from the device\'s storage..</string>
+    <string name="summary_preference_permissions_read_media_images">Used for allowing app to read image files from the device\'s storage.</string>
+    <string name="summary_preference_permissions_read_media_video">Used for allowing app to read video files from the device\'s storage.</string>
+    <string name="summary_preference_permissions_read_external_storage">Used for allowing app to read files from the device\'s storage, including both internal and external storage.</string>
+    <string name="summary_preference_permissions_write_external_storage">Used for allowing app to write files to the device\'s storage, including both internal and external storage.</string>
+    <string name="summary_preference_permissions_manage_external_storage">Used for allowing app to perform actions like deleting and renaming files on the device\'s storage, including both internal and external storage.</string>
+    <string name="summary_preference_permissions_query_all_packages">Used for allowing app to query for information about all installed packages on the device. The app uses this information to determine which files to keep or delete</string>
+    <string name="summary_preference_permissions_check_license">Used to verify that the app is being used in accordance with the terms of the license agreement, and to enforce licensing terms and protect intellectual property.</string>
+    <string name="summary_preference_permissions_access_media_location">Used to access the device\'s media files location.</string>
+    <string name="summary_preference_permissions_action_open_document_tree">Used to access to a tree of documents, including the ability to read and write files in the tree.</string>
+    <string name="summary_preference_faq_1">Cleaner Plus is a free and open-source Android app that helps you optimize your device\'s performance and free up storage space. It can scan your device for unnecessary files and delete them, as well clear your cache to improve your device\'s speed.</string>
+    <string name="summary_preference_faq_2">Yes, Cleaner Plus is safe to use. It only removes files that are not essential to the operation of your device or apps, and it does not delete any of your personal data or important system files.</string>
+    <string name="summary_preference_faq_3">To use Cleaner Plus, simply download and install the app from the Google Play Store or a reputable third-party app store. Then, open the app and follow the prompts to scan your device and delete unnecessary files. You can also access the app\'s settings to customize the types of files that Cleaner Plus looks for and deletes.</string>
+    <string name="summary_preference_faq_4">Yes, Cleaner Plus can delete app cache. However, it is important to note that deleting cache may cause the app to take longer to load or perform certain tasks the next time you use it.</string>
+    <string name="summary_preference_faq_5">No, Cleaner Plus does not require root access to work. You can use it on any Android device without rooting your device.</string>
+    <string name="summary_preference_faq_6">No, Cleaner Plus is currently only available for Android devices.</string>
+    <string name="summary_preference_faq_7">Using Cleaner Plus to clear your cache may help improve your device\'s battery life by reducing the amount of power and resources that are used by unnecessary processes. However, the extent to which Cleaner Plus can improve your battery life will depend on various factors such as your device\'s make and model, the apps you use, and your usage habits.</string>
+    <string name="summary_preference_faq_8">There is no set rule for how often you should use Cleaner Plus, as it will depend on your device\'s usage and the amount of unnecessary files that accumulate over time. Some users may find it helpful to run Cleaner Plus weekly or monthly, while others may only need to use it occasionally.</string>
+    <string name="summary_preference_faq_9">Cleaner Plus should be compatible with most Android devices that meet the app\'s minimum system requirements. However, it is always a good idea to check the app\'s page on the Google Play Store or the app store you are using to confirm compatibility with your specific device. If you encounter any issues while using Cleaner Plus, you can try troubleshooting the problem or contacting the app\'s support team for assistance.</string>
+    <string name="summary_require_restart">To take effect please restart the app!</string>
+    <string name="tooltip_add_to_whitelist">Click here to add files/folders you want to be excluded at next scan.</string>
+    <string name="tooltip_button_analyze">Analyze what files you can clean without deleting then.</string>
+    <string name="tooltip_button_clean">Click here to clean your device!</string>
+    <string name="tooltip_feedback">Send us your review on Google Play Store.</string>
+    <string name="toast_feedback">Thanks for rating us!</string>
+    <string name="settings_notification_name">Daily Cleaner Notification.</string>
+    <string name="settings_notification_sum">Shows notification of how much data was cleaned daily.</string>
+    <string name="main_progress_0" translatable="false">0%</string>
+    <string name="main_progress_100" translatable="false">100%</string>
+    <string name="clean_confirm_title">Confirm cleaning?</string>
+    <string name="adds_the_following">Adds the following filters:</string>
+    <string name="service_channel_name">Clipboard Cleaner notification channel!</string>
+    <string name="service_notification_title">Your clipboard is under the protection!</string>
+    <string name="changelog_title" translatable="false">Changelog - Version %1s</string>
+    <string name="changes" translatable="false">\n
+        • Initial stable release.
+    </string>
+</resources>

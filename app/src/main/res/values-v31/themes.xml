@@ -1,0 +1,8 @@
+<resources>
+    <style name="SplashScreenTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">?attr/colorSurface</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/AppThemeNoActionBar</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">?attr/colorSurface</item>
+    </style>
+</resources>

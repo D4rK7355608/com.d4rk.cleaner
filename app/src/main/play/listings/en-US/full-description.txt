@@ -1,0 +1,70 @@
+🧹Cleaner Plus🧹
+
+╔╦╦╦═╦╗╔═╦═╦══╦═╗
+║║║║╩╣╚╣═╣║║║║║╩╣
+╚══╩═╩═╩═╩═╩╩╩╩═╝
+
+Say hello to Cleaner Plus, the last Android cleaner you'll ever need! This app is designed to give your phone the ultimate cleaning experience, with a user-friendly Google Material-You inspired design. 🎨
+
+Say goodbye to shady cleaning apps that promise to speed up your device but deliver nothing. Cleaner Plus only focuses on what's important: cleaning your phone by removing safe-to-delete files, freeing up space and improving your privacy. 🧼
+
+With Cleaner Plus, you can say goodbye to all the junk on your phone. Whether it's logs, temporary files, cache data, or files left over from uninstalled apps, Cleaner Plus has got you covered. With features like a clipboard cleaner and daily cleaning, your device will always be optimized and junk-free. 🔥
+
+Plus, Cleaner Plus offers added bonuses, like the option to switch to a dark or light theme and an auto-whitelist feature that protects important files and folders from being cleaned. 💻
+
+Optimize and clean your device with Cleaner Plus today! 🧹
+
+Our app is designed to be simple and easy to use, while also being fast and lightweight. Plus, it's free and open-source software!
+
+⚠ Opening Issues!
+Bugs can be reported here: https://github.com/D4rK7355608/com.d4rk.cleaner.plus/issues
+
+Create a scanner/general bug. 🐞
+
+🛠️ Features!
+⭐️ Simple and easy to use.
+⭐️ Fast and lightweight.
+⭐️ Free and open-source software.
+⭐️ Cleans empty folders.
+⭐️ Clean logs.
+⭐️ Clean temporary, caches & corpse files.
+⭐️ Clean advertisement folders.
+⭐️ Clean clipboard cleaning.
+⭐️ Auto daily cleaner.
+
+👨‍💻 More about me!
+● Music:
+⇨ YouTube Music: https://music.youtube.com/channel/UCb2zXzO03OM7U9xeIsqqEQw
+⇨ Spotify: https://open.spotify.com/artist/5Q58DBSe2tpBb3qqq9WVfo
+⇨ Deezer: https://www.deezer.com/us/artist/408659
+⇨ SoundCloud: https://soundcloud.com/d4rk7355608
+⇨ BandLab: https://www.bandlab.com/d4rk7355608
+
+● Graphics:
+⇨ DeviantArt: https://www.deviantart.com/d4rk7355608
+
+● Social:
+⇨ GameJolt: https://gamejolt.com/@D4rK7355608
+⇨ Twitter: https://twitter.com/D4rK7355608
+⇨ Skype: d4rk7355608
+⇨ Steam Profile: https://steamcommunity.com/id/d4rk7355608
+⇨ Steam Trade Link: https://steamcommunity.com/tradeoffer/new/?partner=892981294&token=pxsUtrm3
+
+● Developer stuff:
+⇨ GitHub: https://github.com/D4rK7355608
+⇨ Google Play Store: https://play.google.com/store/apps/dev?id=5390214922640123642
+⇨ Google Developers: https://g.dev/D4rK7355608
+
+🛑 Disclaimer!
+• Only use the GitHub Issues section if you discover issues with the code itself. Do not mistake the Issues page as a help desk. For support, information and requests, please contact d4rk7355608@gmail.com.
+• With the "MANAGE_EXTERNAL_STORAGE" permission, Cleaner Plus is able to scan and remove files not just on your internal storage, but also on external storage devices connected to your device.
+
+💬 Feedback!
+We are constantly updating and improving "app_name" to give you the best possible experience. If you have any suggested features or improvements, please leave a review. In case something is not working correctly please let me know. When posting a low rating please describe what is wrong to give the possibility to fix that issue.
+
+Thank you for choosing "app_name". We hope you enjoy using our app as much as we enjoyed creating it for you! Rate us 5 stars ⭐⭐⭐⭐⭐ if you are happy with the app! ❤
+
+╔╦╦══╦══╦═╦╗
+║╔╣║║╠╗╔╣═╣║
+║║║╔╗║║║║═╬╣
+╚╝╚╝╚╝╚╝╚═╩╝

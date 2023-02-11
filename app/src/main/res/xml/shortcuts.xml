@@ -1,0 +1,14 @@
+<shortcuts
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="settings"
+        android:enabled="true"
+        android:icon="@mipmap/ic_shortcut_settings"
+        android:shortcutShortLabel="@string/settings">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.d4rk.cleaner.plus"
+            android:targetClass="com.d4rk.cleaner.plus.ui.settings.SettingsActivity"/>
+        <categories android:name="android.shortcut.conversation"/>
+    </shortcut>
+</shortcuts>

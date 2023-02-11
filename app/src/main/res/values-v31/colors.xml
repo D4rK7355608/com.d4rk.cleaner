@@ -1,0 +1,6 @@
+<resources>
+    <color name="colorPrimary">@android:color/system_accent1_600</color>
+    <color name="colorSecondary">@android:color/system_accent2_600</color>
+    <color name="colorIconShortcutBackground">@android:color/system_accent1_100</color>
+    <color name="colorIconShortcutForeground">@android:color/system_neutral1_700</color>
+</resources>

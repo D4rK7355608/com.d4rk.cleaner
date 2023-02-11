@@ -1,0 +1,84 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+    id 'com.google.android.gms.oss-licenses-plugin'
+}
+android {
+    compileSdk 33
+    namespace 'com.d4rk.cleaner.plus'
+    defaultConfig {
+        applicationId 'com.d4rk.cleaner.plus'
+        minSdkVersion 26
+        targetSdkVersion 33
+        versionCode 3
+        versionName '1.0_r1'
+        archivesBaseName = "${applicationId}-v${versionName}"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        resConfigs 'en', 'de', 'es', 'fr', 'hi', 'in', 'it', 'ja', 'ro', 'ru', 'tr'
+    }
+    buildTypes {
+        release {
+            multiDexEnabled true
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            multiDexEnabled true
+            minifyEnabled true
+            shrinkResources true
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+    bundle {
+        storeArchive {
+            enable = true
+        }
+    }
+}
+dependencies {
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.gms:play-services-ads:21.5.0'
+    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
+    implementation 'com.google.android.play:review-ktx:2.0.1'
+    implementation 'com.google.android.play:app-update-ktx:2.0.1'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.3.3'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.2.0'
+    implementation 'com.google.firebase:firebase-perf:20.3.1'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-splashscreen:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.preference:preference-ktx:1.2.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-process:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.airbnb.android:lottie:5.2.0'
+    implementation 'me.zhanghai.android.fastscroll:library:1.2.0'
+    implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
+    implementation 'dev.shreyaspatil.MaterialDialog:MaterialDialog:2.2.3'
+    implementation 'id.zelory:compressor:3.0.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

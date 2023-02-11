@@ -1,0 +1,44 @@
+<resources>
+    <style name="SplashScreenTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">?attr/colorSurface</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/AppThemeNoActionBar</item>
+    </style>
+    <style name="AppTheme" parent="Theme.Material3.DynamicColors.DayNight">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="material_dialog_background">?attr/colorSurface</item>
+        <item name="material_dialog_title_text_color">?android:textColorPrimary</item>
+        <item name="material_dialog_message_text_color">?android:textColorPrimary</item>
+        <item name="material_dialog_positive_button_color">?attr/colorPrimary</item>
+        <item name="material_dialog_positive_button_text_color">?android:textColorPrimaryInverse</item>
+        <item name="material_dialog_negative_button_text_color">?attr/colorPrimary</item>
+        <item name="actionBarStyle">@style/actionBarStyle</item>
+        <item name="switchPreferenceCompatStyle">@style/switchPreferenceCompatStyle</item>
+        <item name="android:fontFamily">@font/font_poppins</item>
+        <item name="dialogCornerRadius">24dp</item>
+        <item name="android:alertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered</item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered</item>
+        <item name="panelMenuListTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered</item>
+    </style>
+    <style name="AppThemeNoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="actionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background">@android:color/transparent</item>
+    </style>
+    <style name="FontTheme" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/font_poppins</item>
+        <item name="android:fontFamily">@font/font_poppins</item>
+    </style>
+    <style name="switchPreferenceCompatStyle" parent="@style/Preference.SwitchPreferenceCompat.Material">
+        <item name="widgetLayout">@layout/preference_switch_widget_layout</item>
+    </style>
+    <style name="Theme.App.Starting.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="Theme.App.Starting.PopupOverlay" parent="ThemeOverlay.Material3.DynamicColors.DayNight"/>
+</resources>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="key_theme" translatable="false">theme</string>
+    <string name="key_firebase" translatable="false">firebase</string>
+    <string name="key_filter_generic" translatable="false">filter_generic</string>
+    <string name="key_filter_aggressive" translatable="false">filter_aggressive</string>
+    <string name="key_filter_empty" translatable="false">filter_empty</string>
+    <string name="key_filter_corpse" translatable="false">filter_corpse</string>
+    <string name="key_filter_apk" translatable="false">filter_apk</string>
+    <string name="key_double_checker" translatable="false">double_checker</string>
+    <string name="key_auto_whitelist" translatable="false">auto_whitelist</string>
+    <string name="key_clipboard" translatable="false">clipboard</string>
+    <string name="key_one_click_clean" translatable="false">one_click_clean</string>
+    <string name="key_daily_clean" translatable="false">daily_clean</string>
+    <string name="key_swap_buttons" translatable="false">swap_buttons</string>
+    <string name="key_more_apps" translatable="false">more_apps</string>
+    <string name="key_share" translatable="false">share</string>
+    <string name="key_changelog" translatable="false">changelog</string>
+    <string name="default_value_theme" translatable="false">MODE_NIGHT_FOLLOW_SYSTEM</string>
+</resources>

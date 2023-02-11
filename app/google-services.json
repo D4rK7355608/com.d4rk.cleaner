@@ -1,0 +1,128 @@
+{
+  "project_info": {
+    "project_number": "112794310224",
+    "project_id": "d4rk-plus-apps---android",
+    "storage_bucket": "d4rk-plus-apps---android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112794310224:android:888a11d20377c88b316355",
+        "android_client_info": {
+          "package_name": "com.d4rk.cleaner.plus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "112794310224-emkpot84ibg8hknpv7583ie564l50tqn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALS0VM2ZmiAuhamQS1t8ZN13A1i8fOibg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "112794310224-emkpot84ibg8hknpv7583ie564l50tqn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112794310224:android:edb10eeb87f1faab316355",
+        "android_client_info": {
+          "package_name": "com.d4rk.englishwithlidia.plus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "112794310224-emkpot84ibg8hknpv7583ie564l50tqn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALS0VM2ZmiAuhamQS1t8ZN13A1i8fOibg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "112794310224-emkpot84ibg8hknpv7583ie564l50tqn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-5294151573817700~8003610653"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112794310224:android:2b646136f4719d1a316355",
+        "android_client_info": {
+          "package_name": "com.d4rk.musicsleeptimer.plus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "112794310224-emkpot84ibg8hknpv7583ie564l50tqn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALS0VM2ZmiAuhamQS1t8ZN13A1i8fOibg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "112794310224-emkpot84ibg8hknpv7583ie564l50tqn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112794310224:android:61acebcda302b7a4316355",
+        "android_client_info": {
+          "package_name": "com.d4rk.qrcodescanner.plus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "112794310224-emkpot84ibg8hknpv7583ie564l50tqn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALS0VM2ZmiAuhamQS1t8ZN13A1i8fOibg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "112794310224-emkpot84ibg8hknpv7583ie564l50tqn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-5294151573817700~6790204555"
+    }
+  ],
+  "configuration_version": "1"
+}

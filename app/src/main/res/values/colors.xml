@@ -1,0 +1,8 @@
+<resources>
+    <color name="colorPrimary">#00668B</color>
+    <color name="colorSecondary">#4E616C</color>
+    <color name="colorIconShortcutBackground">#C1E8FF</color>
+    <color name="colorIconShortcutForeground">#454749</color>
+    <color name="colorLauncherBackground">#FFFFFF</color>
+    <color name="colorShortcutBackground">#F5F5F5</color>
+</resources>
