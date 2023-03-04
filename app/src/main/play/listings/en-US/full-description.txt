@@ -19,7 +19,7 @@ Our app is designed to be simple and easy to use, while also being fast and ligh
 ⚠ Opening Issues!
 Bugs can be reported here: https://github.com/D4rK7355608/com.d4rk.cleaner.plus/issues
 
-Create a scanner/general bug. 🐞
+Create an clean/analyze/whitelist/general bug.  🐞
 
 🛠️ Features!
 ⭐️ Simple and easy to use.
@@ -60,9 +60,9 @@ Create a scanner/general bug. 🐞
 • With the "MANAGE_EXTERNAL_STORAGE" permission, Cleaner Plus is able to scan and remove files not just on your internal storage, but also on external storage devices connected to your device.
 
 💬 Feedback!
-We are constantly updating and improving "app_name" to give you the best possible experience. If you have any suggested features or improvements, please leave a review. In case something is not working correctly please let me know. When posting a low rating please describe what is wrong to give the possibility to fix that issue.
+We are constantly updating and improving Cleaner Plus to give you the best possible experience. If you have any suggested features or improvements, please leave a review. In case something is not working correctly please let me know. When posting a low rating please describe what is wrong to give the possibility to fix that issue.
 
-Thank you for choosing "app_name". We hope you enjoy using our app as much as we enjoyed creating it for you! Rate us 5 stars ⭐⭐⭐⭐⭐ if you are happy with the app! ❤
+Thank you for choosing Cleaner Plus. We hope you enjoy using our app as much as we enjoyed creating it for you! Rate us 5 stars ⭐⭐⭐⭐⭐ if you are happy with the app! ❤
 
 ╔╦╦══╦══╦═╦╗
 ║╔╣║║╠╗╔╣═╣║

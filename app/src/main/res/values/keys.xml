@@ -6,6 +6,8 @@
     <string name="key_filter_empty" translatable="false">filter_empty</string>
     <string name="key_filter_corpse" translatable="false">filter_corpse</string>
     <string name="key_filter_apk" translatable="false">filter_apk</string>
+    <string name="key_filter_archive" translatable="false">filter_archive</string>
+    <string name="key_invalid_media_cleaner" translatable="false">invalid_media_cleaner</string>
     <string name="key_double_checker" translatable="false">double_checker</string>
     <string name="key_auto_whitelist" translatable="false">auto_whitelist</string>
     <string name="key_clipboard" translatable="false">clipboard</string>
@@ -14,6 +16,9 @@
     <string name="key_swap_buttons" translatable="false">swap_buttons</string>
     <string name="key_more_apps" translatable="false">more_apps</string>
     <string name="key_share" translatable="false">share</string>
+    <string name="key_whitelist" translatable="false">whitelist</string>
     <string name="key_changelog" translatable="false">changelog</string>
+    <string name="key_device_info" translatable="false">device_info</string>
+    <string name="key_open_source_licenses" translatable="false">open_source_licenses</string>
     <string name="default_value_theme" translatable="false">MODE_NIGHT_FOLLOW_SYSTEM</string>
 </resources>

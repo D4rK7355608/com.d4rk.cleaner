@@ -7,9 +7,8 @@
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
     <uses-permission android:name="com.android.vending.CHECK_LICENSE"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="QueryAllPackagesPermission"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
     <uses-permission android:name="android.permission.ACTION_OPEN_DOCUMENT_TREE"/>
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
@@ -18,15 +17,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="29" tools:ignore="ScopedStorage"/>
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage"/>
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.MAIN"/>
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.VIEW"/>
-            <data android:scheme="https"/>
-        </intent>
-    </queries>
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions"/>
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="QueryAllPackagesPermission"/>
     <application
         android:name=".ads.Ads"
         android:icon="@mipmap/ic_launcher"
@@ -45,7 +37,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/SplashScreenTheme">
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashScreenTheme"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.intent.action.MAIN"/>
@@ -69,7 +63,11 @@
             android:name=".ui.settings.SettingsActivity"
             android:label="@string/settings"
             android:exported="true"
-            android:parentActivityName=".ui.settings.SettingsActivity"/>
+            android:parentActivityName=".ui.settings.SettingsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.APPLICATION_PREFERENCES"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.language.LanguageActivity"
             android:label="@string/language"
@@ -98,6 +96,14 @@
         <activity
             android:name=".ui.startup.StartupActivity"
             android:theme="@style/AppThemeNoActionBar"/>
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
         <meta-data
             android:name="firebase_performance_logcat_enabled"
             android:value="true"/>

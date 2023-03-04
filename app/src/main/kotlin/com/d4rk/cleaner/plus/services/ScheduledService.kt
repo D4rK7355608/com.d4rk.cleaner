@@ -20,15 +20,15 @@ class ScheduledService : JobIntentService() {
         try {
             val path = Environment.getExternalStorageDirectory()
             val preferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-            val fs = FileScanner(path, applicationContext)
+            val fileScanner = FileScanner(path, applicationContext)
                 .setEmptyDir(preferences.getBoolean(getString(R.string.key_filter_empty), false))
                 .setAutoWhite(preferences.getBoolean(getString(R.string.key_auto_whitelist), true))
                 .setDelete(true)
                 .setCorpse(preferences.getBoolean(getString(R.string.key_filter_corpse), false))
                 .setGUI(null)
                 .setContext(applicationContext)
-                .setUpFilters(preferences.getBoolean(getString(R.string.key_filter_generic), true), preferences.getBoolean(getString(R.string.key_filter_aggressive), false), preferences.getBoolean(getString(R.string.key_filter_apk), false))
-            val kilobytesTotal = fs.startScan()
+                .setUpFilters(preferences.getBoolean(getString(R.string.key_filter_generic), true), preferences.getBoolean(getString(R.string.key_filter_aggressive), false), preferences.getBoolean(getString(R.string.key_filter_apk), false), preferences.getBoolean(getString(R.string.key_filter_archive), false))
+            val kilobytesTotal = fileScanner.startScan()
             val title = applicationContext.getString(R.string.service_notification_title) + " " + convertSize(kilobytesTotal)
             makeStatusNotification(title, applicationContext)
         } catch (e: Exception) {

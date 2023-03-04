@@ -1,3 +1,4 @@
+@file:Suppress("DEPRECATION")
 package com.d4rk.cleaner.plus.ui.imageoptimizer
 import android.app.Activity
 import android.content.Context
@@ -6,28 +7,49 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.DocumentsContract
+import android.provider.MediaStore
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.d4rk.cleaner.plus.R
 import com.d4rk.cleaner.plus.databinding.ActivityImageOptimizerBinding
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import id.zelory.compressor.Compressor
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
-@Suppress("DEPRECATION")
-@DelicateCoroutinesApi
 class ImageOptimizerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityImageOptimizerBinding
     private var imageUri: Uri? = null
-    private val optimizedPicturesDirectory = File(Environment.getExternalStorageDirectory(), "Pictures/Optimized Pictures")
+    private val optimizedPicturesDirectory = File(Environment.getExternalStorageDirectory(), "Pictures/Optimized Pictures").apply {
+        if (!exists()) {
+            mkdirs()
+        }
+    }
+    private lateinit var pickSingleMediaLauncher: ActivityResultLauncher<Intent>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityImageOptimizerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         MobileAds.initialize(this)
         binding.adView.loadAd(AdRequest.Builder().build())
+        pickSingleMediaLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode != Activity.RESULT_OK) {
+                Toast.makeText(this, getString(R.string.failed_picking_media), Toast.LENGTH_SHORT).show()
+            } else {
+                result.data?.data?.let {
+                    imageUri = it
+                    binding.imageViewOriginalImage.setImageURI(it)
+                }
+            }
+        }
         binding.buttonChooseImage.setOnClickListener {
-            chooseImage()
+            pickSingleMediaLauncher.launch(Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI))
         }
         binding.buttonOptimizeImage.setOnClickListener {
             imageUri?.let {
@@ -35,19 +57,12 @@ class ImageOptimizerActivity : AppCompatActivity() {
             }
         }
     }
-    private fun chooseImage() {
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-            addCategory(Intent.CATEGORY_OPENABLE)
-            type = "image/*"
-        }
-        startActivityForResult(intent, READ_REQUEST_CODE, null)
-    }
     private fun optimizeImage(imageUri: Uri) {
         GlobalScope.launch(Dispatchers.Main) {
             binding.buttonOptimizeImage.isEnabled = false
-            val file = withContext(Dispatchers.IO) {
-                val filePath = getPath(this@ImageOptimizerActivity, imageUri)
-                val file = File(filePath.toString())
+            val filePath = getPath(this@ImageOptimizerActivity, imageUri)
+            val file = File(filePath!!)
+            if (file.exists() && file.extension in listOf("jpg", "jpeg", "png")) {
                 Compressor.compress(this@ImageOptimizerActivity, file)
             }
             binding.imageViewOptimizedImage.setImageURI(Uri.fromFile(file))
@@ -63,7 +78,8 @@ class ImageOptimizerActivity : AppCompatActivity() {
                 file.copyTo(newFile, overwrite = true)
                 newFile
             }
-            val snackbar = Snackbar.make(binding.root, "Image saved to: ${savedFile.path}", Snackbar.LENGTH_LONG)
+            val message = getString(R.string.image_saved) + savedFile.path
+            val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
             snackbar.setAction(android.R.string.ok) {
                 snackbar.dismiss()
             }
@@ -79,21 +95,16 @@ class ImageOptimizerActivity : AppCompatActivity() {
                 return Environment.getExternalStorageDirectory().toString() + "/" + split[1]
             }
         } else {
-            return uri.path
-        }
-        return null
-    }
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            data?.data?.let {
-                imageUri = it
-                binding.imageViewOriginalImage.setImageURI(it)
+            val projection = arrayOf(MediaStore.Images.Media.DATA)
+            val cursor = context.contentResolver.query(uri, projection, null, null, null)
+            cursor?.let {
+                val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                it.moveToFirst()
+                val path = it.getString(columnIndex)
+                it.close()
+                return path
             }
         }
-        super.onActivityResult(requestCode, resultCode, data)
-    }
-    companion object {
-        private const val READ_REQUEST_CODE = 42
+        return null
     }
 }

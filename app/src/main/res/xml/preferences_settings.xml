@@ -42,6 +42,17 @@
             app:title="@string/delete_empty_folders"/>
         <androidx.preference.SwitchPreferenceCompat
             app:defaultValue="false"
+            app:key="@string/key_filter_archive"
+            app:icon="@drawable/ic_folder_zip"
+            app:summary="@string/summary_preference_settings_archive_filter"
+            app:title="@string/delete_archives"/>
+        <androidx.preference.SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:icon="@drawable/ic_broken_image"
+            app:key="@string/key_invalid_media_cleaner"
+            app:title="@string/delete_invalid_media"/>
+        <androidx.preference.SwitchPreferenceCompat
+            app:defaultValue="false"
             app:key="@string/key_filter_corpse"
             app:icon="@drawable/ic_preference_settings_corpse"
             app:summary="@string/summary_preference_settings_delete_corpse_files"
@@ -92,7 +103,7 @@
         app:title="@string/advanced"
         app:icon="@drawable/ic_build_tinted">
         <androidx.preference.SwitchPreferenceCompat
-            app:defaultValue="false"
+            app:defaultValue="true"
             app:key="@string/key_firebase"
             app:icon="@drawable/ic_preference_settings_settings_firebase"
             app:summary="@string/summary_preference_settings_firebase"
@@ -152,6 +163,10 @@
                 android:targetClass="com.d4rk.cleaner.plus.ui.permissions.PermissionsActivity"/>
         </androidx.preference.Preference>
         <androidx.preference.Preference
+            app:key="open_source_licenses"
+            app:title="@string/oss_license_title"
+            app:icon="@drawable/ic_libraries"/>
+        <androidx.preference.Preference
             android:icon="@drawable/ic_faq"
             app:title="@string/faq">
             <intent
@@ -192,5 +207,14 @@
                 android:action="android.intent.action.VIEW"
                 android:data="https://bit.ly/3p8bpjj"/>
         </androidx.preference.Preference>
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory
+        app:title="@string/info"
+        app:icon="@drawable/ic_about">
+        <androidx.preference.Preference
+            app:icon="@drawable/ic_perm_device_information"
+            app:key="@string/key_device_info"
+            app:title="@string/device_info"
+            app:summary="%1$s"/>
     </androidx.preference.PreferenceCategory>
 </androidx.preference.PreferenceScreen>

@@ -35,8 +35,6 @@
     <string name="delete_empty_folders">Delete empty folders</string>
     <string name="delete_corpse_files">Delete corpse files</string>
     <string name="delete_apk_files">Delete APK files</string>
-    <string name="whitelist">Whitelist</string>
-    <string name="remove">Remove?</string>
     <string name="empty_whitelist">Empty whitelist?</string>
     <string name="add_to_whitelist">Add to whitelist…</string>
     <string name="close">Close?</string>
@@ -53,7 +51,7 @@
     <string name="english_with_lidia" translatable="false">English with Lidia Plus</string>
     <string name="qr_code_scanner" translatable="false">QR &amp; Bar Code Scanner Plus</string>
     <string name="low_brightness" translatable="false">Low Brightness</string>
-    <string name="android_studio_tutorials" translatable="false">Android Studio Tutorials</string>
+    <string name="android_studio_tutorials" translatable="false">Android Studio Tutorials: Kotlin Edition</string>
     <string name="twitter" translatable="false">Twitter</string>
     <string name="youtube" translatable="false">YouTube</string>
     <string name="github" translatable="false">GitHub</string>
@@ -64,6 +62,9 @@
     <string name="recommended">Recommended</string>
     <string name="system_default">System default</string>
     <string name="faq">FAQ</string>
+    <string name="image_saved">Image saved to: </string>
+    <string name="delete_invalid_media">Delete invalid media</string>
+    <string name="whitelist">Whitelist</string>
     <string name="more_apps">More apps…</string>
     <string name="more">More</string>
     <string name="feedback">Feedback</string>
@@ -84,6 +85,17 @@
     <string name="privacy_policy">Privacy policy</string>
     <string name="license">License</string>
     <string name="terms_of_service">Terms of service</string>
+    <string name="failed_picking_media">Failed picking media.</string>
+    <string name="music">Music</string>
+    <string name="delete_archives">Delete archives</string>
+    <string name="info">Info</string>
+    <string name="device_info">Device Info</string>
+    <string name="app_build">App Build: Release\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="manufacturer">Manufacturer:</string>
+    <string name="device_model">Device Model:</string>
+    <string name="android_version">Android Version:</string>
+    <string name="api_level">API Level:</string>
+    <string name="arch" translatable="false">Arch:</string>
     <string name="code_of_conduct">Code of conduct</string>
     <string name="privacy_and_security">Privacy and security</string>
     <string name="internet">Internet [INTERNET]</string>
@@ -111,6 +123,7 @@
     <string name="query_all_packages">Query all packages [QUERY_ALL_PACKAGES]</string>
     <string name="access_media_location">Access media location [ACCESS_MEDIA_LOCATION]</string>
     <string name="action_open_document_tree">Action open document tree [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="package_usage_stats">Package usage stats [PACKAGE_USAGE_STATS]</string>
     <string name="check_license">Check license [CHECK_LICENSE]</string>
     <string name="question_1">What is Cleaner Plus?</string>
     <string name="question_2">Is Cleaner Plus safe to use?</string>
@@ -132,12 +145,12 @@
     <string name="summary_preference_settings_one_click_clean">No dialog menu when clicking \"Clean\" button.</string>
     <string name="summary_preference_settings_aggressive_filter">Delete every type of file from your device.</string>
     <string name="summary_preference_settings_generic_filter">Delete temp, log, logs, &amp; other useless files &amp; folders.</string>
+    <string name="summary_preference_settings_archive_filter">Delete archives from your device.</string>
     <string name="summary_preference_settings_firebase">This let us collect information about app performance and crash logs.</string>
     <string name="summary_preference_settings_daily_clean">Automatically runs daily, without you having to open the app.</string>
     <string name="summary_preference_settings_swap_buttons">Swap \"Clean\" and \"Analyze\" buttons.</string>
     <string name="summary_preference_settings_license" translatable="false">General Public License-3.0</string>
     <string name="summary_preference_settings_support_me">Click here if you want to support me without paying money. Just some time for viewing an add.</string>
-    <string name="summary_preference_permissions_update">Used to check app for updates.</string>
     <string name="summary_preference_permissions_internet">Used to send error reports.</string>
     <string name="summary_preference_permissions_ad_id">Used to allow ads to be shown in Android 13+ devices.</string>
     <string name="summary_preference_permissions_receive_boot_completed">Used to start app when the device boots u.</string>
@@ -152,6 +165,7 @@
     <string name="summary_preference_permissions_check_license">Used to verify that the app is being used in accordance with the terms of the license agreement, and to enforce licensing terms and protect intellectual property.</string>
     <string name="summary_preference_permissions_access_media_location">Used to access the device\'s media files location.</string>
     <string name="summary_preference_permissions_action_open_document_tree">Used to access to a tree of documents, including the ability to read and write files in the tree.</string>
+    <string name="summary_preference_permissions_package_usage_stats">Used to allow the app to access information about the user\'s app usage, including which apps have been used, how long they have been used, and how frequently they have been used.</string>
     <string name="summary_preference_faq_1">Cleaner Plus is a free and open-source Android app that helps you optimize your device\'s performance and free up storage space. It can scan your device for unnecessary files and delete them, as well clear your cache to improve your device\'s speed.</string>
     <string name="summary_preference_faq_2">Yes, Cleaner Plus is safe to use. It only removes files that are not essential to the operation of your device or apps, and it does not delete any of your personal data or important system files.</string>
     <string name="summary_preference_faq_3">To use Cleaner Plus, simply download and install the app from the Google Play Store or a reputable third-party app store. Then, open the app and follow the prompts to scan your device and delete unnecessary files. You can also access the app\'s settings to customize the types of files that Cleaner Plus looks for and deletes.</string>
@@ -166,7 +180,6 @@
     <string name="tooltip_button_analyze">Analyze what files you can clean without deleting then.</string>
     <string name="tooltip_button_clean">Click here to clean your device!</string>
     <string name="tooltip_feedback">Send us your review on Google Play Store.</string>
-    <string name="toast_feedback">Thanks for rating us!</string>
     <string name="settings_notification_name">Daily Cleaner Notification.</string>
     <string name="settings_notification_sum">Shows notification of how much data was cleaned daily.</string>
     <string name="main_progress_0" translatable="false">0%</string>
@@ -177,6 +190,10 @@
     <string name="service_notification_title">Your clipboard is under the protection!</string>
     <string name="changelog_title" translatable="false">Changelog - Version %1s</string>
     <string name="changes" translatable="false">\n
-        • Initial stable release.
+        • Added Invalid Media Cleaner.\n\n
+        • Added archive cleaner.\n\n
+        • Reworked &amp; fixed permissions logic.\n\n
+        • Another minor UI tweaks.\n\n
+        • Made various under-the-hood improvements for a better overall app experience.
     </string>
 </resources>

@@ -15,14 +15,14 @@ import java.io.File
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
-    private lateinit var fs: FileScanner
+    private lateinit var fileScanner: FileScanner
 
     @Before
     fun init() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val path = File(Environment.getExternalStorageDirectory(), "")
         val res = appContext.resources
-        fs = FileScanner(path, appContext).apply {
+        fileScanner = FileScanner(path, appContext).apply {
             setAutoWhite(false)
             setResources(res)
             setDelete(true)
@@ -39,8 +39,8 @@ class ExampleInstrumentedTest {
     fun checkLogFiles() {
         val logFile = createFile("testfile.loG")
         val clogFile = createFile("clogs.pnG")
-        fs.setUpFilters(generic = true, aggressive = false, apk = false)
-        fs.startScan()
+        fileScanner.setUpFilters(generic = true, aggressive = false, apk = false, archive = false)
+        fileScanner.startScan()
         Assert.assertTrue(clogFile.exists())
         Assert.assertFalse(logFile.exists())
     }
@@ -48,33 +48,33 @@ class ExampleInstrumentedTest {
     @Test
     fun checkTempFiles() {
         val tmpFile = createFile("testfile.tMp")
-        fs.setUpFilters(generic = true, aggressive = false, apk = false)
-        fs.startScan()
+        fileScanner.setUpFilters(generic = true, aggressive = false, apk = false, archive = false)
+        fileScanner.startScan()
         Assert.assertFalse(tmpFile.exists())
     }
 
     @Test
     fun checkThumbFiles() {
         val thumbFile = createFile("thumbs.Db")
-        fs.setUpFilters(generic = false, aggressive = true, apk = false)
-        fs.startScan()
+        fileScanner.setUpFilters(generic = false, aggressive = true, apk = false, archive = false)
+        fileScanner.startScan()
         Assert.assertFalse(thumbFile.exists())
     }
 
     @Test
     fun checkAPKFiles() {
         val thumbFile = createFile("chrome.aPk")
-        fs.setUpFilters(generic = true, aggressive = true, apk = true)
-        fs.startScan()
+        fileScanner.setUpFilters(generic = true, aggressive = true, apk = true, archive = false)
+        fileScanner.startScan()
         Assert.assertFalse(thumbFile.exists())
     }
 
     @Test
     fun checkEmptyDir() {
         val emptyDir = createDir()
-        fs.setUpFilters(generic = true, aggressive = false, apk = false)
-        fs.setEmptyDir(true)
-        fs.startScan()
+        fileScanner.setUpFilters(generic = true, aggressive = false, apk = false, archive = false)
+        fileScanner.setEmptyDir(true)
+        fileScanner.startScan()
         Assert.assertFalse(emptyDir.exists())
     }
 

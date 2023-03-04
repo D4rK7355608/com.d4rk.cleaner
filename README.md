@@ -3,17 +3,17 @@
 </p>
 
 ![Works with Android](https://img.shields.io/badge/Made%20for-Android-lime?style=for-the-badge&logo=android)
-![GitHub Downloads](https://img.shields.io/github/downloads/D4rK7355608/com.d4rk.androidtutorials/total?color=green&style=for-the-badge&logo=github)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/D4rK7355608/com.d4rk.androidtutorials/Android%20CI/master?style=for-the-badge&logo=github)
-![GitHub Issues](https://img.shields.io/github/issues/D4rK7355608/com.d4rk.androidtutorials?style=for-the-badge&logo=github)
-![GitHub Pull Requests](https://img.shields.io/github/issues-pr/D4rK7355608/com.d4rk.androidtutorials?style=for-the-badge&logo=github)
-![GitHub License](https://img.shields.io/github/license/D4rK7355608/com.d4rk.androidtutorials?style=for-the-badge&logo=github)
+![GitHub Downloads](https://img.shields.io/github/downloads/D4rK7355608/com.d4rk.cleaner.plus/total?color=green&style=for-the-badge&logo=github)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/D4rK7355608/com.d4rk.cleaner.plus/android.yml?style=for-the-badge)![GitHub Issues](https://img.shields.io/github/issues/D4rK7355608/com.d4rk.musicsleeptimer.plus?style=for-the-badge&logo=github)
+![GitHub Issues](https://img.shields.io/github/issues/D4rK7355608/com.d4rk.cleaner.plus?style=for-the-badge&logo=github)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr/D4rK7355608/com.d4rk.cleaner.plus?style=for-the-badge&logo=github)
+![GitHub License](https://img.shields.io/github/license/D4rK7355608/com.d4rk.cleaner.plus?style=for-the-badge&logo=github)
 
 ## 🧹Cleaner Plus🧹
 
-- ╔╦╦╦═╦╗╔═╦═╦══╦═╗
-- ║║║║╩╣╚╣═╣║║║║║╩╣
-- ╚══╩═╩═╩═╩═╩╩╩╩═╝
+╔╦╦╦═╦╗╔═╦═╦══╦═╗  \
+║║║║╩╣╚╣═╣║║║║║╩╣ \
+╚══╩═╩═╩═╩═╩╩╩╩═╝
 
 ## Clean your phone with just one tap! Optimize storage with Cleaner Plus. 🧹
 
@@ -28,43 +28,39 @@ Plus, Cleaner Plus offers added bonuses, like the option to switch to a dark or 
 Optimize and clean your device with Cleaner Plus today! 🧹
 
 Our app is designed to be simple and easy to use, while also being fast and lightweight. Plus, it's free and open-source software!
+
 ## ⚠ Opening Issues ⚠
 
 Bugs can be reported [here](https://github.com/D4rK7355608/com.d4rk.cleaner.plus/issues).
 
-> Only use the GitHub Issues section if you discovered issues with the code itself. Do not mistake the Issues page as a help desk.
-> For support, informations and requests, please contact <d4rk7355608@gmail.com>.
-
-- Create an code/general bug.  🐞
-
-__🖤 Cleaner Plus is 100% Free, Open Source and helps you optimize your device! 🖤__
+- Create an clean/analyze/whitelist/general bug.  🐞
 
 ## 🛠️ Features!
-- ⭐️ Kotlin & XML examples.
-- ⭐️ Simple and easy to use.
-- ⭐️ Fast and lightweight.
-- ⭐️ Free and open-source software.
-- ⭐️ Cleans empty folders.
-- ⭐️ Clean logs.
-- ⭐️ Clean temporary, caches & corpse files.
-- ⭐️ Clean advertisement folders.
-- ⭐️ Clean clipboard cleaning.
-- ⭐️ Auto daily cleaner.
+⭐️ Kotlin & XML examples. \
+⭐️ Simple and easy to use. \
+⭐️ Fast and lightweight. \
+⭐️ Free and open-source software. \
+⭐️ Cleans empty folders. \
+⭐️ Clean logs. \
+⭐️ Clean temporary, caches & corpse files. \
+⭐️ Clean advertisement folders. \
+⭐️ Clean clipboard cleaning. \
+⭐️ Auto daily cleaner.
 
-## 📝 Changelog [here](https://raw.githubusercontent.com/D4rK7355608/com.d4rk.androidtutorials/master/CHANGELOG.md)!
+## 📝 Changelog [here](https://raw.githubusercontent.com/D4rK7355608/com.d4rk.cleaner.plus/master/CHANGELOG.md)!
 
 ## 🖼️ App preview:
 
-<img src="/app/src/main/play/listings/en-US/graphics/phone-screenshots/1-screenshot_main.png"  width="400">
+<img src="/app/src/main/play/listings/en-US/graphics/phone-screenshots/1-screenshot_main.png" width="400">
 
 ## 🛑 Disclaimer!
 - Only use the GitHub Issues section if you discover issues with the code itself. Do not mistake the Issues page as a help desk. For support, information and requests, please contact d4rk7355608@gmail.com.
 - With the "MANAGE_EXTERNAL_STORAGE" permission, Cleaner Plus is able to scan and remove files not just on your internal storage, but also on external storage devices connected to your device.
 
 ## 💬 Feedback!
-If you have any suggested features or improvement, please leave a comment. In case something is not working correctly please let me know. When posting low rating please describe what is wrong to give the possibility to fix that issue.
+We are constantly updating and improving Cleaner Plus to give you the best possible experience. If you have any suggested features or improvements, please leave a review. In case something is not working correctly please let me know. When posting a low rating please describe what is wrong to give the possibility to fix that issue.
 
-Rate us 5 stars ⭐⭐⭐⭐⭐ if you are happy with the app.
+Thank you for choosing Cleaner Plus. We hope you enjoy using our app as much as we enjoyed creating it for you! Rate us 5 stars ⭐⭐⭐⭐⭐ if you are happy with the app! ❤
 
 ## 👨🏻‍💻 &nbsp;More About Me:
 <a href="mailto:d4rk7355608@gmail.com"><img src="https://img.shields.io/badge/d4rk7355608@gmail.com-red?style=for-the-badge&logo=gmail&logoColor=white"/></a>

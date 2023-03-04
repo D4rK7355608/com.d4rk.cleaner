@@ -6,11 +6,11 @@ import android.os.Bundle
 import com.d4rk.cleaner.plus.BuildConfig
 import com.d4rk.cleaner.plus.R
 import com.d4rk.cleaner.plus.databinding.ActivityAboutBinding
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.os.Build
 import android.widget.Toast
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
@@ -36,7 +36,9 @@ class AboutActivity : AppCompatActivity() {
         binding.textViewAppVersion.setOnLongClickListener {
             val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             clipboard.setPrimaryClip(ClipData.newPlainText("Label", binding.textViewAppVersion.text))
-            Toast.makeText(this, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+                Toast.makeText(this, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
+            }
             true
         }
         binding.imageViewAppIcon.setOnClickListener {
@@ -56,9 +58,6 @@ class AboutActivity : AppCompatActivity() {
         }
         binding.chipXda.setOnClickListener {
             openUrl("https://forum.xda-developers.com/m/d4rk7355608.10095012")
-        }
-        binding.chipOss.setOnClickListener {
-            startActivity(Intent(this, OssLicensesMenuActivity::class.java))
         }
     }
     private fun openUrl(url: String) {

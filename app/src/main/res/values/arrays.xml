@@ -153,6 +153,31 @@
         <item>temporary</item>
         <item>splashad</item>
     </string-array>
+    <string-array name="archive_filter_files">
+        <item>zip</item>
+        <item>rar</item>
+        <item>7z</item>
+        <item>tar</item>
+        <item>gz</item>
+        <item>iso</item>
+        <item>cab</item>
+        <item>jar</item>
+        <item>dng</item>
+        <item>bz2</item>
+        <item>lzh</item>
+        <item>lzma</item>
+        <item>ace</item>
+        <item>arj</item>
+        <item>deb</item>
+        <item>rpm</item>
+        <item>tar.gz</item>
+        <item>tar.xz</item>
+        <item>gz.tar</item>
+        <item>bz2tar</item>
+        <item>xz.tar</item>
+        <item>z</item>
+        <item>lz</item>
+    </string-array>
     <string-array name="preference_theme_entries">
         <item>@string/follow_system</item>
         <item>@string/light_mode</item>

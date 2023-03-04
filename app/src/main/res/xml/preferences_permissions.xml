@@ -28,18 +28,11 @@
         app:title="@string/runtime"
         app:iconSpaceReserved="false">
         <androidx.preference.Preference
+            app:title="@string/foreground_service"
+            app:iconSpaceReserved="false"/>
+        <androidx.preference.Preference
             app:title="@string/receive_boot_completed"
             app:summary="@string/summary_preference_permissions_receive_boot_completed"
-            app:iconSpaceReserved="false"/>
-        <androidx.preference.Preference
-            app:title="@string/foreground_service"
-            app:iconSpaceReserved="false"/>
-        <androidx.preference.Preference
-            app:title="@string/foreground_service"
-            app:iconSpaceReserved="false"/>
-        <androidx.preference.Preference
-            app:title="@string/query_all_packages"
-            app:summary="@string/summary_preference_permissions_query_all_packages"
             app:iconSpaceReserved="false"/>
     </androidx.preference.PreferenceCategory>
     <androidx.preference.PreferenceCategory
@@ -76,6 +69,14 @@
         <androidx.preference.Preference
             app:title="@string/manage_external_storage"
             app:summary="@string/summary_preference_permissions_manage_external_storage"
+            app:iconSpaceReserved="false"/>
+        <androidx.preference.Preference
+            app:title="@string/package_usage_stats"
+            app:summary="@string/summary_preference_permissions_package_usage_stats"
+            app:iconSpaceReserved="false"/>
+        <androidx.preference.Preference
+            app:title="@string/query_all_packages"
+            app:summary="@string/summary_preference_permissions_query_all_packages"
             app:iconSpaceReserved="false"/>
     </androidx.preference.PreferenceCategory>
 </androidx.preference.PreferenceScreen>
