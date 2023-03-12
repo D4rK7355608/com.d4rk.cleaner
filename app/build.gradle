@@ -12,8 +12,8 @@ android {
         applicationId 'com.d4rk.cleaner.plus'
         minSdkVersion 26
         targetSdkVersion 33
-        versionCode 7
-        versionName '1.1_r1'
+        versionCode 8
+        versionName '1.2_r1'
         archivesBaseName = "${applicationId}-v${versionName}"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         resConfigs 'en', 'de', 'es', 'fr', 'hi', 'in', 'it', 'ja', 'ro', 'ru', 'tr'
@@ -68,11 +68,11 @@ dependencies {
     implementation 'androidx.preference:preference-ktx:1.2.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-process:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0'
+    implementation 'androidx.lifecycle:lifecycle-process:2.6.0'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.6.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.loader:loader:1.1.0'
     implementation 'com.airbnb.android:lottie:6.0.0'

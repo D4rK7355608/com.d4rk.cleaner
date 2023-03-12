@@ -55,7 +55,7 @@ Bugs can be reported [here](https://github.com/D4rK7355608/com.d4rk.cleaner.plus
 
 ## 🛑 Disclaimer!
 - Only use the GitHub Issues section if you discover issues with the code itself. Do not mistake the Issues page as a help desk. For support, information and requests, please contact d4rk7355608@gmail.com.
-- With the "MANAGE_EXTERNAL_STORAGE" permission, Cleaner Plus is able to scan and remove files not just on your internal storage, but also on external storage devices connected to your device.
+- With the `MANAGE_EXTERNAL_STORAGE` permission, Cleaner Plus is able to scan and remove files not just on your internal storage, but also on external storage devices connected to your device.
 
 ## 💬 Feedback!
 We are constantly updating and improving Cleaner Plus to give you the best possible experience. If you have any suggested features or improvements, please leave a review. In case something is not working correctly please let me know. When posting a low rating please describe what is wrong to give the possibility to fix that issue.

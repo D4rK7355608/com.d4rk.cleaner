@@ -50,7 +50,8 @@
             app:defaultValue="false"
             app:icon="@drawable/ic_broken_image"
             app:key="@string/key_invalid_media_cleaner"
-            app:title="@string/delete_invalid_media"/>
+            app:title="@string/delete_invalid_media"
+            app:summary="@string/summary_preference_settings_delete_invalid_media"/>
         <androidx.preference.SwitchPreferenceCompat
             app:defaultValue="false"
             app:key="@string/key_filter_corpse"

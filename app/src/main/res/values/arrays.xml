@@ -30,9 +30,29 @@
         <item>.xml</item>
         <item>.zip</item>
         <item>.rar</item>
+        <item>.z</item>
+        <item>.tar</item>
+        <item>.gz</item>
+        <item>.iso</item>
+        <item>.cab</item>
+        <item>.jar</item>
+        <item>.dng</item>
+        <item>.bz2</item>
+        <item>.lzh</item>
+        <item>.lzma</item>
+        <item>.ace</item>
+        <item>.arj</item>
+        <item>.deb</item>
+        <item>.rpm</item>
+        <item>.tar.gz</item>
+        <item>.tar.xz</item>
+        <item>.gz.tar</item>
+        <item>.bz2tar</item>
+        <item>.xz.tar</item>
+        <item>.z</item>
+        <item>.lz</item>
         <item>.txt</item>
         <item>.pdf</item>
-        <item>.ini</item>
         <item>.viz</item>
         <item>.psxpj</item>
         <item>.ttf</item>
@@ -42,141 +62,189 @@
         <item>.html</item>
         <item>.ppt</item>
         <item>.pptx</item>
+        <item>.ini</item>
     </string-array>
     <string-array name="aggressive_filter_folders">
-        <item>supersonicads</item>
-        <item>Cache</item>
-        <item>ApkEditor</item>
+        <item>.Trash</item>
+        <item>.DS_Store</item>
+        <item>.estrongs</item>
+        <item>.facebook_cache</item>
+        <item>.spotlight-V100</item>
+        <item>.thumbnails</item>
+        <item>Ads</item>
+        <item>AnyDesk</item>
         <item>Apk Editor</item>
         <item>Apk Editor Plus</item>
         <item>Apk Editor Pro</item>
-        <item>AnyDesk</item>
-        <item>Download</item>
-        <item>acmarket</item>
-        <item>net.appcake</item>
-        <item>Downloads</item>
-        <item>.estrongs</item>
-        <item>bluetooth</item>
-        <item>thumbnails?</item>
-        <item>GBWhatsApp</item>
-        <item>WhatsApp</item>
-        <item>ASUS</item>
-        <item>Screenshots</item>
-        <item>PhotoEditor</item>
-        <item>Podcasts</item>
-        <item>QQSecureDownload</item>
-        <item>com.kingroot.kinguser</item>
-        <item>jumobile</item>
-        <item>minidump</item>
-        <item>PicsArt</item>
-        <item>Pictures</item>
-        <item>mobvista</item>
-        <item>PhotosEditor</item>
-        <item>ifont</item>
-        <item>OSSLog</item>
-        <item>Telegram</item>
-        <item>.thumbnails</item>
-        <item>.facebook_cache</item>
-        <item>UnityAdsVideoCache</item>
-        <item>albumthumbs?</item>
+        <item>Audiobooks</item>
+        <item>Bluetoooth</item>
+        <item>Bluetooth</item>
+        <item>Bugreport</item>
+        <item>Cache</item>
+        <item>Camera</item>
         <item>DCIM</item>
-        <item>blueWAplus</item>
-        <item>XiaoYing</item>
-        <item>OSSLog</item>
-        <item>LOST.DIR</item>
+        <item>Desktop.ini</item>
         <item>Discord</item>
-        <item>Media</item>
-        <item>GBWhatsApp Images</item>
-        <item>GBWhatsApp Stickers</item>
-        <item>GBWhatsApp Documents</item>
+        <item>Download</item>
+        <item>Downloads</item>
+        <item>Fseventsd</item>
+        <item>GBWhatsApp</item>
         <item>GBWhatsApp Animated Gifs</item>
         <item>GBWhatsApp Audio</item>
+        <item>GBWhatsApp Documents</item>
+        <item>GBWhatsApp Images</item>
+        <item>GBWhatsApp Stickers</item>
         <item>GBWhatsApp Video</item>
-        <item>WhatsApp Images</item>
-        <item>WhatsApp Stickers</item>
-        <item>WhatsApp Documents</item>
+        <item>Ifont</item>
+        <item>Jumobile</item>
+        <item>Kinguserdown</item>
+        <item>Logs</item>
+        <item>Lost.dir</item>
+        <item>Media</item>
+        <item>Minidump</item>
+        <item>Mobvista</item>
+        <item>Notifications</item>
+        <item>OSSLog</item>
+        <item>Photoeditor</item>
+        <item>Photos</item>
+        <item>Picsart</item>
+        <item>Podcasts</item>
+        <item>QQSecureDownload</item>
+        <item>Ringtones</item>
+        <item>Screenshots</item>
+        <item>Temp</item>
+        <item>Temporary</item>
+        <item>Thumbnails?</item>
+        <item>Telegram</item>
+        <item>Tmp</item>
+        <item>Tmp</item>
+        <item>Twrp</item>
+        <item>Unityadsvideocache</item>
+        <item>WhatsApp</item>
+        <item>WhatsApp Business</item>
         <item>WhatsApp Animated Gifs</item>
         <item>WhatsApp Audio</item>
+        <item>WhatsApp Documents</item>
+        <item>WhatsApp Images</item>
+        <item>WhatsApp Stickers</item>
         <item>WhatsApp Video</item>
-        <item>.Trash</item>
-        <item>kinguserdown</item>
-        <item>desktop.ini</item>
-        <item>leakcanary</item>
-        <item>.DS_Store</item>
-        <item>.spotlight-V100</item>
-        <item>fseventsd</item>
-        <item>Bugreport</item>
-        <item>bugreports</item>
-        <item>Ringtones</item>
-        <item>Audiobooks</item>
-        <item>Camera</item>
-        <item>Notifications</item>
-        <item>TWRP</item>
-        <item>.trash</item>
-        <item>cache</item>
-        <item>Logs</item>
-        <item>logs</item>
-        <item>log</item>
-        <item>Log</item>
-        <item>tmp</item>
-        <item>Tmp</item>
-        <item>Temp</item>
-        <item>ads</item>
-        <item>temp</item>
-        <item>Temporary</item>
-        <item>temporary</item>
+        <item>Xiaoying</item>
     </string-array>
     <string-array name="generic_filter_files">
-        <item>.tmp</item>
-        <item>.temp</item>
+        <item>.DS_Store</item>
+        <item>.Spotlight-V100</item>
+        <item>.Thumbs.db</item>
+        <item>.fseventsd</item>
+        <item>.ini</item>
         <item>.log</item>
         <item>.logs</item>
-        <item>.ini</item>
+        <item>.old</item>
+        <item>.temp</item>
+        <item>.tmp</item>
+        <item>desktop.ini</item>
         <item>splashad</item>
+        <item>thumbs.db</item>
     </string-array>
     <string-array name="generic_filter_folders">
-        <item>Logs</item>
-        <item>logs</item>
+        <item>.AppleDouble</item>
+        <item>.DocumentRevisions-V100</item>
+        <item>.MobileBackups</item>
+        <item>.Spotlight-V100</item>
+        <item>.Trashes</item>
+        <item>.VolumeIcon.icns</item>
+        <item>.android</item>
+        <item>.cache</item>
+        <item>.gradle</item>
+        <item>.idea</item>
+        <item>.thumbnails</item>
+        <item>.vscode</item>
+        <item>AndroidStudioProjects</item>
+        <item>Backup</item>
+        <item>DCIM/.thumbnails</item>
         <item>Log</item>
-        <item>log</item>
-        <item>Tmp</item>
-        <item>tmp</item>
-        <item>Temp</item>
-        <item>temp</item>
-        <item>Temps</item>
-        <item>temps</item>
-        <item>Ads</item>
+        <item>Logs</item>
+        <item>Podcasts</item>
         <item>ads</item>
-        <item>Advertisement</item>
         <item>advertisement</item>
-        <item>Temporary</item>
+        <item>bin</item>
+        <item>backup</item>
+        <item>cache</item>
+        <item>logs</item>
+        <item>node_modules</item>
+        <item>obj</item>
+        <item>temp</item>
         <item>temporary</item>
-        <item>splashad</item>
+        <item>temps</item>
+        <item>thumbs</item>
+        <item>thumbnails</item>
+        <item>target</item>
+        <item>tmp</item>
+        <item>venv</item>
     </string-array>
     <string-array name="archive_filter_files">
-        <item>zip</item>
-        <item>rar</item>
-        <item>7z</item>
-        <item>tar</item>
-        <item>gz</item>
-        <item>iso</item>
-        <item>cab</item>
-        <item>jar</item>
-        <item>dng</item>
-        <item>bz2</item>
-        <item>lzh</item>
-        <item>lzma</item>
-        <item>ace</item>
-        <item>arj</item>
-        <item>deb</item>
-        <item>rpm</item>
-        <item>tar.gz</item>
-        <item>tar.xz</item>
-        <item>gz.tar</item>
-        <item>bz2tar</item>
-        <item>xz.tar</item>
-        <item>z</item>
-        <item>lz</item>
+        <item>.7z</item>
+        <item>.ace</item>
+        <item>.arj</item>
+        <item>.bz</item>
+        <item>.bz2</item>
+        <item>.cab</item>
+        <item>.cb7</item>
+        <item>.cbt</item>
+        <item>.cbz</item>
+        <item>.cbr</item>
+        <item>.dgc</item>
+        <item>.dmg</item>
+        <item>.ear</item>
+        <item>.gz</item>
+        <item>.gzip</item>
+        <item>.ha</item>
+        <item>.ice</item>
+        <item>.jar</item>
+        <item>.kgb</item>
+        <item>.lzh</item>
+        <item>.lz</item>
+        <item>.lzma</item>
+        <item>.lzo</item>
+        <item>.pak</item>
+        <item>.partimg</item>
+        <item>.pea</item>
+        <item>.pet</item>
+        <item>.pk3</item>
+        <item>.pk4</item>
+        <item>.rar</item>
+        <item>.rpm</item>
+        <item>.rz</item>
+        <item>.s7z</item>
+        <item>.sda</item>
+        <item>.sea</item>
+        <item>.sen</item>
+        <item>.sfark</item>
+        <item>.sfx</item>
+        <item>.shar</item>
+        <item>.sit</item>
+        <item>.sitx</item>
+        <item>.sqx</item>
+        <item>.tar</item>
+        <item>.tar.bz2</item>
+        <item>.tar.gz</item>
+        <item>.tar.xz</item>
+        <item>.tgz</item>
+        <item>.tlz</item>
+        <item>.txz</item>
+        <item>.udf</item>
+        <item>.utz</item>
+        <item>.uu</item>
+        <item>.uue</item>
+        <item>.war</item>
+        <item>.wim</item>
+        <item>.xar</item>
+        <item>.xp3</item>
+        <item>.xz</item>
+        <item>.z</item>
+        <item>.zip</item>
+        <item>.zipx</item>
+        <item>.zoo</item>
+        <item>.zpaq</item>
     </string-array>
     <string-array name="preference_theme_entries">
         <item>@string/follow_system</item>

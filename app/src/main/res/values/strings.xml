@@ -138,10 +138,11 @@
     <string name="summary_close">Are you sure you want to exit?</string>
     <string name="summary_dialog_button_clean">Are you sure? Files deleted cannot be restored after clean process.</string>
     <string name="summary_preference_settings_language">Set application language.</string>
-    <string name="summary_preference_settings_delete_corpse_files">Files left over from uninstalled/removed apps.</string>
-    <string name="summary_preference_settings_delete_apk_files">Installer files (.apk) files for Android.</string>
+    <string name="summary_preference_settings_delete_corpse_files">Delete files left over from uninstalled/removed apps.</string>
+    <string name="summary_preference_settings_delete_apk_files">Delete installer files (.apk) files for Android.</string>
+    <string name="summary_preference_settings_delete_invalid_media">Delete corrupted images.</string>
     <string name="summary_preference_settings_double_checker">Will rerun scan each time something is found with a limit of 10 scans.</string>
-    <string name="summary_preference_settings_auto_whitelist">Detect folders that should be protected automatically.</string>
+    <string name="summary_preference_settings_auto_whitelist">Delete folders that should be protected automatically.</string>
     <string name="summary_preference_settings_one_click_clean">No dialog menu when clicking \"Clean\" button.</string>
     <string name="summary_preference_settings_aggressive_filter">Delete every type of file from your device.</string>
     <string name="summary_preference_settings_generic_filter">Delete temp, log, logs, &amp; other useless files &amp; folders.</string>
@@ -150,7 +151,7 @@
     <string name="summary_preference_settings_daily_clean">Automatically runs daily, without you having to open the app.</string>
     <string name="summary_preference_settings_swap_buttons">Swap \"Clean\" and \"Analyze\" buttons.</string>
     <string name="summary_preference_settings_license" translatable="false">General Public License-3.0</string>
-    <string name="summary_preference_settings_support_me">Click here if you want to support me without paying money. Just some time for viewing an add.</string>
+    <string name="summary_preference_settings_support_me">Click here if you want to support me without paying money. Just some time for viewing an ad.</string>
     <string name="summary_preference_permissions_internet">Used to send error reports.</string>
     <string name="summary_preference_permissions_ad_id">Used to allow ads to be shown in Android 13+ devices.</string>
     <string name="summary_preference_permissions_receive_boot_completed">Used to start app when the device boots u.</string>
@@ -190,10 +191,7 @@
     <string name="service_notification_title">Your clipboard is under the protection!</string>
     <string name="changelog_title" translatable="false">Changelog - Version %1s</string>
     <string name="changes" translatable="false">\n
-        • Added Invalid Media Cleaner.\n\n
-        • Added archive cleaner.\n\n
-        • Reworked &amp; fixed permissions logic.\n\n
-        • Another minor UI tweaks.\n\n
+        • Added various improvements to archive, generic and aggressive filters.\n\n
         • Made various under-the-hood improvements for a better overall app experience.
     </string>
 </resources>
