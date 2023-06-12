@@ -75,7 +75,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.loader:loader:1.1.0'
-    implementation 'com.airbnb.android:lottie:6.0.0'
+    implementation 'com.airbnb.android:lottie:6.0.1'
     implementation 'me.zhanghai.android.fastscroll:library:1.2.0'
     implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
     implementation 'dev.shreyaspatil.MaterialDialog:MaterialDialog:2.2.3'
