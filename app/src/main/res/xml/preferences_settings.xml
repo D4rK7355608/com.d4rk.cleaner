@@ -13,10 +13,24 @@
             app:title="@string/theme"
             android:dialogTheme="@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered"
             app:useSimpleSummaryProvider="true"/>
+        <androidx.preference.ListPreference
+            app:title="@string/language"
+            app:summary="@string/summary_preference_settings_language"
+            app:key="@string/key_language"
+            app:icon="@drawable/ic_language"
+            app:entries="@array/preference_language_entries"
+            app:entryValues="@array/preference_language_values"
+            app:defaultValue="@string/default_value_language"/>
+        <androidx.preference.SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="@string/key_custom_animations"
+            app:icon="@drawable/ic_custom_animations"
+            app:summary="@string/summary_preference_settings_custom_animations"
+            app:title="@string/custom_animations"/>
         <androidx.preference.SwitchPreferenceCompat
             app:defaultValue="false"
             app:key="@string/key_swap_buttons"
-            app:icon="@drawable/ic_preference_settings_settings_swap_buttons"
+            app:icon="@drawable/ic_preference_settings_swap_buttons"
             app:summary="@string/summary_preference_settings_swap_buttons"
             app:title="@string/swap_buttons"/>
     </androidx.preference.PreferenceCategory>
@@ -101,14 +115,33 @@
             app:title="@string/daily_clean"/>
     </androidx.preference.PreferenceCategory>
     <androidx.preference.PreferenceCategory
+        app:title="@string/notifications"
+        app:icon="@drawable/ic_notifications_tinted">
+        <androidx.preference.Preference
+            app:key="@string/key_notifications_settings"
+            app:icon="@drawable/ic_edit_notifications"
+            app:title="@string/notification_settings"/>
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory
         app:title="@string/advanced"
         app:icon="@drawable/ic_build_tinted">
         <androidx.preference.SwitchPreferenceCompat
+            app:title="@string/analytics"
+            app:key="@string/key_firebase_analytics"
+            app:summary="@string/summary_preference_settings_analytics"
             app:defaultValue="true"
-            app:key="@string/key_firebase"
-            app:icon="@drawable/ic_preference_settings_settings_firebase"
-            app:summary="@string/summary_preference_settings_firebase"
-            app:title="@string/firebase"/>
+            app:icon="@drawable/ic_analytics"/>
+        <androidx.preference.SwitchPreferenceCompat
+            app:title="@string/crashlytics"
+            app:summary="@string/summary_preference_settings_crashlytics"
+            app:key="@string/key_firebase_crashlytics"
+            app:defaultValue="true"
+            app:icon="@drawable/ic_crashlytics"/>
+        <androidx.preference.Preference
+            app:title="@string/bug_report"
+            app:summary="@string/summary_preference_settings_bug_report"
+            app:icon="@drawable/ic_bug_report"
+            app:key="@string/key_bug_report"/>
     </androidx.preference.PreferenceCategory>
     <androidx.preference.PreferenceCategory
         app:title="@string/app_updates"
@@ -118,14 +151,14 @@
             app:title="@string/check_for_updates">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="https://play.google.com/store/apps/details?id=com.d4rk.cleaner.plus"/>
+                android:data="https://play.google.com/store/apps/details?id=com.d4rk.cleaner"/>
         </androidx.preference.Preference>
         <androidx.preference.Preference
             android:icon="@drawable/ic_experimental"
             app:title="@string/subscribe_to_beta">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="https://play.google.com/apps/testing/com.d4rk.cleaner.plus"/>
+                android:data="https://play.google.com/apps/testing/com.d4rk.cleaner"/>
         </androidx.preference.Preference>
         <androidx.preference.Preference
             app:key="@string/key_changelog"
@@ -160,20 +193,13 @@
             android:icon="@drawable/ic_permissions"
             app:title="@string/permissions">
             <intent
-                android:targetPackage="com.d4rk.cleaner.plus"
-                android:targetClass="com.d4rk.cleaner.plus.ui.permissions.PermissionsActivity"/>
+                android:targetPackage="com.d4rk.cleaner"
+                android:targetClass="com.d4rk.cleaner.ui.settings.permissions.PermissionsActivity"/>
         </androidx.preference.Preference>
         <androidx.preference.Preference
             app:key="open_source_licenses"
             app:title="@string/oss_license_title"
             app:icon="@drawable/ic_libraries"/>
-        <androidx.preference.Preference
-            android:icon="@drawable/ic_faq"
-            app:title="@string/faq">
-            <intent
-                android:targetPackage="com.d4rk.cleaner.plus"
-                android:targetClass="com.d4rk.cleaner.plus.ui.faq.FaqActivity"/>
-        </androidx.preference.Preference>
         <androidx.preference.Preference
             app:icon="@drawable/ic_license"
             app:title="@string/license"
@@ -186,27 +212,23 @@
         app:title="@string/more"
         app:icon="@drawable/ic_more">
         <androidx.preference.Preference
-            app:icon="@drawable/ic_feedback"
-            app:title="@string/feedback">
-            <intent
-                android:targetPackage="com.d4rk.cleaner.plus"
-                android:targetClass="com.d4rk.cleaner.plus.ui.feedback.FeedbackActivity"/>
-        </androidx.preference.Preference>
-        <androidx.preference.Preference
             app:key="@string/key_share"
             app:icon="@drawable/ic_share"
             app:title="@string/share"/>
         <androidx.preference.Preference
-            app:key="@string/key_more_apps"
             app:icon="@drawable/ic_shop"
-            app:title="@string/more_apps"/>
-        <androidx.preference.Preference
-            app:icon="@drawable/ic_support"
-            app:title="@string/support_me"
-            app:summary="@string/summary_preference_settings_support_me">
+            app:title="@string/more_apps">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="https://bit.ly/3p8bpjj"/>
+                android:data="https://play.google.com/store/apps/dev?id=5390214922640123642"/>
+        </androidx.preference.Preference>
+        <androidx.preference.Preference
+            app:icon="@drawable/ic_support"
+            app:title="@string/support_the_developer"
+            app:summary="@string/summary_preference_settings_support_developer">
+            <intent
+                android:targetPackage="com.d4rk.cleaner"
+                android:targetClass="com.d4rk.cleaner.ui.settings.support.SupportActivity"/>
         </androidx.preference.Preference>
     </androidx.preference.PreferenceCategory>
     <androidx.preference.PreferenceCategory

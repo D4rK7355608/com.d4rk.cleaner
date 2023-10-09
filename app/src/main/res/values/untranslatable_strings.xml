@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name" translatable="false">Cleaner</string>
+    <string name="main_progress_0" translatable="false">0%</string>
+    <string name="ram_usage_percentage" translatable="false">%.0f%%</string>
+    <string name="memory_used_mb" translatable="false">%d MB/</string>
+    <string name="image_compressor_percentage_format">%d%%</string>
+    <string name="feedback_for" translatable="false">Feedback for </string>
+    <string name="dear_developer" translatable="false">Dear developer, </string>
+    <string name="send_email_using" translatable="false">Send mail using:</string>
+    <string name="twitter" translatable="false">Twitter</string>
+    <string name="youtube" translatable="false">YouTube</string>
+    <string name="github" translatable="false">GitHub</string>
+    <string name="xda" translatable="false">XDA</string>
+    <string name="google_dev" translatable="false">Google Dev</string>
+    <string name="bulgarian" translatable="false">Български</string>
+    <string name="english" translatable="false">English</string>
+    <string name="french" translatable="false">Français</string>
+    <string name="hungarian" translatable="false">Magyar</string>
+    <string name="german" translatable="false">Deutsch</string>
+    <string name="hindi" translatable="false">हिन्दी</string>
+    <string name="indonesian" translatable="false">Bahasa Indonesia</string>
+    <string name="italian" translatable="false">Italiano</string>
+    <string name="japanese" translatable="false">日本語</string>
+    <string name="polish" translatable="false">Polski</string>
+    <string name="romanian" translatable="false">Română</string>
+    <string name="russian" translatable="false">Русский</string>
+    <string name="spanish" translatable="false">Español</string>
+    <string name="turkish" translatable="false">Türkçe</string>
+    <string name="ukrainian" translatable="false">Українська</string>
+    <string name="arch" translatable="false">Arch:</string>
+    <string name="summary_preference_settings_license" translatable="false">General Public License-3.0</string>
+    <string name="changelog_title" translatable="false">Changelog - Version %1s</string>
+    <string name="changes" translatable="false">\n
+        • <b>New</b>: APK sharing functionality has been improved to ensure the proper sharing of APK files.\n\n
+        • <b>New</b>: Added a new GDPR message to comply with Google Play policy.\n\n
+        • <b>Major</b>: Migrated the app to Semantic Versioning (SemVer).\n\n
+        • <b>Major</b>: Added new custom startup animations.\n\n
+        • <b>Major</b>: Reworked the Image Optimizer by adding quick compression, manual compression and file compression.\n\n
+        • <b>Minor</b>: Reset the version to 1.0.0 for a fresh start.\n\n
+        • <b>Minor</b>: Addressed an aesthetic concern by optimizing the display of the temperature icon when the application operates in dark mode.\n\n
+        • <b>Patch</b>: Rectified an issue where the uninstall item was inappropriately located within both the APKs and System apps tabs, ensuring a more streamlined and intuitive user experience.\n\n
+        • <b>Patch</b>: Improved the ads initialization and loading for a better user experience.\n\n
+        • <b>Patch</b>: Improved permissions handling logic for improved security and user experience.\n\n
+        • <b>Patch</b>: Fixed memory manager crashes when trying to exit and enter.\n\n
+        • <b>Patch</b>: Fixed uninstall option from the App Manager.\n\n
+        • <b>Patch</b>: Fixed app crashes caused by the image optimizer.\n\n
+        • <b>Patch</b>: Made various under-the-hood improvements for a better overall app experience.
+    </string>
+</resources>

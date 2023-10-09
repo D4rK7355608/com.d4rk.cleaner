@@ -2,7 +2,6 @@ package com.d4rk.cleaner
 import android.os.Environment
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.d4rk.cleaner.plus.FileScanner
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -32,7 +31,7 @@ class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        Assert.assertEquals("com.d4rk.cleaner.plus", appContext.packageName)
+        Assert.assertEquals("com.d4rk.cleaner", appContext.packageName)
     }
 
     @Test

@@ -1,4 +1,0 @@
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@color/colorLauncherBackground"/>
-    <foreground android:drawable="@drawable/ic_launcher_foreground_music_sleep_timer"/>
-</adaptive-icon>

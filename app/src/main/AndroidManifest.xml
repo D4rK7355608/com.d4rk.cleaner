@@ -10,7 +10,9 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES"/>
     <uses-permission android:name="android.permission.ACTION_OPEN_DOCUMENT_TREE"/>
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/>
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
@@ -20,7 +22,7 @@
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions"/>
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="QueryAllPackagesPermission"/>
     <application
-        android:name=".ads.Ads"
+        android:name=".ads.ApplicationOpenAdManager"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher"
         android:theme="@style/AppTheme"
@@ -34,6 +36,9 @@
         android:appCategory="productivity"
         tools:targetApi="33"
         android:localeConfig="@xml/config_locales">
+        <activity
+            android:name=".ui.startup.StartupActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -60,6 +65,12 @@
             android:exported="true"
             android:parentActivityName=".ui.imageoptimizer.ImageOptimizerActivity"/>
         <activity
+            android:name=".ui.imageoptimizer.ImagePickerActivity"
+            android:label="@string/image_optimizer"
+            android:exported="true"
+            android:parentActivityName=".ui.imageoptimizer.ImagePickerActivity"/>
+
+        <activity
             android:name=".ui.settings.SettingsActivity"
             android:label="@string/settings"
             android:exported="true"
@@ -69,33 +80,45 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.language.LanguageActivity"
-            android:label="@string/language"
-            android:exported="true"
-            android:parentActivityName=".ui.language.LanguageActivity"/>
-        <activity
-            android:name=".ui.permissions.PermissionsActivity"
+            android:name=".ui.settings.permissions.PermissionsActivity"
             android:label="@string/permissions"
-            android:exported="true"
-            android:parentActivityName=".ui.permissions.PermissionsActivity"/>
+            android:exported="false"
+            android:parentActivityName=".ui.settings.permissions.PermissionsActivity"/>
         <activity
-            android:name=".ui.feedback.FeedbackActivity"
-            android:label="@string/feedback"
-            android:exported="true"
-            android:parentActivityName=".ui.feedback.FeedbackActivity"/>
+            android:name=".ui.help.HelpActivity"
+            android:label="@string/help"
+            android:exported="false"
+            android:parentActivityName=".ui.help.HelpActivity"/>
         <activity
-            android:name=".ui.faq.FaqActivity"
-            android:label="@string/faq"
-            android:exported="true"
-            android:parentActivityName=".ui.faq.FaqActivity"/>
-        <activity
-            android:name=".ui.about.AboutActivity"
-            android:label="@string/about"
-            android:exported="true"
-            android:parentActivityName=".ui.about.AboutActivity"/>
-        <activity
-            android:name=".ui.startup.StartupActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
+            android:name=".ui.settings.support.SupportActivity"
+            android:exported="false"
+            android:label="@string/support_us"
+            android:parentActivityName=".ui.settings.support.SupportActivity"/>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+        <receiver android:name=".receivers.CleanReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <!--suppress AndroidDomInspection -->
+        <service android:name="com.google.android.gms.metadata.ModuleDependencies"
+            android:enabled="false"
+            android:exported="false"
+            tools:ignore="MissingClass">
+            <intent-filter>
+                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
+            </intent-filter>
+            <meta-data android:name="photopicker_activity:0:required" android:value="" />
+        </service>
         <service
             android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
             android:enabled="false"
@@ -104,6 +127,9 @@
                 android:name="autoStoreLocales"
                 android:value="true" />
         </service>
+        <service
+            android:name=".services.ScheduledService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
         <meta-data
             android:name="firebase_performance_logcat_enabled"
             android:value="true"/>
@@ -112,9 +138,15 @@
             android:value="@integer/google_play_services_version"/>
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-5294151573817700~8489473300"/>
+            android:value="ca-app-pub-5294151573817700~3549716864"/>
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true"/>
+        <meta-data
+            android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
+            android:value="true"/>
+        <meta-data
+            android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
             android:value="true"/>
     </application>
 </manifest>

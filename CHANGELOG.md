@@ -1,17 +1,15 @@
-# Version 1.2_r1
-- Added various improvements to archive, generic and aggressive filters.
-- Made various under-the-hood improvements for a better overall app experience.
-
-# Version 1.1_r1
-- Added Invalid Media Cleaner.
-- Added archive cleaner.
-- Reworked & fixed permissions logic.
-- Another minor UI tweaks.
-- Made various under-the-hood improvements for a better overall app experience.
-
-# Version 1.0_r2 & 1.0_r3:
-- Minor UI tweaks.
-- Made various under-the-hood improvements for a better overall app experience.
-
-# Version 1.0_r1:
-- Initial stable release.
+# Version 1.0.0:
+- **New**: APK sharing functionality has been improved to ensure the proper sharing of APK files.
+- **New**: Added a new GDPR message to comply with Google Play policy.
+- **Major**: Migrated the app to Semantic Versioning (SemVer).
+- **Major**: Added new custom startup animations.
+- **Major**: Reworked the Image Optimizer by adding quick compression, manual compression and file compression.
+- **Minor**: Reset the version to 1.0.0 for a fresh start.
+- **Minor**: Addressed an aesthetic concern by optimizing the display of the temperature icon when the application operates in dark mode.
+- **Patch**: Rectified an issue where the uninstall item was inappropriately located within both the APKs and System apps tabs, ensuring a more streamlined and intuitive user experience.
+- **Patch**: Improved the ads initialization and loading for a better user experience.
+- **Patch**: Improved permissions handling logic for improved security and user experience.
+- **Patch**: Fixed memory manager crashes when trying to exit and enter.
+- **Patch**: Fixed uninstall option from the App Manager.
+- **Patch**: Fixed app crashes caused by the image optimizer.
+- **Patch**: Made various under-the-hood improvements for a better overall app experience.

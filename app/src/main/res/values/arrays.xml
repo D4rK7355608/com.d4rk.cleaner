@@ -258,4 +258,45 @@
         <item>MODE_NIGHT_YES</item>
         <item>MODE_NIGHT_AUTO_BATTERY</item>
     </string-array>
+    <string-array name="preference_language_entries">
+        <item>@string/bulgarian</item>
+        <item>@string/english</item>
+        <item>@string/french</item>
+        <item>@string/german</item>
+        <item>@string/hindi</item>
+        <item>@string/hungarian</item>
+        <item>@string/indonesian</item>
+        <item>@string/italian</item>
+        <item>@string/japanese</item>
+        <item>@string/polish</item>
+        <item>@string/romanian</item>
+        <item>@string/russian</item>
+        <item>@string/spanish</item>
+        <item>@string/turkish</item>
+        <item>@string/ukrainian</item>
+    </string-array>
+    <string-array name="preference_language_values">
+        <item>bg</item>
+        <item>en</item>
+        <item>fr</item>
+        <item>de</item>
+        <item>hi</item>
+        <item>hu</item>
+        <item>in</item>
+        <item>it</item>
+        <item>ja</item>
+        <item>pl</item>
+        <item>ro</item>
+        <item>ru</item>
+        <item>es</item>
+        <item>tr</item>
+        <item>uk</item>
+    </string-array>
+    <string-array name="file_sizes">
+        <item>200</item>
+        <item>400</item>
+        <item>600</item>
+        <item>800</item>
+        <item>900</item>
+    </string-array>
 </resources>
