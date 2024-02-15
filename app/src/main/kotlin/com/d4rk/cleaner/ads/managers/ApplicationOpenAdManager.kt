@@ -1,5 +1,5 @@
 @file:Suppress("DEPRECATION")
-package com.d4rk.cleaner.ads
+package com.d4rk.cleaner.ads.managers
 import android.app.Activity
 import android.app.Application
 import android.content.Context
@@ -45,6 +45,7 @@ class ApplicationOpenAdManager : MultiDexApplication(), Application.ActivityLife
   override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
   override fun onActivityDestroyed(activity: Activity) {}
   interface OnShowAdCompleteListener {
+    @Suppress("EmptyMethod")
     fun onShowAdComplete()
   }
   private inner class AppOpenAdManager {
@@ -104,16 +105,16 @@ class ApplicationOpenAdManager : MultiDexApplication(), Application.ActivityLife
       }
       appOpenAd!!.fullScreenContentCallback = object : FullScreenContentCallback() {
         override fun onAdDismissedFullScreenContent() {
-              appOpenAd = null
-              isShowingAd = false
-              onShowAdCompleteListener.onShowAdComplete()
-              loadAd(activity)
+            appOpenAd = null
+            isShowingAd = false
+            onShowAdCompleteListener.onShowAdComplete()
+            loadAd(activity)
         }
         override fun onAdFailedToShowFullScreenContent(adError: AdError) {
-              appOpenAd = null
-              isShowingAd = false
-              onShowAdCompleteListener.onShowAdComplete()
-              loadAd(activity)
+          appOpenAd = null
+          isShowingAd = false
+          onShowAdCompleteListener.onShowAdComplete()
+          loadAd(activity)
         }
         override fun onAdShowedFullScreenContent() {
         }

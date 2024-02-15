@@ -11,8 +11,10 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.os.Looper
 import android.provider.Settings
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ImageSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,44 +22,54 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.ScrollView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.d4rk.cleaner.FileScanner
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.databinding.FragmentHomeBinding
-import com.d4rk.cleaner.ui.viewmodel.ViewModel
 import com.d4rk.cleaner.ui.whitelist.WhitelistActivity.Companion.getWhiteList
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
+import com.google.android.material.snackbar.Snackbar
 import dev.shreyaspatil.MaterialDialog.MaterialDialog
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.io.File
 import java.text.DecimalFormat
 class HomeFragment : Fragment() {
-    private lateinit var viewModel: ViewModel
     private lateinit var binding: FragmentHomeBinding
     private var currentPreferenceButtonPositions: Boolean = false
+    private val scope = CoroutineScope(Dispatchers.IO)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        viewModel = ViewModelProvider(this)[ViewModel::class.java]
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        if (PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean(getString(R.string.key_custom_animations), true)) {
-            setAnimations()
-        }
         MobileAds.initialize(requireContext())
+        return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        FastScrollerBuilder(binding.scrollViewFiles).useMd2Style().build()
         binding.adView.loadAd(AdRequest.Builder().build())
         getWhiteList(preferences)
-        FastScrollerBuilder(binding.scrollViewFiles).useMd2Style().build()
         binding.buttonClean.setOnClickListener {
+            reset()
             clean()
         }
         binding.buttonAnalyze.setOnClickListener {
+            reset()
             analyze()
         }
-        return binding.root
+        if (isAdded) {
+            if (PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean(requireActivity().getString(R.string.key_custom_animations), true)) {
+                setAnimations()
+            }
+        }
     }
     override fun onResume() {
         super.onResume()
@@ -66,11 +78,16 @@ class HomeFragment : Fragment() {
             swapButtonsPositions(preferences!!.getBoolean(getString(R.string.key_swap_buttons), false))
         }
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        scope.cancel()
+    }
+    private fun resetScan() {
+        binding.progressBarScan.progress = 0
+        binding.textViewPercentage.text = getString(R.string.main_progress_0)
+    }
     private fun setAnimations() {
-        binding.frameLayoutMain.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_swipe_up_center_400))
-        binding.textViewStatus.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_fade_in_long))
-        binding.buttonClean.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_swipe_up_center_500))
-        binding.buttonAnalyze.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_swipe_up_center_600))
+        binding.root.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_entry))
     }
     private fun swapButtonsPositions(preferenceButtonPositions: Boolean) {
         if (currentPreferenceButtonPositions == preferenceButtonPositions) return
@@ -85,9 +102,9 @@ class HomeFragment : Fragment() {
     private fun analyze() {
         requestStoragePermissions()
         if (!FileScanner.isRunning) {
-            Thread {
+            scope.launch {
                 scan(false)
-            }.start()
+            }
         }
     }
     private fun arrangeViews(isDelete: Boolean) {
@@ -107,9 +124,9 @@ class HomeFragment : Fragment() {
         if (!FileScanner.isRunning) {
             val oneClickCleanEnabled = preferences!!.getBoolean(getString(R.string.key_one_click_clean), false)
             if (oneClickCleanEnabled) {
-                Thread {
+                scope.launch {
                     scan(true)
-                }.start()
+                }
             } else {
                 val mDialog = MaterialDialog.Builder(requireContext() as Activity)
                     .setTitle(getString(R.string.clean_confirm_title))
@@ -117,9 +134,9 @@ class HomeFragment : Fragment() {
                     .setMessage(getString(R.string.summary_dialog_button_clean))
                     .setCancelable(false)
                     .setPositiveButton(getString(R.string.clean)) { dialogInterface, _ ->
-                        Thread {
+                        scope.launch {
                             scan(true)
-                        }.start()
+                        }
                         dialogInterface.dismiss()
                     }
                     .setNegativeButton(getString(android.R.string.cancel)) { dialogInterface, _ ->
@@ -142,26 +159,22 @@ class HomeFragment : Fragment() {
             }
         } catch (e: NullPointerException) {
             requireActivity().runOnUiThread {
-                Toast.makeText(requireContext(), R.string.snack_clipboard_clean_failed, Toast.LENGTH_SHORT).show()
+                val snackbar = Snackbar.make(binding.root, R.string.snack_clipboard_clean_failed, Snackbar.LENGTH_SHORT)
+                snackbar.setAction(android.R.string.ok) {
+                    snackbar.dismiss()
+                }
+                snackbar.show()
             }
         }
     }
     @SuppressLint("SetTextI18n")
-    private fun scan(delete: Boolean) {
-        Looper.prepare()
-        requireActivity().runOnUiThread {
-            binding.buttonClean.isEnabled = !FileScanner.isRunning
-            binding.buttonAnalyze.isEnabled = !FileScanner.isRunning
-        }
+    private fun scan(delete: Boolean) = CoroutineScope(Dispatchers.Main).launch {
         reset()
         if (preferences!!.getBoolean(getString(R.string.key_clipboard), false)) clearClipboard()
-        requireActivity().runOnUiThread {
-            arrangeViews(delete)
-            binding.textViewStatus.text = getString(R.string.status_running)
-
-        }
+        arrangeViews(delete)
+        binding.textViewStatus.text = getString(R.string.status_running)
         val path = Environment.getExternalStorageDirectory()
-        val fileScanner = FileScanner(path, requireContext(), this)
+        val fileScanner = FileScanner(path, requireContext(), this@HomeFragment)
             .setEmptyDir(preferences!!.getBoolean(getString(R.string.key_filter_empty), false))
             .setAutoWhite(preferences!!.getBoolean(getString(R.string.key_auto_whitelist), true))
             .setInvalid(preferences!!.getBoolean(getString(R.string.key_invalid_media_cleaner), false))
@@ -175,28 +188,20 @@ class HomeFragment : Fragment() {
                 preferences!!.getBoolean(getString(R.string.key_filter_apk), false),
                 preferences!!.getBoolean(getString(R.string.key_filter_archive), false)
             )
+
         if (path.listFiles() == null) {
             val textView = printTextView(getString(R.string.snack_clipboard_clean_failed), Color.RED)
-            requireActivity().runOnUiThread {
-                binding.linearLayoutFiles.addView(textView)
-            }
+            binding.linearLayoutFiles.addView(textView)
         }
-        val kilobytesTotal = fileScanner.startScan()
-        binding.progressBarScan.progress = 0
-        requireActivity().runOnUiThread {
-            if (delete) {
-                binding.textViewStatus.text = getString(R.string.freed) + " " + convertSize(kilobytesTotal)
-            } else {
-                binding.textViewStatus.text = getString(R.string.found) + " " + convertSize(kilobytesTotal)
-            }
-            binding.progressBarScan.progress = binding.progressBarScan.max
+        val kilobytesTotal = withContext(Dispatchers.IO) { fileScanner.startScan() }
+        resetScan()
+        if (delete) {
+            binding.textViewStatus.text = getString(R.string.freed) + " " + convertSize(kilobytesTotal)
+        } else {
+            binding.textViewStatus.text = getString(R.string.found) + " " + convertSize(kilobytesTotal)
         }
+        binding.progressBarScan.progress = binding.progressBarScan.max
         binding.scrollViewFiles.post { binding.scrollViewFiles.fullScroll(ScrollView.FOCUS_DOWN) }
-        requireActivity().runOnUiThread {
-            binding.buttonClean.isEnabled = !FileScanner.isRunning
-            binding.buttonAnalyze.isEnabled = !FileScanner.isRunning
-        }
-        Looper.loop()
     }
     private fun printTextView(text: String, color: Int): TextView {
         val textView = TextView(requireContext())
@@ -205,8 +210,34 @@ class HomeFragment : Fragment() {
         textView.setPadding(3, 3, 3, 3)
         return textView
     }
+    private fun printTextViewWithIcon(text: String, iconResId: Int, textColor: Int): TextView {
+        val spannableStringBuilder = SpannableStringBuilder()
+        val icon = context?.let { ContextCompat.getDrawable(it, iconResId) }
+        icon?.setBounds(0, 0, icon.intrinsicWidth, icon.intrinsicHeight)
+        spannableStringBuilder.append(" ")
+        spannableStringBuilder.setSpan(
+            icon?.let { ImageSpan(it, ImageSpan.ALIGN_BASELINE) },
+            0,
+            1,
+            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+        )
+        spannableStringBuilder.append(" $text")
+        val textView = TextView(context)
+        textView.setTextColor(textColor)
+        textView.text = spannableStringBuilder
+        textView.setPadding(3, 3, 3, 3)
+        return textView
+    }
     fun displayDeletion(file: File): TextView {
-        val textView = printTextView(file.absolutePath, resources.getColor(R.color.colorPrimary, requireContext().theme))
+        getFormattedPath(file)
+        val fileName = file.name
+        val isFolder = file.isDirectory
+        val iconResId = if (isFolder) R.drawable.ic_folder else R.drawable.ic_file_present
+        val textView = printTextViewWithIcon(
+            fileName,
+            iconResId,
+            resources.getColor(R.color.colorPrimary, requireContext().theme)
+        )
         requireActivity().runOnUiThread {
             binding.linearLayoutFiles.addView(textView)
         }
@@ -214,6 +245,16 @@ class HomeFragment : Fragment() {
             binding.scrollViewFiles.fullScroll(ScrollView.FOCUS_DOWN)
         }
         return textView
+    }
+    private fun getFormattedPath(file: File): String {
+        val basePath = Environment.getExternalStorageDirectory().absolutePath
+        val relativePath = file.absolutePath.removePrefix(basePath)
+        val segments = relativePath.split("/").drop(1)
+        val formattedPath = StringBuilder()
+        for (segment in segments) {
+            formattedPath.append("├── ").append(segment).append("\n")
+        }
+        return formattedPath.toString()
     }
     fun displayText(text: String) {
         val textColor = resources.getColor(R.color.colorSecondary, requireContext().theme)
@@ -225,12 +266,11 @@ class HomeFragment : Fragment() {
             binding.scrollViewFiles.fullScroll(ScrollView.FOCUS_DOWN)
         }
     }
-
     private fun reset() {
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         requireActivity().runOnUiThread {
             binding.linearLayoutFiles.removeAllViews()
-            binding.progressBarScan.progress = 0
+            resetScan()
             binding.progressBarScan.max = 1
         }
     }
@@ -260,6 +300,7 @@ class HomeFragment : Fragment() {
             }
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            @Suppress("DEPRECATION")
             requestPermissions(arrayOf(Manifest.permission.READ_MEDIA_AUDIO, Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VIDEO), 1)
         }
         ActivityCompat.requestPermissions(requireActivity(), requiredPermissions.toTypedArray(), 1)

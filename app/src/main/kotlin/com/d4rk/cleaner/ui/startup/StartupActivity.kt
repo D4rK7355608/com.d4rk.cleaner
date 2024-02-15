@@ -97,9 +97,10 @@ class StartupActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, requiredPermissions.toTypedArray(), 1)
     }
     private fun setAnimations() {
-        binding.buttonBrowsePrivacyPolicyAndTermsOfService.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_swipe_up_center_200))
-        binding.imageViewWelcome.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_swipe_up_center_200))
-        binding.imageViewAbout.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_swipe_up_center_200))
-        binding.floatingButtonAgree.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_swipe_up_right_300))
+        binding.root.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_fade_in))
+        binding.buttonBrowsePrivacyPolicyAndTermsOfService.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_entry))
+        binding.imageViewWelcome.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_entry))
+        binding.imageViewAbout.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_entry))
+        binding.floatingButtonAgree.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_entry))
     }
 }

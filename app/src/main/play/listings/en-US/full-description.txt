@@ -1,8 +1,4 @@
-🧹Cleaner🧹
-
-╔╦╦╦═╦╗╔═╦═╦══╦═╗
-║║║║╩╣╚╣═╣║║║║║╩╣
-╚══╩═╩═╩═╩═╩╩╩╩═╝
+Cleaner
 
 Cleaner is an Android app that helps you free up space and manage your device. It removes junk files, cache and other unwanted data from your device, so you can get back the storage and performance you need.
 
@@ -10,74 +6,31 @@ It includes a variety of other features to help you keep your phone clean and ru
 
 Our app is designed to be simple and easy to use, while also being fast and lightweight. Plus, it's free and open-source software!
 
-⚠ Opening Issues!
-Bugs can be reported here: https://github.com/D4rK7355608/com.d4rk.cleaner/issues
+Features
+• Automatic daily cleaning
+• App management
+• Image optimization
+• Clean empty folders
+• Clean logs, temporary files, caches, and corpse files
+• Clean advertisement folders
+• Clean archive files
+• Clean invalid media
+• Clean APK files
+• Clean clipboard contents
 
-Create an Clean/Analyze/Whitelist/Image Optimizer/App Manager/General bug. 🐞
+Benefits
+• Free up space on your device
+• Improve performance
+• Keep your device organized and running smoothly
+• Protect your privacy by removing sensitive data
 
-🛠️ Features!
-🚀 Fast and lightweight.
-✨ Simple and easy to use.
-🌟 Free and open-source software.
-⏰ Automatic daily cleaning.
-📱 App management.
-📸 Image optimization.
-📂 Clean Empty folders.
-📜 Clean Log files.
-💼 Clean Temporary/caches/corpse files.
-📦 Clean Advertisement folders.
-📚 Clean Archives files.
-🎞️ Clean Invalid media.
-📁 Clean APK files.
-📋 Clean Clipboard contents.
+How it works
+Cleaner scans your device for junk files, cache, and other unwanted data. It then gives you the option to remove these files, or to add them to a whitelist so that they are not removed in the future. You can also schedule Cleaner to run automatically on a daily basis, so you can keep your device clean and running smoothly without any effort.
 
-👨‍💻 More about me!
-● Contact:
-⇨ Email (D4rK7355608): d4rk7355608@gmail.com
-⇨ Email (D4rK Rekords): d4rkrekords@gmail.com
-⇨ Skype: d4rk7355608
+Get started today
+Download Cleaner from the Google Play Store today and start freeing up space and improving the performance of your Android device. It's free and easy to use, and it's the perfect way to keep your device running at its best.
 
-● Developer Portfolio:
-⇨ GitHub: https://github.com/D4rK7355608
-⇨ Google Developers: https://g.dev/D4rK7355608
-⇨ Google Play Store: https://play.google.com/store/apps/dev?id=5390214922640123642
-
-● Graphics Portfolio:
-⇨ DeviantArt: https://www.deviantart.com/d4rk7355608
-⇨ Imgur: https://imgur.com/user/D4rK7355608/posts
-⇨ Pinterest: https://www.pinterest.com/d4rk7355608/
-
-● Music Portfolio:
-⇨ Amazon Music: https://music.amazon.com/artists/B0CGKL8KSY/d4rk-rekords
-⇨ Apple Music: https://music.apple.com/us/artist/d4rk-rekords/1704194206
-⇨ Deezer: https://www.deezer.com/us/artist/227044765
-⇨ SoundCloud: https://soundcloud.com/d4rk-rekords
-⇨ Spotify: https://open.spotify.com/artist/5FF8wvyTpzoHzM8e9Z7GU8
-⇨ Tidal: https://tidal.com/browse/artist/41567245
-⇨ YouTube: https://www.youtube.com/@D4rKRekords?sub_confirmation=1
-⇨ YouTube Music: https://music.youtube.com/channel/UC80JI44n7GpRGrlR71PtvPg
-
-● Social Profiles:
-⇨ GameJolt: https://gamejolt.com/@D4rK7355608
-⇨ Steam Profile: https://steamcommunity.com/id/d4rk7355608
-⇨ Steam Trade Link: https://steamcommunity.com/tradeoffer/new/?partner=892981294&token=pxsUtrm3
-⇨ TikTok (D4rKRekords): https://www.tiktok.com/@d4rkrekords
-⇨ TikTok (D4rK7355608): https://www.tiktok.com/@d4rk7355608
-⇨ Twitter (D4rK7355608): https://twitter.com/D4rK7355608
-⇨ Twitter (D4rKRekords): https://twitter.com/D4rKRekords
-
-🛑 Disclaimer!
-• Only use the GitHub Issues section if you discover issues with the code itself. Do not mistake the Issues page as a help desk. For support, information and requests, please contact d4rk7355608@gmail.com.
-• With the "MANAGE_EXTERNAL_STORAGE" permission, the app is able to scan and remove files not just on your internal storage, but also on external storage devices connected to your device.
-• With the "QUERY_ALL_PACKAGES" permission, the app is able to display and manage the apps from the App Manager.
-• We extend our deepest gratitude to TheRedSpy15, whose foundational work on LTE Cleaner has been instrumental in the development of our app. While our app has evolved significantly, we acknowledge the initial inspiration provided by LTE Cleaner. Thank you, TheRedSpy15, for your contribution to the open-source community and for indirectly influencing our journey.
-
-💬 Feedback!
+Feedback
 We are constantly updating and improving Cleaner to give you the best possible experience. If you have any suggested features or improvements, please leave a review. In case something is not working correctly please let me know. When posting a low rating please describe what is wrong to give the possibility to fix that issue.
 
-Thank you for choosing Cleaner. We hope you enjoy using our app as much as we enjoyed creating it for you! Rate us 5 stars ⭐⭐⭐⭐⭐ if you are happy with the app! ❤
-
-╔╦╦══╦══╦═╦╗
-║╔╣║║╠╗╔╣═╣║
-║║║╔╗║║║║═╬╣
-╚╝╚╝╚╝╚╝╚═╩╝
+Thank you for choosing Cleaner! We hope you enjoy using our app as much as we enjoyed creating it for you!

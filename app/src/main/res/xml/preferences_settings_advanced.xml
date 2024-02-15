@@ -1,0 +1,28 @@
+<androidx.preference.PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.preference.PreferenceCategory
+        app:title="Firebase"
+        app:iconSpaceReserved="false">
+        <androidx.preference.SwitchPreferenceCompat
+            app:title="@string/analytics"
+            app:key="@string/key_firebase_analytics"
+            app:summary="@string/summary_preference_settings_analytics"
+            app:defaultValue="true"
+            app:icon="@drawable/ic_analytics"/>
+        <androidx.preference.SwitchPreferenceCompat
+            app:title="@string/crashlytics"
+            app:summary="@string/summary_preference_settings_crashlytics"
+            app:key="@string/key_firebase_crashlytics"
+            app:defaultValue="true"
+            app:icon="@drawable/ic_crashlytics"/>
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory
+        app:title="@string/error_reporting"
+        app:iconSpaceReserved="false">
+        <androidx.preference.Preference
+            app:title="@string/bug_report"
+            app:summary="@string/summary_preference_settings_bug_report"
+            app:icon="@drawable/ic_bug_report"
+            app:key="@string/key_bug_report"/>
+    </androidx.preference.PreferenceCategory>
+</androidx.preference.PreferenceScreen>

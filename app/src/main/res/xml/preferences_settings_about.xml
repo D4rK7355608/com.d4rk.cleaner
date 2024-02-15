@@ -1,0 +1,30 @@
+<androidx.preference.PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.preference.PreferenceCategory
+        app:title="@string/app_info"
+        app:iconSpaceReserved="false">
+        <androidx.preference.Preference
+            app:title="@string/app_name"
+            app:summary="@string/copyright"
+            app:icon="@drawable/ic_copyright"/>
+        <androidx.preference.Preference
+            app:key="@string/key_app_version"
+            app:title="@string/app_build_version"
+            app:summary="%1$s"
+            app:icon="@drawable/ic_app_settings_alt"/>
+        <androidx.preference.Preference
+            app:key="@string/key_open_source_licenses"
+            app:title="@string/oss_license_title"
+            app:summary="@string/summary_preference_settings_oss"
+            app:icon="@drawable/ic_libraries"/>
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory
+        app:title="@string/device_info"
+        app:iconSpaceReserved="false">
+        <androidx.preference.Preference
+            app:icon="@drawable/ic_perm_device_information"
+            app:key="@string/key_device_info"
+            app:title="@string/device_info"
+            app:summary="%1$s"/>
+    </androidx.preference.PreferenceCategory>
+</androidx.preference.PreferenceScreen>

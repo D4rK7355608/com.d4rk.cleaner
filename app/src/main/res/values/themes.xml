@@ -7,6 +7,7 @@
     <style name="AppTheme" parent="Theme.Material3.DynamicColors.DayNight">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="material_dialog_background">?attr/colorSurface</item>
@@ -24,19 +25,32 @@
         <item name="alertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered</item>
         <item name="panelMenuListTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered</item>
     </style>
-    <style name="AppThemeStartup" parent="@style/AppTheme">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
     <style name="AppThemeNoActionBar" parent="AppTheme">
+        <item name="android:colorPrimaryDark">?attr/colorSurface</item>
         <item name="windowActionBar">false</item>
-        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="windowNoTitle">true</item>
-    </style>
-    <style name="actionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="background">@android:color/transparent</item>
     </style>
     <style name="FontTheme" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/font_poppins</item>
+        <item name="android:fontFamily">@font/font_poppins</item>
+    </style>
+    <style name="actionBarStyle" parent="@style/Widget.Material3.ActionBar.Solid">
+        <item name="background">@android:color/transparent</item>
+        <item name="android:fontFamily">@font/font_poppins</item>
+    </style>
+    <style name="collapsingToolbarLayoutStyle" parent="@style/Widget.Material3.CollapsingToolbar.Medium">
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="contentScrim">?attr/colorSurface</item>
+        <item name="statusBarScrim">?attr/colorSurface</item>
+        <item name="fontFamily">@font/font_poppins</item>
+        <item name="android:fontFamily">@font/font_poppins</item>
+    </style>
+    <style name="TextAppearance.App.CollapsingToolbar.Expanded" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/font_poppins</item>
+        <item name="android:fontFamily">@font/font_poppins</item>
+    </style>
+    <style name="TextAppearance.App.CollapsingToolbar.Collapsed" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="fontFamily">@font/font_poppins</item>
         <item name="android:fontFamily">@font/font_poppins</item>
     </style>
@@ -45,5 +59,4 @@
     </style>
     <style name="Theme.App.Starting.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="Theme.App.Starting.PopupOverlay" parent="ThemeOverlay.Material3.DynamicColors.DayNight"/>
-    <style name="AppBarLayoutTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 </resources>

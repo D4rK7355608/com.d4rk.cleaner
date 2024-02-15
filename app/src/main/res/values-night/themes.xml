@@ -15,4 +15,10 @@
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered</item>
         <item name="android:fontFamily">@font/font_poppins</item>
     </style>
+    <style name="AppThemeNoActionBar" parent="AppTheme">
+        <item name="android:colorPrimaryDark">?attr/colorSurface</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>

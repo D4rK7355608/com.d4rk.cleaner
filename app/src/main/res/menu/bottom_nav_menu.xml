@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/nav_home"
+        android:title="@string/home"/>
+    <item
+        android:id="@+id/navigation_app_manager"
+        android:icon="@drawable/nav_app_manager"
+        android:title="@string/app_manager"/>
+    <item
+        android:id="@+id/navigation_memory_manager"
+        android:icon="@drawable/nav_memory_manager"
+        android:title="@string/memory_manager"/>
+</menu>

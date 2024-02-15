@@ -14,7 +14,6 @@ class FileSizeFragment : Fragment() {
         val fileSizeArray = resources.getStringArray(R.array.file_sizes)
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, fileSizeArray)
         binding.autoCompleteTextViewFileSize.setAdapter(adapter)
-
         return binding.root
     }
     fun getCurrentFileSizeKB(): Int {

@@ -10,5 +10,5 @@
         android:src="@mipmap/ic_launcher"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

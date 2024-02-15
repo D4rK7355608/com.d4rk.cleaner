@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"/>
         <com.google.android.material.slider.Slider
             android:id="@+id/slider_quick_compress"
             android:layout_width="match_parent"

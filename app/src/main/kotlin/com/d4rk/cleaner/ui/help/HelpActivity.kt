@@ -1,13 +1,16 @@
 package com.d4rk.cleaner.ui.help
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.databinding.ActivityHelpBinding
 import com.google.android.material.snackbar.Snackbar
@@ -22,6 +25,12 @@ class HelpActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.frame_layout_faq, FaqFragment()).commit()
         supportFragmentManager.beginTransaction().replace(R.id.frame_layout_feedback, FeedbackFragment()).commit()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
+            if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_amoled_mode), false)) {
+                binding.root.setBackgroundColor(ContextCompat.getColor(this, android.R.color.black))
+                window.navigationBarColor = ContextCompat.getColor(this, android.R.color.black)
+            }
+        }
     }
     class FaqFragment : PreferenceFragmentCompat() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

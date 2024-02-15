@@ -20,7 +20,7 @@
         android:text="App Name"
         android:textSize="16sp"
         android:textStyle="bold"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"/>
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_app_size"
         android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
         android:layout_marginStart="16dp"
         android:text="App Size"
         android:textSize="12sp"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"/>
     <com.google.android.material.button.MaterialButton
         style="@style/Widget.Material3.Button.Icon"
         android:id="@+id/button_menu"

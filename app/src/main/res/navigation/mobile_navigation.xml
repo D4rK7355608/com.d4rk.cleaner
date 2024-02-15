@@ -2,46 +2,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    android:id="@+id/mobile_bottom_navigation"
+    app:startDestination="@+id/navigation_home">
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/navigation_home"
         android:name="com.d4rk.cleaner.ui.home.HomeFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_home"/>
-    <activity
-        android:id="@+id/nav_whitelist"
-        android:name="com.d4rk.cleaner.ui.whitelist.WhitelistActivity"
-        android:label="@string/whitelist"
-        tools:layout="@layout/activity_whitelist"/>
     <fragment
-        android:id="@+id/nav_app_manager"
+        android:id="@+id/navigation_app_manager"
         android:name="com.d4rk.cleaner.ui.appmanager.AppManagerFragment"
         android:label="@string/app_manager"
         tools:layout="@layout/fragment_app_manager"/>
     <fragment
-        android:id="@+id/nav_memory_manager"
+        android:id="@+id/navigation_memory_manager"
         android:name="com.d4rk.cleaner.ui.memory.MemoryFragment"
         android:label="@string/memory_manager"
         tools:layout="@layout/fragment_memory"/>
-    <activity
-        android:id="@+id/nav_image_optimizer"
-        android:name="com.d4rk.cleaner.ui.imageoptimizer.ImagePickerActivity"
-        android:label="@string/image_optimizer"
-        tools:layout="@layout/activity_image_picker"/>
-    <fragment
-        android:id="@+id/nav_about"
-        android:name="com.d4rk.cleaner.ui.about.AboutFragment"
-        android:label="@string/about"
-        tools:layout="@layout/fragment_about"/>
-    <activity
-        android:id="@+id/nav_settings"
-        android:name="com.d4rk.cleaner.ui.settings.SettingsActivity"
-        android:label="@string/settings"
-        tools:layout="@layout/activity_settings"/>
-    <activity
-        android:id="@+id/nav_help"
-        android:name="com.d4rk.cleaner.ui.help.HelpActivity"
-        android:label="@string/help"
-        tools:layout="@layout/activity_help"/>
 </navigation>

@@ -1,16 +1,20 @@
 package com.d4rk.cleaner.ui.whitelist
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.os.Bundle
 import android.provider.DocumentsContract
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.content.ContextCompat
 import androidx.documentfile.provider.DocumentFile
+import androidx.preference.PreferenceManager
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.databinding.ActivityWhitelistBinding
 import com.d4rk.cleaner.ui.home.HomeFragment
@@ -28,14 +32,27 @@ class WhitelistActivity : AppCompatActivity() {
         setContentView(binding.root)
         MobileAds.initialize(this)
         binding.adView.loadAd(AdRequest.Builder().build())
+        binding.adBannerView.loadAd(AdRequest.Builder().build())
         FastScrollerBuilder(binding.scrollViewWhitelist).useMd2Style().build()
         binding.buttonAddToWhitelist.setOnClickListener { addToWhiteList() }
-        getWhiteList(HomeFragment.preferences)
+        whiteList = getWhiteList(HomeFragment.preferences)
         loadViews()
+        if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
+            if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_amoled_mode), false)) {
+                binding.root.setBackgroundColor(ContextCompat.getColor(this, android.R.color.black))
+                window.navigationBarColor = ContextCompat.getColor(this, android.R.color.black)
+            }
+        }
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_custom_animations), true)) {
+            setAnimations()
+        }
+    }
+    private fun setAnimations() {
+        binding.root.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_entry))
     }
     private fun loadViews() {
         binding.linearLayoutPaths.removeAllViews()
-        val layout = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        val layout = LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         layout.setMargins(0, 20, 0, 20)
         if (whiteList.isEmpty()) {
             val textView = TextView(this)
@@ -43,6 +60,7 @@ class WhitelistActivity : AppCompatActivity() {
             textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
             textView.textSize = 18f
             binding.linearLayoutPaths.addView(textView, layout)
+            binding.adBannerView.visibility = View.VISIBLE
         } else {
             for (path in whiteList) {
                 val button = Button(this)
@@ -53,6 +71,7 @@ class WhitelistActivity : AppCompatActivity() {
                 button.setPadding(50, 50, 50, 50)
                 button.setBackgroundResource(R.drawable.bg_whitelist_card)
                 binding.linearLayoutPaths.addView(button, layout)
+                binding.adBannerView.visibility = View.GONE
             }
         }
     }
@@ -116,7 +135,7 @@ class WhitelistActivity : AppCompatActivity() {
         return null
     }
     companion object {
-        fun getWhiteList(preferences: SharedPreferences?): List<String?> {
+        fun getWhiteList(preferences: SharedPreferences?): ArrayList<String> {
             val whiteList: ArrayList<String> = ArrayList()
             if (preferences != null) {
                 whiteList.addAll(preferences.getStringSet("whitelist", emptySet())?.toList()?.toMutableList() ?: ArrayList())

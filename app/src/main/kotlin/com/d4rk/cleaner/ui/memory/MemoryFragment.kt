@@ -24,10 +24,16 @@ import com.d4rk.cleaner.databinding.FragmentMemoryBinding
 import com.d4rk.cleaner.ui.viewmodel.MemoryViewModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 class MemoryFragment : Fragment() {
     private lateinit var binding: FragmentMemoryBinding
     private lateinit var viewModel: MemoryViewModel
+    private var updateMemoryJob: Job? = null
     private val handler = Handler(Looper.getMainLooper())
     private val updateInterval = 1000L
     private lateinit var cpuAdapter: CpuAdapter
@@ -35,23 +41,27 @@ class MemoryFragment : Fragment() {
     private val navController: NavController by lazy {
         findNavController()
     }
-    private var y: Int = 0
-    private var x: Int = 0
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        viewModel = ViewModelProvider(this)[MemoryViewModel::class.java]
         binding = FragmentMemoryBinding.inflate(inflater, container, false)
-        FastScrollerBuilder(binding.scrollView).useMd2Style().build()
-        MobileAds.initialize(requireContext())
-        binding.adView.loadAd(AdRequest.Builder().build())
-        binding.buttonAnalyze.setOnClickListener {
-            navController.navigate(R.id.nav_home)
-        }
-        updateMemoryInfo()
         cpuAdapter = CpuAdapter(cpuAppsList)
-        if (PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean(getString(R.string.key_custom_animations), true)) {
-            setAnimations()
+        CoroutineScope(Dispatchers.Main).launch {
+            updateMemoryInfo()
         }
         return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        FastScrollerBuilder(binding.scrollView).useMd2Style().build()
+        MobileAds.initialize(requireContext())
+        binding.adBannerView.loadAd(AdRequest.Builder().build())
+        binding.buttonAnalyze.setOnClickListener {
+            navController.navigate(R.id.navigation_home)
+        }
+        if (isAdded) {
+            if (PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean(requireActivity().getString(R.string.key_custom_animations), true)) {
+                setAnimations()
+            }
+        }
     }
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -61,6 +71,8 @@ class MemoryFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         viewModel.stopCpuTemperatureUpdates()
+        handler.removeCallbacks(updateMemoryInfoRunnable)
+        updateMemoryJob?.cancel()
     }
     override fun onPause() {
         super.onPause()
@@ -72,27 +84,29 @@ class MemoryFragment : Fragment() {
         updateCpuTemperature()
         updateRunningAppsList()
     }
-    private fun getStorageInfo(): Pair<Long, Long> {
+    private suspend fun getStorageInfo(): Pair<Long, Long> = withContext(Dispatchers.IO) {
         val totalSize = getTotalInternalMemorySize()
         val availableSize = getAvailableInternalMemorySize()
-        return Pair(totalSize, availableSize)
+        Pair(totalSize, availableSize)
     }
-    private fun getTotalInternalMemorySize(): Long {
+    private suspend fun getTotalInternalMemorySize(): Long = withContext(Dispatchers.IO) {
         val stat = StatFs(Environment.getDataDirectory().path)
         val blockSize = stat.blockSizeLong
         val totalBlocks = stat.blockCountLong
-        return blockSize * totalBlocks
+        blockSize * totalBlocks
     }
-    private fun getAvailableInternalMemorySize(): Long {
+    private suspend fun getAvailableInternalMemorySize(): Long = withContext(Dispatchers.IO) {
         val stat = StatFs(Environment.getDataDirectory().path)
         val blockSize = stat.blockSizeLong
         val availableBlocks = stat.availableBlocksLong
-        return blockSize * availableBlocks
+        blockSize * availableBlocks
     }
     private val updateMemoryInfoRunnable = object : Runnable {
         override fun run() {
-            updateMemoryInfo()
-            handler.postDelayed(this, updateInterval)
+            if (isAdded) {
+                updateMemoryInfo()
+                handler.postDelayed(this, updateInterval)
+            }
         }
     }
     private fun getUsedMemorySize(): Long {
@@ -120,14 +134,14 @@ class MemoryFragment : Fragment() {
         val percentage = ((usedRam.toDouble() / totalRam.toDouble()) * 100).toInt()
         return 100 - percentage
     }
-    private fun updateMemoryInfo() {
-        val (totalSize, availableSize) = getStorageInfo()
+    private fun updateMemoryInfo() = CoroutineScope(Dispatchers.Main).launch {
+        val (totalSize, availableSize) = withContext(Dispatchers.IO) { getStorageInfo() }
         val usedSize = totalSize - availableSize
         val progress = (usedSize.toDouble() / totalSize.toDouble() * 100).toInt()
         binding.progressBarHorizontal.progress = progress
         val memoryUsageString = getString(R.string.memory_used, "%.2f".format(usedSize / (1024.0 * 1024.0 * 1024.0)), "%.2f".format(totalSize / (1024.0 * 1024.0 * 1024.0)), "GB")
         binding.textViewMemory.text = memoryUsageString
-        val (totalRam, availableRam) = getRamInfo()
+        val (totalRam, availableRam) = withContext(Dispatchers.IO) { getRamInfo() }
         val usedRam = totalRam - availableRam
         val ramUsagePercentage = (usedRam.toDouble() / totalRam.toDouble()) * 100
         binding.textViewRamPercentage.text = getString(R.string.ram_usage_percentage, ramUsagePercentage)
@@ -135,10 +149,16 @@ class MemoryFragment : Fragment() {
         val totalRamString = "%.2f GB".format(totalRam / (1024.0 * 1024.0 * 1024.0))
         binding.textViewUsedRam.text = usedRamString
         binding.textViewTotalRam.text = totalRamString
-        y = calculateRunningProcessesPercentage()
+        val y = withContext(Dispatchers.IO) { calculateRunningProcessesPercentage() }
         binding.textViewAppUsage.text = y.toString()
         binding.textViewAppsFreed.text = totalRamString
-        binding.textViewAppsUsed.text = getString(R.string.memory_used_mb, getUsedMemorySize() - x.toLong() - 30)
+        val x = withContext(Dispatchers.IO) { getUsedMemorySize() }
+        binding.textViewAppsUsed.text = getString(R.string.memory_used_mb, x - 30)
+        if (progress >= 90) {
+            binding.imageViewTextViewIcon.setImageResource(R.drawable.ic_disc_full)
+        } else {
+            binding.imageViewTextViewIcon.setImageResource(R.drawable.ic_phone_android)
+        }
     }
     private fun updateRunningAppsList() {
         val safeToStopFlags = ApplicationInfo.FLAG_STOPPED or ApplicationInfo.FLAG_SYSTEM
@@ -170,8 +190,11 @@ class MemoryFragment : Fragment() {
     private fun updateCpuTemperature() {
         if (isAdded) {
             val cpuTemperature = viewModel.getCpuTemperature()
-            val cpuStatus = if (cpuTemperature >= 70) "Overheated" else "Normal"
-            val cpuStatusText = getString(R.string.cpu_status, cpuStatus, "%.2f°C".format(cpuTemperature))
+            val cpuStatusText = when {
+                cpuTemperature <= 0 -> getString(R.string.cpu_status_error)
+                cpuTemperature >= 70 -> getString(R.string.cpu_status, getString(R.string.cpu_status_overheated), "%.2f°C".format(cpuTemperature))
+                else -> getString(R.string.cpu_status, getString(R.string.cpu_status_normal), "%.2f°C".format(cpuTemperature))
+            }
             binding.textViewCpu.text = cpuStatusText
             handler.postDelayed({
                 updateCpuTemperature()
@@ -179,11 +202,6 @@ class MemoryFragment : Fragment() {
         }
     }
     private fun setAnimations() {
-        binding.buttonAnalyze.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_swipe_up_center_300))
-        binding.cardViewMemoryUsage.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_fade_in_short))
-        binding.cardViewStorageUsage.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_fade_in_short))
-        binding.imageViewTemperature.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_swipe_up_center_200))
-        binding.imageViewTextViewIcon.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_swipe_up_center_100))
-        binding.progressBarHorizontal.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_swipe_up_center_400))
+        binding.root.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_entry))
     }
 }

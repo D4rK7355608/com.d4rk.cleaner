@@ -10,17 +10,22 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.databinding.ItemAppListBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 class AppListAdapter(private val apps: List<ApplicationInfo>) : RecyclerView.Adapter<AppListAdapter.ViewHolder>() {
-    class ViewHolder(private val binding: ItemAppListBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(app: ApplicationInfo) {
-            binding.imageViewAppIcon.setImageDrawable(app.loadIcon(itemView.context.packageManager))
-            binding.textViewAppName.text = app.loadLabel(itemView.context.packageManager)
+    private val scope = CoroutineScope(Dispatchers.IO)
+    class ViewHolder(val binding: ItemAppListBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(app: ApplicationInfo, context: Context) {
+            binding.textViewAppName.text = app.loadLabel(context.packageManager)
             binding.textViewAppSize.text = formatSize(app.sourceDir)
             binding.buttonMenu.setOnClickListener { view ->
-                val context = view.context
                 val popupMenu = PopupMenu(context, view)
                 popupMenu.menuInflater.inflate(R.menu.menu_app_manager, popupMenu.menu)
                 popupMenu.setOnMenuItemClickListener { menuItem ->
@@ -93,7 +98,20 @@ class AppListAdapter(private val apps: List<ApplicationInfo>) : RecyclerView.Ada
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val app = apps[position]
-        holder.bind(app)
+        val context = holder.itemView.context
+        scope.launch {
+            val drawable = app.loadIcon(context.packageManager)
+            withContext(Dispatchers.Main) {
+                Glide.with(context)
+                    .load(drawable)
+                    .into(holder.binding.imageViewAppIcon)
+                holder.bind(app, context)
+            }
+        }
+    }
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView)
+        scope.cancel()
     }
     override fun getItemCount(): Int {
         return apps.size

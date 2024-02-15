@@ -27,15 +27,15 @@ class FileScanner(private val path: File, private var context: Context, private 
     private var corpse = false
     private var invalid = false
     private val listFiles: List<File>
-        get() = getListFiles(path)
-    private fun getListFiles(parentDirectory: File): List<File> {
+        get() = getListFiles(path, path.name)
+    private fun getListFiles(parentDirectory: File, simplifiedParentPath: String): List<File> {
         val inFiles = mutableListOf<File>()
         parentDirectory.listFiles()?.forEach { file ->
             if (!isWhiteListed(file) && file.isFile) {
                 inFiles.add(file!!)
             } else if (file.isDirectory) {
                 if (!autoWhite || !autoWhiteList(file)) inFiles.add(file!!)
-                inFiles.addAll(getListFiles(file))
+                inFiles.addAll(getListFiles(file, simplifiedParentPath + "/" + file.name))
             }
         }
         return inFiles
@@ -56,7 +56,6 @@ class FileScanner(private val path: File, private var context: Context, private 
         }
         return false
     }
-
     private fun filter(file: File?): Boolean {
         if (file == null) return false
         if (invalid && filterInvalidMedia(file)) {
@@ -123,7 +122,7 @@ class FileScanner(private val path: File, private var context: Context, private 
         if (preferences.getBoolean(context.getString(R.string.key_double_checker), false)) maxCycles = 10
         if (!delete) maxCycles = 1
         while (cycles < maxCycles) {
-            (fragment as HomeFragment).displayText("RunningCycle" + "" + (cycles + 1) + "/" + maxCycles)
+            (fragment as HomeFragment).displayText("RunningCycle" + "" + (cycles + 1) + "/" + maxCycles) // Here is `No value passed for parameter 'isFolder'`
             foundFiles = listFiles
             gui.progressBarScan.max = gui.progressBarScan.max + foundFiles.size
             var tv: TextView?
@@ -148,7 +147,7 @@ class FileScanner(private val path: File, private var context: Context, private 
                     gui.textViewStatus.text = context.getString(R.string.status_running) + " " + String.format(Locale.US, "%.0f", scanPercent) + "%"
                 }
             }
-            fragment.displayText("FinishedCycle" + "" + (cycles + 1) + "/" + maxCycles)
+            fragment.displayText("FinishedCycle" + "" + (cycles + 1) + "/" + maxCycles)  // Here is `No value passed for parameter 'isFolder'`
             if (filesRemoved == 0) break
             filesRemoved = 0
             ++cycles

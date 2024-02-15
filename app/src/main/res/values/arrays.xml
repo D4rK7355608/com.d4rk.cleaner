@@ -299,4 +299,24 @@
         <item>800</item>
         <item>900</item>
     </string-array>
+    <string-array name="preference_bottom_navigation_bar_labels_entries">
+        <item>@string/labeled</item>
+        <item>@string/selected</item>
+        <item>@string/unlabeled</item>
+    </string-array>
+    <string-array name="preference_bottom_navigation_bar_labels_values">
+        <item>labeled</item>
+        <item>selected</item>
+        <item>unlabeled</item>
+    </string-array>
+    <string-array name="preference_default_tab_entries">
+        <item>@string/home</item>
+        <item>@string/app_manager</item>
+        <item>@string/memory_manager</item>
+    </string-array>
+    <string-array name="preference_default_tab_values">
+        <item>navigation_home</item>
+        <item>navigation_app_manager</item>
+        <item>navigation_memory_manager</item>
+    </string-array>
 </resources>

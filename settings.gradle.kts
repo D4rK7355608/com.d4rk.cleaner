@@ -2,8 +2,10 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         google()
-        maven(url = "https://jitpack.io")
         mavenCentral()
+        maven {
+            setUrl("https://jitpack.io")
+        }
     }
     resolutionStrategy {
         eachPlugin {
@@ -13,12 +15,15 @@ pluginManagement {
         }
     }
 }
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
-        maven(url = "https://jitpack.io")
         mavenCentral()
+        maven {
+            setUrl("https://jitpack.io")
+        }
     }
 }
 rootProject.name = "Cleaner"
