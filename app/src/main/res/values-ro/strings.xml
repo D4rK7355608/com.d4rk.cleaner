@@ -133,6 +133,7 @@
     <string name="medium">Mediu</string>
     <string name="high">Ridicat</string>
     <string name="file_size">Dimensiune fișier (KB)</string>
+    <string name="enter_a_value">Introduceți o valoare</string>
     <string name="manual">Manual</string>
     <string name="width">Lățime (px)</string>
     <string name="height">Înălțime (px)</string>
@@ -156,6 +157,7 @@
     <string name="summary_close">Sigur vrei să ieși?</string>
     <string name="summary_dialog_button_clean">Ești sigur? Fișierele șterse nu pot fi recuperate după procesul de curățare</string>
     <string name="summary_preference_settings_display">Personalizează aspectul aplicației tale</string>
+    <string name="summary_preference_settings_amoled_mode">Experimentați efecte vizuale îmbunătățite și fundaluri mai adânci</string>
     <string name="summary_preference_settings_cleaning">Personalizează experiența ta de curățare</string>
     <string name="summary_preference_settings_notifications">Gestionează notificările aplicației</string>
     <string name="summary_preference_settings_advanced">Explorează setările avansate</string>

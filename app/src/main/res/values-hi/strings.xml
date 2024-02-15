@@ -133,6 +133,7 @@
     <string name="medium">मध्यम</string>
     <string name="high">उच्च</string>
     <string name="file_size">फ़ाइल का आकार (केबी)</string>
+    <string name="enter_a_value">कोई मान दर्ज करें</string>
     <string name="manual">मैन्युअल</string>
     <string name="width">चौड़ाई (पिक्सेल)</string>
     <string name="height">ऊचाई (पिक्सेल)</string>
@@ -156,6 +157,7 @@
     <string name="summary_close">क्या आप निर्गमन करना चाहते हैं?</string>
     <string name="summary_dialog_button_clean">क्या आप सुनिश्चित हैं? सफाई प्रक्रिया के बाद हटाए गए फ़ाइलें पुनः प्राप्त नहीं की जा सकती हैं।</string>
     <string name="summary_preference_settings_display">अपने ऐप के रूप और अनुभूति को व्यक्तिगत करें</string>
+    <string name="summary_preference_settings_amoled_mode">प्रायोगिक दृश्यों और गहरे पृष्ठभूमियों का अनुभव करें</string>
     <string name="summary_preference_settings_cleaning">अपने सफाई अनुभव को कस्टमाईज़ करें</string>
     <string name="summary_preference_settings_notifications">एप्लिकेशन सूचनाओं का प्रबंधन करें</string>
     <string name="summary_preference_settings_advanced">और अधिक उन्नत सेटिंग्स का अन्वेषण करें</string>

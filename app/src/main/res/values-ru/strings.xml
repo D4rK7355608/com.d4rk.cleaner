@@ -133,6 +133,7 @@
     <string name="medium">Среднее</string>
     <string name="high">Высокое</string>
     <string name="file_size">Размер файла (КБ)</string>
+    <string name="enter_a_value">Введите значение</string>
     <string name="manual">Ручной</string>
     <string name="width">Ширина (пкс)</string>
     <string name="height">Высота (пкс)</string>
@@ -156,6 +157,7 @@
     <string name="summary_close">Вы уверены, что хотите выйти?</string>
     <string name="summary_dialog_button_clean">Вы уверены? Файлы, удаленные в процессе очистки, нельзя восстановить</string>
     <string name="summary_preference_settings_display">Настройте внешний вид вашего приложения</string>
+    <string name="summary_preference_settings_amoled_mode">Почувствуйте улучшенные визуальные эффекты и глубже задние планы</string>
     <string name="summary_preference_settings_cleaning">Настройте опыт очистки</string>
     <string name="summary_preference_settings_notifications">Управляйте уведомлениями приложения</string>
     <string name="summary_preference_settings_advanced">Исследуйте более продвинутые настройки</string>

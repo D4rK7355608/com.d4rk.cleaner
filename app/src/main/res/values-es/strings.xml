@@ -133,6 +133,7 @@
     <string name="medium">Medio</string>
     <string name="high">Alto</string>
     <string name="file_size">Tamaño del archivo (KB)</string>
+    <string name="enter_a_value">Ingrese un valor</string>
     <string name="manual">Manual</string>
     <string name="width">Ancho (px)</string>
     <string name="height">Altura (px)</string>
@@ -156,6 +157,7 @@
     <string name="summary_close">¿Estás seguro de que quieres salir?</string>
     <string name="summary_dialog_button_clean">¿Estás seguro? Los archivos eliminados no se pueden restaurar después del proceso de limpieza</string>
     <string name="summary_preference_settings_display">Personaliza la apariencia de tu aplicación</string>
+    <string name="summary_preference_settings_amoled_mode">Experimenta efectos visuales mejorados y fondos más profundos</string>
     <string name="summary_preference_settings_cleaning">Personaliza tu experiencia de limpieza</string>
     <string name="summary_preference_settings_notifications">Administra las notificaciones de la aplicación</string>
     <string name="summary_preference_settings_advanced">Explora configuraciones más avanzadas</string>

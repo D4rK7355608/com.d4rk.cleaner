@@ -133,6 +133,7 @@
     <string name="medium">Mittel</string>
     <string name="high">Hoch</string>
     <string name="file_size">Dateigröße (KB)</string>
+    <string name="enter_a_value">Geben Sie einen Wert ein</string>
     <string name="manual">Manuell</string>
     <string name="width">Breite (px)</string>
     <string name="height">Höhe (px)</string>
@@ -156,6 +157,7 @@
     <string name="summary_close">Sind Sie sicher, dass Sie beenden möchten?</string>
     <string name="summary_dialog_button_clean">Sind Sie sicher? Gelöschte Dateien können nach dem Reinigungsvorgang nicht wiederhergestellt werden</string>
     <string name="summary_preference_settings_display">Personalisieren Sie das Aussehen Ihrer App</string>
+    <string name="summary_preference_settings_amoled_mode">Erleben Sie verbesserte visuelle Effekte und tiefere Hintergründe</string>
     <string name="summary_preference_settings_cleaning">Passen Sie Ihr Reinigungserlebnis an</string>
     <string name="summary_preference_settings_notifications">Verwalten Sie App-Benachrichtigungen</string>
     <string name="summary_preference_settings_advanced">Erkunden Sie erweiterte Einstellungen</string>

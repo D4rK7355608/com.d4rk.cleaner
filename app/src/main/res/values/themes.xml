@@ -57,6 +57,4 @@
     <style name="switchPreferenceCompatStyle" parent="@style/Preference.SwitchPreferenceCompat.Material">
         <item name="widgetLayout">@layout/preference_switch_widget_layout</item>
     </style>
-    <style name="Theme.App.Starting.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="Theme.App.Starting.PopupOverlay" parent="ThemeOverlay.Material3.DynamicColors.DayNight"/>
 </resources>

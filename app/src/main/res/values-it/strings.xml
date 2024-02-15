@@ -133,6 +133,7 @@
     <string name="medium">Media</string>
     <string name="high">Alta</string>
     <string name="file_size">Dimensioni file (KB)</string>
+    <string name="enter_a_value">Inserisci un valore</string>
     <string name="manual">Manuale</string>
     <string name="width">Larghezza (px)</string>
     <string name="height">Altezza (px)</string>
@@ -156,6 +157,7 @@
     <string name="summary_close">Sei sicuro di voler uscire?</string>
     <string name="summary_dialog_button_clean">Sei sicuro? I file eliminati non possono essere ripristinati dopo il processo di pulizia</string>
     <string name="summary_preference_settings_display">Personalizza l\'aspetto della tua app</string>
+    <string name="summary_preference_settings_amoled_mode">Sperimenta effetti visivi migliorati e sfondi più profondi</string>
     <string name="summary_preference_settings_cleaning">Personalizza la tua esperienza di pulizia</string>
     <string name="summary_preference_settings_notifications">Gestisci le notifiche dell\'app</string>
     <string name="summary_preference_settings_advanced">Esplora impostazioni più avanzate</string>

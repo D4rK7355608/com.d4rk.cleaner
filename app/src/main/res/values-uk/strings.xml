@@ -133,6 +133,7 @@
     <string name="medium">Середня</string>
     <string name="high">Висока</string>
     <string name="file_size">Розмір файлу (КБ)</string>
+    <string name="enter_a_value">Введіть значення</string>
     <string name="manual">Ручний</string>
     <string name="width">Ширина (пкс)</string>
     <string name="height">Висота (пкс)</string>
@@ -156,6 +157,7 @@
     <string name="summary_close">Ви впевнені, що хочете вийти?</string>
     <string name="summary_dialog_button_clean">Ви впевнені? Файли, видалені під час очищення, не можна відновити після завершення процесу очищення</string>
     <string name="summary_preference_settings_display">Налаштуйте вигляд та відчуття вашого додатка</string>
+    <string name="summary_preference_settings_amoled_mode">Досвід вдосконалених візуальних ефектів та глибших фонів</string>
     <string name="summary_preference_settings_cleaning">Налаштуйте ваш досвід очищення</string>
     <string name="summary_preference_settings_notifications">Керуйте сповіщеннями додатка</string>
     <string name="summary_preference_settings_advanced">Досліджуйте більше розширених налаштувань</string>

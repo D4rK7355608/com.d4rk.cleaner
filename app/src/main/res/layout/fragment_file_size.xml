@@ -15,7 +15,7 @@
         android:hint="@string/file_size"
         app:hintEnabled="true"
         app:hintAnimationEnabled="true"
-        app:helperText="Enter a value"
+        app:helperText="@string/enter_a_value"
         app:helperTextEnabled="true"
         app:errorEnabled="true">
         <com.google.android.material.textfield.MaterialAutoCompleteTextView

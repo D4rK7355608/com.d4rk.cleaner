@@ -133,6 +133,7 @@
     <string name="medium">Sedang</string>
     <string name="high">Tinggi</string>
     <string name="file_size">Ukuran File (KB)</string>
+    <string name="enter_a_value">Masukkan nilai</string>
     <string name="manual">Manual</string>
     <string name="width">Lebar (px)</string>
     <string name="height">Tinggi (px)</string>
@@ -156,6 +157,7 @@
     <string name="summary_close">Apakah Anda yakin ingin keluar?</string>
     <string name="summary_dialog_button_clean">Apakah Anda yakin? File yang dihapus tidak dapat dipulihkan setelah proses pembersihan</string>
     <string name="summary_preference_settings_display">Personalisasi tampilan dan nuansa aplikasi Anda</string>
+    <string name="summary_preference_settings_amoled_mode">Alami visual yang ditingkatkan dan latar belakang yang lebih dalam</string>
     <string name="summary_preference_settings_cleaning">Sesuaikan pengalaman pembersihan Anda</string>
     <string name="summary_preference_settings_notifications">Atur notifikasi aplikasi</string>
     <string name="summary_preference_settings_advanced">Jelajahi pengaturan lanjutan</string>

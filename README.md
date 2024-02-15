@@ -1,6 +1,6 @@
 ![Cleaner for Android](/app/src/main/play/listings/en-US/graphics/feature-graphic/play_store_feature_graphic.png "Cleaner for Android")
 
-<a href="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="70"></a>
+<a href="https://play.google.com/store/apps/details?id=com.d4rk.cleaner"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="70"></a>
 
 Cleaner
 ==================
@@ -33,7 +33,13 @@ Our app is designed to be simple and easy to use, while also being fast and ligh
 
 # Screenshots
 
-
+<table>
+  <tr>
+    <td><img src="/app/src/main/play/listings/en-US/graphics/phone-screenshots/1-screenshot_main.png" width="300"></td>
+    <td><img src="/app/src/main/play/listings/en-US/graphics/phone-screenshots/2-screenshot_settings.png" width="300"></td>
+    <td><img src="/app/src/main/play/listings/en-US/graphics/phone-screenshots/3-screenshot_themes.png" width="300"></td>
+  </tr>
+</table>
 
 # How it works
 

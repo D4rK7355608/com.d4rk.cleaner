@@ -133,6 +133,7 @@
     <string name="medium">Medium</string>
     <string name="high">Hög</string>
     <string name="file_size">Filstorlek (KB)</string>
+    <string name="enter_a_value">Ange ett värde</string>
     <string name="manual">Manuell</string>
     <string name="width">Bredd (px)</string>
     <string name="height">Höjd (px)</string>
@@ -156,6 +157,7 @@
     <string name="summary_close">Är du säker på att du vill avsluta?</string>
     <string name="summary_dialog_button_clean">Är du säker? Filerna som raderas kan inte återställas efter rengöringsprocessen</string>
     <string name="summary_preference_settings_display">Anpassa din apps utseende och känsla</string>
+    <string name="summary_preference_settings_amoled_mode">Upplev förbättrade visuella effekter och djupare bakgrunder</string>
     <string name="summary_preference_settings_cleaning">Anpassa din rengöringsupplevelse</string>
     <string name="summary_preference_settings_notifications">Hantera appnotifikationer</string>
     <string name="summary_preference_settings_advanced">Utforska mer avancerade inställningar</string>

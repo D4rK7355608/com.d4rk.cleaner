@@ -133,6 +133,7 @@
     <string name="medium">Orta</string>
     <string name="high">Yüksek</string>
     <string name="file_size">Dosya Boyutu (KB)</string>
+    <string name="enter_a_value">Bir değer girin</string>
     <string name="manual">Manuel</string>
     <string name="width">Genişlik (px)</string>
     <string name="height">Yükseklik (px)</string>
@@ -156,6 +157,7 @@
     <string name="summary_close">Çıkış yapmak istediğinizden emin misiniz?</string>
     <string name="summary_dialog_button_clean">Emin misiniz? Temizleme işleminden sonra silinen dosyalar geri alınamaz</string>
     <string name="summary_preference_settings_display">Uygulamanızın görünümünü kişiselleştirin</string>
+    <string name="summary_preference_settings_amoled_mode">Geliştirilmiş görsel efektleri ve daha derin arka planları deneyimleyin</string>
     <string name="summary_preference_settings_cleaning">Temizleme deneyiminizi özelleştirin</string>
     <string name="summary_preference_settings_notifications">Uygulama bildirimlerini yönetin</string>
     <string name="summary_preference_settings_advanced">Daha fazla gelişmiş ayarı keşfedin</string>

@@ -133,6 +133,7 @@
     <string name="medium">Среден</string>
     <string name="high">Висок</string>
     <string name="file_size">Размер на файл (KB)</string>
+    <string name="enter_a_value">Въведете стойност</string>
     <string name="manual">Ръчен</string>
     <string name="width">Ширина (px)</string>
     <string name="height">Височина (px)</string>
@@ -156,6 +157,7 @@
     <string name="summary_close">Сигурни ли сте, че искате да излезете?</string>
     <string name="summary_dialog_button_clean">Сигурни ли сте? Файловете, изтрити по време на процеса на почистване, не могат да бъдат възстановени</string>
     <string name="summary_preference_settings_display">Персонализирайте външния вид и усещането на вашето приложение</string>
+    <string name="summary_preference_settings_amoled_mode">Преживейте подобрени визуални ефекти и по-дълбоки задни планове</string>
     <string name="summary_preference_settings_cleaning">Персонализирайте процеса на почистване</string>
     <string name="summary_preference_settings_notifications">Управлявайте известията на приложението</string>
     <string name="summary_preference_settings_advanced">Изследвайте по-разширени настройки</string>

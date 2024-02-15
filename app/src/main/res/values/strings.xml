@@ -133,6 +133,7 @@
     <string name="medium">Medium</string>
     <string name="high">High</string>
     <string name="file_size">File Size (KB)</string>
+    <string name="enter_a_value">Enter a value</string>
     <string name="manual">Manual</string>
     <string name="width">Width (px)</string>
     <string name="height">Height (px)</string>
@@ -156,7 +157,7 @@
     <string name="summary_close">Are you sure you want to exit?</string>
     <string name="summary_dialog_button_clean">Are you sure? Files deleted cannot be restored after clean process</string>
     <string name="summary_preference_settings_display">Personalize your app\'s look and feel</string>
-    <string name="summary_preference_settings_amoled_mode">Enjoy deeper blacks and optimized performance for AMOLED display</string>
+    <string name="summary_preference_settings_amoled_mode">Experience enhanced visuals and deeper backgrounds</string>
     <string name="summary_preference_settings_cleaning">Customize your cleaning experience</string>
     <string name="summary_preference_settings_notifications">Manage app notifications</string>
     <string name="summary_preference_settings_advanced">Explore more advanced settings</string>

@@ -133,6 +133,7 @@
     <string name="medium">中</string>
     <string name="high">高</string>
     <string name="file_size">ファイルサイズ（KB）</string>
+    <string name="enter_a_value">値を入力してください</string>
     <string name="manual">マニュアル</string>
     <string name="width">幅（px）</string>
     <string name="height">高さ（px）</string>
@@ -156,6 +157,7 @@
     <string name="summary_close">終了してもよろしいですか？</string>
     <string name="summary_dialog_button_clean">確認していますか？クリーンプロセス後に削除されたファイルは復元できません。</string>
     <string name="summary_preference_settings_display">アプリの外観と感触を個人的に設定します</string>
+    <string name="summary_preference_settings_amoled_mode">より洗練された視覚効果とより深い背景を体験してください</string>
     <string name="summary_preference_settings_cleaning">クリーニング体験をカスタマイズ</string>
     <string name="summary_preference_settings_notifications">アプリの通知を管理</string>
     <string name="summary_preference_settings_advanced">さらに高度な設定を探索</string>

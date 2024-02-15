@@ -133,6 +133,7 @@
     <string name="medium">Közepes</string>
     <string name="high">Magas</string>
     <string name="file_size">Fájl méret (KB)</string>
+    <string name="enter_a_value">Írjon be egy értéket</string>
     <string name="manual">Kézi</string>
     <string name="width">Szélesség (px)</string>
     <string name="height">Magasság (px)</string>
@@ -156,6 +157,7 @@
     <string name="summary_close">Biztosan ki akar lépni?</string>
     <string name="summary_dialog_button_clean">Biztos vagy benne? A törölt fájlokat nem lehet visszaállítani a takarítási folyamat után</string>
     <string name="summary_preference_settings_display">Személyre szabja az alkalmazás kinézetét és érzetét</string>
+    <string name="summary_preference_settings_amoled_mode">Tapasztalja meg a javított vizuális effekteket és mélyebb háttérképeket</string>
     <string name="summary_preference_settings_cleaning">Alakítsa ki takarítási élményét</string>
     <string name="summary_preference_settings_notifications">Kezelje az alkalmazás értesítéseit</string>
     <string name="summary_preference_settings_advanced">Fedezze fel az előrehaladott beállításokat</string>
