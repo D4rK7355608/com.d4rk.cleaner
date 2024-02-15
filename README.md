@@ -2,7 +2,7 @@
 
 <a href="https://play.google.com/store/apps/details?id=com.d4rk.cleaner"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="70"></a>
 
-Cleaner
+Cleaner for Android
 ==================
 
 **Easy to use one-tap phone cleaner. Say hello to a lightning-fast device!**
