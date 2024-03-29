@@ -26,5 +26,5 @@ dependencyResolutionManagement {
         }
     }
 }
-rootProject.name = "Cleaner"
+rootProject.name = "Cleaner for Android"
 include(":app")

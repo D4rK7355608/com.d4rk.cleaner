@@ -3,7 +3,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Bundle
+import android.os.Handler
 import android.provider.DocumentsContract
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
@@ -23,13 +25,17 @@ import com.google.android.gms.ads.MobileAds
 import dev.shreyaspatil.MaterialDialog.MaterialDialog
 import dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
+import java.io.File
 class WhitelistActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWhitelistBinding
     private var whiteList: ArrayList<String> = ArrayList()
+    @Suppress("DEPRECATION")
+    private val handler = Handler()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWhitelistBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setAnimations()
         MobileAds.initialize(this)
         binding.adView.loadAd(AdRequest.Builder().build())
         binding.adBannerView.loadAd(AdRequest.Builder().build())
@@ -43,12 +49,15 @@ class WhitelistActivity : AppCompatActivity() {
                 window.navigationBarColor = ContextCompat.getColor(this, android.R.color.black)
             }
         }
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_custom_animations), true)) {
-            setAnimations()
-        }
     }
     private fun setAnimations() {
-        binding.root.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_entry))
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_custom_animations), true)) {
+            binding.root.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_entry))
+        }
+        binding.buttonAddToWhitelist.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_swipe_up_right))
+        handler.postDelayed({
+            binding.buttonAddToWhitelist.shrink()
+        }, 5000)
     }
     private fun loadViews() {
         binding.linearLayoutPaths.removeAllViews()
@@ -105,9 +114,11 @@ class WhitelistActivity : AppCompatActivity() {
                     val document = DocumentFile.fromTreeUri(this, uri)
                     if (document != null && document.isDirectory) {
                         val path = getDirectoryPath(document)
-                        if (!whiteList.contains(path)) {
-                            if (path != null) {
-                                whiteList.add(path)
+                        if (path != null) {
+                            val pathWithSeparator = path + File.separator
+                            if (!whiteList.contains(pathWithSeparator)) {
+                                whiteList.add(pathWithSeparator)
+                                Log.d("WhitelistActivity", "Adding to whitelist: $pathWithSeparator")
                             }
                             HomeFragment.preferences?.edit()?.putStringSet(getString(R.string.key_whitelist), whiteList.toHashSet())?.apply()
                             loadViews()
@@ -130,19 +141,14 @@ class WhitelistActivity : AppCompatActivity() {
             if (path.startsWith("primary:")) {
                 path = path.substringAfter("primary:")
             }
-            return path
+            return path + File.separator
         }
         return null
     }
     companion object {
         fun getWhiteList(preferences: SharedPreferences?): ArrayList<String> {
-            val whiteList: ArrayList<String> = ArrayList()
-            if (preferences != null) {
-                whiteList.addAll(preferences.getStringSet("whitelist", emptySet())?.toList()?.toMutableList() ?: ArrayList())
-            }
-            whiteList.remove("[")
-            whiteList.remove("]")
-            return whiteList
+            val whiteList: Set<String> = preferences?.getStringSet("whitelist", emptySet()) ?: emptySet()
+            return ArrayList(whiteList)
         }
     }
 }

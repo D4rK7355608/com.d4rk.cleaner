@@ -26,6 +26,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
 import com.d4rk.cleaner.FileScanner
 import com.d4rk.cleaner.R
@@ -37,7 +38,6 @@ import com.google.android.material.snackbar.Snackbar
 import dev.shreyaspatil.MaterialDialog.MaterialDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
@@ -46,7 +46,6 @@ import java.text.DecimalFormat
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private var currentPreferenceButtonPositions: Boolean = false
-    private val scope = CoroutineScope(Dispatchers.IO)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         MobileAds.initialize(requireContext())
@@ -54,6 +53,7 @@ class HomeFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setAnimations()
         FastScrollerBuilder(binding.scrollViewFiles).useMd2Style().build()
         binding.adView.loadAd(AdRequest.Builder().build())
         getWhiteList(preferences)
@@ -65,11 +65,6 @@ class HomeFragment : Fragment() {
             reset()
             analyze()
         }
-        if (isAdded) {
-            if (PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean(requireActivity().getString(R.string.key_custom_animations), true)) {
-                setAnimations()
-            }
-        }
     }
     override fun onResume() {
         super.onResume()
@@ -78,16 +73,16 @@ class HomeFragment : Fragment() {
             swapButtonsPositions(preferences!!.getBoolean(getString(R.string.key_swap_buttons), false))
         }
     }
-    override fun onDestroy() {
-        super.onDestroy()
-        scope.cancel()
-    }
     private fun resetScan() {
         binding.progressBarScan.progress = 0
         binding.textViewPercentage.text = getString(R.string.main_progress_0)
     }
     private fun setAnimations() {
-        binding.root.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_entry))
+        if (isAdded) {
+            if (PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean(getString(R.string.key_custom_animations), true)) {
+                binding.root.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_entry))
+            }
+        }
     }
     private fun swapButtonsPositions(preferenceButtonPositions: Boolean) {
         if (currentPreferenceButtonPositions == preferenceButtonPositions) return
@@ -102,7 +97,7 @@ class HomeFragment : Fragment() {
     private fun analyze() {
         requestStoragePermissions()
         if (!FileScanner.isRunning) {
-            scope.launch {
+            viewLifecycleOwner.lifecycleScope.launch {
                 scan(false)
             }
         }
@@ -112,10 +107,10 @@ class HomeFragment : Fragment() {
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             if (isDelete) {
                 binding.frameLayoutMain.visibility = View.VISIBLE
-                binding.scrollViewFiles.visibility = View.GONE
+               // binding.cardViewFiles!!.visibility = View.GONE
             } else {
                 binding.frameLayoutMain.visibility = View.GONE
-                binding.scrollViewFiles.visibility = View.VISIBLE
+           //     binding.cardViewFiles!!.visibility = View.VISIBLE
             }
         }
     }
@@ -124,7 +119,7 @@ class HomeFragment : Fragment() {
         if (!FileScanner.isRunning) {
             val oneClickCleanEnabled = preferences!!.getBoolean(getString(R.string.key_one_click_clean), false)
             if (oneClickCleanEnabled) {
-                scope.launch {
+                viewLifecycleOwner.lifecycleScope.launch {
                     scan(true)
                 }
             } else {
@@ -134,7 +129,7 @@ class HomeFragment : Fragment() {
                     .setMessage(getString(R.string.summary_dialog_button_clean))
                     .setCancelable(false)
                     .setPositiveButton(getString(R.string.clean)) { dialogInterface, _ ->
-                        scope.launch {
+                        viewLifecycleOwner.lifecycleScope.launch {
                             scan(true)
                         }
                         dialogInterface.dismiss()
@@ -215,12 +210,7 @@ class HomeFragment : Fragment() {
         val icon = context?.let { ContextCompat.getDrawable(it, iconResId) }
         icon?.setBounds(0, 0, icon.intrinsicWidth, icon.intrinsicHeight)
         spannableStringBuilder.append(" ")
-        spannableStringBuilder.setSpan(
-            icon?.let { ImageSpan(it, ImageSpan.ALIGN_BASELINE) },
-            0,
-            1,
-            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
-        )
+        spannableStringBuilder.setSpan(icon?.let { ImageSpan(it, ImageSpan.ALIGN_BASELINE) }, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
         spannableStringBuilder.append(" $text")
         val textView = TextView(context)
         textView.setTextColor(textColor)
@@ -233,11 +223,7 @@ class HomeFragment : Fragment() {
         val fileName = file.name
         val isFolder = file.isDirectory
         val iconResId = if (isFolder) R.drawable.ic_folder else R.drawable.ic_file_present
-        val textView = printTextViewWithIcon(
-            fileName,
-            iconResId,
-            resources.getColor(R.color.colorPrimary, requireContext().theme)
-        )
+        val textView = printTextViewWithIcon(fileName, iconResId, resources.getColor(R.color.colorPrimary, requireContext().theme))
         requireActivity().runOnUiThread {
             binding.linearLayoutFiles.addView(textView)
         }
@@ -265,6 +251,7 @@ class HomeFragment : Fragment() {
         binding.scrollViewFiles.post {
             binding.scrollViewFiles.fullScroll(ScrollView.FOCUS_DOWN)
         }
+        binding.textViewStatus.visibility = View.VISIBLE
     }
     private fun reset() {
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -298,10 +285,6 @@ class HomeFragment : Fragment() {
                 val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
                 startActivity(intent)
             }
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            @Suppress("DEPRECATION")
-            requestPermissions(arrayOf(Manifest.permission.READ_MEDIA_AUDIO, Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VIDEO), 1)
         }
         ActivityCompat.requestPermissions(requireActivity(), requiredPermissions.toTypedArray(), 1)
     }

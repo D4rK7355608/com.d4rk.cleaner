@@ -12,6 +12,8 @@
     <string name="paid_support">Paid Support</string>
     <string name="non_paid_support">Non-Paid Support</string>
     <string name="clean">Clean</string>
+    <string name="running_cycle">Running Cycle %1$d/%2$d</string>
+    <string name="finished_cycle">Finished Cycle %1$d/%2$d</string>
     <string name="analyze">Analyze</string>
     <string name="status">Status: Idle…</string>
     <string name="status_running">Status: Running</string>
@@ -45,6 +47,7 @@
     <string name="follow_system">Follow System Mode</string>
     <string name="light_mode">Light Mode</string>
     <string name="dark_mode">Dark Mode</string>
+    <string name="dark_theme">Dark theme</string>
     <string name="auto_battery_mode">Auto Battery Dark Mode</string>
     <string name="amoled_mode">AMOLED mode</string>
     <string name="default_tab">Default tab</string>
@@ -110,6 +113,12 @@
     <string name="read_media_images">Read media images [READ_MEDIA_IMAGES]</string>
     <string name="read_media_video">Read media video [READ_MEDIA_VIDEO]</string>
     <string name="write_external_storage">Write external storage [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="usage_and_diagnostics">Usage and diagnostics</string>
+
+
+    <string name="learn_more">Learn more</string>
+    <string name="summary_usage_and_diagnostics">Help improve your experience by automatically sending diagnostic, device, and app usage data to us. This will help improve app performance, stability, and other enhancements. Some aggregate data will also help our apps.\n\nThis is general information about your device and how you use our apps (such as battery level, system and app activity, and errors). The data will be used to improve our apps\n\nTurning off this feature doesn\'t affect your device\'s ability to send the information needed for essential services such as app updates and security.\n</string>
+
     <string name="license">License</string>
     <string name="web_ad">Web Ad</string>
     <string name="device_info">Device info</string>
@@ -119,6 +128,10 @@
     <string name="api_level">API Level:</string>
     <string name="help_and_feedback">Help &amp; feedback</string>
     <string name="help">Help</string>
+    <string name="view_in_google_play_store">View in Google Play Store</string>
+    <string name="version_info">Version info</string>
+    <string name="version">Version %1$s</string>
+    <string name="beta_program">Beta program</string>
     <string name="mail_to_dev">Email developer 📧</string>
     <string name="faq">FAQ</string>
     <string name="send_feedback">Send feedback</string>
@@ -129,6 +142,7 @@
     <string name="optimize_image">Optimize image</string>
     <string name="image_saved">Image saved to: </string>
     <string name="quick_compress">Quick Compress</string>
+    <string name="select_image">Select image</string>
     <string name="low">Low</string>
     <string name="medium">Medium</string>
     <string name="high">High</string>
@@ -228,9 +242,11 @@
     <string name="snack_clipboard_clean_failed">Clipboard clean failed</string>
     <string name="snack_unable_to_open_google_play_store">Unable to open Google Play Store</string>
     <string name="snack_feedback">Thanks for rating us! ❤️</string>
+    <string name="snack_no_image">No image provided</string>
     <string name="snack_support">Would you like to support our app? ❤️</string>
     <string name="snack_update_failed">The update process encountered an issue</string>
     <string name="snack_app_updated">The app has been successfully updated</string>
     <string name="snack_validate_file">Please select a valid file size</string>
     <string name="app_behavior">App behavior</string>
+    <string name="title_activity_usage_and_diagnostics">UsageAndDiagnosticsActivity</string>
 </resources>

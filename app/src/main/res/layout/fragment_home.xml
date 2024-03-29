@@ -15,8 +15,8 @@
         <ProgressBar
             android:id="@+id/progress_bar_scan"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/progress_bar_size"
+            android:layout_height="@dimen/progress_bar_size"
             android:indeterminate="false"
             android:layout_gravity="center"
             android:max="1"
@@ -63,6 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:visibility="gone"
         android:text="@string/status"
         android:layout_margin="24dp"
         app:fontFamily="@font/font_poppins"/>
@@ -72,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:visibility="gone"
-        android:layout_margin="12dp">
+        app:cardCornerRadius="@dimen/medium_rounding">
         <com.google.android.gms.ads.AdView
             android:id="@+id/ad_view"
             android:layout_height="wrap_content"
@@ -83,7 +84,7 @@
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/grid_layout_buttons"
         android:layout_width="match_parent"
-        android:layout_height="112dp">
+        android:layout_height="98dp">
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.Material3.Button.ElevatedButton"
             android:id="@+id/button_clean"
@@ -93,8 +94,9 @@
             android:layout_marginStart="12dp"
             android:layout_marginEnd="6dp"
             app:layout_columnWeight="1"
-            app:iconGravity="textTop"
+            app:cornerRadius="24dp"
             app:icon="@drawable/ic_broom"
+            app:iconGravity="textTop"
             android:text="@string/clean"/>
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.Material3.Button.ElevatedButton"
@@ -106,6 +108,7 @@
             android:layout_marginEnd="12dp"
             android:layout_marginStart="6dp"
             app:layout_columnWeight="1"
+            app:cornerRadius="24dp"
             app:iconGravity="textTop"
             app:icon="@drawable/ic_search"/>
     </androidx.gridlayout.widget.GridLayout>

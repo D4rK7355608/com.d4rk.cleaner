@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">Cleaner</string>
+    <string name="app_full_name" translatable="false">Cleaner for Android</string>
     <string name="main_progress_0" translatable="false">0%</string>
     <string name="ram_usage_percentage" translatable="false">%.0f%%</string>
     <string name="memory_used_mb" translatable="false">%d MB/</string>

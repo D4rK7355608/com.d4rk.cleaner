@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="progress_bar_size">192dp</dimen>
+    <dimen name="extra_large_rounding">28dp</dimen>
+    <dimen name="large_rounding">16dp</dimen>
+    <dimen name="medium_rounding">12dp</dimen>
+    <dimen name="small_rounding">8dp</dimen>
+    <dimen name="extra_small_rounding">4dp</dimen>
+</resources>

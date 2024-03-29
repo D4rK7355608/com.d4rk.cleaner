@@ -51,16 +51,12 @@ class MemoryFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setAnimations()
         FastScrollerBuilder(binding.scrollView).useMd2Style().build()
         MobileAds.initialize(requireContext())
         binding.adBannerView.loadAd(AdRequest.Builder().build())
         binding.buttonAnalyze.setOnClickListener {
             navController.navigate(R.id.navigation_home)
-        }
-        if (isAdded) {
-            if (PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean(requireActivity().getString(R.string.key_custom_animations), true)) {
-                setAnimations()
-            }
         }
     }
     override fun onAttach(context: Context) {
@@ -202,6 +198,10 @@ class MemoryFragment : Fragment() {
         }
     }
     private fun setAnimations() {
-        binding.root.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_entry))
+        if (isAdded) {
+            if (PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean(getString(R.string.key_custom_animations), true)) {
+                binding.root.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_entry))
+            }
+        }
     }
 }

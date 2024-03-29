@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
@@ -100,6 +101,9 @@ class AppListAdapter(private val apps: List<ApplicationInfo>) : RecyclerView.Ada
         val app = apps[position]
         val context = holder.itemView.context
         scope.launch {
+            Log.d("adssadadsa","#0 "+System.currentTimeMillis())
+            Thread.sleep(5000)
+            Log.d("adssadadsa","#1 "+System.currentTimeMillis())
             val drawable = app.loadIcon(context.packageManager)
             withContext(Dispatchers.Main) {
                 Glide.with(context)

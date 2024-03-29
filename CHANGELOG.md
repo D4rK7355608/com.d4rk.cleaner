@@ -1,3 +1,12 @@
+# Version 1.1.0:
+- **Minor**: Added GitHub issues templates.
+- **Minor**: Updated project dependencies.
+- **Minor**: Improved the user experience in Help and Feedback page.
+- **Minor**: Made minor under-the-hood improvements for a better overall app experience.
+- **Patch**: Fixed an issue that caused the app to crash when the device was rotated during the cleaning or scanning process.
+- **Patch**: Fixed an issue encountered on Android 14 where the application was requesting photo permissions and initiating the photo picker API.
+- **Patch**: Fixed an issue in the Image Optimizer that led to a crash when no gallery application was installed on the user’s device.
+
 # Version 1.0.0:
 - **New**: Added multiple languages support for the app.
 - **New**: Added a new bottom app bar for the main components of the cleaner to be more accessible for the user.

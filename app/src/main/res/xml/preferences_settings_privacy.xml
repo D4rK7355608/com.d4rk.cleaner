@@ -32,6 +32,13 @@
                 android:targetPackage="com.d4rk.cleaner"
                 android:targetClass="com.d4rk.cleaner.ui.settings.permissions.PermissionsActivity"/>
         </androidx.preference.Preference>
+        <androidx.preference.Preference
+            android:icon="@drawable/ic_permissions"
+            app:title="@string/permissions">
+            <intent
+                android:targetPackage="com.d4rk.cleaner"
+                android:targetClass="com.d4rk.cleaner.ui.settings.permissions.PermissionsActivity"/>
+        </androidx.preference.Preference>
     </androidx.preference.PreferenceCategory>
     <androidx.preference.PreferenceCategory
         app:title="@string/legal"

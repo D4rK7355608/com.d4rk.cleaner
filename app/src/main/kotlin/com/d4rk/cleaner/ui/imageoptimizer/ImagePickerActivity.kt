@@ -3,6 +3,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.os.Handler
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -16,17 +17,17 @@ class ImagePickerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityImagePickerBinding
     @Suppress("PrivatePropertyName")
     private val PICK_IMAGE_REQUEST = 1
+    @Suppress("DEPRECATION")
+    private val handler = Handler()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityImagePickerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setAnimations()
         MobileAds.initialize(this)
         binding.adView.loadAd(AdRequest.Builder().build())
         binding.buttonChooseImage.setOnClickListener {
             selectImage()
-        }
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_custom_animations), true)) {
-            setAnimations()
         }
         if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
             if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_amoled_mode), false)) {
@@ -34,17 +35,24 @@ class ImagePickerActivity : AppCompatActivity() {
                 window.navigationBarColor = ContextCompat.getColor(this, android.R.color.black)
             }
         }
+
     }
     private fun setAnimations() {
-        binding.root.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_entry))
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_custom_animations), true)) {
+            binding.root.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_entry))
+            binding.lottieAnimationView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_fade_in))
+        }
         binding.buttonChooseImage.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_swipe_up_right))
-        binding.lottieAnimationView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_fade_in))
+        handler.postDelayed({
+            binding.buttonChooseImage.shrink()
+        }, 5000)
     }
     private fun selectImage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
+        val chooser = Intent.createChooser(intent, getString(R.string.select_image))
         @Suppress("DEPRECATION")
-        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+        startActivityForResult(chooser, PICK_IMAGE_REQUEST)
     }
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

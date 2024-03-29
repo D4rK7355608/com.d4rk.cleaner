@@ -10,19 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.d4rk.cleaner.adapters.AppListAdapter
 import com.d4rk.cleaner.databinding.FragmentInstalledAppsBinding
 class InstalledAppsFragment : Fragment() {
-    private var _binding: FragmentInstalledAppsBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentInstalledAppsBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentInstalledAppsBinding.inflate(inflater, container, false)
+        binding = FragmentInstalledAppsBinding.inflate(inflater, container, false)
         val rootView = binding.root
         val packageManager = requireContext().packageManager
         val apps = packageManager.getInstalledApplications(PackageManager.GET_META_DATA).filter { it.flags and ApplicationInfo.FLAG_SYSTEM == 0 }
         binding.appList.adapter = AppListAdapter(apps)
         binding.appList.layoutManager = LinearLayoutManager(requireContext())
         return rootView
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

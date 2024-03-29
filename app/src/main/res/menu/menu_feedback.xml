@@ -1,8 +1,27 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/dev_mail"
-        android:title="@string/mail_to_dev"
-        android:icon="@drawable/ic_gmail"
-        app:showAsAction="ifRoom"/>
+        android:id="@+id/view_in_google_play_store"
+        android:title="@string/view_in_google_play_store"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/version_info"
+        android:title="@string/version_info"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/beta_program"
+        android:title="@string/beta_program"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/terms_of_service"
+        android:title="@string/terms_of_service"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/privacy_policy"
+        android:title="@string/privacy_policy"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/oss_license_title"
+        android:title="@string/oss_license_title"
+        app:showAsAction="never"/>
 </menu>

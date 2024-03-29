@@ -5,7 +5,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/appList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_no_item_to_show"
         android:layout_width="wrap_content"

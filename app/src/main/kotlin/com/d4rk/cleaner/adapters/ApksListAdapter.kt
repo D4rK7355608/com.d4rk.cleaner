@@ -2,6 +2,7 @@ package com.d4rk.cleaner.adapters
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
@@ -68,8 +69,13 @@ class ApksListAdapter(private val apkFiles: List<File>) : RecyclerView.Adapter<A
         val context = holder.itemView.context
         holder.bind(apkFile, context)
         scope.launch {
+            Log.d("adssadadsa","#0 "+System.currentTimeMillis())
+            Thread.sleep(5000)
+            Log.d("adssadadsa","#1 "+System.currentTimeMillis())
             val packageInfo = context.packageManager.getPackageArchiveInfo(apkFile.path, PackageManager.GET_META_DATA)
             packageInfo?.applicationInfo?.let {
+                Thread.sleep(5000)
+                Log.d("adssadadsa","#2 "+it.name+"/"+System.currentTimeMillis())
                 val drawable = it.loadIcon(context.packageManager)
                 withContext(Dispatchers.Main) {
                     Glide.with(context)

@@ -91,9 +91,6 @@ class StartupActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.READ_MEDIA_AUDIO, Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VIDEO), 1)
-        }
         ActivityCompat.requestPermissions(this, requiredPermissions.toTypedArray(), 1)
     }
     private fun setAnimations() {

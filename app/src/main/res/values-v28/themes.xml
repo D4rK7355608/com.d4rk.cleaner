@@ -3,8 +3,6 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
-        <item name="android:dialogCornerRadius">24dp</item>
-        <item name="dialogCornerRadius">24dp</item>
         <item name="android:alertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered</item>
         <item name="alertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered</item>
@@ -18,6 +16,7 @@
         <item name="material_dialog_positive_button_text_color">?android:textColorPrimaryInverse</item>
         <item name="material_dialog_negative_button_text_color">?attr/colorPrimary</item>
         <item name="actionBarStyle">@style/actionBarStyle</item>
+        <item name="popupMenuBackground">@drawable/bg_popup</item>
         <item name="switchPreferenceCompatStyle">@style/switchPreferenceCompatStyle</item>
         <item name="android:fontFamily">@font/font_poppins</item>
     </style>

@@ -14,7 +14,8 @@
         <item name="actionBarStyle">@style/actionBarStyle</item>
         <item name="switchPreferenceCompatStyle">@style/switchPreferenceCompatStyle</item>
         <item name="android:fontFamily">@font/font_poppins</item>
-        <item name="dialogCornerRadius">24dp</item>
+        <item name="popupMenuBackground">@drawable/bg_popup</item>
+        <item name="dialogCornerRadius">@dimen/extra_large_rounding</item>
         <item name="android:alertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered</item>
         <item name="alertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered</item>

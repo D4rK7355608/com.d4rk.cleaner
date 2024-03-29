@@ -59,6 +59,11 @@ class ImageOptimizerActivity : AppCompatActivity() {
         binding.progressBar.alpha = 0f
         MobileAds.initialize(this)
         binding.adView.loadAd(AdRequest.Builder().build())
+        if (!intent.hasExtra("imageUri")) {
+            Snackbar.make(binding.root, getString(R.string.snack_no_image), Snackbar.LENGTH_SHORT).show()
+            finish()
+            return
+        }
         val imageUri = Uri.parse(intent.getStringExtra("imageUri"))
         Glide.with(this).load(imageUri).into(binding.imageView)
         actualImageFile = getPath(this@ImageOptimizerActivity, imageUri)?.let { File(it) }

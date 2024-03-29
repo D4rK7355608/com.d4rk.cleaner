@@ -27,7 +27,7 @@
             android:maxWidth="4dp"
             android:maxHeight="5dp"
             android:progress="0"
-            android:progressDrawable="@drawable/bg_progress_bar_storage" />
+            android:progressDrawable="@drawable/bg_progress_bar_storage"/>
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_percentage"
             style="@style/TextAppearance.Material3.DisplaySmall"
@@ -36,7 +36,7 @@
             android:layout_gravity="center"
             android:text="@string/main_progress_0"
             android:textColor="?attr/colorPrimary"
-            app:fontFamily="@font/font_poppins" />
+            app:fontFamily="@font/font_poppins"/>
     </FrameLayout>
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_view_friend"
@@ -45,7 +45,7 @@
         android:src="@drawable/ic_clean"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/text_view_status"
-        app:layout_constraintEnd_toStartOf="@id/grid_layout_buttons" />
+        app:layout_constraintEnd_toStartOf="@id/grid_layout_buttons"/>
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_status"
         style="@style/TextAppearance.Material3.TitleMedium"
@@ -58,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/grid_layout_buttons"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:fontFamily="@font/font_poppins" />
+        app:fontFamily="@font/font_poppins"/>
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linear_layout_info"
         android:layout_width="0dp"
@@ -84,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:animateLayoutChanges="true"
-                android:orientation="vertical" />
+                android:orientation="vertical"/>
         </me.zhanghai.android.fastscroll.FastScrollScrollView>
     </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.gridlayout.widget.GridLayout
@@ -123,6 +123,7 @@
         android:id="@+id/card_view_ad"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
+        app:cardCornerRadius="@dimen/medium_rounding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/frame_layout_main"
         app:layout_constraintTop_toBottomOf="@id/grid_layout_buttons"

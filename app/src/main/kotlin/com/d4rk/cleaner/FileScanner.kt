@@ -1,5 +1,4 @@
 package com.d4rk.cleaner
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
@@ -7,6 +6,7 @@ import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.util.Log
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
@@ -31,19 +31,31 @@ class FileScanner(private val path: File, private var context: Context, private 
     private fun getListFiles(parentDirectory: File, simplifiedParentPath: String): List<File> {
         val inFiles = mutableListOf<File>()
         parentDirectory.listFiles()?.forEach { file ->
-            if (!isWhiteListed(file) && file.isFile) {
-                inFiles.add(file!!)
+            if (isWhiteListed(file)) {
+                return@forEach
+            }
+            if (file.isFile) {
+                inFiles.add(file)
             } else if (file.isDirectory) {
-                if (!autoWhite || !autoWhiteList(file)) inFiles.add(file!!)
+                if (!autoWhite || !autoWhiteList(file)) {
+                    inFiles.add(file)
+                }
                 inFiles.addAll(getListFiles(file, simplifiedParentPath + "/" + file.name))
             }
         }
         return inFiles
     }
     private fun isWhiteListed(file: File): Boolean {
-        return getWhiteList(preferences).any { path ->
-            path.equals(file.absolutePath, ignoreCase = true) || path.equals(file.name, ignoreCase = true)
+        val filePath = if (file.isDirectory) file.absolutePath + File.separator else file.absolutePath
+        val whiteList = getWhiteList(preferences)
+        Log.d("FileScanner", "Checking file: $filePath. Whitelist: $whiteList")
+        val isWhiteListed = whiteList.any { path ->
+            val normalizedFilePath = File(filePath).canonicalPath.lowercase(Locale.getDefault())
+            val normalizedWhiteListPath = File(path).canonicalPath.lowercase(Locale.getDefault())
+            normalizedFilePath.startsWith(normalizedWhiteListPath + File.separator)
         }
+        Log.d("FileScanner", "Is whitelisted: $isWhiteListed")
+        return isWhiteListed
     }
     private fun autoWhiteList(file: File): Boolean {
         val whiteList = getWhiteList(preferences).toMutableList()
@@ -57,7 +69,7 @@ class FileScanner(private val path: File, private var context: Context, private 
         return false
     }
     private fun filter(file: File?): Boolean {
-        if (file == null) return false
+        if (file == null || isWhiteListed(file)) return false
         if (invalid && filterInvalidMedia(file)) {
             return true
         }
@@ -113,7 +125,6 @@ class FileScanner(private val path: File, private var context: Context, private 
         if (apk) filters.add(getRegexForFile(".apk"))
         return this
     }
-    @SuppressLint("SetTextI18n")
     fun startScan(): Long {
         isRunning = true
         var cycles: Byte = 0
@@ -122,32 +133,42 @@ class FileScanner(private val path: File, private var context: Context, private 
         if (preferences.getBoolean(context.getString(R.string.key_double_checker), false)) maxCycles = 10
         if (!delete) maxCycles = 1
         while (cycles < maxCycles) {
-            (fragment as HomeFragment).displayText("RunningCycle" + "" + (cycles + 1) + "/" + maxCycles) // Here is `No value passed for parameter 'isFolder'`
+            if (! fragment?.isAdded !!) {
+                break
+            }
+            val runningCycleMessage = context.getString(R.string.running_cycle, cycles + 1, maxCycles)
+            (fragment as HomeFragment).displayText(runningCycleMessage)
             foundFiles = listFiles
-            gui.progressBarScan.max = gui.progressBarScan.max + foundFiles.size
+            gui.progressBarScan.max += foundFiles.size
             var tv: TextView?
             for (file in foundFiles) {
-                if (filter(file)) {
-                    tv = fragment.displayDeletion(file)
-                    kilobytesTotal += file.length()
-                    if (delete) {
-                        ++filesRemoved
-                        if (!file.delete()) {
-                            fragment.activity?.runOnUiThread {
-                                tv.setTextColor(Color.GRAY)
-                            }
+
+                if (!filter(file)) {
+                    continue
+                }
+
+                tv = fragment.displayDeletion(file)
+                kilobytesTotal += file.length()
+                if (delete) {
+                    ++filesRemoved
+                    if (!file.delete()) {
+                        fragment.activity?.runOnUiThread {
+                            tv.setTextColor(Color.GRAY)
                         }
                     }
                 }
-                fragment.requireActivity().runOnUiThread {
-                    gui.progressBarScan.progress = gui.progressBarScan.progress + 1
-                    val scanPercent = gui.progressBarScan.progress * 100.0 / gui.progressBarScan.max
-                    gui.textViewStatus.text = String.format(Locale.US, "%.0f", scanPercent) + "%"
-                    gui.textViewPercentage.text = String.format(Locale.US, "%.0f", scanPercent) + "%"
-                    gui.textViewStatus.text = context.getString(R.string.status_running) + " " + String.format(Locale.US, "%.0f", scanPercent) + "%"
-                }
             }
-            fragment.displayText("FinishedCycle" + "" + (cycles + 1) + "/" + maxCycles)  // Here is `No value passed for parameter 'isFolder'`
+            fragment.requireActivity().runOnUiThread {
+                gui.progressBarScan.progress += 1
+                val scanPercent = gui.progressBarScan.progress * 100.0 / gui.progressBarScan.max
+                val percentageText = String.format(Locale.US, "%.0f", scanPercent) + "%"
+                gui.textViewStatus.text = context.getString(R.string.status_running)
+                gui.textViewPercentage.text = percentageText
+            }
+            if (fragment.isAdded) {
+                val finishedCycleMessage = context.getString(R.string.finished_cycle, cycles + 1, maxCycles)
+                fragment.displayText(finishedCycleMessage)
+            }
             if (filesRemoved == 0) break
             filesRemoved = 0
             ++cycles

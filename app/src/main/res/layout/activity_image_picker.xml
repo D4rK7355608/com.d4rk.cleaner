@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
         android:text="@string/choose_image"
-        app:icon="@drawable/ic_broken_image"
+        app:icon="@drawable/ic_image_search"
         app:layout_constraintBottom_toTopOf="@id/card_view_ad"
         app:layout_constraintEnd_toEndOf="parent"/>
     <com.google.android.material.card.MaterialCardView
@@ -30,6 +30,7 @@
         android:id="@+id/card_view_ad"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        app:cardCornerRadius="@dimen/medium_rounding"
         android:layout_margin="12dp"
         app:layout_constraintBottom_toBottomOf="parent">
         <com.google.android.gms.ads.AdView

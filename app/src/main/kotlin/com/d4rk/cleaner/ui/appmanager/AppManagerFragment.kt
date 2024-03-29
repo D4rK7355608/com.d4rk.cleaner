@@ -23,11 +23,7 @@ class AppManagerFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (isAdded) {
-            if (PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean(requireActivity().getString(R.string.key_custom_animations), true)) {
-                setAnimations()
-            }
-        }
+        setAnimations()
         scope.launch {
             try {
                 binding.viewPager.adapter = AppPagerAdapter(this@AppManagerFragment)
@@ -47,6 +43,10 @@ class AppManagerFragment : Fragment() {
         scope.cancel()
     }
     private fun setAnimations() {
-        binding.root.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_entry))
+        if (isAdded) {
+            if (PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean(getString(R.string.key_custom_animations), true)) {
+                binding.root.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_entry))
+            }
+        }
     }
 }

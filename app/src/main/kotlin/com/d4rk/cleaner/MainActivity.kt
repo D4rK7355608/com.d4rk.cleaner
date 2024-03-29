@@ -17,11 +17,13 @@ import androidx.core.os.LocaleListCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
+import com.d4rk.cleaner.data.store.DataStore
 import com.d4rk.cleaner.databinding.ActivityMainBinding
 import com.d4rk.cleaner.notifications.managers.AppUpdateNotificationsManager
 import com.d4rk.cleaner.notifications.managers.AppUsageNotificationsManager
@@ -29,6 +31,7 @@ import com.d4rk.cleaner.receivers.CleanReceiver
 import com.d4rk.cleaner.ui.help.HelpActivity
 import com.d4rk.cleaner.ui.imageoptimizer.ImagePickerActivity
 import com.d4rk.cleaner.ui.settings.SettingsActivity
+import com.d4rk.cleaner.ui.settings.privacy.usage.UsageAndDiagnosticsActivity
 import com.d4rk.cleaner.ui.support.SupportActivity
 import com.d4rk.cleaner.ui.startup.StartupActivity
 import com.d4rk.cleaner.ui.whitelist.WhitelistActivity
@@ -52,9 +55,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 class MainActivity : AppCompatActivity() {
+    // error is here
+    private lateinit var dataStore: DataStore
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var appUpdateManager: AppUpdateManager
@@ -71,6 +78,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
+        dataStore = DataStore(this@MainActivity)
         binding = ActivityMainBinding.inflate(layoutInflater)
         appUpdateManager = AppUpdateManagerFactory.create(this)
         appUpdateNotificationsManager = AppUpdateNotificationsManager(this)
@@ -207,6 +215,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_whitelist -> {
                     startActivity(Intent(this, WhitelistActivity::class.java))
                 }
+                R.id.nav_muie -> {
+                    startActivity(Intent(this, UsageAndDiagnosticsActivity::class.java))
+                }
                 else -> {
                     navController.navigate(menuItem.itemId)
                     drawerLayout.closeDrawer(GravityCompat.START)
@@ -217,12 +228,14 @@ class MainActivity : AppCompatActivity() {
     }
     @Suppress("DEPRECATION")
     private fun setBarsTranslucent(translucent: Boolean) {
-        if (translucent) {
-            if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
-                window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_VISIBLE or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR)
-            } else {
-                window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_VISIBLE or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
-            }
+        if (!translucent) {
+            return
+        }
+
+        if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
+            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_VISIBLE or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR)
+        } else {
+            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_VISIBLE or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
         }
     }
     private fun setupBottomAppBar() {
@@ -260,24 +273,29 @@ class MainActivity : AppCompatActivity() {
                 binding.bottomNavView.itemBackground = ColorDrawable(ContextCompat.getColor(this, android.R.color.black))
             }
         }
-        val languageCode = PreferenceManager.getDefaultSharedPreferences(this)?.getString(getString(
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(PreferenceManager.getDefaultSharedPreferences(this)?.getString(getString(
             R.string.key_language
-        ), getString(R.string.default_value_language))
-        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(languageCode))
+        ), getString(R.string.default_value_language))))
         if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_daily_clean), false)) {
             CleanReceiver.scheduleAlarm(this)
         } else {
             CleanReceiver.cancelAlarm(this)
         }
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val firebaseAnalytics = FirebaseAnalytics.getInstance(this)
-        val firebaseCrashlytics = FirebaseCrashlytics.getInstance()
-        sharedPreferences.getBoolean(getString(R.string.key_firebase_analytics), true).also { isEnabled ->
-            firebaseAnalytics.setAnalyticsCollectionEnabled(isEnabled)
+
+
+        lifecycleScope.launch {
+            val isEnabled = dataStore.usageAndDiagnostics.first()
+            FirebaseAnalytics.getInstance(this@MainActivity).setAnalyticsCollectionEnabled(isEnabled)
+            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(isEnabled)
         }
-        sharedPreferences.getBoolean(getString(R.string.key_firebase_crashlytics), true).also { isEnabled ->
-            firebaseCrashlytics.setCrashlyticsCollectionEnabled(isEnabled)
+
+        // Old Firebase method (shared preference)
+/*        PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_firebase_analytics), true).also { isEnabled ->
+            FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(isEnabled)
         }
+        PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_firebase_crashlytics), true).also { isEnabled ->
+            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(isEnabled)
+        }*/
     }
     private fun showSnackbar() {
         Snackbar.make(binding.root, getString(R.string.snack_support), Snackbar.LENGTH_LONG).setAction(getString(android.R.string.ok)) {

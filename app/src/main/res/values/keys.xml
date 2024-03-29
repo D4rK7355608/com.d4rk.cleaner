@@ -31,4 +31,5 @@
     <string name="key_feedback" translatable="false">feedback</string>
     <string name="default_value_theme" translatable="false">MODE_NIGHT_FOLLOW_SYSTEM</string>
     <string name="default_value_language" translatable="false">en</string>
+    <string name="key_usage_and_diagnostics" translatable="false">usage_and_diagnostics</string>
 </resources>
