@@ -48,6 +48,14 @@
     <string name="light_mode">Light Mode</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="dark_theme">Dark theme</string>
+
+
+    <string name="summary_dark_theme">Dark theme uses a deep background to help keep your battery alive longer.</string>
+    <string name="summary_preference_settings_dark_mode_system"></string>
+    <string name="summary_preference_settings_dark_mode_dark"></string>
+    <string name="summary_preference_settings_dark_mode_light"></string>
+    <string name="summary_preference_settings_dark_mode_auto_battery"></string>
+   
     <string name="auto_battery_mode">Auto Battery Dark Mode</string>
     <string name="amoled_mode">AMOLED mode</string>
     <string name="default_tab">Default tab</string>
@@ -116,8 +124,12 @@
     <string name="usage_and_diagnostics">Usage and diagnostics</string>
 
 
+    <string name="security_and_privacy">Security &amp; privacy</string>
     <string name="learn_more">Learn more</string>
     <string name="summary_usage_and_diagnostics">Help improve your experience by automatically sending diagnostic, device, and app usage data to us. This will help improve app performance, stability, and other enhancements. Some aggregate data will also help our apps.\n\nThis is general information about your device and how you use our apps (such as battery level, system and app activity, and errors). The data will be used to improve our apps\n\nTurning off this feature doesn\'t affect your device\'s ability to send the information needed for essential services such as app updates and security.\n</string>
+    <string name="summary_preference_settings_default_tab">Select the default tab from the bottom navigation bar</string>
+    <string name="summary_preference_settings_bottom_navigation_bar_labels">Display or not the labels for the bottom nav bar</string>
+
 
     <string name="license">License</string>
     <string name="web_ad">Web Ad</string>

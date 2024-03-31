@@ -1,7 +1,6 @@
 package com.d4rk.cleaner.ui.help
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,7 +11,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.theme.AppTheme
+import com.d4rk.cleaner.ui.settings.display.theme.AppTheme
 import com.d4rk.cleaner.utils.Utils
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

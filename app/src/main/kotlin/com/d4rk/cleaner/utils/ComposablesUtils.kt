@@ -19,24 +19,23 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 // Switch cards
 
-
 @Composable
 fun SwitchCardComposable(
-    title: String ,
-    switchState: State<Boolean>,
-    onSwitchToggled: (Boolean) -> Unit
+    title : String,
+    switchState : State<Boolean>,
+    onSwitchToggled : (Boolean) -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -89,10 +88,10 @@ fun PreferenceCategoryItem(
 
 @Composable
 fun PreferenceItem(
-    icon: Painter? = null ,
-    title: String ,
-    summary: String ,
-    onClick: () -> Unit
+    icon: Painter? = null,
+    title: String? = null,
+    summary: String? = null,
+    onClick: () -> Unit = {}
 ) {
     Row(
         modifier = Modifier
@@ -109,8 +108,12 @@ fun PreferenceItem(
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            Text(text = title, style = MaterialTheme.typography.titleLarge)
-            Text(text = summary, style = MaterialTheme.typography.bodyMedium)
+            title?.let {
+                Text(text = it, style = MaterialTheme.typography.titleLarge)
+            }
+            summary?.let {
+                Text(text = it, style = MaterialTheme.typography.bodyMedium)
+            }
         }
     }
 }
@@ -119,7 +122,7 @@ fun PreferenceItem(
 fun SwitchPreferenceItem(
     icon: Painter? = null ,
     title: String ,
-    summary: String ,
+    summary: String? = null,
     checked: Boolean ,
     onCheckedChange: (Boolean) -> Unit
 ) {
@@ -141,7 +144,9 @@ fun SwitchPreferenceItem(
                     .weight(1f)
         ) {
             Text(text = title, style = MaterialTheme.typography.titleLarge)
-            Text(text = summary, style = MaterialTheme.typography.bodyMedium)
+            summary?.let {
+                Text(text = it, style = MaterialTheme.typography.bodyMedium)
+            }
         }
         Switch(
             checked = checked,
@@ -164,7 +169,7 @@ fun SwitchPreferenceItemWithDivider(
         modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(16.dp))
-                .clickable(onClick = onClick), // Moved here
+                .clickable(onClick = onClick),
         verticalAlignment = Alignment.CenterVertically
     ) {
         icon?.let {
@@ -181,11 +186,12 @@ fun SwitchPreferenceItemWithDivider(
             Text(text = summary, style = MaterialTheme.typography.bodyMedium)
         }
 
-        androidx.compose.material3.VerticalDivider(
-            color = Color.Gray,
+        VerticalDivider(
             modifier = Modifier
-                    .height(48.dp)
-                    .width(1.dp)
+                    .height(32.dp)
+                    .align(Alignment.CenterVertically),
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
+            thickness = 1.dp
         )
 
         Switch(

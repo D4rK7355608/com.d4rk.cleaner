@@ -74,33 +74,26 @@
             android:exported="true"
             android:label="@string/image_optimizer"
             android:parentActivityName=".ui.imageoptimizer.ImageOptimizerActivity"/>
+
         <activity
             android:name=".ui.settings.SettingsActivity"
             android:exported="true"
             android:label="@string/settings"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeNoActionBar">
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.settings.display.DisplaySettingsActivity"
-            android:exported="false"
-            android:label="@string/display"
-            android:parentActivityName=".ui.settings.SettingsActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
-
+            android:parentActivityName=".ui.settings.SettingsActivity"/>
         <activity
             android:name=".ui.settings.display.theme.ThemeSettingsActivity"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".ui.settings.display.DisplaySettingsActivity"/>
 
         <activity
             android:name=".ui.settings.cleaning.CleaningSettingsActivity"
-            android:exported="false"
-            android:label="@string/cleaning"
-            android:parentActivityName=".ui.settings.SettingsActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
+            android:parentActivityName=".ui.settings.SettingsActivity"/>
         <activity
             android:name=".ui.settings.advanced.AdvancedSettingsActivity"
             android:exported="false"
@@ -109,17 +102,12 @@
             android:theme="@style/AppThemeNoActionBar"/>
         <activity
             android:name=".ui.settings.privacy.PrivacySettingsActivity"
-            android:exported="false"
-            android:label="@string/privacy_and_security"
-            android:parentActivityName=".ui.settings.SettingsActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
+            android:parentActivityName=".ui.settings.SettingsActivity" />
         <activity
-            android:name=".ui.settings.permissions.PermissionsActivity"
+            android:name=".ui.settings.privacy.permissions.PermissionsSettingsActivity"
             android:exported="true"
-            android:label="@string/permissions"
             android:parentActivityName=".ui.settings.privacy.PrivacySettingsActivity"
-            android:permission="android.permission.START_VIEW_PERMISSION_USAGE"
-            android:theme="@style/AppThemeNoActionBar">
+            android:permission="android.permission.START_VIEW_PERMISSION_USAGE">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW_PERMISSION_USAGE"/>
                 <action android:name="android.intent.action.VIEW_PERMISSION_USAGE_FOR_PERIOD"/>
@@ -128,19 +116,17 @@
         </activity>
         <activity
             android:name=".ui.settings.privacy.usage.UsageAndDiagnosticsActivity"
-            android:exported="false"
-            android:label="@string/title_activity_usage_and_diagnostics"
-            android:theme="@style/AppTheme"/>
+            android:parentActivityName=".ui.settings.privacy.PrivacySettingsActivity"/>
+
+
         <activity
             android:name=".ui.settings.about.AboutSettingsActivity"
             android:exported="false"
-            android:label="@string/about"
             android:parentActivityName=".ui.settings.SettingsActivity"
             android:theme="@style/AppThemeNoActionBar"/>
         <activity
             android:name=".ui.help.HelpActivity"
             android:exported="false"
-            android:label="@string/help"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeNoActionBar"/>
         <provider

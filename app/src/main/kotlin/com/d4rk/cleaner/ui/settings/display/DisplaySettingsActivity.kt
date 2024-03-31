@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.d4rk.cleaner.ui.theme.AppTheme
+import com.d4rk.cleaner.ui.settings.display.theme.AppTheme
 
 class DisplaySettingsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,10 +15,7 @@ class DisplaySettingsActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize() ,
-                    color = MaterialTheme.colorScheme.background
-                ) {
+                Surface(modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background) {
                     DisplaySettingsComposable(this@DisplaySettingsActivity)
                 }
             }

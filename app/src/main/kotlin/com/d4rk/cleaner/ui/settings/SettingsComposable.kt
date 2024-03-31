@@ -97,7 +97,7 @@ fun SettingsComposable(activity: SettingsActivity) {
             item {
                 PreferenceItem(
                     icon = painterResource(id = R.drawable.ic_safety_check),
-                    title = stringResource(R.string.privacy_and_safety),
+                    title = stringResource(R.string.security_and_privacy),
                     summary = stringResource(R.string.summary_preference_settings_privacy_and_security),
                     onClick = {
                         Utils.openActivity(context, PrivacySettingsActivity::class.java)

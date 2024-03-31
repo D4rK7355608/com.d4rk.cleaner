@@ -102,8 +102,6 @@ fun HelpComposable(activity: HelpActivity) {
     ) { paddingValues ->
         ConstraintLayout(modifier = Modifier.padding(paddingValues)) {
             val (faqTitle, faqCard, fabButton) = createRefs()
-
-            // This text view is not being displayed
             Text(
                 text = stringResource(R.string.faq),
                 modifier = Modifier
@@ -125,7 +123,6 @@ fun HelpComposable(activity: HelpActivity) {
             ) {
                 FAQComposable()
             }
-
             FloatingActionButton(
                 onClick = {
                           activity.feedback()

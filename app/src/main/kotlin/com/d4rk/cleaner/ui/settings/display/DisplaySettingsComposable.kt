@@ -1,6 +1,6 @@
 package com.d4rk.cleaner.ui.settings.display
 
-import androidx.appcompat.app.AppCompatDelegate
+import android.os.Build
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -24,6 +25,8 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.store.DataStore
 import com.d4rk.cleaner.ui.settings.display.theme.ThemeSettingsActivity
 import com.d4rk.cleaner.utils.PreferenceCategoryItem
+import com.d4rk.cleaner.utils.PreferenceItem
+import com.d4rk.cleaner.utils.SwitchPreferenceItem
 import com.d4rk.cleaner.utils.SwitchPreferenceItemWithDivider
 import com.d4rk.cleaner.utils.Utils
 import kotlinx.coroutines.CoroutineScope
@@ -37,6 +40,15 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
     val dataStore = DataStore(context)
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     val isDarkMode = dataStore.darkMode.collectAsState(initial = false)
+    val themeMode = dataStore.themeMode.collectAsState(initial = "follow_system")
+    val isDynamicColors = dataStore.dynamicColors.collectAsState(initial = true)
+    val darkModeString = stringResource(R.string.dark_mode)
+    val lightModeString = stringResource(R.string.light_mode)
+    LaunchedEffect(isDarkMode.value) {
+        val saveThemeMode = if (isDarkMode.value) darkModeString else lightModeString
+        dataStore.saveThemeMode(saveThemeMode)
+    }
+
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
@@ -60,27 +72,78 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
         ) {
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.appearance))
-            }
-            item {
                 SwitchPreferenceItemWithDivider(
-                    title = stringResource(R.string.dark_mode),
-                    summary = stringResource(R.string.display),
+                    title = stringResource(R.string.dark_theme),
+                    summary = when (themeMode.value) { // FIXME: Unresolved reference: themeMode
+                        darkModeString, lightModeString -> "Will never turn on automatically" // FIXME: 'when' branch is never reachable
+                        else -> "Will turn on automatically by the system"
+                    },
                     checked = isDarkMode.value,
                     onCheckedChange = { isChecked ->
-                        if (isChecked) {
-                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                        } else {
-                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                        }
                         CoroutineScope(Dispatchers.IO).launch {
                             dataStore.saveDarkMode(isChecked)
+                            if (isChecked) {
+                                dataStore.themeModeState.value = darkModeString
+                            } else {
+                                dataStore.themeModeState.value = lightModeString
+                            }
                         }
                     },
                     onClick = {
                         Utils.openActivity(context, ThemeSettingsActivity::class.java)
                     }
                 )
+
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    SwitchPreferenceItem(
+                        title = "Dynamic colors",
+                        summary = "Apply colors from wallpapers to the app theme",
+                        checked = isDynamicColors.value,
+                    ) { isChecked ->
+                        CoroutineScope(Dispatchers.IO).launch {
+                            dataStore.saveDynamicColors(isChecked)
+                        }
+                    }
+                }
             }
+            item {
+                PreferenceCategoryItem(title = stringResource(R.string.app_behavior))
+                PreferenceItem(
+                    title = stringResource(R.string.default_tab),
+                    summary = "Set the default tab to be displayed on app startup",
+                    onClick = {
+                        // TODO: Display the select dialog
+                    }
+                )
+                PreferenceItem(
+                    title = stringResource(R.string.bottom_navigation_bar_labels),
+                    summary = "Set the visibility of labels in the bottom navigation bar",
+                    onClick = {
+                        // TODO: Display the select dialog
+                    }
+                )
+                SwitchPreferenceItem(
+                    title = stringResource(R.string.swap_buttons),
+                    summary = stringResource(R.string.summary_preference_settings_swap_buttons),
+                    checked = isDynamicColors.value,
+                ) { isChecked ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        // TODO: Make the switch
+                    }
+                }
+            }
+            item {
+                PreferenceCategoryItem(title = stringResource(R.string.language))
+                PreferenceItem(
+                    title = stringResource(R.string.language),
+                    summary = "Changes the language used in the app",
+                    onClick = {
+                        // TODO: Display the select dialog
+                    }
+                )
+            }
+
         }
     }
 }
