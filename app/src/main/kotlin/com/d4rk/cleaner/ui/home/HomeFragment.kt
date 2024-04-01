@@ -3,7 +3,11 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AppOpsManager
-import android.content.*
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Color
@@ -24,7 +28,6 @@ import android.widget.ScrollView
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
@@ -32,30 +35,24 @@ import com.d4rk.cleaner.FileScanner
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.databinding.FragmentHomeBinding
 import com.d4rk.cleaner.ui.whitelist.WhitelistActivity.Companion.getWhiteList
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import dev.shreyaspatil.MaterialDialog.MaterialDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.io.File
 import java.text.DecimalFormat
+
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private var currentPreferenceButtonPositions: Boolean = false
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        MobileAds.initialize(requireContext())
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setAnimations()
-        FastScrollerBuilder(binding.scrollViewFiles).useMd2Style().build()
-        binding.adView.loadAd(AdRequest.Builder().build())
         getWhiteList(preferences)
         binding.buttonClean.setOnClickListener {
             reset()
@@ -69,9 +66,6 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        if (preferences != null) {
-            swapButtonsPositions(preferences!!.getBoolean(getString(R.string.key_swap_buttons), false))
-        }
     }
     private fun resetScan() {
         binding.progressBarScan.progress = 0
@@ -82,16 +76,6 @@ class HomeFragment : Fragment() {
             if (PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean(getString(R.string.key_custom_animations), true)) {
                 binding.root.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_entry))
             }
-        }
-    }
-    private fun swapButtonsPositions(preferenceButtonPositions: Boolean) {
-        if (currentPreferenceButtonPositions == preferenceButtonPositions) return
-        currentPreferenceButtonPositions = preferenceButtonPositions
-        val parentLayout = binding.gridLayoutButtons
-        val children = parentLayout.children.toList()
-        parentLayout.removeAllViews()
-        for (child in if (preferenceButtonPositions) children.asReversed() else children) {
-            parentLayout.addView(child)
         }
     }
     private fun analyze() {

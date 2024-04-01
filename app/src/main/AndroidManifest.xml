@@ -41,9 +41,7 @@
             android:theme="@style/AppThemeNoActionBar"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/SplashScreenTheme"
-            tools:ignore="LockedOrientationActivity">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.intent.action.MAIN"/>

@@ -42,6 +42,7 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
     val isDarkMode = dataStore.darkMode.collectAsState(initial = false)
     val themeMode = dataStore.themeMode.collectAsState(initial = "follow_system")
     val isDynamicColors = dataStore.dynamicColors.collectAsState(initial = true)
+    val swappedButtons = dataStore.swappedButtons.collectAsState(initial = false)
     val darkModeString = stringResource(R.string.dark_mode)
     val lightModeString = stringResource(R.string.light_mode)
     LaunchedEffect(isDarkMode.value) {
@@ -126,10 +127,10 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
                 SwitchPreferenceItem(
                     title = stringResource(R.string.swap_buttons),
                     summary = stringResource(R.string.summary_preference_settings_swap_buttons),
-                    checked = isDynamicColors.value,
+                    checked = swappedButtons.value,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
-                        // TODO: Make the switch
+                        dataStore.saveSwappedButtons(isChecked)
                     }
                 }
             }

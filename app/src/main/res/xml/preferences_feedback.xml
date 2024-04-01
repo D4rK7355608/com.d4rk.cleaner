@@ -1,7 +1,0 @@
-<androidx.preference.PreferenceScreen
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.preference.Preference
-        app:key="@string/key_feedback"
-        app:title="@string/send_feedback"
-        app:icon="@drawable/ic_feedback"/>
-</androidx.preference.PreferenceScreen>

@@ -20,7 +20,6 @@
         </item>
         <item name="material_dialog_negative_button_text_color">?attr/colorPrimary</item>
         <item name="actionBarStyle">@style/actionBarStyle</item>
-        <item name="switchPreferenceCompatStyle">@style/switchPreferenceCompatStyle</item>
         <item name="android:fontFamily">@font/font_poppins</item>
         <item name="dialogCornerRadius">@dimen/extra_large_rounding</item>
         <item name="popupMenuBackground">@drawable/bg_popup</item>
@@ -69,9 +68,5 @@
     <style name="TextAppearance.App.CollapsingToolbar.Collapsed" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="fontFamily">@font/font_poppins</item>
         <item name="android:fontFamily">@font/font_poppins</item>
-    </style>
-
-    <style name="switchPreferenceCompatStyle" parent="@style/Preference.SwitchPreferenceCompat.Material">
-        <item name="widgetLayout">@layout/preference_switch_widget_layout</item>
     </style>
 </resources>

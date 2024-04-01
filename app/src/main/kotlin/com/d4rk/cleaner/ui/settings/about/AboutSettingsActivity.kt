@@ -1,22 +1,30 @@
 package com.d4rk.cleaner.ui.settings.about
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.content.Intent
-import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.PreferenceManager
-import com.d4rk.cleaner.R
-import com.d4rk.cleaner.databinding.ActivityPreferencesBinding
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
-import com.google.android.material.snackbar.Snackbar
-import me.zhanghai.android.fastscroll.FastScrollerBuilder
-class AboutSettingsActivity : AppCompatActivity() {
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.ui.Modifier
+import com.d4rk.cleaner.ui.settings.display.theme.AppTheme
+
+class AboutSettingsActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState : Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            AppTheme {
+                Surface(modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background) {
+                    AboutSettingsComposable(this@AboutSettingsActivity)
+                }
+            }
+        }
+    }
+}
+
+
+/*AppCompatActivity() {
     private lateinit var binding : ActivityPreferencesBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,4 +82,4 @@ class AboutSettingsActivity : AppCompatActivity() {
             }
         }
     }
-}
+}*/

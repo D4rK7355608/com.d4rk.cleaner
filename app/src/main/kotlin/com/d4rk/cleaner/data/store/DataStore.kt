@@ -140,7 +140,7 @@ class DataStore(context: Context) {
         }
     }
 
-    // Theme mode
+    // Display
     val themeModeState = mutableStateOf("follow_system")
     private val themeModeKey = stringPreferencesKey("theme_mode")
     val themeMode: Flow<String> = dataStore.data.map { preferences ->
@@ -151,8 +151,6 @@ class DataStore(context: Context) {
             preferences[themeModeKey] = mode
         }
     }
-
-    // Dark mode
     private val darkModeKey = booleanPreferencesKey("dark_mode")
     val darkMode: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[darkModeKey] ?: false
@@ -162,8 +160,6 @@ class DataStore(context: Context) {
             preferences[darkModeKey] = isChecked
         }
     }
-
-    // AMOLED mode
     private val amoledModeKey = booleanPreferencesKey("amoled_mode")
     val amoledMode: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[amoledModeKey] ?: false
@@ -173,8 +169,6 @@ class DataStore(context: Context) {
             preferences[amoledModeKey] = isChecked
         }
     }
-
-    // Dynamic colors
     private val dynamicColorsKey = booleanPreferencesKey("dynamic_colors")
     val dynamicColors: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[dynamicColorsKey] ?: true
@@ -182,6 +176,15 @@ class DataStore(context: Context) {
     suspend fun saveDynamicColors(isChecked: Boolean) {
         dataStore.edit { preferences ->
             preferences[dynamicColorsKey] = isChecked
+        }
+    }
+    private val swappedButtonsKey = booleanPreferencesKey("swapped_buttons")
+    val swappedButtons: Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[swappedButtonsKey] ?: false
+    }
+    suspend fun saveSwappedButtons(isChecked: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[swappedButtonsKey] = isChecked
         }
     }
 }

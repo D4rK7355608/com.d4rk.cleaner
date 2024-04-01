@@ -12,7 +12,6 @@
         <item name="material_dialog_positive_button_text_color">?android:textColorPrimaryInverse</item>
         <item name="material_dialog_negative_button_text_color">?attr/colorPrimary</item>
         <item name="actionBarStyle">@style/actionBarStyle</item>
-        <item name="switchPreferenceCompatStyle">@style/switchPreferenceCompatStyle</item>
         <item name="android:fontFamily">@font/font_poppins</item>
         <item name="dialogCornerRadius">@dimen/extra_large_rounding</item>
         <item name="popupMenuBackground">@drawable/bg_popup</item>

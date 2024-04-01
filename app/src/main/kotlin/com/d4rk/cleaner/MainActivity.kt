@@ -9,9 +9,16 @@ import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.ui.Modifier
 import androidx.core.content.ContextCompat
 import androidx.core.os.LocaleListCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -31,6 +38,8 @@ import com.d4rk.cleaner.receivers.CleanReceiver
 import com.d4rk.cleaner.ui.help.HelpActivity
 import com.d4rk.cleaner.ui.imageoptimizer.ImagePickerActivity
 import com.d4rk.cleaner.ui.settings.SettingsActivity
+import com.d4rk.cleaner.ui.settings.SettingsComposable
+import com.d4rk.cleaner.ui.settings.display.theme.AppTheme
 import com.d4rk.cleaner.ui.settings.privacy.usage.UsageAndDiagnosticsActivity
 import com.d4rk.cleaner.ui.support.SupportActivity
 import com.d4rk.cleaner.ui.startup.StartupActivity
@@ -58,9 +67,36 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-class MainActivity : AppCompatActivity() {
-    // error is here
+class MainActivity : ComponentActivity() {
     private lateinit var dataStore: DataStore
+    override fun onCreate(savedInstanceState : Bundle?) {
+        super.onCreate(savedInstanceState)
+        installSplashScreen()
+        enableEdgeToEdge()
+        dataStore = DataStore(this@MainActivity)
+        setContent {
+            AppTheme {
+                Surface(modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background) {
+                    MainComposable(this@MainActivity)
+                }
+            }
+        }
+        setupSettings()
+    }
+    private fun setupSettings() {
+        lifecycleScope.launch {
+            val isEnabled = dataStore.usageAndDiagnostics.first()
+            FirebaseAnalytics.getInstance(this@MainActivity).setAnalyticsCollectionEnabled(isEnabled)
+            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(isEnabled)
+        }
+    }
+}
+
+
+
+/*: AppCompatActivity() {
+    // error is here
+
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
@@ -78,11 +114,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
-        dataStore = DataStore(this@MainActivity)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         appUpdateManager = AppUpdateManagerFactory.create(this)
         appUpdateNotificationsManager = AppUpdateNotificationsManager(this)
-        setContentView(binding.root)
+        enableEdgeToEdge()
+        setContent {
+            AppTheme {
+                Surface(modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background) {
+                    MainComposable()
+                }
+            }
+        }
+
+
         setSupportActionBar(binding.toolbar)
         MobileAds.initialize(this)
         binding.adView.loadAd(AdRequest.Builder().build())
@@ -215,9 +260,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_whitelist -> {
                     startActivity(Intent(this, WhitelistActivity::class.java))
                 }
-                R.id.nav_muie -> {
-                    startActivity(Intent(this, UsageAndDiagnosticsActivity::class.java))
-                }
                 else -> {
                     navController.navigate(menuItem.itemId)
                     drawerLayout.closeDrawer(GravityCompat.START)
@@ -290,12 +332,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Old Firebase method (shared preference)
-/*        PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_firebase_analytics), true).also { isEnabled ->
+*//*        PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_firebase_analytics), true).also { isEnabled ->
             FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(isEnabled)
         }
         PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_firebase_crashlytics), true).also { isEnabled ->
             FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(isEnabled)
-        }*/
+        }*//*
     }
     private fun showSnackbar() {
         Snackbar.make(binding.root, getString(R.string.snack_support), Snackbar.LENGTH_LONG).setAction(getString(android.R.string.ok)) {
@@ -335,4 +377,4 @@ class MainActivity : AppCompatActivity() {
             } catch (_: Exception) { }
         }
     }
-}
+}*/

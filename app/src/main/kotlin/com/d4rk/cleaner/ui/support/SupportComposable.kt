@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
@@ -74,8 +75,6 @@ fun SupportComposable(activity : SupportActivity) {
             item {
                 Text(
                     text = stringResource(R.string.paid_support),
-
-                    // bottom padding too much
                     modifier = Modifier.padding(16.dp),
                     style = MaterialTheme.typography.titleLarge,
                 )
@@ -84,38 +83,45 @@ fun SupportComposable(activity : SupportActivity) {
                 Card(
                     modifier = Modifier
                             .fillMaxWidth()
-                            // top padding too much
                             .padding(16.dp)
                 ) {
                     Column {
                         Text(
-                            text = stringResource(R.string.summary_donations) ,
+                            text = stringResource(R.string.summary_donations),
                             modifier = Modifier.padding(16.dp)
                         )
-                        Row(
+                        LazyRow(
                             modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(16.dp),
                             horizontalArrangement = Arrangement.SpaceEvenly
                         ) {
-                            Button(onClick = { activity.initiatePurchase("low_donation", skuDetailsMap, billingClient) }) {
-                                Text(skuDetailsMap["low_donation"]?.price ?: "")
+                            item {
+                                Button(onClick = { activity.initiatePurchase("low_donation", skuDetailsMap, billingClient) }) {
+                                    Text(skuDetailsMap["low_donation"]?.price ?: "")
+                                }
                             }
-                            Button(onClick = { activity.initiatePurchase("normal_donation", skuDetailsMap, billingClient) }) {
-                                Text(skuDetailsMap["normal_donation"]?.price ?: "")
+                            item {
+                                Button(onClick = { activity.initiatePurchase("normal_donation", skuDetailsMap, billingClient) }) {
+                                    Text(skuDetailsMap["normal_donation"]?.price ?: "")
+                                }
                             }
                         }
-                        Row(
+                        LazyRow(
                             modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(16.dp),
                             horizontalArrangement = Arrangement.SpaceEvenly
                         ) {
-                            Button(onClick = { activity.initiatePurchase("high_donation", skuDetailsMap, billingClient) }) {
-                                Text(skuDetailsMap["high_donation"]?.price ?: "")
+                            item {
+                                Button(onClick = { activity.initiatePurchase("high_donation", skuDetailsMap, billingClient) }) {
+                                    Text(skuDetailsMap["high_donation"]?.price ?: "")
+                                }
                             }
-                            Button(onClick = { activity.initiatePurchase("extreme_donation", skuDetailsMap, billingClient) }) {
-                                Text(skuDetailsMap["extreme_donation"]?.price ?: "")
+                            item {
+                                Button(onClick = { activity.initiatePurchase("extreme_donation", skuDetailsMap, billingClient) }) {
+                                    Text(skuDetailsMap["extreme_donation"]?.price ?: "")
+                                }
                             }
                         }
                     }
