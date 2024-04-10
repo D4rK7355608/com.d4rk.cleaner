@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.d4rk.cleaner.R
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -14,16 +15,74 @@ val Context.dataStore by preferencesDataStore("settings")
 class DataStore(context: Context) {
     private val dataStore = context.dataStore
 
-    // Usage and Diagnostics
-    private val usageAndDiagnosticsKey = booleanPreferencesKey("usage_and_diagnostics")
-    val usageAndDiagnostics: Flow<Boolean> = dataStore.data.map { preferences -> // FIXME: Property "usageAndDiagnostics" is never used
-        preferences[usageAndDiagnosticsKey] ?: true
+    // Startup
+    private val startupKey = booleanPreferencesKey("value")
+    val startup: Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[startupKey] ?: true
     }
-    suspend fun saveUsageAndDiagnostics(isChecked: Boolean) {
+    suspend fun saveStartup(isFirstTime: Boolean) {
         dataStore.edit { preferences ->
-            preferences[usageAndDiagnosticsKey] = isChecked
+            preferences[startupKey] = isFirstTime
         }
     }
+
+    // Display
+    val themeModeState = mutableStateOf("follow_system")
+    private val themeModeKey = stringPreferencesKey("theme_mode")
+    val themeMode: Flow<String> = dataStore.data.map { preferences ->
+        preferences[themeModeKey] ?: "follow_system"
+    }
+    suspend fun saveThemeMode(mode: String) {
+        dataStore.edit { preferences ->
+            preferences[themeModeKey] = mode
+        }
+    }
+    private val darkModeKey = booleanPreferencesKey("dark_mode")
+    val darkMode: Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[darkModeKey] ?: false
+    }
+    suspend fun saveDarkMode(isChecked: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[darkModeKey] = isChecked
+        }
+    }
+    private val amoledModeKey = booleanPreferencesKey("amoled_mode")
+    val amoledMode: Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[amoledModeKey] ?: false
+    }
+    suspend fun saveAmoledMode(isChecked: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[amoledModeKey] = isChecked
+        }
+    }
+    private val dynamicColorsKey = booleanPreferencesKey("dynamic_colors")
+    val dynamicColors: Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[dynamicColorsKey] ?: true
+    }
+    suspend fun saveDynamicColors(isChecked: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[dynamicColorsKey] = isChecked
+        }
+    }
+    private val swappedButtonsKey = booleanPreferencesKey("swapped_buttons")
+    val swappedButtons: Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[swappedButtonsKey] ?: false
+    }
+    suspend fun saveSwappedButtons(isChecked: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[swappedButtonsKey] = isChecked
+        }
+    }
+
+/*    private val languageKey = stringPreferencesKey("language")
+    val language: Flow<String> = dataStore.data.map { preferences ->
+        preferences[languageKey] ?: getString(R.string.default_value_language)
+    }
+    suspend fun saveLanguage(language: String) {
+        dataStore.edit { preferences ->
+            preferences[languageKey] = language
+        }
+    }*/
 
     // Cleaning
     private val genericFilterKey = booleanPreferencesKey("generic_filter")
@@ -125,11 +184,6 @@ class DataStore(context: Context) {
             preferences[oneClickCleanKey] = isChecked
         }
     }
-
-
-
-
-
     private val dailyCleanerKey = booleanPreferencesKey("daily_clean")
     val dailyCleaner: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[dailyCleanerKey] ?: false
@@ -140,51 +194,14 @@ class DataStore(context: Context) {
         }
     }
 
-    // Display
-    val themeModeState = mutableStateOf("follow_system")
-    private val themeModeKey = stringPreferencesKey("theme_mode")
-    val themeMode: Flow<String> = dataStore.data.map { preferences ->
-        preferences[themeModeKey] ?: "follow_system"
+    // Usage and Diagnostics
+    private val usageAndDiagnosticsKey = booleanPreferencesKey("usage_and_diagnostics")
+    val usageAndDiagnostics: Flow<Boolean> = dataStore.data.map { preferences -> // FIXME: Property "usageAndDiagnostics" is never used
+        preferences[usageAndDiagnosticsKey] ?: true
     }
-    suspend fun saveThemeMode(mode: String) {
+    suspend fun saveUsageAndDiagnostics(isChecked: Boolean) {
         dataStore.edit { preferences ->
-            preferences[themeModeKey] = mode
-        }
-    }
-    private val darkModeKey = booleanPreferencesKey("dark_mode")
-    val darkMode: Flow<Boolean> = dataStore.data.map { preferences ->
-        preferences[darkModeKey] ?: false
-    }
-    suspend fun saveDarkMode(isChecked: Boolean) {
-        dataStore.edit { preferences ->
-            preferences[darkModeKey] = isChecked
-        }
-    }
-    private val amoledModeKey = booleanPreferencesKey("amoled_mode")
-    val amoledMode: Flow<Boolean> = dataStore.data.map { preferences ->
-        preferences[amoledModeKey] ?: false
-    }
-    suspend fun saveAmoledMode(isChecked: Boolean) {
-        dataStore.edit { preferences ->
-            preferences[amoledModeKey] = isChecked
-        }
-    }
-    private val dynamicColorsKey = booleanPreferencesKey("dynamic_colors")
-    val dynamicColors: Flow<Boolean> = dataStore.data.map { preferences ->
-        preferences[dynamicColorsKey] ?: true
-    }
-    suspend fun saveDynamicColors(isChecked: Boolean) {
-        dataStore.edit { preferences ->
-            preferences[dynamicColorsKey] = isChecked
-        }
-    }
-    private val swappedButtonsKey = booleanPreferencesKey("swapped_buttons")
-    val swappedButtons: Flow<Boolean> = dataStore.data.map { preferences ->
-        preferences[swappedButtonsKey] ?: false
-    }
-    suspend fun saveSwappedButtons(isChecked: Boolean) {
-        dataStore.edit { preferences ->
-            preferences[swappedButtonsKey] = isChecked
+            preferences[usageAndDiagnosticsKey] = isChecked
         }
     }
 }

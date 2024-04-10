@@ -1,6 +1,7 @@
 package com.d4rk.cleaner.ui.settings.display
 
 import android.os.Build
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,6 +18,8 @@ import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
@@ -45,11 +48,17 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
     val swappedButtons = dataStore.swappedButtons.collectAsState(initial = false)
     val darkModeString = stringResource(R.string.dark_mode)
     val lightModeString = stringResource(R.string.light_mode)
+    val systemModeString = stringResource(R.string.follow_system)
+    val isSystemDarkTheme = isSystemInDarkTheme()
+    val switchState = remember { mutableStateOf(isDarkMode.value) }
     LaunchedEffect(isDarkMode.value) {
-        val saveThemeMode = if (isDarkMode.value) darkModeString else lightModeString
-        dataStore.saveThemeMode(saveThemeMode)
+        if (themeMode.value != systemModeString) {
+            val saveThemeMode = if (isDarkMode.value) darkModeString else lightModeString
+            dataStore.saveThemeMode(saveThemeMode)
+        } else {
+            dataStore.saveDarkMode(isSystemDarkTheme)
+        }
     }
-
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
@@ -75,18 +84,21 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
                 PreferenceCategoryItem(title = stringResource(R.string.appearance))
                 SwitchPreferenceItemWithDivider(
                     title = stringResource(R.string.dark_theme),
-                    summary = when (themeMode.value) { // FIXME: Unresolved reference: themeMode
-                        darkModeString, lightModeString -> "Will never turn on automatically" // FIXME: 'when' branch is never reachable
+                    summary = when (themeMode.value) {
+                        darkModeString, lightModeString -> "Will never turn on automatically"
                         else -> "Will turn on automatically by the system"
                     },
-                    checked = isDarkMode.value,
+                    checked = switchState.value,
                     onCheckedChange = { isChecked ->
                         CoroutineScope(Dispatchers.IO).launch {
-                            dataStore.saveDarkMode(isChecked)
-                            if (isChecked) {
-                                dataStore.themeModeState.value = darkModeString
-                            } else {
-                                dataStore.themeModeState.value = lightModeString
+                            switchState.value = isChecked
+                            if (themeMode.value != systemModeString) {
+                                dataStore.saveDarkMode(isChecked)
+                                if (isChecked) {
+                                    dataStore.themeModeState.value = darkModeString
+                                } else {
+                                    dataStore.themeModeState.value = lightModeString
+                                }
                             }
                         }
                     },
@@ -94,7 +106,6 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
                         Utils.openActivity(context, ThemeSettingsActivity::class.java)
                     }
                 )
-
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     SwitchPreferenceItem(

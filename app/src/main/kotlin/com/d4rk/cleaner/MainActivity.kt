@@ -69,10 +69,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 class MainActivity : ComponentActivity() {
     private lateinit var dataStore: DataStore
+    private lateinit var appUpdateManager: AppUpdateManager
+    private var appUpdateNotificationsManager: AppUpdateNotificationsManager = AppUpdateNotificationsManager(this)
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         enableEdgeToEdge()
+        setupUpdateNotifications()
         dataStore = DataStore(this@MainActivity)
         setContent {
             AppTheme {
@@ -83,11 +86,93 @@ class MainActivity : ComponentActivity() {
         }
         setupSettings()
     }
-    private fun setupSettings() {
+    override fun onResume() {
+        super.onResume()
+        val appUsageNotificationsManager = AppUsageNotificationsManager(this)
+        appUsageNotificationsManager.scheduleAppUsageCheck()
+        appUpdateNotificationsManager.checkAndSendUpdateNotification()
+        appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
+                @Suppress("DEPRECATION")
+                appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.FLEXIBLE, this, 1)
+            }
+        }
+        startupScreen()
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode , resultCode , data)
+        if (requestCode == 1) {
+            when (resultCode) {
+                RESULT_OK -> {
+                    val snackbar = Snackbar
+                            .make(findViewById(android.R.id.content) , R.string.snack_app_updated , Snackbar.LENGTH_LONG)
+                            .setAction(android.R.string.ok , null)
+                    snackbar.show()
+                }
+
+                RESULT_CANCELED -> {
+                    showUpdateFailedSnackbar()
+                }
+
+                ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> {
+                    showUpdateFailedSnackbar()
+                }
+            }
+        }
+    }
+
+    private fun showUpdateFailedSnackbar() {
+        val snackbar = Snackbar.make(findViewById(android.R.id.content), R.string.snack_update_failed, Snackbar.LENGTH_LONG)
+                .setAction(R.string.try_again) {
+                    checkForFlexibleUpdate()
+                }
+        snackbar.show()
+    }
+
+    private fun checkForFlexibleUpdate() {
         lifecycleScope.launch {
+            val appUpdateInfo = appUpdateManager.appUpdateInfo.await()
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE &&
+                appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE) &&
+                appUpdateInfo.updateAvailability() != UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                @Suppress("DEPRECATION")
+                appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.FLEXIBLE, this@MainActivity, 1)
+            }
+        }
+    }
+
+    private fun setupUpdateNotifications() {
+        appUpdateManager = AppUpdateManagerFactory.create(this)
+        appUpdateNotificationsManager = AppUpdateNotificationsManager(this)
+    }
+
+    private fun setupSettings() {
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(PreferenceManager.getDefaultSharedPreferences(this)?.getString(getString(
+            R.string.key_language
+        ), getString(R.string.default_value_language))))
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_daily_clean), false)) {
+            CleanReceiver.scheduleAlarm(this)
+        } else {
+            CleanReceiver.cancelAlarm(this)
+        }
+        lifecycleScope.launch {
+           // val language = dataStore.language.first()
+            //AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(language))
+
             val isEnabled = dataStore.usageAndDiagnostics.first()
             FirebaseAnalytics.getInstance(this@MainActivity).setAnalyticsCollectionEnabled(isEnabled)
             FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(isEnabled)
+        }
+    }
+
+    private fun startupScreen() {
+        lifecycleScope.launch {
+            if (dataStore.startup.first()) {
+                dataStore.saveStartup(false)
+                startActivity(Intent(this@MainActivity, StartupActivity::class.java))
+            }
         }
     }
 }
@@ -100,15 +185,15 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private lateinit var appUpdateManager: AppUpdateManager
-    private var appUpdateNotificationsManager: AppUpdateNotificationsManager = AppUpdateNotificationsManager(this)
+
+
     private val handler = Handler(Looper.getMainLooper())
     private val snackbarInterval: Long = 60L * 24 * 60 * 60 * 1000
     private val navController by lazy {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
         navHostFragment.navController
     }
-    private val requestUpdateCode = 1
+
     private val scope = CoroutineScope(Dispatchers.Main)
     private var job: Job? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -116,8 +201,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-        appUpdateManager = AppUpdateManagerFactory.create(this)
-        appUpdateNotificationsManager = AppUpdateNotificationsManager(this)
+
         enableEdgeToEdge()
         setContent {
             AppTheme {
@@ -135,40 +219,10 @@ class MainActivity : ComponentActivity() {
         setupNavigationDrawer()
         setBarsTranslucent(true)
         setupBottomAppBar()
-        handler.postDelayed(::showSnackbar, snackbarInterval)
+
     }
-    override fun onResume() {
-        super.onResume()
-        applyAppSettings()
-        val appUsageNotificationsManager = AppUsageNotificationsManager(this)
-        appUsageNotificationsManager.scheduleAppUsageCheck()
-        appUpdateNotificationsManager.checkAndSendUpdateNotification()
-        appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
-                @Suppress("DEPRECATION")
-                appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.FLEXIBLE, this, requestUpdateCode)
-            }
-        }
-        startupScreen()
-    }
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == requestUpdateCode) {
-            when (resultCode) {
-                RESULT_OK -> {
-                    val snackbar = Snackbar.make(binding.root, R.string.snack_app_updated, Snackbar.LENGTH_LONG)
-                        .setAction(android.R.string.ok, null)
-                    snackbar.show()
-                }
-                RESULT_CANCELED -> {
-                    showUpdateFailedSnackbar()
-                }
-                ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> {
-                    showUpdateFailedSnackbar()
-                }
-            }
-        }
+
+
     }
     override fun onSupportNavigateUp(): Boolean {
         return if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -350,13 +404,7 @@ class MainActivity : ComponentActivity() {
             showSnackbar()
         }
     }
-    private fun startupScreen() {
-        val startupPreference = getSharedPreferences("startup", MODE_PRIVATE)
-        if (startupPreference.getBoolean("value", true)) {
-            startupPreference.edit().putBoolean("value", false).apply()
-            startActivity(Intent(this, StartupActivity::class.java))
-        }
-    }
+
     private fun showUpdateFailedSnackbar() {
         val snackbar = Snackbar.make(binding.root, R.string.snack_update_failed, Snackbar.LENGTH_LONG)
             .setAction(R.string.try_again) {

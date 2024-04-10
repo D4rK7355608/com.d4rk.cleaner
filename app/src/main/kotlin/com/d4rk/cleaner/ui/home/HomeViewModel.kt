@@ -3,6 +3,7 @@ package com.d4rk.cleaner.ui.home
 import android.annotation.SuppressLint
 import android.app.Application
 import android.os.Environment
+import android.os.StatFs
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -11,7 +12,6 @@ import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.FileScanner
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.store.DataStore
-import com.d4rk.cleaner.ui.home.HomeFragment.Companion.convertSize
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -28,6 +28,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     private val dataStore = DataStore(appContext)
 
+    val storageInfo = MutableLiveData<Pair<Long, Long>>()
+
+
     private fun reset() {
         _progress.value = 0f
         _statusText.value = appContext.getString(R.string.main_progress_0)
@@ -40,6 +43,27 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
+    fun getStorageInfo() {
+        viewModelScope.launch {
+            val totalSize = getTotalInternalMemorySize()
+            val availableSize = getAvailableInternalMemorySize()
+            storageInfo.postValue(Pair(totalSize, availableSize))
+        }
+    }
+    private suspend fun getTotalInternalMemorySize(): Long = withContext(Dispatchers.IO) {
+        val stat = StatFs(Environment.getDataDirectory().path)
+        val blockSize = stat.blockSizeLong
+        val totalBlocks = stat.blockCountLong
+        blockSize * totalBlocks
+    }
+    private suspend fun getAvailableInternalMemorySize(): Long = withContext(Dispatchers.IO) {
+        val stat = StatFs(Environment.getDataDirectory().path)
+        val blockSize = stat.blockSizeLong
+        val availableBlocks = stat.availableBlocksLong
+        blockSize * availableBlocks
+    }
+
 
     fun clean() {
         if (!FileScanner.isRunning) {
@@ -69,7 +93,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                 )
 
         if (path.listFiles() == null) {
-            // Handle this in your Composable
+            // TODO: Handle this in your Composable
         }
         val kilobytesTotal = withContext(Dispatchers.IO) { fileScanner.startScan() }
         if (delete) {
@@ -78,7 +102,6 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             _statusText.value = appContext.getString(R.string.found) + " " + convertSize(kilobytesTotal)
         }
         _progress.value = 1f
-        // Handle this in your Composable
     }
 
     companion object {

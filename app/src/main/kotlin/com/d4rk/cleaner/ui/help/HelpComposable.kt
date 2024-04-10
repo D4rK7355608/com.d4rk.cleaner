@@ -27,8 +27,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
+import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -43,6 +47,26 @@ fun HelpComposable(activity: HelpActivity) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     var showMenu by remember { mutableStateOf(false) }
     val context = LocalContext.current
+
+    val isVisible = rememberSaveable { mutableStateOf(true) }
+
+    // Nested scroll for control FAB
+    val nestedScrollConnection = remember {
+        object : NestedScrollConnection {
+            override fun onPreScroll(available: Offset , source: NestedScrollSource): Offset {
+                // Hide FAB if scrolling down
+                if (available.y < -1) {
+                    isVisible.value = false
+                }
+                // Show FAB if scrolling up
+                if (available.y > 1) {
+                    isVisible.value = true
+                }
+                return Offset.Zero
+            }
+        }
+    }
+
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
@@ -111,11 +135,10 @@ fun HelpComposable(activity: HelpActivity) {
                             start.linkTo(parent.start)
                         }
             )
-
             Card(
                 modifier = Modifier
                         .fillMaxWidth()
-                        .padding(24.dp)
+                        .padding(24.dp, bottom = 52.dp)
                         .constrainAs(faqCard) {
                             top.linkTo(faqTitle.bottom)
                             bottom.linkTo(parent.bottom)
