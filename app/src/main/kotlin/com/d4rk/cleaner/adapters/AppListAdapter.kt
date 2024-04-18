@@ -26,7 +26,7 @@ class AppListAdapter(private val apps: List<ApplicationInfo>) : RecyclerView.Ada
         fun bind(app: ApplicationInfo, context: Context) {
             binding.textViewAppName.text = app.loadLabel(context.packageManager)
             binding.textViewAppSize.text = formatSize(app.sourceDir)
-            binding.buttonMenu.setOnClickListener { view ->
+            /*binding.buttonMenu.setOnClickListener { view ->
                 val popupMenu = PopupMenu(context, view)
                 popupMenu.menuInflater.inflate(R.menu.menu_app_manager, popupMenu.menu)
                 popupMenu.setOnMenuItemClickListener { menuItem ->
@@ -64,7 +64,7 @@ class AppListAdapter(private val apps: List<ApplicationInfo>) : RecyclerView.Ada
                     }
                 }
                 popupMenu.show()
-            }
+            }*/
         }
         private fun launchUninstall(packageName: String, context: Context) {
             val uri = Uri.fromParts("package", packageName, null)

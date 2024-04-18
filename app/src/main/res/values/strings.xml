@@ -50,12 +50,25 @@
     <string name="dark_theme">Dark theme</string>
 
 
+    <string name="ads">Ads</string>
+    <string name="turn_off_all_ads">Turn off all ads </string>
+    <string name="personalized_ads">Personalized ads</string>
+    <string name="turn_on_personalized_ads">Turn on personalized ads</string>
+    <string name="summary_ads">See ads that are relevant to you. Manage the information used to show personalized ads based on your app activity. You can always turn off personalization here.\n</string>
+
+
+
+
+    <string name="in_app_ads">In-app ads</string>
+    <string name="change_ad_settings">Change ad settings</string>
+
+
     <string name="summary_dark_theme">Dark theme uses a deep background to help keep your battery alive longer.</string>
     <string name="summary_preference_settings_dark_mode_system"></string>
     <string name="summary_preference_settings_dark_mode_dark"></string>
     <string name="summary_preference_settings_dark_mode_light"></string>
     <string name="summary_preference_settings_dark_mode_auto_battery"></string>
-   
+
     <string name="auto_battery_mode">Auto Battery Dark Mode</string>
     <string name="amoled_mode">AMOLED mode</string>
     <string name="default_tab">Default tab</string>

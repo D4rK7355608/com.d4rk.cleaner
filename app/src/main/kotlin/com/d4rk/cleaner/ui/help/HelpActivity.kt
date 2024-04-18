@@ -20,13 +20,15 @@ import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 
 class HelpActivity : ComponentActivity() {
-    private lateinit var reviewManager: ReviewManager
-    override fun onCreate(savedInstanceState: Bundle?) {
+    private lateinit var reviewManager : ReviewManager
+    override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AppTheme {
-                Surface(modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background) {
+                Surface(
+                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
+                ) {
                     HelpComposable(this@HelpActivity)
                 }
             }
@@ -38,14 +40,14 @@ class HelpActivity : ComponentActivity() {
         val builder = MaterialAlertDialogBuilder(this)
         val inflater = layoutInflater
         val dialogLayout = inflater.inflate(R.layout.dialog_version_info , null)
-        val version: MaterialTextView = dialogLayout.findViewById(R.id.version)
-        version.text = String.format(getString(R.string.version), BuildConfig.VERSION_NAME)
+        val version : MaterialTextView = dialogLayout.findViewById(R.id.version)
+        version.text = String.format(getString(R.string.version) , BuildConfig.VERSION_NAME)
         builder.setView(dialogLayout)
         builder.show()
     }
 
     fun openSourceLicenses() {
-        startActivity(Intent(this, OssLicensesMenuActivity::class.java))
+        startActivity(Intent(this , OssLicensesMenuActivity::class.java))
     }
 
     fun feedback() {
@@ -54,7 +56,10 @@ class HelpActivity : ComponentActivity() {
         task.addOnSuccessListener { reviewInfo ->
             reviewManager.launchReviewFlow(this , reviewInfo)
         }.addOnFailureListener {
-            Utils.openUrl(this,"https://play.google.com/store/apps/details?id=${this.packageName}&showAllReviews=true")
+            Utils.openUrl(
+                this ,
+                "https://play.google.com/store/apps/details?id=${this.packageName}&showAllReviews=true"
+            )
         }
     }
 }

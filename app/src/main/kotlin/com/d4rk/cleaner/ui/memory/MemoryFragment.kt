@@ -55,9 +55,9 @@ class MemoryFragment : Fragment() {
         FastScrollerBuilder(binding.scrollView).useMd2Style().build()
         MobileAds.initialize(requireContext())
         binding.adBannerView.loadAd(AdRequest.Builder().build())
-        binding.buttonAnalyze.setOnClickListener {
+     /*   binding.buttonAnalyze.setOnClickListener {
             navController.navigate(R.id.navigation_home)
-        }
+        }*/
     }
     override fun onAttach(context: Context) {
         super.onAttach(context)

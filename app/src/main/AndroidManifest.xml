@@ -2,25 +2,41 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="auto">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
-    <uses-permission android:name="com.android.vending.CHECK_LICENSE"/>
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
-    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES"/>
-    <uses-permission android:name="android.permission.ACTION_OPEN_DOCUMENT_TREE"/>
-    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
-    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/>
-    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="29" tools:ignore="ScopedStorage"/>
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage"/>
-    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions"/>
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="QueryAllPackagesPermission"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+    <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    <uses-permission android:name="android.permission.ACTION_OPEN_DOCUMENT_TREE" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_IMAGES"
+        tools:ignore="SelectedPhotoAccess" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"
+        tools:ignore="SelectedPhotoAccess" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29"
+        tools:ignore="ScopedStorage" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
     <application
         android:name=".ads.managers.ApplicationOpenAdManager"
         android:appCategory="productivity"
@@ -38,40 +54,41 @@
         tools:targetApi="33">
         <activity
             android:name=".ui.startup.StartupActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <meta-data
                 android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts"/>
+                android:resource="@xml/shortcuts" />
         </activity>
         <activity
             android:name=".ui.support.SupportActivity"
             android:exported="true"
             android:label="@string/support_us"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.whitelist.WhitelistActivity"
             android:exported="true"
             android:label="@string/whitelist"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ui.imageoptimizer.ImageOptimizerActivity"
             android:exported="true"
             android:label="@string/image_optimizer"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ui.imageoptimizer.ImagePickerActivity"
             android:exported="true"
             android:label="@string/image_optimizer"
-            android:parentActivityName=".ui.imageoptimizer.ImageOptimizerActivity"/>
+            android:parentActivityName=".ui.imageoptimizer.ImageOptimizerActivity" />
 
         <activity
             android:name=".ui.settings.SettingsActivity"
@@ -79,25 +96,25 @@
             android:label="@string/settings"
             android:parentActivityName=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.APPLICATION_PREFERENCES"/>
+                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.settings.display.DisplaySettingsActivity"
-            android:parentActivityName=".ui.settings.SettingsActivity"/>
+            android:parentActivityName=".ui.settings.SettingsActivity" />
         <activity
             android:name=".ui.settings.display.theme.ThemeSettingsActivity"
-            android:parentActivityName=".ui.settings.display.DisplaySettingsActivity"/>
+            android:parentActivityName=".ui.settings.display.DisplaySettingsActivity" />
 
         <activity
             android:name=".ui.settings.cleaning.CleaningSettingsActivity"
-            android:parentActivityName=".ui.settings.SettingsActivity"/>
+            android:parentActivityName=".ui.settings.SettingsActivity" />
         <activity
             android:name=".ui.settings.advanced.AdvancedSettingsActivity"
             android:exported="false"
             android:label="@string/advanced"
             android:parentActivityName=".ui.settings.SettingsActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.settings.privacy.PrivacySettingsActivity"
             android:parentActivityName=".ui.settings.SettingsActivity" />
@@ -107,26 +124,31 @@
             android:parentActivityName=".ui.settings.privacy.PrivacySettingsActivity"
             android:permission="android.permission.START_VIEW_PERMISSION_USAGE">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE"/>
-                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE_FOR_PERIOD"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE" />
+                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE_FOR_PERIOD" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.settings.privacy.usage.UsageAndDiagnosticsActivity"
-            android:parentActivityName=".ui.settings.privacy.PrivacySettingsActivity"/>
+            android:parentActivityName=".ui.settings.privacy.PrivacySettingsActivity" />
+        <activity
+            android:name=".ui.settings.privacy.ads.AdsSettingsActivity"
+            android:parentActivityName=".ui.settings.privacy.PrivacySettingsActivity" />
 
 
         <activity
             android:name=".ui.settings.about.AboutSettingsActivity"
             android:exported="false"
             android:parentActivityName=".ui.settings.SettingsActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.help.HelpActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
+            android:theme="@style/AppThemeNoActionBar" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -134,26 +156,27 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
-        <receiver
-            android:name=".receivers.CleanReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-        </receiver>
+        <!--        <receiver
+                    android:name=".receivers.CleanReceiver"
+                    android:exported="false">
+                    <intent-filter>
+                        <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                    </intent-filter>
+                </receiver>-->
         <!--suppress AndroidDomInspection -->
-        <service android:name="com.google.android.gms.metadata.ModuleDependencies"
+        <service
+            android:name="com.google.android.gms.metadata.ModuleDependencies"
             android:enabled="false"
             android:exported="false"
             tools:ignore="MissingClass">
             <intent-filter>
-                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES"/>
+                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
             </intent-filter>
             <meta-data
                 android:name="photopicker_activity:0:required"
-                android:value=""/>
+                android:value="" />
         </service>
         <service
             android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
@@ -161,29 +184,31 @@
             android:exported="false">
             <meta-data
                 android:name="autoStoreLocales"
-                android:value="true"/>
+                android:value="true" />
         </service>
+
         <meta-data
             android:name="firebase_performance_logcat_enabled"
-            android:value="true"/>
+            android:value="true" />
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
+            android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-5294151573817700~3549716864"/>
+            android:value="ca-app-pub-5294151573817700~3549716864" />
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
-            android:value="true"/>
+            android:value="true" />
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
-            android:value="true"/>
+            android:value="true" />
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
             android:value="true" />
+
         <property
             android:name="android.adservices.AD_SERVICES_CONFIG"
             android:resource="@xml/gma_ad_services_config"
-            tools:replace="android:resource"/>
+            tools:replace="android:resource" />
     </application>
 </manifest>

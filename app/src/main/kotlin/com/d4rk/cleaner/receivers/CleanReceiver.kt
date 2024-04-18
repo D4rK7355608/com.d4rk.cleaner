@@ -7,7 +7,7 @@ import android.content.Intent
 import android.os.SystemClock
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
-import com.d4rk.cleaner.notifications.workers.ScheduledWorker
+/*
 class CleanReceiver: BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
                 if (intent.action == null) {
@@ -39,4 +39,4 @@ class CleanReceiver: BroadcastReceiver() {
                         alarmManager.cancel(pendingIntent)
                 }
         }
-}
+}*/

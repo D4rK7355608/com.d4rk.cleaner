@@ -1,4 +1,5 @@
 package com.d4rk.cleaner.ui.settings.cleaning
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,12 +11,14 @@ import androidx.compose.ui.Modifier
 import com.d4rk.cleaner.ui.settings.display.theme.AppTheme
 
 class CleaningSettingsActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AppTheme {
-                Surface(modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background) {
+                Surface(
+                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
+                ) {
                     CleaningSettingsComposable(this@CleaningSettingsActivity)
                 }
             }

@@ -26,7 +26,7 @@ class ApksListAdapter(private val apkFiles: List<File>) : RecyclerView.Adapter<A
             binding.imageViewAppIcon.setImageResource(R.mipmap.ic_launcher)
             binding.textViewAppName.text = apkFile.name
             binding.textViewAppSize.text = formatSize(apkFile.length())
-            binding.buttonMenu.setOnClickListener { view ->
+/*            binding.buttonMenu.setOnClickListener { view ->
                 val popupMenu = PopupMenu(view.context, view)
                 popupMenu.menuInflater.inflate(R.menu.menu_app_manager, popupMenu.menu)
                 popupMenu.setOnMenuItemClickListener { menuItem ->
@@ -45,7 +45,7 @@ class ApksListAdapter(private val apkFiles: List<File>) : RecyclerView.Adapter<A
                 popupMenu.menu.removeItem(R.id.menu_uninstall)
                 popupMenu.menu.removeItem(R.id.menu_app_info)
                 popupMenu.show()
-            }
+            }*/
         }
         private fun formatSize(size: Long): String {
             val units = arrayOf("B", "KB", "MB", "GB", "TB")

@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -17,7 +18,24 @@ android {
         versionName = "1.0.0"
         archivesName = "${applicationId}-v${versionName}"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        resourceConfigurations += listOf("en", "de", "es", "fr", "hi", "hu", "in", "it", "ja", "ro", "ru", "tr", "sv", "bg", "pl", "uk")
+        resourceConfigurations += listOf(
+            "en" ,
+            "de" ,
+            "es" ,
+            "fr" ,
+            "hi" ,
+            "hu" ,
+            "in" ,
+            "it" ,
+            "ja" ,
+            "ro" ,
+            "ru" ,
+            "tr" ,
+            "sv" ,
+            "bg" ,
+            "pl" ,
+            "uk"
+        )
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -29,7 +47,10 @@ android {
             isShrinkResources = true
             isDebuggable = false
             versionNameSuffix = null
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt") ,
+                "proguard-rules.pro"
+            )
         }
         debug {
             multiDexEnabled = true
@@ -37,7 +58,10 @@ android {
             isShrinkResources = true
             isDebuggable = true
             versionNameSuffix = null
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt") ,
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {

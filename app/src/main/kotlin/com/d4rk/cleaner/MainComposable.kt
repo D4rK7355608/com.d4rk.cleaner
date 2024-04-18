@@ -51,176 +51,177 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainComposable(activity: MainActivity) {
+fun MainComposable(activity : MainActivity) {
     val bottomBarItems = listOf(
-        Screen.Home,
-        Screen.AppManager,
-        Screen.MemoryManager
+        Screen.Home , Screen.AppManager , Screen.MemoryManager
     )
     val drawerItems = listOf(
         NavigationItem(
             title = R.string.whitelist ,
-            selectedIcon = painterResource(id = R.drawable.ic_whitelist),
-        ),
-        NavigationItem(
+            selectedIcon = painterResource(id = R.drawable.ic_whitelist) ,
+        ) , NavigationItem(
             title = R.string.image_optimizer ,
-            selectedIcon = painterResource(id = R.drawable.ic_filter),
-        ),
+            selectedIcon = painterResource(id = R.drawable.ic_filter) ,
+        ) ,
 
         NavigationItem(
             title = R.string.settings ,
-            selectedIcon = painterResource(id = R.drawable.ic_settings),
-        ),
-        NavigationItem(
+            selectedIcon = painterResource(id = R.drawable.ic_settings) ,
+        ) , NavigationItem(
             title = R.string.help_and_feedback ,
-            selectedIcon = painterResource(id = R.drawable.ic_help),
-        ),
-        NavigationItem(
+            selectedIcon = painterResource(id = R.drawable.ic_help) ,
+        ) , NavigationItem(
             title = R.string.updates ,
-            selectedIcon = painterResource(id = R.drawable.ic_event_note),
-        ),
-        NavigationItem(
+            selectedIcon = painterResource(id = R.drawable.ic_event_note) ,
+        ) , NavigationItem(
             title = R.string.share ,
-            selectedIcon = painterResource(id = R.drawable.ic_share),
+            selectedIcon = painterResource(id = R.drawable.ic_share) ,
         )
     )
     val navController = rememberNavController()
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
-    val selectedItemIndex by rememberSaveable { mutableIntStateOf(-1) }
-    ModalNavigationDrawer(
-        drawerContent = {
-            ModalDrawerSheet {
-                Spacer(modifier = Modifier.height(16.dp))
-                drawerItems.forEachIndexed { index, item ->
-                    val title = stringResource(item.title)
-                    NavigationDrawerItem(
-                        label = { Text(text = title) },
-                        selected = index == selectedItemIndex,
-                        onClick = {
-                            when (item.title) {
-                                R.string.whitelist -> {
-                                    Utils.openActivity(context, WhitelistActivity::class.java)
-                                }
-                                R.string.image_optimizer -> {
-                                    Utils.openActivity(context, ImagePickerActivity::class.java)
-                                }
-                                R.string.settings -> {
-                                    Utils.openActivity(context, SettingsActivity::class.java)
-                                }
-                                R.string.help_and_feedback -> {
-                                    Utils.openActivity(context, HelpActivity::class.java)
-                                }
-                                R.string.updates -> {
-                                    Utils.openUrl(context, "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md")
-                                }
-                                R.string.share -> {
-                                    val shareIntent = Intent().apply {
-                                        this.action = Intent.ACTION_SEND
-                                        this.putExtra(Intent.EXTRA_TEXT, context.getString(R.string.summary_share_message, "https://play.google.com/store/apps/details?id=${context.packageName}"))
-                                        this.type = "text/plain"
-                                    }
-                                    context.startActivity(Intent.createChooser(shareIntent, context.resources.getText(R.string.send_email_using)))
-                                }
+    val selectedItemIndex by rememberSaveable { mutableIntStateOf(- 1) }
+    ModalNavigationDrawer(drawerContent = {
+        ModalDrawerSheet {
+            Spacer(modifier = Modifier.height(16.dp))
+            drawerItems.forEachIndexed { index , item ->
+                val title = stringResource(item.title)
+                NavigationDrawerItem(
+                    label = { Text(text = title) } ,
+                    selected = index == selectedItemIndex ,
+                    onClick = {
+                        when (item.title) {
+                            R.string.whitelist -> {
+                                Utils.openActivity(context , WhitelistActivity::class.java)
                             }
-                            scope.launch {
-                                drawerState.close()
+
+                            R.string.image_optimizer -> {
+                                Utils.openActivity(context , ImagePickerActivity::class.java)
                             }
-                        },
-                        icon = {
-                            Icon(
-                                painter = item.selectedIcon,
-                                contentDescription = title
-                            )
-                        },
-                        badge = {
-                            item.badgeCount?.let {
-                                Text(text = item.badgeCount.toString())
+
+                            R.string.settings -> {
+                                Utils.openActivity(context , SettingsActivity::class.java)
                             }
-                        },
-                        modifier = Modifier
-                                .padding(NavigationDrawerItemDefaults.ItemPadding)
-                    )
-                    if (item.title == R.string.image_optimizer) {
-                        HorizontalDivider(modifier = Modifier.padding(8.dp))
-                    }
+
+                            R.string.help_and_feedback -> {
+                                Utils.openActivity(context , HelpActivity::class.java)
+                            }
+
+                            R.string.updates -> {
+                                Utils.openUrl(
+                                    context ,
+                                    "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md"
+                                )
+                            }
+
+                            R.string.share -> {
+                                val shareIntent = Intent().apply {
+                                    this.action = Intent.ACTION_SEND
+                                    this.putExtra(
+                                        Intent.EXTRA_TEXT ,
+                                        context.getString(
+                                            R.string.summary_share_message ,
+                                            "https://play.google.com/store/apps/details?id=${context.packageName}"
+                                        )
+                                    )
+                                    this.type = "text/plain"
+                                }
+                                context.startActivity(
+                                    Intent.createChooser(
+                                        shareIntent ,
+                                        context.resources.getText(
+                                            R.string.send_email_using
+                                        )
+                                    )
+                                )
+                            }
+                        }
+                        scope.launch {
+                            drawerState.close()
+                        }
+                    } ,
+                    icon = {
+                        Icon(
+                            painter = item.selectedIcon , contentDescription = title
+                        )
+                    } ,
+                    badge = {
+                        item.badgeCount?.let {
+                            Text(text = item.badgeCount.toString())
+                        }
+                    } ,
+                    modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+                )
+                if (item.title == R.string.image_optimizer) {
+                    HorizontalDivider(modifier = Modifier.padding(8.dp))
                 }
             }
+        }
 
-        },
-        content = {
-            Scaffold(
-                topBar = {
-                    TopAppBar(
-                        title = {
-                            Text(text = stringResource(R.string.app_name))
-                        },
-                        navigationIcon = {
-                            IconButton(onClick = {
-                                scope.launch {
-                                    drawerState.open()
-                                }
-                            }) {
-                                Icon(
-                                    imageVector = Icons.Default.Menu,
-                                    contentDescription = "Menu"
-                                )
-                            }
-                        },
-                        actions = {
-                            IconButton(onClick = {
-                                Utils.openActivity(context , SupportActivity::class.java)
-                            }) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ic_support),
-                                    contentDescription = "Support"
-                                )
-                            }
-                        }
+    } , content = {
+        Scaffold(topBar = {
+            TopAppBar(title = {
+                Text(text = stringResource(R.string.app_name))
+            } , navigationIcon = {
+                IconButton(onClick = {
+                    scope.launch {
+                        drawerState.open()
+                    }
+                }) {
+                    Icon(
+                        imageVector = Icons.Default.Menu , contentDescription = "Menu"
                     )
-                },
-                bottomBar = {
-                    NavigationBar {
-                        val navBackStackEntry by navController.currentBackStackEntryAsState()
-                        val currentRoute = navBackStackEntry?.destination?.route
-                        bottomBarItems.forEach { screen ->
-                            NavigationBarItem(
-                                icon = {
-                                    val iconResource = if (currentRoute == screen.route) screen.selectedIcon else screen.icon
-                                    Icon(painterResource(iconResource), contentDescription = null)
-                                },
-                                label = { Text(stringResource(screen.title)) },
-                                selected = currentRoute == screen.route,
-                                onClick = {
-                                    navController.navigate(screen.route) {
-                                        popUpTo(navController.graph.startDestinationId)
-                                        launchSingleTop = true
-                                    }
-                                }
-                            )
-                        }
+                }
+            } , actions = {
+                IconButton(onClick = {
+                    Utils.openActivity(context , SupportActivity::class.java)
+                }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_support) ,
+                        contentDescription = "Support"
+                    )
+                }
+            })
+        } , bottomBar = {
+            NavigationBar {
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route
+                bottomBarItems.forEach { screen ->
+                    NavigationBarItem(icon = {
+                        val iconResource =
+                                if (currentRoute == screen.route) screen.selectedIcon else screen.icon
+                        Icon(painterResource(iconResource) , contentDescription = null)
+                    } ,
+                                      label = { Text(stringResource(screen.title)) } ,
+                                      selected = currentRoute == screen.route ,
+                                      onClick = {
+                                          navController.navigate(screen.route) {
+                                              popUpTo(navController.graph.startDestinationId)
+                                              launchSingleTop = true
+                                          }
+                                      })
+                }
+            }
+        }) { innerPadding ->
+            NavHost(navController , startDestination = Screen.Home.route) {
+                composable(Screen.Home.route) {
+                    Box(modifier = Modifier.padding(innerPadding)) {
+                        HomeComposable()
                     }
                 }
-            ) { innerPadding ->
-                NavHost(navController, startDestination = Screen.Home.route) {
-                    composable(Screen.Home.route) {
-                        Box(modifier = Modifier.padding(innerPadding)) {
-                            HomeComposable()
-                        }
+                composable(Screen.AppManager.route) {
+                    Box(modifier = Modifier.padding(innerPadding)) {
+                        AppManagerComposable()
                     }
-                    composable(Screen.AppManager.route) {
-                        Box(modifier = Modifier.padding(innerPadding)) {
-                            AppManagerComposable()
-                        }
-                    }
-                    composable(Screen.MemoryManager.route) {
-                        Box(modifier = Modifier.padding(innerPadding)) {
-                            // MemoryManagerComposable()
-                        }
+                }
+                composable(Screen.MemoryManager.route) {
+                    Box(modifier = Modifier.padding(innerPadding)) {
+                        // MemoryManagerComposable()
                     }
                 }
             }
         }
-    )
+    })
 }

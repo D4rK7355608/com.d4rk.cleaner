@@ -1,4 +1,5 @@
 package com.d4rk.cleaner.ui.settings.privacy
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,7 +16,10 @@ class PrivacySettingsActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppTheme {
-                Surface(modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background) {
+                Surface(
+                    modifier = Modifier.fillMaxSize() ,
+                    color = MaterialTheme.colorScheme.background
+                ) {
                     PrivacySettingsComposable(this@PrivacySettingsActivity)
                 }
             }

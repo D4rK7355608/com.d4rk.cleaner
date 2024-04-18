@@ -1,16 +1,17 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="24dp">
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/app_icon"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/app_name"
         style="@style/TextAppearance.Material3.TitleLarge"
@@ -20,7 +21,8 @@
         android:text="@string/app_full_name"
         app:fontFamily="@font/font_poppins"
         app:layout_constraintStart_toEndOf="@+id/app_icon"
-        app:layout_constraintTop_toTopOf="@+id/app_icon"/>
+        app:layout_constraintTop_toTopOf="@+id/app_icon" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/version"
         android:layout_width="wrap_content"
@@ -29,7 +31,8 @@
         android:text="@string/version"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/app_icon"
-        app:layout_constraintTop_toBottomOf="@+id/app_name"/>
+        app:layout_constraintTop_toBottomOf="@+id/app_name" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/copyright"
         android:layout_width="wrap_content"
@@ -39,5 +42,5 @@
         android:text="@string/copyright"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/app_icon"
-        app:layout_constraintTop_toBottomOf="@+id/version"/>
+        app:layout_constraintTop_toBottomOf="@+id/version" />
 </androidx.constraintlayout.widget.ConstraintLayout>

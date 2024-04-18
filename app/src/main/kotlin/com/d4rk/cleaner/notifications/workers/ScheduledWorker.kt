@@ -1,21 +1,6 @@
 package com.d4rk.cleaner.notifications.workers
-import android.Manifest
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
-import android.content.pm.PackageManager
-import android.os.Environment
-import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import androidx.preference.PreferenceManager
-import androidx.work.CoroutineWorker
-import androidx.work.WorkerParameters
-import com.d4rk.cleaner.FileScanner
-import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.home.HomeFragment.Companion.convertSize
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+
+/*
 class ScheduledWorker(appContext: Context, workerParams: WorkerParameters) : CoroutineWorker(appContext, workerParams) {
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
         val context = applicationContext
@@ -23,7 +8,8 @@ class ScheduledWorker(appContext: Context, workerParams: WorkerParameters) : Cor
             return@withContext Result.success()
         }
         try {
-            val path = Environment.getExternalStorageDirectory()
+*/
+/*            val path = Environment.getExternalStorageDirectory()
             val preferences = PreferenceManager.getDefaultSharedPreferences(context)
             val fileScanner = FileScanner(path, context)
                 .setEmptyDir(preferences.getBoolean(context.getString(R.string.key_filter_empty), false))
@@ -36,7 +22,8 @@ class ScheduledWorker(appContext: Context, workerParams: WorkerParameters) : Cor
                 .setUpFilters(preferences.getBoolean(context.getString(R.string.key_filter_generic), true), preferences.getBoolean(context.getString(R.string.key_filter_aggressive), false), preferences.getBoolean(context.getString(R.string.key_filter_apk), false), preferences.getBoolean(context.getString(R.string.key_filter_archive), false))
             val kilobytesTotal = fileScanner.startScan()
             val title = context.getString(R.string.service_notification_title) + " " + convertSize(kilobytesTotal)
-            makeStatusNotification(title, context)
+            makeStatusNotification(title, context)*//*
+
         } catch (e: Exception) {
             makeStatusNotification(e.toString(), context)
         }
@@ -70,4 +57,4 @@ class ScheduledWorker(appContext: Context, workerParams: WorkerParameters) : Cor
             NotificationManagerCompat.from(context).notify(notificationId, builder.build())
         }
     }
-}
+}*/

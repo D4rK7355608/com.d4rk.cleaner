@@ -42,33 +42,30 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
+fun UsageAndDiagnosticsComposable(activity : UsageAndDiagnosticsActivity) {
     val context = LocalContext.current
     val dataStore = DataStore(context)
     val switchState = dataStore.usageAndDiagnostics.collectAsState(initial = true)
     val scope = rememberCoroutineScope()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            LargeTopAppBar(
-                title = { Text(stringResource(R.string.usage_and_diagnostics)) },
-                navigationIcon = {
-                    IconButton(onClick = {
-                        activity.finish()
-                    }) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null)
-                    }
-                },
-                scrollBehavior = scrollBehavior
-            )
-        }
-    ) { innerPadding ->
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.usage_and_diagnostics)) } ,
+                       navigationIcon = {
+                           IconButton(onClick = {
+                               activity.finish()
+                           }) {
+                               Icon(
+                                   Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null
+                               )
+                           }
+                       } ,
+                       scrollBehavior = scrollBehavior)
+    }) { innerPadding ->
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
                         .fillMaxSize()
-                        .padding(innerPadding),
+                        .padding(innerPadding) ,
             ) {
                 item {
                     SwitchCardComposable(
@@ -86,28 +83,31 @@ fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
                                 .fillMaxWidth()
                                 .padding(24.dp)
                     ) {
-                        Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
+                        Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(stringResource(R.string.summary_usage_and_diagnostics))
                         val annotatedString = buildAnnotatedString {
-                            withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary, textDecoration = TextDecoration.Underline)) { // FIXME: Cannot find a parameter with this name: style
+                            withStyle(
+                                style = SpanStyle(
+                                    color = MaterialTheme.colorScheme.primary ,
+                                    textDecoration = TextDecoration.Underline
+                                )
+                            ) {
                                 append(stringResource(R.string.learn_more))
                             }
                             addStringAnnotation(
-                                tag = "URL",
-                                annotation = "https://www.example.com",
-                                start = 0,
+                                tag = "URL" ,
+                                annotation = "https://www.example.com" ,
+                                start = 0 ,
                                 end = stringResource(R.string.learn_more).length
                             )
                         }
-                        ClickableText(
-                            text = annotatedString,
-                            onClick = { offset ->
-                                annotatedString.getStringAnnotations("URL", offset, offset).firstOrNull()?.let { annotation ->
-                                    Utils.openUrl(context, annotation.item)
-                                }
-                            }
-                        )
+                        ClickableText(text = annotatedString , onClick = { offset ->
+                            annotatedString.getStringAnnotations("URL" , offset , offset)
+                                    .firstOrNull()?.let { annotation ->
+                                        Utils.openUrl(context , annotation.item)
+                                    }
+                        })
                     }
                 }
             }

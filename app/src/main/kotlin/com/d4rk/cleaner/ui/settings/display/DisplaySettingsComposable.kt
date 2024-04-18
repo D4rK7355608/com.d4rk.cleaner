@@ -38,7 +38,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
+fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
     val context = LocalContext.current
     val dataStore = DataStore(context)
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
@@ -55,63 +55,61 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
         if (themeMode.value != systemModeString) {
             val saveThemeMode = if (isDarkMode.value) darkModeString else lightModeString
             dataStore.saveThemeMode(saveThemeMode)
-        } else {
+        }
+        else {
             dataStore.saveDarkMode(isSystemDarkTheme)
         }
     }
-    Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            LargeTopAppBar(
-                title = { Text(stringResource(R.string.display)) } ,
-                navigationIcon = {
-                    IconButton(onClick = {
-                        activity.finish()
-                    }) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
-                    }
-                } ,
-                scrollBehavior = scrollBehavior
-            )
-        }
-    ) { paddingValues ->
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.display)) } , navigationIcon = {
+            IconButton(onClick = {
+                activity.finish()
+            }) {
+                Icon(Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null)
+            }
+        } , scrollBehavior = scrollBehavior)
+    }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
                     .fillMaxHeight()
-                    .padding(paddingValues),
+                    .padding(paddingValues) ,
         ) {
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.appearance))
-                SwitchPreferenceItemWithDivider(
-                    title = stringResource(R.string.dark_theme),
-                    summary = when (themeMode.value) {
-                        darkModeString, lightModeString -> "Will never turn on automatically"
-                        else -> "Will turn on automatically by the system"
-                    },
-                    checked = switchState.value,
-                    onCheckedChange = { isChecked ->
-                        CoroutineScope(Dispatchers.IO).launch {
-                            switchState.value = isChecked
-                            if (themeMode.value != systemModeString) {
-                                dataStore.saveDarkMode(isChecked)
-                                if (isChecked) {
-                                    dataStore.themeModeState.value = darkModeString
-                                } else {
-                                    dataStore.themeModeState.value = lightModeString
-                                }
-                            }
-                        }
-                    },
-                    onClick = {
-                        Utils.openActivity(context, ThemeSettingsActivity::class.java)
-                    }
-                )
+                SwitchPreferenceItemWithDivider(title = stringResource(R.string.dark_theme) ,
+                                                summary = when (themeMode.value) {
+                                                    darkModeString , lightModeString -> "Will never turn on automatically"
+                                                    else -> "Will turn on automatically by the system"
+                                                } ,
+                                                checked = switchState.value ,
+                                                onCheckedChange = { isChecked ->
+                                                    CoroutineScope(Dispatchers.IO).launch {
+                                                        switchState.value = isChecked
+                                                        if (themeMode.value != systemModeString) {
+                                                            dataStore.saveDarkMode(isChecked)
+                                                            if (isChecked) {
+                                                                dataStore.themeModeState.value =
+                                                                        darkModeString
+                                                            }
+                                                            else {
+                                                                dataStore.themeModeState.value =
+                                                                        lightModeString
+                                                            }
+                                                        }
+                                                    }
+                                                } ,
+                                                onClick = {
+                                                    Utils.openActivity(
+                                                        context ,
+                                                        ThemeSettingsActivity::class.java
+                                                    )
+                                                })
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     SwitchPreferenceItem(
-                        title = "Dynamic colors",
-                        summary = "Apply colors from wallpapers to the app theme",
-                        checked = isDynamicColors.value,
+                        title = "Dynamic colors" ,
+                        summary = "Apply colors from wallpapers to the app theme" ,
+                        checked = isDynamicColors.value ,
                     ) { isChecked ->
                         CoroutineScope(Dispatchers.IO).launch {
                             dataStore.saveDynamicColors(isChecked)
@@ -121,24 +119,20 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
             }
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.app_behavior))
-                PreferenceItem(
-                    title = stringResource(R.string.default_tab),
-                    summary = "Set the default tab to be displayed on app startup",
-                    onClick = {
-                        // TODO: Display the select dialog
-                    }
-                )
-                PreferenceItem(
-                    title = stringResource(R.string.bottom_navigation_bar_labels),
-                    summary = "Set the visibility of labels in the bottom navigation bar",
-                    onClick = {
-                        // TODO: Display the select dialog
-                    }
-                )
+                PreferenceItem(title = stringResource(R.string.default_tab) ,
+                               summary = "Set the default tab to be displayed on app startup" ,
+                               onClick = {
+                                   // TODO: Display the select dialog
+                               })
+                PreferenceItem(title = stringResource(R.string.bottom_navigation_bar_labels) ,
+                               summary = "Set the visibility of labels in the bottom navigation bar" ,
+                               onClick = {
+                                   // TODO: Display the select dialog
+                               })
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.swap_buttons),
-                    summary = stringResource(R.string.summary_preference_settings_swap_buttons),
-                    checked = swappedButtons.value,
+                    title = stringResource(R.string.swap_buttons) ,
+                    summary = stringResource(R.string.summary_preference_settings_swap_buttons) ,
+                    checked = swappedButtons.value ,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveSwappedButtons(isChecked)
@@ -147,13 +141,11 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
             }
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.language))
-                PreferenceItem(
-                    title = stringResource(R.string.language),
-                    summary = "Changes the language used in the app",
-                    onClick = {
-                        // TODO: Display the select dialog
-                    }
-                )
+                PreferenceItem(title = stringResource(R.string.language) ,
+                               summary = "Changes the language used in the app" ,
+                               onClick = {
+                                   // TODO: Display the select dialog
+                               })
             }
 
         }

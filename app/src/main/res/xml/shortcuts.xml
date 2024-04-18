@@ -1,14 +1,13 @@
-<shortcuts
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
     <shortcut
-        android:shortcutId="settings"
         android:enabled="true"
         android:icon="@mipmap/ic_shortcut_settings"
+        android:shortcutId="settings"
         android:shortcutShortLabel="@string/settings">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetPackage="com.d4rk.cleaner"
-            android:targetClass="com.d4rk.cleaner.ui.settings.SettingsActivity"/>
-        <categories android:name="android.shortcut.conversation"/>
+            android:targetClass="com.d4rk.cleaner.ui.settings.SettingsActivity"
+            android:targetPackage="com.d4rk.cleaner" />
+        <categories android:name="android.shortcut.conversation" />
     </shortcut>
 </shortcuts>
