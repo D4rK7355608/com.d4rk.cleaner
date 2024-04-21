@@ -31,14 +31,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.ui.settings.privacy.permissions.PermissionsSettingsActivity
+import com.d4rk.cleaner.ui.startup.StartupActivity
+import com.d4rk.cleaner.utils.Utils
 
 @Composable
 fun HomeComposable() {
+    val context = LocalContext.current
     val viewModel : HomeViewModel = viewModel()
     val progress by viewModel.progress.observeAsState(0.3f)
     val storageUsed by viewModel.storageUsed.observeAsState("0")
@@ -87,7 +92,9 @@ fun HomeComposable() {
                         .fillMaxHeight()
                         .padding(start = 16.dp , end = 8.dp) ,
                 onClick = {
-                    viewModel.clean()
+                    Utils.openActivity(
+                        context , StartupActivity::class.java
+                    )
                 } ,
                 shape = MaterialTheme.shapes.medium ,
             ) {

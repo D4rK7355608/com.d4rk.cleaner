@@ -16,6 +16,7 @@ import com.d4rk.cleaner.notifications.managers.AppUpdateNotificationsManager
 import com.d4rk.cleaner.notifications.managers.AppUsageNotificationsManager
 import com.d4rk.cleaner.ui.settings.display.theme.AppTheme
 import com.d4rk.cleaner.ui.startup.StartupActivity
+import com.d4rk.cleaner.utils.FileScanner
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -24,6 +25,8 @@ import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -33,6 +36,8 @@ class MainActivity : ComponentActivity() {
     private lateinit var appUpdateManager : AppUpdateManager
     private var appUpdateNotificationsManager : AppUpdateNotificationsManager =
             AppUpdateNotificationsManager(this)
+
+    private lateinit var fileScanner : FileScanner
 
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +54,10 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+        fileScanner = FileScanner(dataStore, resources)
+        scanForFiles()
+
         setupSettings()
     }
 
@@ -85,13 +94,10 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun showUpdateFailedSnackbar() {
-        val snackbar = Snackbar.make(
-            findViewById(android.R.id.content) , R.string.snack_update_failed , Snackbar.LENGTH_LONG
-        ).setAction(R.string.try_again) {
-            checkForFlexibleUpdate()
+    private fun scanForFiles() {
+        CoroutineScope(Dispatchers.IO).launch {
+            fileScanner.startScanning()
         }
-        snackbar.show()
     }
 
     private fun checkForFlexibleUpdate() {
@@ -132,6 +138,14 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    private fun showUpdateFailedSnackbar() {
+        val snackbar = Snackbar.make(
+            findViewById(android.R.id.content) , R.string.snack_update_failed , Snackbar.LENGTH_LONG
+        ).setAction(R.string.try_again) {
+            checkForFlexibleUpdate()
+        }
+        snackbar.show()
+    }
 
     private fun setupUpdateNotifications() {
         appUpdateManager = AppUpdateManagerFactory.create(this)

@@ -11,6 +11,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.multidex.MultiDexApplication
+import com.d4rk.cleaner.data.store.DataStore
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -18,6 +19,8 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.appopen.AppOpenAd
 import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import java.util.Date
 
 private const val AD_UNIT_ID = "ca-app-pub-5294151573817700/9563492881"
@@ -27,11 +30,15 @@ class ApplicationOpenAdManager : MultiDexApplication() , Application.ActivityLif
     LifecycleObserver {
     private lateinit var appOpenAdManager : AppOpenAdManager
     private var currentActivity : Activity? = null
+
+    private lateinit var dataStore : DataStore
+
     override fun onCreate() {
         super.onCreate()
         registerActivityLifecycleCallbacks(this)
         MobileAds.initialize(this)
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
+        dataStore = DataStore(this)
         appOpenAdManager = AppOpenAdManager()
     }
 
@@ -52,6 +59,7 @@ class ApplicationOpenAdManager : MultiDexApplication() , Application.ActivityLif
     override fun onActivityStopped(activity : Activity) {}
     override fun onActivitySaveInstanceState(activity : Activity , outState : Bundle) {}
     override fun onActivityDestroyed(activity : Activity) {}
+
     interface OnShowAdCompleteListener {
         @Suppress("EmptyMethod")
         fun onShowAdComplete()
@@ -62,6 +70,7 @@ class ApplicationOpenAdManager : MultiDexApplication() , Application.ActivityLif
         private var isLoadingAd = false
         var isShowingAd = false
         private var loadTime : Long = 0
+
         fun loadAd(context : Context) {
             if (isLoadingAd || isAdAvailable()) {
                 return
@@ -104,10 +113,10 @@ class ApplicationOpenAdManager : MultiDexApplication() , Application.ActivityLif
         }
 
         fun showAdIfAvailable(
-            activity : Activity ,
-            onShowAdCompleteListener : OnShowAdCompleteListener
+            activity : Activity , onShowAdCompleteListener : OnShowAdCompleteListener
         ) {
-            if (isShowingAd) {
+            val isAdsChecked = runBlocking { dataStore.ads.first() }
+            if (isShowingAd || ! isAdsChecked) {
                 return
             }
             if (! isAdAvailable()) {

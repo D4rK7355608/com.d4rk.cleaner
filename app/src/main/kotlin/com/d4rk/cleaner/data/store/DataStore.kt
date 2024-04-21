@@ -6,7 +6,6 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.d4rk.cleaner.R
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -229,10 +228,9 @@ class DataStore(context : Context) {
 
     // Usage and Diagnostics
     private val usageAndDiagnosticsKey = booleanPreferencesKey("usage_and_diagnostics")
-    val usageAndDiagnostics : Flow<Boolean> =
-            dataStore.data.map { preferences ->
-                preferences[usageAndDiagnosticsKey] ?: true
-            }
+    val usageAndDiagnostics : Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[usageAndDiagnosticsKey] ?: true
+    }
 
     suspend fun saveUsageAndDiagnostics(isChecked : Boolean) {
         dataStore.edit { preferences ->
@@ -242,10 +240,9 @@ class DataStore(context : Context) {
 
     // Ads
     private val adsKey = booleanPreferencesKey("ads")
-    val ads : Flow<Boolean> =
-            dataStore.data.map { preferences ->
-                preferences[adsKey] ?: true
-            }
+    val ads : Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[adsKey] ?: true
+    }
 
     suspend fun saveAds(isChecked : Boolean) {
         dataStore.edit { preferences ->

@@ -48,7 +48,7 @@ import kotlinx.coroutines.launch
 fun AdsSettingsComposable(activity : AdsSettingsActivity) {
     val context = LocalContext.current
     val dataStore = DataStore(context)
-    val switchState = dataStore.usageAndDiagnostics.collectAsState(initial = true)
+    val switchState = dataStore.ads.collectAsState(initial = true)
     val scope = rememberCoroutineScope()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
@@ -70,7 +70,7 @@ fun AdsSettingsComposable(activity : AdsSettingsActivity) {
             ) {
                 item {
                     SwitchCardComposable(
-                        title = stringResource(R.string.turn_off_all_ads) ,
+                        title = stringResource(R.string.display_ads) ,
                         switchState = switchState
                     ) { isChecked ->
                         scope.launch(Dispatchers.IO) {
@@ -79,22 +79,26 @@ fun AdsSettingsComposable(activity : AdsSettingsActivity) {
                     }
                 }
                 item {
-                    PreferenceItem(title = stringResource(R.string.personalized_ads) ,
-                                   summary = stringResource(R.string.summary_preference_settings_oss) ,
-                                   onClick = {
-                                       val params = ConsentRequestParameters.Builder()
-                                               .setTagForUnderAgeOfConsent(false).build()
-                                       val consentInformation =
-                                               UserMessagingPlatform.getConsentInformation(context)
-                                       consentInformation.requestConsentInfoUpdate(activity ,
-                                                                                   params ,
-                                                                                   {
-                                                                                       if (consentInformation.isConsentFormAvailable) {
-                                                                                           activity.loadForm()
-                                                                                       }
-                                                                                   } ,
-                                                                                   {})
-                                   })
+                    Box(modifier = Modifier.padding(horizontal = 8.dp)) {
+                        PreferenceItem(title = stringResource(R.string.personalized_ads) ,
+                                       summary = "Manage the personalized ads consent for this app" ,
+                                       onClick = {
+                                           val params = ConsentRequestParameters.Builder()
+                                                   .setTagForUnderAgeOfConsent(false).build()
+                                           val consentInformation =
+                                                   UserMessagingPlatform.getConsentInformation(
+                                                       context
+                                                   )
+                                           consentInformation.requestConsentInfoUpdate(activity ,
+                                                                                       params ,
+                                                                                       {
+                                                                                           if (consentInformation.isConsentFormAvailable) {
+                                                                                               activity.loadForm()
+                                                                                           }
+                                                                                       } ,
+                                                                                       {})
+                                       })
+                    }
                 }
                 item {
                     Column(

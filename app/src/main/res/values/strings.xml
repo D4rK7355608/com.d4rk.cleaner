@@ -51,7 +51,7 @@
 
 
     <string name="ads">Ads</string>
-    <string name="turn_off_all_ads">Turn off all ads </string>
+    <string name="display_ads">Display ads</string>
     <string name="personalized_ads">Personalized ads</string>
     <string name="turn_on_personalized_ads">Turn on personalized ads</string>
     <string name="summary_ads">See ads that are relevant to you. Manage the information used to show personalized ads based on your app activity. You can always turn off personalization here.\n</string>

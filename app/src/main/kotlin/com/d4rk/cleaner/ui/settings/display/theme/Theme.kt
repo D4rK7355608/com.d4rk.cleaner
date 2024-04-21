@@ -2,6 +2,7 @@ package com.d4rk.cleaner.ui.settings.display.theme
 
 import android.app.Activity
 import android.os.Build
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -34,20 +35,32 @@ fun AppTheme(
     val isAmoledMode = dataStore.amoledMode.collectAsState(initial = false).value
 
     val isDarkTheme = themeMode == stringResource(R.string.dark_mode)
+    val isLightTheme = themeMode == stringResource(R.string.light_mode)
+    val isFollowSystem = themeMode == stringResource(R.string.follow_system)
 
     val colorScheme = when {
-        isDynamicColors && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            if (isDarkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
         isDarkTheme && isAmoledMode -> darkColorScheme(
             surface = Color.Black ,
             background = Color.Black ,
         )
 
-        isDarkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        isDarkTheme || (isFollowSystem && isSystemInDarkTheme()) -> if (isDynamicColors && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            dynamicDarkColorScheme(context)
+        }
+        else {
+            DarkColorScheme
+        }
+
+        isLightTheme || (isFollowSystem && ! isSystemInDarkTheme()) -> if (isDynamicColors && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            dynamicLightColorScheme(context)
+        }
+        else {
+            LightColorScheme
+        }
+
+        else -> if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
     }
+
 
     val view = LocalView.current
     if (! view.isInEditMode) {
