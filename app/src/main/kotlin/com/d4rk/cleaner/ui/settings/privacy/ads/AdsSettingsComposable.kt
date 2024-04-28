@@ -70,8 +70,7 @@ fun AdsSettingsComposable(activity : AdsSettingsActivity) {
             ) {
                 item {
                     SwitchCardComposable(
-                        title = stringResource(R.string.display_ads) ,
-                        switchState = switchState
+                        title = stringResource(R.string.display_ads) , switchState = switchState
                     ) { isChecked ->
                         scope.launch(Dispatchers.IO) {
                             dataStore.saveAds(isChecked)
@@ -92,9 +91,7 @@ fun AdsSettingsComposable(activity : AdsSettingsActivity) {
                                            consentInformation.requestConsentInfoUpdate(activity ,
                                                                                        params ,
                                                                                        {
-                                                                                           if (consentInformation.isConsentFormAvailable) {
-                                                                                               activity.loadForm()
-                                                                                           }
+                                                                                           activity.loadForm()
                                                                                        } ,
                                                                                        {})
                                        })

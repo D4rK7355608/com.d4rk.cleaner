@@ -33,7 +33,7 @@ class AdsSettingsActivity : ComponentActivity() {
     fun loadForm() {
         UserMessagingPlatform.loadConsentForm(this , { consentForm ->
             this.consentForm = consentForm
-            if (consentInformation.consentStatus == ConsentInformation.ConsentStatus.REQUIRED) {
+            if (consentInformation.consentStatus == ConsentInformation.ConsentStatus.OBTAINED) {
                 consentForm.show(this) {
                     loadForm()
                 }

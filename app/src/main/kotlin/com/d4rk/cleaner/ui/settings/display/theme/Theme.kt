@@ -34,33 +34,40 @@ fun AppTheme(
     val isDynamicColors = dataStore.dynamicColors.collectAsState(initial = true).value
     val isAmoledMode = dataStore.amoledMode.collectAsState(initial = false).value
 
-    val isDarkTheme = themeMode == stringResource(R.string.dark_mode)
-    val isLightTheme = themeMode == stringResource(R.string.light_mode)
-    val isFollowSystem = themeMode == stringResource(R.string.follow_system)
+    val isSystemDarkTheme = isSystemInDarkTheme()
+    val isDarkTheme = when (themeMode) {
+        stringResource(R.string.dark_mode) -> true
+        stringResource(R.string.light_mode) -> false
+        else -> isSystemDarkTheme
+    }
 
     val colorScheme = when {
+        isDarkTheme && isAmoledMode && isDynamicColors && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> dynamicDarkColorScheme(
+            context
+        ).copy(
+            surface = Color.Black ,
+            background = Color.Black ,
+        )
+
         isDarkTheme && isAmoledMode -> darkColorScheme(
             surface = Color.Black ,
             background = Color.Black ,
         )
 
-        isDarkTheme || (isFollowSystem && isSystemInDarkTheme()) -> if (isDynamicColors && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        isDarkTheme -> if (isDynamicColors && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             dynamicDarkColorScheme(context)
         }
         else {
             DarkColorScheme
         }
 
-        isLightTheme || (isFollowSystem && ! isSystemInDarkTheme()) -> if (isDynamicColors && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        else -> if (isDynamicColors && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             dynamicLightColorScheme(context)
         }
         else {
             LightColorScheme
         }
-
-        else -> if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
     }
-
 
     val view = LocalView.current
     if (! view.isInEditMode) {

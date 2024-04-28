@@ -61,7 +61,7 @@ fun StartupComposable(activity : StartupActivity) {
                 item {
                     Text(
                         text = stringResource(R.string.summary_browse_terms_of_service_and_privacy_policy) ,
-                        modifier = Modifier.padding(top = 24.dp, bottom = 24.dp)
+                        modifier = Modifier.padding(top = 24.dp , bottom = 24.dp)
                     )
                     ClickableText(
                         text = AnnotatedString(stringResource(R.string.browse_terms_of_service_and_privacy_policy)) ,

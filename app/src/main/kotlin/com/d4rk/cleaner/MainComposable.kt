@@ -78,82 +78,91 @@ fun MainComposable(activity : MainActivity) {
             selectedIcon = painterResource(id = R.drawable.ic_share) ,
         )
     )
-    val navController = rememberNavController()
-    val drawerState = rememberDrawerState(DrawerValue.Closed)
+    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
+    val navController = rememberNavController()
     val context = LocalContext.current
     val selectedItemIndex by rememberSaveable { mutableIntStateOf(- 1) }
-    ModalNavigationDrawer(drawerContent = {
+    ModalNavigationDrawer(drawerState = drawerState , drawerContent = {
         ModalDrawerSheet {
             Spacer(modifier = Modifier.height(16.dp))
             drawerItems.forEachIndexed { index , item ->
                 val title = stringResource(item.title)
-                NavigationDrawerItem(
-                    label = { Text(text = title) } ,
-                    selected = index == selectedItemIndex ,
-                    onClick = {
-                        when (item.title) {
-                            R.string.whitelist -> {
-                                Utils.openActivity(context , WhitelistActivity::class.java)
-                            }
+                NavigationDrawerItem(label = { Text(text = title) } ,
+                                     selected = index == selectedItemIndex ,
+                                     onClick = {
+                                         when (item.title) {
+                                             R.string.whitelist -> {
+                                                 Utils.openActivity(
+                                                     context ,
+                                                     WhitelistActivity::class.java
+                                                 )
+                                             }
 
-                            R.string.image_optimizer -> {
-                                Utils.openActivity(context , ImagePickerActivity::class.java)
-                            }
+                                             R.string.image_optimizer -> {
+                                                 Utils.openActivity(
+                                                     context ,
+                                                     ImagePickerActivity::class.java
+                                                 )
+                                             }
 
-                            R.string.settings -> {
-                                Utils.openActivity(context , SettingsActivity::class.java)
-                            }
+                                             R.string.settings -> {
+                                                 Utils.openActivity(
+                                                     context ,
+                                                     SettingsActivity::class.java
+                                                 )
+                                             }
 
-                            R.string.help_and_feedback -> {
-                                Utils.openActivity(context , HelpActivity::class.java)
-                            }
+                                             R.string.help_and_feedback -> {
+                                                 Utils.openActivity(
+                                                     context ,
+                                                     HelpActivity::class.java
+                                                 )
+                                             }
 
-                            R.string.updates -> {
-                                Utils.openUrl(
-                                    context ,
-                                    "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md"
-                                )
-                            }
+                                             R.string.updates -> {
+                                                 Utils.openUrl(
+                                                     context ,
+                                                     "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md"
+                                                 )
+                                             }
 
-                            R.string.share -> {
-                                val shareIntent = Intent().apply {
-                                    this.action = Intent.ACTION_SEND
-                                    this.putExtra(
-                                        Intent.EXTRA_TEXT ,
-                                        context.getString(
-                                            R.string.summary_share_message ,
-                                            "https://play.google.com/store/apps/details?id=${context.packageName}"
-                                        )
-                                    )
-                                    this.type = "text/plain"
-                                }
-                                context.startActivity(
-                                    Intent.createChooser(
-                                        shareIntent ,
-                                        context.resources.getText(
-                                            R.string.send_email_using
-                                        )
-                                    )
-                                )
-                            }
-                        }
-                        scope.launch {
-                            drawerState.close()
-                        }
-                    } ,
-                    icon = {
-                        Icon(
-                            painter = item.selectedIcon , contentDescription = title
-                        )
-                    } ,
-                    badge = {
-                        item.badgeCount?.let {
-                            Text(text = item.badgeCount.toString())
-                        }
-                    } ,
-                    modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
-                )
+                                             R.string.share -> {
+                                                 val shareIntent = Intent().apply {
+                                                     this.action = Intent.ACTION_SEND
+                                                     this.putExtra(
+                                                         Intent.EXTRA_TEXT , context.getString(
+                                                             R.string.summary_share_message ,
+                                                             "https://play.google.com/store/apps/details?id=${context.packageName}"
+                                                         )
+                                                     )
+                                                     this.type = "text/plain"
+                                                 }
+                                                 context.startActivity(
+                                                     Intent.createChooser(
+                                                         shareIntent , context.resources.getText(
+                                                             R.string.send_email_using
+                                                         )
+                                                     )
+                                                 )
+                                             }
+                                         }
+                                         scope.launch {
+                                             drawerState.close()
+                                         }
+                                     } ,
+                                     icon = {
+                                         Icon(
+                                             painter = item.selectedIcon ,
+                                             contentDescription = title
+                                         )
+                                     } ,
+                                     badge = {
+                                         item.badgeCount?.let {
+                                             Text(text = item.badgeCount.toString())
+                                         }
+                                     } ,
+                                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding))
                 if (item.title == R.string.image_optimizer) {
                     HorizontalDivider(modifier = Modifier.padding(8.dp))
                 }
@@ -167,7 +176,9 @@ fun MainComposable(activity : MainActivity) {
             } , navigationIcon = {
                 IconButton(onClick = {
                     scope.launch {
-                        drawerState.open()
+                        drawerState.apply {
+                            if (isClosed) open() else close()
+                        }
                     }
                 }) {
                     Icon(

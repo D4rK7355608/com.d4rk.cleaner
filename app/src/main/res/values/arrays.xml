@@ -1,30 +1,30 @@
 <resources>
     <string-array name="aggressive_filter_files">
-        <item>.nomedia</item>
-        <item>.exe</item>
-        <item>.apk</item>
-        <item>.msi</item>
+        <item>nomedia</item>
+        <item>exe</item>
+        <item>apk</item>
+        <item>msi</item>
         <item>splashad</item>
-        <item>.apks</item>
-        <item>.apkm</item>
-        <item>.apkx</item>
-        <item>.csv</item>
+        <item>apks</item>
+        <item>apkm</item>
+        <item>apkx</item>
+        <item>csv</item>
         <item>thumbs?.db</item>
-        <item>.thumb[0–9]</item>
-        <item>.tmp</item>
-        <item>.temp</item>
-        <item>.log</item>
-        <item>.logs</item>
-        <item>.png</item>
-        <item>.jpg</item>
-        <item>.webp</item>
-        <item>.gif</item>
-        <item>.bmp</item>
-        <item>.psd</item>
-        <item>.pxr</item>
-        <item>.mp4</item>
-        <item>.mkv</item>
-        <item>.xd</item>
+        <item>thumb[0–9]</item>
+        <item>tmp</item>
+        <item>temp</item>
+        <item>log</item>
+        <item>logs</item>
+        <item>png</item>
+        <item>jpg</item>
+        <item>webp</item>
+        <item>gif</item>
+        <item>bmp</item>
+        <item>psd</item>
+        <item>pxr</item>
+        <item>mp4</item>
+        <item>mkv</item>
+        <item>xd</item>
         <item>.mp3</item>
         <item>.wav</item>
         <item>.xml</item>
@@ -246,18 +246,6 @@
         <item>.zoo</item>
         <item>.zpaq</item>
     </string-array>
-    <string-array name="preference_theme_entries">
-        <item>@string/follow_system</item>
-        <item>@string/light_mode</item>
-        <item>@string/dark_mode</item>
-        <item>@string/auto_battery_mode</item>
-    </string-array>
-    <string-array name="preference_theme_values">
-        <item>MODE_NIGHT_FOLLOW_SYSTEM</item>
-        <item>MODE_NIGHT_NO</item>
-        <item>MODE_NIGHT_YES</item>
-        <item>MODE_NIGHT_AUTO_BATTERY</item>
-    </string-array>
     <string-array name="preference_language_entries">
         <item>@string/bulgarian</item>
         <item>@string/english</item>
@@ -298,25 +286,5 @@
         <item>600</item>
         <item>800</item>
         <item>900</item>
-    </string-array>
-    <string-array name="preference_bottom_navigation_bar_labels_entries">
-        <item>@string/labeled</item>
-        <item>@string/selected</item>
-        <item>@string/unlabeled</item>
-    </string-array>
-    <string-array name="preference_bottom_navigation_bar_labels_values">
-        <item>labeled</item>
-        <item>selected</item>
-        <item>unlabeled</item>
-    </string-array>
-    <string-array name="preference_default_tab_entries">
-        <item>@string/home</item>
-        <item>@string/app_manager</item>
-        <item>@string/memory_manager</item>
-    </string-array>
-    <string-array name="preference_default_tab_values">
-        <item>navigation_home</item>
-        <item>navigation_app_manager</item>
-        <item>navigation_memory_manager</item>
     </string-array>
 </resources>

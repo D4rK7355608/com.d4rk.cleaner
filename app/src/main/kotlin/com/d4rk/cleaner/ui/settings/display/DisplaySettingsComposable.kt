@@ -1,6 +1,9 @@
 package com.d4rk.cleaner.ui.settings.display
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
+import android.provider.Settings
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
@@ -100,8 +103,7 @@ fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
                                                 } ,
                                                 onClick = {
                                                     Utils.openActivity(
-                                                        context ,
-                                                        ThemeSettingsActivity::class.java
+                                                        context , ThemeSettingsActivity::class.java
                                                     )
                                                 })
 
@@ -144,10 +146,38 @@ fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
                 PreferenceItem(title = stringResource(R.string.language) ,
                                summary = "Changes the language used in the app" ,
                                onClick = {
-                                   // TODO: Display the select dialog
+                                   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                                       val localeIntent =
+                                               Intent(Settings.ACTION_APP_LOCALE_SETTINGS).setData(
+                                                   Uri.fromParts(
+                                                       "package" , context.packageName , null
+                                                   )
+                                               )
+                                       val detailsIntent =
+                                               Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).setData(
+                                                   Uri.fromParts(
+                                                       "package" , context.packageName , null
+                                                   )
+                                               )
+                                       when {
+                                           context.packageManager.resolveActivity(
+                                               localeIntent , 0
+                                           ) != null -> context.startActivity(localeIntent)
+
+                                           context.packageManager.resolveActivity(
+                                               detailsIntent , 0
+                                           ) != null -> context.startActivity(detailsIntent)
+
+                                           else -> {
+                                               // TODO: Handle the case where neither Intent can be resolved
+                                           }
+                                       }
+                                   }
+                                   else {
+                                       // TODO: Handle the case for Android versions lower than 13
+                                   }
                                })
             }
-
         }
     }
 }

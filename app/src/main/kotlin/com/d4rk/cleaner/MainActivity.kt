@@ -37,14 +37,13 @@ class MainActivity : ComponentActivity() {
     private var appUpdateNotificationsManager : AppUpdateNotificationsManager =
             AppUpdateNotificationsManager(this)
 
-    private lateinit var fileScanner : FileScanner
-
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         enableEdgeToEdge()
-        setupUpdateNotifications()
         dataStore = DataStore(this@MainActivity)
+        startupScreen()
+        setupUpdateNotifications()
         setContent {
             AppTheme {
                 Surface(
@@ -54,10 +53,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-
-        fileScanner = FileScanner(dataStore, resources)
-        scanForFiles()
-
         setupSettings()
     }
 
@@ -69,9 +64,19 @@ class MainActivity : ComponentActivity() {
 
         // TODO: Test on release
         //checkForFlexibleUpdate()
-        startupScreen()
     }
 
+    /**
+     * Handles the result of an activity launched for result.
+     *
+     * This function overrides the `onActivityResult` method to handle the result of a specific request code (1)
+     * used for in-app updates. It checks the `resultCode` to determine the outcome of the update process and
+     * displays appropriate UI feedback using Snackbar.
+     *
+     * @param requestCode The request code that was specified when starting the activity for result.
+     * @param resultCode The result code returned by the activity upon completion.
+     * @param data The data returned by the activity, if any.
+     */
     @Suppress("DEPRECATION")
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode : Int , resultCode : Int , data : Intent?) {
@@ -94,12 +99,15 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun scanForFiles() {
-        CoroutineScope(Dispatchers.IO).launch {
-            fileScanner.startScanning()
-        }
-    }
-
+    /**
+     * Checks for the availability of flexible updates and triggers the appropriate update flow if conditions are met.
+     *
+     * This function uses the provided lifecycle scope to asynchronously check for available updates using the
+     * Google Play Core library. If a flexible update is available and meets certain conditions, it triggers
+     * the update flow.
+     *
+     * @param lifecycleScope The lifecycle scope used for launching coroutines, typically obtained from the hosting activity.
+     */
     private fun checkForFlexibleUpdate() {
         lifecycleScope.launch {
             val appUpdateInfo = appUpdateManager.appUpdateInfo.await()
@@ -152,6 +160,17 @@ class MainActivity : ComponentActivity() {
         appUpdateNotificationsManager = AppUpdateNotificationsManager(this)
     }
 
+    /**
+     * Sets up application settings based on data stored in a dataStore.
+     *
+     * This function uses a lifecycle coroutine scope to asynchronously retrieve the value of `usageAndDiagnostics`
+     * from the dataStore and adjusts Firebase Analytics and Crashlytics collection settings accordingly.
+     *
+     * @see androidx.lifecycle.lifecycleScope
+     * @see androidx.datastore.preferences.core.DataStore
+     * @see com.google.firebase.analytics.FirebaseAnalytics
+     * @see com.google.firebase.crashlytics.FirebaseCrashlytics
+     */
     private fun setupSettings() {
         lifecycleScope.launch {
             val isEnabled = dataStore.usageAndDiagnostics.first()

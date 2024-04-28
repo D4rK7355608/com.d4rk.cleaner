@@ -40,8 +40,7 @@ fun SettingsComposable(activity : SettingsActivity) {
             }) {
                 Icon(Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null)
             }
-        } , scrollBehavior = scrollBehavior
-        )
+        } , scrollBehavior = scrollBehavior)
     }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
@@ -62,8 +61,7 @@ fun SettingsComposable(activity : SettingsActivity) {
                                summary = stringResource(R.string.summary_preference_settings_cleaning) ,
                                onClick = {
                                    Utils.openActivity(
-                                       context ,
-                                       CleaningSettingsActivity::class.java
+                                       context , CleaningSettingsActivity::class.java
                                    )
                                })
             }
@@ -81,8 +79,7 @@ fun SettingsComposable(activity : SettingsActivity) {
                                summary = stringResource(R.string.summary_preference_settings_advanced) ,
                                onClick = {
                                    Utils.openActivity(
-                                       context ,
-                                       AdvancedSettingsActivity::class.java
+                                       context , AdvancedSettingsActivity::class.java
                                    )
                                })
             }

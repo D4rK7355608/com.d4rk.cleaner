@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.compose.runtime.mutableStateOf
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
@@ -13,6 +14,20 @@ val Context.dataStore by preferencesDataStore("settings")
 
 class DataStore(context : Context) {
     private val dataStore = context.dataStore
+
+
+    // Last used app notifications
+    private val lastUsedKey = longPreferencesKey("last_used")
+    val lastUsed : Flow<Long> = dataStore.data.map { preferences ->
+        preferences[lastUsedKey] ?: 0
+    }
+
+    suspend fun saveLastUsed(timestamp : Long) {
+        dataStore.edit { preferences ->
+            preferences[lastUsedKey] = timestamp
+        }
+    }
+
 
     // Startup
     private val startupKey = booleanPreferencesKey("value")

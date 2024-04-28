@@ -17,8 +17,7 @@ class SettingsActivity : ComponentActivity() {
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize() ,
-                    color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
                     SettingsComposable(this@SettingsActivity)
                 }
