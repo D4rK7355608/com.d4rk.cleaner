@@ -32,62 +32,64 @@ import com.d4rk.cleaner.utils.Utils
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StartupComposable(activity : StartupActivity) {
+fun StartupComposable(activity: StartupActivity) {
     val context = LocalContext.current
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.welcome)) } ,
-                       scrollBehavior = scrollBehavior)
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
+        LargeTopAppBar(
+            title = { Text(stringResource(R.string.welcome)) },
+            scrollBehavior = scrollBehavior
+        )
     }) { innerPadding ->
         Box(
             modifier = Modifier
-                    .fillMaxSize()
-                    .padding(24.dp)
+                .fillMaxSize()
+                .padding(24.dp)
         ) {
             LazyColumn(
                 modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding) ,
+                    .fillMaxSize()
+                    .padding(innerPadding),
             ) {
                 item {
                     Image(
-                        painter = painterResource(id = R.drawable.il_startup) ,
+                        painter = painterResource(id = R.drawable.il_startup),
                         contentDescription = null
                     )
                     Image(
-                        Icons.Outlined.Info , contentDescription = null
+                        Icons.Outlined.Info, contentDescription = null
                     )
                 }
                 item {
                     Text(
-                        text = stringResource(R.string.summary_browse_terms_of_service_and_privacy_policy) ,
-                        modifier = Modifier.padding(top = 24.dp , bottom = 24.dp)
+                        text = stringResource(R.string.summary_browse_terms_of_service_and_privacy_policy),
+                        modifier = Modifier.padding(top = 24.dp, bottom = 24.dp)
                     )
                     ClickableText(
-                        text = AnnotatedString(stringResource(R.string.browse_terms_of_service_and_privacy_policy)) ,
+                        text = AnnotatedString(stringResource(R.string.browse_terms_of_service_and_privacy_policy)),
                         onClick = {
                             Utils.openUrl(
-                                context ,
+                                context,
                                 "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy"
                             )
 
-                        } ,
+                        },
                     )
                 }
             }
-            ExtendedFloatingActionButton(modifier = Modifier.align(Alignment.BottomEnd) ,
-                                         text = { Text(stringResource(R.string.agree)) } ,
-                                         onClick = {
-                                             Utils.openActivity(
-                                                 context , MainActivity::class.java
-                                             )
-                                         } ,
-                                         icon = {
-                                             Icon(
-                                                 Icons.Outlined.CheckCircle ,
-                                                 contentDescription = null
-                                             )
-                                         })
+            ExtendedFloatingActionButton(modifier = Modifier.align(Alignment.BottomEnd),
+                text = { Text(stringResource(R.string.agree)) },
+                onClick = {
+                    Utils.openActivity(
+                        context, MainActivity::class.java
+                    )
+                },
+                icon = {
+                    Icon(
+                        Icons.Outlined.CheckCircle,
+                        contentDescription = null
+                    )
+                })
         }
     }
 }

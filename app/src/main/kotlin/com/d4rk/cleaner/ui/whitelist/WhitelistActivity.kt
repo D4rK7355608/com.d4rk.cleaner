@@ -1,4 +1,5 @@
 package com.d4rk.cleaner.ui.whitelist
+
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.d4rk.cleaner.databinding.ActivityWhitelistBinding

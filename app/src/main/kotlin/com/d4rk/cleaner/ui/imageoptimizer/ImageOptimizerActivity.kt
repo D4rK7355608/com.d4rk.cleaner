@@ -1,4 +1,5 @@
 package com.d4rk.cleaner.ui.imageoptimizer
+
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Bitmap
@@ -32,25 +33,35 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
+
 class ImageOptimizerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityImageOptimizerBinding
     private var actualImageFile: File? = null
     private lateinit var viewModel: ImageOptimizerViewModel
     private var compressedImageFile: File? = null
     private var isCompressing = false
-    private val optimizedPicturesDirectory = File(Environment.getExternalStorageDirectory(), "Pictures/Optimized Pictures").apply {
-        if (!exists()) {
-            mkdirs()
+    private val optimizedPicturesDirectory =
+        File(Environment.getExternalStorageDirectory(), "Pictures/Optimized Pictures").apply {
+            if (!exists()) {
+                mkdirs()
+            }
         }
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityImageOptimizerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
-            if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.key_amoled_mode), false)) {
+            if (PreferenceManager.getDefaultSharedPreferences(this)
+                    .getBoolean(getString(R.string.key_amoled_mode), false)
+            ) {
                 binding.root.setBackgroundColor(ContextCompat.getColor(this, android.R.color.black))
-                binding.tabLayout.setBackgroundColor(ContextCompat.getColor(this, android.R.color.black))
+                binding.tabLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        android.R.color.black
+                    )
+                )
                 window.navigationBarColor = ContextCompat.getColor(this, android.R.color.black)
             }
         }
@@ -60,7 +71,8 @@ class ImageOptimizerActivity : AppCompatActivity() {
         MobileAds.initialize(this)
         binding.adView.loadAd(AdRequest.Builder().build())
         if (!intent.hasExtra("imageUri")) {
-            Snackbar.make(binding.root, getString(R.string.snack_no_image), Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, getString(R.string.snack_no_image), Snackbar.LENGTH_SHORT)
+                .show()
             finish()
             return
         }
@@ -74,26 +86,36 @@ class ImageOptimizerActivity : AppCompatActivity() {
         binding.buttonCompressImage.setOnClickListener {
             when (binding.viewPager.currentItem) {
                 0 -> {
-                    val quickCompressFragment = supportFragmentManager.findFragmentByTag("f0") as? QuickCompressFragment
+                    val quickCompressFragment =
+                        supportFragmentManager.findFragmentByTag("f0") as? QuickCompressFragment
                     val compressionLevel = quickCompressFragment?.getCurrentCompressionLevel() ?: 50
                     compressImageQuickCompress(actualImageFile, compressionLevel)
                 }
+
                 1 -> {
-                    val fileSizeFragment = supportFragmentManager.findFragmentByTag("f1") as? FileSizeFragment
+                    val fileSizeFragment =
+                        supportFragmentManager.findFragmentByTag("f1") as? FileSizeFragment
                     val targetSizeKB = fileSizeFragment?.getCurrentFileSizeKB() ?: -1
                     if (targetSizeKB > 0) {
                         compressImageByFileSize(actualImageFile, targetSizeKB)
                     } else {
-                        val snackbar = Snackbar.make(binding.root, getString(R.string.snack_validate_file), Snackbar.LENGTH_LONG)
+                        val snackbar = Snackbar.make(
+                            binding.root,
+                            getString(R.string.snack_validate_file),
+                            Snackbar.LENGTH_LONG
+                        )
                         snackbar.setAction(android.R.string.ok) {
                             snackbar.dismiss()
                         }
                         snackbar.show()
                     }
                 }
+
                 2 -> {
-                    val manualModeFragment = supportFragmentManager.findFragmentByTag("f2") as? ManualModeFragment
-                    val (width, height, quality) = manualModeFragment?.getCurrentCompressionSettings() ?: Triple(0, 0, 0)
+                    val manualModeFragment =
+                        supportFragmentManager.findFragmentByTag("f2") as? ManualModeFragment
+                    val (width, height, quality) = manualModeFragment?.getCurrentCompressionSettings()
+                        ?: Triple(0, 0, 0)
                     compressImageManualMode(width, height, quality)
                 }
             }
@@ -107,6 +129,7 @@ class ImageOptimizerActivity : AppCompatActivity() {
             }
         }.attach()
     }
+
     private fun compressImageManualMode(width: Int, height: Int, quality: Int) {
         if (compressedImageFile != null || isCompressing) {
             return
@@ -131,6 +154,7 @@ class ImageOptimizerActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun compressImageByFileSize(imageFile: File?, targetSizeKB: Int) {
         if (compressedImageFile != null || isCompressing) {
             return
@@ -155,6 +179,7 @@ class ImageOptimizerActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun compressImageQuickCompress(actualImageFile: File?, compressionLevel: Int) {
         if (compressedImageFile != null || isCompressing) {
             return
@@ -179,12 +204,14 @@ class ImageOptimizerActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun updateImageView(compressedImageFile: File?) {
         compressedImageFile?.let {
             val uri = Uri.fromFile(it)
             Glide.with(this).load(uri).into(binding.imageView)
         }
     }
+
     private fun saveImage(file: File) {
         lifecycleScope.launch(Dispatchers.Main) {
             optimizedPicturesDirectory.mkdirs()
@@ -193,14 +220,24 @@ class ImageOptimizerActivity : AppCompatActivity() {
                 file.copyTo(newFile, overwrite = true)
                 newFile
             }
-            MediaScannerConnection.scanFile(applicationContext, arrayOf(savedFile.path), arrayOf("image/jpeg"), null)
-            val snackbar = Snackbar.make(binding.root, getString(R.string.image_saved) + savedFile.path, Snackbar.LENGTH_LONG)
+            MediaScannerConnection.scanFile(
+                applicationContext,
+                arrayOf(savedFile.path),
+                arrayOf("image/jpeg"),
+                null
+            )
+            val snackbar = Snackbar.make(
+                binding.root,
+                getString(R.string.image_saved) + savedFile.path,
+                Snackbar.LENGTH_LONG
+            )
             snackbar.setAction(android.R.string.ok) {
                 snackbar.dismiss()
             }
             snackbar.show()
         }
     }
+
     private fun getPath(context: Context, uri: Uri): String? {
         if (DocumentsContract.isDocumentUri(context, uri)) {
             val docId = DocumentsContract.getDocumentId(uri)

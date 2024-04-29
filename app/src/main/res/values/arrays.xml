@@ -1,13 +1,189 @@
 <resources>
-    <string-array name="aggressive_filter_files">
-        <item>nomedia</item>
-        <item>exe</item>
-        <item>apk</item>
-        <item>msi</item>
+    <string-array name="generic_extensions">
+        <item>DS_Store</item>
+        <item>Spotlight-V100</item>
+        <item>fseventsd</item>
+        <item>ini</item>
+        <item>log</item>
+        <item>logs</item>
+        <item>old</item>
+        <item>temp</item>
+        <item>tmp</item>
+        <item>desktop.ini</item>
         <item>splashad</item>
+        <item>db</item>
+        <item>nomedia</item>
+    </string-array>
+
+    <string-array name="apk_extensions">
+        <item>apk</item>
         <item>apks</item>
         <item>apkm</item>
         <item>apkx</item>
+        <item>aab</item>
+    </string-array>
+
+    <string-array name="microsoft_office_extensions">
+        <item>doc</item>
+        <item>dot</item>
+        <item>wbk</item>
+        <item>docx</item>
+        <item>docm</item>
+        <item>dotx</item>
+        <item>dotm</item>
+        <item>docb</item>
+        <item>pdf</item>
+        <item>wll</item>
+        <item>wwl</item>
+        <item>xls</item>
+        <item>xlt</item>
+        <item>xlm</item>
+        <item>xlsx</item>
+        <item>xlsm</item>
+        <item>xltx</item>
+        <item>xltm</item>
+        <item>xlsb</item>
+        <item>xla</item>
+        <item>xlam</item>
+        <item>xll</item>
+        <item>xlw</item>
+        <item>ppt</item>
+        <item>pot</item>
+        <item>pps</item>
+        <item>ppa</item>
+        <item>pptx</item>
+        <item>pptm</item>
+        <item>potx</item>
+        <item>potm</item>
+        <item>ppam</item>
+        <item>ppsx</item>
+        <item>ppsm</item>
+        <item>sldx</item>
+        <item>sldm</item>
+        <item>ppam</item>
+        <item>accda</item>
+        <item>accdb</item>
+        <item>accde</item>
+        <item>accdr</item>
+        <item>accdt</item>
+        <item>accdu</item>
+        <item>one</item>
+        <item>ecf</item>
+        <item>pub</item>
+    </string-array>
+
+    <string-array name="archive_extensions">
+        <item>7z</item>
+        <item>ace</item>
+        <item>arj</item>
+        <item>bz</item>
+        <item>bz2</item>
+        <item>cab</item>
+        <item>cb7</item>
+        <item>cbt</item>
+        <item>cbz</item>
+        <item>cbr</item>
+        <item>dgc</item>
+        <item>dmg</item>
+        <item>ear</item>
+        <item>gz</item>
+        <item>gzip</item>
+        <item>ha</item>
+        <item>ice</item>
+        <item>jar</item>
+        <item>kgb</item>
+        <item>lzh</item>
+        <item>lz</item>
+        <item>lzma</item>
+        <item>lzo</item>
+        <item>pak</item>
+        <item>partimg</item>
+        <item>pea</item>
+        <item>pet</item>
+        <item>pk3</item>
+        <item>pk4</item>
+        <item>rar</item>
+        <item>rpm</item>
+        <item>rz</item>
+        <item>s7z</item>
+        <item>sda</item>
+        <item>sea</item>
+        <item>sen</item>
+        <item>sfark</item>
+        <item>sfx</item>
+        <item>shar</item>
+        <item>sit</item>
+        <item>sitx</item>
+        <item>sqx</item>
+        <item>tar</item>
+        <item>tar.bz2</item>
+        <item>tar.gz</item>
+        <item>tar.xz</item>
+        <item>tgz</item>
+        <item>tlz</item>
+        <item>txz</item>
+        <item>udf</item>
+        <item>utz</item>
+        <item>uu</item>
+        <item>uue</item>
+        <item>war</item>
+        <item>wim</item>
+        <item>xar</item>
+        <item>xp3</item>
+        <item>xz</item>
+        <item>z</item>
+        <item>zip</item>
+        <item>zipx</item>
+        <item>zoo</item>
+        <item>zpaq</item>
+    </string-array>
+
+    <string-array name="audio_extensions">
+        <item>mp3</item>
+        <item>m4a</item>
+        <item>wav</item>
+        <item>flac</item>
+        <item>midi</item>
+        <item>wma</item>
+        <item>aac</item>
+        <item>ogg</item>
+        <item>opus</item>
+        <item>aiff</item>
+    </string-array>
+
+    <string-array name="video_extensions">
+        <item>mp4</item>
+        <item>avi</item>
+        <item>mov</item>
+        <item>mkv</item>
+        <item>flv</item>
+        <item>webm</item>
+        <item>vob</item>
+        <item>ogv</item>
+        <item>gif</item>
+        <item>gifv</item>
+        <item>mng</item>
+        <item>wmv</item>
+        <item>yuv</item>
+        <item>amv</item>
+    </string-array>
+
+    <string-array name="image_extensions">
+        <item>jpg</item>
+        <item>jpeg</item>
+        <item>webp</item>
+        <item>bmp</item>
+        <item>png</item>
+        <item>raw</item>
+        <item>psd</item>
+    </string-array>
+
+
+    <string-array name="aggressive_filter_files">
+        <item>nomedia</item>
+        <item>exe</item>
+        <item>msi</item>
+        <item>splashad</item>
         <item>csv</item>
         <item>thumbs?.db</item>
         <item>thumb[0–9]</item>
@@ -15,21 +191,9 @@
         <item>temp</item>
         <item>log</item>
         <item>logs</item>
-        <item>png</item>
-        <item>jpg</item>
-        <item>webp</item>
-        <item>gif</item>
-        <item>bmp</item>
-        <item>psd</item>
         <item>pxr</item>
-        <item>mp4</item>
-        <item>mkv</item>
         <item>xd</item>
-        <item>.mp3</item>
-        <item>.wav</item>
         <item>.xml</item>
-        <item>.zip</item>
-        <item>.rar</item>
         <item>.z</item>
         <item>.tar</item>
         <item>.gz</item>
@@ -64,6 +228,7 @@
         <item>.pptx</item>
         <item>.ini</item>
     </string-array>
+
     <string-array name="aggressive_filter_folders">
         <item>.Trash</item>
         <item>.DS_Store</item>
@@ -130,21 +295,7 @@
         <item>WhatsApp Video</item>
         <item>Xiaoying</item>
     </string-array>
-    <string-array name="generic_filter_files">
-        <item>.DS_Store</item>
-        <item>.Spotlight-V100</item>
-        <item>.Thumbs.db</item>
-        <item>.fseventsd</item>
-        <item>.ini</item>
-        <item>.log</item>
-        <item>.logs</item>
-        <item>.old</item>
-        <item>.temp</item>
-        <item>.tmp</item>
-        <item>desktop.ini</item>
-        <item>splashad</item>
-        <item>thumbs.db</item>
-    </string-array>
+
     <string-array name="generic_filter_folders">
         <item>.AppleDouble</item>
         <item>.DocumentRevisions-V100</item>
@@ -181,71 +332,8 @@
         <item>tmp</item>
         <item>venv</item>
     </string-array>
-    <string-array name="archive_filter_files">
-        <item>.7z</item>
-        <item>.ace</item>
-        <item>.arj</item>
-        <item>.bz</item>
-        <item>.bz2</item>
-        <item>.cab</item>
-        <item>.cb7</item>
-        <item>.cbt</item>
-        <item>.cbz</item>
-        <item>.cbr</item>
-        <item>.dgc</item>
-        <item>.dmg</item>
-        <item>.ear</item>
-        <item>.gz</item>
-        <item>.gzip</item>
-        <item>.ha</item>
-        <item>.ice</item>
-        <item>.jar</item>
-        <item>.kgb</item>
-        <item>.lzh</item>
-        <item>.lz</item>
-        <item>.lzma</item>
-        <item>.lzo</item>
-        <item>.pak</item>
-        <item>.partimg</item>
-        <item>.pea</item>
-        <item>.pet</item>
-        <item>.pk3</item>
-        <item>.pk4</item>
-        <item>.rar</item>
-        <item>.rpm</item>
-        <item>.rz</item>
-        <item>.s7z</item>
-        <item>.sda</item>
-        <item>.sea</item>
-        <item>.sen</item>
-        <item>.sfark</item>
-        <item>.sfx</item>
-        <item>.shar</item>
-        <item>.sit</item>
-        <item>.sitx</item>
-        <item>.sqx</item>
-        <item>.tar</item>
-        <item>.tar.bz2</item>
-        <item>.tar.gz</item>
-        <item>.tar.xz</item>
-        <item>.tgz</item>
-        <item>.tlz</item>
-        <item>.txz</item>
-        <item>.udf</item>
-        <item>.utz</item>
-        <item>.uu</item>
-        <item>.uue</item>
-        <item>.war</item>
-        <item>.wim</item>
-        <item>.xar</item>
-        <item>.xp3</item>
-        <item>.xz</item>
-        <item>.z</item>
-        <item>.zip</item>
-        <item>.zipx</item>
-        <item>.zoo</item>
-        <item>.zpaq</item>
-    </string-array>
+
+
     <string-array name="preference_language_entries">
         <item>@string/bulgarian</item>
         <item>@string/english</item>

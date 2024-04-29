@@ -30,149 +30,163 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
+fun CleaningSettingsComposable(activity: CleaningSettingsActivity) {
     val context = LocalContext.current
-    val dataStore = DataStore(context)
+    val dataStore = DataStore.getInstance(context)
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     val genericFilter by dataStore.genericFilter.collectAsState(initial = true)
-    val aggressiveFilter by dataStore.aggressiveFilter.collectAsState(initial = false)
     val deleteEmptyFolders by dataStore.deleteEmptyFolders.collectAsState(initial = true)
     val deleteArchives by dataStore.deleteArchives.collectAsState(initial = false)
     val deleteInvalidMedia by dataStore.deleteInvalidMedia.collectAsState(initial = false)
     val deleteCorpseFiles by dataStore.deleteCorpseFiles.collectAsState(initial = false)
     val deleteApkFiles by dataStore.deleteApkFiles.collectAsState(initial = true)
+    val deleteAudioFiles by dataStore.deleteAudioFiles.collectAsState(initial = false)
+    val deleteVideoFiles by dataStore.deleteVideoFiles.collectAsState(initial = false)
     val doubleChecker by dataStore.doubleChecker.collectAsState(initial = false)
     val clipboardClean by dataStore.clipboardClean.collectAsState(initial = false)
     val autoWhitelist by dataStore.autoWhitelist.collectAsState(initial = true)
     val oneClickClean by dataStore.oneClickClean.collectAsState(initial = false)
     val dailyCleaner by dataStore.dailyCleaner.collectAsState(initial = false)
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.cleaning)) } , navigationIcon = {
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.cleaning)) }, navigationIcon = {
             IconButton(onClick = {
                 activity.finish()
             }) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null)
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
             }
-        } , scrollBehavior = scrollBehavior)
+        }, scrollBehavior = scrollBehavior)
     }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
-                    .fillMaxHeight()
-                    .padding(paddingValues) ,
+                .fillMaxHeight()
+                .padding(paddingValues),
         ) {
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.filters))
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.generic_filter) ,
-                    summary = stringResource(R.string.summary_preference_settings_generic_filter) ,
-                    checked = genericFilter ,
+                    title = stringResource(R.string.generic_filter),
+                    summary = stringResource(R.string.summary_preference_settings_generic_filter),
+                    checked = genericFilter,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveGenericFilter(isChecked)
                     }
                 }
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.aggressive_filter) ,
-                    summary = stringResource(R.string.summary_preference_settings_aggressive_filter) ,
-                    checked = aggressiveFilter ,
-                ) { isChecked ->
-                    CoroutineScope(Dispatchers.IO).launch {
-                        dataStore.saveAggressiveFilter(isChecked)
-                    }
-                }
-                SwitchPreferenceItem(
-                    title = stringResource(R.string.delete_empty_folders) ,
-                    checked = deleteEmptyFolders ,
+                    title = stringResource(R.string.delete_empty_folders),
+                    checked = deleteEmptyFolders,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveDeleteEmptyFolders(isChecked)
                     }
                 }
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.delete_archives) ,
-                    summary = stringResource(R.string.summary_preference_settings_archive_filter) ,
-                    checked = deleteArchives ,
+                    title = stringResource(R.string.delete_archives),
+                    summary = stringResource(R.string.summary_preference_settings_archive_filter),
+                    checked = deleteArchives,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveDeleteArchives(isChecked)
                     }
                 }
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.delete_invalid_media) ,
-                    summary = stringResource(R.string.summary_preference_settings_delete_invalid_media) ,
-                    checked = deleteInvalidMedia ,
-                ) { isChecked ->
-                    CoroutineScope(Dispatchers.IO).launch {
-                        dataStore.saveDeleteInvalidMedia(isChecked)
-                    }
-                }
-                SwitchPreferenceItem(
-                    title = stringResource(R.string.delete_corpse_files) ,
-                    summary = stringResource(R.string.summary_preference_settings_delete_corpse_files) ,
-                    checked = deleteCorpseFiles ,
+                    title = stringResource(R.string.delete_corpse_files),
+                    summary = stringResource(R.string.summary_preference_settings_delete_corpse_files),
+                    checked = deleteCorpseFiles,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveDeleteCorpseFiles(isChecked)
                     }
                 }
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.delete_apk_files) ,
-                    summary = stringResource(R.string.summary_preference_settings_delete_apk_files) ,
-                    checked = deleteApkFiles ,
+                    title = stringResource(R.string.delete_apk_files),
+                    summary = stringResource(R.string.summary_preference_settings_delete_apk_files),
+                    checked = deleteApkFiles,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveDeleteApkFiles(isChecked)
                     }
                 }
             }
+
+            item {
+                PreferenceCategoryItem(title = "Media")
+                SwitchPreferenceItem(
+                    title = "Delete audio",
+                    summary = "Delete the audio files from the device",
+                    checked = deleteAudioFiles,
+                ) { isChecked ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        dataStore.saveDeleteAudioFiles(isChecked)
+                    }
+                }
+                SwitchPreferenceItem(
+                    title = "Delete video",
+                    summary = "Delete the video files from the device",
+                    checked = deleteVideoFiles,
+                ) { isChecked ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        dataStore.saveDeleteVideoFiles(isChecked)
+                    }
+                }
+                SwitchPreferenceItem(
+                    title = stringResource(R.string.delete_invalid_media),
+                    summary = stringResource(R.string.summary_preference_settings_delete_invalid_media),
+                    checked = deleteInvalidMedia,
+                ) { isChecked ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        dataStore.saveDeleteInvalidMedia(isChecked)
+                    }
+                }
+            }
+
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.scanner))
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.double_checker) ,
-                    summary = stringResource(R.string.summary_preference_settings_double_checker) ,
-                    checked = doubleChecker ,
+                    title = stringResource(R.string.double_checker),
+                    summary = stringResource(R.string.summary_preference_settings_double_checker),
+                    checked = doubleChecker,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveDoubleChecker(isChecked)
                     }
                 }
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.clipboard_clean) ,
-                    checked = clipboardClean ,
+                    title = stringResource(R.string.clipboard_clean),
+                    checked = clipboardClean,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveClipboardClean(isChecked)
                     }
                 }
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.auto_whitelist) ,
-                    summary = stringResource(R.string.summary_preference_settings_auto_whitelist) ,
-                    checked = autoWhitelist ,
+                    title = stringResource(R.string.auto_whitelist),
+                    summary = stringResource(R.string.summary_preference_settings_auto_whitelist),
+                    checked = autoWhitelist,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveAutoWhitelist(isChecked)
                     }
                 }
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.one_click_clean) ,
-                    summary = stringResource(R.string.summary_preference_settings_one_click_clean) ,
-                    checked = oneClickClean ,
+                    title = stringResource(R.string.one_click_clean),
+                    summary = stringResource(R.string.summary_preference_settings_one_click_clean),
+                    checked = oneClickClean,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveOneClickClean(isChecked)
                     }
                 }
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.daily_clean) ,
-                    summary = stringResource(R.string.summary_preference_settings_daily_clean) ,
-                    checked = dailyCleaner ,
+                    title = stringResource(R.string.daily_clean),
+                    summary = stringResource(R.string.summary_preference_settings_daily_clean),
+                    checked = dailyCleaner,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveDailyCleaner(isChecked)
                         if (isChecked) {
                             //    CleanReceiver.scheduleAlarm(context.applicationContext)
-                        }
-                        else {
+                        } else {
                             //  CleanReceiver.cancelAlarm(context.applicationContext)
                         }
                     }

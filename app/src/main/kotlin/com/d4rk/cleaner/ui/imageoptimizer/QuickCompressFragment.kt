@@ -1,4 +1,5 @@
 package com.d4rk.cleaner.ui.imageoptimizer
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +9,15 @@ import androidx.lifecycle.ViewModelProvider
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.databinding.FragmentQuickCompressBinding
 import com.d4rk.cleaner.ui.viewmodel.ImageOptimizerViewModel
+
 class QuickCompressFragment : Fragment() {
     private lateinit var binding: FragmentQuickCompressBinding
     private lateinit var viewModel: ImageOptimizerViewModel
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentQuickCompressBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[ImageOptimizerViewModel::class.java]
         setCompressionLevel(50)
@@ -37,17 +43,22 @@ class QuickCompressFragment : Fragment() {
 
         return binding.root
     }
+
     private fun setCompressionLevel(level: Int) {
         binding.sliderQuickCompress.value = level.toFloat()
         updateUI(level)
     }
+
     private fun updateUI(percentage: Int) {
         updatePercentageText(percentage)
         setButtonFromSliderValue(percentage)
     }
+
     private fun updatePercentageText(percentage: Int) {
-        binding.textViewQuickCompressPercentage.text = getString(R.string.image_compressor_percentage_format, percentage)
+        binding.textViewQuickCompressPercentage.text =
+            getString(R.string.image_compressor_percentage_format, percentage)
     }
+
     private fun setButtonFromSliderValue(percentage: Int) {
         val buttonId = when (percentage) {
             30 -> R.id.button_low
@@ -60,6 +71,7 @@ class QuickCompressFragment : Fragment() {
         }
         binding.toggleGroup.check(buttonId)
     }
+
     fun getCurrentCompressionLevel(): Int {
         return binding.sliderQuickCompress.value.toInt()
     }

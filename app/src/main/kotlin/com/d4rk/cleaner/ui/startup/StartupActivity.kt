@@ -23,15 +23,15 @@ import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
 
 class StartupActivity : ComponentActivity() {
-    private lateinit var consentInformation : ConsentInformation
-    private lateinit var consentForm : ConsentForm
-    override fun onCreate(savedInstanceState : Bundle?) {
+    private lateinit var consentInformation: ConsentInformation
+    private lateinit var consentForm: ConsentForm
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                     StartupComposable(this@StartupActivity)
                 }
@@ -39,11 +39,11 @@ class StartupActivity : ComponentActivity() {
         }
         val params = ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(false).build()
         consentInformation = UserMessagingPlatform.getConsentInformation(this)
-        consentInformation.requestConsentInfoUpdate(this , params , {
+        consentInformation.requestConsentInfoUpdate(this, params, {
             if (consentInformation.isConsentFormAvailable) {
                 loadForm()
             }
-        } , {})
+        }, {})
         requestPermissions()
     }
 
@@ -59,14 +59,14 @@ class StartupActivity : ComponentActivity() {
      * @see com.google.ads.consent.ConsentInformation
      */
     private fun loadForm() {
-        UserMessagingPlatform.loadConsentForm(this , { consentForm ->
+        UserMessagingPlatform.loadConsentForm(this, { consentForm ->
             this.consentForm = consentForm
             if (consentInformation.consentStatus == ConsentInformation.ConsentStatus.REQUIRED) {
                 consentForm.show(this) {
                     loadForm()
                 }
             }
-        } , {})
+        }, {})
     }
 
     /**
@@ -80,14 +80,14 @@ class StartupActivity : ComponentActivity() {
      * @suppress Use of deprecated methods for checking usage statistics access.
      */
     @Suppress("DEPRECATION")
-    private val isAccessGranted : Boolean
+    private val isAccessGranted: Boolean
         get() {
             val packageManager = packageManager
-            val applicationInfo = packageManager.getApplicationInfo(packageName , 0)
+            val applicationInfo = packageManager.getApplicationInfo(packageName, 0)
             val appOpsManager = getSystemService(APP_OPS_SERVICE) as AppOpsManager
-            @Suppress("DEPRECATION") val mode : Int = appOpsManager.checkOpNoThrow(
-                AppOpsManager.OPSTR_GET_USAGE_STATS ,
-                applicationInfo.uid ,
+            @Suppress("DEPRECATION") val mode: Int = appOpsManager.checkOpNoThrow(
+                AppOpsManager.OPSTR_GET_USAGE_STATS,
+                applicationInfo.uid,
                 applicationInfo.packageName
             )
             return mode == AppOpsManager.MODE_ALLOWED
@@ -108,20 +108,20 @@ class StartupActivity : ComponentActivity() {
      */
     private fun requestPermissions() {
         val requiredPermissions = mutableListOf(
-            Manifest.permission.WRITE_EXTERNAL_STORAGE , Manifest.permission.READ_EXTERNAL_STORAGE
+            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE
         )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (! Environment.isExternalStorageManager()) {
+            if (!Environment.isExternalStorageManager()) {
                 val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
-                val uri = Uri.fromParts("package" , packageName , null)
+                val uri = Uri.fromParts("package", packageName, null)
                 intent.data = uri
                 startActivity(intent)
             }
-            if (! isAccessGranted) {
+            if (!isAccessGranted) {
                 val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
                 startActivity(intent)
             }
         }
-        ActivityCompat.requestPermissions(this , requiredPermissions.toTypedArray() , 1)
+        ActivityCompat.requestPermissions(this, requiredPermissions.toTypedArray(), 1)
     }
 }

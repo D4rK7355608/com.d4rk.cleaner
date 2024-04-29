@@ -43,7 +43,6 @@ import com.d4rk.cleaner.ui.help.HelpActivity
 import com.d4rk.cleaner.ui.home.HomeComposable
 import com.d4rk.cleaner.ui.imageoptimizer.ImagePickerActivity
 import com.d4rk.cleaner.ui.settings.SettingsActivity
-import com.d4rk.cleaner.ui.settings.privacy.permissions.PermissionsSettingsActivity
 import com.d4rk.cleaner.ui.support.SupportActivity
 import com.d4rk.cleaner.ui.whitelist.WhitelistActivity
 import com.d4rk.cleaner.utils.Utils
@@ -51,129 +50,131 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainComposable(activity : MainActivity) {
+fun MainComposable(activity: MainActivity) {
     val bottomBarItems = listOf(
-        Screen.Home , Screen.AppManager , Screen.MemoryManager
+        Screen.Home, Screen.AppManager, Screen.MemoryManager
     )
     val drawerItems = listOf(
         NavigationItem(
-            title = R.string.whitelist ,
-            selectedIcon = painterResource(id = R.drawable.ic_whitelist) ,
-        ) , NavigationItem(
-            title = R.string.image_optimizer ,
-            selectedIcon = painterResource(id = R.drawable.ic_filter) ,
-        ) ,
+            title = R.string.whitelist,
+            selectedIcon = painterResource(id = R.drawable.ic_whitelist),
+        ), NavigationItem(
+            title = R.string.image_optimizer,
+            selectedIcon = painterResource(id = R.drawable.ic_filter),
+        ),
 
         NavigationItem(
-            title = R.string.settings ,
-            selectedIcon = painterResource(id = R.drawable.ic_settings) ,
-        ) , NavigationItem(
-            title = R.string.help_and_feedback ,
-            selectedIcon = painterResource(id = R.drawable.ic_help) ,
-        ) , NavigationItem(
-            title = R.string.updates ,
-            selectedIcon = painterResource(id = R.drawable.ic_event_note) ,
-        ) , NavigationItem(
-            title = R.string.share ,
-            selectedIcon = painterResource(id = R.drawable.ic_share) ,
+            title = R.string.settings,
+            selectedIcon = painterResource(id = R.drawable.ic_settings),
+        ), NavigationItem(
+            title = R.string.help_and_feedback,
+            selectedIcon = painterResource(id = R.drawable.ic_help),
+        ), NavigationItem(
+            title = R.string.updates,
+            selectedIcon = painterResource(id = R.drawable.ic_event_note),
+        ), NavigationItem(
+            title = R.string.share,
+            selectedIcon = painterResource(id = R.drawable.ic_share),
         )
     )
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val navController = rememberNavController()
     val context = LocalContext.current
-    val selectedItemIndex by rememberSaveable { mutableIntStateOf(- 1) }
-    ModalNavigationDrawer(drawerState = drawerState , drawerContent = {
+    val selectedItemIndex by rememberSaveable { mutableIntStateOf(-1) }
+    ModalNavigationDrawer(drawerState = drawerState, drawerContent = {
         ModalDrawerSheet {
             Spacer(modifier = Modifier.height(16.dp))
-            drawerItems.forEachIndexed { index , item ->
+            drawerItems.forEachIndexed { index, item ->
                 val title = stringResource(item.title)
-                NavigationDrawerItem(label = { Text(text = title) } ,
-                                     selected = index == selectedItemIndex ,
-                                     onClick = {
-                                         when (item.title) {
-                                             R.string.whitelist -> {
-                                                 Utils.openActivity(
-                                                     context ,
-                                                     WhitelistActivity::class.java
-                                                 )
-                                             }
+                NavigationDrawerItem(
+                    label = { Text(text = title) },
+                    selected = index == selectedItemIndex,
+                    onClick = {
+                        when (item.title) {
+                            R.string.whitelist -> {
+                                Utils.openActivity(
+                                    context,
+                                    WhitelistActivity::class.java
+                                )
+                            }
 
-                                             R.string.image_optimizer -> {
-                                                 Utils.openActivity(
-                                                     context ,
-                                                     ImagePickerActivity::class.java
-                                                 )
-                                             }
+                            R.string.image_optimizer -> {
+                                Utils.openActivity(
+                                    context,
+                                    ImagePickerActivity::class.java
+                                )
+                            }
 
-                                             R.string.settings -> {
-                                                 Utils.openActivity(
-                                                     context ,
-                                                     SettingsActivity::class.java
-                                                 )
-                                             }
+                            R.string.settings -> {
+                                Utils.openActivity(
+                                    context,
+                                    SettingsActivity::class.java
+                                )
+                            }
 
-                                             R.string.help_and_feedback -> {
-                                                 Utils.openActivity(
-                                                     context ,
-                                                     HelpActivity::class.java
-                                                 )
-                                             }
+                            R.string.help_and_feedback -> {
+                                Utils.openActivity(
+                                    context,
+                                    HelpActivity::class.java
+                                )
+                            }
 
-                                             R.string.updates -> {
-                                                 Utils.openUrl(
-                                                     context ,
-                                                     "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md"
-                                                 )
-                                             }
+                            R.string.updates -> {
+                                Utils.openUrl(
+                                    context,
+                                    "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md"
+                                )
+                            }
 
-                                             R.string.share -> {
-                                                 val shareIntent = Intent().apply {
-                                                     this.action = Intent.ACTION_SEND
-                                                     this.putExtra(
-                                                         Intent.EXTRA_TEXT , context.getString(
-                                                             R.string.summary_share_message ,
-                                                             "https://play.google.com/store/apps/details?id=${context.packageName}"
-                                                         )
-                                                     )
-                                                     this.type = "text/plain"
-                                                 }
-                                                 context.startActivity(
-                                                     Intent.createChooser(
-                                                         shareIntent , context.resources.getText(
-                                                             R.string.send_email_using
-                                                         )
-                                                     )
-                                                 )
-                                             }
-                                         }
-                                         scope.launch {
-                                             drawerState.close()
-                                         }
-                                     } ,
-                                     icon = {
-                                         Icon(
-                                             painter = item.selectedIcon ,
-                                             contentDescription = title
-                                         )
-                                     } ,
-                                     badge = {
-                                         item.badgeCount?.let {
-                                             Text(text = item.badgeCount.toString())
-                                         }
-                                     } ,
-                                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding))
+                            R.string.share -> {
+                                val shareIntent = Intent().apply {
+                                    this.action = Intent.ACTION_SEND
+                                    this.putExtra(
+                                        Intent.EXTRA_TEXT, context.getString(
+                                            R.string.summary_share_message,
+                                            "https://play.google.com/store/apps/details?id=${context.packageName}"
+                                        )
+                                    )
+                                    this.type = "text/plain"
+                                }
+                                context.startActivity(
+                                    Intent.createChooser(
+                                        shareIntent, context.resources.getText(
+                                            R.string.send_email_using
+                                        )
+                                    )
+                                )
+                            }
+                        }
+                        scope.launch {
+                            drawerState.close()
+                        }
+                    },
+                    icon = {
+                        Icon(
+                            painter = item.selectedIcon,
+                            contentDescription = title
+                        )
+                    },
+                    badge = {
+                        item.badgeCount?.let {
+                            Text(text = item.badgeCount.toString())
+                        }
+                    },
+                    modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+                )
                 if (item.title == R.string.image_optimizer) {
                     HorizontalDivider(modifier = Modifier.padding(8.dp))
                 }
             }
         }
 
-    } , content = {
+    }, content = {
         Scaffold(topBar = {
             TopAppBar(title = {
                 Text(text = stringResource(R.string.app_name))
-            } , navigationIcon = {
+            }, navigationIcon = {
                 IconButton(onClick = {
                     scope.launch {
                         drawerState.apply {
@@ -182,41 +183,41 @@ fun MainComposable(activity : MainActivity) {
                     }
                 }) {
                     Icon(
-                        imageVector = Icons.Default.Menu , contentDescription = "Menu"
+                        imageVector = Icons.Default.Menu, contentDescription = "Menu"
                     )
                 }
-            } , actions = {
+            }, actions = {
                 IconButton(onClick = {
-                    Utils.openActivity(context , SupportActivity::class.java)
+                    Utils.openActivity(context, SupportActivity::class.java)
                 }) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_support) ,
+                        painter = painterResource(id = R.drawable.ic_support),
                         contentDescription = "Support"
                     )
                 }
             })
-        } , bottomBar = {
+        }, bottomBar = {
             NavigationBar {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route
                 bottomBarItems.forEach { screen ->
                     NavigationBarItem(icon = {
                         val iconResource =
-                                if (currentRoute == screen.route) screen.selectedIcon else screen.icon
-                        Icon(painterResource(iconResource) , contentDescription = null)
-                    } ,
-                                      label = { Text(stringResource(screen.title)) } ,
-                                      selected = currentRoute == screen.route ,
-                                      onClick = {
-                                          navController.navigate(screen.route) {
-                                              popUpTo(navController.graph.startDestinationId)
-                                              launchSingleTop = true
-                                          }
-                                      })
+                            if (currentRoute == screen.route) screen.selectedIcon else screen.icon
+                        Icon(painterResource(iconResource), contentDescription = null)
+                    },
+                        label = { Text(stringResource(screen.title)) },
+                        selected = currentRoute == screen.route,
+                        onClick = {
+                            navController.navigate(screen.route) {
+                                popUpTo(navController.graph.startDestinationId)
+                                launchSingleTop = true
+                            }
+                        })
                 }
             }
         }) { innerPadding ->
-            NavHost(navController , startDestination = Screen.Home.route) {
+            NavHost(navController, startDestination = Screen.Home.route) {
                 composable(Screen.Home.route) {
                     Box(modifier = Modifier.padding(innerPadding)) {
                         HomeComposable()

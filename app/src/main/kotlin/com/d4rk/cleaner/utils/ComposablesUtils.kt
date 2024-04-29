@@ -32,37 +32,36 @@ import androidx.compose.ui.unit.dp
 // Switch cards
 @Composable
 fun SwitchCardComposable(
-    title : String , switchState : State<Boolean> , onSwitchToggled : (Boolean) -> Unit
+    title: String, switchState: State<Boolean>, onSwitchToggled: (Boolean) -> Unit
 ) {
     Card(modifier = Modifier
-            .fillMaxWidth()
-            .padding(24.dp)
-            .clip(RoundedCornerShape(28.dp))
-            .clickable {
-                onSwitchToggled(! switchState.value)
-            }) {
+        .fillMaxWidth()
+        .padding(24.dp)
+        .clip(RoundedCornerShape(28.dp))
+        .clickable {
+            onSwitchToggled(!switchState.value)
+        }) {
         Row(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp) ,
-            horizontalArrangement = Arrangement.SpaceBetween ,
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(text = title)
-            Switch(checked = switchState.value ,
-                   onCheckedChange = onSwitchToggled ,
-                   thumbContent = if (switchState.value) {
-                       {
-                           Icon(
-                               imageVector = Icons.Filled.Check ,
-                               contentDescription = null ,
-                               modifier = Modifier.size(SwitchDefaults.IconSize) ,
-                           )
-                       }
-                   }
-                   else {
-                       null
-                   })
+            Switch(checked = switchState.value,
+                onCheckedChange = onSwitchToggled,
+                thumbContent = if (switchState.value) {
+                    {
+                        Icon(
+                            imageVector = Icons.Filled.Check,
+                            contentDescription = null,
+                            modifier = Modifier.size(SwitchDefaults.IconSize),
+                        )
+                    }
+                } else {
+                    null
+                })
         }
     }
 }
@@ -70,42 +69,42 @@ fun SwitchCardComposable(
 // Preferences
 @Composable
 fun PreferenceCategoryItem(
-    title : String
+    title: String
 ) {
     Text(
-        text = title ,
-        color = MaterialTheme.colorScheme.primary ,
-        style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold) ,
-        modifier = Modifier.padding(start = 16.dp , top = 16.dp)
+        text = title,
+        color = MaterialTheme.colorScheme.primary,
+        style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
+        modifier = Modifier.padding(start = 16.dp, top = 16.dp)
     )
 }
 
 @Composable
 fun PreferenceItem(
-    icon : Painter? = null ,
-    title : String? = null ,
-    summary : String? = null ,
-    onClick : () -> Unit = {}
+    icon: Painter? = null,
+    title: String? = null,
+    summary: String? = null,
+    onClick: () -> Unit = {}
 ) {
     Row(
         modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(16.dp))
-                .clickable(onClick = onClick) , verticalAlignment = Alignment.CenterVertically
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .clickable(onClick = onClick), verticalAlignment = Alignment.CenterVertically
     ) {
         icon?.let {
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(painter = it , contentDescription = null)
+            Icon(painter = it, contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
         }
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
             title?.let {
-                Text(text = it , style = MaterialTheme.typography.titleLarge)
+                Text(text = it, style = MaterialTheme.typography.titleLarge)
             }
             summary?.let {
-                Text(text = it , style = MaterialTheme.typography.bodyMedium)
+                Text(text = it, style = MaterialTheme.typography.bodyMedium)
             }
         }
     }
@@ -113,37 +112,37 @@ fun PreferenceItem(
 
 @Composable
 fun SwitchPreferenceItem(
-    icon : Painter? = null ,
-    title : String ,
-    summary : String? = null ,
-    checked : Boolean ,
-    onCheckedChange : (Boolean) -> Unit
+    icon: Painter? = null,
+    title: String,
+    summary: String? = null,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit
 ) {
     Row(
         modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(16.dp))
-                .clickable(onClick = { onCheckedChange(! checked) }) ,
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .clickable(onClick = { onCheckedChange(!checked) }),
         verticalAlignment = Alignment.CenterVertically
     ) {
         icon?.let {
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(painter = it , contentDescription = null)
+            Icon(painter = it, contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
         }
         Column(
             modifier = Modifier
-                    .padding(16.dp)
-                    .weight(1f)
+                .padding(16.dp)
+                .weight(1f)
         ) {
-            Text(text = title , style = MaterialTheme.typography.titleLarge)
+            Text(text = title, style = MaterialTheme.typography.titleLarge)
             summary?.let {
-                Text(text = it , style = MaterialTheme.typography.bodyMedium)
+                Text(text = it, style = MaterialTheme.typography.bodyMedium)
             }
         }
         Switch(
-            checked = checked ,
-            onCheckedChange = onCheckedChange ,
+            checked = checked,
+            onCheckedChange = onCheckedChange,
             modifier = Modifier.padding(16.dp)
         )
     }
@@ -151,44 +150,44 @@ fun SwitchPreferenceItem(
 
 @Composable
 fun SwitchPreferenceItemWithDivider(
-    icon : Painter? = null ,
-    title : String ,
-    summary : String ,
-    checked : Boolean ,
-    onCheckedChange : (Boolean) -> Unit ,
-    onClick : () -> Unit
+    icon: Painter? = null,
+    title: String,
+    summary: String,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+    onClick: () -> Unit
 ) {
     Row(
         modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(16.dp))
-                .clickable(onClick = onClick) , verticalAlignment = Alignment.CenterVertically
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .clickable(onClick = onClick), verticalAlignment = Alignment.CenterVertically
     ) {
         icon?.let {
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(painter = it , contentDescription = null)
+            Icon(painter = it, contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
         }
         Column(
             modifier = Modifier
-                    .padding(16.dp)
-                    .weight(1f)
+                .padding(16.dp)
+                .weight(1f)
         ) {
-            Text(text = title , style = MaterialTheme.typography.titleLarge)
-            Text(text = summary , style = MaterialTheme.typography.bodyMedium)
+            Text(text = title, style = MaterialTheme.typography.titleLarge)
+            Text(text = summary, style = MaterialTheme.typography.bodyMedium)
         }
 
         VerticalDivider(
             modifier = Modifier
-                    .height(32.dp)
-                    .align(Alignment.CenterVertically) ,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f) ,
+                .height(32.dp)
+                .align(Alignment.CenterVertically),
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
             thickness = 1.dp
         )
 
         Switch(
-            checked = checked ,
-            onCheckedChange = onCheckedChange ,
+            checked = checked,
+            onCheckedChange = onCheckedChange,
             modifier = Modifier.padding(16.dp)
         )
     }

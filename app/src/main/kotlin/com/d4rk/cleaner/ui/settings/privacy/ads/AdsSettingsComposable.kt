@@ -45,32 +45,32 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AdsSettingsComposable(activity : AdsSettingsActivity) {
+fun AdsSettingsComposable(activity: AdsSettingsActivity) {
     val context = LocalContext.current
-    val dataStore = DataStore(context)
+    val dataStore = DataStore.getInstance(context)
     val switchState = dataStore.ads.collectAsState(initial = true)
     val scope = rememberCoroutineScope()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.ads)) } , navigationIcon = {
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.ads)) }, navigationIcon = {
             IconButton(onClick = {
                 activity.finish()
             }) {
                 Icon(
-                    Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null
+                    Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null
                 )
             }
-        } , scrollBehavior = scrollBehavior)
+        }, scrollBehavior = scrollBehavior)
     }) { innerPadding ->
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding) ,
+                    .fillMaxSize()
+                    .padding(innerPadding),
             ) {
                 item {
                     SwitchCardComposable(
-                        title = stringResource(R.string.display_ads) , switchState = switchState
+                        title = stringResource(R.string.display_ads), switchState = switchState
                     ) { isChecked ->
                         scope.launch(Dispatchers.IO) {
                             dataStore.saveAds(isChecked)
@@ -79,54 +79,54 @@ fun AdsSettingsComposable(activity : AdsSettingsActivity) {
                 }
                 item {
                     Box(modifier = Modifier.padding(horizontal = 8.dp)) {
-                        PreferenceItem(title = stringResource(R.string.personalized_ads) ,
-                                       summary = "Manage the personalized ads consent for this app" ,
-                                       onClick = {
-                                           val params = ConsentRequestParameters.Builder()
-                                                   .setTagForUnderAgeOfConsent(false).build()
-                                           val consentInformation =
-                                                   UserMessagingPlatform.getConsentInformation(
-                                                       context
-                                                   )
-                                           consentInformation.requestConsentInfoUpdate(activity ,
-                                                                                       params ,
-                                                                                       {
-                                                                                           activity.loadForm()
-                                                                                       } ,
-                                                                                       {})
-                                       })
+                        PreferenceItem(title = stringResource(R.string.personalized_ads),
+                            summary = "Manage the personalized ads consent for this app",
+                            onClick = {
+                                val params = ConsentRequestParameters.Builder()
+                                    .setTagForUnderAgeOfConsent(false).build()
+                                val consentInformation =
+                                    UserMessagingPlatform.getConsentInformation(
+                                        context
+                                    )
+                                consentInformation.requestConsentInfoUpdate(activity,
+                                    params,
+                                    {
+                                        activity.loadForm()
+                                    },
+                                    {})
+                            })
                     }
                 }
                 item {
                     Column(
                         modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(24.dp)
+                            .fillMaxWidth()
+                            .padding(24.dp)
                     ) {
-                        Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
+                        Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(stringResource(R.string.summary_ads))
                         val annotatedString = buildAnnotatedString {
                             withStyle(
                                 style = SpanStyle(
-                                    color = MaterialTheme.colorScheme.primary ,
+                                    color = MaterialTheme.colorScheme.primary,
                                     textDecoration = TextDecoration.Underline
                                 )
                             ) {
                                 append(stringResource(R.string.learn_more))
                             }
                             addStringAnnotation(
-                                tag = "URL" ,
-                                annotation = "https://www.example.com" ,
-                                start = 0 ,
+                                tag = "URL",
+                                annotation = "https://www.example.com",
+                                start = 0,
                                 end = stringResource(R.string.learn_more).length
                             )
                         }
-                        ClickableText(text = annotatedString , onClick = { offset ->
-                            annotatedString.getStringAnnotations("URL" , offset , offset)
-                                    .firstOrNull()?.let { annotation ->
-                                        Utils.openUrl(context , annotation.item)
-                                    }
+                        ClickableText(text = annotatedString, onClick = { offset ->
+                            annotatedString.getStringAnnotations("URL", offset, offset)
+                                .firstOrNull()?.let { annotation ->
+                                    Utils.openUrl(context, annotation.item)
+                                }
                         })
                     }
                 }

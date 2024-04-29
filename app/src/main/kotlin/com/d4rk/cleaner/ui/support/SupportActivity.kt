@@ -18,13 +18,13 @@ import com.android.billingclient.api.SkuDetailsParams
 import com.d4rk.cleaner.ui.settings.display.theme.AppTheme
 
 class SupportActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState : Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                     SupportComposable(this@SupportActivity)
                 }
@@ -33,26 +33,26 @@ class SupportActivity : ComponentActivity() {
     }
 
     fun initiatePurchase(
-        sku : String ,
-        skuDetailsMap : Map<String , SkuDetails> ,
-        billingClient : BillingClient
+        sku: String,
+        skuDetailsMap: Map<String, SkuDetails>,
+        billingClient: BillingClient
     ) {
         val skuDetails = skuDetailsMap[sku]
         if (skuDetails != null) {
             val flowParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetails).build()
-            billingClient.launchBillingFlow(this , flowParams)
+            billingClient.launchBillingFlow(this, flowParams)
         }
     }
 
     fun querySkuDetails(
-        billingClient : BillingClient ,
-        skuDetailsMap : SnapshotStateMap<String , SkuDetails>
+        billingClient: BillingClient,
+        skuDetailsMap: SnapshotStateMap<String, SkuDetails>
     ) {
         val skuList =
-                listOf("low_donation" , "normal_donation" , "high_donation" , "extreme_donation")
+            listOf("low_donation", "normal_donation", "high_donation", "extreme_donation")
         val params = SkuDetailsParams.newBuilder().setSkusList(skuList)
-                .setType(BillingClient.SkuType.INAPP).build()
-        billingClient.querySkuDetailsAsync(params) { billingResult , skuDetailsList ->
+            .setType(BillingClient.SkuType.INAPP).build()
+        billingClient.querySkuDetailsAsync(params) { billingResult, skuDetailsList ->
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && skuDetailsList != null) {
                 for (skuDetails in skuDetailsList) {
                     skuDetailsMap[skuDetails.sku] = skuDetails

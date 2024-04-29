@@ -16,7 +16,6 @@ import com.d4rk.cleaner.notifications.managers.AppUpdateNotificationsManager
 import com.d4rk.cleaner.notifications.managers.AppUsageNotificationsManager
 import com.d4rk.cleaner.ui.settings.display.theme.AppTheme
 import com.d4rk.cleaner.ui.startup.StartupActivity
-import com.d4rk.cleaner.utils.FileScanner
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -25,29 +24,27 @@ import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class MainActivity : ComponentActivity() {
-    private lateinit var dataStore : DataStore
-    private lateinit var appUpdateManager : AppUpdateManager
-    private var appUpdateNotificationsManager : AppUpdateNotificationsManager =
-            AppUpdateNotificationsManager(this)
+    private lateinit var dataStore: DataStore
+    private lateinit var appUpdateManager: AppUpdateManager
+    private var appUpdateNotificationsManager: AppUpdateNotificationsManager =
+        AppUpdateNotificationsManager(this)
 
-    override fun onCreate(savedInstanceState : Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         enableEdgeToEdge()
-        dataStore = DataStore(this@MainActivity)
+        dataStore = DataStore.getInstance(this@MainActivity)
         startupScreen()
         setupUpdateNotifications()
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                     MainComposable(this@MainActivity)
                 }
@@ -79,16 +76,16 @@ class MainActivity : ComponentActivity() {
      */
     @Suppress("DEPRECATION")
     @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode : Int , resultCode : Int , data : Intent?) {
-        super.onActivityResult(requestCode , resultCode , data)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1) {
             when (resultCode) {
                 RESULT_OK -> {
                     val snackbar = Snackbar.make(
-                        findViewById(android.R.id.content) ,
-                        R.string.snack_app_updated ,
+                        findViewById(android.R.id.content),
+                        R.string.snack_app_updated,
                         Snackbar.LENGTH_LONG
-                    ).setAction(android.R.string.ok , null)
+                    ).setAction(android.R.string.ok, null)
                     snackbar.show()
                 }
 
@@ -123,7 +120,7 @@ class MainActivity : ComponentActivity() {
                             info.clientVersionStalenessDays()?.let {
                                 if (it > 90) {
                                     appUpdateManager.startUpdateFlowForResult(
-                                        info , AppUpdateType.IMMEDIATE , this@MainActivity , 1
+                                        info, AppUpdateType.IMMEDIATE, this@MainActivity, 1
                                     )
                                 }
                             }
@@ -135,7 +132,7 @@ class MainActivity : ComponentActivity() {
                             info.clientVersionStalenessDays()?.let {
                                 if (it < 90) {
                                     appUpdateManager.startUpdateFlowForResult(
-                                        info , AppUpdateType.FLEXIBLE , this@MainActivity , 1
+                                        info, AppUpdateType.FLEXIBLE, this@MainActivity, 1
                                     )
                                 }
                             }
@@ -148,7 +145,7 @@ class MainActivity : ComponentActivity() {
 
     private fun showUpdateFailedSnackbar() {
         val snackbar = Snackbar.make(
-            findViewById(android.R.id.content) , R.string.snack_update_failed , Snackbar.LENGTH_LONG
+            findViewById(android.R.id.content), R.string.snack_update_failed, Snackbar.LENGTH_LONG
         ).setAction(R.string.try_again) {
             checkForFlexibleUpdate()
         }
@@ -175,7 +172,7 @@ class MainActivity : ComponentActivity() {
         lifecycleScope.launch {
             val isEnabled = dataStore.usageAndDiagnostics.first()
             FirebaseAnalytics.getInstance(this@MainActivity)
-                    .setAnalyticsCollectionEnabled(isEnabled)
+                .setAnalyticsCollectionEnabled(isEnabled)
             FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(isEnabled)
         }
     }
@@ -184,7 +181,7 @@ class MainActivity : ComponentActivity() {
         lifecycleScope.launch {
             if (dataStore.startup.first()) {
                 dataStore.saveStartup(false)
-                startActivity(Intent(this@MainActivity , StartupActivity::class.java))
+                startActivity(Intent(this@MainActivity, StartupActivity::class.java))
             }
         }
     }

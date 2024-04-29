@@ -10,6 +10,6 @@
             android:endColor="?attr/colorPrimary"
             android:startColor="?attr/colorPrimary"
             android:type="sweep"
-            android:useLevel="false"/>
+            android:useLevel="false" />
     </shape>
 </rotate>

@@ -19,21 +19,21 @@ android {
         archivesName = "${applicationId}-v${versionName}"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations += listOf(
-            "en" ,
-            "de" ,
-            "es" ,
-            "fr" ,
-            "hi" ,
-            "hu" ,
-            "in" ,
-            "it" ,
-            "ja" ,
-            "ro" ,
-            "ru" ,
-            "tr" ,
-            "sv" ,
-            "bg" ,
-            "pl" ,
+            "en",
+            "de",
+            "es",
+            "fr",
+            "hi",
+            "hu",
+            "in",
+            "it",
+            "ja",
+            "ro",
+            "ru",
+            "tr",
+            "sv",
+            "bg",
+            "pl",
             "uk"
         )
         vectorDrawables {
@@ -48,7 +48,7 @@ android {
             isDebuggable = false
             versionNameSuffix = null
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt") ,
+                getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
@@ -59,7 +59,7 @@ android {
             isDebuggable = true
             versionNameSuffix = null
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt") ,
+                getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
@@ -131,6 +131,9 @@ dependencies {
     implementation(libs.firebase.crashlytics.ktx)
     implementation(libs.firebase.perf)
 
+    // Image Compression
+    implementation(libs.compressor)
+
     // Test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -149,6 +152,5 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.4.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("dev.shreyaspatil.MaterialDialog:MaterialDialog:2.2.3")
-    implementation("id.zelory:compressor:3.0.1")
     implementation("me.zhanghai.android.fastscroll:library:1.3.0")
 }

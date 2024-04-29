@@ -60,7 +60,7 @@ import java.io.File
  */
 @Composable
 fun AppManagerComposable() {
-    val tabs = listOf("Installed Apps" , "System Apps" , "App Install Files")
+    val tabs = listOf("Installed Apps", "System Apps", "App Install Files")
     var selectedIndex by remember { mutableIntStateOf(0) }
     var apps by remember { mutableStateOf(listOf<ApplicationInfo>()) }
     val context = LocalContext.current
@@ -70,27 +70,27 @@ fun AppManagerComposable() {
 
     Column {
         TabRow(
-            selectedTabIndex = selectedIndex ,
+            selectedTabIndex = selectedIndex,
             indicator = { tabPositions ->
                 if (selectedIndex < tabPositions.size) {
                     TabRowDefaults.PrimaryIndicator(
-                        modifier = Modifier.tabIndicatorOffset(tabPositions[selectedIndex]) ,
+                        modifier = Modifier.tabIndicatorOffset(tabPositions[selectedIndex]),
                         shape = RoundedCornerShape(
-                            topStart = 3.dp , topEnd = 3.dp , bottomEnd = 0.dp , bottomStart = 0.dp
-                        ) ,
+                            topStart = 3.dp, topEnd = 3.dp, bottomEnd = 0.dp, bottomStart = 0.dp
+                        ),
                     )
                 }
-            } ,
+            },
         ) {
-            tabs.forEachIndexed { index , title ->
+            tabs.forEachIndexed { index, title ->
                 Tab(text = {
                     Text(
-                        text = title ,
-                        maxLines = 1 ,
-                        overflow = TextOverflow.Ellipsis ,
+                        text = title,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
                         color = MaterialTheme.colorScheme.onSurface
                     )
-                } , selected = selectedIndex == index , onClick = { selectedIndex = index })
+                }, selected = selectedIndex == index, onClick = { selectedIndex = index })
             }
         }
         when (selectedIndex) {
@@ -107,7 +107,7 @@ fun AppManagerComposable() {
  * @param apps List of ApplicationInfo objects representing the apps to display.
  */
 @Composable
-fun AppsComposable(apps : List<ApplicationInfo>) {
+fun AppsComposable(apps: List<ApplicationInfo>) {
     LazyColumn {
         items(apps) { app ->
             AppItemComposable(app)
@@ -122,7 +122,7 @@ fun AppsComposable(apps : List<ApplicationInfo>) {
  */
 @Composable
 fun AppItemComposable(
-    app : ApplicationInfo
+    app: ApplicationInfo
 ) {
     val context = LocalContext.current
     val packageManager = context.packageManager
@@ -137,84 +137,82 @@ fun AppItemComposable(
         val drawable = app.loadIcon(packageManager)
         val bitmap = if (drawable is BitmapDrawable) {
             drawable.bitmap
-        }
-        else {
+        } else {
             val bitmap = Bitmap.createBitmap(
-                drawable.intrinsicWidth , drawable.intrinsicHeight , Bitmap.Config.ARGB_8888
+                drawable.intrinsicWidth, drawable.intrinsicHeight, Bitmap.Config.ARGB_8888
             )
             val canvas = Canvas(bitmap)
-            drawable.setBounds(0 , 0 , canvas.width , canvas.height)
+            drawable.setBounds(0, 0, canvas.width, canvas.height)
             drawable.draw(canvas)
             bitmap
         }
         bitmap.asImageBitmap()
     }
     var showMenu by remember { mutableStateOf(false) }
-    OutlinedCard(modifier = Modifier.padding(start = 8.dp , end = 8.dp , top = 8.dp)) {
+    OutlinedCard(modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)) {
         Row(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-                    .clip(RoundedCornerShape(16.dp)) ,
+                .fillMaxWidth()
+                .padding(16.dp)
+                .clip(RoundedCornerShape(16.dp)),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                bitmap = appIcon , contentDescription = null , modifier = Modifier.size(48.dp)
+                bitmap = appIcon, contentDescription = null, modifier = Modifier.size(48.dp)
             )
             Column(
                 modifier = Modifier
-                        .padding(16.dp)
-                        .weight(1f)
+                    .padding(16.dp)
+                    .weight(1f)
             ) {
                 Text(
-                    text = appName ,
-                    style = MaterialTheme.typography.titleMedium ,
+                    text = appName,
+                    style = MaterialTheme.typography.titleMedium,
                 )
                 Text(
-                    text = appSize , style = MaterialTheme.typography.bodyMedium
+                    text = appSize, style = MaterialTheme.typography.bodyMedium
                 )
             }
 
 
             Box {
                 IconButton(onClick = { showMenu = true }) {
-                    Icon(Icons.Outlined.MoreVert , contentDescription = null)
+                    Icon(Icons.Outlined.MoreVert, contentDescription = null)
                 }
 
-                DropdownMenu(expanded = showMenu , onDismissRequest = { showMenu = false }) {
-                    DropdownMenuItem(text = { Text(stringResource(R.string.uninstall)) } ,
-                                     onClick = {
-                                         val uri = Uri.fromParts("package" , app.packageName , null)
-                                         val intent = Intent(Intent.ACTION_DELETE , uri)
-                                         context.startActivity(intent)
-                                     })
-                    DropdownMenuItem(text = { Text(stringResource(R.string.share)) } , onClick = {
+                DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
+                    DropdownMenuItem(text = { Text(stringResource(R.string.uninstall)) },
+                        onClick = {
+                            val uri = Uri.fromParts("package", app.packageName, null)
+                            val intent = Intent(Intent.ACTION_DELETE, uri)
+                            context.startActivity(intent)
+                        })
+                    DropdownMenuItem(text = { Text(stringResource(R.string.share)) }, onClick = {
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
-                        shareIntent.putExtra(Intent.EXTRA_SUBJECT , "Check out this app")
+                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Check out this app")
                         val isFromPlayStore =
-                                context.packageManager.getInstallerPackageName(app.packageName) == "com.android.vending"
+                            context.packageManager.getInstallerPackageName(app.packageName) == "com.android.vending"
                         if (isFromPlayStore) {
                             val playStoreLink =
-                                    "https://play.google.com/store/apps/details?id=${app.packageName}"
+                                "https://play.google.com/store/apps/details?id=${app.packageName}"
                             val shareMessage = "Check out this app: $appName\n$playStoreLink"
-                            shareIntent.putExtra(Intent.EXTRA_TEXT , shareMessage)
-                        }
-                        else {
+                            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
+                        } else {
                             val shareMessage = "Check out this app: $appName\n$app.packageName"
-                            shareIntent.putExtra(Intent.EXTRA_TEXT , shareMessage)
+                            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
                         }
-                        context.startActivity(Intent.createChooser(shareIntent , "Share App"))
+                        context.startActivity(Intent.createChooser(shareIntent, "Share App"))
                     })
-                    DropdownMenuItem(text = { Text(stringResource(R.string.app_info)) } ,
-                                     onClick = {
-                                         val appInfoIntent =
-                                                 Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                                         val packageUri =
-                                                 Uri.fromParts("package" , app.packageName , null)
-                                         appInfoIntent.data = packageUri
-                                         context.startActivity(appInfoIntent)
-                                     })
+                    DropdownMenuItem(text = { Text(stringResource(R.string.app_info)) },
+                        onClick = {
+                            val appInfoIntent =
+                                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                            val packageUri =
+                                Uri.fromParts("package", app.packageName, null)
+                            appInfoIntent.data = packageUri
+                            context.startActivity(appInfoIntent)
+                        })
                 }
             }
         }
@@ -229,10 +227,10 @@ fun ApksComposable() {
     val context = LocalContext.current
     val uri = MediaStore.Files.getContentUri("external")
     val cursor = context.contentResolver.query(
-        uri ,
-        arrayOf(MediaStore.Files.FileColumns.DATA) ,
-        MediaStore.Files.FileColumns.MIME_TYPE + "=?" ,
-        arrayOf("application/vnd.android.package-archive") ,
+        uri,
+        arrayOf(MediaStore.Files.FileColumns.DATA),
+        MediaStore.Files.FileColumns.MIME_TYPE + "=?",
+        arrayOf("application/vnd.android.package-archive"),
         null
     )
 
@@ -258,7 +256,7 @@ fun ApksComposable() {
  * @param apkPath Path to the APK file.
  */
 @Composable
-fun ApkItemComposable(apkPath : String) {
+fun ApkItemComposable(apkPath: String) {
     val context = LocalContext.current
     val apkFile = File(apkPath)
     val sizeInBytes = apkFile.length()
@@ -267,17 +265,16 @@ fun ApkItemComposable(apkPath : String) {
     val apkSize = "%.2f MB".format(sizeInMB.toFloat())
     val apkName = apkFile.name
 
-    val packageInfo = context.packageManager.getPackageArchiveInfo(apkPath , 0)
+    val packageInfo = context.packageManager.getPackageArchiveInfo(apkPath, 0)
     val appIcon = packageInfo?.applicationInfo?.loadIcon(context.packageManager)?.let {
         val bitmap = if (it is BitmapDrawable) {
             it.bitmap
-        }
-        else {
+        } else {
             val bitmap = Bitmap.createBitmap(
-                it.intrinsicWidth , it.intrinsicHeight , Bitmap.Config.ARGB_8888
+                it.intrinsicWidth, it.intrinsicHeight, Bitmap.Config.ARGB_8888
             )
             val canvas = Canvas(bitmap)
-            it.setBounds(0 , 0 , canvas.width , canvas.height)
+            it.setBounds(0, 0, canvas.width, canvas.height)
             it.draw(canvas)
             bitmap
         }
@@ -286,48 +283,48 @@ fun ApkItemComposable(apkPath : String) {
 
     var showMenu by remember { mutableStateOf(false) }
 
-    OutlinedCard(modifier = Modifier.padding(start = 8.dp , end = 8.dp , top = 8.dp)) {
+    OutlinedCard(modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)) {
         Row(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-                    .clip(RoundedCornerShape(16.dp)) ,
+                .fillMaxWidth()
+                .padding(16.dp)
+                .clip(RoundedCornerShape(16.dp)),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                bitmap = appIcon , contentDescription = null , modifier = Modifier.size(48.dp)
+                bitmap = appIcon, contentDescription = null, modifier = Modifier.size(48.dp)
             )
             Column(
                 modifier = Modifier
-                        .padding(16.dp)
-                        .weight(1f)
+                    .padding(16.dp)
+                    .weight(1f)
             ) {
                 Text(
-                    text = apkName ,
-                    style = MaterialTheme.typography.titleMedium ,
+                    text = apkName,
+                    style = MaterialTheme.typography.titleMedium,
                 )
                 Text(
-                    text = apkSize , style = MaterialTheme.typography.bodyMedium
+                    text = apkSize, style = MaterialTheme.typography.bodyMedium
                 )
             }
 
             Box {
                 IconButton(onClick = { showMenu = true }) {
-                    Icon(Icons.Outlined.MoreVert , contentDescription = null)
+                    Icon(Icons.Outlined.MoreVert, contentDescription = null)
                 }
 
-                DropdownMenu(expanded = showMenu , onDismissRequest = { showMenu = false }) {
-                    DropdownMenuItem(text = { Text(stringResource(R.string.share)) } , onClick = {
+                DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
+                    DropdownMenuItem(text = { Text(stringResource(R.string.share)) }, onClick = {
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "application/vnd.android.package-archive"
-                        shareIntent.putExtra(Intent.EXTRA_STREAM , Uri.fromFile(apkFile))
-                        context.startActivity(Intent.createChooser(shareIntent , "Share APK"))
+                        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(apkFile))
+                        context.startActivity(Intent.createChooser(shareIntent, "Share APK"))
                     })
 
-                    DropdownMenuItem(text = { Text("Install") } , onClick = {
+                    DropdownMenuItem(text = { Text("Install") }, onClick = {
                         val installIntent = Intent(Intent.ACTION_VIEW)
                         installIntent.setDataAndType(
-                            Uri.fromFile(apkFile) ,
+                            Uri.fromFile(apkFile),
                             "application/vnd.android.package-archive"
                         )
                         installIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK

@@ -7,13 +7,13 @@ import com.d4rk.cleaner.ui.imageoptimizer.FileSizeFragment
 import com.d4rk.cleaner.ui.imageoptimizer.ManualModeFragment
 import com.d4rk.cleaner.ui.imageoptimizer.QuickCompressFragment
 
-class ImageOptimizationPagerAdapter(fragmentActivity : FragmentActivity) :
+class ImageOptimizationPagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
-    override fun getItemCount() : Int {
+    override fun getItemCount(): Int {
         return 3
     }
 
-    override fun createFragment(position : Int) : Fragment {
+    override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> QuickCompressFragment()
             1 -> FileSizeFragment()

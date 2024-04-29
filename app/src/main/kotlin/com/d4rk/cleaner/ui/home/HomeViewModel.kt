@@ -16,11 +16,11 @@ import java.io.File
 import java.util.UUID
 import kotlin.math.roundToInt
 
-class HomeViewModel(application : Application) : AndroidViewModel(application) {
+class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val progress = MutableLiveData(0f)
     val storageUsed = MutableLiveData<String>()
     val storageTotal = MutableLiveData<String>()
-    private var fileScanner : FileScanner
+    private var fileScanner: FileScanner
 
     val scannedFiles = MutableLiveData<List<File>>()
     private val dataStoreInstance: DataStore = DataStore(application)
@@ -50,15 +50,15 @@ class HomeViewModel(application : Application) : AndroidViewModel(application) {
     private fun updateStorageInfo() {
         viewModelScope.launch {
             val storageManager =
-                    getApplication<Application>().getSystemService(Context.STORAGE_SERVICE) as StorageManager
+                getApplication<Application>().getSystemService(Context.STORAGE_SERVICE) as StorageManager
             val storageStatsManager =
-                    getApplication<Application>().getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
+                getApplication<Application>().getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
             val storageVolume = storageManager.primaryStorageVolume
-            val totalSize : Long
-            val usedSize : Long
+            val totalSize: Long
+            val usedSize: Long
             val uuidStr = storageVolume.uuid
-            val uuid : UUID =
-                    if (uuidStr == null) StorageManager.UUID_DEFAULT else UUID.fromString(uuidStr)
+            val uuid: UUID =
+                if (uuidStr == null) StorageManager.UUID_DEFAULT else UUID.fromString(uuidStr)
             totalSize = storageStatsManager.getTotalBytes(uuid)
             usedSize = totalSize - storageStatsManager.getFreeBytes(uuid)
             storageUsed.postValue((usedSize / (1024.0 * 1024.0 * 1024.0)).roundToInt().toString())

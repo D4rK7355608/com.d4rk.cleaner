@@ -10,13 +10,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 
 class ThemeSettingsActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState : Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                     ThemeSettingsComposable(this@ThemeSettingsActivity)
                 }

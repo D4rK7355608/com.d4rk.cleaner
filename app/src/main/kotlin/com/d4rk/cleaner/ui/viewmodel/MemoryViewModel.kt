@@ -1,4 +1,5 @@
 package com.d4rk.cleaner.ui.viewmodel
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -11,14 +12,17 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.BufferedReader
 import java.io.InputStreamReader
+
 class MemoryViewModel : ViewModel() {
     private val cpuTemperatureLiveData = MutableLiveData<Double?>()
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private val updateInterval = 1000L
+
     init {
         startCpuTemperatureUpdates()
     }
+
     fun startCpuTemperatureUpdates() {
         viewModelScope.launch {
             while (isActive) {
@@ -28,12 +32,15 @@ class MemoryViewModel : ViewModel() {
             }
         }
     }
+
     fun stopCpuTemperatureUpdates() {
         viewModelJob.cancelChildren()
     }
+
     fun getCpuTemperature(): Double {
         return cpuTemperatureLiveData.value ?: 0.0
     }
+
     private suspend fun calculateCpuTemperature(): Double? = withContext(Dispatchers.IO) {
         var temperature: Double? = null
         try {
@@ -53,6 +60,7 @@ class MemoryViewModel : ViewModel() {
         }
         return@withContext temperature
     }
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
