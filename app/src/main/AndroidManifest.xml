@@ -18,7 +18,9 @@
         android:name="android.permission.READ_MEDIA_IMAGES"
         tools:ignore="SelectedPhotoAccess" />
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
-    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_VIDEO"
+        tools:ignore="SelectedPhotoAccess" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32"
@@ -52,9 +54,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="33">
-        <activity
-            android:name=".ui.startup.StartupActivity"
-            android:theme="@style/AppThemeNoActionBar" />
+
+        <activity android:name=".ui.startup.StartupActivity" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -68,22 +70,26 @@
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
+
         <activity
             android:name=".ui.support.SupportActivity"
             android:exported="true"
             android:label="@string/support_us"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppThemeNoActionBar" />
+
         <activity
             android:name=".ui.whitelist.WhitelistActivity"
             android:exported="true"
             android:label="@string/whitelist"
             android:parentActivityName=".MainActivity" />
+
         <activity
             android:name=".ui.imageoptimizer.ImageOptimizerActivity"
             android:exported="true"
             android:label="@string/image_optimizer"
             android:parentActivityName=".MainActivity" />
+
         <activity
             android:name=".ui.imageoptimizer.ImagePickerActivity"
             android:exported="true"
@@ -99,9 +105,11 @@
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.settings.display.DisplaySettingsActivity"
             android:parentActivityName=".ui.settings.SettingsActivity" />
+
         <activity
             android:name=".ui.settings.display.theme.ThemeSettingsActivity"
             android:parentActivityName=".ui.settings.display.DisplaySettingsActivity" />
@@ -109,15 +117,15 @@
         <activity
             android:name=".ui.settings.cleaning.CleaningSettingsActivity"
             android:parentActivityName=".ui.settings.SettingsActivity" />
+
         <activity
             android:name=".ui.settings.advanced.AdvancedSettingsActivity"
-            android:exported="false"
-            android:label="@string/advanced"
-            android:parentActivityName=".ui.settings.SettingsActivity"
-            android:theme="@style/AppThemeNoActionBar" />
+            android:parentActivityName=".ui.settings.SettingsActivity" />
+
         <activity
             android:name=".ui.settings.privacy.PrivacySettingsActivity"
             android:parentActivityName=".ui.settings.SettingsActivity" />
+
         <activity
             android:name=".ui.settings.privacy.permissions.PermissionsSettingsActivity"
             android:exported="true"
@@ -130,24 +138,22 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.settings.privacy.usage.UsageAndDiagnosticsActivity"
             android:parentActivityName=".ui.settings.privacy.PrivacySettingsActivity" />
+
         <activity
             android:name=".ui.settings.privacy.ads.AdsSettingsActivity"
             android:parentActivityName=".ui.settings.privacy.PrivacySettingsActivity" />
 
-
         <activity
             android:name=".ui.settings.about.AboutSettingsActivity"
-            android:exported="false"
-            android:parentActivityName=".ui.settings.SettingsActivity"
-            android:theme="@style/AppThemeNoActionBar" />
+            android:parentActivityName=".ui.settings.SettingsActivity" />
+
         <activity
             android:name=".ui.help.HelpActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeNoActionBar" />
+            android:parentActivityName=".MainActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -158,6 +164,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
         <!--        <receiver
                     android:name=".receivers.CleanReceiver"
                     android:exported="false">
@@ -166,6 +173,7 @@
                     </intent-filter>
                 </receiver>-->
         <!--suppress AndroidDomInspection -->
+
         <service
             android:name="com.google.android.gms.metadata.ModuleDependencies"
             android:enabled="false"
@@ -178,6 +186,7 @@
                 android:name="photopicker_activity:0:required"
                 android:value="" />
         </service>
+
         <service
             android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
             android:enabled="false"
@@ -190,18 +199,23 @@
         <meta-data
             android:name="firebase_performance_logcat_enabled"
             android:value="true" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-5294151573817700~3549716864" />
+
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true" />
+
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
             android:value="true" />
+
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
             android:value="true" />
