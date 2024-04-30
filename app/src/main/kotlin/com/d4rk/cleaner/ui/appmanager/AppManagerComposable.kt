@@ -191,7 +191,7 @@ fun AppItemComposable(
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Check out this app")
-                        val isFromPlayStore =
+                        @Suppress("DEPRECATION") val isFromPlayStore =
                             context.packageManager.getInstallerPackageName(app.packageName) == "com.android.vending"
                         if (isFromPlayStore) {
                             val playStoreLink =
@@ -204,15 +204,12 @@ fun AppItemComposable(
                         }
                         context.startActivity(Intent.createChooser(shareIntent, "Share App"))
                     })
-                    DropdownMenuItem(text = { Text(stringResource(R.string.app_info)) },
-                        onClick = {
-                            val appInfoIntent =
-                                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                            val packageUri =
-                                Uri.fromParts("package", app.packageName, null)
-                            appInfoIntent.data = packageUri
-                            context.startActivity(appInfoIntent)
-                        })
+                    DropdownMenuItem(text = { Text(stringResource(R.string.app_info)) }, onClick = {
+                        val appInfoIntent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                        val packageUri = Uri.fromParts("package", app.packageName, null)
+                        appInfoIntent.data = packageUri
+                        context.startActivity(appInfoIntent)
+                    })
                 }
             }
         }
@@ -324,8 +321,7 @@ fun ApkItemComposable(apkPath: String) {
                     DropdownMenuItem(text = { Text("Install") }, onClick = {
                         val installIntent = Intent(Intent.ACTION_VIEW)
                         installIntent.setDataAndType(
-                            Uri.fromFile(apkFile),
-                            "application/vnd.android.package-archive"
+                            Uri.fromFile(apkFile), "application/vnd.android.package-archive"
                         )
                         installIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                         context.startActivity(installIntent)

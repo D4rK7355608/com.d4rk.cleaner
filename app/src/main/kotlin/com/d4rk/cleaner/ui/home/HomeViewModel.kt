@@ -20,11 +20,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val progress = MutableLiveData(0f)
     val storageUsed = MutableLiveData<String>()
     val storageTotal = MutableLiveData<String>()
-    private var fileScanner: FileScanner
+    var fileScanner: FileScanner
 
     val scannedFiles = MutableLiveData<List<File>>()
     private val dataStoreInstance: DataStore = DataStore(application)
-
 
     init {
         updateStorageInfo()

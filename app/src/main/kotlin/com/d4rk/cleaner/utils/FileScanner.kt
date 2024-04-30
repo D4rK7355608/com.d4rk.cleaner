@@ -29,7 +29,7 @@ class FileScanner(private val dataStore: DataStore, private val resources: Resou
     suspend fun startScanning() {
         loadPreferences()
         val allFiles = getAllFiles()
-        filteredFiles = filterFiles(allFiles)
+        filteredFiles = filterFiles(allFiles).toList()
     }
 
     /**
@@ -82,38 +82,45 @@ class FileScanner(private val dataStore: DataStore, private val resources: Resou
      * @param allFiles List of all files to filter.
      * @return List of files filtered based on preferences.
      */
-    private fun filterFiles(allFiles: List<File>): List<File> {
-        return allFiles.filter { file ->
-            preferences.any { (key, value) ->
-                val result = when (key) {
-                    "generic_extensions" -> {
-                        val extensions = resources.getStringArray(R.array.generic_extensions)
-                        value && extensions.map { it.removePrefix(".") }.contains(file.extension)
-                    }
+    private fun filterFiles(allFiles: List<File>): Sequence<File> {
+        return sequence {
+            for (file in allFiles) {
+                if (preferences.any { (key, value) ->
+                        val result = when (key) {
+                            "generic_extensions" -> {
+                                val extensions =
+                                    resources.getStringArray(R.array.generic_extensions)
+                                value && extensions.map { it.removePrefix(".") }
+                                    .contains(file.extension)
+                            }
 
-                    "archive_extensions" -> {
-                        val extensions = resources.getStringArray(R.array.archive_extensions)
-                        value && extensions.contains(file.extension)
-                    }
+                            "archive_extensions" -> {
+                                val extensions =
+                                    resources.getStringArray(R.array.archive_extensions)
+                                value && extensions.contains(file.extension)
+                            }
 
-                    "apk_extensions" -> {
-                        val extensions = resources.getStringArray(R.array.apk_extensions)
-                        value && extensions.contains(file.extension)
-                    }
+                            "apk_extensions" -> {
+                                val extensions = resources.getStringArray(R.array.apk_extensions)
+                                value && extensions.contains(file.extension)
+                            }
 
-                    "audio_extensions" -> {
-                        val extensions = resources.getStringArray(R.array.audio_extensions)
-                        value && extensions.contains(file.extension)
-                    }
+                            "audio_extensions" -> {
+                                val extensions = resources.getStringArray(R.array.audio_extensions)
+                                value && extensions.contains(file.extension)
+                            }
 
-                    "video_extensions" -> {
-                        val extensions = resources.getStringArray(R.array.video_extensions)
-                        value && extensions.contains(file.extension)
-                    }
+                            "video_extensions" -> {
+                                val extensions = resources.getStringArray(R.array.video_extensions)
+                                value && extensions.contains(file.extension)
+                            }
 
-                    else -> false
+                            else -> false
+                        }
+                        result
+                    }) {
+                    yield(file)
                 }
-                result
             }
         }
     }

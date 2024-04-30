@@ -29,6 +29,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -204,6 +205,11 @@ fun CircularDeterminateIndicator(
 fun AnalyzeComposable() {
     val viewModel: HomeViewModel = viewModel()
     val files by viewModel.scannedFiles.asFlow().collectAsState(initial = listOf())
+
+    LaunchedEffect(Unit) {
+        viewModel.fileScanner.startScanning()
+    }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -284,7 +290,6 @@ fun FileItemComposable(
     val iconResource = fileIconMap[fileExtension] ?: R.drawable.ic_file_present
 
     val rememberedIsChecked = remember { mutableStateOf(isChecked) }
-
 
     Row(
         modifier = Modifier.fillMaxWidth(),
