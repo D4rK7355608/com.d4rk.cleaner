@@ -22,9 +22,12 @@ class FileScanner(private val dataStore: DataStore, private val resources: Resou
     private var filteredFiles: List<File> = emptyList()
 
     /**
-     * Initiates file scanning process.
+     * Initiates the file scanning process asynchronously.
      *
      * This function loads preferences, retrieves all files, applies filters, and logs the result.
+     * The scanning process runs on a background thread to avoid blocking the main thread.
+     *
+     * @throws Exception If an error occurs during the scanning process.
      */
     suspend fun startScanning() {
         loadPreferences()
@@ -77,10 +80,13 @@ class FileScanner(private val dataStore: DataStore, private val resources: Resou
     }
 
     /**
-     * Filters files based on defined preferences.
+     * Filters files based on defined preferences and returns them as a sequence.
      *
-     * @param allFiles List of all files to filter.
-     * @return List of files filtered based on preferences.
+     * This function takes a list of all files as input and returns a sequence of files that match the defined preferences.
+     * The sequence allows for real-time display of filtered files as they are discovered during the scanning process.
+     *
+     * @param allFiles The list of all files to filter.
+     * @return A sequence of files filtered based on preferences.
      */
     private fun filterFiles(allFiles: List<File>): Sequence<File> {
         return sequence {
