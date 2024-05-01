@@ -1,11 +1,4 @@
 <resources>
-
-    <style name="SplashScreenTheme" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">?attr/colorSurface</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
-        <item name="postSplashScreenTheme">@style/AppThemeNoActionBar</item>
-    </style>
-
     <style name="AppTheme" parent="Theme.Material3.DynamicColors.DayNight">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowLightStatusBar">true</item>
@@ -42,31 +35,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="FontTheme" parent="TextAppearance.AppCompat">
-        <item name="fontFamily">@font/font_poppins</item>
-        <item name="android:fontFamily">@font/font_poppins</item>
-    </style>
+
 
     <style name="actionBarStyle" parent="@style/Widget.Material3.ActionBar.Solid">
         <item name="background">@android:color/transparent</item>
-        <item name="android:fontFamily">@font/font_poppins</item>
-    </style>
-
-    <style name="collapsingToolbarLayoutStyle" parent="@style/Widget.Material3.CollapsingToolbar.Medium">
-        <item name="android:background">?attr/colorSurface</item>
-        <item name="contentScrim">?attr/colorSurface</item>
-        <item name="statusBarScrim">?attr/colorSurface</item>
-        <item name="fontFamily">@font/font_poppins</item>
-        <item name="android:fontFamily">@font/font_poppins</item>
-    </style>
-
-    <style name="TextAppearance.App.CollapsingToolbar.Expanded" parent="TextAppearance.MaterialComponents.Headline5">
-        <item name="fontFamily">@font/font_poppins</item>
-        <item name="android:fontFamily">@font/font_poppins</item>
-    </style>
-
-    <style name="TextAppearance.App.CollapsingToolbar.Collapsed" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="fontFamily">@font/font_poppins</item>
         <item name="android:fontFamily">@font/font_poppins</item>
     </style>
 </resources>

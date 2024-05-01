@@ -207,6 +207,16 @@ class DataStore(context: Context) {
         }
     }
 
+    private val deleteImageFilesKey = booleanPreferencesKey("delete_image_files")
+    val deleteImageFiles: Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[deleteImageFilesKey] ?: true
+    }
+
+    suspend fun saveDeleteImageFiles(isChecked: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[deleteImageFilesKey] = isChecked
+        }
+    }
 
     private val doubleCheckerKey = booleanPreferencesKey("double_checker")
     val doubleChecker: Flow<Boolean> = dataStore.data.map { preferences ->

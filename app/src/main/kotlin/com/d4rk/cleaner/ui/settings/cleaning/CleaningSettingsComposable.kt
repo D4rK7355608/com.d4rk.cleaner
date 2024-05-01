@@ -42,6 +42,7 @@ fun CleaningSettingsComposable(activity: CleaningSettingsActivity) {
     val deleteApkFiles by dataStore.deleteApkFiles.collectAsState(initial = true)
     val deleteAudioFiles by dataStore.deleteAudioFiles.collectAsState(initial = false)
     val deleteVideoFiles by dataStore.deleteVideoFiles.collectAsState(initial = false)
+    val deleteImageFiles by dataStore.deleteImageFiles.collectAsState(initial = false)
     val doubleChecker by dataStore.doubleChecker.collectAsState(initial = false)
     val clipboardClean by dataStore.clipboardClean.collectAsState(initial = false)
     val autoWhitelist by dataStore.autoWhitelist.collectAsState(initial = true)
@@ -127,6 +128,15 @@ fun CleaningSettingsComposable(activity: CleaningSettingsActivity) {
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveDeleteVideoFiles(isChecked)
+                    }
+                }
+                SwitchPreferenceItem(
+                    title = "Delete images",
+                    summary = "Delete the image files from the device",
+                    checked = deleteImageFiles,
+                ) { isChecked ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        dataStore.saveDeleteImageFiles(isChecked)
                     }
                 }
                 SwitchPreferenceItem(

@@ -4,6 +4,7 @@ import android.app.Application
 import android.app.usage.StorageStatsManager
 import android.content.Context
 import android.os.storage.StorageManager
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -23,6 +24,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     var fileScanner: FileScanner
 
     val scannedFiles = MutableLiveData<List<File>>()
+    val allFilesSelected = mutableStateOf(false)
     private val dataStoreInstance: DataStore = DataStore(application)
 
     init {
@@ -80,6 +82,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             fileScanner.startScanning()
             scannedFiles.postValue(fileScanner.getFilteredFiles())
         }
+    }
+
+    fun selectAllFiles(selectAll: Boolean) {
+        allFilesSelected.value = selectAll
     }
 
     fun clean() {

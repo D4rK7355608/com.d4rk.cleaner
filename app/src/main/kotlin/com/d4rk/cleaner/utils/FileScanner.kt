@@ -46,6 +46,7 @@ class FileScanner(private val dataStore: DataStore, private val resources: Resou
             // "delete_invalid_media" to dataStore.deleteInvalidMedia.first() ,
             // "delete_corpse_files" to dataStore.deleteCorpseFiles.first() ,
             "apk_extensions" to dataStore.deleteApkFiles.first(),
+            "image_extensions" to dataStore.deleteImageFiles.first(),
             "audio_extensions" to dataStore.deleteAudioFiles.first(),
             "video_extensions" to dataStore.deleteVideoFiles.first(),
             //"double_checker" to dataStore.doubleChecker.first() ,
@@ -118,6 +119,11 @@ class FileScanner(private val dataStore: DataStore, private val resources: Resou
 
                             "video_extensions" -> {
                                 val extensions = resources.getStringArray(R.array.video_extensions)
+                                value && extensions.contains(file.extension)
+                            }
+
+                            "image_extensions" -> {
+                                val extensions = resources.getStringArray(R.array.image_extensions)
                                 value && extensions.contains(file.extension)
                             }
 

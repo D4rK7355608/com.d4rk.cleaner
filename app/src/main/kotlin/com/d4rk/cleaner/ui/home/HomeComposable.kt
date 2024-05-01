@@ -5,6 +5,7 @@ import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,10 +21,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
@@ -35,6 +39,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
@@ -199,12 +205,15 @@ fun CircularDeterminateIndicator(
  * Composable function representing the analyze screen displaying a list of files to clean.
  *
  * This composable displays a list of files within an outlined card, each represented by a cleaning item.
- * The user can view and interact with the list of files for cleaning.
+ * The user can view and interact with the list of files for cleaning, including selecting and deselecting individual files and selecting or deselecting all files.
+ *
+ * @param viewModel The HomeViewModel instance used to interact with the data and business logic.
  */
 @Composable
 fun AnalyzeComposable() {
     val viewModel: HomeViewModel = viewModel()
     val files by viewModel.scannedFiles.asFlow().collectAsState(initial = listOf())
+    val allFilesSelected by viewModel.allFilesSelected
 
     LaunchedEffect(Unit) {
         viewModel.fileScanner.startScanning()
@@ -214,10 +223,12 @@ fun AnalyzeComposable() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.End
     ) {
         OutlinedCard(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .weight(1f) // This will take up the remaining space
+                .fillMaxWidth(),
         ) {
             Column {
                 LazyColumn(
@@ -228,7 +239,7 @@ fun AnalyzeComposable() {
                     items(files) { file ->
                         FileItemComposable(
                             item = file.name,
-                            isChecked = false,
+                            isChecked = allFilesSelected,
                             onCheckedChange = {
 
                             },
@@ -238,10 +249,57 @@ fun AnalyzeComposable() {
                 }
             }
         }
-        Text(
-            text = "Status",
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(top = 24.dp)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            Text(
+                text = "Status",
+                color = MaterialTheme.colorScheme.primary,
+            )
+            SelectAllComposable(
+                checked = allFilesSelected,
+                onCheckedChange = { viewModel.selectAllFiles(it) },
+            )
+        }
+    }
+}
+
+/**
+ * Composable function for selecting or deselecting all items.
+ *
+ * This composable displays a filter chip labeled "Select All". When tapped, it toggles the
+ * selection state and invokes the `onCheckedChange` callback.
+ *
+ * @param checked A boolean value indicating whether all items are currently selected.
+ * @param onCheckedChange A callback function that is invoked when the user taps the chip to change the selection state.
+ */
+@Composable
+fun SelectAllComposable(
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        val interactionSource = remember { MutableInteractionSource() }
+        FilterChip(
+            selected = checked,
+            onClick = { onCheckedChange(!checked) },
+            label = { Text("Select All") },
+            leadingIcon = if (checked) {
+                {
+                    Icon(
+                        imageVector = Icons.Filled.Check,
+                        contentDescription = null
+                    )
+                }
+            } else {
+                null
+            },
+            interactionSource = interactionSource,
         )
     }
 }
@@ -250,6 +308,7 @@ fun AnalyzeComposable() {
  * Composable function representing an item in a cleaning list with an icon, text label, and checkbox.
  *
  * This composable displays a row containing an icon, text label, and checkbox for a given cleaning list item.
+ * The user can tap the checkbox to select or deselect the item.
  *
  * @param item The text label to display for the cleaning item.
  * @param isChecked The state of the checkbox indicating whether the item is selected or not.
@@ -289,7 +348,7 @@ fun FileItemComposable(
     val fileExtension = getFileExtension(item)
     val iconResource = fileIconMap[fileExtension] ?: R.drawable.ic_file_present
 
-    val rememberedIsChecked = remember { mutableStateOf(isChecked) }
+    var rememberedIsChecked by rememberSaveable { mutableStateOf(isChecked) }
 
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -309,9 +368,9 @@ fun FileItemComposable(
         )
         Spacer(modifier = Modifier.width(4.dp))
         Checkbox(
-            checked = rememberedIsChecked.value,
+            checked = rememberedIsChecked,
             onCheckedChange = {
-                rememberedIsChecked.value = it
+                rememberedIsChecked = it
                 onCheckedChange(it)
             },
             modifier = Modifier.align(Alignment.CenterVertically)
