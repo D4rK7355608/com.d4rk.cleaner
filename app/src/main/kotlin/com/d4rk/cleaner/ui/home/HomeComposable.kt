@@ -3,8 +3,12 @@ package com.d4rk.cleaner.ui.home
 import android.content.Context
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -41,11 +45,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -56,106 +60,148 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ui.startup.StartupActivity
 import com.d4rk.cleaner.utils.Utils
 import com.google.common.io.Files.getFileExtension
+import kotlinx.coroutines.launch
+import java.io.File
 
 @Composable
 fun HomeComposable() {
     val context = LocalContext.current
-    val viewModel: HomeViewModel = viewModel()
+    val viewModel : HomeViewModel = viewModel()
     val progress by viewModel.progress.observeAsState(0.3f)
     val storageUsed by viewModel.storageUsed.observeAsState("0")
     val storageTotal by viewModel.storageTotal.observeAsState("0")
     val showCleaningComposable = remember { mutableStateOf(false) }
+    val scaleClean = remember { Animatable(1f) }
+    val scaleAnalyze = remember { Animatable(1f) }
+    val coroutineScope = rememberCoroutineScope()
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
         Box(
             modifier = Modifier
-                .weight(4f)
-                .fillMaxWidth()
+                    .weight(4f)
+                    .fillMaxWidth()
         ) {
-            if (!showCleaningComposable.value) {
+            if (! showCleaningComposable.value) {
                 CircularDeterminateIndicator(
-                    progress = progress,
-                    storageUsed = storageUsed,
-                    storageTotal = storageTotal,
+                    progress = progress ,
+                    storageUsed = storageUsed ,
+                    storageTotal = storageTotal ,
                     modifier = Modifier
-                        .align(Alignment.TopCenter)
-                        .offset(y = 98.dp)
+                            .align(Alignment.TopCenter)
+                            .offset(y = 98.dp)
                 )
                 Image(
-                    painter = painterResource(R.drawable.ic_clean),
-                    contentDescription = null,
+                    painter = painterResource(R.drawable.ic_clean) ,
+                    contentDescription = null ,
                     modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .padding(24.dp)
-                        .size(128.dp, 66.dp)
+                            .align(Alignment.BottomCenter)
+                            .padding(24.dp)
+                            .size(128.dp , 66.dp)
                 )
-            } else {
+            }
+            else {
                 AnalyzeComposable()
             }
         }
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(102.dp)
-                .padding(bottom = 16.dp),
+                    .fillMaxWidth()
+                    .height(102.dp)
+                    .padding(bottom = 16.dp) ,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             FilledTonalButton(
                 modifier = Modifier
-                    .weight(1f)
-                    .animateContentSize()
-                    .fillMaxHeight()
-                    .padding(start = 16.dp, end = 8.dp),
+                        .weight(1f)
+                        .fillMaxHeight()
+                        .padding(start = 16.dp , end = 8.dp)
+                        .graphicsLayer(
+                            scaleX = scaleClean.value,
+                            scaleY = scaleClean.value
+                        ),
                 onClick = {
+                    coroutineScope.launch {
+                        scaleClean.animateTo(
+                            targetValue = 0.9f,
+                            animationSpec = tween(
+                                durationMillis = 100,
+                                easing = FastOutSlowInEasing
+                            )
+                        )
+                        scaleClean.animateTo(
+                            targetValue = 1f,
+                            animationSpec = spring(
+                                dampingRatio = Spring.DampingRatioMediumBouncy,
+                                stiffness = Spring.StiffnessLow
+                            )
+                        )
+                    }
                     Utils.openActivity(
-                        context, StartupActivity::class.java
+                        context , StartupActivity::class.java
                     )
                 },
-                shape = MaterialTheme.shapes.medium,
+                shape = MaterialTheme.shapes.medium
             ) {
                 Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally ,
+                    verticalArrangement = Arrangement.Center ,
                     modifier = Modifier
-                        .fillMaxSize()
-                        .animateContentSize()
-                        .padding(ButtonDefaults.ContentPadding),
+                            .fillMaxSize()
+                            .padding(ButtonDefaults.ContentPadding)
                 ) {
                     Icon(
-                        painterResource(R.drawable.ic_broom),
-                        contentDescription = null,
+                        painterResource(R.drawable.ic_broom) ,
+                        contentDescription = null ,
                         modifier = Modifier.size(ButtonDefaults.IconSize)
                     )
-                    Text(text = "Clean", style = MaterialTheme.typography.bodyMedium)
+                    Text(text = "Clean" , style = MaterialTheme.typography.bodyMedium)
                 }
             }
             FilledTonalButton(
                 modifier = Modifier
-                    .weight(1f)
-                    .animateContentSize()
-                    .fillMaxHeight()
-                    .padding(start = 8.dp, end = 16.dp),
+                        .weight(1f)
+                        .fillMaxHeight()
+                        .padding(start = 8.dp , end = 16.dp)
+                        .graphicsLayer(
+                            scaleX = scaleAnalyze.value,
+                            scaleY = scaleAnalyze.value
+                        ),
                 onClick = {
+                    coroutineScope.launch {
+                        scaleAnalyze.animateTo(
+                            targetValue = 0.9f,
+                            animationSpec = tween(
+                                durationMillis = 100,
+                                easing = FastOutSlowInEasing
+                            )
+                        )
+                        scaleAnalyze.animateTo(
+                            targetValue = 1f,
+                            animationSpec = spring(
+                                dampingRatio = Spring.DampingRatioMediumBouncy,
+                                stiffness = Spring.StiffnessLow
+                            )
+                        )
+                    }
                     viewModel.analyze()
                     showCleaningComposable.value = true
                 },
-                shape = MaterialTheme.shapes.medium,
+                shape = MaterialTheme.shapes.medium
             ) {
                 Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally ,
+                    verticalArrangement = Arrangement.Center ,
                     modifier = Modifier
-                        .fillMaxSize()
-                        .animateContentSize()
-                        .padding(ButtonDefaults.ContentPadding)
+                            .fillMaxSize()
+                            .padding(ButtonDefaults.ContentPadding)
                 ) {
                     Icon(
-                        painterResource(R.drawable.ic_search),
-                        contentDescription = null,
+                        painterResource(R.drawable.ic_search) ,
+                        contentDescription = null ,
                         modifier = Modifier.size(ButtonDefaults.IconSize)
                     )
-                    Text(text = "Analyze", style = MaterialTheme.typography.bodyMedium)
+                    Text(text = "Analyze" , style = MaterialTheme.typography.bodyMedium)
                 }
             }
         }
@@ -175,37 +221,35 @@ fun HomeComposable() {
  */
 @Composable
 fun CircularDeterminateIndicator(
-    progress: Float, storageUsed: String, storageTotal: String, modifier: Modifier = Modifier
+    progress : Float , storageUsed : String , storageTotal : String , modifier : Modifier = Modifier
 ) {
     val animatedProgress by animateFloatAsState(
-        targetValue = progress,
-        animationSpec = tween(durationMillis = 1000, easing = LinearOutSlowInEasing),
+        targetValue = progress ,
+        animationSpec = tween(durationMillis = 1000 , easing = LinearOutSlowInEasing) ,
         label = ""
     )
 
     Box(
-        contentAlignment = Alignment.Center, modifier = modifier.size(240.dp)
+        contentAlignment = Alignment.Center , modifier = modifier.size(240.dp)
     ) {
         CircularProgressIndicator(
-            progress = { 1f },
-            modifier = Modifier
-                .animateContentSize()
-                .fillMaxSize(),
-            color = MaterialTheme.colorScheme.primaryContainer,
-            strokeWidth = 6.dp,
+            progress = { 1f } ,
+            modifier = Modifier.fillMaxSize() ,
+            color = MaterialTheme.colorScheme.primaryContainer ,
+            strokeWidth = 6.dp ,
         )
         CircularProgressIndicator(
-            progress = { animatedProgress },
+            progress = { animatedProgress } ,
             modifier = Modifier
-                .animateContentSize()
-                .fillMaxSize(),
-            color = MaterialTheme.colorScheme.primary,
-            strokeWidth = 6.dp,
-            strokeCap = StrokeCap.Round,
+                    .animateContentSize()
+                    .fillMaxSize() ,
+            color = MaterialTheme.colorScheme.primary ,
+            strokeWidth = 6.dp ,
+            strokeCap = StrokeCap.Round ,
         )
         Text(
-            text = "$storageUsed/$storageTotal GB \n Used",
-            textAlign = TextAlign.Center,
+            text = "$storageUsed/$storageTotal GB \n Used" ,
+            textAlign = TextAlign.Center ,
             style = MaterialTheme.typography.titleLarge
         )
     }
@@ -221,7 +265,7 @@ fun CircularDeterminateIndicator(
  */
 @Composable
 fun AnalyzeComposable() {
-    val viewModel: HomeViewModel = viewModel()
+    val viewModel : HomeViewModel = viewModel()
     val files by viewModel.scannedFiles.asFlow().collectAsState(initial = listOf())
     val allFilesSelected by viewModel.allFilesSelected
 
@@ -231,47 +275,45 @@ fun AnalyzeComposable() {
 
     Column(
         modifier = Modifier
-            .animateContentSize()
-            .fillMaxWidth()
-            .padding(16.dp), horizontalAlignment = Alignment.End
+                .animateContentSize()
+                .fillMaxWidth()
+                .padding(16.dp) ,
+        horizontalAlignment = Alignment.End
     ) {
         OutlinedCard(
             modifier = Modifier
-                .animateContentSize()
-                .weight(1f)
-                .fillMaxWidth(),
+                    .weight(1f)
+                    .fillMaxWidth() ,
         ) {
             Column {
                 LazyColumn(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .animateContentSize()
-                        .padding(16.dp)
+                            .fillMaxWidth()
+                            .padding(16.dp)
                 ) {
                     items(files) { file ->
                         FileItemComposable(
-                            item = file.name, isChecked = allFilesSelected, onCheckedChange = {
-
-                            }, context = LocalContext.current
+                            file = file ,
+                            item = file.name ,
+                            context = LocalContext.current ,
+                            viewModel = viewModel ,
                         )
                     }
                 }
             }
         }
         Row(
-            modifier = Modifier
-                .animateContentSize()
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth() ,
+            verticalAlignment = Alignment.CenterVertically ,
+            horizontalArrangement = Arrangement.SpaceBetween ,
         ) {
             Text(
-                text = "Status",
-                color = MaterialTheme.colorScheme.primary,
+                text = "Status" ,
+                color = MaterialTheme.colorScheme.primary ,
             )
             SelectAllComposable(
-                checked = allFilesSelected,
-                onCheckedChange = { viewModel.selectAllFiles(it) },
+                checked = allFilesSelected ,
+                onCheckedChange = { viewModel.selectAllFiles(it) } ,
             )
         }
     }
@@ -288,37 +330,36 @@ fun AnalyzeComposable() {
  */
 @Composable
 fun SelectAllComposable(
-    checked: Boolean, onCheckedChange: (Boolean) -> Unit
+    checked : Boolean , onCheckedChange : (Boolean) -> Unit
 ) {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .animateContentSize(),
-        verticalAlignment = Alignment.CenterVertically,
+                .fillMaxWidth()
+                .animateContentSize() ,
+        verticalAlignment = Alignment.CenterVertically ,
         horizontalArrangement = Arrangement.End
     ) {
         val interactionSource = remember { MutableInteractionSource() }
         FilterChip(
-            selected = checked,
+            selected = checked ,
             onClick = {
-                onCheckedChange(!checked)
-            },
-            label = { Text("Select All") },
+                onCheckedChange(! checked)
+            } ,
+            label = { Text("Select All") } ,
             leadingIcon = {
-                AnimatedContent(targetState = checked, label = "") { targetChecked ->
+                AnimatedContent(targetState = checked , label = "") { targetChecked ->
                     if (targetChecked) {
                         Icon(
-                            imageVector = Icons.Filled.Check,
-                            contentDescription = null,
+                            imageVector = Icons.Filled.Check ,
+                            contentDescription = null ,
                         )
                     }
                 }
-            },
-            interactionSource = interactionSource,
+            } ,
+            interactionSource = interactionSource ,
         )
     }
 }
-
 
 /**
  * Composable function representing an item in a cleaning list with an icon, text label, and checkbox.
@@ -332,13 +373,13 @@ fun SelectAllComposable(
  *                        The new state of the checkbox (`isChecked`) is provided as a parameter to this callback.
  * @param context The Android `Context` used to access resources like file extensions and corresponding icons.
  */
+
+val fileIconMap = mutableMapOf<String , Int>()
+
 @Composable
 fun FileItemComposable(
-    item: String = "", isChecked: Boolean, onCheckedChange: (Boolean) -> Unit, context: Context
+    file : File , item : String = "" , viewModel : HomeViewModel , context : Context
 ) {
-
-    val fileIconMap = mutableMapOf<String, Int>()
-
     context.resources.getStringArray(R.array.apk_extensions).forEach {
         fileIconMap[it] = R.drawable.ic_apk_document
     }
@@ -361,28 +402,27 @@ fun FileItemComposable(
     val fileExtension = getFileExtension(item)
     val iconResource = fileIconMap[fileExtension] ?: R.drawable.ic_file_present
 
-    var rememberedIsChecked by rememberSaveable { mutableStateOf(isChecked) }
-
     Row(
-        modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
+        modifier = Modifier.fillMaxWidth() , horizontalArrangement = Arrangement.Center
     ) {
         Icon(
-            painter = painterResource(iconResource),
-            contentDescription = null,
+            painter = painterResource(iconResource) ,
+            contentDescription = null ,
             modifier = Modifier.align(Alignment.CenterVertically)
         )
         Spacer(modifier = Modifier.width(4.dp))
         Text(
-            text = item, modifier = Modifier
-                .weight(1f)
-                .align(Alignment.CenterVertically)
+            text = item , modifier = Modifier
+                    .weight(1f)
+                    .align(Alignment.CenterVertically)
         )
         Spacer(modifier = Modifier.width(4.dp))
         Checkbox(
-            checked = rememberedIsChecked, onCheckedChange = {
-                rememberedIsChecked = it
-                onCheckedChange(it)
-            }, modifier = Modifier.align(Alignment.CenterVertically)
+            checked = viewModel.fileSelectionStates[file] ?: false ,
+            onCheckedChange = { isChecked ->
+                viewModel.fileSelectionStates[file] = isChecked
+            } ,
+            modifier = Modifier.align(Alignment.CenterVertically)
         )
     }
 }

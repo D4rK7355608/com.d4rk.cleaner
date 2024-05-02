@@ -4,6 +4,7 @@ import android.app.Application
 import android.app.usage.StorageStatsManager
 import android.content.Context
 import android.os.storage.StorageManager
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -25,6 +26,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     val scannedFiles = MutableLiveData<List<File>>()
     val allFilesSelected = mutableStateOf(false)
+    val fileSelectionStates = mutableStateMapOf<File, Boolean>()
     private val dataStoreInstance: DataStore = DataStore(application)
 
     init {
@@ -84,7 +86,22 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    /**
+     * This function is used to select or deselect all files in the scannedFiles list.
+     *
+     * @param selectAll A boolean value indicating whether to select all files (if true) or deselect all files (if false).
+     * When this function is called with true, it will mark all files in the scannedFiles list as selected by adding them to the fileSelectionStates map with a value of true.
+     * If called with false, it will mark all files as not selected by adding them to the fileSelectionStates map with a value of false.
+     * The function also updates the allFilesSelected LiveData object with the value of the selectAll parameter.
+     *
+     * Usage:
+     * selectAllFiles(true)  // Selects all files
+     * selectAllFiles(false) // Deselects all files
+     */
     fun selectAllFiles(selectAll: Boolean) {
+        scannedFiles.value?.forEach { file ->
+            fileSelectionStates[file] = selectAll
+        }
         allFilesSelected.value = selectAll
     }
 

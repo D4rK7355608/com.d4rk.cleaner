@@ -3,13 +3,11 @@
         <item>DS_Store</item>
         <item>Spotlight-V100</item>
         <item>fseventsd</item>
-        <item>ini</item>
         <item>log</item>
         <item>logs</item>
         <item>old</item>
-        <item>temp</item>
         <item>tmp</item>
-        <item>desktop.ini</item>
+        <item>temp</item>
         <item>splashad</item>
         <item>db</item>
         <item>nomedia</item>
@@ -178,19 +176,23 @@
         <item>psd</item>
     </string-array>
 
+    <string-array name="windows_extensions">
+        <item>exe</item>
+        <item>msi</item>
+        <item>ini</item>
+    </string-array>
+
+    <string-array name="font_extensions">
+        <item>ttf</item>
+        <item>otf</item>
+    </string-array>
 
     <string-array name="aggressive_filter_files">
         <item>nomedia</item>
-        <item>exe</item>
-        <item>msi</item>
         <item>splashad</item>
         <item>csv</item>
         <item>thumbs?.db</item>
         <item>thumb[0–9]</item>
-        <item>tmp</item>
-        <item>temp</item>
-        <item>log</item>
-        <item>logs</item>
         <item>pxr</item>
         <item>xd</item>
         <item>.xml</item>
@@ -216,17 +218,10 @@
         <item>.z</item>
         <item>.lz</item>
         <item>.txt</item>
-        <item>.pdf</item>
         <item>.viz</item>
         <item>.psxpj</item>
-        <item>.ttf</item>
-        <item>.doc</item>
-        <item>.docx</item>
         <item>.htm</item>
         <item>.html</item>
-        <item>.ppt</item>
-        <item>.pptx</item>
-        <item>.ini</item>
     </string-array>
 
     <string-array name="aggressive_filter_folders">
