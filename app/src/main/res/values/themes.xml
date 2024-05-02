@@ -1,4 +1,5 @@
 <resources>
+
     <style name="AppTheme" parent="Theme.Material3.DynamicColors.DayNight">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowLightStatusBar">true</item>
@@ -34,7 +35,6 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="windowNoTitle">true</item>
     </style>
-
 
 
     <style name="actionBarStyle" parent="@style/Widget.Material3.ActionBar.Solid">

@@ -1,6 +1,8 @@
 package com.d4rk.cleaner.ui.home
 
 import android.content.Context
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -102,6 +104,7 @@ fun HomeComposable() {
             FilledTonalButton(
                 modifier = Modifier
                     .weight(1f)
+                    .animateContentSize()
                     .fillMaxHeight()
                     .padding(start = 16.dp, end = 8.dp),
                 onClick = {
@@ -116,6 +119,7 @@ fun HomeComposable() {
                     verticalArrangement = Arrangement.Center,
                     modifier = Modifier
                         .fillMaxSize()
+                        .animateContentSize()
                         .padding(ButtonDefaults.ContentPadding),
                 ) {
                     Icon(
@@ -129,6 +133,7 @@ fun HomeComposable() {
             FilledTonalButton(
                 modifier = Modifier
                     .weight(1f)
+                    .animateContentSize()
                     .fillMaxHeight()
                     .padding(start = 8.dp, end = 16.dp),
                 onClick = {
@@ -142,6 +147,7 @@ fun HomeComposable() {
                     verticalArrangement = Arrangement.Center,
                     modifier = Modifier
                         .fillMaxSize()
+                        .animateContentSize()
                         .padding(ButtonDefaults.ContentPadding)
                 ) {
                     Icon(
@@ -182,13 +188,17 @@ fun CircularDeterminateIndicator(
     ) {
         CircularProgressIndicator(
             progress = { 1f },
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .animateContentSize()
+                .fillMaxSize(),
             color = MaterialTheme.colorScheme.primaryContainer,
             strokeWidth = 6.dp,
         )
         CircularProgressIndicator(
             progress = { animatedProgress },
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .animateContentSize()
+                .fillMaxSize(),
             color = MaterialTheme.colorScheme.primary,
             strokeWidth = 6.dp,
             strokeCap = StrokeCap.Round,
@@ -221,36 +231,37 @@ fun AnalyzeComposable() {
 
     Column(
         modifier = Modifier
+            .animateContentSize()
             .fillMaxWidth()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.End
+            .padding(16.dp), horizontalAlignment = Alignment.End
     ) {
         OutlinedCard(
             modifier = Modifier
-                .weight(1f) // This will take up the remaining space
+                .animateContentSize()
+                .weight(1f)
                 .fillMaxWidth(),
         ) {
             Column {
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .animateContentSize()
                         .padding(16.dp)
                 ) {
                     items(files) { file ->
                         FileItemComposable(
-                            item = file.name,
-                            isChecked = allFilesSelected,
-                            onCheckedChange = {
+                            item = file.name, isChecked = allFilesSelected, onCheckedChange = {
 
-                            },
-                            context = LocalContext.current
+                            }, context = LocalContext.current
                         )
                     }
                 }
             }
         }
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .animateContentSize()
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
@@ -277,32 +288,37 @@ fun AnalyzeComposable() {
  */
 @Composable
 fun SelectAllComposable(
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit
+    checked: Boolean, onCheckedChange: (Boolean) -> Unit
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center
+        modifier = Modifier
+            .fillMaxWidth()
+            .animateContentSize(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.End
     ) {
         val interactionSource = remember { MutableInteractionSource() }
         FilterChip(
             selected = checked,
-            onClick = { onCheckedChange(!checked) },
+            onClick = {
+                onCheckedChange(!checked)
+            },
             label = { Text("Select All") },
-            leadingIcon = if (checked) {
-                {
-                    Icon(
-                        imageVector = Icons.Filled.Check,
-                        contentDescription = null
-                    )
+            leadingIcon = {
+                AnimatedContent(targetState = checked, label = "") { targetChecked ->
+                    if (targetChecked) {
+                        Icon(
+                            imageVector = Icons.Filled.Check,
+                            contentDescription = null,
+                        )
+                    }
                 }
-            } else {
-                null
             },
             interactionSource = interactionSource,
         )
     }
 }
+
 
 /**
  * Composable function representing an item in a cleaning list with an icon, text label, and checkbox.
@@ -318,10 +334,7 @@ fun SelectAllComposable(
  */
 @Composable
 fun FileItemComposable(
-    item: String = "",
-    isChecked: Boolean,
-    onCheckedChange: (Boolean) -> Unit,
-    context: Context
+    item: String = "", isChecked: Boolean, onCheckedChange: (Boolean) -> Unit, context: Context
 ) {
 
     val fileIconMap = mutableMapOf<String, Int>()
@@ -351,8 +364,7 @@ fun FileItemComposable(
     var rememberedIsChecked by rememberSaveable { mutableStateOf(isChecked) }
 
     Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center
+        modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
     ) {
         Icon(
             painter = painterResource(iconResource),
@@ -361,19 +373,16 @@ fun FileItemComposable(
         )
         Spacer(modifier = Modifier.width(4.dp))
         Text(
-            text = item,
-            modifier = Modifier
+            text = item, modifier = Modifier
                 .weight(1f)
                 .align(Alignment.CenterVertically)
         )
         Spacer(modifier = Modifier.width(4.dp))
         Checkbox(
-            checked = rememberedIsChecked,
-            onCheckedChange = {
+            checked = rememberedIsChecked, onCheckedChange = {
                 rememberedIsChecked = it
                 onCheckedChange(it)
-            },
-            modifier = Modifier.align(Alignment.CenterVertically)
+            }, modifier = Modifier.align(Alignment.CenterVertically)
         )
     }
 }
