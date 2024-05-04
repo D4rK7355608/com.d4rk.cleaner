@@ -51,6 +51,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.utils.Utils
+import com.d4rk.cleaner.utils.bounceClick
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -149,6 +150,7 @@ fun HelpComposable(activity: HelpActivity) {
                     },
                     modifier = Modifier
                         .padding(6.dp)
+                            .bounceClick()
                         .constrainAs(fabButton) {
                             bottom.linkTo(parent.bottom)
                             end.linkTo(parent.end)

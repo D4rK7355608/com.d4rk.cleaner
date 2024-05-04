@@ -271,5 +271,4 @@
     <string name="snack_app_updated">The app has been successfully updated</string>
     <string name="snack_validate_file">Please select a valid file size</string>
     <string name="app_behavior">App behavior</string>
-    <string name="title_activity_usage_and_diagnostics">UsageAndDiagnosticsActivity</string>
 </resources>

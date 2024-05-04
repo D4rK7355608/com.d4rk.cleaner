@@ -73,10 +73,7 @@
 
         <activity
             android:name=".ui.support.SupportActivity"
-            android:exported="true"
-            android:label="@string/support_us"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppThemeNoActionBar" />
+            android:parentActivityName=".MainActivity" />
 
         <activity
             android:name=".ui.whitelist.WhitelistActivity"

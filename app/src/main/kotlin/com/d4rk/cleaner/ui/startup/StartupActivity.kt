@@ -33,7 +33,7 @@ class StartupActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    StartupComposable(this@StartupActivity)
+                    StartupComposable()
                 }
             }
         }

@@ -3,12 +3,8 @@ package com.d4rk.cleaner.ui.home
 import android.content.Context
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
-import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -45,11 +41,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -59,8 +53,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ui.startup.StartupActivity
 import com.d4rk.cleaner.utils.Utils
+import com.d4rk.cleaner.utils.bounceClick
 import com.google.common.io.Files.getFileExtension
-import kotlinx.coroutines.launch
 import java.io.File
 
 @Composable
@@ -71,9 +65,6 @@ fun HomeComposable() {
     val storageUsed by viewModel.storageUsed.observeAsState("0")
     val storageTotal by viewModel.storageTotal.observeAsState("0")
     val showCleaningComposable = remember { mutableStateOf(false) }
-    val scaleClean = remember { Animatable(1f) }
-    val scaleAnalyze = remember { Animatable(1f) }
-    val coroutineScope = rememberCoroutineScope()
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -116,27 +107,8 @@ fun HomeComposable() {
                         .weight(1f)
                         .fillMaxHeight()
                         .padding(start = 16.dp , end = 8.dp)
-                        .graphicsLayer(
-                            scaleX = scaleClean.value,
-                            scaleY = scaleClean.value
-                        ),
+                        .bounceClick(),
                 onClick = {
-                    coroutineScope.launch {
-                        scaleClean.animateTo(
-                            targetValue = 0.9f,
-                            animationSpec = tween(
-                                durationMillis = 100,
-                                easing = FastOutSlowInEasing
-                            )
-                        )
-                        scaleClean.animateTo(
-                            targetValue = 1f,
-                            animationSpec = spring(
-                                dampingRatio = Spring.DampingRatioMediumBouncy,
-                                stiffness = Spring.StiffnessLow
-                            )
-                        )
-                    }
                     Utils.openActivity(
                         context , StartupActivity::class.java
                     )
@@ -163,27 +135,8 @@ fun HomeComposable() {
                         .weight(1f)
                         .fillMaxHeight()
                         .padding(start = 8.dp , end = 16.dp)
-                        .graphicsLayer(
-                            scaleX = scaleAnalyze.value,
-                            scaleY = scaleAnalyze.value
-                        ),
+                        .bounceClick(),
                 onClick = {
-                    coroutineScope.launch {
-                        scaleAnalyze.animateTo(
-                            targetValue = 0.9f,
-                            animationSpec = tween(
-                                durationMillis = 100,
-                                easing = FastOutSlowInEasing
-                            )
-                        )
-                        scaleAnalyze.animateTo(
-                            targetValue = 1f,
-                            animationSpec = spring(
-                                dampingRatio = Spring.DampingRatioMediumBouncy,
-                                stiffness = Spring.StiffnessLow
-                            )
-                        )
-                    }
                     viewModel.analyze()
                     showCleaningComposable.value = true
                 },
@@ -341,6 +294,7 @@ fun SelectAllComposable(
     ) {
         val interactionSource = remember { MutableInteractionSource() }
         FilterChip(
+            modifier = Modifier.bounceClick(),
             selected = checked ,
             onClick = {
                 onCheckedChange(! checked)

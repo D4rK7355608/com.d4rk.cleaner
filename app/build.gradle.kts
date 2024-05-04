@@ -105,6 +105,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.runtime)
+    implementation(libs.androidx.runtime)
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.runtime.rxjava2)
     implementation(libs.androidx.ui.tooling.preview)
@@ -128,12 +129,16 @@ dependencies {
     implementation(libs.material)
     implementation(libs.app.update.ktx)
     implementation(libs.review.ktx)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics.ktx)
     implementation(libs.firebase.crashlytics.ktx)
     implementation(libs.firebase.perf)
 
     // Image Compression
     implementation(libs.compressor)
+    implementation(libs.glide)
 
     // Test
     testImplementation(libs.junit)
@@ -147,11 +152,4 @@ dependencies {
     // TODO: Clean-up
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.gridlayout:gridlayout:1.0.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
-    implementation("androidx.preference:preference-ktx:1.2.1")
-    implementation("com.airbnb.android:lottie:6.4.0")
-    implementation("com.github.bumptech.glide:glide:4.16.0")
-    implementation("dev.shreyaspatil.MaterialDialog:MaterialDialog:2.2.3")
-    implementation("me.zhanghai.android.fastscroll:library:1.3.0")
 }

@@ -29,10 +29,11 @@ import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.MainActivity
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.utils.Utils
+import com.d4rk.cleaner.utils.bounceClick
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StartupComposable(activity: StartupActivity) {
+fun StartupComposable() {
     val context = LocalContext.current
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
@@ -77,7 +78,9 @@ fun StartupComposable(activity: StartupActivity) {
                     )
                 }
             }
-            ExtendedFloatingActionButton(modifier = Modifier.align(Alignment.BottomEnd),
+            ExtendedFloatingActionButton(modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .bounceClick(),
                 text = { Text(stringResource(R.string.agree)) },
                 onClick = {
                     Utils.openActivity(
