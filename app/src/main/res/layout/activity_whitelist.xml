@@ -32,19 +32,6 @@
                 ads:adSize="MEDIUM_RECTANGLE"
                 ads:adUnitId="ca-app-pub-5294151573817700/7844185090" />
         </com.google.android.material.card.MaterialCardView>
-
-        <me.zhanghai.android.fastscroll.FastScrollScrollView
-            android:id="@+id/scroll_view_whitelist"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="12dp">
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/linear_layout_paths"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"></androidx.appcompat.widget.LinearLayoutCompat>
-        </me.zhanghai.android.fastscroll.FastScrollScrollView>
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

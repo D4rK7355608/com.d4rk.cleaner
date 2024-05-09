@@ -6,7 +6,6 @@
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="actionBarStyle">@style/actionBarStyle</item>
         <item name="android:fontFamily">@font/font_poppins</item>
         <item name="dialogCornerRadius">@dimen/extra_large_rounding</item>
         <item name="popupMenuBackground">@drawable/bg_popup</item>
@@ -27,11 +26,5 @@
         <item name="windowActionBar">false</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="windowNoTitle">true</item>
-    </style>
-
-
-    <style name="actionBarStyle" parent="@style/Widget.Material3.ActionBar.Solid">
-        <item name="background">@android:color/transparent</item>
-        <item name="android:fontFamily">@font/font_poppins</item>
     </style>
 </resources>

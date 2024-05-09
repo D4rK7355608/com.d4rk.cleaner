@@ -36,7 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -76,7 +76,7 @@ fun SwitchCardComposable(
                    thumbContent = if (switchState.value) {
                        {
                            Icon(
-                               imageVector = Icons.Filled.Check ,
+                               Icons.Filled.Check ,
                                contentDescription = null ,
                                modifier = Modifier.size(SwitchDefaults.IconSize) ,
                            )
@@ -123,7 +123,7 @@ fun PreferenceCategoryItem(
  */
 @Composable
 fun PreferenceItem(
-    icon : Painter? = null ,
+    icon : ImageVector? = null ,
     title : String? = null ,
     summary : String? = null ,
     onClick : () -> Unit = {}
@@ -136,7 +136,7 @@ fun PreferenceItem(
     ) {
         icon?.let {
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(painter = it , contentDescription = null)
+            Icon(it , contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
         }
         Column(
@@ -167,7 +167,7 @@ fun PreferenceItem(
  */
 @Composable
 fun SwitchPreferenceItem(
-    icon : Painter? = null ,
+    icon : ImageVector? = null ,
     title : String ,
     summary : String? = null ,
     checked : Boolean ,
@@ -182,7 +182,7 @@ fun SwitchPreferenceItem(
     ) {
         icon?.let {
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(painter = it , contentDescription = null)
+            Icon(it , contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
         }
         Column(
@@ -221,7 +221,7 @@ fun SwitchPreferenceItem(
  */
 @Composable
 fun SwitchPreferenceItemWithDivider(
-    icon : Painter? = null ,
+    icon : ImageVector? = null ,
     title : String ,
     summary : String ,
     checked : Boolean ,
@@ -236,7 +236,7 @@ fun SwitchPreferenceItemWithDivider(
     ) {
         icon?.let {
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(painter = it , contentDescription = null)
+            Icon(it , contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
         }
         Column(

@@ -6,7 +6,6 @@
         <item name="android:windowLightNavigationBar">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="actionBarStyle">@style/actionBarStyle</item>
         <item name="android:fontFamily">@font/font_poppins</item>
         <item name="dialogCornerRadius">@dimen/extra_large_rounding</item>
         <item name="popupMenuBackground">@drawable/bg_popup</item>

@@ -1,39 +1,9 @@
 package com.d4rk.cleaner.ui.memory
 
-import android.app.ActivityManager
-import android.content.Context
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageManager
-import android.os.Bundle
-import android.os.Environment
-import android.os.Handler
-import android.os.Looper
-import android.os.StatFs
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
-import androidx.preference.PreferenceManager
-import com.d4rk.cleaner.R
-import com.d4rk.cleaner.adapters.CpuAdapter
-import com.d4rk.cleaner.data.CpuApp
-import com.d4rk.cleaner.databinding.FragmentMemoryBinding
-import com.d4rk.cleaner.ui.viewmodel.MemoryViewModel
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import me.zhanghai.android.fastscroll.FastScrollerBuilder
 
 class MemoryFragment : Fragment() {
-    private lateinit var binding: FragmentMemoryBinding
+/*    private lateinit var binding: FragmentMemoryBinding
     private lateinit var viewModel: MemoryViewModel
     private var updateMemoryJob: Job? = null
     private val handler = Handler(Looper.getMainLooper())
@@ -63,9 +33,9 @@ class MemoryFragment : Fragment() {
         FastScrollerBuilder(binding.scrollView).useMd2Style().build()
         MobileAds.initialize(requireContext())
         binding.adBannerView.loadAd(AdRequest.Builder().build())
-        /*   binding.buttonAnalyze.setOnClickListener {
+        *//*   binding.buttonAnalyze.setOnClickListener {
                navController.navigate(R.id.navigation_home)
-           }*/
+           }*//*
     }
 
     override fun onAttach(context: Context) {
@@ -254,5 +224,5 @@ class MemoryFragment : Fragment() {
                 )
             }
         }
-    }
+    }*/
 }

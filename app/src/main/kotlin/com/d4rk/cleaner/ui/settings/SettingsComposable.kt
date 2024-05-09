@@ -5,6 +5,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.outlined.Build
+import androidx.compose.material.icons.outlined.CleaningServices
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.Palette
+import androidx.compose.material.icons.outlined.SafetyCheck
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -17,7 +23,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ui.settings.about.AboutSettingsActivity
@@ -48,7 +53,7 @@ fun SettingsComposable(activity: SettingsActivity) {
                 .padding(paddingValues),
         ) {
             item {
-                PreferenceItem(icon = painterResource(id = R.drawable.ic_display),
+                PreferenceItem(Icons.Outlined.Palette,
                     title = stringResource(R.string.display),
                     summary = stringResource(R.string.summary_preference_settings_display),
                     onClick = {
@@ -56,7 +61,7 @@ fun SettingsComposable(activity: SettingsActivity) {
                     })
             }
             item {
-                PreferenceItem(icon = painterResource(id = R.drawable.ic_cleaning),
+                PreferenceItem(Icons.Outlined.CleaningServices,
                     title = stringResource(R.string.cleaning),
                     summary = stringResource(R.string.summary_preference_settings_cleaning),
                     onClick = {
@@ -66,7 +71,7 @@ fun SettingsComposable(activity: SettingsActivity) {
                     })
             }
             item {
-                PreferenceItem(icon = painterResource(id = R.drawable.ic_notifications),
+                PreferenceItem(Icons.Outlined.Notifications,
                     title = stringResource(R.string.notifications),
                     summary = stringResource(R.string.summary_preference_settings_notifications),
                     onClick = {
@@ -74,7 +79,7 @@ fun SettingsComposable(activity: SettingsActivity) {
                     })
             }
             item {
-                PreferenceItem(icon = painterResource(id = R.drawable.ic_build),
+                PreferenceItem(Icons.Outlined.Build,
                     title = stringResource(R.string.advanced),
                     summary = stringResource(R.string.summary_preference_settings_advanced),
                     onClick = {
@@ -84,7 +89,7 @@ fun SettingsComposable(activity: SettingsActivity) {
                     })
             }
             item {
-                PreferenceItem(icon = painterResource(id = R.drawable.ic_safety_check),
+                PreferenceItem(Icons.Outlined.SafetyCheck,
                     title = stringResource(R.string.security_and_privacy),
                     summary = stringResource(R.string.summary_preference_settings_privacy_and_security),
                     onClick = {
@@ -92,7 +97,7 @@ fun SettingsComposable(activity: SettingsActivity) {
                     })
             }
             item {
-                PreferenceItem(icon = painterResource(id = R.drawable.ic_about),
+                PreferenceItem(Icons.Outlined.Info,
                     title = stringResource(R.string.about),
                     summary = stringResource(R.string.summary_preference_settings_about),
                     onClick = {

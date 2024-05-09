@@ -3,6 +3,7 @@ agp = "8.4.0"
 appcompat = "1.6.1"
 appUpdateKtx = "2.1.0"
 billing = "6.2.1"
+composeBom = "2024.05.00"
 compressor = "3.0.1"
 constraintlayoutCompose = "1.0.1"
 coreSplashscreen = "1.0.1"
@@ -28,27 +29,28 @@ navigationCompose = "2.7.7"
 playServicesAds = "23.0.0"
 playServicesOssLicenses = "17.0.1"
 reviewKtx = "2.0.1"
-runtime = "1.6.7"
-runtimeLivedata = "1.6.7"
-runtimeRxjava2 = "1.6.7"
 workRuntimeKtx = "2.9.0"
 
 
 [libraries]
+activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
 androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-core", version.ref = "datastoreCore" }
+androidx-foundation = { module = "androidx.compose.foundation:foundation" }
+androidx-compose-runtime = { module = "androidx.compose.runtime:runtime" }
 androidx-lifecycle-common-java8 = { module = "androidx.lifecycle:lifecycle-common-java8", version.ref = "lifecycleRuntimeKtx" }
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "lifecycleRuntimeKtx" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
-androidx-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "runtime" }
-androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "runtimeLivedata" }
-androidx-runtime-rxjava2 = { module = "androidx.compose.runtime:runtime-rxjava2", version.ref = "runtimeRxjava2" }
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
+androidx-runtime-rxjava2 = { module = "androidx.compose.runtime:runtime-rxjava2" }
 androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
 app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "appUpdateKtx" }
 billing = { module = "com.android.billingclient:billing", version.ref = "billing" }

@@ -4,18 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottie_animation_view"
-        android:layout_width="192dp"
-        android:layout_height="192dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_rawRes="@raw/anim_image"
-        app:lottie_speed="1" />
-
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/button_choose_image"
         style="@style/Widget.Material3.ExtendedFloatingActionButton.Icon.Secondary"

@@ -100,17 +100,20 @@ dependencies {
     implementation(libs.androidx.work.runtime.ktx)
 
     // Compose
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
+    implementation(libs.activity.compose)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.runtime)
-    implementation(libs.androidx.runtime)
+    implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.runtime.rxjava2)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.foundation)
 
     // Lifecycle
     implementation(libs.kotlinx.coroutines.android)
