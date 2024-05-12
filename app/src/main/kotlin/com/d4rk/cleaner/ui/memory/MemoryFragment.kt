@@ -3,37 +3,37 @@ package com.d4rk.cleaner.ui.memory
 import androidx.fragment.app.Fragment
 
 class MemoryFragment : Fragment() {
-/*    private lateinit var binding: FragmentMemoryBinding
-    private lateinit var viewModel: MemoryViewModel
-    private var updateMemoryJob: Job? = null
-    private val handler = Handler(Looper.getMainLooper())
-    private val updateInterval = 1000L
-    private lateinit var cpuAdapter: CpuAdapter
-    private val cpuAppsList = mutableListOf<CpuApp>()
-    private val navController: NavController by lazy {
-        findNavController()
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentMemoryBinding.inflate(inflater, container, false)
-        cpuAdapter = CpuAdapter(cpuAppsList)
-        CoroutineScope(Dispatchers.Main).launch {
-            updateMemoryInfo()
+    /*    private lateinit var binding: FragmentMemoryBinding
+        private lateinit var viewModel: MemoryViewModel
+        private var updateMemoryJob: Job? = null
+        private val handler = Handler(Looper.getMainLooper())
+        private val updateInterval = 1000L
+        private lateinit var cpuAdapter: CpuAdapter
+        private val cpuAppsList = mutableListOf<CpuApp>()
+        private val navController: NavController by lazy {
+            findNavController()
         }
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setAnimations()
-        FastScrollerBuilder(binding.scrollView).useMd2Style().build()
-        MobileAds.initialize(requireContext())
-        binding.adBannerView.loadAd(AdRequest.Builder().build())
-        *//*   binding.buttonAnalyze.setOnClickListener {
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View {
+            binding = FragmentMemoryBinding.inflate(inflater, container, false)
+            cpuAdapter = CpuAdapter(cpuAppsList)
+            CoroutineScope(Dispatchers.Main).launch {
+                updateMemoryInfo()
+            }
+            return binding.root
+        }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+            setAnimations()
+            FastScrollerBuilder(binding.scrollView).useMd2Style().build()
+            MobileAds.initialize(requireContext())
+            binding.adBannerView.loadAd(AdRequest.Builder().build())
+            *//*   binding.buttonAnalyze.setOnClickListener {
                navController.navigate(R.id.navigation_home)
            }*//*
     }

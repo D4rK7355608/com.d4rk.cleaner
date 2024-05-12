@@ -79,8 +79,8 @@ fun StartupComposable() {
                 }
             }
             ExtendedFloatingActionButton(modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .bounceClick(),
+                .align(Alignment.BottomEnd)
+                .bounceClick(),
                 text = { Text(stringResource(R.string.agree)) },
                 onClick = {
                     Utils.openActivity(

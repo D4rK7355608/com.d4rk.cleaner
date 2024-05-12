@@ -29,12 +29,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class MainActivity : ComponentActivity() {
-    private lateinit var dataStore : DataStore
-    private lateinit var appUpdateManager : AppUpdateManager
-    private var appUpdateNotificationsManager : AppUpdateNotificationsManager =
-            AppUpdateNotificationsManager(this)
+    private lateinit var dataStore: DataStore
+    private lateinit var appUpdateManager: AppUpdateManager
+    private var appUpdateNotificationsManager: AppUpdateNotificationsManager =
+        AppUpdateNotificationsManager(this)
 
-    override fun onCreate(savedInstanceState : Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         enableEdgeToEdge()
@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                     MainComposable()
                 }
@@ -64,28 +64,30 @@ class MainActivity : ComponentActivity() {
     }
 
     /**
-     * Handles the result of an activity launched for result.
+     * Overrides the `onActivityResult` method to handle the result of an activity launched for result.
      *
-     * This function overrides the `onActivityResult` method to handle the result of a specific request code (1)
-     * used for in-app updates. It checks the `resultCode` to determine the outcome of the update process and
-     * displays appropriate UI feedback using Snackbar.
+     * This function is specifically designed to handle the result of a request code (1)
+     * which is used for in-app updates. It checks the `resultCode` to determine the outcome of the update process.
+     * Depending on the `resultCode`, it either displays a Snackbar message indicating a successful update or
+     * calls a function to show a Snackbar message indicating that the update failed.
      *
-     * @param requestCode The request code that was specified when starting the activity for result.
-     * @param resultCode The result code returned by the activity upon completion.
-     * @param data The data returned by the activity, if any.
+     * @param requestCode The integer request code originally supplied to startActivityForResult(),
+     * allowing you to identify who this result came from.
+     * @param resultCode The integer result code returned by the child activity through its setResult().
+     * @param data An Intent, which can return result data to the caller (various data can be attached to Intent "extras").
      */
     @Suppress("DEPRECATION")
     @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode : Int , resultCode : Int , data : Intent?) {
-        super.onActivityResult(requestCode , resultCode , data)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1) {
             when (resultCode) {
                 RESULT_OK -> {
                     val snackbar = Snackbar.make(
-                        findViewById(android.R.id.content) ,
-                        R.string.snack_app_updated ,
+                        findViewById(android.R.id.content),
+                        R.string.snack_app_updated,
                         Snackbar.LENGTH_LONG
-                    ).setAction(android.R.string.ok , null)
+                    ).setAction(android.R.string.ok, null)
                     snackbar.show()
                 }
 
@@ -97,13 +99,18 @@ class MainActivity : ComponentActivity() {
     }
 
     /**
-     * Checks for the availability of flexible updates and triggers the appropriate update flow if conditions are met.
+     * Checks for the availability of updates and triggers the appropriate update flow if conditions are met.
      *
-     * This function uses the provided lifecycle scope to asynchronously check for available updates using the
-     * Google Play Core library. If a flexible update is available and meets certain conditions, it triggers
-     * the update flow.
+     * This function uses the lifecycle scope to asynchronously check for available updates using the
+     * Google Play Core library. If an update is available and meets certain conditions, it triggers
+     * the update flow. The update can be of two types: IMMEDIATE or FLEXIBLE.
      *
-     * @param lifecycleScope The lifecycle scope used for launching coroutines, typically obtained from the hosting activity.
+     * For an IMMEDIATE update, it checks if the client version is more than 90 days old. If so, it triggers the update.
+     * For a FLEXIBLE update, it checks if the client version is less than 90 days old. If so, it triggers the update.
+     *
+     * The function also ensures that no developer-triggered update is in progress before triggering a new update.
+     *
+     * @param lifecycleScope The lifecycle scope used for launching coroutines, obtained from the hosting activity.
      */
     private fun checkForFlexibleUpdate() {
         lifecycleScope.launch {
@@ -120,7 +127,7 @@ class MainActivity : ComponentActivity() {
                             info.clientVersionStalenessDays()?.let {
                                 if (it > 90) {
                                     appUpdateManager.startUpdateFlowForResult(
-                                        info , AppUpdateType.IMMEDIATE , this@MainActivity , 1
+                                        info, AppUpdateType.IMMEDIATE, this@MainActivity, 1
                                     )
                                 }
                             }
@@ -132,7 +139,7 @@ class MainActivity : ComponentActivity() {
                             info.clientVersionStalenessDays()?.let {
                                 if (it < 90) {
                                     appUpdateManager.startUpdateFlowForResult(
-                                        info , AppUpdateType.FLEXIBLE , this@MainActivity , 1
+                                        info, AppUpdateType.FLEXIBLE, this@MainActivity, 1
                                     )
                                 }
                             }
@@ -143,9 +150,16 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    /**
+     * Displays a Snackbar message indicating that the update process has failed.
+     *
+     * This function creates a Snackbar with a message indicating that the update process has failed.
+     * The Snackbar includes a "Try Again" action which, when clicked, triggers the `checkForFlexibleUpdate` function
+     * to check for updates and initiate the appropriate update flow if conditions are met.
+     */
     private fun showUpdateFailedSnackbar() {
         val snackbar = Snackbar.make(
-            findViewById(android.R.id.content) , R.string.snack_update_failed , Snackbar.LENGTH_LONG
+            findViewById(android.R.id.content), R.string.snack_update_failed, Snackbar.LENGTH_LONG
         ).setAction(R.string.try_again) {
             checkForFlexibleUpdate()
         }
@@ -158,10 +172,12 @@ class MainActivity : ComponentActivity() {
     }
 
     /**
-     * Sets up application settings based on data stored in a dataStore.
+     * Configures application settings based on data stored in a DataStore.
      *
      * This function uses a lifecycle coroutine scope to asynchronously retrieve the value of `usageAndDiagnostics`
-     * from the dataStore and adjusts Firebase Analytics and Crashlytics collection settings accordingly.
+     * from the DataStore. It then adjusts the Firebase Analytics and Crashlytics collection settings based on the retrieved value.
+     *
+     * If `usageAndDiagnostics` is enabled, both Firebase Analytics and Crashlytics data collection will be enabled. If it's not, data collection will be disabled.
      *
      * @see androidx.lifecycle.lifecycleScope
      * @see androidx.datastore.preferences.core.DataStore
@@ -172,7 +188,7 @@ class MainActivity : ComponentActivity() {
         lifecycleScope.launch {
             val isEnabled = dataStore.usageAndDiagnostics.first()
             FirebaseAnalytics.getInstance(this@MainActivity)
-                    .setAnalyticsCollectionEnabled(isEnabled)
+                .setAnalyticsCollectionEnabled(isEnabled)
             FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(isEnabled)
         }
     }
@@ -181,7 +197,7 @@ class MainActivity : ComponentActivity() {
         lifecycleScope.launch {
             if (dataStore.startup.first()) {
                 dataStore.saveStartup(false)
-                startActivity(Intent(this@MainActivity , StartupActivity::class.java))
+                startActivity(Intent(this@MainActivity, StartupActivity::class.java))
             }
         }
     }
