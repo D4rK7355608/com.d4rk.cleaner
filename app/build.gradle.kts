@@ -112,6 +112,7 @@ dependencies {
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.foundation)
+    implementation(libs.androidx.navigation.compose)
 
     // Lifecycle
     implementation(libs.kotlinx.coroutines.android)
@@ -121,7 +122,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.process)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.navigation.compose)
 
     // Google
     implementation(libs.play.services.ads)
