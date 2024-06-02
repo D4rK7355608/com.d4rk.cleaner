@@ -2,7 +2,6 @@ package com.d4rk.cleaner
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +16,7 @@ import com.android.volley.TimeoutError
 import com.d4rk.cleaner.data.store.DataStore
 import com.d4rk.cleaner.notifications.managers.AppUpdateNotificationsManager
 import com.d4rk.cleaner.notifications.managers.AppUsageNotificationsManager
-import com.d4rk.cleaner.ui.settings.display.theme.AppTheme
+import com.d4rk.cleaner.ui.settings.display.theme.style.AppTheme
 import com.d4rk.cleaner.ui.startup.StartupActivity
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

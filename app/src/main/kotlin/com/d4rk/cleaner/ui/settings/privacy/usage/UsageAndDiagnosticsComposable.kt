@@ -66,8 +66,8 @@ fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
+                        .fillMaxSize()
+                        .padding(innerPadding),
             ) {
                 item {
                     SwitchCardComposable(
@@ -82,8 +82,8 @@ fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
                 item {
                     Column(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(24.dp)
+                                .fillMaxWidth()
+                                .padding(24.dp)
                     ) {
                         Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
@@ -99,16 +99,16 @@ fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
                             }
                             addStringAnnotation(
                                 tag = "URL",
-                                annotation = "https://www.example.com",
+                                annotation = "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy",
                                 start = 0,
                                 end = stringResource(R.string.learn_more).length
                             )
                         }
                         ClickableText(text = annotatedString, onClick = { offset ->
                             annotatedString.getStringAnnotations("URL", offset, offset)
-                                .firstOrNull()?.let { annotation ->
-                                    Utils.openUrl(context, annotation.item)
-                                }
+                                    .firstOrNull()?.let { annotation ->
+                                        Utils.openUrl(context, annotation.item)
+                                    }
                         })
                     }
                 }

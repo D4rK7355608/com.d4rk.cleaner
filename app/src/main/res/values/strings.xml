@@ -1,39 +1,73 @@
 <resources>
+    <string name="appearance">Appearance</string>
+    <string name="dark_theme">Dark theme</string>
+    <string name="will_turn_on_automatically_by_system">Will turn on automatically by the system</string>
+    <string name="will_never_turn_on_automatically">Will never turn on automatically</string>
+    <string name="amoled_mode">AMOLED mode</string>
+    <string name="follow_system">Follow System Mode</string>
+    <string name="light_mode">Light Mode</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="summary_dark_theme">Dark theme uses a deep background to help keep your battery alive longer</string>
 
 
+    <string name="language">Language</string>
+    <string name="summary_preference_settings_language">Changes the language used in the app</string>
+    <string name="dialog_language_subtitle">Select your preferred language</string>
+    <string name="dialog_info_language">Personalize your experience with your preferred language. Any language changes you make take effect right away, ensuring a seamless experience in your chosen language</string>
 
 
+    <string name="advanced">Advanced</string>
+    <string name="summary_preference_settings_advanced">Explore more advanced settings</string>
+    <string name="error_reporting">Error reporting</string>
+    <string name="bug_report">Bug report</string>
+    <string name="summary_preference_settings_bug_report">Send bug reports and feature requests to the app\'s GitHub repository issues page</string>
 
+    <string name="security_and_privacy">Security &amp; privacy</string>
+    <string name="summary_preference_settings_privacy_and_security">Manage your privacy settings</string>
+    <string name="privacy">Privacy</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="summary_preference_settings_privacy_policy">View the policy that governs how we handle your data</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="summary_preference_settings_terms_of_service">Review the terms you agree to when using our service</string>
+    <string name="code_of_conduct">Code of Conduct</string>
+    <string name="summary_preference_settings_code_of_conduct">Understand the rules and guidelines for behavior within our service</string>
 
+    <string name="permissions">Permissions</string>
+    <string name="summary_preference_settings_permissions">Manage the permissions granted to our service</string>
+    <string name="normal">Normal</string>
+    <string name="ad_id">Ad id [AD_ID]</string>
+    <string name="summary_preference_permissions_ad_id">Allows the app to retrieve and use the advertising identifier associated with the user\'s device, providing personalized ads, measuring ad effectiveness, and showing ads on Android 13 or later devices.</string>
+    <string name="internet">Internet [INTERNET]</string>
+    <string name="summary_preference_permissions_internet">Allows the app to establish an internet connection to send error reports or check for updates.</string>
+    <string name="post_notifications">Post notifications [POST_NOTIFICATIONS]</string>
+    <string name="summary_preference_permissions_post_notifications">Allows the app to display notifications on the devices with Android 13 or later.</string>
+    <string name="runtime">Runtime</string>
+    <string name="access_network_state">Access network state [ACCESS_NETWORK_STATE]</string>
+    <string name="summary_preference_permissions_access_network_state">Allows the app to check network connectivity and retrieve information about Wi-Fi, including enabled status and connected Wi-Fi device names.</string>
+    <string name="access_notification_policy">Access notification policy [ACCESS_NOTIFICATION_POLICY]</string>
+    <string name="summary_preference_permissions_access_notification_policy">Allows the app to access and modify the device\'s notification policy, controlling how and when notifications are displayed to the user and providing custom notification management features.</string>
+    <string name="billing">Billing [BILLING]</string>
+    <string name="summary_preference_permissions_billing">Allows the app to use the Google Play Billing Library to handle in-app purchases and donations</string>
+    <string name="check_license">Check license [CHECK_LICENSE]</string>
+    <string name="summary_preference_permissions_check_license">Allows the app to verify its compliance with the license agreement and enforce licensing terms to protect intellectual property.</string>
+    <string name="foreground_service">Foreground service [FOREGROUND_SERVICE]</string>
+    <string name="summary_preference_permissions_foreground_service">Allows the app to create and use services that run in the foreground, giving them priority over other background processes and improving performance and reliability.</string>
 
+    <string name="ads">Ads</string>
+    <string name="summary_preference_settings_ads">Control how we use your information to show you relevant ads</string>
+    <string name="display_ads">Display ads</string>
+    <string name="personalized_ads">Personalized ads</string>
+    <string name="summary_ads_personalized_ads">Choose how we personalize ads for you based on your interests</string>
+    <string name="summary_ads">See ads that are relevant to you. Manage the information used to show personalized ads based on your app activity. You can always turn off personalization here.\n</string>
 
+    <string name="usage_and_diagnostics">Usage and diagnostics</string>
+    <string name="summary_preference_settings_usage_and_diagnostics">Share data to help improve Weddix for Android</string>
+    <string name="summary_usage_and_diagnostics">Help improve your experience by automatically sending diagnostic, device, and app usage data to us. This will help improve app performance, stability, and other enhancements. Some aggregate data will also help our apps.\n\nThis is general information about your device and how you use our apps (such as battery level, system and app activity, and errors). The data will be used to improve our apps\n\nTurning off this feature doesn\'t affect your device\'s ability to send the information needed for essential services such as app updates and security.\n</string>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <string name="legal">Legal</string>
+    <string name="legal_notices">Legal notices</string>
+    <string name="summary_preference_settings_legal_notices">View legal information about our service</string>
+    <string name="license">License</string>
 
 
     <string name="app_description">The last Android Cleaner you will ever need with Google inspired material design made by D4rK to be more simplistic and easy to use!</string>
@@ -79,39 +113,29 @@
     <string name="add_to_whitelist">Add to whitelist…</string>
     <string name="settings">Settings</string>
     <string name="display">Display</string>
-    <string name="appearance">Appearance</string>
+
     <string name="theme">Theme</string>
-    <string name="follow_system">Follow System Mode</string>
-    <string name="light_mode">Light Mode</string>
-    <string name="dark_mode">Dark Mode</string>
-    <string name="dark_theme">Dark theme</string>
 
 
-    <string name="ads">Ads</string>
-    <string name="display_ads">Display ads</string>
-    <string name="personalized_ads">Personalized ads</string>
-    <string name="turn_on_personalized_ads">Turn on personalized ads</string>
-    <string name="summary_ads">See ads that are relevant to you. Manage the information used to show personalized ads based on your app activity. You can always turn off personalization here.\n</string>
 
     <string name="feedback">Feedback</string>
     <string name="in_app_ads">In-app ads</string>
     <string name="change_ad_settings">Change ad settings</string>
 
 
-    <string name="summary_dark_theme">Dark theme uses a deep background to help keep your battery alive longer.</string>
+    <string name="dynamic_colors">Dynamic colors</string>
+    <string name="summary_preference_settings_dynamic_colors">Apply colors from wallpapers to the app theme</string>
 
 
     <string name="snack_network_error">Network error occurred while checking for updates</string>
     <string name="snack_general_error">An error occurred while checking for updates</string>
 
     <string name="auto_battery_mode">Auto Battery Dark Mode</string>
-    <string name="amoled_mode">AMOLED mode</string>
     <string name="default_tab">Default tab</string>
     <string name="bottom_navigation_bar_labels">Bottom navigation bar labels</string>
     <string name="labeled">Labeled</string>
     <string name="selected">Selected</string>
     <string name="unlabeled">Unlabeled</string>
-    <string name="language">Language</string>
     <string name="custom_animations">Custom animations</string>
     <string name="swap_buttons">Swap buttons</string>
     <string name="cleaning">Cleaning</string>
@@ -131,31 +155,15 @@
     <string name="one_click_clean">One click clean</string>
     <string name="daily_clean">Daily Clean</string>
     <string name="notifications">Notifications</string>
-    <string name="advanced">Advanced</string>
+
     <string name="analytics">Analytics</string>
     <string name="crashlytics">Crashlytics</string>
-    <string name="error_reporting">Error reporting</string>
-    <string name="bug_report">Bug report</string>
+
     <string name="privacy_and_safety">Privacy &amp; safety</string>
     <string name="privacy_and_security">Privacy and security</string>
-    <string name="privacy">Privacy</string>
-    <string name="privacy_policy">Privacy policy</string>
-    <string name="terms_of_service">Terms of service</string>
-    <string name="code_of_conduct">Code of conduct</string>
-    <string name="legal">Legal</string>
-    <string name="legal_notices">Legal notices</string>
-    <string name="permissions">Permissions</string>
-    <string name="normal">Normal</string>
-    <string name="ad_id">Ad id [AD_ID]</string>
-    <string name="internet">Internet [INTERNET]</string>
-    <string name="post_notifications">Post notifications [POST_NOTIFICATIONS]</string>
-    <string name="runtime">Runtime</string>
-    <string name="access_network_state">Access network state [ACCESS_NETWORK_STATE]</string>
-    <string name="access_notification_policy">Access notification policy [ACCESS_NOTIFICATION_POLICY]</string>
+
     <string name="activity_recognition">Activity Recognition [ACTIVITY_RECOGNITION]</string>
-    <string name="billing">Billing [BILLING]</string>
-    <string name="check_license">Check license [CHECK_LICENSE]</string>
-    <string name="foreground_service">Foreground service [FOREGROUND_SERVICE]</string>
+
     <string name="receive_boot_completed">Receive boot completed [RECEIVE_BOOT_COMPLETED]</string>
     <string name="request_delete_packages">Request delete packages [REQUEST_DELETE_PACKAGES]</string>
     <string name="storage">Storage</string>
@@ -169,17 +177,12 @@
     <string name="read_media_images">Read media images [READ_MEDIA_IMAGES]</string>
     <string name="read_media_video">Read media video [READ_MEDIA_VIDEO]</string>
     <string name="write_external_storage">Write external storage [WRITE_EXTERNAL_STORAGE]</string>
-    <string name="usage_and_diagnostics">Usage and diagnostics</string>
 
-
-    <string name="security_and_privacy">Security &amp; privacy</string>
     <string name="learn_more">Learn more</string>
-    <string name="summary_usage_and_diagnostics">Help improve your experience by automatically sending diagnostic, device, and app usage data to us. This will help improve app performance, stability, and other enhancements. Some aggregate data will also help our apps.\n\nThis is general information about your device and how you use our apps (such as battery level, system and app activity, and errors). The data will be used to improve our apps\n\nTurning off this feature doesn\'t affect your device\'s ability to send the information needed for essential services such as app updates and security.\n</string>
     <string name="summary_preference_settings_default_tab">Select the default tab from the bottom navigation bar</string>
     <string name="summary_preference_settings_bottom_navigation_bar_labels">Display or not the labels for the bottom nav bar</string>
 
 
-    <string name="license">License</string>
     <string name="web_ad">Web Ad</string>
     <string name="device_info">Device info</string>
     <string name="manufacturer">Manufacturer:</string>
@@ -234,10 +237,9 @@
     <string name="summary_preference_settings_amoled_mode">Experience enhanced visuals and deeper backgrounds</string>
     <string name="summary_preference_settings_cleaning">Customize your cleaning experience</string>
     <string name="summary_preference_settings_notifications">Manage app notifications</string>
-    <string name="summary_preference_settings_advanced">Explore more advanced settings</string>
-    <string name="summary_preference_settings_privacy_and_security">Manage your privacy settings</string>
+
     <string name="summary_preference_settings_about">Learn more about Cleaner</string>
-    <string name="summary_preference_settings_language">Set application language</string>
+
     <string name="summary_preference_settings_delete_corpse_files">Delete files left over from uninstalled/removed apps</string>
     <string name="summary_preference_settings_delete_apk_files">Delete installer files (.apk) files for Android</string>
     <string name="summary_preference_settings_delete_invalid_media">Delete corrupted images</string>
@@ -249,20 +251,13 @@
     <string name="summary_preference_settings_archive_filter">Delete archives from your device</string>
     <string name="summary_preference_settings_analytics">Allow the app to collect crash reports manually using Firebase Analytics</string>
     <string name="summary_preference_settings_crashlytics">Allow the app to collect anonymous usage statistics using Firebase Crashlytics</string>
-    <string name="summary_preference_settings_bug_report">Send bug reports and feature requests to the app\'s GitHub repository issues page</string>
+
     <string name="summary_preference_settings_daily_clean">Automatically runs daily, without you having to open the app</string>
     <string name="summary_preference_settings_custom_animations">Enjoy fun animations on every screen transition</string>
     <string name="summary_preference_settings_swap_buttons">Swap \"Clean\" and \"Analyze\" buttons</string>
     <string name="summary_preference_settings_oss">License details for open source software</string>
-    <string name="summary_preference_permissions_ad_id">Allows the app to retrieve and use the advertising identifier associated with the user\'s device, providing personalized ads, measuring ad effectiveness, and showing ads on Android 13 or later devices</string>
-    <string name="summary_preference_permissions_internet">Allows the app to establish an internet connection to send error reports or check for updates</string>
-    <string name="summary_preference_permissions_post_notifications">Allows the app to display notifications on the devices with Android 13 or later</string>
-    <string name="summary_preference_permissions_access_network_state">Allows the app to check network connectivity and retrieve information about Wi-Fi, including enabled status and connected Wi-Fi device names</string>
-    <string name="summary_preference_permissions_access_notification_policy">Allows the app to access and modify the device\'s notification policy, controlling how and when notifications are displayed to the user and providing custom notification management features</string>
+
     <string name="summary_preference_permissions_activity_recognition">Allows the app to recognize the user\'s physical activity. This can be used to provide context-aware features</string>
-    <string name="summary_preference_permissions_billing">Allows the app to use the Google Play Billing Library to handle in-app purchases and donations</string>
-    <string name="summary_preference_permissions_check_license">Allows the app to verify its compliance with the license agreement and enforce licensing terms to protect intellectual property</string>
-    <string name="summary_preference_permissions_foreground_service">Allows the app to create and use foreground services that run when the device boots up, giving them priority over other background processes and improving performance and reliability and allowing the daily clean to run in the background</string>
     <string name="summary_preference_permissions_receive_boot_completed">Allows the app to start when the device boots u</string>
     <string name="summary_preference_permissions_request_delete_packages">Allows the app to request the deletion of packages. This can be used to uninstall other apps from the device</string>
     <string name="summary_preference_permissions_access_media_location">Allows the app to access the device\'s media files location</string>

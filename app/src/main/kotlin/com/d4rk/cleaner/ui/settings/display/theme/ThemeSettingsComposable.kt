@@ -23,7 +23,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -45,35 +44,24 @@ fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
     val dataStore = DataStore.getInstance(context)
     val scope = rememberCoroutineScope()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    val themeMode = dataStore.themeMode.collectAsState(initial = "follow_system")
+    val themeMode = dataStore.themeMode.collectAsState(initial = "follow_system").value
     val isAmoledMode = dataStore.amoledMode.collectAsState(initial = false)
-    val darkModeString = stringResource(R.string.dark_mode)
-    LaunchedEffect(themeMode.value) {
-        val isDarkMode = themeMode.value == darkModeString
-        dataStore.saveDarkMode(isDarkMode)
-    }
 
     val themeOptions = listOf(
         stringResource(R.string.follow_system),
         stringResource(R.string.dark_mode),
         stringResource(R.string.light_mode),
-        stringResource(R.string.auto_battery_mode)
     )
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
-        LargeTopAppBar(
-            title = { Text(stringResource(R.string.dark_theme)) },
-            navigationIcon = {
-                IconButton(onClick = {
-                    activity.finish()
-                }) {
-                    Icon(
-                        Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = null
-                    )
-                }
-            },
-            scrollBehavior = scrollBehavior
-        )
+        LargeTopAppBar(title = { Text(stringResource(R.string.dark_theme)) }, navigationIcon = {
+            IconButton(onClick = {
+                activity.finish()
+            }) {
+                Icon(
+                    Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null
+                )
+            }
+        }, scrollBehavior = scrollBehavior)
     }) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
@@ -83,7 +71,7 @@ fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
             ) {
                 item {
                     SwitchCardComposable(
-                        title = stringResource(R.string.amoled_mode), switchState = isAmoledMode
+                        title = stringResource(R.string.amoled_mode) , switchState = isAmoledMode
                     ) { isChecked ->
                         scope.launch(Dispatchers.IO) {
                             dataStore.saveAmoledMode(isChecked)
@@ -101,7 +89,7 @@ fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
                                 Modifier.fillMaxWidth(),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                RadioButton(selected = (text == themeMode.value), onClick = {
+                                RadioButton(selected = (text == themeMode), onClick = {
                                     scope.launch(Dispatchers.IO) {
                                         dataStore.saveThemeMode(text)
                                         dataStore.themeModeState.value = text

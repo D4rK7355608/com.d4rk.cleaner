@@ -46,8 +46,8 @@ fun AboutSettingsComposable(activity: AboutSettingsActivity) {
     }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
-                .fillMaxHeight()
-                .padding(paddingValues),
+                    .fillMaxHeight()
+                    .padding(paddingValues),
         ) {
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.app_info))
@@ -60,10 +60,10 @@ fun AboutSettingsComposable(activity: AboutSettingsActivity) {
                     summary = "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
                 )
                 PreferenceItem(title = stringResource(com.google.android.gms.oss.licenses.R.string.oss_license_title),
-                    summary = stringResource(R.string.summary_preference_settings_oss),
-                    onClick = {
-                        Utils.openActivity(context, OssLicensesMenuActivity::class.java)
-                    })
+                               summary = stringResource(R.string.summary_preference_settings_oss),
+                               onClick = {
+                                   Utils.openActivity(context, OssLicensesMenuActivity::class.java)
+                               })
             }
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.device_info))
@@ -77,12 +77,12 @@ fun AboutSettingsComposable(activity: AboutSettingsActivity) {
                 )
 
                 PreferenceItem(title = stringResource(id = R.string.device_info),
-                    summary = version,
-                    onClick = {
-                        val clip = ClipData.newPlainText("text", version)
-                        clipboardManager.setPrimaryClip(clip)
-                        // Show snackbar
-                    })
+                               summary = version,
+                               onClick = {
+                                   val clip = ClipData.newPlainText("text", version)
+                                   clipboardManager.setPrimaryClip(clip)
+                                   // TODO: Show snackbar
+                               })
             }
         }
     }

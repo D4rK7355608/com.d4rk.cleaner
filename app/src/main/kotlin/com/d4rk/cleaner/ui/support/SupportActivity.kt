@@ -15,7 +15,7 @@ import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.SkuDetails
 import com.android.billingclient.api.SkuDetailsParams
-import com.d4rk.cleaner.ui.settings.display.theme.AppTheme
+import com.d4rk.cleaner.ui.settings.display.theme.style.AppTheme
 
 class SupportActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

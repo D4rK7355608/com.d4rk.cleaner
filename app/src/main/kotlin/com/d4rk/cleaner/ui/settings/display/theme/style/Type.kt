@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.ui.settings.display.theme
+package com.d4rk.cleaner.ui.settings.display.theme.style
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

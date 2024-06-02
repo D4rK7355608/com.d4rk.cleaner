@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.d4rk.cleaner.ui.settings.display.theme.AppTheme
+import com.d4rk.cleaner.ui.settings.display.theme.style.AppTheme
 import com.d4rk.cleaner.utils.Utils
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory

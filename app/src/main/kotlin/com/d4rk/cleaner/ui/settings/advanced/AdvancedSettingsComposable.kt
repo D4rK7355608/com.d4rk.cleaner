@@ -41,19 +41,19 @@ fun AdvancedSettingsComposable(activity: AdvancedSettingsActivity) {
     }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
-                .fillMaxHeight()
-                .padding(paddingValues),
+                    .fillMaxHeight()
+                    .padding(paddingValues),
         ) {
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.error_reporting))
                 PreferenceItem(title = stringResource(R.string.bug_report),
-                    summary = stringResource(R.string.summary_preference_settings_bug_report),
-                    onClick = {
-                        Utils.openUrl(
-                            context,
-                            "https://github.com/D4rK7355608/${context.packageName}/issues/new"
-                        )
-                    })
+                               summary = stringResource(R.string.summary_preference_settings_bug_report),
+                               onClick = {
+                                   Utils.openUrl(
+                                       context,
+                                       "https://github.com/D4rK7355608/${context.packageName}/issues/new"
+                                   )
+                               })
             }
         }
     }

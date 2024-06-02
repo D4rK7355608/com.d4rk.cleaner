@@ -49,12 +49,12 @@ fun PermissionsSettingsComposable(activity: PermissionsSettingsActivity) {
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.normal))
                 PreferenceItem(
-                    title = stringResource(R.string.internet),
-                    summary = stringResource(R.string.summary_preference_permissions_internet),
-                )
-                PreferenceItem(
                     title = stringResource(R.string.ad_id),
                     summary = stringResource(R.string.summary_preference_permissions_ad_id),
+                )
+                PreferenceItem(
+                    title = stringResource(R.string.internet),
+                    summary = stringResource(R.string.summary_preference_permissions_internet),
                 )
                 PreferenceItem(
                     title = stringResource(R.string.post_notifications),

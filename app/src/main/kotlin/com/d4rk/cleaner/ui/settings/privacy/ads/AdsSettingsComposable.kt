@@ -65,8 +65,8 @@ fun AdsSettingsComposable(activity: AdsSettingsActivity) {
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
+                        .fillMaxSize()
+                        .padding(innerPadding),
             ) {
                 item {
                     SwitchCardComposable(
@@ -80,28 +80,28 @@ fun AdsSettingsComposable(activity: AdsSettingsActivity) {
                 item {
                     Box(modifier = Modifier.padding(horizontal = 8.dp)) {
                         PreferenceItem(title = stringResource(R.string.personalized_ads),
-                            summary = "Manage the personalized ads consent for this app",
-                            onClick = {
-                                val params = ConsentRequestParameters.Builder()
-                                    .setTagForUnderAgeOfConsent(false).build()
-                                val consentInformation =
-                                    UserMessagingPlatform.getConsentInformation(
-                                        context
-                                    )
-                                consentInformation.requestConsentInfoUpdate(activity,
-                                    params,
-                                    {
-                                        activity.loadForm()
-                                    },
-                                    {})
-                            })
+                                       summary = stringResource(id = R.string.summary_ads_personalized_ads),
+                                       onClick = {
+                                           val params = ConsentRequestParameters.Builder()
+                                                   .setTagForUnderAgeOfConsent(false).build()
+                                           val consentInformation =
+                                                   UserMessagingPlatform.getConsentInformation(
+                                                       context
+                                                   )
+                                           consentInformation.requestConsentInfoUpdate(activity,
+                                                                                       params,
+                                                                                       {
+                                                                                           activity.openForm()
+                                                                                       },
+                                                                                       {})
+                                       })
                     }
                 }
                 item {
                     Column(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(24.dp)
+                                .fillMaxWidth()
+                                .padding(24.dp)
                     ) {
                         Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
@@ -117,16 +117,16 @@ fun AdsSettingsComposable(activity: AdsSettingsActivity) {
                             }
                             addStringAnnotation(
                                 tag = "URL",
-                                annotation = "https://www.example.com",
+                                annotation = "https://sites.google.com/view/d4rk7355608/more/apps/ads-help-center",
                                 start = 0,
                                 end = stringResource(R.string.learn_more).length
                             )
                         }
                         ClickableText(text = annotatedString, onClick = { offset ->
                             annotatedString.getStringAnnotations("URL", offset, offset)
-                                .firstOrNull()?.let { annotation ->
-                                    Utils.openUrl(context, annotation.item)
-                                }
+                                    .firstOrNull()?.let { annotation ->
+                                        Utils.openUrl(context, annotation.item)
+                                    }
                         })
                     }
                 }
