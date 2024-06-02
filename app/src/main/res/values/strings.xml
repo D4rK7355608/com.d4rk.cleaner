@@ -1,4 +1,41 @@
 <resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <string name="app_description">The last Android Cleaner you will ever need with Google inspired material design made by D4rK to be more simplistic and easy to use!</string>
     <string name="agree">Agree</string>
     <string name="welcome">Welcome</string>
@@ -62,10 +99,7 @@
 
 
     <string name="summary_dark_theme">Dark theme uses a deep background to help keep your battery alive longer.</string>
-    <string name="summary_preference_settings_dark_mode_system"></string>
-    <string name="summary_preference_settings_dark_mode_dark"></string>
-    <string name="summary_preference_settings_dark_mode_light"></string>
-    <string name="summary_preference_settings_dark_mode_auto_battery"></string>
+
 
     <string name="auto_battery_mode">Auto Battery Dark Mode</string>
     <string name="amoled_mode">AMOLED mode</string>

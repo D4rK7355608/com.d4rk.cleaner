@@ -64,17 +64,6 @@ class DataStore(context: Context) {
         }
     }
 
-    private val darkModeKey = booleanPreferencesKey("dark_mode")
-    val darkMode: Flow<Boolean> = dataStore.data.map { preferences ->
-        preferences[darkModeKey] ?: false
-    }
-
-    suspend fun saveDarkMode(isChecked: Boolean) {
-        dataStore.edit { preferences ->
-            preferences[darkModeKey] = isChecked
-        }
-    }
-
     private val amoledModeKey = booleanPreferencesKey("amoled_mode")
     val amoledMode: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[amoledModeKey] ?: false
@@ -97,26 +86,17 @@ class DataStore(context: Context) {
         }
     }
 
-    private val swappedButtonsKey = booleanPreferencesKey("swapped_buttons")
-    val swappedButtons: Flow<Boolean> = dataStore.data.map { preferences ->
-        preferences[swappedButtonsKey] ?: false
+    private val languageKey = stringPreferencesKey("language")
+
+    fun getLanguage(): Flow<String> = dataStore.data.map { preferences ->
+        preferences[languageKey] ?: "en"
     }
 
-    suspend fun saveSwappedButtons(isChecked: Boolean) {
+    suspend fun saveLanguage(language: String) {
         dataStore.edit { preferences ->
-            preferences[swappedButtonsKey] = isChecked
+            preferences[languageKey] = language
         }
     }
-
-    /*    private val languageKey = stringPreferencesKey("language")
-        val language: Flow<String> = dataStore.data.map { preferences ->
-            preferences[languageKey] ?: getString(R.string.default_value_language)
-        }
-        suspend fun saveLanguage(language: String) {
-            dataStore.edit { preferences ->
-                preferences[languageKey] = language
-            }
-        }*/
 
     // Cleaning
     private val genericFilterKey = booleanPreferencesKey("generic_filter")
