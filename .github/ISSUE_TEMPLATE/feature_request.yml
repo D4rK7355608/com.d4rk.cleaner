@@ -1,7 +1,7 @@
 name: Feature request
 description: File a feature request
 title: "[FR]: "
-labels: ["enhancement", "triage me"]
+labels: [ "enhancement", "triage me" ]
 body:
   - type: markdown
     attributes:

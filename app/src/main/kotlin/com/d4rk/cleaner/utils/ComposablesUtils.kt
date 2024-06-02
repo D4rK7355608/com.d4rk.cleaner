@@ -42,49 +42,47 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 /**
- * Creates a clickable card with a title and a switch within your app's preferences.
+ * Creates a clickable card with a title and a switch for app preference screens.
  *
- * This composable is useful for displaying settings or preferences that can be toggled on or off.
- * When clicked, the card toggles the switch and calls the provided callback function.
+ * This composable function displays a card with a title and a switch. The entire card is clickable and toggles the switch when clicked, calling the provided `onSwitchToggled` callback function with the new state.
+ * The switch displays a check icon when it's in the 'on' state.
  *
  * @param title The text displayed on the card's title.
- * @param switchState A state variable holding the current on/off state of the switch (true for on).
- * @param onSwitchToggled A callback function called whenever the switch is toggled.
- *  This function receives the new state of the switch (boolean) as a parameter.
+ * @param switchState A state variable holding the current on/off state of the switch. Set to true for on and false for off.
+ * @param onSwitchToggled A callback function that is called whenever the switch is toggled. This function receives the new state of the switch (boolean) as a parameter.
  */
 @Composable
 fun SwitchCardComposable(
-    title : String , switchState : State<Boolean> , onSwitchToggled : (Boolean) -> Unit
+    title: String, switchState: State<Boolean>, onSwitchToggled: (Boolean) -> Unit
 ) {
     Card(modifier = Modifier
-            .fillMaxWidth()
-            .padding(24.dp)
-            .clip(RoundedCornerShape(28.dp))
-            .clickable {
-                onSwitchToggled(! switchState.value)
-            }) {
+        .fillMaxWidth()
+        .padding(24.dp)
+        .clip(RoundedCornerShape(28.dp))
+        .clickable {
+            onSwitchToggled(!switchState.value)
+        }) {
         Row(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp) ,
-            horizontalArrangement = Arrangement.SpaceBetween ,
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(text = title)
-            Switch(checked = switchState.value ,
-                   onCheckedChange = onSwitchToggled ,
-                   thumbContent = if (switchState.value) {
-                       {
-                           Icon(
-                               Icons.Filled.Check ,
-                               contentDescription = null ,
-                               modifier = Modifier.size(SwitchDefaults.IconSize) ,
-                           )
-                       }
-                   }
-                   else {
-                       null
-                   })
+            Switch(checked = switchState.value,
+                onCheckedChange = onSwitchToggled,
+                thumbContent = if (switchState.value) {
+                    {
+                        Icon(
+                            Icons.Filled.Check,
+                            contentDescription = null,
+                            modifier = Modifier.size(SwitchDefaults.IconSize),
+                        )
+                    }
+                } else {
+                    null
+                })
         }
     }
 }
@@ -92,61 +90,58 @@ fun SwitchCardComposable(
 /**
  * Displays a category header within your app's preference screens.
  *
- * Use this composable within a scrollable container to separate different sections of
- * your app's preferences with clear category titles.
+ * This composable function is used to display a category header in your app's preference screens. It helps in separating different sections of your app's preferences with clear category titles. The title is displayed in a distinct style and color to differentiate it from other preference items.
  *
- * @param title The text to be displayed as the category header.
+ * @param title The text to be displayed as the category header. This is typically the name of the category.
  */
 @Composable
 fun PreferenceCategoryItem(
-    title : String
+    title: String
 ) {
     Text(
-        text = title ,
-        color = MaterialTheme.colorScheme.primary ,
-        style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold) ,
-        modifier = Modifier.padding(start = 16.dp , top = 16.dp)
+        text = title,
+        color = MaterialTheme.colorScheme.primary,
+        style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
+        modifier = Modifier.padding(start = 16.dp, top = 16.dp)
     )
 }
 
 /**
  * Creates a clickable preference item for app preference screens.
  *
- * This composable displays a preference item with an optional icon, title, and summary.
- * Clicking the entire row triggers the provided `onClick` callback function.
+ * This composable function displays a preference item with an optional icon, title, and summary. The entire row is clickable and triggers the provided `onClick` callback function when clicked.
  *
- * @param icon An optional icon to be displayed at the beginning of the preference item. (Provide a `Painter` object)
- * @param title The main title text displayed for the preference item.
- * @param summary An optional secondary text displayed below the title for additional information.
- * @param onClick A callback function that is called when the entire preference item is clicked.
- *  Leave this empty if no action is needed on click.
+ * @param icon An optional icon to be displayed at the start of the preference item. If provided, it should be an `ImageVector` object.
+ * @param title An optional main title text displayed for the preference item.
+ * @param summary An optional secondary text displayed below the title for additional information about the preference.
+ * @param onClick A callback function that is called when the entire preference item is clicked. If no action is needed on click, this can be left empty.
  */
 @Composable
 fun PreferenceItem(
-    icon : ImageVector? = null ,
-    title : String? = null ,
-    summary : String? = null ,
-    onClick : () -> Unit = {}
+    icon: ImageVector? = null,
+    title: String? = null,
+    summary: String? = null,
+    onClick: () -> Unit = {}
 ) {
     Row(
         modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(16.dp))
-                .clickable(onClick = onClick) , verticalAlignment = Alignment.CenterVertically
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .clickable(onClick = onClick), verticalAlignment = Alignment.CenterVertically
     ) {
         icon?.let {
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(it , contentDescription = null)
+            Icon(it, contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
         }
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
             title?.let {
-                Text(text = it , style = MaterialTheme.typography.titleLarge)
+                Text(text = it, style = MaterialTheme.typography.titleLarge)
             }
             summary?.let {
-                Text(text = it , style = MaterialTheme.typography.bodyMedium)
+                Text(text = it, style = MaterialTheme.typography.bodyMedium)
             }
         }
     }
@@ -155,49 +150,48 @@ fun PreferenceItem(
 /**
  * Creates a clickable preference item with a switch for app preference screens.
  *
- * This composable combines an icon (optional), title, summary (optional), and a switch. Clicking
- * the entire row toggles the switch and calls the provided `onCheckedChange` callback function.
+ * This composable function combines an optional icon, title, optional summary, and a switch into a single row.
+ * The entire row is clickable and toggles the switch when clicked, calling the provided `onCheckedChange` callback function with the new state.
  *
- * @param icon An optional icon to be displayed at the beginning of the preference item. (Provide a `Painter` object)
+ * @param icon An optional icon to be displayed at the start of the preference item. If provided, it should be an `ImageVector` object.
  * @param title The main title text displayed for the preference item.
- * @param summary An optional secondary text displayed below the title for additional information.
- * @param checked The initial state of the switch (true for on, false for off).
- * @param onCheckedChange A callback function called whenever the switch is toggled.
- *  This function receives the new state of the switch (boolean) as a parameter.
+ * @param summary An optional secondary text displayed below the title for additional information about the preference.
+ * @param checked The initial state of the switch. Set to true for on and false for off.
+ * @param onCheckedChange A callback function that is called whenever the switch is toggled. This function receives the new state of the switch (boolean) as a parameter.
  */
 @Composable
 fun SwitchPreferenceItem(
-    icon : ImageVector? = null ,
-    title : String ,
-    summary : String? = null ,
-    checked : Boolean ,
-    onCheckedChange : (Boolean) -> Unit
+    icon: ImageVector? = null,
+    title: String,
+    summary: String? = null,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit
 ) {
     Row(
         modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(16.dp))
-                .clickable(onClick = { onCheckedChange(! checked) }) ,
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .clickable(onClick = { onCheckedChange(!checked) }),
         verticalAlignment = Alignment.CenterVertically
     ) {
         icon?.let {
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(it , contentDescription = null)
+            Icon(it, contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
         }
         Column(
             modifier = Modifier
-                    .padding(16.dp)
-                    .weight(1f)
+                .padding(16.dp)
+                .weight(1f)
         ) {
-            Text(text = title , style = MaterialTheme.typography.titleLarge)
+            Text(text = title, style = MaterialTheme.typography.titleLarge)
             summary?.let {
-                Text(text = it , style = MaterialTheme.typography.bodyMedium)
+                Text(text = it, style = MaterialTheme.typography.bodyMedium)
             }
         }
         Switch(
-            checked = checked ,
-            onCheckedChange = onCheckedChange ,
+            checked = checked,
+            onCheckedChange = onCheckedChange,
             modifier = Modifier.padding(16.dp)
         )
     }
@@ -206,91 +200,89 @@ fun SwitchPreferenceItem(
 /**
  * Creates a clickable preference item with a switch and a divider for app preference screens.
  *
- * This composable combines an optional icon, title, summary, switch, and a divider. Clicking
- * the entire row triggers the provided `onClick` callback function. Toggling the switch calls
+ * This composable function combines an optional icon, title, summary, switch, and a divider into a single row.
+ * The entire row is clickable and triggers the provided `onClick` callback function when clicked.
+ * The switch is toggled on or off based on the `checked` parameter, and any change in its state calls
  * the `onCheckedChange` callback with the new state.
  *
- * @param icon An optional icon to be displayed at the beginning of the preference item. (Provide a `Painter` object)
+ * @param icon An optional icon to be displayed at the start of the preference item. If provided, it should be an `ImageVector` object.
  * @param title The main title text displayed for the preference item.
- * @param summary A secondary text displayed below the title for additional information.
- * @param checked The initial state of the switch (true for on, false for off).
- * @param onCheckedChange A callback function called whenever the switch is toggled.
- *  This function receives the new state of the switch (boolean) as a parameter.
- * @param onClick A callback function that is called when the entire preference item is clicked.
- *  Leave this empty if no action is needed on click.
+ * @param summary A secondary text displayed below the title for additional information about the preference.
+ * @param checked The initial state of the switch. Set to true for on and false for off.
+ * @param onCheckedChange A callback function that is called whenever the switch is toggled. This function receives the new state of the switch (boolean) as a parameter.
+ * @param onClick A callback function that is called when the entire preference item is clicked. If no action is needed on click, this can be left empty.
  */
 @Composable
 fun SwitchPreferenceItemWithDivider(
-    icon : ImageVector? = null ,
-    title : String ,
-    summary : String ,
-    checked : Boolean ,
-    onCheckedChange : (Boolean) -> Unit ,
-    onClick : () -> Unit
+    icon: ImageVector? = null,
+    title: String,
+    summary: String,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+    onClick: () -> Unit
 ) {
     Row(
         modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(16.dp))
-                .clickable(onClick = onClick) , verticalAlignment = Alignment.CenterVertically
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .clickable(onClick = onClick), verticalAlignment = Alignment.CenterVertically
     ) {
         icon?.let {
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(it , contentDescription = null)
+            Icon(it, contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
         }
         Column(
             modifier = Modifier
-                    .padding(16.dp)
-                    .weight(1f)
+                .padding(16.dp)
+                .weight(1f)
         ) {
-            Text(text = title , style = MaterialTheme.typography.titleLarge)
-            Text(text = summary , style = MaterialTheme.typography.bodyMedium)
+            Text(text = title, style = MaterialTheme.typography.titleLarge)
+            Text(text = summary, style = MaterialTheme.typography.bodyMedium)
         }
 
         VerticalDivider(
             modifier = Modifier
-                    .height(32.dp)
-                    .align(Alignment.CenterVertically) ,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f) ,
+                .height(32.dp)
+                .align(Alignment.CenterVertically),
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
             thickness = 1.dp
         )
 
         Switch(
-            checked = checked ,
-            onCheckedChange = onCheckedChange ,
+            checked = checked,
+            onCheckedChange = onCheckedChange,
             modifier = Modifier.padding(16.dp)
         )
     }
 }
 
-enum class ButtonState { Pressed , Idle }
+enum class ButtonState { Pressed, Idle }
 
 @SuppressLint("ReturnFromAwaitPointerEventScope")
 @Composable
 fun Modifier.bounceClick() = composed {
     var buttonState by remember { mutableStateOf(ButtonState.Idle) }
     val scale by animateFloatAsState(
-        if (buttonState == ButtonState.Pressed) 0.95f else 1f , label = ""
+        if (buttonState == ButtonState.Pressed) 0.95f else 1f, label = ""
     )
     this
-            .graphicsLayer {
-                scaleX = scale
-                scaleY = scale
-            }
-            .clickable(interactionSource = remember { MutableInteractionSource() } ,
-                       indication = null ,
-                       onClick = { })
-            .pointerInput(buttonState) {
-                awaitPointerEventScope {
-                    buttonState = if (buttonState == ButtonState.Pressed) {
-                        waitForUpOrCancellation()
-                        ButtonState.Idle
-                    }
-                    else {
-                        awaitFirstDown(false)
-                        ButtonState.Pressed
-                    }
+        .graphicsLayer {
+            scaleX = scale
+            scaleY = scale
+        }
+        .clickable(interactionSource = remember { MutableInteractionSource() },
+            indication = null,
+            onClick = { })
+        .pointerInput(buttonState) {
+            awaitPointerEventScope {
+                buttonState = if (buttonState == ButtonState.Pressed) {
+                    waitForUpOrCancellation()
+                    ButtonState.Idle
+                } else {
+                    awaitFirstDown(false)
+                    ButtonState.Pressed
                 }
             }
+        }
 }

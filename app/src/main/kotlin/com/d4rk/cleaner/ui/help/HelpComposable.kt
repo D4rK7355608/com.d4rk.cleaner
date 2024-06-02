@@ -150,7 +150,7 @@ fun HelpComposable(activity: HelpActivity) {
                     },
                     modifier = Modifier
                         .padding(6.dp)
-                            .bounceClick()
+                        .bounceClick()
                         .constrainAs(fabButton) {
                             bottom.linkTo(parent.bottom)
                             end.linkTo(parent.end)
