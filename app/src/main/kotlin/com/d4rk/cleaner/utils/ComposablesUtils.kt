@@ -219,7 +219,8 @@ fun SwitchPreferenceItemWithDivider(
     summary: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onSwitchClick: (Boolean) -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -248,12 +249,13 @@ fun SwitchPreferenceItemWithDivider(
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
             thickness = 1.dp
         )
-
         Switch(
-            checked = checked,
-            onCheckedChange = onCheckedChange,
-            modifier = Modifier.padding(16.dp)
+            checked = checked, onCheckedChange = { isChecked ->
+                onCheckedChange(isChecked)
+                onSwitchClick(isChecked)
+            }, modifier = Modifier.padding(16.dp)
         )
+
     }
 }
 

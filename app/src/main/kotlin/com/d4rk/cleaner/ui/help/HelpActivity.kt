@@ -1,9 +1,9 @@
 package com.d4rk.cleaner.ui.help
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -13,7 +13,7 @@ import com.d4rk.cleaner.utils.Utils
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 
-class HelpActivity : ComponentActivity() {
+class HelpActivity : AppCompatActivity() {
     private lateinit var reviewManager: ReviewManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +51,8 @@ class HelpActivity : ComponentActivity() {
                 this,
                 "https://play.google.com/store/apps/details?id=${this.packageName}&showAllReviews=true"
             )
+        }.addOnFailureListener {
+            Utils.sendEmailToDeveloper(this)
         }
     }
 }

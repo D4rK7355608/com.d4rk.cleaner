@@ -1,8 +1,8 @@
 [versions]
-agp = "8.4.0"
-appcompat = "1.6.1"
+agp = "8.4.1"
+appcompat = "1.7.0"
 appUpdateKtx = "2.1.0"
-billing = "6.2.1"
+billing = "7.0.0"
 composeBom = "2024.05.00"
 compressor = "3.0.1"
 constraintlayoutCompose = "1.0.1"
@@ -10,24 +10,25 @@ coreSplashscreen = "1.0.1"
 datastoreCore = "1.1.1"
 firebaseBom = "32.8.1"
 glide = "4.16.0"
+volley = "1.2.1"
 kotlin = "1.9.23"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 kotlinxCoroutinesAndroid = "1.8.0"
-lifecycleRuntimeKtx = "2.7.0"
+lifecycleRuntimeKtx = "2.8.1"
 activityCompose = "1.9.0"
 composeUi = "1.6.7"
 composeMaterial3 = "1.2.1"
-google-services = "4.4.1"
+google-services = "4.4.2"
 google-oss-services = "0.10.6"
-google-firebase-crashlytics = "2.9.9"
+google-firebase-crashlytics = "3.0.1"
 material = "1.12.0"
 multidex = "2.0.1"
 navigationCompose = "2.7.7"
-playServicesAds = "23.0.0"
-playServicesOssLicenses = "17.0.1"
+playServicesAds = "23.1.0"
+playServicesOssLicenses = "17.1.0"
 reviewKtx = "2.0.1"
 workRuntimeKtx = "2.9.0"
 
@@ -78,6 +79,7 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 play-services-oss-licenses = { module = "com.google.android.gms:play-services-oss-licenses", version.ref = "playServicesOssLicenses" }
 review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "reviewKtx" }
+volley = { module = "com.android.volley:volley", version.ref = "volley" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

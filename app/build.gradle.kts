@@ -54,8 +54,6 @@ android {
         }
         debug {
             multiDexEnabled = true
-            isMinifyEnabled = true
-            isShrinkResources = true
             isDebuggable = true
             versionNameSuffix = null
             proguardFiles(
@@ -132,6 +130,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.app.update.ktx)
     implementation(libs.review.ktx)
+    implementation(libs.volley)
 
     // Firebase
     implementation(platform(libs.firebase.bom))

@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package com.d4rk.cleaner.ads.managers
+package com.d4rk.cleaner.data.core
 
 import android.app.Activity
 import android.app.Application
@@ -11,35 +11,34 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.multidex.MultiDexApplication
+import com.d4rk.cleaner.constants.ads.AdsConstants
 import com.d4rk.cleaner.data.store.DataStore
+import com.d4rk.cleaner.notifications.managers.AppUsageNotificationsManager
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.appopen.AppOpenAd
-import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import java.util.Date
 
-private const val AD_UNIT_ID = "ca-app-pub-5294151573817700/9563492881"
-
 @Suppress("SameParameterValue")
-class ApplicationOpenAdManager : MultiDexApplication(), Application.ActivityLifecycleCallbacks,
+class AppCoreManager : MultiDexApplication(), Application.ActivityLifecycleCallbacks,
     LifecycleObserver {
     private lateinit var appOpenAdManager: AppOpenAdManager
     private var currentActivity: Activity? = null
-
     private lateinit var dataStore: DataStore
-
     override fun onCreate() {
         super.onCreate()
         registerActivityLifecycleCallbacks(this)
         MobileAds.initialize(this)
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
-        dataStore = DataStore.getInstance(this@ApplicationOpenAdManager)
+        dataStore = DataStore.getInstance(this@AppCoreManager)
         appOpenAdManager = AppOpenAdManager()
+        val notificationsManager = AppUsageNotificationsManager(this)
+        notificationsManager.scheduleAppUsageCheck()
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
@@ -78,10 +77,10 @@ class ApplicationOpenAdManager : MultiDexApplication(), Application.ActivityLife
             isLoadingAd = true
             val request = AdRequest.Builder().build()
             AppOpenAd.load(context,
-                AD_UNIT_ID,
+                AdsConstants.APP_OPEN_UNIT_ID,
                 request,
                 AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
-                object : AppOpenAdLoadCallback() {
+                object : AppOpenAd.AppOpenAdLoadCallback() {
                     override fun onAdLoaded(ad: AppOpenAd) {
                         appOpenAd = ad
                         isLoadingAd = false

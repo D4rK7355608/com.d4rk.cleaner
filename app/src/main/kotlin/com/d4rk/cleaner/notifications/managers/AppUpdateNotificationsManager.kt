@@ -51,13 +51,10 @@ class AppUpdateNotificationsManager(private val context: Context) {
                     .setContentText(context.getString(R.string.summary_notification_update))
                     .setAutoCancel(true).setContentIntent(
                         PendingIntent.getActivity(
-                            context,
-                            0,
-                            Intent(
+                            context, 0, Intent(
                                 Intent.ACTION_VIEW,
                                 Uri.parse("market://details?id=${context.packageName}")
-                            ),
-                            PendingIntent.FLAG_IMMUTABLE
+                            ), PendingIntent.FLAG_IMMUTABLE
                         )
                     )
                 notificationManager.notify(updateNotificationId, updateBuilder.build())

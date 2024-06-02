@@ -5,17 +5,22 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
+import com.android.volley.NoConnectionError
+import com.android.volley.TimeoutError
 import com.d4rk.cleaner.data.store.DataStore
 import com.d4rk.cleaner.notifications.managers.AppUpdateNotificationsManager
 import com.d4rk.cleaner.notifications.managers.AppUsageNotificationsManager
 import com.d4rk.cleaner.ui.settings.display.theme.AppTheme
 import com.d4rk.cleaner.ui.startup.StartupActivity
+import com.google.android.gms.ads.MobileAds
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -28,7 +33,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var dataStore: DataStore
     private lateinit var appUpdateManager: AppUpdateManager
     private var appUpdateNotificationsManager: AppUpdateNotificationsManager =
@@ -39,6 +44,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         enableEdgeToEdge()
         dataStore = DataStore.getInstance(this@MainActivity)
+        MobileAds.initialize(this@MainActivity)
         startupScreen()
         setupUpdateNotifications()
         setContent {
@@ -58,9 +64,31 @@ class MainActivity : ComponentActivity() {
         val appUsageNotificationsManager = AppUsageNotificationsManager(this)
         appUsageNotificationsManager.scheduleAppUsageCheck()
         appUpdateNotificationsManager.checkAndSendUpdateNotification()
+        checkForFlexibleUpdate()
+    }
 
-        // TODO: Test on release
-        //checkForFlexibleUpdate()
+    /**
+     * This method overrides the `onBackPressed()` method **(deprecated in Java)** to display a confirmation dialog
+     * before closing the activity. While this method might work, it's recommended to use more modern approaches
+     * for handling back button presses, such as using Navigation components or Activity lifecycles.
+     *
+     * This method is annotated with `@Deprecated` and `@Suppress("DEPRECATION")` to explicitly mark it as deprecated
+     * and suppress compiler warnings during its usage.
+     *
+     * Consider utilizing alternative approaches for handling back button events.
+     */
+    @Deprecated("Deprecated in Java")
+    @Suppress("DEPRECATION")
+    override fun onBackPressed() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.close)
+            .setMessage(R.string.summary_close)
+            .setPositiveButton(android.R.string.yes) { _, _ ->
+                super.onBackPressed()
+                moveTaskToBack(true)
+            }
+            .setNegativeButton(android.R.string.no, null)
+            .apply { show() }
     }
 
     /**
@@ -76,7 +104,6 @@ class MainActivity : ComponentActivity() {
      * @param resultCode The integer result code returned by the child activity through its setResult().
      * @param data An Intent, which can return result data to the caller (various data can be attached to Intent "extras").
      */
-    @Suppress("DEPRECATION")
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -114,35 +141,57 @@ class MainActivity : ComponentActivity() {
      */
     private fun checkForFlexibleUpdate() {
         lifecycleScope.launch {
-            val appUpdateInfo = appUpdateManager.appUpdateInfo.await()
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && appUpdateInfo.isUpdateTypeAllowed(
-                    AppUpdateType.IMMEDIATE
-                ) && appUpdateInfo.updateAvailability() != UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
-            ) {
-                @Suppress("DEPRECATION") appUpdateManager.appUpdateInfo.addOnSuccessListener { info ->
-                    when {
-                        info.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && info.isUpdateTypeAllowed(
-                            AppUpdateType.IMMEDIATE
-                        ) -> {
-                            info.clientVersionStalenessDays()?.let {
-                                if (it > 90) {
-                                    appUpdateManager.startUpdateFlowForResult(
-                                        info, AppUpdateType.IMMEDIATE, this@MainActivity, 1
-                                    )
+            try {
+                val appUpdateInfo = appUpdateManager.appUpdateInfo.await()
+                if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && appUpdateInfo.isUpdateTypeAllowed(
+                        AppUpdateType.IMMEDIATE
+                    ) && appUpdateInfo.updateAvailability() != UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
+                ) {
+                    @Suppress("DEPRECATION") appUpdateManager.appUpdateInfo.addOnSuccessListener { info ->
+                        when {
+                            info.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && info.isUpdateTypeAllowed(
+                                AppUpdateType.IMMEDIATE
+                            ) -> {
+                                info.clientVersionStalenessDays()?.let {
+                                    if (it > 90) {
+                                        appUpdateManager.startUpdateFlowForResult(
+                                            info, AppUpdateType.IMMEDIATE, this@MainActivity, 1
+                                        )
+                                    }
+                                }
+                            }
+
+                            info.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && info.isUpdateTypeAllowed(
+                                AppUpdateType.FLEXIBLE
+                            ) -> {
+                                info.clientVersionStalenessDays()?.let {
+                                    if (it < 90) {
+                                        appUpdateManager.startUpdateFlowForResult(
+                                            info, AppUpdateType.FLEXIBLE, this@MainActivity, 1
+                                        )
+                                    }
                                 }
                             }
                         }
+                    }
+                }
+            } catch (e: Exception) {
+                if (!BuildConfig.DEBUG) {
+                    when (e) {
+                        is NoConnectionError, is TimeoutError -> {
+                            Snackbar.make(
+                                findViewById(android.R.id.content),
+                                getString(R.string.snack_network_error),
+                                Snackbar.LENGTH_LONG
+                            ).show()
+                        }
 
-                        info.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && info.isUpdateTypeAllowed(
-                            AppUpdateType.FLEXIBLE
-                        ) -> {
-                            info.clientVersionStalenessDays()?.let {
-                                if (it < 90) {
-                                    appUpdateManager.startUpdateFlowForResult(
-                                        info, AppUpdateType.FLEXIBLE, this@MainActivity, 1
-                                    )
-                                }
-                            }
+                        else -> {
+                            Snackbar.make(
+                                findViewById(android.R.id.content),
+                                getString(R.string.snack_general_error),
+                                Snackbar.LENGTH_LONG
+                            ).show()
                         }
                     }
                 }

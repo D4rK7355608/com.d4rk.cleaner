@@ -54,7 +54,7 @@ fun PrivacySettingsComposable(activity: PrivacySettingsActivity) {
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.privacy))
                 PreferenceItem(title = stringResource(R.string.privacy_policy),
-                    summary = "View the policy that governs how we handle your data",
+                    summary = stringResource(id = R.string.summary_preference_settings_privacy_policy),
                     onClick = {
                         Utils.openUrl(
                             context,
@@ -62,7 +62,7 @@ fun PrivacySettingsComposable(activity: PrivacySettingsActivity) {
                         )
                     })
                 PreferenceItem(title = stringResource(R.string.terms_of_service),
-                    summary = "Review the terms you agree to when using our service",
+                    summary = stringResource(id = R.string.summary_preference_settings_terms_of_service),
                     onClick = {
                         Utils.openUrl(
                             context,
@@ -70,7 +70,7 @@ fun PrivacySettingsComposable(activity: PrivacySettingsActivity) {
                         )
                     })
                 PreferenceItem(title = stringResource(R.string.code_of_conduct),
-                    summary = "Understand the rules and guidelines for behavior within our service",
+                    summary = stringResource(id = R.string.summary_preference_settings_code_of_conduct),
                     onClick = {
                         Utils.openUrl(
                             context,
@@ -78,21 +78,21 @@ fun PrivacySettingsComposable(activity: PrivacySettingsActivity) {
                         )
                     })
                 PreferenceItem(title = stringResource(R.string.permissions),
-                    summary = "Manage the permissions granted to our service",
+                    summary = stringResource(id = R.string.summary_preference_settings_permissions),
                     onClick = {
                         Utils.openActivity(
                             context, PermissionsSettingsActivity::class.java
                         )
                     })
                 PreferenceItem(title = stringResource(R.string.ads),
-                    summary = "Manage the info to show you ads",
+                    summary = stringResource(id = R.string.summary_preference_settings_ads),
                     onClick = {
                         Utils.openActivity(
                             context, AdsSettingsActivity::class.java
                         )
                     })
                 PreferenceItem(title = stringResource(R.string.usage_and_diagnostics),
-                    summary = "Share data to help improve Cleaner",
+                    summary = stringResource(id = R.string.summary_preference_settings_usage_and_diagnostics),
                     onClick = {
                         Utils.openActivity(
                             context, UsageAndDiagnosticsActivity::class.java
@@ -102,7 +102,7 @@ fun PrivacySettingsComposable(activity: PrivacySettingsActivity) {
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.legal))
                 PreferenceItem(title = stringResource(R.string.legal_notices),
-                    summary = "View legal information about our service",
+                    summary = stringResource(id = R.string.summary_preference_settings_legal_notices),
                     onClick = {
                         Utils.openUrl(
                             context,
