@@ -2,13 +2,10 @@ package com.d4rk.cleaner.ui.imageoptimizer
 
 import android.app.Activity
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.preference.PreferenceManager
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.databinding.ActivityImagePickerBinding
 import com.google.android.gms.ads.AdRequest
@@ -32,29 +29,9 @@ class ImagePickerActivity : AppCompatActivity() {
         binding.buttonChooseImage.setOnClickListener {
             selectImage()
         }
-        if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
-            if (PreferenceManager.getDefaultSharedPreferences(this)
-                    .getBoolean(getString(R.string.key_amoled_mode), false)
-            ) {
-                binding.root.setBackgroundColor(ContextCompat.getColor(this, android.R.color.black))
-                window.navigationBarColor = ContextCompat.getColor(this, android.R.color.black)
-            }
-        }
-
     }
 
     private fun setAnimations() {
-        if (PreferenceManager.getDefaultSharedPreferences(this)
-                .getBoolean(getString(R.string.key_custom_animations), true)
-        ) {
-            binding.root.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_entry))
-            binding.lottieAnimationView.startAnimation(
-                AnimationUtils.loadAnimation(
-                    this,
-                    R.anim.anim_fade_in
-                )
-            )
-        }
         binding.buttonChooseImage.startAnimation(
             AnimationUtils.loadAnimation(
                 this,

@@ -13,8 +13,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="24dp"
-            app:cardCornerRadius="@dimen/medium_rounding">
+            android:layout_margin="24dp">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/image_view"
@@ -65,7 +64,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        app:cardCornerRadius="@dimen/medium_rounding"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.gms.ads.AdView

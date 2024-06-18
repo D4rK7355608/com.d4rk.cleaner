@@ -1,7 +1,6 @@
 package com.d4rk.cleaner.ui.imageoptimizer
 
 import android.content.Context
-import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.media.MediaScannerConnection
 import android.net.Uri
@@ -11,10 +10,8 @@ import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.preference.PreferenceManager
 import com.bumptech.glide.Glide
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.adapters.ImageOptimizationPagerAdapter
@@ -51,20 +48,6 @@ class ImageOptimizerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityImageOptimizerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
-            if (PreferenceManager.getDefaultSharedPreferences(this)
-                    .getBoolean(getString(R.string.key_amoled_mode), false)
-            ) {
-                binding.root.setBackgroundColor(ContextCompat.getColor(this, android.R.color.black))
-                binding.tabLayout.setBackgroundColor(
-                    ContextCompat.getColor(
-                        this,
-                        android.R.color.black
-                    )
-                )
-                window.navigationBarColor = ContextCompat.getColor(this, android.R.color.black)
-            }
-        }
         val adapter = ImageOptimizationPagerAdapter(this)
         binding.viewPager.adapter = adapter
         binding.progressBar.alpha = 0f

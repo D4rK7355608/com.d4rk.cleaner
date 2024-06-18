@@ -11,7 +11,6 @@
         android:layout_height="0dp"
         android:layout_margin="24dp"
         android:layout_weight="1"
-        app:cardCornerRadius="@dimen/medium_rounding"
         app:layout_constraintBottom_toTopOf="@id/button_add_to_whitelist"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -22,7 +21,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="32dp"
-            app:cardCornerRadius="@dimen/medium_rounding"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <com.google.android.gms.ads.AdView
@@ -52,7 +50,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        app:cardCornerRadius="@dimen/medium_rounding"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.gms.ads.AdView
