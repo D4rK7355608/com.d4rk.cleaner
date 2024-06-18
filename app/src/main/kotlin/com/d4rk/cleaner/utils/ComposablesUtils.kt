@@ -20,6 +20,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -53,34 +54,35 @@ import androidx.compose.ui.unit.dp
  */
 @Composable
 fun SwitchCardComposable(
-    title: String, switchState: State<Boolean>, onSwitchToggled: (Boolean) -> Unit
+    title : String , switchState : State<Boolean> , onSwitchToggled : (Boolean) -> Unit
 ) {
     Card(modifier = Modifier
         .fillMaxWidth()
         .padding(24.dp)
         .clip(RoundedCornerShape(28.dp))
         .clickable {
-            onSwitchToggled(!switchState.value)
+            onSwitchToggled(! switchState.value)
         }) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
+                .padding(16.dp) ,
+            horizontalArrangement = Arrangement.SpaceBetween ,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(text = title)
-            Switch(checked = switchState.value,
-                onCheckedChange = onSwitchToggled,
+            Switch(checked = switchState.value ,
+                onCheckedChange = onSwitchToggled ,
                 thumbContent = if (switchState.value) {
                     {
                         Icon(
-                            Icons.Filled.Check,
-                            contentDescription = null,
-                            modifier = Modifier.size(SwitchDefaults.IconSize),
+                            Icons.Filled.Check ,
+                            contentDescription = null ,
+                            modifier = Modifier.size(SwitchDefaults.IconSize) ,
                         )
                     }
-                } else {
+                }
+                else {
                     null
                 })
         }
@@ -96,13 +98,13 @@ fun SwitchCardComposable(
  */
 @Composable
 fun PreferenceCategoryItem(
-    title: String
+    title : String
 ) {
     Text(
-        text = title,
-        color = MaterialTheme.colorScheme.primary,
-        style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-        modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+        text = title ,
+        color = MaterialTheme.colorScheme.primary ,
+        style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold) ,
+        modifier = Modifier.padding(start = 16.dp , top = 16.dp)
     )
 }
 
@@ -118,30 +120,40 @@ fun PreferenceCategoryItem(
  */
 @Composable
 fun PreferenceItem(
-    icon: ImageVector? = null,
-    title: String? = null,
-    summary: String? = null,
-    onClick: () -> Unit = {}
+    icon : ImageVector? = null ,
+    title : String? = null ,
+    summary : String? = null ,
+    enabled : Boolean = true ,
+    onClick : () -> Unit = {}
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
-            .clickable(onClick = onClick), verticalAlignment = Alignment.CenterVertically
+            .clickable(enabled = enabled , onClick = onClick) ,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         icon?.let {
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(it, contentDescription = null)
+            Icon(it , contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
         }
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
             title?.let {
-                Text(text = it, style = MaterialTheme.typography.titleLarge)
+                Text(
+                    text = it ,
+                    style = MaterialTheme.typography.titleLarge ,
+                    color = if (! enabled) LocalContentColor.current.copy(alpha = 0.38f) else LocalContentColor.current
+                )
             }
             summary?.let {
-                Text(text = it, style = MaterialTheme.typography.bodyMedium)
+                Text(
+                    text = it ,
+                    style = MaterialTheme.typography.bodyMedium ,
+                    color = if (! enabled) LocalContentColor.current.copy(alpha = 0.38f) else LocalContentColor.current
+                )
             }
         }
     }
@@ -161,22 +173,22 @@ fun PreferenceItem(
  */
 @Composable
 fun SwitchPreferenceItem(
-    icon: ImageVector? = null,
-    title: String,
-    summary: String? = null,
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit
+    icon : ImageVector? = null ,
+    title : String ,
+    summary : String? = null ,
+    checked : Boolean ,
+    onCheckedChange : (Boolean) -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
-            .clickable(onClick = { onCheckedChange(!checked) }),
+            .clickable(onClick = { onCheckedChange(! checked) }) ,
         verticalAlignment = Alignment.CenterVertically
     ) {
         icon?.let {
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(it, contentDescription = null)
+            Icon(it , contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
         }
         Column(
@@ -184,14 +196,14 @@ fun SwitchPreferenceItem(
                 .padding(16.dp)
                 .weight(1f)
         ) {
-            Text(text = title, style = MaterialTheme.typography.titleLarge)
+            Text(text = title , style = MaterialTheme.typography.titleLarge)
             summary?.let {
-                Text(text = it, style = MaterialTheme.typography.bodyMedium)
+                Text(text = it , style = MaterialTheme.typography.bodyMedium)
             }
         }
         Switch(
-            checked = checked,
-            onCheckedChange = onCheckedChange,
+            checked = checked ,
+            onCheckedChange = onCheckedChange ,
             modifier = Modifier.padding(16.dp)
         )
     }
@@ -214,23 +226,23 @@ fun SwitchPreferenceItem(
  */
 @Composable
 fun SwitchPreferenceItemWithDivider(
-    icon: ImageVector? = null,
-    title: String,
-    summary: String,
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit,
-    onClick: () -> Unit,
-    onSwitchClick: (Boolean) -> Unit
+    icon : ImageVector? = null ,
+    title : String ,
+    summary : String ,
+    checked : Boolean ,
+    onCheckedChange : (Boolean) -> Unit ,
+    onClick : () -> Unit ,
+    onSwitchClick : (Boolean) -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
-            .clickable(onClick = onClick), verticalAlignment = Alignment.CenterVertically
+            .clickable(onClick = onClick) , verticalAlignment = Alignment.CenterVertically
     ) {
         icon?.let {
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(it, contentDescription = null)
+            Icon(it , contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
         }
         Column(
@@ -238,50 +250,49 @@ fun SwitchPreferenceItemWithDivider(
                 .padding(16.dp)
                 .weight(1f)
         ) {
-            Text(text = title, style = MaterialTheme.typography.titleLarge)
-            Text(text = summary, style = MaterialTheme.typography.bodyMedium)
+            Text(text = title , style = MaterialTheme.typography.titleLarge)
+            Text(text = summary , style = MaterialTheme.typography.bodyMedium)
         }
 
         VerticalDivider(
             modifier = Modifier
                 .height(32.dp)
-                .align(Alignment.CenterVertically),
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
+                .align(Alignment.CenterVertically) ,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f) ,
             thickness = 1.dp
         )
-        Switch(
-            checked = checked, onCheckedChange = { isChecked ->
-                onCheckedChange(isChecked)
-                onSwitchClick(isChecked)
-            }, modifier = Modifier.padding(16.dp)
-        )
+        Switch(checked = checked , onCheckedChange = { isChecked ->
+            onCheckedChange(isChecked)
+            onSwitchClick(isChecked)
+        } , modifier = Modifier.padding(16.dp))
 
     }
 }
 
-enum class ButtonState { Pressed, Idle }
+enum class ButtonState { Pressed , Idle }
 
 @SuppressLint("ReturnFromAwaitPointerEventScope")
 @Composable
 fun Modifier.bounceClick() = composed {
     var buttonState by remember { mutableStateOf(ButtonState.Idle) }
     val scale by animateFloatAsState(
-        if (buttonState == ButtonState.Pressed) 0.95f else 1f, label = ""
+        if (buttonState == ButtonState.Pressed) 0.95f else 1f , label = ""
     )
     this
         .graphicsLayer {
             scaleX = scale
             scaleY = scale
         }
-        .clickable(interactionSource = remember { MutableInteractionSource() },
-            indication = null,
+        .clickable(interactionSource = remember { MutableInteractionSource() } ,
+            indication = null ,
             onClick = { })
         .pointerInput(buttonState) {
             awaitPointerEventScope {
                 buttonState = if (buttonState == ButtonState.Pressed) {
                     waitForUpOrCancellation()
                     ButtonState.Idle
-                } else {
+                }
+                else {
                     awaitFirstDown(false)
                     ButtonState.Pressed
                 }

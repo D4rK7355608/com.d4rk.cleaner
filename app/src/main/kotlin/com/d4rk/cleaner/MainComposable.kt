@@ -1,6 +1,5 @@
 package com.d4rk.cleaner
 
-import android.content.Intent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -132,23 +131,7 @@ fun MainComposable() {
                             }
 
                             R.string.share -> {
-                                val shareIntent = Intent().apply {
-                                    this.action = Intent.ACTION_SEND
-                                    this.putExtra(
-                                        Intent.EXTRA_TEXT, context.getString(
-                                            R.string.summary_share_message,
-                                            "https://play.google.com/store/apps/details?id=${context.packageName}"
-                                        )
-                                    )
-                                    this.type = "text/plain"
-                                }
-                                context.startActivity(
-                                    Intent.createChooser(
-                                        shareIntent, context.resources.getText(
-                                            R.string.send_email_using
-                                        )
-                                    )
-                                )
+                                Utils.shareApp(context)
                             }
                         }
                         scope.launch {

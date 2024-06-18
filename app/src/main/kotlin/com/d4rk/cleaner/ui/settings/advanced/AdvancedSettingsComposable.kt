@@ -25,35 +25,35 @@ import com.d4rk.cleaner.utils.Utils
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AdvancedSettingsComposable(activity: AdvancedSettingsActivity) {
+fun AdvancedSettingsComposable(activity : AdvancedSettingsActivity) {
     val context = LocalContext.current
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.advanced)) }, navigationIcon = {
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.advanced)) } , navigationIcon = {
             IconButton(onClick = {
                 activity.finish()
             }) {
                 Icon(
-                    Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null
+                    Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null
                 )
             }
-        }, scrollBehavior = scrollBehavior)
+        } , scrollBehavior = scrollBehavior)
     }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
-                    .fillMaxHeight()
-                    .padding(paddingValues),
+                .fillMaxHeight()
+                .padding(paddingValues) ,
         ) {
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.error_reporting))
-                PreferenceItem(title = stringResource(R.string.bug_report),
-                               summary = stringResource(R.string.summary_preference_settings_bug_report),
-                               onClick = {
-                                   Utils.openUrl(
-                                       context,
-                                       "https://github.com/D4rK7355608/${context.packageName}/issues/new"
-                                   )
-                               })
+                PreferenceItem(title = stringResource(R.string.bug_report) ,
+                    summary = stringResource(R.string.summary_preference_settings_bug_report) ,
+                    onClick = {
+                        Utils.openUrl(
+                            context ,
+                            "https://github.com/D4rK7355608/${context.packageName}/issues/new"
+                        )
+                    })
             }
         }
     }

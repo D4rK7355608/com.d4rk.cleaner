@@ -28,91 +28,89 @@ import com.d4rk.cleaner.utils.Utils
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PrivacySettingsComposable(activity: PrivacySettingsActivity) {
+fun PrivacySettingsComposable(activity : PrivacySettingsActivity) {
     val context = LocalContext.current
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
-        LargeTopAppBar(
-            title = { Text(stringResource(R.string.security_and_privacy)) },
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.security_and_privacy)) } ,
             navigationIcon = {
                 IconButton(onClick = {
                     activity.finish()
                 }) {
                     Icon(
-                        Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null
+                        Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null
                     )
                 }
-            },
-            scrollBehavior = scrollBehavior
-        )
+            } ,
+            scrollBehavior = scrollBehavior)
     }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxHeight()
-                .padding(paddingValues),
+                .padding(paddingValues) ,
         ) {
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.privacy))
-                PreferenceItem(title = stringResource(R.string.privacy_policy),
-                    summary = stringResource(id = R.string.summary_preference_settings_privacy_policy),
+                PreferenceItem(title = stringResource(R.string.privacy_policy) ,
+                    summary = stringResource(id = R.string.summary_preference_settings_privacy_policy) ,
                     onClick = {
                         Utils.openUrl(
-                            context,
+                            context ,
                             "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy"
                         )
                     })
-                PreferenceItem(title = stringResource(R.string.terms_of_service),
-                    summary = stringResource(id = R.string.summary_preference_settings_terms_of_service),
+                PreferenceItem(title = stringResource(R.string.terms_of_service) ,
+                    summary = stringResource(id = R.string.summary_preference_settings_terms_of_service) ,
                     onClick = {
                         Utils.openUrl(
-                            context,
+                            context ,
                             "https://sites.google.com/view/d4rk7355608/more/apps/terms-of-service"
                         )
                     })
-                PreferenceItem(title = stringResource(R.string.code_of_conduct),
-                    summary = stringResource(id = R.string.summary_preference_settings_code_of_conduct),
+                PreferenceItem(title = stringResource(R.string.code_of_conduct) ,
+                    summary = stringResource(id = R.string.summary_preference_settings_code_of_conduct) ,
                     onClick = {
                         Utils.openUrl(
-                            context,
+                            context ,
                             "https://sites.google.com/view/d4rk7355608/more/code-of-conduct"
                         )
                     })
-                PreferenceItem(title = stringResource(R.string.permissions),
-                    summary = stringResource(id = R.string.summary_preference_settings_permissions),
+                PreferenceItem(title = stringResource(R.string.permissions) ,
+                    summary = stringResource(id = R.string.summary_preference_settings_permissions) ,
                     onClick = {
                         Utils.openActivity(
-                            context, PermissionsSettingsActivity::class.java
+                            context , PermissionsSettingsActivity::class.java
                         )
                     })
-                PreferenceItem(title = stringResource(R.string.ads),
-                    summary = stringResource(id = R.string.summary_preference_settings_ads),
+                PreferenceItem(title = stringResource(R.string.ads) ,
+                    summary = stringResource(id = R.string.summary_preference_settings_ads) ,
                     onClick = {
                         Utils.openActivity(
-                            context, AdsSettingsActivity::class.java
+                            context , AdsSettingsActivity::class.java
                         )
                     })
-                PreferenceItem(title = stringResource(R.string.usage_and_diagnostics),
-                    summary = stringResource(id = R.string.summary_preference_settings_usage_and_diagnostics),
+                PreferenceItem(title = stringResource(R.string.usage_and_diagnostics) ,
+                    summary = stringResource(id = R.string.summary_preference_settings_usage_and_diagnostics) ,
                     onClick = {
                         Utils.openActivity(
-                            context, UsageAndDiagnosticsActivity::class.java
+                            context , UsageAndDiagnosticsActivity::class.java
                         )
                     })
             }
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.legal))
-                PreferenceItem(title = stringResource(R.string.legal_notices),
-                    summary = stringResource(id = R.string.summary_preference_settings_legal_notices),
+                PreferenceItem(title = stringResource(R.string.legal_notices) ,
+                    summary = stringResource(id = R.string.summary_preference_settings_legal_notices) ,
                     onClick = {
                         Utils.openUrl(
-                            context,
+                            context ,
                             "https://sites.google.com/view/d4rk7355608/more/apps/legal-notices"
                         )
                     })
-                PreferenceItem(title = stringResource(R.string.license),
-                    summary = stringResource(R.string.summary_preference_settings_license),
+                PreferenceItem(title = stringResource(R.string.license) ,
+                    summary = stringResource(R.string.summary_preference_settings_license) ,
                     onClick = {
-                        Utils.openUrl(context, "https://www.gnu.org/licenses/gpl-3.0")
+                        Utils.openUrl(context , "https://www.gnu.org/licenses/gpl-3.0")
                     })
             }
         }

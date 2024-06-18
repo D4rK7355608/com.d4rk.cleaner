@@ -39,7 +39,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
+fun ThemeSettingsComposable(activity : ThemeSettingsActivity) {
     val context = LocalContext.current
     val dataStore = DataStore.getInstance(context)
     val scope = rememberCoroutineScope()
@@ -48,26 +48,26 @@ fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
     val isAmoledMode = dataStore.amoledMode.collectAsState(initial = false)
 
     val themeOptions = listOf(
-        stringResource(R.string.follow_system),
-        stringResource(R.string.dark_mode),
-        stringResource(R.string.light_mode),
+        stringResource(R.string.follow_system) ,
+        stringResource(R.string.dark_mode) ,
+        stringResource(R.string.light_mode) ,
     )
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.dark_theme)) }, navigationIcon = {
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.dark_theme)) } , navigationIcon = {
             IconButton(onClick = {
                 activity.finish()
             }) {
                 Icon(
-                    Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null
+                    Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null
                 )
             }
-        }, scrollBehavior = scrollBehavior)
+        } , scrollBehavior = scrollBehavior)
     }) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(paddingValues),
+                    .padding(paddingValues) ,
             ) {
                 item {
                     SwitchCardComposable(
@@ -86,18 +86,18 @@ fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
                     ) {
                         themeOptions.forEach { text ->
                             Row(
-                                Modifier.fillMaxWidth(),
+                                Modifier.fillMaxWidth() ,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                RadioButton(selected = (text == themeMode), onClick = {
+                                RadioButton(selected = (text == themeMode) , onClick = {
                                     scope.launch(Dispatchers.IO) {
                                         dataStore.saveThemeMode(text)
                                         dataStore.themeModeState.value = text
                                     }
                                 })
                                 Text(
-                                    text = text,
-                                    style = MaterialTheme.typography.bodyMedium.merge(),
+                                    text = text ,
+                                    style = MaterialTheme.typography.bodyMedium.merge() ,
                                     modifier = Modifier.padding(start = 16.dp)
                                 )
                             }
@@ -110,7 +110,7 @@ fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
                             .fillMaxWidth()
                             .padding(24.dp)
                     ) {
-                        Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
+                        Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(stringResource(R.string.summary_dark_theme))
                     }
