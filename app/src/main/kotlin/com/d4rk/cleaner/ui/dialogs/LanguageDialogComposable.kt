@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.dialogs
+package com.d4rk.cleaner.ui.dialogs
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,7 +29,7 @@ import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.store.DataStore
+import com.d4rk.cleaner.data.datastore.DataStore
 import kotlinx.coroutines.flow.firstOrNull
 
 @Composable

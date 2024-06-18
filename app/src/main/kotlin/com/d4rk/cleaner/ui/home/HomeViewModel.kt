@@ -9,7 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.d4rk.cleaner.data.store.DataStore
+import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.FileScanner
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

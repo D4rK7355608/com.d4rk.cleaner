@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.data.store
+package com.d4rk.cleaner.data.datastore
 
 import android.content.Context
 import androidx.compose.runtime.mutableStateOf

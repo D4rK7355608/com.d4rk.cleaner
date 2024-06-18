@@ -7,7 +7,7 @@ import androidx.core.app.NotificationCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.store.DataStore
+import com.d4rk.cleaner.data.datastore.DataStore
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 

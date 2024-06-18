@@ -12,7 +12,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.multidex.MultiDexApplication
 import com.d4rk.cleaner.constants.ads.AdsConstants
-import com.d4rk.cleaner.data.store.DataStore
+import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.notifications.managers.AppUsageNotificationsManager
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest

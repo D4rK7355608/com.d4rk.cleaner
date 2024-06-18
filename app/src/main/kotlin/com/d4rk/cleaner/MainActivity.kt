@@ -13,7 +13,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import com.android.volley.NoConnectionError
 import com.android.volley.TimeoutError
-import com.d4rk.cleaner.data.store.DataStore
+import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.notifications.managers.AppUpdateNotificationsManager
 import com.d4rk.cleaner.notifications.managers.AppUsageNotificationsManager
 import com.d4rk.cleaner.ui.settings.display.theme.style.AppTheme

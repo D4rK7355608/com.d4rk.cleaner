@@ -45,7 +45,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.dialogs.VersionInfoDialog
+import com.d4rk.cleaner.ui.dialogs.VersionInfoDialog
 import com.d4rk.cleaner.utils.Utils
 import com.d4rk.cleaner.utils.bounceClick
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity

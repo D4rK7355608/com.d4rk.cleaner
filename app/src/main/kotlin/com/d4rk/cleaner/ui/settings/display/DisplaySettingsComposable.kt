@@ -31,8 +31,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.core.os.LocaleListCompat
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.store.DataStore
-import com.d4rk.cleaner.dialogs.LanguageDialog
+import com.d4rk.cleaner.data.datastore.DataStore
+import com.d4rk.cleaner.ui.dialogs.LanguageDialog
 import com.d4rk.cleaner.ui.settings.display.theme.ThemeSettingsActivity
 import com.d4rk.cleaner.utils.PreferenceCategoryItem
 import com.d4rk.cleaner.utils.PreferenceItem

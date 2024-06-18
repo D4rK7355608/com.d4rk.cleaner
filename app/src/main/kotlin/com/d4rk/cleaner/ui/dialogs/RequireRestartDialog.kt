@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.dialogs
+package com.d4rk.cleaner.ui.dialogs
 
 import android.app.Dialog
 import android.app.NotificationManager

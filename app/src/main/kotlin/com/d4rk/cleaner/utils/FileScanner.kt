@@ -3,7 +3,7 @@ package com.d4rk.cleaner.utils
 import android.content.res.Resources
 import android.os.Environment
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.store.DataStore
+import com.d4rk.cleaner.data.datastore.DataStore
 import kotlinx.coroutines.flow.first
 import java.io.File
 
@@ -34,7 +34,7 @@ class FileScanner(private val dataStore: DataStore, private val resources: Resou
     }
 
     /**
-     * Loads user preferences from the data store into the [preferences] map.
+     * Loads user preferences from the data datastore into the [preferences] map.
      *
      * The preferences include whether to filter generic files, archive files, APK files, audio files, video files, and image files.
      */

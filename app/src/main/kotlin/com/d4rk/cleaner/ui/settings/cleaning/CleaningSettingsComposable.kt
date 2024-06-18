@@ -21,7 +21,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.store.DataStore
+import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.PreferenceCategoryItem
 import com.d4rk.cleaner.utils.SwitchPreferenceItem
 import kotlinx.coroutines.CoroutineScope

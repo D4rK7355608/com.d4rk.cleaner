@@ -34,7 +34,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.store.DataStore
+import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.PreferenceItem
 import com.d4rk.cleaner.utils.SwitchCardComposable
 import com.d4rk.cleaner.utils.Utils
