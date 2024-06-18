@@ -1,21 +1,9 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.Material3.DynamicColors.DayNight">
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:windowLightStatusBar">false</item>
+    <style name="AppThemeActionBar" parent="Theme.Material3.DynamicColors.DayNight">
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="popupMenuBackground">@drawable/bg_popup</item>
-        <item name="materialAlertDialogTheme">
-            @style/ThemeOverlay.Material3.MaterialAlertDialog.Centered
-        </item>
-        <item name="android:fontFamily">@font/font_poppins</item>
-    </style>
-
-    <style name="AppThemeNoActionBar" parent="AppTheme">
-        <item name="android:colorPrimaryDark">?attr/colorSurface</item>
-        <item name="windowActionBar">false</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
         <item name="android:windowLightStatusBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="actionBarStyle">@style/ActionBarTheme</item>
     </style>
 </resources>

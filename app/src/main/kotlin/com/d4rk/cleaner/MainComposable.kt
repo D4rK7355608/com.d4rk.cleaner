@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.EventNote
-import androidx.compose.material.icons.automirrored.outlined.Help
+import androidx.compose.material.icons.automirrored.outlined.HelpOutline
 import androidx.compose.material.icons.automirrored.outlined.ListAlt
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.outlined.Image
@@ -75,7 +75,7 @@ fun MainComposable() {
         ),
         NavigationItem(
             title = R.string.help_and_feedback,
-            selectedIcon = Icons.AutoMirrored.Outlined.Help,
+            selectedIcon = Icons.AutoMirrored.Outlined.HelpOutline,
         ),
         NavigationItem(
             title = R.string.updates,
