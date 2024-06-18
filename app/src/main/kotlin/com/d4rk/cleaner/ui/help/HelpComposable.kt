@@ -52,103 +52,103 @@ import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HelpComposable(activity: HelpActivity) {
+fun HelpComposable(activity : HelpActivity) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     var showMenu by remember { mutableStateOf(false) }
     val context = LocalContext.current
     val showDialog = remember { mutableStateOf(false) }
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.help)) }, navigationIcon = {
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.help)) } , navigationIcon = {
             IconButton(onClick = {
                 activity.finish()
             }) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+                Icon(Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null)
             }
-        }, actions = {
+        } , actions = {
             IconButton(onClick = { showMenu = true }) {
-                Icon(Icons.Default.MoreVert, contentDescription = "Localized description")
+                Icon(Icons.Default.MoreVert , contentDescription = "Localized description")
             }
-            DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
-                DropdownMenuItem(text = { Text(stringResource(R.string.view_in_google_play_store)) },
-                                 onClick = {
-                                     Utils.openUrl(
-                                         context,
-                                         "https://play.google.com/store/apps/details?id=${activity.packageName}"
-                                     )
-                                 })
-                DropdownMenuItem(text = { Text(stringResource(R.string.version_info)) },
-                                 onClick = { showDialog.value = true })
-                DropdownMenuItem(text = { Text(stringResource(R.string.beta_program)) },
-                                 onClick = {
-                                     Utils.openUrl(
-                                         context,
-                                         "https://play.google.com/apps/testing/${activity.packageName}"
-                                     )
-                                 })
-                DropdownMenuItem(text = { Text(stringResource(R.string.terms_of_service)) },
-                                 onClick = {
-                                     Utils.openUrl(
-                                         context,
-                                         "https://sites.google.com/view/d4rk7355608/more/apps/terms-of-service"
-                                     )
-                                 })
-                DropdownMenuItem(text = { Text(stringResource(R.string.privacy_policy)) },
-                                 onClick = {
-                                     Utils.openUrl(
-                                         context,
-                                         "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy"
-                                     )
-                                 })
-                DropdownMenuItem(text = { Text(stringResource(com.google.android.gms.oss.licenses.R.string.oss_license_title)) },
-                                 onClick = {
-                                     Utils.openActivity(
-                                         context, OssLicensesMenuActivity::class.java
-                                     )
-                                 })
+            DropdownMenu(expanded = showMenu , onDismissRequest = { showMenu = false }) {
+                DropdownMenuItem(text = { Text(stringResource(R.string.view_in_google_play_store)) } ,
+                    onClick = {
+                        Utils.openUrl(
+                            context ,
+                            "https://play.google.com/store/apps/details?id=${activity.packageName}"
+                        )
+                    })
+                DropdownMenuItem(text = { Text(stringResource(R.string.version_info)) } ,
+                    onClick = { showDialog.value = true })
+                DropdownMenuItem(text = { Text(stringResource(R.string.beta_program)) } ,
+                    onClick = {
+                        Utils.openUrl(
+                            context ,
+                            "https://play.google.com/apps/testing/${activity.packageName}"
+                        )
+                    })
+                DropdownMenuItem(text = { Text(stringResource(R.string.terms_of_service)) } ,
+                    onClick = {
+                        Utils.openUrl(
+                            context ,
+                            "https://sites.google.com/view/d4rk7355608/more/apps/terms-of-service"
+                        )
+                    })
+                DropdownMenuItem(text = { Text(stringResource(R.string.privacy_policy)) } ,
+                    onClick = {
+                        Utils.openUrl(
+                            context ,
+                            "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy"
+                        )
+                    })
+                DropdownMenuItem(text = { Text(stringResource(com.google.android.gms.oss.licenses.R.string.oss_license_title)) } ,
+                    onClick = {
+                        Utils.openActivity(
+                            context , OssLicensesMenuActivity::class.java
+                        )
+                    })
             }
             if (showDialog.value) {
                 VersionInfoDialog(onDismiss = { showDialog.value = false })
             }
-        }, scrollBehavior = scrollBehavior)
+        } , scrollBehavior = scrollBehavior)
     }) { paddingValues ->
         Box(
             modifier = Modifier
-                    .padding(start = 16.dp, end = 16.dp)
-                    .fillMaxSize()
-                    .safeDrawingPadding()
+                .padding(start = 16.dp , end = 16.dp)
+                .fillMaxSize()
+                .safeDrawingPadding()
         ) {
             ConstraintLayout(modifier = Modifier.padding(paddingValues)) {
-                val (faqTitle, faqCard) = createRefs()
-                Text(text = stringResource(R.string.faq),
-                     modifier = Modifier
-                             .padding(bottom = 24.dp)
-                             .constrainAs(faqTitle) {
-                                 top.linkTo(parent.top)
-                                 start.linkTo(parent.start)
-                             })
+                val (faqTitle , faqCard) = createRefs()
+                Text(text = stringResource(R.string.faq) ,
+                    modifier = Modifier
+                        .padding(bottom = 24.dp)
+                        .constrainAs(faqTitle) {
+                            top.linkTo(parent.top)
+                            start.linkTo(parent.start)
+                        })
                 Card(modifier = Modifier
-                        .fillMaxWidth()
-                        .constrainAs(faqCard) {
-                            top.linkTo(faqTitle.bottom)
-                            bottom.linkTo(parent.bottom)
-                        }) {
+                    .fillMaxWidth()
+                    .constrainAs(faqCard) {
+                        top.linkTo(faqTitle.bottom)
+                        bottom.linkTo(parent.bottom)
+                    }) {
                     FAQComposable()
                 }
             }
             ExtendedFloatingActionButton(
-                text = { Text(stringResource(id = R.string.feedback)) },
+                text = { Text(stringResource(id = R.string.feedback)) } ,
                 onClick = {
                     activity.feedback()
-                },
+                } ,
                 icon = {
                     Icon(
-                        Icons.Default.MailOutline, contentDescription = null
+                        Icons.Default.MailOutline , contentDescription = null
                     )
-                },
+                } ,
                 modifier = Modifier
-                        .bounceClick()
-                        .padding(bottom = 16.dp)
-                        .align(Alignment.BottomEnd),
+                    .bounceClick()
+                    .padding(bottom = 16.dp)
+                    .align(Alignment.BottomEnd) ,
             )
         }
     }
@@ -159,55 +159,55 @@ fun FAQComposable() {
     LazyColumn {
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_1),
+                title = stringResource(R.string.question_1) ,
                 summary = stringResource(R.string.summary_preference_faq_1)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_2),
+                title = stringResource(R.string.question_2) ,
                 summary = stringResource(R.string.summary_preference_faq_2)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_3),
+                title = stringResource(R.string.question_3) ,
                 summary = stringResource(R.string.summary_preference_faq_3)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_4),
+                title = stringResource(R.string.question_4) ,
                 summary = stringResource(R.string.summary_preference_faq_4)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_5),
+                title = stringResource(R.string.question_5) ,
                 summary = stringResource(R.string.summary_preference_faq_5)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_6),
+                title = stringResource(R.string.question_6) ,
                 summary = stringResource(R.string.summary_preference_faq_6)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_7),
+                title = stringResource(R.string.question_7) ,
                 summary = stringResource(R.string.summary_preference_faq_7)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_8),
+                title = stringResource(R.string.question_8) ,
                 summary = stringResource(R.string.summary_preference_faq_8)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_9),
+                title = stringResource(R.string.question_9) ,
                 summary = stringResource(R.string.summary_preference_faq_9)
             )
         }
@@ -215,27 +215,27 @@ fun FAQComposable() {
 }
 
 @Composable
-fun QuestionComposable(title: String, summary: String) {
+fun QuestionComposable(title : String , summary : String) {
     Row(
         modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+            .fillMaxWidth()
+            .padding(16.dp) ,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
-            Icons.Outlined.QuestionAnswer,
-            contentDescription = null,
+            Icons.Outlined.QuestionAnswer ,
+            contentDescription = null ,
             modifier = Modifier
-                    .size(48.dp)
-                    .background(
-                        color = MaterialTheme.colorScheme.primaryContainer, shape = CircleShape
-                    )
-                    .padding(8.dp)
+                .size(48.dp)
+                .background(
+                    color = MaterialTheme.colorScheme.primaryContainer , shape = CircleShape
+                )
+                .padding(8.dp)
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column {
             Text(
-                text = title, style = MaterialTheme.typography.titleMedium
+                text = title , style = MaterialTheme.typography.titleMedium
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(text = summary)

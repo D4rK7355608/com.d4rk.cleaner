@@ -14,14 +14,14 @@ import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 
 class HelpActivity : AppCompatActivity() {
-    private lateinit var reviewManager: ReviewManager
-    override fun onCreate(savedInstanceState: Bundle?) {
+    private lateinit var reviewManager : ReviewManager
+    override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
                     HelpComposable(this@HelpActivity)
                 }
@@ -45,10 +45,10 @@ class HelpActivity : AppCompatActivity() {
         reviewManager = ReviewManagerFactory.create(this)
         val task = reviewManager.requestReviewFlow()
         task.addOnSuccessListener { reviewInfo ->
-            reviewManager.launchReviewFlow(this, reviewInfo)
+            reviewManager.launchReviewFlow(this , reviewInfo)
         }.addOnFailureListener {
             Utils.openUrl(
-                this,
+                this ,
                 "https://play.google.com/store/apps/details?id=${this.packageName}&showAllReviews=true"
             )
         }.addOnFailureListener {
