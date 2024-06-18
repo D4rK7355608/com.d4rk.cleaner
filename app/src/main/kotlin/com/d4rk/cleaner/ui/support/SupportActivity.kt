@@ -3,9 +3,9 @@
 package com.d4rk.cleaner.ui.support
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -17,14 +17,14 @@ import com.android.billingclient.api.SkuDetails
 import com.android.billingclient.api.SkuDetailsParams
 import com.d4rk.cleaner.ui.settings.display.theme.style.AppTheme
 
-class SupportActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+class SupportActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
                     SupportComposable(this@SupportActivity)
                 }
@@ -33,26 +33,23 @@ class SupportActivity : ComponentActivity() {
     }
 
     fun initiatePurchase(
-        sku: String,
-        skuDetailsMap: Map<String, SkuDetails>,
-        billingClient: BillingClient
+        sku : String , skuDetailsMap : Map<String , SkuDetails> , billingClient : BillingClient
     ) {
         val skuDetails = skuDetailsMap[sku]
         if (skuDetails != null) {
             val flowParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetails).build()
-            billingClient.launchBillingFlow(this, flowParams)
+            billingClient.launchBillingFlow(this , flowParams)
         }
     }
 
     fun querySkuDetails(
-        billingClient: BillingClient,
-        skuDetailsMap: SnapshotStateMap<String, SkuDetails>
+        billingClient : BillingClient , skuDetailsMap : SnapshotStateMap<String , SkuDetails>
     ) {
         val skuList =
-            listOf("low_donation", "normal_donation", "high_donation", "extreme_donation")
+            listOf("low_donation" , "normal_donation" , "high_donation" , "extreme_donation")
         val params = SkuDetailsParams.newBuilder().setSkusList(skuList)
             .setType(BillingClient.SkuType.INAPP).build()
-        billingClient.querySkuDetailsAsync(params) { billingResult, skuDetailsList ->
+        billingClient.querySkuDetailsAsync(params) { billingResult , skuDetailsList ->
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && skuDetailsList != null) {
                 for (skuDetails in skuDetailsList) {
                     skuDetailsMap[skuDetails.sku] = skuDetails

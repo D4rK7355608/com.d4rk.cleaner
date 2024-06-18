@@ -14,12 +14,12 @@ import com.google.android.gms.ads.AdView
 
 @Composable
 fun BannerAdsComposable(
-    modifier: Modifier = Modifier, dataStore: DataStore
+    modifier : Modifier = Modifier , dataStore : DataStore
 ) {
     val showAds by dataStore.ads.collectAsState(initial = true)
 
     if (showAds) {
-        AndroidView(modifier = modifier.fillMaxWidth(), factory = { context ->
+        AndroidView(modifier = modifier.fillMaxWidth() , factory = { context ->
             AdView(context).apply {
                 setAdSize(AdSize.BANNER)
                 adUnitId = AdsConstants.BANNER_AD_UNIT_ID
@@ -30,13 +30,30 @@ fun BannerAdsComposable(
 }
 
 @Composable
-fun LargeBannerAdsComposable(
-    modifier: Modifier = Modifier, dataStore: DataStore
+fun FullBannerAdsComposable(
+    modifier : Modifier = Modifier , dataStore : DataStore
 ) {
     val showAds by dataStore.ads.collectAsState(initial = true)
 
     if (showAds) {
-        AndroidView(modifier = modifier.fillMaxWidth(), factory = { context ->
+        AndroidView(modifier = modifier.fillMaxWidth() , factory = { context ->
+            AdView(context).apply {
+                setAdSize(AdSize.FULL_BANNER)
+                adUnitId = AdsConstants.BANNER_AD_UNIT_ID
+                loadAd(AdRequest.Builder().build())
+            }
+        })
+    }
+}
+
+@Composable
+fun LargeBannerAdsComposable(
+    modifier : Modifier = Modifier , dataStore : DataStore
+) {
+    val showAds by dataStore.ads.collectAsState(initial = true)
+
+    if (showAds) {
+        AndroidView(modifier = modifier.fillMaxWidth() , factory = { context ->
             AdView(context).apply {
                 setAdSize(AdSize.LARGE_BANNER)
                 adUnitId = AdsConstants.BANNER_AD_UNIT_ID
