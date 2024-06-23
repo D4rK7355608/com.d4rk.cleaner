@@ -47,6 +47,7 @@ import com.d4rk.cleaner.ui.appmanager.AppManagerComposable
 import com.d4rk.cleaner.ui.help.HelpActivity
 import com.d4rk.cleaner.ui.home.HomeComposable
 import com.d4rk.cleaner.ui.imageoptimizer.ImagePickerActivity
+import com.d4rk.cleaner.ui.memory.MemoryManagerComposable
 import com.d4rk.cleaner.ui.settings.SettingsActivity
 import com.d4rk.cleaner.ui.support.SupportActivity
 import com.d4rk.cleaner.ui.whitelist.WhitelistActivity
@@ -216,7 +217,7 @@ fun MainComposable() {
                 }
                 composable(Screen.MemoryManager.route) {
                     Box(modifier = Modifier.padding(innerPadding)) {
-                        // MemoryManagerComposable()
+                        MemoryManagerComposable()
                     }
                 }
             }
