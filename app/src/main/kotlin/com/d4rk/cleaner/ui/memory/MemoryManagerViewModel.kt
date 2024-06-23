@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.ui.memory
 
+import android.app.ActivityManager
 import android.app.usage.StorageStatsManager
 import android.content.Context
 import android.os.Environment
@@ -22,9 +23,18 @@ class MemoryManagerViewModel : ViewModel() {
     private val _storageInfo = MutableStateFlow(StorageInfo())
     val storageInfo : StateFlow<StorageInfo> = _storageInfo.asStateFlow()
 
+    private val _ramInfo = MutableStateFlow(RamInfo())
+    val ramInfo: StateFlow<RamInfo> = _ramInfo.asStateFlow()
+
     fun updateStorageInfo(context : Context) {
         viewModelScope.launch {
             _storageInfo.value = getStorageInfo(context)
+        }
+    }
+
+    fun updateRamInfo(context: Context) {
+        viewModelScope.launch {
+            _ramInfo.value = getRamInfo(context)
         }
     }
 
@@ -125,6 +135,17 @@ class MemoryManagerViewModel : ViewModel() {
         val calculatedSize = breakdown.values.sum()
         return totalUsedStorage - calculatedSize
     }
+
+    private fun getRamInfo(context: Context): RamInfo {
+        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val memoryInfo = ActivityManager.MemoryInfo()
+        activityManager.getMemoryInfo(memoryInfo)
+        return RamInfo(
+            totalRam = memoryInfo.totalMem,
+            availableRam = memoryInfo.availMem,
+            usedRam = memoryInfo.totalMem - memoryInfo.availMem
+        )
+    }
 }
 
 data class InternalStorageInfo(
@@ -138,6 +159,12 @@ data class StorageInfo(
     val freeStorage: Long = 0,
     val usedStorage: Long = 0,
     val storageBreakdown: Map<String, Long> = emptyMap()
+)
+
+data class RamInfo(
+    val totalRam: Long = 0,
+    val availableRam: Long = 0,
+    val usedRam: Long = 0
 )
 
 fun formatSize(size: Long): String {
