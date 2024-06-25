@@ -1,11 +1,17 @@
 package com.d4rk.cleaner.ui.home
 
+import android.app.Activity
 import android.content.Context
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -39,7 +45,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -64,7 +69,8 @@ fun HomeComposable() {
     val progress by viewModel.progress.observeAsState(0.3f)
     val storageUsed by viewModel.storageUsed.observeAsState("0")
     val storageTotal by viewModel.storageTotal.observeAsState("0")
-    val showCleaningComposable = remember { mutableStateOf(false) }
+    val showCleaningComposable by viewModel.showCleaningComposable.observeAsState(false)
+    val isAnalyzing by viewModel.isAnalyzing.observeAsState(false)
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -73,7 +79,7 @@ fun HomeComposable() {
                 .weight(4f)
                 .fillMaxWidth()
         ) {
-            if (!showCleaningComposable.value) {
+            if (!showCleaningComposable) {
                 CircularDeterminateIndicator(
                     progress = progress,
                     storageUsed = storageUsed,
@@ -101,43 +107,55 @@ fun HomeComposable() {
                 .padding(bottom = 16.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            FilledTonalButton(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight()
-                    .padding(start = 16.dp, end = 8.dp)
-                    .bounceClick(),
-                onClick = {
-                    Utils.openActivity(
-                        context, StartupActivity::class.java
-                    )
-                },
-                shape = MaterialTheme.shapes.medium
+            AnimatedVisibility(
+                visible = showCleaningComposable,
+                enter = fadeIn() + expandHorizontally(expandFrom = Alignment.Start),
+                exit = fadeOut() + shrinkHorizontally(shrinkTowards = Alignment.Start),
+                modifier = Modifier.weight(1f)
             ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
+                FilledTonalButton(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(ButtonDefaults.ContentPadding)
+                        .weight(1f)
+                        .fillMaxHeight()
+                        .animateContentSize()
+                        .padding(start = 16.dp, end = 8.dp)
+                        .bounceClick(),
+                    onClick = {
+                        viewModel.clean(activity = context as Activity)
+                        Utils.openActivity(
+                            context, StartupActivity::class.java
+                        )
+                    },
+                    shape = MaterialTheme.shapes.medium,
+                    enabled = !isAnalyzing
                 ) {
-                    Icon(
-                        painterResource(R.drawable.ic_broom),
-                        contentDescription = null,
-                        modifier = Modifier.size(ButtonDefaults.IconSize)
-                    )
-                    Text(text = "Clean", style = MaterialTheme.typography.bodyMedium)
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(ButtonDefaults.ContentPadding)
+                    ) {
+                        Icon(
+                            painterResource(R.drawable.ic_broom),
+                            contentDescription = null,
+                            modifier = Modifier.size(ButtonDefaults.IconSize)
+                        )
+                        Text(text = "Clean", style = MaterialTheme.typography.bodyMedium)
+                    }
                 }
             }
             FilledTonalButton(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
-                    .padding(start = 8.dp, end = 16.dp)
+                    .animateContentSize()
+                    .padding(start = if (showCleaningComposable) 8.dp else 16.dp, end = 16.dp)
                     .bounceClick(),
                 onClick = {
-                    viewModel.analyze()
-                    showCleaningComposable.value = true
+                    if (!showCleaningComposable) {
+                        viewModel.analyze(activity = context as Activity)
+                    }
                 },
                 shape = MaterialTheme.shapes.medium
             ) {

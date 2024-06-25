@@ -328,7 +328,6 @@
         <item>venv</item>
     </string-array>
 
-
     <string-array name="preference_language_entries">
         <item>@string/bulgarian</item>
         <item>@string/english</item>

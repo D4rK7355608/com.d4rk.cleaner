@@ -72,10 +72,6 @@ fun PermissionsSettingsComposable(activity: PermissionsSettingsActivity) {
                     summary = stringResource(R.string.summary_preference_permissions_access_notification_policy),
                 )
                 PreferenceItem(
-                    title = stringResource(R.string.activity_recognition),
-                    summary = stringResource(R.string.summary_preference_permissions_activity_recognition),
-                )
-                PreferenceItem(
                     title = stringResource(R.string.billing),
                     summary = stringResource(R.string.summary_preference_permissions_billing),
                 )

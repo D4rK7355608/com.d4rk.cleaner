@@ -162,7 +162,6 @@
     <string name="privacy_and_safety">Privacy &amp; safety</string>
     <string name="privacy_and_security">Privacy and security</string>
 
-    <string name="activity_recognition">Activity Recognition [ACTIVITY_RECOGNITION]</string>
 
     <string name="receive_boot_completed">Receive boot completed [RECEIVE_BOOT_COMPLETED]</string>
     <string name="request_delete_packages">Request delete packages [REQUEST_DELETE_PACKAGES]</string>
@@ -257,7 +256,6 @@
     <string name="summary_preference_settings_swap_buttons">Swap \"Clean\" and \"Analyze\" buttons</string>
     <string name="summary_preference_settings_oss">License details for open source software</string>
 
-    <string name="summary_preference_permissions_activity_recognition">Allows the app to recognize the user\'s physical activity. This can be used to provide context-aware features</string>
     <string name="summary_preference_permissions_receive_boot_completed">Allows the app to start when the device boots u</string>
     <string name="summary_preference_permissions_request_delete_packages">Allows the app to request the deletion of packages. This can be used to uninstall other apps from the device</string>
     <string name="summary_preference_permissions_access_media_location">Allows the app to access the device\'s media files location</string>
