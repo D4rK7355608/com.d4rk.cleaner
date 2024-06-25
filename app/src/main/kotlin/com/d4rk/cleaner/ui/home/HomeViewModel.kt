@@ -93,10 +93,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
      * @see FileScanner
      */
     fun analyze(activity: Activity) {
-   /*     if (!hasRequiredPermissions()) {
+        if (!hasRequiredPermissions()) {
             requestPermissions(activity)
             return
-        }*/
+        }
         isAnalyzing.value = true
         showCleaningComposable.value = true
         viewModelScope.launch(Dispatchers.IO) {
@@ -145,16 +145,14 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
      * @return True if all required permissions are granted, false otherwise.
      */
     private fun hasRequiredPermissions(): Boolean {
-
-        // TODO: FIX the android checking version | this is the problem that the analyze button does not work
-        val hasStoragePermissions = ContextCompat.checkSelfPermission(
-            getApplication(),
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-            getApplication(),
-            Manifest.permission.READ_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED
-
+        val hasStoragePermissions = when {
+            Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q ->
+                ContextCompat.checkSelfPermission(getApplication(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+            Build.VERSION.SDK_INT <= Build.VERSION_CODES.S  ->
+                ContextCompat.checkSelfPermission(getApplication(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                        ContextCompat.checkSelfPermission(getApplication(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+            else -> true
+        }
         val hasManageStoragePermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             Environment.isExternalStorageManager()
         } else {
