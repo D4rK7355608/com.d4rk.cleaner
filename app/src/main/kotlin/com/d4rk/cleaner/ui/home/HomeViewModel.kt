@@ -147,10 +147,21 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private fun hasRequiredPermissions(): Boolean {
         val hasStoragePermissions = when {
             Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q ->
-                ContextCompat.checkSelfPermission(getApplication(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-            Build.VERSION.SDK_INT <= Build.VERSION_CODES.S  ->
-                ContextCompat.checkSelfPermission(getApplication(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
-                        ContextCompat.checkSelfPermission(getApplication(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                ContextCompat.checkSelfPermission(
+                    getApplication(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_GRANTED
+
+            Build.VERSION.SDK_INT <= Build.VERSION_CODES.S ->
+                ContextCompat.checkSelfPermission(
+                    getApplication(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_GRANTED &&
+                        ContextCompat.checkSelfPermission(
+                            getApplication(),
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        ) == PackageManager.PERMISSION_GRANTED
+
             else -> true
         }
         val hasManageStoragePermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
