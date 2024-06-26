@@ -59,6 +59,8 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.d4rk.cleaner.data.model.RamInfo
+import com.d4rk.cleaner.data.model.StorageInfo
 import kotlin.math.absoluteValue
 
 val StorageIcons = mapOf(

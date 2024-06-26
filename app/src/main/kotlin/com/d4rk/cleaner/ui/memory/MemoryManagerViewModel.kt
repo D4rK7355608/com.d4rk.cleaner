@@ -8,6 +8,9 @@ import android.os.StatFs
 import android.os.storage.StorageManager
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.d4rk.cleaner.data.model.InternalStorageInfo
+import com.d4rk.cleaner.data.model.RamInfo
+import com.d4rk.cleaner.data.model.StorageInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -87,7 +90,7 @@ class MemoryManagerViewModel : ViewModel() {
         breakdown["Images"] = getDirectorySize(File(externalStoragePath, "DCIM")) +
                 getDirectorySize(File(externalStoragePath, "Pictures"))
         breakdown["Documents"] = getDirectorySize(File(externalStoragePath, "Documents"))
-        breakdown["Downloads"] = getDirectorySize(File(externalStoragePath, "Download")) // Use "Download"
+        breakdown["Downloads"] = getDirectorySize(File(externalStoragePath, "Download"))
         breakdown["Other Files"] = getOtherFilesSize(breakdown)
 
         return breakdown
@@ -148,28 +151,9 @@ class MemoryManagerViewModel : ViewModel() {
     }
 }
 
-data class InternalStorageInfo(
-    val totalStorage: Long,
-    val freeStorage: Long,
-    val usedStorage: Long
-)
-
-data class StorageInfo(
-    val totalStorage: Long = 0,
-    val freeStorage: Long = 0,
-    val usedStorage: Long = 0,
-    val storageBreakdown: Map<String, Long> = emptyMap()
-)
-
-data class RamInfo(
-    val totalRam: Long = 0,
-    val availableRam: Long = 0,
-    val usedRam: Long = 0
-)
-
 fun formatSize(size: Long): String {
     if (size <= 0) return "0 B"
     val units = arrayOf("B", "KB", "MB", "GB", "TB")
     val digitGroups = (log10(size.toDouble()) / log10(1024.0)).toInt()
-    return String.format("%.2f %s", size / 1024.0.pow(digitGroups.toDouble()), units[digitGroups])
+    return String.format("%.2f %s", size / 1024.0.pow(digitGroups.toDouble()), units[digitGroups]) // FIXME: Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead
 }
