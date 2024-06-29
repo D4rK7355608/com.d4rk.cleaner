@@ -45,8 +45,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.d4rk.cleaner.ads.FullBannerAdsComposable
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.data.navigation.NavigationItem
-import com.d4rk.cleaner.data.navigation.Screen
+import com.d4rk.cleaner.ui.components.navigation.NavigationDrawerItem
+import com.d4rk.cleaner.ui.components.navigation.BottomNavigationScreen
 import com.d4rk.cleaner.ui.appmanager.AppManagerComposable
 import com.d4rk.cleaner.ui.help.HelpActivity
 import com.d4rk.cleaner.ui.home.HomeComposable
@@ -62,30 +62,30 @@ import kotlinx.coroutines.launch
 @Composable
 fun MainComposable() {
     val bottomBarItems = listOf(
-        Screen.Home, Screen.AppManager, Screen.MemoryManager
+        BottomNavigationScreen.Home, BottomNavigationScreen.AppManager, BottomNavigationScreen.MemoryManager
     )
     val drawerItems = listOf(
-        NavigationItem(
+        NavigationDrawerItem(
             title = R.string.whitelist, selectedIcon = Icons.AutoMirrored.Outlined.ListAlt
         ),
 
-        NavigationItem(
+        NavigationDrawerItem(
             title = R.string.image_optimizer, selectedIcon = Icons.Outlined.Image
         ),
 
-        NavigationItem(
+        NavigationDrawerItem(
             title = R.string.settings,
             selectedIcon = Icons.Outlined.Settings,
         ),
-        NavigationItem(
+        NavigationDrawerItem(
             title = R.string.help_and_feedback,
             selectedIcon = Icons.AutoMirrored.Outlined.HelpOutline,
         ),
-        NavigationItem(
+        NavigationDrawerItem(
             title = R.string.updates,
             selectedIcon = Icons.AutoMirrored.Outlined.EventNote,
         ),
-        NavigationItem(
+        NavigationDrawerItem(
             title = R.string.share, selectedIcon = Icons.Outlined.Share
         ),
     )
@@ -212,18 +212,18 @@ fun MainComposable() {
                 }
             }
         }) { innerPadding ->
-            NavHost(navController, startDestination = Screen.Home.route) {
-                composable(Screen.Home.route) {
+            NavHost(navController, startDestination = BottomNavigationScreen.Home.route) {
+                composable(BottomNavigationScreen.Home.route) {
                     Box(modifier = Modifier.padding(innerPadding)) {
                         HomeComposable()
                     }
                 }
-                composable(Screen.AppManager.route) {
+                composable(BottomNavigationScreen.AppManager.route) {
                     Box(modifier = Modifier.padding(innerPadding)) {
                         AppManagerComposable()
                     }
                 }
-                composable(Screen.MemoryManager.route) {
+                composable(BottomNavigationScreen.MemoryManager.route) {
                     Box(modifier = Modifier.padding(innerPadding)) {
                         MemoryManagerComposable()
                     }

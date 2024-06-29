@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.data.model
+package com.d4rk.cleaner.ui.memory.model
 
 data class RamInfo(
     val totalRam: Long = 0,

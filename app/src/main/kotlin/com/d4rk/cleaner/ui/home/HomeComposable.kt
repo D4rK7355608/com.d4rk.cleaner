@@ -5,9 +5,6 @@ import android.content.Context
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.LinearOutSlowInEasing
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -33,7 +30,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
@@ -48,15 +44,14 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ui.startup.StartupActivity
+import com.d4rk.cleaner.utils.CircularDeterminateIndicator
 import com.d4rk.cleaner.utils.Utils
 import com.d4rk.cleaner.utils.bounceClick
 import com.google.common.io.Files.getFileExtension
@@ -175,53 +170,6 @@ fun HomeComposable() {
                 }
             }
         }
-    }
-}
-
-/**
- * Composable function representing a circular determinate progress indicator with storage information.
- *
- * This composable displays a circular progress indicator representing a determinate progress value.
- * It also shows storage usage information (used/total) in gigabytes (GB).
- *
- * @param progress The progress value as a float, representing the completion percentage of the progress indicator.
- * @param storageUsed The amount of storage used, formatted as a string (e.g., "2.5 GB").
- * @param storageTotal The total amount of storage, formatted as a string (e.g., "10 GB").
- * @param modifier The modifier for styling and layout customization.
- */
-@Composable
-fun CircularDeterminateIndicator(
-    progress: Float, storageUsed: String, storageTotal: String, modifier: Modifier = Modifier
-) {
-    val animatedProgress by animateFloatAsState(
-        targetValue = progress,
-        animationSpec = tween(durationMillis = 1000, easing = LinearOutSlowInEasing),
-        label = ""
-    )
-
-    Box(
-        contentAlignment = Alignment.Center, modifier = modifier.size(240.dp)
-    ) {
-        CircularProgressIndicator(
-            progress = { 1f },
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.primaryContainer,
-            strokeWidth = 6.dp,
-        )
-        CircularProgressIndicator(
-            progress = { animatedProgress },
-            modifier = Modifier
-                .animateContentSize()
-                .fillMaxSize(),
-            color = MaterialTheme.colorScheme.primary,
-            strokeWidth = 6.dp,
-            strokeCap = StrokeCap.Round,
-        )
-        Text(
-            text = "$storageUsed/$storageTotal GB \n Used",
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.titleLarge
-        )
     }
 }
 

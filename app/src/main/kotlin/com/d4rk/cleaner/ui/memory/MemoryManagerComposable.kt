@@ -59,8 +59,9 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.d4rk.cleaner.data.model.RamInfo
-import com.d4rk.cleaner.data.model.StorageInfo
+import com.d4rk.cleaner.ui.memory.model.RamInfo
+import com.d4rk.cleaner.ui.memory.model.StorageInfo
+import com.d4rk.cleaner.utils.StorageProgressBar
 import kotlin.math.absoluteValue
 
 val StorageIcons = mapOf(
@@ -255,22 +256,6 @@ fun RamInfoCard(ramInfo: RamInfo) {
         StorageInfoText(label = "Free RAM:", size = ramInfo.availableRam)
         StorageInfoText(label = "Total RAM:", size = ramInfo.totalRam)
     }
-}
-
-@Composable
-fun StorageProgressBar(storageInfo: StorageInfo) {
-    val progress =
-        (storageInfo.usedStorage.toFloat() / storageInfo.totalStorage.toFloat()).coerceIn(
-            0f,
-            1f
-        )
-    LinearProgressIndicator(
-        progress = { progress },
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(8.dp),
-        color = MaterialTheme.colorScheme.primary,
-    )
 }
 
 @Composable
