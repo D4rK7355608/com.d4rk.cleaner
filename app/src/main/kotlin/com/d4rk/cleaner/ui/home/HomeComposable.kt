@@ -270,9 +270,12 @@ fun AnalyzeComposable() {
 }
 
 @Composable
-fun FileCard(file : File , viewModel : HomeViewModel) {
+fun FileCard(file: File, viewModel: HomeViewModel) {
     val context = LocalContext.current
     val fileExtension = getFileExtension(file.name)
+    val thumbnail = remember {
+        getVideoThumbnail(file.absolutePath, thumbnailWidth = 128, thumbnailHeight = 128)
+    }
     Card(
         modifier = Modifier
                 .fillMaxWidth()
@@ -293,10 +296,9 @@ fun FileCard(file : File , viewModel : HomeViewModel) {
                 }
 
                 in context.resources.getStringArray(R.array.video_extensions).toList() -> {
-                    val thumbnailBitmap = getVideoThumbnail(file.absolutePath)
-                    if (thumbnailBitmap != null) {
+                    if (thumbnail != null) {
                         Image(
-                            bitmap = thumbnailBitmap.asImageBitmap(),
+                            bitmap = thumbnail.asImageBitmap(),
                             contentDescription = file.name,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()

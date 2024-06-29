@@ -10,11 +10,14 @@ import android.graphics.drawable.Drawable
 import android.media.MediaMetadataRetriever
 import com.d4rk.cleaner.R
 
-fun getVideoThumbnail(videoPath: String): Bitmap? {
+fun getVideoThumbnail(videoPath: String, thumbnailWidth: Int = 128, thumbnailHeight: Int = 128): Bitmap? {
     val mediaMetadataRetriever = MediaMetadataRetriever()
     try {
         mediaMetadataRetriever.setDataSource(videoPath)
-        return mediaMetadataRetriever.getFrameAtTime(1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC) // Extract frame at 1 second
+        val bitmap = mediaMetadataRetriever.getFrameAtTime(1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC)
+        if (bitmap != null) {
+            return Bitmap.createScaledBitmap(bitmap, thumbnailWidth, thumbnailHeight, false)
+        }
     } catch (_ : Exception) {
 
     } finally {
