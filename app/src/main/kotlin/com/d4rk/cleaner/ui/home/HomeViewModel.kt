@@ -158,25 +158,26 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                     Manifest.permission.WRITE_EXTERNAL_STORAGE
                 ) == PackageManager.PERMISSION_GRANTED
 
-            Build.VERSION.SDK_INT <= Build.VERSION_CODES.S ->
+            Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2 ->
                 ContextCompat.checkSelfPermission(
                     getApplication(),
                     Manifest.permission.READ_EXTERNAL_STORAGE
-                ) == PackageManager.PERMISSION_GRANTED &&
-                        ContextCompat.checkSelfPermission(
-                            getApplication(),
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE
-                        ) == PackageManager.PERMISSION_GRANTED
+                ) == PackageManager.PERMISSION_GRANTED
 
             else -> true
         }
+
         val hasManageStoragePermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             Environment.isExternalStorageManager()
         } else {
             true
         }
 
-        val hasUsageStatsPermission = isAccessGranted()
+        val hasUsageStatsPermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            isAccessGranted()
+        } else {
+            true
+        }
 
         val hasMediaPermissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             ContextCompat.checkSelfPermission(

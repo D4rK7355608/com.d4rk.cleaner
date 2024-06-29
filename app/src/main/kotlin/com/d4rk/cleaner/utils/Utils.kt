@@ -5,6 +5,9 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import com.d4rk.cleaner.R
+import java.util.Locale
+import kotlin.math.log10
+import kotlin.math.pow
 
 /**
  * A utility object for performing common operations such as opening URLs, activities, and app notification settings.
@@ -112,6 +115,24 @@ object Utils {
             Intent.createChooser(
                 emailIntent , context.resources.getText(R.string.send_email_using)
             )
+        )
+    }
+
+    /**
+     * Formats a file size in bytes to a human-readable string (e.g., "128 MB").
+     *
+     * @param size The file size in bytes.
+     * @return A formatted string representing the file size.
+     */
+    fun formatSize(size: Long): String {
+        if (size <= 0) return "0 B"
+        val units = arrayOf("B", "KB", "MB", "GB", "TB")
+        val digitGroups = (log10(size.toDouble()) / log10(1024.0)).toInt()
+        return String.format(
+            Locale.US ,
+            "%.2f %s" ,
+            size / 1024.0.pow(digitGroups.toDouble()) ,
+            units[digitGroups]
         )
     }
 }
