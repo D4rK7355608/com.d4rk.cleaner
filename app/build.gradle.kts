@@ -141,6 +141,7 @@ dependencies {
     // Image Compression
     implementation(libs.compressor)
     implementation(libs.glide)
+    implementation(libs.coil.compose)
 
     // Test
     testImplementation(libs.junit)
@@ -149,6 +150,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
 
 
     // TODO: Clean-up

@@ -1,11 +1,5 @@
 package com.d4rk.cleaner.ui.dialogs
 
-import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.drawable.AdaptiveIconDrawable
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.utils.toBitmapDrawable
 
 @Composable
 fun VersionInfoDialog(onDismiss: () -> Unit) {
@@ -72,21 +67,5 @@ fun VersionInfoContent() {
                 style = MaterialTheme.typography.bodyMedium
             )
         }
-    }
-}
-
-fun Drawable.toBitmapDrawable(): BitmapDrawable {
-    return when (this) {
-        is BitmapDrawable -> this
-        is AdaptiveIconDrawable -> {
-            val bitmap =
-                Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
-            val canvas = Canvas(bitmap)
-            setBounds(0, 0, canvas.width, canvas.height)
-            draw(canvas)
-            BitmapDrawable(Resources.getSystem(), bitmap)
-        }
-
-        else -> throw IllegalArgumentException("Unsupported drawable type: ${this::class.java.name}")
     }
 }
