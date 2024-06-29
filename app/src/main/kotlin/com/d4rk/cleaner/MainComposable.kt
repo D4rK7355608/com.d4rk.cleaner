@@ -45,9 +45,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.d4rk.cleaner.ads.FullBannerAdsComposable
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.ui.components.navigation.NavigationDrawerItem
-import com.d4rk.cleaner.ui.components.navigation.BottomNavigationScreen
 import com.d4rk.cleaner.ui.appmanager.AppManagerComposable
+import com.d4rk.cleaner.ui.components.navigation.BottomNavigationScreen
+import com.d4rk.cleaner.ui.components.navigation.NavigationDrawerItem
 import com.d4rk.cleaner.ui.help.HelpActivity
 import com.d4rk.cleaner.ui.home.HomeComposable
 import com.d4rk.cleaner.ui.imageoptimizer.ImagePickerActivity

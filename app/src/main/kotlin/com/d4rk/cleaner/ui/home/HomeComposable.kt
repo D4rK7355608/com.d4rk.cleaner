@@ -54,9 +54,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.startup.StartupActivity
 import com.d4rk.cleaner.utils.CircularDeterminateIndicator
-import com.d4rk.cleaner.utils.Utils
 import com.d4rk.cleaner.utils.bounceClick
 import com.google.common.io.Files.getFileExtension
 import java.io.File
@@ -109,8 +107,16 @@ fun HomeComposable() {
         ) {
             AnimatedVisibility(
                 visible = showCleaningComposable,
-                enter = fadeIn() + expandHorizontally(expandFrom = Alignment.Start),
-                exit = fadeOut() + shrinkHorizontally(shrinkTowards = Alignment.Start),
+                enter = fadeIn(animationSpec = tween(durationMillis = 400)) +
+                        expandHorizontally(
+                            animationSpec = tween(durationMillis = 400),
+                            expandFrom = Alignment.Start
+                        ),
+                exit = fadeOut(animationSpec = tween(durationMillis = 400)) +
+                        shrinkHorizontally(
+                            animationSpec = tween(durationMillis = 400),
+                            shrinkTowards = Alignment.Start
+                        ),
                 modifier = Modifier.weight(1f)
             ) {
                 val enabled = !isAnalyzing && selectedFileCount > 0
@@ -129,9 +135,6 @@ fun HomeComposable() {
                         .bounceClick(),
                     onClick = {
                         viewModel.clean(activity = context as Activity)
-                        Utils.openActivity(
-                            context, StartupActivity::class.java
-                        )
                     },
                     shape = MaterialTheme.shapes.medium,
                     enabled = enabled,
@@ -241,13 +244,24 @@ fun AnalyzeComposable() {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            Text(
-                text = if (selectedFileCount > 0) {
-                    "Status: Selected $selectedFileCount files"
+            val statusText = if (selectedFileCount > 0) {
+                "Status: Selected $selectedFileCount files"
+            } else {
+                "Status: No files selected"
+            }
+            val statusColor by animateColorAsState(
+                targetValue = if (selectedFileCount > 0) {
+                    MaterialTheme.colorScheme.primary
                 } else {
-                    "Status: No files selected"
+                    MaterialTheme.colorScheme.secondary
                 },
-                color = MaterialTheme.colorScheme.primary,
+                animationSpec = tween(), label = ""
+            )
+
+            Text(
+                text = statusText,
+                color = statusColor,
+                modifier = Modifier.animateContentSize()
             )
             SelectAllComposable(
                 checked = allFilesSelected,
@@ -333,6 +347,10 @@ fun FileItemComposable(
 
     context.resources.getStringArray(R.array.video_extensions).forEach {
         fileIconMap[it] = R.drawable.ic_video_file
+    }
+
+    context.resources.getStringArray(R.array.image_extensions).forEach {
+        fileIconMap[it] = R.drawable.ic_image
     }
 
     fileIconMap["nomedia"] = R.drawable.ic_draft
