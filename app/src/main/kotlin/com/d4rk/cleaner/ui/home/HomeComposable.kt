@@ -4,7 +4,10 @@ import android.app.Activity
 import android.content.Context
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -44,6 +47,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -66,6 +70,7 @@ fun HomeComposable() {
     val storageTotal by viewModel.storageTotal.observeAsState("0")
     val showCleaningComposable by viewModel.showCleaningComposable.observeAsState(false)
     val isAnalyzing by viewModel.isAnalyzing.observeAsState(false)
+    val selectedFileCount by viewModel.selectedFileCount.collectAsState()
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -108,6 +113,13 @@ fun HomeComposable() {
                 exit = fadeOut() + shrinkHorizontally(shrinkTowards = Alignment.Start),
                 modifier = Modifier.weight(1f)
             ) {
+                val enabled = !isAnalyzing && selectedFileCount > 0
+
+                val animateStateButtonColor = animateColorAsState(
+                    targetValue = if (enabled) MaterialTheme.colorScheme.secondaryContainer else Color.LightGray,
+                    animationSpec = tween(400, 0, LinearEasing), label = ""
+                )
+
                 FilledTonalButton(
                     modifier = Modifier
                         .weight(1f)
@@ -122,7 +134,10 @@ fun HomeComposable() {
                         )
                     },
                     shape = MaterialTheme.shapes.medium,
-                    enabled = !isAnalyzing
+                    enabled = enabled,
+                    colors = ButtonDefaults.filledTonalButtonColors(
+                        containerColor = animateStateButtonColor.value,
+                    ),
                 ) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
@@ -186,6 +201,7 @@ fun AnalyzeComposable() {
     val viewModel: HomeViewModel = viewModel()
     val files by viewModel.scannedFiles.asFlow().collectAsState(initial = listOf())
     val allFilesSelected by viewModel.allFilesSelected
+    val selectedFileCount by viewModel.selectedFileCount.collectAsState()
 
     LaunchedEffect(Unit) {
         viewModel.fileScanner.startScanning()
@@ -226,7 +242,11 @@ fun AnalyzeComposable() {
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
-                text = "Status",
+                text = if (selectedFileCount > 0) {
+                    "Status: Selected $selectedFileCount files"
+                } else {
+                    "Status: No files selected"
+                },
                 color = MaterialTheme.colorScheme.primary,
             )
             SelectAllComposable(
@@ -340,6 +360,8 @@ fun FileItemComposable(
             checked = viewModel.fileSelectionStates[file] ?: false,
             onCheckedChange = { isChecked ->
                 viewModel.fileSelectionStates[file] = isChecked
+                viewModel._selectedFileCount.value =
+                    viewModel.fileSelectionStates.values.count { it }
             },
             modifier = Modifier.align(Alignment.CenterVertically)
         )

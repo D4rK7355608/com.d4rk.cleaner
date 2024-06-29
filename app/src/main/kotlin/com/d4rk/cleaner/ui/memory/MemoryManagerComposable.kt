@@ -1,13 +1,10 @@
 package com.d4rk.cleaner.ui.memory
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -70,6 +67,7 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ui.memory.model.RamInfo
 import com.d4rk.cleaner.ui.memory.model.StorageInfo
 import com.d4rk.cleaner.utils.StorageProgressBar
+import com.d4rk.cleaner.utils.bounceClick
 import kotlin.math.absoluteValue
 import kotlin.math.min
 
@@ -160,7 +158,7 @@ fun MemoryManagerComposable() {
                 )
 
                 Spacer(modifier = Modifier.width(8.dp))
-                IconButton(onClick = { listExpanded = !listExpanded }) {
+                IconButton(modifier = Modifier.bounceClick(), onClick = { listExpanded = !listExpanded }) {
                     Icon(
                         imageVector = if (listExpanded) Icons.Outlined.ArrowDropDown else Icons.AutoMirrored.Filled.ArrowLeft,
                         contentDescription = if (listExpanded) "Collapse" else "Expand"

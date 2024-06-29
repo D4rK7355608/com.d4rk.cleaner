@@ -23,6 +23,9 @@ import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.FileScanner
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.io.File
 import java.util.UUID
@@ -40,6 +43,8 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val dataStoreInstance: DataStore = DataStore(application)
     val showCleaningComposable = MutableLiveData(false)
     val isAnalyzing = MutableLiveData(false)
+    val _selectedFileCount = MutableStateFlow(0)
+    val selectedFileCount: StateFlow<Int> = _selectedFileCount.asStateFlow()
 
     init {
         updateStorageInfo()
@@ -123,6 +128,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             fileSelectionStates[file] = selectAll
         }
         allFilesSelected.value = selectAll
+        _selectedFileCount.value = fileSelectionStates.values.count { it }
     }
 
     /**
