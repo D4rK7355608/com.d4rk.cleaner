@@ -1,6 +1,5 @@
 package com.d4rk.cleaner.ui.memory
 
-import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -22,7 +21,6 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
@@ -58,15 +56,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ui.memory.model.RamInfo
 import com.d4rk.cleaner.ui.memory.model.StorageInfo
 import com.d4rk.cleaner.utils.StorageProgressBar
 import kotlin.math.absoluteValue
+import kotlin.math.min
 
 val StorageIcons = mapOf(
     "Installed Apps" to Icons.Outlined.Apps,
@@ -114,9 +115,11 @@ fun MemoryManagerComposable() {
             CircularProgressIndicator()
         }
     } else {
-        Column(modifier = Modifier
-            .fillMaxSize()
-            .alpha(contentAlpha)) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .alpha(contentAlpha)
+        ) {
             CarouselLayout(
                 items = listOf(storageInfo, ramInfo),
                 peekPreviewWidth = 24.dp
@@ -141,19 +144,15 @@ fun MemoryManagerComposable() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
+                    .padding(horizontal = 16.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(modifier = Modifier.weight(1f)) {
-                    Column(modifier = Modifier.animateContentSize()) {
-                        if (listExpanded) {
-                            LazyColumn {
-                                items(storageInfo.storageBreakdown.entries.toList()) { entry ->
-                                    StorageBreakdownItem(icon = entry.key, size = entry.value)
-                                }
-                            }
-                        }
-                    }
-                }
+                Text(
+                    text = stringResource(id = R.string.categories),
+                    modifier = Modifier.weight(1f),
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold
+                )
 
                 Spacer(modifier = Modifier.width(8.dp))
                 IconButton(onClick = { listExpanded = !listExpanded }) {
@@ -162,6 +161,12 @@ fun MemoryManagerComposable() {
                         contentDescription = if (listExpanded) "Collapse" else "Expand"
                     )
                 }
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            if (listExpanded) {
+                StorageBreakdownGrid(storageInfo.storageBreakdown)
             }
         }
     }
@@ -232,11 +237,32 @@ fun StorageInfoCard(storageInfo: StorageInfo) {
 }
 
 @Composable
-fun StorageBreakdownItem(icon: String, size: Long) {
-    Card(
+fun StorageBreakdownGrid(storageBreakdown: Map<String, Long>) {
+    val items = storageBreakdown.entries.toList()
+    val chunkSize = 2
+
+    LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 4.dp),
+            .padding(horizontal = 16.dp)
+    ) {
+        items((items.size + chunkSize - 1) / chunkSize) { rowIndex ->
+            Row(modifier = Modifier.fillMaxWidth()) {
+                for (columnIndex in 0 until min(chunkSize, items.size - rowIndex * chunkSize)) {
+                    val index = rowIndex * chunkSize + columnIndex
+                    val (icon, size) = items[index]
+                    StorageBreakdownItem(icon = icon, size = size, modifier = Modifier.weight(1f))
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun StorageBreakdownItem(icon: String, size: Long, modifier: Modifier = Modifier) {
+    Card(
+        modifier = modifier
+            .padding(vertical = 4.dp, horizontal = 4.dp)
     ) {
         Row(
             modifier = Modifier
@@ -257,7 +283,7 @@ fun StorageBreakdownItem(icon: String, size: Long) {
                 }
             }
 
-            Spacer(modifier = Modifier.padding(horizontal = 16.dp))
+            Spacer(modifier = Modifier.padding(horizontal = 4.dp))
 
             Column {
                 Text(
