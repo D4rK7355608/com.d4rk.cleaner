@@ -1,9 +1,13 @@
 package com.d4rk.cleaner.ui.memory
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -109,6 +113,7 @@ fun MemoryManagerComposable() {
         Box(
             modifier = Modifier
                 .fillMaxSize()
+                .animateContentSize()
                 .alpha(progressAlpha),
             contentAlignment = Alignment.Center
         ) {
@@ -144,14 +149,14 @@ fun MemoryManagerComposable() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .animateContentSize()
                     .padding(horizontal = 16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
                     text = stringResource(id = R.string.categories),
                     modifier = Modifier.weight(1f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Bold
+                    style = MaterialTheme.typography.headlineSmall,
                 )
 
                 Spacer(modifier = Modifier.width(8.dp))
@@ -215,7 +220,11 @@ fun <T> CarouselLayout(
 
 @Composable
 fun StorageInfoCard(storageInfo: StorageInfo) {
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .animateContentSize()
+    ) {
         Text(
             text = "Storage Information",
             style = MaterialTheme.typography.headlineSmall,
@@ -244,10 +253,15 @@ fun StorageBreakdownGrid(storageBreakdown: Map<String, Long>) {
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
+            .animateContentSize()
             .padding(horizontal = 16.dp)
     ) {
         items((items.size + chunkSize - 1) / chunkSize) { rowIndex ->
-            Row(modifier = Modifier.fillMaxWidth()) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .animateContentSize()
+            ) {
                 for (columnIndex in 0 until min(chunkSize, items.size - rowIndex * chunkSize)) {
                     val index = rowIndex * chunkSize + columnIndex
                     val (icon, size) = items[index]
@@ -263,10 +277,12 @@ fun StorageBreakdownItem(icon: String, size: Long, modifier: Modifier = Modifier
     Card(
         modifier = modifier
             .padding(vertical = 4.dp, horizontal = 4.dp)
+            .animateContentSize()
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .animateContentSize()
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
