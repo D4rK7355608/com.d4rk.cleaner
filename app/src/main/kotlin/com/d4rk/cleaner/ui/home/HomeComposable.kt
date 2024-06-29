@@ -44,6 +44,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -358,7 +359,7 @@ fun FileItemComposable(
 
     val fileExtension = getFileExtension(item)
     val iconResource = fileIconMap[fileExtension] ?: R.drawable.ic_file_present
-
+    val fileSelectionStates = remember { mutableStateMapOf<File, Boolean>() }
     Row(
         modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
     ) {
@@ -377,9 +378,11 @@ fun FileItemComposable(
         Checkbox(
             checked = viewModel.fileSelectionStates[file] ?: false,
             onCheckedChange = { isChecked ->
+                fileSelectionStates[file] = isChecked
                 viewModel.fileSelectionStates[file] = isChecked
                 viewModel._selectedFileCount.value =
-                    viewModel.fileSelectionStates.values.count { it }
+                        viewModel.fileSelectionStates.values.count { it }
+                viewModel.allFilesSelected.value = viewModel.fileSelectionStates.values.all { it }
             },
             modifier = Modifier.align(Alignment.CenterVertically)
         )
