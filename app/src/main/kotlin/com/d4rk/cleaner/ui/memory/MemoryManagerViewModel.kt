@@ -33,6 +33,9 @@ class MemoryManagerViewModel : ViewModel() {
     private val _ramInfo = MutableStateFlow(RamInfo())
     val ramInfo: StateFlow<RamInfo> = _ramInfo.asStateFlow()
 
+    private val _isLoading = MutableStateFlow(true)
+    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
+
     /**
      * Updates the storage information by fetching the latest data from the device.
      *
@@ -40,7 +43,11 @@ class MemoryManagerViewModel : ViewModel() {
      */
     fun updateStorageInfo(context: Context) {
         viewModelScope.launch {
-            _storageInfo.value = getStorageInfo(context)
+            try {
+                _storageInfo.value = getStorageInfo(context)
+            } finally {
+                _isLoading.value = false
+            }
         }
     }
 
@@ -51,7 +58,11 @@ class MemoryManagerViewModel : ViewModel() {
      */
     fun updateRamInfo(context: Context) {
         viewModelScope.launch {
-            _ramInfo.value = getRamInfo(context)
+            try {
+                _ramInfo.value = getRamInfo(context)
+            } finally {
+                _isLoading.value = false
+            }
         }
     }
 
@@ -77,6 +88,7 @@ class MemoryManagerViewModel : ViewModel() {
             totalSize = storageStatsManager.getTotalBytes(uuid)
             freeSize = storageStatsManager.getFreeBytes(uuid)
             usedSize = totalSize - freeSize
+            _isLoading.value = true
             val storageBreakdown = getStorageBreakdown(context)
             StorageInfo(
                 totalStorage = totalSize,

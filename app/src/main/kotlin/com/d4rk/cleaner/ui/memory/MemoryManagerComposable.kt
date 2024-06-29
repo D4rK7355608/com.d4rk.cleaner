@@ -2,16 +2,17 @@ package com.d4rk.cleaner.ui.memory
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -35,6 +36,7 @@ import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material.icons.outlined.MusicNote
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
@@ -55,7 +57,6 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -80,88 +81,110 @@ fun MemoryManagerComposable() {
     val viewModel = viewModel<MemoryManagerViewModel>()
     val storageInfo by viewModel.storageInfo.collectAsState()
     val ramInfo by viewModel.ramInfo.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
     val context = LocalContext.current
 
     var listExpanded by remember { mutableStateOf(true) }
 
-    val pagerState = rememberPagerState {
-        2
-    }
+    val pagerState = rememberPagerState { 2 }
 
     LaunchedEffect(Unit) {
         viewModel.updateStorageInfo(context)
         viewModel.updateRamInfo(context)
     }
-
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        HorizontalPager(
-            state = pagerState, modifier = Modifier
-                .fillMaxWidth()
-        ) { page ->
-            val pageOffset = (page - pagerState.currentPage).absoluteValue
-            val scale by animateFloatAsState(
-                targetValue = lerp(
-                    start = 0.9f, stop = 1f, fraction = 1f - pageOffset.coerceIn(0, 1)
-                ), label = ""
-            )
-
-            Card(modifier = Modifier
-                .padding(16.dp)
-                .graphicsLayer {
-                    scaleX = scale
-                    scaleY = scale
-                    alpha = lerp(
-                        start = 0.5f, stop = 1f, fraction = 1f - pageOffset.coerceIn(0, 1)
-                    )
-                }
-                .offset {
-                    val pageOffsetState = (page - pagerState.currentPage)
-                    IntOffset(
-                        x = (10.dp * pageOffsetState.toFloat()).roundToPx(), y = 0
-                    )
-                }
-                .fillMaxWidth()) {
-                when (page) {
-                    0 -> StorageInfoCard(storageInfo)
-                    1 -> RamInfoCard(ramInfo)
+    if (isLoading) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            CircularProgressIndicator()
+        }
+    } else {
+        Column(modifier = Modifier.fillMaxSize()) {
+            CarouselLayout(
+                items = listOf(storageInfo, ramInfo),
+                peekPreviewWidth = 24.dp
+            ) { item ->
+                when (item) {
+                    is StorageInfo -> StorageInfoCard(item)
+                    is RamInfo -> RamInfoCard(item)
                 }
             }
-        }
-        DotsIndicator(
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            totalDots = 2,
-            selectedIndex = pagerState.currentPage,
-            dotSize = 6.dp
-        )
 
-        Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-        ) {
-            Box(modifier = Modifier.weight(1f)) {
-                Column(modifier = Modifier.animateContentSize()) {
-                    if (listExpanded) {
-                        LazyColumn {
-                            items(storageInfo.storageBreakdown.entries.toList()) { entry ->
-                                StorageBreakdownItem(icon = entry.key, size = entry.value)
+            DotsIndicator(
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                totalDots = 2,
+                selectedIndex = pagerState.currentPage,
+                dotSize = 6.dp
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+            ) {
+                Box(modifier = Modifier.weight(1f)) {
+                    Column(modifier = Modifier.animateContentSize()) {
+                        if (listExpanded) {
+                            LazyColumn {
+                                items(storageInfo.storageBreakdown.entries.toList()) { entry ->
+                                    StorageBreakdownItem(icon = entry.key, size = entry.value)
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            Spacer(modifier = Modifier.width(8.dp))
-            IconButton(onClick = { listExpanded = !listExpanded }) {
-                Icon(
-                    imageVector = if (listExpanded) Icons.Outlined.ArrowDropDown else Icons.AutoMirrored.Filled.ArrowLeft,
-                    contentDescription = if (listExpanded) "Collapse" else "Expand"
-                )
+                Spacer(modifier = Modifier.width(8.dp))
+                IconButton(onClick = { listExpanded = !listExpanded }) {
+                    Icon(
+                        imageVector = if (listExpanded) Icons.Outlined.ArrowDropDown else Icons.AutoMirrored.Filled.ArrowLeft,
+                        contentDescription = if (listExpanded) "Collapse" else "Expand"
+                    )
+                }
             }
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun <T> CarouselLayout(
+    items: List<T>,
+    peekPreviewWidth: Dp,
+    itemContent: @Composable (item: T) -> Unit
+) {
+    val pagerState = rememberPagerState(pageCount = { items.size })
+
+    HorizontalPager(
+        state = pagerState,
+        modifier = Modifier.fillMaxWidth(),
+        contentPadding = PaddingValues(horizontal = peekPreviewWidth)
+    ) { page ->
+        val pageOffset = (pagerState.currentPage - page).toFloat().absoluteValue
+
+        val scale by animateFloatAsState(
+            targetValue = lerp(
+                start = 0.95f,
+                stop = 1f,
+                fraction = 1f - pageOffset.coerceIn(0f, 1f)
+            ),
+            animationSpec = tween(durationMillis = 250),
+            label = ""
+        )
+        val alpha = lerp(start = 0.5f, stop = 1f, fraction = 1f - pageOffset.coerceIn(0f, 1f))
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .graphicsLayer {
+                    scaleX = scale
+                    scaleY = scale
+                    this.alpha = alpha
+                }
+        ) {
+            itemContent(items[page])
         }
     }
 }
