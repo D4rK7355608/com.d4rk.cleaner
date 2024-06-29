@@ -1,8 +1,10 @@
 package com.d4rk.cleaner.ui.memory
 
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -51,6 +53,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
@@ -86,6 +89,15 @@ fun MemoryManagerComposable() {
 
     var listExpanded by remember { mutableStateOf(true) }
 
+    val transition = updateTransition(targetState = !isLoading, label = "LoadingTransition")
+
+    val progressAlpha by transition.animateFloat(label = "Progress Alpha") {
+        if (it) 0f else 1f
+    }
+    val contentAlpha by transition.animateFloat(label = "Content Alpha") {
+        if (it) 1f else 0f
+    }
+
     val pagerState = rememberPagerState { 2 }
 
     LaunchedEffect(Unit) {
@@ -93,11 +105,18 @@ fun MemoryManagerComposable() {
         viewModel.updateRamInfo(context)
     }
     if (isLoading) {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .alpha(progressAlpha),
+            contentAlignment = Alignment.Center
+        ) {
             CircularProgressIndicator()
         }
     } else {
-        Column(modifier = Modifier.fillMaxSize()) {
+        Column(modifier = Modifier
+            .fillMaxSize()
+            .alpha(contentAlpha)) {
             CarouselLayout(
                 items = listOf(storageInfo, ramInfo),
                 peekPreviewWidth = 24.dp
