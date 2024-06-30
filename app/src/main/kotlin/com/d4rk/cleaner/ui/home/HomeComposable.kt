@@ -84,6 +84,20 @@ fun HomeComposable() {
     val isAnalyzing by viewModel.isAnalyzing.observeAsState(false)
     val selectedFileCount by viewModel.selectedFileCount.collectAsState()
 
+    val imageLoader = ImageLoader.Builder(context)
+        .memoryCache {
+            MemoryCache.Builder(context)
+                .maxSizePercent(0.24)
+                .build()
+        }
+        .diskCache {
+            DiskCache.Builder()
+                .directory(context.cacheDir.resolve("image_cache"))
+                .maxSizePercent(0.02)
+                .build()
+        }
+        .build()
+
     val launchScanningKey = remember { mutableStateOf(false) }
 
     Column(
@@ -112,7 +126,7 @@ fun HomeComposable() {
                         .size(128.dp, 66.dp)
                 )
             } else {
-                AnalyzeComposable(launchScanningKey)
+                AnalyzeComposable(launchScanningKey, imageLoader)
             }
         }
         Row(
@@ -212,7 +226,7 @@ fun HomeComposable() {
  * @param viewModel The HomeViewModel instance used to interact with the data and business logic.
  */
 @Composable
-fun AnalyzeComposable(launchScanningKey: MutableState<Boolean>) {
+fun AnalyzeComposable(launchScanningKey: MutableState<Boolean>, imageLoader: ImageLoader) {
     val viewModel: HomeViewModel = viewModel()
     val files by viewModel.scannedFiles.asFlow().collectAsState(initial = listOf())
 
@@ -247,7 +261,7 @@ fun AnalyzeComposable(launchScanningKey: MutableState<Boolean>) {
                 modifier = Modifier.padding(8.dp)
             ) {
                 items(files) { file ->
-                    FileCard(file = file, viewModel = viewModel)
+                    FileCard(file = file, viewModel = viewModel, imageLoader = imageLoader)
                 }
             }
         }
@@ -282,23 +296,9 @@ fun AnalyzeComposable(launchScanningKey: MutableState<Boolean>) {
 
 
 @Composable
-fun FileCard(file: File, viewModel: HomeViewModel) {
+fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
     val context = LocalContext.current
     val fileExtension = getFileExtension(file.name)
-
-    val imageLoader = ImageLoader.Builder(context)
-        .memoryCache {
-            MemoryCache.Builder(context)
-                .maxSizePercent(0.24)
-                .build()
-        }
-        .diskCache {
-            DiskCache.Builder()
-                .directory(context.cacheDir.resolve("image_cache"))
-                .maxSizePercent(0.02)
-                .build()
-        }
-        .build()
 
     val thumbnail = remember(file.absolutePath) {
         getVideoThumbnail(file.absolutePath, thumbnailWidth = 64, thumbnailHeight = 64)
@@ -330,6 +330,7 @@ fun FileCard(file: File, viewModel: HomeViewModel) {
                                     }
                                 }
                             )
+                            .size(64)
                             .crossfade(true)
                             .build(),
                         imageLoader = imageLoader,
