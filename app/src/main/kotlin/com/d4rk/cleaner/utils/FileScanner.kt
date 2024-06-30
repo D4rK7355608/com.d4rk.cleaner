@@ -32,13 +32,9 @@ class FileScanner(private val dataStore: DataStore, private val resources: Resou
      *
      * @throws Exception If an error occurs during the scanning process.
      */
-    suspend fun startScanning() {
-        withContext(Dispatchers.IO) {
-            loadPreferences()
-            val allFiles = getAllFiles()
-            filteredFiles = filterFiles(allFiles)
-                .toList() // Collect the flow into a list asynchronously
-        }
+    suspend fun startScanning() = withContext(Dispatchers.IO) {
+        loadPreferences()
+        filteredFiles = filterFiles(getAllFiles()).toList()
     }
 
     /**
@@ -69,25 +65,19 @@ class FileScanner(private val dataStore: DataStore, private val resources: Resou
         stack.addFirst(root)
 
         while (stack.isNotEmpty()) {
-            val file = stack.removeFirst()
-            if (file.isDirectory) {
-                file.listFiles()?.let { stack.addAll(it) }
+            val currentFile = stack.removeFirst()
+            if (currentFile.isDirectory) {
+                currentFile.listFiles()?.forEach { stack.addLast(it) }
             } else {
-                files.add(file)
+                files.add(currentFile)
             }
         }
 
         return files
     }
 
-    private fun filterFiles(allFiles: List<File>): Flow<File> {
-        return flow {
-            for (file in allFiles) {
-                if (shouldFilterFile(file)) {
-                    emit(file)
-                }
-            }
-        }
+    private fun filterFiles(allFiles: List<File>): Flow<File> = flow {
+        allFiles.filter(::shouldFilterFile).forEach { emit(it) }
     }
 
     private fun shouldFilterFile(file: File): Boolean {

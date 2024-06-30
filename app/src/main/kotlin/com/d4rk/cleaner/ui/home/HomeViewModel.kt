@@ -23,11 +23,11 @@ import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.FileScanner
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.util.UUID
 import kotlin.math.roundToInt
@@ -37,7 +37,6 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val storageUsed = MutableLiveData<String>()
     val storageTotal = MutableLiveData<String>()
     var fileScanner: FileScanner
-
     val scannedFiles = MutableLiveData<List<File>>()
     val allFilesSelected = mutableStateOf(false)
     val fileSelectionStates = mutableStateMapOf<File, Boolean>()
@@ -49,8 +48,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         updateStorageInfo()
-        val resourcesInstance = application.resources
-        fileScanner = FileScanner(dataStoreInstance, resourcesInstance)
+        fileScanner = FileScanner(dataStoreInstance,application.resources)
     }
 
     /**
@@ -88,30 +86,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    /**
-     * Initiates the file analysis process by invoking the `FileScanner` to scan for files
-     * and filter them based on predefined preferences.
-     *
-     * This function first checks for necessary permissions. If granted, it triggers
-     * the file scanning process asynchronously using a coroutine. If not, it returns.
-     *
-     * @param activity The Activity instance required to request permissions.
-     * @see FileScanner
-     */
-    fun analyze(activity: Activity) {
-        if (!hasRequiredPermissions()) {
-            requestPermissions(activity)
-            return
-        }
-        isAnalyzing.value = true
-        showCleaningComposable.value = true
-        viewModelScope.launch {
-            delay(100)
-            isAnalyzing.value = true
-            fileScanner.startScanning()
-            scannedFiles.postValue(fileScanner.getFilteredFiles())
-            isAnalyzing.postValue(false)
-        }
+    fun onFileSelectionChange(file: File, isChecked: Boolean) {
+        fileSelectionStates[file] = isChecked
+        _selectedFileCount.value = fileSelectionStates.count { it.value }
+        allFilesSelected.value = fileSelectionStates.all { it.value }
     }
 
     /**
@@ -132,6 +110,29 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
         allFilesSelected.value = selectAll
         _selectedFileCount.value = fileSelectionStates.values.count { it }
+    }
+
+    /**
+     * Initiates the file analysis process.
+     *
+     * This function checks for necessary permissions and, if granted, triggers the file* scanning process asynchronously.
+     *
+     * @param activity The Activity instance required to request permissions.
+     */
+    fun analyze(activity: Activity) {
+        if (!hasRequiredPermissions()) {
+            requestPermissions(activity)
+            return
+        }
+        isAnalyzing.value = true
+        showCleaningComposable.value = true
+        viewModelScope.launch {
+            fileScanner.startScanning()
+            withContext(Dispatchers.Main) {
+                scannedFiles.value = fileScanner.getFilteredFiles()
+                isAnalyzing.value =false
+            }
+        }
     }
 
     /**

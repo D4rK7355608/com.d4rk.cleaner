@@ -10,53 +10,54 @@ import android.graphics.drawable.Drawable
 import android.media.MediaMetadataRetriever
 import com.d4rk.cleaner.R
 
-fun getVideoThumbnail(videoPath: String, thumbnailWidth: Int = 128, thumbnailHeight: Int = 128): Bitmap? {
+fun getVideoThumbnail(
+    videoPath: String,
+    thumbnailWidth: Int = 128,
+    thumbnailHeight: Int = 128
+): Bitmap? {
     val mediaMetadataRetriever = MediaMetadataRetriever()
-    try {
+    return try {
         mediaMetadataRetriever.setDataSource(videoPath)
-        val bitmap = mediaMetadataRetriever.getFrameAtTime(1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC)
-        if (bitmap != null) {
-            return Bitmap.createScaledBitmap(bitmap, thumbnailWidth, thumbnailHeight, false)
+        val bitmap =
+            mediaMetadataRetriever.getFrameAtTime(1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC)
+        bitmap?.let {
+            Bitmap.createScaledBitmap(
+                it,
+                thumbnailWidth,
+                thumbnailHeight,
+                false
+            )
         }
-    } catch (_ : Exception) {
-
+    } catch (e: Exception) {
+        null
     } finally {
         mediaMetadataRetriever.release()
     }
-    return null
 }
 
-fun getFileIcon(extension : String , context : Context) : Int {
-    return when (extension.lowercase()) {
-        in context.resources.getStringArray(R.array.apk_extensions)
-                .toList() -> R.drawable.ic_apk_document
-
-        in context.resources.getStringArray(R.array.image_extensions)
-                .toList() -> R.drawable.ic_image
-
-        in context.resources.getStringArray(R.array.video_extensions)
-                .toList() -> R.drawable.ic_video_file
-
-        in context.resources.getStringArray(R.array.audio_extensions)
-                .toList() -> R.drawable.ic_audio_file
-
-        in context.resources.getStringArray(R.array.archive_extensions)
-                .toList() -> R.drawable.ic_archive_filter
-
+fun getFileIcon(extension: String, context: Context): Int {
+    val lowercaseExtension = extension.lowercase()
+    val resources = context.resources
+    return when (lowercaseExtension) {
+        in resources.getStringArray(R.array.apk_extensions) -> R.drawable.ic_apk_document
+        in resources.getStringArray(R.array.image_extensions) -> R.drawable.ic_image
+        in resources.getStringArray(R.array.video_extensions) -> R.drawable.ic_video_file
+        in resources.getStringArray(R.array.audio_extensions) -> R.drawable.ic_audio_file
+        in resources.getStringArray(R.array.archive_extensions) -> R.drawable.ic_archive_filter
         else -> R.drawable.ic_file_present
     }
 }
 
-fun Drawable.toBitmapDrawable() : BitmapDrawable {
+fun Drawable.toBitmapDrawable(resources: Resources = Resources.getSystem()): BitmapDrawable {
     return when (this) {
         is BitmapDrawable -> this
         is AdaptiveIconDrawable -> {
             val bitmap =
-                    Bitmap.createBitmap(intrinsicWidth , intrinsicHeight , Bitmap.Config.ARGB_8888)
+                Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
             val canvas = Canvas(bitmap)
-            setBounds(0 , 0 , canvas.width , canvas.height)
+            setBounds(0, 0, canvas.width, canvas.height)
             draw(canvas)
-            BitmapDrawable(Resources.getSystem() , bitmap)
+            BitmapDrawable(resources, bitmap)
         }
 
         else -> throw IllegalArgumentException("Unsupported drawable type: ${this::class.java.name}")
