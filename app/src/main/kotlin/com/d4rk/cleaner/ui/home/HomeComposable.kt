@@ -43,9 +43,11 @@ import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -78,6 +80,9 @@ fun HomeComposable() {
     val showCleaningComposable by viewModel.showCleaningComposable.observeAsState(false)
     val isAnalyzing by viewModel.isAnalyzing.observeAsState(false)
     val selectedFileCount by viewModel.selectedFileCount.collectAsState()
+
+    val launchScanningKey = remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -105,7 +110,7 @@ fun HomeComposable() {
                 )
             }
             else {
-                AnalyzeComposable()
+                AnalyzeComposable(launchScanningKey)
             }
         }
         Row(
@@ -205,11 +210,17 @@ fun HomeComposable() {
  * @param viewModel The HomeViewModel instance used to interact with the data and business logic.
  */
 @Composable
-fun AnalyzeComposable() {
+fun AnalyzeComposable(launchScanningKey: MutableState<Boolean>) {
     val viewModel : HomeViewModel = viewModel()
     val files by viewModel.scannedFiles.asFlow().collectAsState(initial = listOf())
+
     val allFilesSelected by viewModel.allFilesSelected
     val selectedFileCount by viewModel.selectedFileCount.collectAsState()
+
+    LaunchedEffect(key1 = launchScanningKey.value) {
+        viewModel.fileScanner.startScanning()
+        launchScanningKey.value = false
+    }
 
     LaunchedEffect(Unit) {
         viewModel.fileScanner.startScanning()
@@ -234,7 +245,7 @@ fun AnalyzeComposable() {
                 modifier = Modifier.padding(8.dp)
             ) {
                 items(files) { file ->
-                    FileCard(file = file , viewModel = viewModel)
+                    FileCard(file = file , viewModel = viewModel) // FIXME: Type mismatch: inferred type is Int but File was expected
                 }
             }
         }
@@ -274,7 +285,7 @@ fun FileCard(file: File, viewModel: HomeViewModel) {
     val context = LocalContext.current
     val fileExtension = getFileExtension(file.name)
     val thumbnail = remember {
-        getVideoThumbnail(file.absolutePath, thumbnailWidth = 128, thumbnailHeight = 128)
+        getVideoThumbnail(file.absolutePath, thumbnailWidth = 64, thumbnailHeight = 64)
     }
     Card(
         modifier = Modifier

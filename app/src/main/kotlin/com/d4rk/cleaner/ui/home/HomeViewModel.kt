@@ -23,6 +23,7 @@ import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.FileScanner
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -104,7 +105,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
         isAnalyzing.value = true
         showCleaningComposable.value = true
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
+            delay(100)
+            isAnalyzing.value = true
             fileScanner.startScanning()
             scannedFiles.postValue(fileScanner.getFilteredFiles())
             isAnalyzing.postValue(false)
