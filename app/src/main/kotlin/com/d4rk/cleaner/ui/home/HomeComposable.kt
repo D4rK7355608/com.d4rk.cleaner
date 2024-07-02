@@ -258,9 +258,9 @@ fun AnalyzeComposable(launchScanningKey: MutableState<Boolean>, imageLoader: Ima
                 columns = GridCells.Fixed(3),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(8.dp),
             ) {
-                items(files) { file ->
+                items(files, key = { file -> file.absolutePath }) { file ->
                     FileCard(file = file, viewModel = viewModel, imageLoader = imageLoader)
                 }
             }
@@ -315,24 +315,13 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
             when (fileExtension) {
                 in context.resources.getStringArray(R.array.image_extensions).toList() -> {
                     AsyncImage(
-                        model = ImageRequest.Builder(LocalContext.current)
-                            .data(
-                                when (fileExtension) {
-                                    in context.resources.getStringArray(R.array.image_extensions)
-                                        .toList(),
-                                    in context.resources.getStringArray(R.array.video_extensions)
-                                        .toList() -> {
-                                        file
-                                    }
-
-                                    else -> {
-                                        R.drawable.ic_image
-                                    }
-                                }
-                            )
-                            .size(64)
-                            .crossfade(true)
-                            .build(),
+                        model = remember(file) {
+                            ImageRequest.Builder(context)
+                                .data(file)
+                                .size(64)
+                                .crossfade(true)
+                                .build()
+                        },
                         imageLoader = imageLoader,
                         contentDescription = file.name,
                         contentScale = ContentScale.Crop,
