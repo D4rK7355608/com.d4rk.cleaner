@@ -59,7 +59,7 @@
 <string name="summary_ads">Size ilgili reklamları görün. Uygulama etkinliğinize dayalı olarak kişiselleştirilmiş reklamlar göstermek için kullanılan bilgileri yönetin. Kişiselleştirmeyi buradan kapatabilirsiniz.\n</string>
 
 <string name="usage_and_diagnostics">Kullanım ve Tanılama</string>
-<string name="summary_preference_settings_usage_and_diagnostics">Weddix for Android'in iyileştirilmesine yardımcı olmak için verileri paylaşın</string>
+<string name="summary_preference_settings_usage_and_diagnostics">Weddix for Android\'in iyileştirilmesine yardımcı olmak için verileri paylaşın</string>
 <string name="summary_usage_and_diagnostics">Deneyiminizi iyileştirmek için tanılama, cihaz ve uygulama kullanım verilerini otomatik olarak bize gönderin. Bu, uygulama performansını, kararlılığını ve diğer iyileştirmeleri artırmaya yardımcı olur. Ayrıca, bazı toplu veriler diğer uygulamalarımıza da yardımcı olur.\n\nBu, cihazınız ve uygulamalarımızı nasıl kullandığınız hakkında genel bilgileri içerir (pil seviyesi, sistem ve uygulama etkinliği ve hatalar gibi). Veriler, uygulamalarımızı iyileştirmek için kullanılacaktır.\n\nBu özelliği kapatmak, uygulama güncellemeleri ve güvenlik gibi temel hizmetler için gereken bilgilerin gönderilmesini etkilemez.\n</string>
 
 <string name="legal">Yasal</string>
@@ -92,7 +92,7 @@
 <string name="app_manager">Uygulama Yöneticisi</string>
 <string name="installed_apps">Yüklü uygulamalar</string>
 <string name="system_apps">Sistem uygulamaları</string>
-<string name="app_install_files">Uygulama kurulum dosyaları (APK'ler)</string>
+<string name="app_install_files">Uygulama kurulum dosyaları (APK\'ler)</string>
 <string name="uninstall">Kaldır</string>
 <string name="share">Paylaş</string>
 <string name="app_info">Uygulama Bilgisi</string>
@@ -181,7 +181,7 @@
 <string name="api_level">API Seviyesi:</string>
 <string name="help_and_feedback">Yardım &amp; Geri Bildirim</string>
 <string name="help">Yardım</string>
-<string name="view_in_google_play_store">Google Play Store'da görüntüle</string>
+<string name="view_in_google_play_store">Google Play Store\'da görüntüle</string>
 <string name="version_info">Sürüm Bilgisi</string>
 <string name="version">Sürüm %1$s</string>
 <string name="beta_program">Beta Programı</string>
@@ -218,7 +218,7 @@
 <string name="question_5">Cleaner root erişimi gerektirir mi?</string>
 <string name="question_6">Cleaner iOS için mevcut mu?</string>
 <string name="question_7">Cleaner pil ömrünü uzatır mı?</string>
-<string name="question_8">Cleaner'ı ne sıklıkla kullanmalıyım?</string>
+<string name="question_8">Cleaner\'ı ne sıklıkla kullanmalıyım?</string>
 <string name="question_9">Cleaner tüm Android cihazlarla uyumlu mu?</string>
 <string name="summary_browse_terms_of_service_and_privacy_policy">Devam etmek için Hizmet Şartlarımızı ve Gizlilik Politikamızı okuyun ve kabul edin</string>
 <string name="summary_close">Çıkmak istediğinizden emin misiniz?</string>
@@ -257,16 +257,16 @@
 <string name="summary_preference_permissions_write_external_storage">Uygulamanın cihazın depolama alanına dosya yazmasına izin verir, buna hem dahili hem de harici depolama dahildir</string>
 <string name="summary_preference_faq_1">Cleaner, cihazınızın performansını optimize etmenize ve depolama alanı açmanıza yardımcı olan ücretsiz ve açık kaynaklı bir Android uygulamasıdır. Gereksiz dosyaları tarayarak silebilir ve önbelleğinizi temizleyerek cihazınızın hızını artırabilir</string>
 <string name="summary_preference_faq_2">Evet, Cleaner kullanımı güvenlidir. Cihazınızın veya uygulamalarınızın çalışması için gerekli olmayan dosyaları kaldırır ve kişisel verilerinizi veya önemli sistem dosyalarınızı silmez</string>
-<string name="summary_preference_faq_3">Cleaner'ı kullanmak için, Google Play Store veya güvenilir bir üçüncü parti uygulama mağazasından uygulamayı indirip kurmanız yeterlidir. Ardından, uygulamayı açarak cihazınızı taramak ve gereksiz dosyaları silmek için yönergeleri izleyin. Ayrıca, Cleaner'ın arama ve silme için bakacağı dosya türlerini özelleştirmek için uygulamanın ayarlarına erişebilirsiniz</string>
+<string name="summary_preference_faq_3">Cleaner\'ı kullanmak için, Google Play Store veya güvenilir bir üçüncü parti uygulama mağazasından uygulamayı indirip kurmanız yeterlidir. Ardından, uygulamayı açarak cihazınızı taramak ve gereksiz dosyaları silmek için yönergeleri izleyin. Ayrıca, Cleaner\'ın arama ve silme için bakacağı dosya türlerini özelleştirmek için uygulamanın ayarlarına erişebilirsiniz</string>
 <string name="summary_preference_faq_4">Evet, Cleaner uygulama önbelleğini silebilir. Ancak, önbelleği silmenin, uygulamanın bir sonraki kullanımda yüklenme veya belirli görevleri gerçekleştirme süresini uzatabileceğini unutmayın</string>
 <string name="summary_preference_faq_5">Hayır, Cleaner çalışmak için root erişimi gerektirmez. Herhangi bir Android cihazda root erişimi olmadan kullanabilirsiniz</string>
 <string name="summary_preference_faq_6">Hayır, Cleaner şu anda sadece Android cihazlar için mevcuttur</string>
-<string name="summary_preference_faq_7">Cleaner'ı kullanarak önbelleğinizi temizlemek, gereksiz işlemler tarafından kullanılan güç ve kaynakları azaltarak cihazınızın pil ömrünü artırmaya yardımcı olabilir. Ancak, Cleaner'ın pil ömrünü ne kadar artırabileceği, cihazınızın marka ve modeli, kullandığınız uygulamalar ve kullanım alışkanlıklarınız gibi çeşitli faktörlere bağlı olacaktır</string>
-<string name="summary_preference_faq_8">Cleaner'ı ne sıklıkla kullanmanız gerektiğine dair belirli bir kural yoktur, çünkü bu cihazınızın kullanımı ve zamanla biriken gereksiz dosyaların miktarına bağlı olacaktır. Bazı kullanıcılar Cleaner'ı haftalık veya aylık olarak kullanmanın yararlı olduğunu bulabilirken, diğerleri yalnızca ara sıra kullanmaya ihtiyaç duyabilir</string>
-<string name="summary_preference_faq_9">Cleaner, uygulamanın minimum sistem gereksinimlerini karşılayan çoğu Android cihazla uyumlu olmalıdır. Ancak, belirli cihazınızla uyumluluğu doğrulamak için her zaman Google Play Store veya kullandığınız uygulama mağazasındaki uygulama sayfasını kontrol etmek iyi bir fikirdir. Cleaner'ı kullanırken herhangi bir sorunla karşılaşırsanız, sorunu çözmeyi deneyebilir veya uygulamanın destek ekibiyle iletişime geçebilirsiniz</string>
+<string name="summary_preference_faq_7">Cleaner\'ı kullanarak önbelleğinizi temizlemek, gereksiz işlemler tarafından kullanılan güç ve kaynakları azaltarak cihazınızın pil ömrünü artırmaya yardımcı olabilir. Ancak, Cleaner\'ın pil ömrünü ne kadar artırabileceği, cihazınızın marka ve modeli, kullandığınız uygulamalar ve kullanım alışkanlıklarınız gibi çeşitli faktörlere bağlı olacaktır</string>
+<string name="summary_preference_faq_8">Cleaner\'ı ne sıklıkla kullanmanız gerektiğine dair belirli bir kural yoktur, çünkü bu cihazınızın kullanımı ve zamanla biriken gereksiz dosyaların miktarına bağlı olacaktır. Bazı kullanıcılar Cleaner\'ı haftalık veya aylık olarak kullanmanın yararlı olduğunu bulabilirken, diğerleri yalnızca ara sıra kullanmaya ihtiyaç duyabilir</string>
+<string name="summary_preference_faq_9">Cleaner, uygulamanın minimum sistem gereksinimlerini karşılayan çoğu Android cihazla uyumlu olmalıdır. Ancak, belirli cihazınızla uyumluluğu doğrulamak için her zaman Google Play Store veya kullandığınız uygulama mağazasındaki uygulama sayfasını kontrol etmek iyi bir fikirdir. Cleaner\'ı kullanırken herhangi bir sorunla karşılaşırsanız, sorunu çözmeyi deneyebilir veya uygulamanın destek ekibiyle iletişime geçebilirsiniz</string>
 <string name="summary_require_restart">Değişikliklerin etkili olması için lütfen uygulamayı yeniden başlatın!</string>
 <string name="summary_no_apks_in_this_device">Bu cihazda APK bulunamadı</string>
-<string name="summary_share_message">Kullandığım bu harika uygulamaya göz atın! İlginizi çekebilecek gerçekten harika özelliklere sahip. Play Store'dan indirilebilir: %1$s</string>
+<string name="summary_share_message">Kullandığım bu harika uygulamaya göz atın! İlginizi çekebilecek gerçekten harika özelliklere sahip. Play Store\'dan indirilebilir: %1$s</string>
 <string name="summary_donations">Ne kadar bağış yaparsanız yapın, uygulamamızı çalışır durumda tutmamıza ve özelliklerimizi geliştirmemize yardımcı olacaksınız. Cömertliğiniz ve nezaketiniz için minnettarız!</string>
 <string name="tooltip_add_to_whitelist">Sonraki taramada hariç tutmak istediğiniz dosya/klasörleri buraya eklemek için tıklayın</string>
 <string name="tooltip_button_analyze">Temizlemeden silinebilecek dosyaları analiz edin</string>
