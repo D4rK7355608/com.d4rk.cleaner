@@ -9,24 +9,22 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.media.MediaMetadataRetriever
 import com.d4rk.cleaner.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-fun getVideoThumbnail(
+suspend fun getVideoThumbnail(
     videoPath: String,
-    thumbnailWidth: Int = 128,
-    thumbnailHeight: Int = 128
-): Bitmap? {
+    thumbnailWidth: Int = 64,
+    thumbnailHeight: Int = 64,
+): Bitmap? = withContext(Dispatchers.IO) {
     val mediaMetadataRetriever = MediaMetadataRetriever()
-    return try {
+    try {
         mediaMetadataRetriever.setDataSource(videoPath)
-        val bitmap =
-            mediaMetadataRetriever.getFrameAtTime(1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC)
+        val bitmap = mediaMetadataRetriever.getFrameAtTime(
+            1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC
+        )
         bitmap?.let {
-            Bitmap.createScaledBitmap(
-                it,
-                thumbnailWidth,
-                thumbnailHeight,
-                false
-            )
+            Bitmap.createScaledBitmap(it, thumbnailWidth, thumbnailHeight, false)
         }
     } catch (e: Exception) {
         null

@@ -45,7 +45,6 @@ fun CleaningSettingsComposable(activity: CleaningSettingsActivity) {
     val deleteImageFiles by dataStore.deleteImageFiles.collectAsState(initial = false)
     val doubleChecker by dataStore.doubleChecker.collectAsState(initial = false)
     val clipboardClean by dataStore.clipboardClean.collectAsState(initial = false)
-    val autoWhitelist by dataStore.autoWhitelist.collectAsState(initial = true)
     val oneClickClean by dataStore.oneClickClean.collectAsState(initial = false)
     val dailyCleaner by dataStore.dailyCleaner.collectAsState(initial = false)
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
@@ -167,15 +166,6 @@ fun CleaningSettingsComposable(activity: CleaningSettingsActivity) {
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveClipboardClean(isChecked)
-                    }
-                }
-                SwitchPreferenceItem(
-                    title = stringResource(R.string.auto_whitelist),
-                    summary = stringResource(R.string.summary_preference_settings_auto_whitelist),
-                    checked = autoWhitelist,
-                ) { isChecked ->
-                    CoroutineScope(Dispatchers.IO).launch {
-                        dataStore.saveAutoWhitelist(isChecked)
                     }
                 }
                 SwitchPreferenceItem(

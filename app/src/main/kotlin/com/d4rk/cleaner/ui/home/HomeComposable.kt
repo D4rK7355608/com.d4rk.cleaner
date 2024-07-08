@@ -1,6 +1,7 @@
 package com.d4rk.cleaner.ui.home
 
 import android.app.Activity
+import android.graphics.Bitmap
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
@@ -49,6 +50,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -300,8 +302,10 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
     val context = LocalContext.current
     val fileExtension = getFileExtension(file.name)
 
-    val thumbnail = remember(file.absolutePath) {
-        getVideoThumbnail(file.absolutePath, thumbnailWidth = 64, thumbnailHeight = 64)
+    var thumbnail by remember(file.absolutePath) { mutableStateOf<Bitmap?>(null) }
+
+    LaunchedEffect(file.absolutePath) {
+        thumbnail = getVideoThumbnail(file.absolutePath)
     }
 
     Card(
@@ -332,7 +336,7 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
                 in context.resources.getStringArray(R.array.video_extensions).toList() -> {
                     if (thumbnail != null) {
                         Image(
-                            bitmap = thumbnail.asImageBitmap(),
+                            bitmap = thumbnail!!.asImageBitmap(),
                             contentDescription = file.name,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()

@@ -74,12 +74,6 @@
             android:parentActivityName=".MainActivity" />
 
         <activity
-            android:name=".ui.whitelist.WhitelistActivity"
-            android:exported="true"
-            android:label="@string/whitelist"
-            android:parentActivityName=".MainActivity" />
-
-        <activity
             android:name=".ui.imageoptimizer.ImageOptimizerActivity"
             android:exported="true"
             android:label="@string/image_optimizer"

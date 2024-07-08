@@ -221,17 +221,6 @@ class DataStore(context: Context) {
         }
     }
 
-    private val autoWhitelistKey = booleanPreferencesKey("auto_whitelist")
-    val autoWhitelist: Flow<Boolean> = dataStore.data.map { preferences ->
-        preferences[autoWhitelistKey] ?: true
-    }
-
-    suspend fun saveAutoWhitelist(isChecked: Boolean) {
-        dataStore.edit { preferences ->
-            preferences[autoWhitelistKey] = isChecked
-        }
-    }
-
     private val oneClickCleanKey = booleanPreferencesKey("one_click_clean")
     val oneClickClean: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[oneClickCleanKey] ?: false

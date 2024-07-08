@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.ui.memory.model
+package com.d4rk.cleaner.data.model.ui
 
 data class InternalStorageInfo(
     val totalStorage: Long,

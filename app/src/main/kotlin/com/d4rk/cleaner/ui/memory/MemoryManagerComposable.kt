@@ -61,8 +61,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.memory.model.RamInfo
-import com.d4rk.cleaner.ui.memory.model.StorageInfo
+import com.d4rk.cleaner.data.model.ui.RamInfo
+import com.d4rk.cleaner.data.model.ui.StorageInfo
 import com.d4rk.cleaner.utils.StorageProgressBar
 import com.d4rk.cleaner.utils.Utils.formatSize
 import com.d4rk.cleaner.utils.bounceClick

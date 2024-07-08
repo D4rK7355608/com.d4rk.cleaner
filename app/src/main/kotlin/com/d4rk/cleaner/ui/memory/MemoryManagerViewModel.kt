@@ -8,9 +8,9 @@ import android.os.StatFs
 import android.os.storage.StorageManager
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.d4rk.cleaner.ui.memory.model.InternalStorageInfo
-import com.d4rk.cleaner.ui.memory.model.RamInfo
-import com.d4rk.cleaner.ui.memory.model.StorageInfo
+import com.d4rk.cleaner.data.model.ui.InternalStorageInfo
+import com.d4rk.cleaner.data.model.ui.RamInfo
+import com.d4rk.cleaner.data.model.ui.StorageInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

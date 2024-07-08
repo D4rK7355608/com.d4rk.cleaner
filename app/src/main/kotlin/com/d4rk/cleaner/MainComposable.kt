@@ -46,15 +46,14 @@ import androidx.navigation.compose.rememberNavController
 import com.d4rk.cleaner.ads.FullBannerAdsComposable
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.ui.appmanager.AppManagerComposable
-import com.d4rk.cleaner.ui.components.navigation.BottomNavigationScreen
-import com.d4rk.cleaner.ui.components.navigation.NavigationDrawerItem
+import com.d4rk.cleaner.data.model.ui.navigation.BottomNavigationScreen
+import com.d4rk.cleaner.data.model.ui.navigation.NavigationDrawerItem
 import com.d4rk.cleaner.ui.help.HelpActivity
 import com.d4rk.cleaner.ui.home.HomeComposable
 import com.d4rk.cleaner.ui.imageoptimizer.ImagePickerActivity
 import com.d4rk.cleaner.ui.memory.MemoryManagerComposable
 import com.d4rk.cleaner.ui.settings.SettingsActivity
 import com.d4rk.cleaner.ui.support.SupportActivity
-import com.d4rk.cleaner.ui.whitelist.WhitelistActivity
 import com.d4rk.cleaner.utils.Utils
 import kotlinx.coroutines.launch
 
@@ -105,11 +104,6 @@ fun MainComposable() {
                     selected = index == selectedItemIndex,
                     onClick = {
                         when (item.title) {
-                            R.string.whitelist -> {
-                                Utils.openActivity(
-                                    context, WhitelistActivity::class.java
-                                )
-                            }
 
                             R.string.image_optimizer -> {
                                 Utils.openActivity(

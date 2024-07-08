@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.ui.components.navigation
+package com.d4rk.cleaner.data.model.ui.navigation
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

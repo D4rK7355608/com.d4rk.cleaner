@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
-import com.d4rk.cleaner.ui.components.button.ButtonState
+import com.d4rk.cleaner.data.model.ui.button.ButtonState
 
 @SuppressLint("ReturnFromAwaitPointerEventScope")
 @Composable
