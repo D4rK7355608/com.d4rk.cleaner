@@ -68,6 +68,7 @@ import coil.disk.DiskCache
 import coil.memory.MemoryCache
 import coil.request.ImageRequest
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.ui.dialogs.RescanAlertDialog
 import com.d4rk.cleaner.utils.CircularDeterminateIndicator
 import com.d4rk.cleaner.utils.bounceClick
 import com.d4rk.cleaner.utils.getFileIcon
@@ -101,6 +102,18 @@ fun HomeComposable() {
         .build()
 
     val launchScanningKey = remember { mutableStateOf(false) }
+
+    if (viewModel.showRescanDialog.value) {
+        RescanAlertDialog(
+            onYes = {
+                viewModel.rescan(
+                    context as Activity
+                )
+                viewModel.showRescanDialog.value = false
+            },
+            onDismiss = { viewModel.showRescanDialog.value = false }
+        )
+    }
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -195,9 +208,7 @@ fun HomeComposable() {
                     .animateContentSize()
                     .padding(start = if (showCleaningComposable) 8.dp else 16.dp, end = 16.dp)
                     .bounceClick(), onClick = {
-                    if (!showCleaningComposable) {
-                        viewModel.analyze(activity = context as Activity)
-                    }
+                    viewModel.analyze(activity = context as Activity)
                 }, shape = MaterialTheme.shapes.medium
             ) {
                 Column(

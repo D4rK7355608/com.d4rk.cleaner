@@ -43,6 +43,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val dataStoreInstance: DataStore = DataStore(application)
     val showCleaningComposable = MutableLiveData(false)
     val isAnalyzing = MutableLiveData(false)
+    var showRescanDialog = mutableStateOf(false)
+    private var hasScanned = mutableStateOf(false)
+    private var isUserConfirmedRescan = mutableStateOf(false)
     val _selectedFileCount = MutableStateFlow(0)
     val selectedFileCount: StateFlow<Int> = _selectedFileCount.asStateFlow()
 
@@ -124,15 +127,28 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             requestPermissions(activity)
             return
         }
+
+        if (hasScanned.value && !isUserConfirmedRescan.value) {
+            showRescanDialog.value = true
+        }
+
+        isUserConfirmedRescan.value = false
         isAnalyzing.value = true
         showCleaningComposable.value = true
         viewModelScope.launch {
             fileScanner.startScanning()
             withContext(Dispatchers.Main) {
                 scannedFiles.value = fileScanner.getFilteredFiles()
-                isAnalyzing.value =false
+                isAnalyzing.value = false
+                hasScanned.value = true
             }
         }
+    }
+
+    fun rescan(activity: Activity) {
+        showRescanDialog.value = false
+        scannedFiles.value = emptyList()
+        analyze(activity)
     }
 
     /**
