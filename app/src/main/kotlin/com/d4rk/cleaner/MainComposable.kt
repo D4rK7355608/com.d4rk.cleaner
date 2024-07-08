@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.EventNote
 import androidx.compose.material.icons.automirrored.outlined.HelpOutline
-import androidx.compose.material.icons.automirrored.outlined.ListAlt
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material.icons.outlined.Settings
@@ -45,9 +44,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.d4rk.cleaner.ads.FullBannerAdsComposable
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.ui.appmanager.AppManagerComposable
 import com.d4rk.cleaner.data.model.ui.navigation.BottomNavigationScreen
 import com.d4rk.cleaner.data.model.ui.navigation.NavigationDrawerItem
+import com.d4rk.cleaner.ui.appmanager.AppManagerComposable
 import com.d4rk.cleaner.ui.help.HelpActivity
 import com.d4rk.cleaner.ui.home.HomeComposable
 import com.d4rk.cleaner.ui.imageoptimizer.ImagePickerActivity
@@ -64,9 +63,6 @@ fun MainComposable() {
         BottomNavigationScreen.Home, BottomNavigationScreen.AppManager, BottomNavigationScreen.MemoryManager
     )
     val drawerItems = listOf(
-        NavigationDrawerItem(
-            title = R.string.whitelist, selectedIcon = Icons.AutoMirrored.Outlined.ListAlt
-        ),
 
         NavigationDrawerItem(
             title = R.string.image_optimizer, selectedIcon = Icons.Outlined.Image
