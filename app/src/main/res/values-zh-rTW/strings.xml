@@ -1,0 +1,303 @@
+<resources>
+    <string name="appearance">外觀</string>
+    <string name="dark_theme">深色主題</string>
+    <string name="will_turn_on_automatically_by_system">系統將自動啟用</string>
+    <string name="will_never_turn_on_automatically">絕不會自動啟用</string>
+    <string name="amoled_mode">AMOLED 模式</string>
+    <string name="follow_system">跟隨系統模式</string>
+    <string name="light_mode">淺色模式</string>
+    <string name="dark_mode">深色模式</string>
+    <string name="summary_dark_theme">深色主題使用深色背景來延長電池壽命</string>
+
+
+    <string name="language">語言</string>
+    <string name="summary_preference_settings_language">更改應用程式使用的語言</string>
+    <string name="dialog_language_subtitle">選擇您偏好的語言</string>
+    <string name="dialog_info_language">使用您偏好的語言來個人化您的體驗。任何語言更改將立即生效，確保您在選擇的語言中獲得無縫的使用體驗</string>
+
+    <string name="advanced">進階</string>
+    <string name="summary_preference_settings_advanced">探索更多進階設定</string>
+    <string name="error_reporting">錯誤回報</string>
+    <string name="bug_report">錯誤回報</string>
+    <string name="summary_preference_settings_bug_report">將錯誤回報和功能請求發送到應用程式的 GitHub 儲存庫問題頁面</string>
+
+    <string name="security_and_privacy">安全與隱私</string>
+    <string name="summary_preference_settings_privacy_and_security">管理您的隱私設定</string>
+    <string name="privacy">隱私</string>
+    <string name="privacy_policy">隱私政策</string>
+    <string name="summary_preference_settings_privacy_policy">查看我們如何處理您資料的政策</string>
+    <string name="terms_of_service">服務條款</string>
+    <string name="summary_preference_settings_terms_of_service">檢閱使用我們服務時您同意的條款</string>
+    <string name="code_of_conduct">行為守則</string>
+    <string name="summary_preference_settings_code_of_conduct">了解我們服務內的行為規範和指南</string>
+
+    <string name="permissions">權限</string>
+    <string name="summary_preference_settings_permissions">管理授予我們服務的權限</string>
+    <string name="normal">普通</string>
+    <string name="ad_id">廣告 ID [AD_ID]</string>
+    <string name="summary_preference_permissions_ad_id">允許應用程式檢索並使用與使用者裝置相關的廣告識別碼，提供個性化廣告、衡量廣告效果，並在 Android 13 或更新版本的裝置上顯示廣告。</string>
+    <string name="internet">網際網路 [INTERNET]</string>
+    <string name="summary_preference_permissions_internet">允許應用程式建立網際網路連線以發送錯誤報告或檢查更新。</string>
+    <string name="post_notifications">發送通知 [POST_NOTIFICATIONS]</string>
+    <string name="summary_preference_permissions_post_notifications">允許應用程式在 Android 13 或更新版本的裝置上顯示通知。</string>
+    <string name="runtime">執行時</string>
+    <string name="access_network_state">存取網路狀態 [ACCESS_NETWORK_STATE]</string>
+    <string name="summary_preference_permissions_access_network_state">允許應用程式檢查網路連線並檢索 Wi-Fi 資訊，包括啟用狀態和已連接的 Wi-Fi 設備名稱。</string>
+    <string name="access_notification_policy">存取通知政策 [ACCESS_NOTIFICATION_POLICY]</string>
+    <string name="summary_preference_permissions_access_notification_policy">允許應用程式存取和修改裝置的通知政策，控制通知的顯示方式和時間，提供自訂的通知管理功能。</string>
+    <string name="billing">付款 [BILLING]</string>
+    <string name="summary_preference_permissions_billing">允許應用程式使用 Google Play 結帳系統處理應用程式內購買和捐款。</string>
+    <string name="check_license">檢查許可證 [CHECK_LICENSE]</string>
+    <string name="summary_preference_permissions_check_license">允許應用程式驗證其遵守許可協議的情況，並執行許可條款以保護智慧財產權。</string>
+    <string name="foreground_service">前景服務 [FOREGROUND_SERVICE]</string>
+    <string name="summary_preference_permissions_foreground_service">允許應用程式創建並使用在前景運行的服務，使其優先於其他背景進程，提升性能和可靠性。</string>
+
+    <string name="ads">廣告</string>
+    <string name="summary_preference_settings_ads">控制我們如何使用您的資訊來顯示相關廣告</string>
+    <string name="display_ads">顯示廣告</string>
+    <string name="personalized_ads">個性化廣告</string>
+    <string name="summary_ads_personalized_ads">選擇我們如何根據您的興趣為您個性化廣告</string>
+    <string name="summary_ads">查看與您相關的廣告。管理用於顯示基於您應用程式活動的個性化廣告的資訊。您可以隨時在此處關閉個性化設定。\n</string>
+
+    <string name="usage_and_diagnostics">使用與診斷</string>
+    <string name="summary_preference_settings_usage_and_diagnostics">分享資料以幫助改進 Android 版 Weddix</string>
+    <string name="summary_usage_and_diagnostics">透過自動發送診斷、設備和應用程式使用資料來幫助改善您的體驗。這將有助於提升應用程式的性能、穩定性和其他增強功能。一些匯總資料也將有助於我們的應用程式。\n\n這是關於您的設備和您如何使用我們應用程式的一般資訊（例如電池電量、系統和應用程式活動以及錯誤）。這些資料將用於改進我們的應用程式。\n\n關閉此功能不會影響您的設備發送應用程式更新和安全等基本服務所需資訊的能力。\n</string>
+
+    <string name="legal">法律</string>
+    <string name="legal_notices">法律聲明</string>
+    <string name="summary_preference_settings_legal_notices">查看我們服務的法律資訊</string>
+    <string name="license">許可證</string>
+
+    <string name="app_description">由 D4rK 製作的 Google 風格材質設計，讓您需要的最後一款 Android 清理應用程式，更加簡約且易於使用！</string>
+    <string name="agree">同意</string>
+    <string name="welcome">歡迎</string>
+    <string name="browse_terms_of_service_and_privacy_policy">瀏覽        <i>
+            <u>服務條款</u>
+        </i> 和        <i>
+            <u>隱私政策</u>
+        </i>
+    </string>
+
+    <string name="navigation_drawer_open">打開導航抽屜</string>
+    <string name="navigation_drawer_close">關閉導航抽屜</string>
+    <string name="try_again">再試一次</string>
+    <string name="home">首頁</string>
+    <string name="updates">更新</string>
+    <string name="support_us">支持我們</string>
+    <string name="paid_support">付費支持</string>
+    <string name="non_paid_support">非付費支持</string>
+    <string name="clean">清理</string>
+    <string name="running_cycle">執行週期 %1$d/%2$d</string>
+    <string name="finished_cycle">完成週期 %1$d/%2$d</string>
+    <string name="analyze">分析</string>
+    <string name="status">狀態：閒置…</string>
+    <string name="status_running">狀態：執行中</string>
+    <string name="found">發現：</string>
+    <string name="freed">釋放：</string>
+    <string name="close">關閉？</string>
+    <string name="require_restart">需要重新啟動！</string>
+    <string name="app_manager">應用程式管理</string>
+    <string name="installed_apps">已安裝的應用程式</string>
+    <string name="system_apps">系統應用程式</string>
+    <string name="app_install_files">應用程式安裝檔（APKs）</string>
+    <string name="uninstall">解除安裝</string>
+    <string name="share">分享</string>
+    <string name="app_info">應用程式資訊</string>
+    <string name="memory_manager">記憶體管理</string>
+    <string name="memory_used">已使用 %1$s / %2$s %3$s</string>
+    <string name="internal">內部</string>
+    <string name="cpu_status">CPU 狀態：%1$s %2$s</string>
+    <string name="cpu_status_overheated">過熱</string>
+    <string name="cpu_status_normal">正常</string>
+    <string name="cpu_status_error">讀取 CPU 溫度錯誤</string>
+    <string name="ram_usage">記憶體使用情況</string>
+    <string name="running_processes">正在執行的程序</string>
+    <string name="whitelist">白名單</string>
+    <string name="empty_whitelist">白名單為空？</string>
+    <string name="add_to_whitelist">加入白名單…</string>
+    <string name="settings">設定</string>
+    <string name="display">顯示</string>
+
+    <string name="theme">主題</string>
+
+    <string name="feedback">意見反應</string>
+    <string name="in_app_ads">應用程式內廣告</string>
+    <string name="change_ad_settings">更改廣告設定</string>
+
+    <string name="dynamic_colors">動態顏色</string>
+    <string name="summary_preference_settings_dynamic_colors">將桌布的顏色套用到應用程式主題</string>
+
+    <string name="snack_network_error">檢查更新時發生網路錯誤</string>
+    <string name="snack_general_error">檢查更新時發生錯誤</string>
+
+    <string name="auto_battery_mode">自動電池深色模式</string>
+    <string name="default_tab">預設分頁</string>
+    <string name="bottom_navigation_bar_labels">底部導航列標籤</string>
+    <string name="labeled">有標籤</string>
+    <string name="selected">已選取</string>
+    <string name="unlabeled">無標籤</string>
+    <string name="custom_animations">自訂動畫</string>
+    <string name="swap_buttons">交換按鈕</string>
+    <string name="cleaning">清理中</string>
+    <string name="filters">過濾器</string>
+    <string name="generic_filter">一般過濾器</string>
+    <string name="aggressive_filter">進階過濾器</string>
+    <string name="warning">警告！</string>
+    <string name="delete_empty_folders">刪除空資料夾</string>
+    <string name="delete_archives">刪除壓縮檔</string>
+    <string name="delete_invalid_media">刪除無效媒體</string>
+    <string name="delete_corpse_files">刪除殘留檔案</string>
+    <string name="delete_apk_files">刪除 APK 檔案</string>
+    <string name="scanner">掃描器</string>
+    <string name="double_checker">雙重檢查</string>
+    <string name="clipboard_clean">剪貼簿清理</string>
+    <string name="auto_whitelist">自動加入白名單</string>
+    <string name="one_click_clean">一鍵清理</string>
+    <string name="daily_clean">每日清理</string>
+    <string name="notifications">通知</string>
+
+    <string name="analytics">分析</string>
+    <string name="crashlytics">崩潰分析</string>
+
+    <string name="privacy_and_safety">隱私與安全</string>
+    <string name="privacy_and_security">隱私和安全</string>
+
+    <string name="receive_boot_completed">接收開機完成 [RECEIVE_BOOT_COMPLETED]</string>
+    <string name="request_delete_packages">請求刪除套件 [REQUEST_DELETE_PACKAGES]</string>
+    <string name="storage">儲存</string>
+    <string name="access_media_location">存取媒體位置 [ACCESS_MEDIA_LOCATION]</string>
+    <string name="action_open_document_tree">操作開啟文件樹 [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="manage_external_storage">管理外部儲存 [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="package_usage_stats">套件使用統計 [PACKAGE_USAGE_STATS]</string>
+    <string name="query_all_packages">查詢所有套件 [QUERY_ALL_PACKAGES]</string>
+    <string name="read_external_storage">讀取外部儲存 [READ_EXTERNAL_STORAGE]</string>
+    <string name="read_media_audio">讀取媒體音訊 [READ_MEDIA_AUDIO]</string>
+    <string name="read_media_images">讀取媒體影像 [READ_MEDIA_IMAGES]</string>
+    <string name="read_media_video">讀取媒體影片 [READ_MEDIA_VIDEO]</string>
+    <string name="write_external_storage">寫入外部儲存 [WRITE_EXTERNAL_STORAGE]</string>
+
+    <string name="learn_more">了解更多</string>
+    <string name="summary_preference_settings_default_tab">從底部導航列中選擇預設分頁</string>
+    <string name="summary_preference_settings_bottom_navigation_bar_labels">顯示或不顯示底部導航列的標籤</string>
+
+    <string name="web_ad">網路廣告</string>
+    <string name="device_info">設備資訊</string>
+    <string name="manufacturer">製造商：</string>
+    <string name="device_model">設備型號：</string>
+    <string name="android_version">Android 版本：</string>
+    <string name="api_level">API 等級：</string>
+    <string name="help_and_feedback">幫助與反饋</string>
+    <string name="help">幫助</string>
+    <string name="view_in_google_play_store">在 Google Play 商店查看</string>
+    <string name="version_info">版本資訊</string>
+    <string name="version">版本 %1$s</string>
+    <string name="beta_program">測試計劃</string>
+    <string name="mail_to_dev">電子郵件聯絡開發者 📧</string>
+    <string name="faq">常見問題</string>
+    <string name="send_feedback">發送意見反應</string>
+    <string name="about">關於</string>
+    <string name="app_build_version">應用程式構建版本</string>
+    <string name="image_optimizer">圖像最佳化</string>
+    <string name="choose_image">選擇圖像</string>
+    <string name="optimize_image">最佳化圖像</string>
+    <string name="image_saved">圖像已儲存到：</string>
+    <string name="quick_compress">快速壓縮</string>
+    <string name="select_image">選擇圖像</string>
+    <string name="low">低</string>
+    <string name="medium">中</string>
+    <string name="high">高</string>
+    <string name="file_size">檔案大小（KB）</string>
+    <string name="enter_a_value">輸入一個值</string>
+    <string name="manual">手動</string>
+    <string name="width">寬度（px）</string>
+    <string name="height">高度（px）</string>
+    <string name="quality">品質</string>
+    <string name="app_usage_notifications">應用程式使用通知</string>
+    <string name="update_notifications">更新通知</string>
+    <string name="notification_last_time_used_title">好久不見！</string>
+    <string name="notification_update_title">有新更新可用！</string>
+    <string name="summary_notification_last_time_used">讓我們釋放一些空間吧！很高興您回來了！</string>
+    <string name="summary_notification_update">有新版本的應用程式可用。點擊以更新！</string>
+    <string name="question_1">什麼是 Cleaner？</string>
+    <string name="question_2">Cleaner 使用起來安全嗎？</string>
+    <string name="question_3">我該如何使用 Cleaner？</string>
+    <string name="question_4">Cleaner 能刪除應用程式快取嗎？</string>
+    <string name="question_5">Cleaner 需要 root 訪問權限嗎？</string>
+    <string name="question_6">Cleaner 有 iOS 版本嗎？</string>
+    <string name="question_7">Cleaner 能提升電池壽命嗎？</string>
+    <string name="question_8">我應該多常使用 Cleaner？</string>
+    <string name="question_9">Cleaner 與所有 Android 裝置兼容嗎？</string>
+    <string name="summary_browse_terms_of_service_and_privacy_policy">閱讀並同意我們的服務條款和隱私政策以繼續</string>
+    <string name="summary_close">您確定要退出嗎？</string>
+    <string name="summary_dialog_button_clean">您確定嗎？清理過程中刪除的檔案無法恢復</string>
+    <string name="summary_preference_settings_display">個人化您的應用程式外觀</string>
+    <string name="summary_preference_settings_amoled_mode">體驗增強的視覺效果和更深的背景</string>
+    <string name="summary_preference_settings_cleaning">自訂您的清理體驗</string>
+    <string name="summary_preference_settings_notifications">管理應用程式通知</string>
+
+    <string name="summary_preference_settings_about">了解更多關於 Cleaner 的資訊</string>
+
+    <string name="summary_preference_settings_delete_corpse_files">刪除解除安裝/移除的應用程式留下的檔案</string>
+    <string name="summary_preference_settings_delete_apk_files">刪除 Android 安裝檔（.apk 檔案）</string>
+    <string name="summary_preference_settings_delete_invalid_media">刪除損壞的圖片</string>
+    <string name="summary_preference_settings_double_checker">每次發現問題時會重新掃描，最多可進行 10 次掃描</string>
+    <string name="summary_preference_settings_auto_whitelist">自動檢測應受保護的資料夾</string>
+    <string name="summary_preference_settings_one_click_clean">點擊「清理」按鈕時無對話選單</string>
+    <string name="summary_preference_settings_aggressive_filter">刪除裝置上的所有類型檔案</string>
+    <string name="summary_preference_settings_generic_filter">刪除臨時檔、日誌、紀錄及其他無用檔案和資料夾</string>
+    <string name="summary_preference_settings_archive_filter">刪除裝置上的壓縮檔</string>
+    <string name="summary_preference_settings_analytics">允許應用程式使用 Firebase Analytics 手動收集崩潰報告</string>
+    <string name="summary_preference_settings_crashlytics">允許應用程式使用 Firebase Crashlytics 收集匿名使用統計資料</string>
+
+    <string name="summary_preference_settings_daily_clean">每天自動執行，無需手動打開應用程式</string>
+    <string name="summary_preference_settings_custom_animations">在每次螢幕切換時享受有趣的動畫效果</string>
+    <string name="summary_preference_settings_swap_buttons">交換「清理」和「分析」按鈕的位置</string>
+    <string name="summary_preference_settings_oss">開源軟體的許可證詳情</string>
+
+    <string name="summary_preference_permissions_receive_boot_completed">允許應用程式在設備開機時啟動</string>
+    <string name="summary_preference_permissions_request_delete_packages">允許應用程式請求刪除套件。這可以用來解除安裝設備上的其他應用程式</string>
+    <string name="summary_preference_permissions_access_media_location">允許應用程式存取設備的媒體檔案位置</string>
+    <string name="summary_preference_permissions_action_open_document_tree">允許應用程式存取文件樹，包括讀取和寫入樹中檔案的能力</string>
+    <string name="summary_preference_permissions_manage_external_storage">允許應用程式執行刪除和重新命名設備存儲檔案等操作，包括內部和外部存儲</string>
+    <string name="summary_preference_permissions_package_usage_stats">允許應用程式存取使用者的應用程式使用資訊，包括使用了哪些應用程式、使用時間和使用頻率</string>
+    <string name="summary_preference_permissions_query_all_packages">允許應用程式查詢設備上所有已安裝的套件資訊。應用程式使用此資訊來確定要保留或刪除的檔案</string>
+    <string name="summary_preference_permissions_read_external_storage">允許應用程式讀取設備存儲中的檔案，包括內部和外部存儲</string>
+    <string name="summary_preference_permissions_read_media_audio">允許應用程式讀取設備存儲中的音訊檔案</string>
+    <string name="summary_preference_permissions_read_media_images">允許應用程式讀取設備存儲中的圖片檔案</string>
+    <string name="summary_preference_permissions_read_media_video">允許應用程式讀取設備存儲中的影片檔案</string>
+    <string name="summary_preference_permissions_write_external_storage">允許應用程式寫入設備存儲中的檔案，包括內部和外部存儲</string>
+    <string name="summary_preference_faq_1">Cleaner 是一款免費且開源的 Android 應用程式，可幫助您最佳化設備性能並釋放儲存空間。它可以掃描設備中的不必要檔案並刪除它們，同時清理快取以提升設備速度</string>
+    <string name="summary_preference_faq_2">是的，Cleaner 使用起來是安全的。它只會刪除對您的設備或應用程式運行非必需的檔案，並且不會刪除任何個人數據或重要系統檔案</string>
+    <string name="summary_preference_faq_3">要使用 Cleaner，只需從 Google Play 商店或可信的第三方應用程式商店下載並安裝該應用程式。然後，打開應用程式並按照提示掃描設備並刪除不必要的檔案。您還可以進入應用程式的設定自訂 Cleaner 搜尋和刪除的檔案類型</string>
+    <string name="summary_preference_faq_4">是的，Cleaner 可以刪除應用程式快取。然而，請注意刪除快取可能會導致應用程式下次加載或執行某些任務時需要更長時間</string>
+    <string name="summary_preference_faq_5">不，Cleaner 無需 root 訪問權限即可工作。您可以在任何 Android 設備上使用它，而無需 root 您的設備</string>
+    <string name="summary_preference_faq_6">不，Cleaner 目前僅適用於 Android 設備</string>
+    <string name="summary_preference_faq_7">使用 Cleaner 清理快取可能有助於延長設備的電池壽命，因為它減少了不必要的進程所消耗的電量和資源。然而，Cleaner 能夠改善電池壽命的程度將取決於多種因素，例如您的設備型號、所使用的應用程式以及使用習慣</string>
+    <string name="summary_preference_faq_8">並沒有固定的規則來決定您應該多頻繁使用 Cleaner，這將取決於您的設備使用情況和隨時間累積的不必要檔案的數量。有些使用者可能覺得每週或每月使用 Cleaner 一次很有幫助，而其他使用者可能只需偶爾使用</string>
+    <string name="summary_preference_faq_9">Cleaner 應該與大多數符合應用程式最低系統要求的 Android 設備兼容。然而，最好在 Google Play 商店或您使用的應用程式商店中檢查應用程式頁面，以確認與您的特定設備兼容。如果您在使用 Cleaner 時遇到任何問題，可以嘗試排除問題或聯繫應用程式的支持團隊尋求幫助</string>
+    <string name="summary_require_restart">要生效，請重新啟動應用程式！</string>
+    <string name="summary_no_apks_in_this_device">此設備中沒有 APK 檔案</string>
+    <string name="summary_share_message">看看我正在使用的這款超棒的應用程式！它有一些很酷的功能，你可能會感興趣。你可以從 Play 商店下載它：%1$s</string>
+    <string name="summary_donations">無論捐款多少，都會幫助我們保持應用程式運行並改進功能。我們感謝您的慷慨和善意！</string>
+    <string name="tooltip_add_to_whitelist">點擊此處添加您希望在下次掃描中排除的檔案/資料夾</string>
+    <string name="tooltip_button_analyze">分析可以清理的檔案而不刪除它們</string>
+    <string name="tooltip_button_clean">點擊此處清理您的設備！</string>
+    <string name="clean_confirm_title">確認清理？</string>
+    <string name="adds_the_following">添加以下過濾器：</string>
+    <string name="daily_cleaner_notification_channel_name">每日清理通知</string>
+    <string name="daily_cleaner_notification_channel_description">與每日清理過程相關的通知</string>
+    <string name="cleaning_completed_notification_title">清理完成</string>
+    <string name="service_notification_title">您的剪貼簿受保護中！</string>
+    <string name="snack_copied_to_clipboard">已複製到剪貼簿！ 📋</string>
+    <string name="snack_amoled_mode">切換到深色模式時您將看到變更</string>
+    <string name="snack_clipboard_clean_failed">剪貼簿清理失敗</string>
+    <string name="snack_unable_to_open_google_play_store">無法打開 Google Play 商店</string>
+    <string name="snack_feedback">感謝您的評價！ ❤️</string>
+    <string name="snack_no_image">未提供圖片</string>
+    <string name="snack_support">您願意支持我們的應用程式嗎？ ❤️</string>
+    <string name="snack_update_failed">更新過程遇到問題</string>
+    <string name="snack_app_updated">應用程式已成功更新</string>
+    <string name="snack_validate_file">請選擇有效的檔案大小</string>
+    <string name="app_behavior">應用程式行為</string>
+    <string name="categories">分類</string>
+</resources>
