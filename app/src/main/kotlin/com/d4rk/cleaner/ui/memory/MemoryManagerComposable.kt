@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -122,7 +123,9 @@ fun MemoryManagerComposable() {
                     .alpha(contentAlpha)
         ) {
             CarouselLayout(
-                items = listOf(storageInfo , ramInfo) , peekPreviewWidth = 24.dp
+                items = listOf(storageInfo, ramInfo),
+                peekPreviewWidth = 24.dp,
+                pagerState = pagerState
             ) { item ->
                 when (item) {
                     is StorageInfo -> StorageInfoCard(item)
@@ -177,10 +180,11 @@ fun MemoryManagerComposable() {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun <T> CarouselLayout(
-    items : List<T> , peekPreviewWidth : Dp , itemContent : @Composable (item : T) -> Unit
+    items: List<T>,
+    peekPreviewWidth: Dp,
+    pagerState: PagerState,
+    itemContent: @Composable (item: T) -> Unit
 ) {
-    val pagerState = rememberPagerState(pageCount = { items.size })
-
     HorizontalPager(
         state = pagerState ,
         modifier = Modifier.fillMaxWidth() ,
