@@ -162,7 +162,22 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             return
         }
 
-        // TODO: Implement your cleaning logic here
+        viewModelScope.launch(Dispatchers.IO) {
+            val filesToDelete = fileSelectionStates.filter { it.value }.keys
+            filesToDelete.forEach { file ->
+                if (file.exists()) {
+                    file.deleteRecursively()
+                }
+            }
+
+            withContext(Dispatchers.Main) {
+                scannedFiles.value = scannedFiles.value?.filterNot { filesToDelete.contains(it) }
+                fileSelectionStates.clear()
+                selectAllFiles(false)
+                _selectedFileCount.value = 0
+                updateStorageInfo()
+            }
+        }
     }
 
     /**
