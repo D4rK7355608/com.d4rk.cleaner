@@ -1,13 +1,12 @@
 package com.d4rk.cleaner.ui.appmanager
 
+import android.app.Application
 import android.content.Intent
 import android.content.pm.ApplicationInfo
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
-import android.provider.MediaStore
 import android.provider.Settings
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -33,7 +32,7 @@ import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -49,24 +48,24 @@ import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.data.model.ui.ApkInfo
 import java.io.File
 
 /**
  * Composable function for managing and displaying different app categories.
- *
- * This composable function displays tabs for "Installed Apps", "System Apps", and "App Install Files".
- * Each tab shows corresponding app information based on the selected category.
  */
 @Composable
 fun AppManagerComposable() {
+
+    val viewModel: AppManagerViewModel = viewModel(
+        factory = AppManagerViewModelFactory(LocalContext.current.applicationContext as Application)
+    )
     val tabs = listOf("Installed Apps", "System Apps", "App Install Files")
     var selectedIndex by remember { mutableIntStateOf(0) }
-    var apps by remember { mutableStateOf(listOf<ApplicationInfo>()) }
-    val context = LocalContext.current
-    LaunchedEffect(Unit) {
-        apps = context.packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
-    }
+    val installedApps by viewModel.installedApps.collectAsState()
+    val apkFiles by viewModel.apkFiles.collectAsState()
 
     Column {
         TabRow(
@@ -94,9 +93,11 @@ fun AppManagerComposable() {
             }
         }
         when (selectedIndex) {
-            0 -> AppsComposable(apps.filter { it.flags and ApplicationInfo.FLAG_SYSTEM == 0 })
-            1 -> AppsComposable(apps.filter { it.flags and ApplicationInfo.FLAG_SYSTEM != 0 })
-            2 -> ApksComposable()
+            0 -> AppsComposable(
+                apps = installedApps.filter { it.flags and ApplicationInfo.FLAG_SYSTEM == 0 })
+            1 -> AppsComposable(
+                apps = installedApps.filter { it.flags and ApplicationInfo.FLAG_SYSTEM != 0 })
+            2 -> ApksComposable(apkFiles = apkFiles)
         }
     }
 }
@@ -181,7 +182,9 @@ fun AppItemComposable(
                 }
 
                 DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
-                    DropdownMenuItem(text = { Text(stringResource(R.string.uninstall)) },
+                    DropdownMenuItem(text = {
+                        Text(stringResource(R.string.uninstall))
+                    },
                         onClick = {
                             val uri = Uri.fromParts("package", app.packageName, null)
                             val intent = Intent(Intent.ACTION_DELETE, uri)
@@ -220,32 +223,15 @@ fun AppItemComposable(
  * Composable function for displaying a list of APK files on the device.
  */
 @Composable
-fun ApksComposable() {
-    val context = LocalContext.current
-    val uri = MediaStore.Files.getContentUri("external")
-    val cursor = context.contentResolver.query(
-        uri,
-        arrayOf(MediaStore.Files.FileColumns.DATA),
-        MediaStore.Files.FileColumns.MIME_TYPE + "=?",
-        arrayOf("application/vnd.android.package-archive"),
-        null
-    )
-
-    var apkPaths = listOf<String>()
-    cursor?.use {
-        while (it.moveToNext()) {
-            val dataColumnIndex = it.getColumnIndex(MediaStore.Files.FileColumns.DATA)
-            val filePath = it.getString(dataColumnIndex)
-            apkPaths = apkPaths + filePath
-        }
-    }
+fun ApksComposable(apkFiles: List<ApkInfo>) {
 
     LazyColumn {
-        items(apkPaths) { apkPath ->
-            ApkItemComposable(apkPath)
+        items(apkFiles) { apkInfo ->
+            ApkItemComposable(apkPath = apkInfo.path)
         }
     }
 }
+
 
 /**
  * Composable function for displaying detailed information about an APK file.
@@ -321,7 +307,8 @@ fun ApkItemComposable(apkPath: String) {
                     DropdownMenuItem(text = { Text("Install") }, onClick = {
                         val installIntent = Intent(Intent.ACTION_VIEW)
                         installIntent.setDataAndType(
-                            Uri.fromFile(apkFile), "application/vnd.android.package-archive"
+                            Uri.fromFile(apkFile),
+                            "application/vnd.android.package-archive"
                         )
                         installIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                         context.startActivity(installIntent)
