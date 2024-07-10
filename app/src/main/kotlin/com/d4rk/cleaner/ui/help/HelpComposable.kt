@@ -33,6 +33,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -52,11 +53,19 @@ import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HelpComposable(activity : HelpActivity) {
+fun HelpComposable(activity : HelpActivity, viewModel: HelpViewModel) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     var showMenu by remember { mutableStateOf(false) }
     val context = LocalContext.current
     val showDialog = remember { mutableStateOf(false) }
+    val reviewInfo = viewModel.reviewInfo.value
+
+    if (reviewInfo != null) {
+        LaunchedEffect(key1 = reviewInfo) {
+            viewModel.requestReviewFlow()
+        }
+    }
+
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.help)) } , navigationIcon = {
             IconButton(onClick = {
@@ -138,8 +147,10 @@ fun HelpComposable(activity : HelpActivity) {
             ExtendedFloatingActionButton(
                 text = { Text(stringResource(id = R.string.feedback)) } ,
                 onClick = {
-                    activity.feedback()
-                } ,
+                    viewModel.reviewInfo.value?.let { safeReviewInfo ->
+                        viewModel.launchReviewFlow(activity, safeReviewInfo)
+                    }
+                },
                 icon = {
                     Icon(
                         Icons.Default.MailOutline , contentDescription = null
