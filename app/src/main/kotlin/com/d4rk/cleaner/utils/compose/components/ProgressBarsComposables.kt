@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.d4rk.cleaner.data.model.ui.StorageInfo
+import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
 
 /**
  * Composable function representing a circular determinate progress indicator with storage information.

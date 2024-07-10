@@ -63,8 +63,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.model.ui.RamInfo
-import com.d4rk.cleaner.data.model.ui.StorageInfo
+import com.d4rk.cleaner.data.model.ui.memorymanager.RamInfo
+import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
 import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.cleaning.FileUtils.formatSize
 import com.d4rk.cleaner.utils.compose.components.StorageProgressBar

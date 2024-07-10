@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.data.model.ui
+package com.d4rk.cleaner.data.model.ui.memorymanager
 
 data class StorageInfo(
     val totalStorage: Long = 0,
