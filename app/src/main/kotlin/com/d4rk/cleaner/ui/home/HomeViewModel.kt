@@ -99,11 +99,15 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
      * selectAllFiles(false) // Deselects all files
      */
     fun selectAllFiles(selectAll: Boolean) {
-        scannedFiles.value?.forEach { file ->
-            fileSelectionStates[file] = selectAll
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                scannedFiles.value?.forEach { file ->
+                    fileSelectionStates[file] = selectAll
+                }
+            }
+            allFilesSelected.value = selectAll
+            _selectedFileCount.value = if (selectAll) fileSelectionStates.size else 0
         }
-        allFilesSelected.value = selectAll
-        _selectedFileCount.value = fileSelectionStates.values.count { it }
     }
 
     /**
@@ -133,6 +137,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             withContext(Dispatchers.Main) {
+                fileSelectionStates.clear()
                 scannedFiles.value = filteredFiles
                 isAnalyzing.value = false
                 hasScanned.value = true
