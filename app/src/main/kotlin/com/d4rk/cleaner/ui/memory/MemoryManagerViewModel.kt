@@ -58,11 +58,7 @@ class MemoryManagerViewModel : ViewModel() {
      */
     fun updateRamInfo(context : Context) {
         viewModelScope.launch {
-            try {
-                _ramInfo.value = getRamInfo(context)
-            } finally {
-                _isLoading.value = false
-            }
+            _ramInfo.value = getRamInfo(context)
         }
     }
 

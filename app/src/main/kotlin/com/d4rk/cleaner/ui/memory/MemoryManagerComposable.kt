@@ -69,6 +69,7 @@ import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.cleaning.FileUtils.formatSize
 import com.d4rk.cleaner.utils.compose.components.StorageProgressBar
 import com.d4rk.cleaner.utils.compose.bounceClick
+import kotlinx.coroutines.delay
 import kotlin.math.absoluteValue
 import kotlin.math.min
 
@@ -108,6 +109,11 @@ fun MemoryManagerComposable() {
         viewModel.updateRamInfo(context)
         if (!PermissionsUtils.hasStoragePermissions(context)) {
             PermissionsUtils.requestStoragePermissions(context as Activity)
+        }
+
+        while (true) {
+            delay(5000)
+            viewModel.updateRamInfo(context)
         }
     }
     if (isLoading) {
