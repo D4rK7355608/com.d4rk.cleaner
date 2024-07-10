@@ -9,6 +9,7 @@ import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.provider.Settings
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,6 +19,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.MoreVert
@@ -36,9 +39,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -54,22 +57,22 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.ApkInfo
 import com.d4rk.cleaner.utils.PermissionsUtils
+import kotlinx.coroutines.launch
 import java.io.File
 
 /**
  * Composable function for managing and displaying different app categories.
  */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun AppManagerComposable() {
-
     val viewModel: AppManagerViewModel = viewModel(
         factory = AppManagerViewModelFactory(LocalContext.current.applicationContext as Application)
     )
     val context = LocalContext.current
     val tabs = listOf("Installed Apps", "System Apps", "App Install Files")
-    var selectedIndex by remember { mutableIntStateOf(0) }
-    val installedApps by viewModel.installedApps.collectAsState()
-    val apkFiles by viewModel.apkFiles.collectAsState()
+    val pagerState = rememberPagerState(pageCount = { tabs.size })
+    val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(context) {
         if (!PermissionsUtils.hasStoragePermissions(context)) {
@@ -79,11 +82,11 @@ fun AppManagerComposable() {
 
     Column {
         TabRow(
-            selectedTabIndex = selectedIndex,
+            selectedTabIndex = pagerState.currentPage,
             indicator = { tabPositions ->
-                if (selectedIndex < tabPositions.size) {
+                if (pagerState.currentPage < tabPositions.size) {
                     TabRowDefaults.PrimaryIndicator(
-                        modifier = Modifier.tabIndicatorOffset(tabPositions[selectedIndex]),
+                        modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]).fillMaxWidth(),
                         shape = RoundedCornerShape(
                             topStart = 3.dp, topEnd = 3.dp, bottomEnd = 0.dp, bottomStart = 0.dp
                         ),
@@ -92,22 +95,37 @@ fun AppManagerComposable() {
             },
         ) {
             tabs.forEachIndexed { index, title ->
-                Tab(text = {
-                    Text(
-                        text = title,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-                }, selected = selectedIndex == index, onClick = { selectedIndex = index })
+                Tab(
+                    text = {
+                        Text(
+                            text = title,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                    },
+                    selected = pagerState.currentPage == index,
+                    onClick = {
+                        coroutineScope.launch {
+                            pagerState.animateScrollToPage(index)
+                        }
+                    }
+                )
             }
         }
-        when (selectedIndex) {
-            0 -> AppsComposable(
-                apps = installedApps.filter { it.flags and ApplicationInfo.FLAG_SYSTEM == 0 })
-            1 -> AppsComposable(
-                apps = installedApps.filter { it.flags and ApplicationInfo.FLAG_SYSTEM != 0 })
-            2 -> ApksComposable(apkFiles = apkFiles)
+
+        HorizontalPager(
+            state = pagerState, // Only provide pagerState here
+        ) { page ->
+            when (page) {
+                0 -> AppsComposable(
+                    apps = viewModel.installedApps.collectAsState().value.filter { it.flags and ApplicationInfo.FLAG_SYSTEM == 0 }
+                )
+                1 -> AppsComposable(
+                    apps = viewModel.installedApps.collectAsState().value.filter { it.flags and ApplicationInfo.FLAG_SYSTEM != 0 }
+                )
+                2 -> ApksComposable(apkFiles = viewModel.apkFiles.collectAsState().value)
+            }
         }
     }
 }

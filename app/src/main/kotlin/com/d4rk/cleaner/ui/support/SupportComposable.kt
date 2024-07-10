@@ -30,7 +30,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -40,7 +39,6 @@ import androidx.compose.ui.unit.dp
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingResult
-import com.android.billingclient.api.SkuDetails
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ads.LargeBannerAdsComposable
 import com.d4rk.cleaner.data.datastore.DataStore
@@ -52,7 +50,6 @@ import com.d4rk.cleaner.utils.compose.bounceClick
 fun SupportComposable(viewModel: SupportViewModel, activity: SupportActivity) {
     val context = LocalContext.current
     val dataStore = DataStore.getInstance(context)
-    val skuDetailsMap = remember { mutableStateMapOf<String, SkuDetails>() }
     val billingClient = rememberBillingClient(context, viewModel)
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
@@ -105,7 +102,7 @@ fun SupportComposable(viewModel: SupportViewModel, activity: SupportActivity) {
                                             activity.initiatePurchase(
                                                 "low_donation",
                                                 viewModel.skuDetails,
-                                                billingClient
+                                                billingClient,
                                             )
                                         },
                                     ) {
@@ -115,7 +112,7 @@ fun SupportComposable(viewModel: SupportViewModel, activity: SupportActivity) {
                                             modifier = Modifier.size(ButtonDefaults.IconSize)
                                         )
                                         Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-                                        Text(skuDetailsMap["low_donation"]?.price ?: "")
+                                        Text(viewModel.skuDetails["low_donation"]?.price ?: "")
                                     }
                                 }
                                 item {
@@ -127,7 +124,7 @@ fun SupportComposable(viewModel: SupportViewModel, activity: SupportActivity) {
                                             activity.initiatePurchase(
                                                 "normal_donation",
                                                 viewModel.skuDetails,
-                                                billingClient
+                                                billingClient,
                                             )
                                         },
                                     ) {
@@ -156,7 +153,7 @@ fun SupportComposable(viewModel: SupportViewModel, activity: SupportActivity) {
                                             activity.initiatePurchase(
                                                 "high_donation",
                                                 viewModel.skuDetails,
-                                                billingClient
+                                                billingClient,
                                             )
                                         },
                                     ) {
@@ -179,7 +176,7 @@ fun SupportComposable(viewModel: SupportViewModel, activity: SupportActivity) {
                                             activity.initiatePurchase(
                                                 "extreme_donation",
                                                 viewModel.skuDetails,
-                                                billingClient
+                                                billingClient,
                                             )
                                         },
                                     ) {
