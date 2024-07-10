@@ -9,11 +9,15 @@ import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.provider.Settings
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.updateTransition
+
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -24,6 +28,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.MoreVert
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -45,6 +50,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
@@ -55,7 +61,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.model.ui.ApkInfo
+import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
 import com.d4rk.cleaner.utils.PermissionsUtils
 import kotlinx.coroutines.launch
 import java.io.File
@@ -73,6 +79,12 @@ fun AppManagerComposable() {
     val tabs = listOf("Installed Apps", "System Apps", "App Install Files")
     val pagerState = rememberPagerState(pageCount = { tabs.size })
     val coroutineScope = rememberCoroutineScope()
+    val isLoading by viewModel.isLoading.collectAsState()
+    val transition = updateTransition(targetState = ! isLoading, label = "LoadingTransition")
+
+    val contentAlpha by transition.animateFloat(label = "Content Alpha") {
+        if (it) 1f else 0f
+    }
 
     LaunchedEffect(context) {
         if (!PermissionsUtils.hasStoragePermissions(context)) {
@@ -80,49 +92,60 @@ fun AppManagerComposable() {
         }
     }
 
-    Column {
-        TabRow(
-            selectedTabIndex = pagerState.currentPage,
-            indicator = { tabPositions ->
-                TabRowDefaults.PrimaryIndicator(
-                    modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
-                    shape = RoundedCornerShape(
-                        topStart = 3.dp, topEnd = 3.dp, bottomEnd = 0.dp, bottomStart = 0.dp
-                    ),
-                )
-            },
+    if (isLoading) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
         ) {
-            tabs.forEachIndexed { index, title ->
-                Tab(
-                    text = {
-                        Text(
-                            text = title,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                    },
-                    selected = pagerState.currentPage == index,
-                    onClick = {
-                        coroutineScope.launch {
-                            pagerState.animateScrollToPage(index)
-                        }
-                    }
-                )
-            }
+            CircularProgressIndicator()
         }
+    } else {
+        Column(
+            modifier = Modifier.alpha(contentAlpha),
+        ) {
+            TabRow(
+                selectedTabIndex = pagerState.currentPage,
+                indicator = { tabPositions ->
+                    TabRowDefaults.PrimaryIndicator(
+                        modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
+                        shape = RoundedCornerShape(
+                            topStart = 3.dp, topEnd = 3.dp, bottomEnd = 0.dp, bottomStart = 0.dp
+                        ),
+                    )
+                },
+            ) {
+                tabs.forEachIndexed { index, title ->
+                    Tab(
+                        text = {
+                            Text(
+                                text = title,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                        },
+                        selected = pagerState.currentPage == index,
+                        onClick = {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(index)
+                            }
+                        }
+                    )
+                }
+            }
 
-        HorizontalPager(
-            state = pagerState, // Only provide pagerState here
-        ) { page ->
-            when (page) {
-                0 -> AppsComposable(
-                    apps = viewModel.installedApps.collectAsState().value.filter { it.flags and ApplicationInfo.FLAG_SYSTEM == 0 }
-                )
-                1 -> AppsComposable(
-                    apps = viewModel.installedApps.collectAsState().value.filter { it.flags and ApplicationInfo.FLAG_SYSTEM != 0 }
-                )
-                2 -> ApksComposable(apkFiles = viewModel.apkFiles.collectAsState().value)
+            HorizontalPager(
+                state = pagerState,
+            ) { page ->
+                when (page) {
+                    0 -> AppsComposable(
+                        apps = viewModel.installedApps.collectAsState().value.filter { it.flags and ApplicationInfo.FLAG_SYSTEM == 0 }
+                    )
+                    1 -> AppsComposable(
+                        apps = viewModel.installedApps.collectAsState().value.filter { it.flags and ApplicationInfo.FLAG_SYSTEM != 0 }
+                    )
+                    2 -> ApksComposable(apkFiles = viewModel.apkFiles.collectAsState().value)
+                }
             }
         }
     }

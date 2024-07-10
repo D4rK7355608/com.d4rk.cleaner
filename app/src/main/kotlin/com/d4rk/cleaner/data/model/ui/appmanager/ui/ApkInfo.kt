@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.data.model.ui
+package com.d4rk.cleaner.data.model.ui.appmanager.ui
 
 data class ApkInfo(
     val id: Long,

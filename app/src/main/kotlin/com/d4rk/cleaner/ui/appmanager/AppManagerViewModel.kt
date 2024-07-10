@@ -8,8 +8,10 @@ import android.net.Uri
 import android.provider.MediaStore
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.d4rk.cleaner.data.model.ui.ApkInfo
+import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,10 +25,25 @@ class AppManagerViewModel(private val application: Application) : ViewModel() {
     private val _apkFiles = MutableStateFlow<List<ApkInfo>>(emptyList())
     val apkFiles: StateFlow<List<ApkInfo>> = _apkFiles.asStateFlow()
 
+    private val _isLoading = MutableStateFlow(true)
+    val isLoading : StateFlow<Boolean> = _isLoading.asStateFlow()
 
     init {
-        loadInstalledApps()
-        loadApkFiles()
+        loadAppData()
+    }
+
+    private fun loadAppData() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                awaitAll(
+                    async { loadInstalledApps() },
+                    async { loadApkFiles() }
+                )
+            } finally {
+                _isLoading.value = false
+            }
+        }
     }
 
     private fun loadInstalledApps() {
