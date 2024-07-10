@@ -84,14 +84,12 @@ fun AppManagerComposable() {
         TabRow(
             selectedTabIndex = pagerState.currentPage,
             indicator = { tabPositions ->
-                if (pagerState.currentPage < tabPositions.size) {
-                    TabRowDefaults.PrimaryIndicator(
-                        modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]).fillMaxWidth(),
-                        shape = RoundedCornerShape(
-                            topStart = 3.dp, topEnd = 3.dp, bottomEnd = 0.dp, bottomStart = 0.dp
-                        ),
-                    )
-                }
+                TabRowDefaults.PrimaryIndicator(
+                    modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]).fillMaxWidth(),
+                    shape = RoundedCornerShape(
+                        topStart = 3.dp, topEnd = 3.dp, bottomEnd = 0.dp, bottomStart = 0.dp
+                    ),
+                )
             },
         ) {
             tabs.forEachIndexed { index, title ->
