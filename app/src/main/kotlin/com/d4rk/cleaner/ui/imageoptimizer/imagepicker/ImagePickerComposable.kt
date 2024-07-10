@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
@@ -37,6 +38,7 @@ fun ImagePickerComposable(
     val context = LocalContext.current
     val dataStore = DataStore.getInstance(context)
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val adsState = dataStore.ads.collectAsState(initial = true)
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
         LargeTopAppBar(
             title = { Text(stringResource(R.string.image_optimizer)) },
@@ -63,7 +65,11 @@ fun ImagePickerComposable(
                     .bounceClick()
                     .constrainAs(fab) {
                         end.linkTo(parent.end)
-                        bottom.linkTo(adView.top)
+                        if (adsState.value) {
+                            bottom.linkTo(adView.top)
+                        } else {
+                            bottom.linkTo(parent.bottom)
+                        }
                     },
                 text = { Text(stringResource(R.string.choose_image)) },
                 onClick = {
