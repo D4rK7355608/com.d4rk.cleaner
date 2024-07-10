@@ -36,6 +36,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
@@ -242,7 +243,7 @@ fun HomeComposable() {
 fun AnalyzeComposable(launchScanningKey: MutableState<Boolean>, imageLoader: ImageLoader) {
     val viewModel: HomeViewModel = viewModel()
     val files by viewModel.scannedFiles.asFlow().collectAsState(initial = listOf())
-
+    val isAnalyzing by viewModel.isAnalyzing.observeAsState(false)
     val allFilesSelected by viewModel.allFilesSelected
     val selectedFileCount by viewModel.selectedFileCount.collectAsState()
 
@@ -267,14 +268,20 @@ fun AnalyzeComposable(launchScanningKey: MutableState<Boolean>, imageLoader: Ima
                 .weight(1f)
                 .fillMaxWidth(),
         ) {
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(3),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.padding(8.dp),
-            ) {
-                items(files, key = { file -> file.absolutePath }) { file ->
-                    FileCard(file = file, viewModel = viewModel, imageLoader = imageLoader)
+            if (isAnalyzing && files.isEmpty()) {
+                Box (modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
+                }
+            } else {
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(3),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.padding(8.dp),
+                ) {
+                    items(files, key = { file -> file.absolutePath }) { file ->
+                        FileCard(file = file, viewModel = viewModel, imageLoader = imageLoader)
+                    }
                 }
             }
         }

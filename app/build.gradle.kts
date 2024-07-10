@@ -34,7 +34,7 @@ android {
             "sv",
             "bg",
             "pl",
-            "uk"
+            "uk",
         )
         vectorDrawables {
             useSupportLibrary = true

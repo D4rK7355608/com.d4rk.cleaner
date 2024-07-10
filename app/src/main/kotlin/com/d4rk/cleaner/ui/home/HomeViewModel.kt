@@ -127,11 +127,13 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         isAnalyzing.value = true
         showCleaningComposable.value = true
         viewModelScope.launch {
-            fileScanner.startScanning()
-            withContext(Dispatchers.Main) {
-                scannedFiles.value = fileScanner.getFilteredFiles()
-                isAnalyzing.value = false
-                hasScanned.value = true
+            withContext(Dispatchers.IO) {
+                fileScanner.startScanning()
+                withContext(Dispatchers.Main) {
+                    scannedFiles.value = fileScanner.getFilteredFiles()
+                    isAnalyzing.value = false
+                    hasScanned.value = true
+                }
             }
         }
     }
