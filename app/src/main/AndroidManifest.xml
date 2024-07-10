@@ -74,16 +74,16 @@
             android:parentActivityName=".MainActivity" />
 
         <activity
-            android:name=".ui.imageoptimizer.ImageOptimizerActivity"
+            android:name=".ui.imageoptimizer.imageoptimizer.ImageOptimizerActivity"
             android:exported="true"
             android:label="@string/image_optimizer"
             android:parentActivityName=".MainActivity" />
 
         <activity
-            android:name=".ui.imageoptimizer.ImagePickerActivity"
+            android:name=".ui.imageoptimizer.imagepicker.ImagePickerActivity"
             android:exported="true"
             android:label="@string/image_optimizer"
-            android:parentActivityName=".ui.imageoptimizer.ImageOptimizerActivity" />
+            android:parentActivityName=".ui.imageoptimizer.imageoptimizer.ImageOptimizerActivity" />
 
         <activity
             android:name=".ui.settings.SettingsActivity"

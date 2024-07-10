@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.ui.imageoptimizer
+package com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.tabs
 
 import android.os.Bundle
 import android.view.LayoutInflater

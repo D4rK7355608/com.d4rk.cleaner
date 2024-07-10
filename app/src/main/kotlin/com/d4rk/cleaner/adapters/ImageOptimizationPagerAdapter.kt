@@ -3,9 +3,9 @@ package com.d4rk.cleaner.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.d4rk.cleaner.ui.imageoptimizer.FileSizeFragment
-import com.d4rk.cleaner.ui.imageoptimizer.ManualModeFragment
-import com.d4rk.cleaner.ui.imageoptimizer.QuickCompressFragment
+import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.tabs.FileSizeFragment
+import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.tabs.ManualModeFragment
+import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.tabs.QuickCompressFragment
 
 class ImageOptimizationPagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
