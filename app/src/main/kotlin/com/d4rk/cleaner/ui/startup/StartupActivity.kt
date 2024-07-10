@@ -11,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.d4rk.cleaner.ui.settings.display.theme.style.AppTheme
+import com.d4rk.cleaner.utils.PermissionsUtils
 import com.google.android.ump.ConsentForm
 import com.google.android.ump.ConsentInformation
 import com.google.android.ump.ConsentRequestParameters
@@ -38,7 +39,9 @@ class StartupActivity : AppCompatActivity() {
                 loadForm()
             }
         } , {})
-        requestPermissions()
+        if (!PermissionsUtils.hasNotificationPermission(this)) {
+            PermissionsUtils.requestNotificationPermission(this)
+        }
     }
 
     /**
@@ -61,21 +64,5 @@ class StartupActivity : AppCompatActivity() {
                 }
             }
         } , {})
-    }
-
-    /**
-     * Handles the application's permission requirements.
-     *
-     * This function is responsible for checking and requesting the necessary permissions for the application. It takes into account the Android version to manage specific permission scenarios.
-     * For Android versions Tiramisu or later, it requests the POST_NOTIFICATIONS permission.
-     *
-     * @see android.Manifest.permission.POST_NOTIFICATIONS
-     * @see android.os.Build.VERSION.SDK_INT
-     * @see android.os.Build.VERSION_CODES.TIRAMISU
-     */
-    private fun requestPermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS) , 1)
-        }
     }
 }
