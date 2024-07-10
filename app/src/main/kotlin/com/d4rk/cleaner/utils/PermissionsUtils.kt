@@ -170,5 +170,4 @@ object PermissionsUtils {
             )
         }
     }
-
 }

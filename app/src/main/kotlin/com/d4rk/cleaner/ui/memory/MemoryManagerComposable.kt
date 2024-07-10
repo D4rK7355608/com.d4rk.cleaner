@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.ui.memory
 
+import android.app.Activity
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
@@ -64,6 +65,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.RamInfo
 import com.d4rk.cleaner.data.model.ui.StorageInfo
+import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.cleaning.FileUtils.formatSize
 import com.d4rk.cleaner.utils.compose.components.StorageProgressBar
 import com.d4rk.cleaner.utils.compose.bounceClick
@@ -104,6 +106,9 @@ fun MemoryManagerComposable() {
     LaunchedEffect(Unit) {
         viewModel.updateStorageInfo(context)
         viewModel.updateRamInfo(context)
+        if (!PermissionsUtils.hasStoragePermissions(context)) {
+            PermissionsUtils.requestStoragePermissions(context as Activity)
+        }
     }
     if (isLoading) {
         Box(

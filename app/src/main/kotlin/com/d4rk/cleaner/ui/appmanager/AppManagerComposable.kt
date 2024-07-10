@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.ui.appmanager
 
+import android.app.Activity
 import android.app.Application
 import android.content.Intent
 import android.content.pm.ApplicationInfo
@@ -32,6 +33,7 @@ import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -51,6 +53,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.ApkInfo
+import com.d4rk.cleaner.utils.PermissionsUtils
 import java.io.File
 
 /**
@@ -62,10 +65,17 @@ fun AppManagerComposable() {
     val viewModel: AppManagerViewModel = viewModel(
         factory = AppManagerViewModelFactory(LocalContext.current.applicationContext as Application)
     )
+    val context = LocalContext.current
     val tabs = listOf("Installed Apps", "System Apps", "App Install Files")
     var selectedIndex by remember { mutableIntStateOf(0) }
     val installedApps by viewModel.installedApps.collectAsState()
     val apkFiles by viewModel.apkFiles.collectAsState()
+
+    LaunchedEffect(context) {
+        if (!PermissionsUtils.hasStoragePermissions(context)) {
+            PermissionsUtils.requestStoragePermissions(context as Activity)
+        }
+    }
 
     Column {
         TabRow(
