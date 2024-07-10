@@ -18,7 +18,6 @@ import androidx.core.content.ContextCompat
  */
 object PermissionsUtils {
 
-    // Permission constants
     const val REQUEST_CODE_STORAGE_PERMISSIONS = 1
     const val REQUEST_CODE_NOTIFICATION_PERMISSION = 2
 

@@ -33,8 +33,8 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.MainActivity
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.utils.Utils
-import com.d4rk.cleaner.utils.bounceClick
+import com.d4rk.cleaner.utils.IntentUtils
+import com.d4rk.cleaner.utils.compose.bounceClick
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -89,7 +89,7 @@ fun StartupComposable() {
                     ClickableText(text = annotatedString , onClick = { offset ->
                         annotatedString.getStringAnnotations("URL" , offset , offset).firstOrNull()
                             ?.let { annotation ->
-                                Utils.openUrl(context , annotation.item)
+                                IntentUtils.openUrl(context , annotation.item)
                             }
                     })
                 }
@@ -99,7 +99,7 @@ fun StartupComposable() {
                 .bounceClick() ,
                 text = { Text(stringResource(R.string.agree)) } ,
                 onClick = {
-                    Utils.openActivity(
+                    IntentUtils.openActivity(
                         context , MainActivity::class.java
                     )
                 } ,

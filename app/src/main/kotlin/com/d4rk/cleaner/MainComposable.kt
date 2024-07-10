@@ -53,7 +53,7 @@ import com.d4rk.cleaner.ui.imageoptimizer.ImagePickerActivity
 import com.d4rk.cleaner.ui.memory.MemoryManagerComposable
 import com.d4rk.cleaner.ui.settings.SettingsActivity
 import com.d4rk.cleaner.ui.support.SupportActivity
-import com.d4rk.cleaner.utils.Utils
+import com.d4rk.cleaner.utils.IntentUtils
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -102,32 +102,32 @@ fun MainComposable() {
                         when (item.title) {
 
                             R.string.image_optimizer -> {
-                                Utils.openActivity(
+                                IntentUtils.openActivity(
                                     context, ImagePickerActivity::class.java
                                 )
                             }
 
                             R.string.settings -> {
-                                Utils.openActivity(
+                                IntentUtils.openActivity(
                                     context, SettingsActivity::class.java
                                 )
                             }
 
                             R.string.help_and_feedback -> {
-                                Utils.openActivity(
+                                IntentUtils.openActivity(
                                     context, HelpActivity::class.java
                                 )
                             }
 
                             R.string.updates -> {
-                                Utils.openUrl(
+                                IntentUtils.openUrl(
                                     context,
                                     "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md"
                                 )
                             }
 
                             R.string.share -> {
-                                Utils.shareApp(context)
+                                IntentUtils.shareApp(context)
                             }
                         }
                         scope.launch {
@@ -170,7 +170,7 @@ fun MainComposable() {
                 }
             }, actions = {
                 IconButton(onClick = {
-                    Utils.openActivity(context, SupportActivity::class.java)
+                    IntentUtils.openActivity(context, SupportActivity::class.java)
                 }) {
                     Icon(
                         Icons.Outlined.VolunteerActivism,

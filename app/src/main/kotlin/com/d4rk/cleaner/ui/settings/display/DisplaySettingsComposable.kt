@@ -34,11 +34,11 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.ui.dialogs.LanguageDialog
 import com.d4rk.cleaner.ui.settings.display.theme.ThemeSettingsActivity
-import com.d4rk.cleaner.utils.PreferenceCategoryItem
-import com.d4rk.cleaner.utils.PreferenceItem
-import com.d4rk.cleaner.utils.SwitchPreferenceItem
-import com.d4rk.cleaner.utils.SwitchPreferenceItemWithDivider
-import com.d4rk.cleaner.utils.Utils
+import com.d4rk.cleaner.utils.compose.components.PreferenceCategoryItem
+import com.d4rk.cleaner.utils.compose.components.PreferenceItem
+import com.d4rk.cleaner.utils.compose.components.SwitchPreferenceItem
+import com.d4rk.cleaner.utils.compose.components.SwitchPreferenceItemWithDivider
+import com.d4rk.cleaner.utils.IntentUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -99,7 +99,7 @@ fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
                         }
                     } ,
                     onClick = {
-                        Utils.openActivity(
+                        IntentUtils.openActivity(
                             context , ThemeSettingsActivity::class.java
                         )
                     })

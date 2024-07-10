@@ -22,8 +22,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.utils.PreferenceCategoryItem
-import com.d4rk.cleaner.utils.SwitchPreferenceItem
+import com.d4rk.cleaner.utils.compose.components.PreferenceCategoryItem
+import com.d4rk.cleaner.utils.compose.components.SwitchPreferenceItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

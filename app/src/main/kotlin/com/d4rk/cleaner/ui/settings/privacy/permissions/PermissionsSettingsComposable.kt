@@ -18,8 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.utils.PreferenceCategoryItem
-import com.d4rk.cleaner.utils.PreferenceItem
+import com.d4rk.cleaner.utils.compose.components.PreferenceCategoryItem
+import com.d4rk.cleaner.utils.compose.components.PreferenceItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

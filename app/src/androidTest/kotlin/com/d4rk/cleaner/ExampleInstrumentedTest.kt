@@ -3,7 +3,7 @@ package com.d4rk.cleaner
 import android.os.Environment
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.d4rk.cleaner.utils.FileScanner
+import com.d4rk.cleaner.utils.cleaning.FileScanner
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test

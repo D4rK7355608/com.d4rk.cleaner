@@ -33,7 +33,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.utils.SwitchCardComposable
+import com.d4rk.cleaner.utils.compose.components.SwitchCardComposable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

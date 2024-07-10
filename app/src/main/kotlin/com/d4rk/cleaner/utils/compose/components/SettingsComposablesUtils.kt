@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.utils
+package com.d4rk.cleaner.utils.compose.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

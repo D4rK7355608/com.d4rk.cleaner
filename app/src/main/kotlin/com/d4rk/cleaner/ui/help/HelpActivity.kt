@@ -9,7 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.d4rk.cleaner.ui.settings.display.theme.style.AppTheme
-import com.d4rk.cleaner.utils.Utils
+import com.d4rk.cleaner.utils.IntentUtils
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 
@@ -47,12 +47,12 @@ class HelpActivity : AppCompatActivity() {
         task.addOnSuccessListener { reviewInfo ->
             reviewManager.launchReviewFlow(this , reviewInfo)
         }.addOnFailureListener {
-            Utils.openUrl(
+            IntentUtils.openUrl(
                 this ,
                 "https://play.google.com/store/apps/details?id=${this.packageName}&showAllReviews=true"
             )
         }.addOnFailureListener {
-            Utils.sendEmailToDeveloper(this)
+            IntentUtils.sendEmailToDeveloper(this)
         }
     }
 }

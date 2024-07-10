@@ -19,9 +19,9 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.utils.PreferenceCategoryItem
-import com.d4rk.cleaner.utils.PreferenceItem
-import com.d4rk.cleaner.utils.Utils
+import com.d4rk.cleaner.utils.compose.components.PreferenceCategoryItem
+import com.d4rk.cleaner.utils.compose.components.PreferenceItem
+import com.d4rk.cleaner.utils.IntentUtils
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -49,7 +49,7 @@ fun AdvancedSettingsComposable(activity : AdvancedSettingsActivity) {
                 PreferenceItem(title = stringResource(R.string.bug_report) ,
                     summary = stringResource(R.string.summary_preference_settings_bug_report) ,
                     onClick = {
-                        Utils.openUrl(
+                        IntentUtils.openUrl(
                             context ,
                             "https://github.com/D4rK7355608/${context.packageName}/issues/new"
                         )

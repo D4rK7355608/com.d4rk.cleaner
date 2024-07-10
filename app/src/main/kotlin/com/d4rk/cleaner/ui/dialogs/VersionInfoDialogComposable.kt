@@ -19,7 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.utils.toBitmapDrawable
+import com.d4rk.cleaner.utils.cleaning.toBitmapDrawable
 
 @Composable
 fun VersionInfoDialog(onDismiss: () -> Unit) {

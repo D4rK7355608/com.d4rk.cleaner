@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.utils
+package com.d4rk.cleaner.utils.compose
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.core.animateFloatAsState

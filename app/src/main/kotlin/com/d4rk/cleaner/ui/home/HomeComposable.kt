@@ -69,10 +69,10 @@ import coil.memory.MemoryCache
 import coil.request.ImageRequest
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ui.dialogs.RescanAlertDialog
-import com.d4rk.cleaner.utils.CircularDeterminateIndicator
-import com.d4rk.cleaner.utils.bounceClick
-import com.d4rk.cleaner.utils.getFileIcon
-import com.d4rk.cleaner.utils.getVideoThumbnail
+import com.d4rk.cleaner.utils.compose.components.CircularDeterminateIndicator
+import com.d4rk.cleaner.utils.compose.bounceClick
+import com.d4rk.cleaner.utils.cleaning.getFileIcon
+import com.d4rk.cleaner.utils.cleaning.getVideoThumbnail
 import com.google.common.io.Files.getFileExtension
 import java.io.File
 

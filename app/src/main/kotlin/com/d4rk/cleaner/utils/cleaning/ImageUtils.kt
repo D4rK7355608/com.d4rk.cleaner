@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.utils
+package com.d4rk.cleaner.utils.cleaning
 
 import android.content.Context
 import android.content.res.Resources

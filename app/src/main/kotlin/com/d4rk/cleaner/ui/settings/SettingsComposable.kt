@@ -30,8 +30,8 @@ import com.d4rk.cleaner.ui.settings.advanced.AdvancedSettingsActivity
 import com.d4rk.cleaner.ui.settings.cleaning.CleaningSettingsActivity
 import com.d4rk.cleaner.ui.settings.display.DisplaySettingsActivity
 import com.d4rk.cleaner.ui.settings.privacy.PrivacySettingsActivity
-import com.d4rk.cleaner.utils.PreferenceItem
-import com.d4rk.cleaner.utils.Utils
+import com.d4rk.cleaner.utils.compose.components.PreferenceItem
+import com.d4rk.cleaner.utils.IntentUtils
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -57,7 +57,7 @@ fun SettingsComposable(activity: SettingsActivity) {
                     title = stringResource(R.string.display),
                     summary = stringResource(R.string.summary_preference_settings_display),
                     onClick = {
-                        Utils.openActivity(context, DisplaySettingsActivity::class.java)
+                        IntentUtils.openActivity(context, DisplaySettingsActivity::class.java)
                     })
             }
             item {
@@ -65,7 +65,7 @@ fun SettingsComposable(activity: SettingsActivity) {
                     title = stringResource(R.string.cleaning),
                     summary = stringResource(R.string.summary_preference_settings_cleaning),
                     onClick = {
-                        Utils.openActivity(
+                        IntentUtils.openActivity(
                             context, CleaningSettingsActivity::class.java
                         )
                     })
@@ -75,7 +75,7 @@ fun SettingsComposable(activity: SettingsActivity) {
                     title = stringResource(R.string.notifications),
                     summary = stringResource(R.string.summary_preference_settings_notifications),
                     onClick = {
-                        Utils.openAppNotificationSettings(context)
+                        IntentUtils.openAppNotificationSettings(context)
                     })
             }
             item {
@@ -83,7 +83,7 @@ fun SettingsComposable(activity: SettingsActivity) {
                     title = stringResource(R.string.advanced),
                     summary = stringResource(R.string.summary_preference_settings_advanced),
                     onClick = {
-                        Utils.openActivity(
+                        IntentUtils.openActivity(
                             context, AdvancedSettingsActivity::class.java
                         )
                     })
@@ -93,7 +93,7 @@ fun SettingsComposable(activity: SettingsActivity) {
                     title = stringResource(R.string.security_and_privacy),
                     summary = stringResource(R.string.summary_preference_settings_privacy_and_security),
                     onClick = {
-                        Utils.openActivity(context, PrivacySettingsActivity::class.java)
+                        IntentUtils.openActivity(context, PrivacySettingsActivity::class.java)
                     })
             }
             item {
@@ -101,7 +101,7 @@ fun SettingsComposable(activity: SettingsActivity) {
                     title = stringResource(R.string.about),
                     summary = stringResource(R.string.summary_preference_settings_about),
                     onClick = {
-                        Utils.openActivity(context, AboutSettingsActivity::class.java)
+                        IntentUtils.openActivity(context, AboutSettingsActivity::class.java)
                     })
             }
         }

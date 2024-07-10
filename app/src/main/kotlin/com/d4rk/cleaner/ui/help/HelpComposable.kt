@@ -46,8 +46,8 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ui.dialogs.VersionInfoDialog
-import com.d4rk.cleaner.utils.Utils
-import com.d4rk.cleaner.utils.bounceClick
+import com.d4rk.cleaner.utils.IntentUtils
+import com.d4rk.cleaner.utils.compose.bounceClick
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -71,7 +71,7 @@ fun HelpComposable(activity : HelpActivity) {
             DropdownMenu(expanded = showMenu , onDismissRequest = { showMenu = false }) {
                 DropdownMenuItem(text = { Text(stringResource(R.string.view_in_google_play_store)) } ,
                     onClick = {
-                        Utils.openUrl(
+                        IntentUtils.openUrl(
                             context ,
                             "https://play.google.com/store/apps/details?id=${activity.packageName}"
                         )
@@ -80,28 +80,28 @@ fun HelpComposable(activity : HelpActivity) {
                     onClick = { showDialog.value = true })
                 DropdownMenuItem(text = { Text(stringResource(R.string.beta_program)) } ,
                     onClick = {
-                        Utils.openUrl(
+                        IntentUtils.openUrl(
                             context ,
                             "https://play.google.com/apps/testing/${activity.packageName}"
                         )
                     })
                 DropdownMenuItem(text = { Text(stringResource(R.string.terms_of_service)) } ,
                     onClick = {
-                        Utils.openUrl(
+                        IntentUtils.openUrl(
                             context ,
                             "https://sites.google.com/view/d4rk7355608/more/apps/terms-of-service"
                         )
                     })
                 DropdownMenuItem(text = { Text(stringResource(R.string.privacy_policy)) } ,
                     onClick = {
-                        Utils.openUrl(
+                        IntentUtils.openUrl(
                             context ,
                             "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy"
                         )
                     })
                 DropdownMenuItem(text = { Text(stringResource(com.google.android.gms.oss.licenses.R.string.oss_license_title)) } ,
                     onClick = {
-                        Utils.openActivity(
+                        IntentUtils.openActivity(
                             context , OssLicensesMenuActivity::class.java
                         )
                     })

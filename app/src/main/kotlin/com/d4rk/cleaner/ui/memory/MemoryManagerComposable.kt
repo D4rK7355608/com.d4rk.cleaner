@@ -64,9 +64,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.RamInfo
 import com.d4rk.cleaner.data.model.ui.StorageInfo
-import com.d4rk.cleaner.utils.StorageProgressBar
-import com.d4rk.cleaner.utils.Utils.formatSize
-import com.d4rk.cleaner.utils.bounceClick
+import com.d4rk.cleaner.utils.cleaning.FileUtils.formatSize
+import com.d4rk.cleaner.utils.compose.components.StorageProgressBar
+import com.d4rk.cleaner.utils.compose.bounceClick
 import kotlin.math.absoluteValue
 import kotlin.math.min
 

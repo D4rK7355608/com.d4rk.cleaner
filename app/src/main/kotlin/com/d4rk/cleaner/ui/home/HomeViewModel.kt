@@ -11,7 +11,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.utils.FileScanner
+import com.d4rk.cleaner.utils.cleaning.FileScanner
 import com.d4rk.cleaner.utils.PermissionsUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,7 +42,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         updateStorageInfo()
-        fileScanner = FileScanner(dataStoreInstance,application.resources)
+        fileScanner = FileScanner(dataStoreInstance, application.resources)
     }
 
     /**

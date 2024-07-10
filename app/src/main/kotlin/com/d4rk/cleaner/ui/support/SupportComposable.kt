@@ -46,8 +46,8 @@ import com.android.billingclient.api.SkuDetails
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ads.LargeBannerAdsComposable
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.utils.Utils
-import com.d4rk.cleaner.utils.bounceClick
+import com.d4rk.cleaner.utils.IntentUtils
+import com.d4rk.cleaner.utils.compose.bounceClick
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -203,7 +203,7 @@ fun SupportComposable(activity : SupportActivity) {
                 item {
                     FilledTonalButton(
                         onClick = {
-                            Utils.openUrl(
+                            IntentUtils.openUrl(
                                 context , "https://direct-link.net/548212/agOqI7123501341"
                             )
                         } ,
