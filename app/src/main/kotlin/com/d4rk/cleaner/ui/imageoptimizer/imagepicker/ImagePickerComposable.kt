@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -39,6 +40,16 @@ fun ImagePickerComposable(
     val dataStore = DataStore.getInstance(context)
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     val adsState = dataStore.ads.collectAsState(initial = true)
+
+    LaunchedEffect(key1 = viewModel.selectedImageUri) {
+        viewModel.selectedImageUri?.let { uri ->
+            val intent = Intent(context, ImageOptimizerActivity::class.java)
+            intent.putExtra("selectedImageUri", uri.toString())
+            activity.startActivity(intent)
+            viewModel.setSelectedImageUri(null)
+        }
+    }
+
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
         LargeTopAppBar(
             title = { Text(stringResource(R.string.image_optimizer)) },
@@ -92,12 +103,5 @@ fun ImagePickerComposable(
                 dataStore = dataStore
             )
         }
-    }
-
-    viewModel.selectedImageUri?.let { uri ->
-        val intent = Intent(context, ImageOptimizerActivity::class.java)
-        intent.putExtra("imageUri", uri.toString())
-        activity.startActivity(intent)
-        viewModel.setSelectedImageUri(null)
     }
 }
