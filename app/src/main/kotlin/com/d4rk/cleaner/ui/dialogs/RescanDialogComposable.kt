@@ -5,6 +5,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import com.d4rk.cleaner.R
 
 
 @Composable
@@ -14,8 +15,8 @@ fun RescanAlertDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Rescan?") },
-        text = { Text("Are you sure you want to scan again?") },
+        title = { Text(stringResource(id = R.string.rescan_title)) },
+        text = { Text(stringResource(id = R.string.rescan_message)) },
         confirmButton = {
             TextButton(onClick = onYes) {
                 Text(stringResource(android.R.string.ok))

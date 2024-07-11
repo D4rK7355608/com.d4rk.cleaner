@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.ui.viewmodel
+package com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

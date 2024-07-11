@@ -43,10 +43,7 @@ fun CleaningSettingsComposable(activity: CleaningSettingsActivity) {
     val deleteAudioFiles by dataStore.deleteAudioFiles.collectAsState(initial = false)
     val deleteVideoFiles by dataStore.deleteVideoFiles.collectAsState(initial = false)
     val deleteImageFiles by dataStore.deleteImageFiles.collectAsState(initial = false)
-    val doubleChecker by dataStore.doubleChecker.collectAsState(initial = false)
     val clipboardClean by dataStore.clipboardClean.collectAsState(initial = false)
-    val oneClickClean by dataStore.oneClickClean.collectAsState(initial = false)
-    val dailyCleaner by dataStore.dailyCleaner.collectAsState(initial = false)
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.cleaning)) }, navigationIcon = {
             IconButton(onClick = {
@@ -110,10 +107,10 @@ fun CleaningSettingsComposable(activity: CleaningSettingsActivity) {
             }
 
             item {
-                PreferenceCategoryItem(title = "Media")
+                PreferenceCategoryItem(title = stringResource(R.string.media))
                 SwitchPreferenceItem(
-                    title = "Delete audio",
-                    summary = "Delete the audio files from the device",
+                    title = stringResource(R.string.delete_audio),
+                    summary = stringResource(R.string.summary_preference_settings_delete_audio),
                     checked = deleteAudioFiles,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
@@ -121,8 +118,8 @@ fun CleaningSettingsComposable(activity: CleaningSettingsActivity) {
                     }
                 }
                 SwitchPreferenceItem(
-                    title = "Delete video",
-                    summary = "Delete the video files from the device",
+                    title = stringResource(R.string.delete_video),
+                    summary = stringResource(R.string.summary_preference_settings_delete_video),
                     checked = deleteVideoFiles,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
@@ -130,8 +127,8 @@ fun CleaningSettingsComposable(activity: CleaningSettingsActivity) {
                     }
                 }
                 SwitchPreferenceItem(
-                    title = "Delete images",
-                    summary = "Delete the image files from the device",
+                    title = stringResource(R.string.delete_images),
+                    summary = stringResource(R.string.summary_preference_settings_delete_images),
                     checked = deleteImageFiles,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
@@ -152,43 +149,11 @@ fun CleaningSettingsComposable(activity: CleaningSettingsActivity) {
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.scanner))
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.double_checker),
-                    summary = stringResource(R.string.summary_preference_settings_double_checker),
-                    checked = doubleChecker,
-                ) { isChecked ->
-                    CoroutineScope(Dispatchers.IO).launch {
-                        dataStore.saveDoubleChecker(isChecked)
-                    }
-                }
-                SwitchPreferenceItem(
                     title = stringResource(R.string.clipboard_clean),
                     checked = clipboardClean,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveClipboardClean(isChecked)
-                    }
-                }
-                SwitchPreferenceItem(
-                    title = stringResource(R.string.one_click_clean),
-                    summary = stringResource(R.string.summary_preference_settings_one_click_clean),
-                    checked = oneClickClean,
-                ) { isChecked ->
-                    CoroutineScope(Dispatchers.IO).launch {
-                        dataStore.saveOneClickClean(isChecked)
-                    }
-                }
-                SwitchPreferenceItem(
-                    title = stringResource(R.string.daily_clean),
-                    summary = stringResource(R.string.summary_preference_settings_daily_clean),
-                    checked = dailyCleaner,
-                ) { isChecked ->
-                    CoroutineScope(Dispatchers.IO).launch {
-                        dataStore.saveDailyCleaner(isChecked)
-                        if (isChecked) {
-                            //    CleanReceiver.scheduleAlarm(context.applicationContext)
-                        } else {
-                            //  CleanReceiver.cancelAlarm(context.applicationContext)
-                        }
                     }
                 }
             }

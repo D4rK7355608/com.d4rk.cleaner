@@ -29,7 +29,6 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowLeft
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.outlined.Android
 import androidx.compose.material.icons.outlined.Apps
 import androidx.compose.material.icons.outlined.ArrowDropDown
@@ -37,6 +36,7 @@ import androidx.compose.material.icons.outlined.Download
 import androidx.compose.material.icons.outlined.FolderOpen
 import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material.icons.outlined.MusicNote
+import androidx.compose.material.icons.outlined.SnippetFolder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -67,21 +67,12 @@ import com.d4rk.cleaner.data.model.ui.memorymanager.RamInfo
 import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
 import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.cleaning.FileUtils.formatSize
-import com.d4rk.cleaner.utils.compose.components.StorageProgressBar
 import com.d4rk.cleaner.utils.compose.bounceClick
+import com.d4rk.cleaner.utils.compose.components.StorageProgressBar
 import kotlinx.coroutines.delay
 import kotlin.math.absoluteValue
 import kotlin.math.min
 
-val StorageIcons = mapOf(
-    "Installed Apps" to Icons.Outlined.Apps ,
-    "System" to Icons.Outlined.Android ,
-    "Music" to Icons.Outlined.MusicNote ,
-    "Images" to Icons.Outlined.Image ,
-    "Documents" to Icons.Outlined.FolderOpen ,
-    "Downloads" to Icons.Outlined.Download ,
-    "Other Files" to Icons.Outlined.FolderOpen
-)
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -119,9 +110,9 @@ fun MemoryManagerComposable() {
     if (isLoading) {
         Box(
             modifier = Modifier
-                    .fillMaxSize()
-                    .animateContentSize()
-                    .alpha(progressAlpha) ,
+                .fillMaxSize()
+                .animateContentSize()
+                .alpha(progressAlpha) ,
             contentAlignment = Alignment.Center
         ) {
             CircularProgressIndicator()
@@ -130,8 +121,8 @@ fun MemoryManagerComposable() {
     else {
         Column(
             modifier = Modifier
-                    .fillMaxSize()
-                    .alpha(contentAlpha)
+                .fillMaxSize()
+                .alpha(contentAlpha)
         ) {
             CarouselLayout(
                 items = listOf(storageInfo, ramInfo),
@@ -157,9 +148,9 @@ fun MemoryManagerComposable() {
 
             Row(
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .animateContentSize()
-                        .padding(horizontal = 16.dp) ,
+                    .fillMaxWidth()
+                    .animateContentSize()
+                    .padding(horizontal = 16.dp) ,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
@@ -211,41 +202,50 @@ fun <T> CarouselLayout(
         val alpha = lerp(start = 0.5f , stop = 1f , fraction = 1f - pageOffset.coerceIn(0f , 1f))
 
         Card(modifier = Modifier
-                .fillMaxWidth()
-                .graphicsLayer {
-                    scaleX = scale
-                    scaleY = scale
-                    this.alpha = alpha
-                }) {
+            .fillMaxWidth()
+            .graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+                this.alpha = alpha
+            }) {
             itemContent(items[page])
         }
     }
 }
 
 @Composable
-fun StorageInfoCard(storageInfo : StorageInfo) {
+fun StorageInfoCard(storageInfo: StorageInfo) {
     Column(
         modifier = Modifier
-                .padding(16.dp)
-                .animateContentSize()
+            .padding(16.dp)
+            .animateContentSize()
     ) {
         Text(
-            text = "Storage Information" ,
-            style = MaterialTheme.typography.headlineSmall ,
+            text = stringResource(id = R.string.storage_information),
+            style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.height(8.dp))
         LinearProgressIndicator(
-            progress = { storageInfo.usedStorage.toFloat() / storageInfo.totalStorage.toFloat() } ,
+            progress = { storageInfo.usedStorage.toFloat() / storageInfo.totalStorage.toFloat() },
             modifier = Modifier
-                    .fillMaxWidth()
-                    .height(8.dp) ,
-            color = MaterialTheme.colorScheme.primary ,
+                .fillMaxWidth()
+                .height(8.dp),
+            color = MaterialTheme.colorScheme.primary,
         )
         Spacer(modifier = Modifier.height(8.dp))
-        StorageInfoText(label = "Used:" , size = storageInfo.usedStorage)
-        StorageInfoText(label = "Free:" , size = storageInfo.freeStorage)
-        StorageInfoText(label = "Total:" , size = storageInfo.totalStorage)
+        StorageInfoText(
+            label = stringResource(id = R.string.used),
+            size = storageInfo.usedStorage
+        )
+        StorageInfoText(
+            label = stringResource(id = R.string.free),
+            size = storageInfo.freeStorage
+        )
+        StorageInfoText(
+            label = stringResource(id = R.string.total),
+            size = storageInfo.totalStorage
+        )
     }
 }
 
@@ -256,15 +256,15 @@ fun StorageBreakdownGrid(storageBreakdown : Map<String , Long>) {
 
     LazyColumn(
         modifier = Modifier
-                .fillMaxWidth()
-                .animateContentSize()
-                .padding(horizontal = 16.dp)
+            .fillMaxWidth()
+            .animateContentSize()
+            .padding(horizontal = 16.dp)
     ) {
         items((items.size + chunkSize - 1) / chunkSize) { rowIndex ->
             Row(
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .animateContentSize()
+                    .fillMaxWidth()
+                    .animateContentSize()
             ) {
                 for (columnIndex in 0 until min(chunkSize , items.size - rowIndex * chunkSize)) {
                     val index = rowIndex * chunkSize + columnIndex
@@ -278,16 +278,25 @@ fun StorageBreakdownGrid(storageBreakdown : Map<String , Long>) {
 
 @Composable
 fun StorageBreakdownItem(icon : String , size : Long , modifier : Modifier = Modifier) {
+    val storageIcons = mapOf(
+        stringResource(id = R.string.installed_apps) to Icons.Outlined.Apps,
+        stringResource(id = R.string.system) to Icons.Outlined.Android,
+        stringResource(id = R.string.music) to Icons.Outlined.MusicNote,
+        stringResource(id = R.string.images) to Icons.Outlined.Image,
+        stringResource(id = R.string.documents) to Icons.Outlined.FolderOpen,
+        stringResource(id = R.string.downloads) to Icons.Outlined.Download,
+        stringResource(id = R.string.other_files) to Icons.Outlined.FolderOpen,
+    )
     Card(
         modifier = modifier
-                .padding(vertical = 4.dp , horizontal = 4.dp)
-                .animateContentSize()
+            .padding(vertical = 4.dp, horizontal = 4.dp)
+            .animateContentSize()
     ) {
         Row(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize()
-                    .padding(16.dp) ,
+                .fillMaxWidth()
+                .animateContentSize()
+                .padding(16.dp) ,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Card(
@@ -296,7 +305,7 @@ fun StorageBreakdownItem(icon : String , size : Long , modifier : Modifier = Mod
             ) {
                 Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
                     Icon(
-                        imageVector = StorageIcons[icon] ?: Icons.Filled.Info ,
+                        imageVector = storageIcons[icon] ?: Icons.Outlined.SnippetFolder ,
                         contentDescription = icon ,
                         tint = MaterialTheme.colorScheme.onPrimaryContainer
                     )
@@ -324,25 +333,25 @@ fun StorageInfoText(label : String , size : Long) {
 
 
 @Composable
-fun RamInfoCard(ramInfo : RamInfo) {
+fun RamInfoCard(ramInfo: RamInfo) {
     Column(modifier = Modifier.padding(16.dp)) {
         Text(
-            "RAM Information" ,
-            style = MaterialTheme.typography.headlineSmall ,
+            text = stringResource(id = R.string.ram_information),
+            style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.height(8.dp))
         StorageProgressBar(
             StorageInfo(
-                totalStorage = ramInfo.totalRam ,
-                usedStorage = ramInfo.usedRam ,
+                totalStorage = ramInfo.totalRam,
+                usedStorage = ramInfo.usedRam,
                 freeStorage = ramInfo.availableRam
             )
         )
         Spacer(modifier = Modifier.height(8.dp))
-        StorageInfoText(label = "Used RAM:" , size = ramInfo.usedRam)
-        StorageInfoText(label = "Free RAM:" , size = ramInfo.availableRam)
-        StorageInfoText(label = "Total RAM:" , size = ramInfo.totalRam)
+        StorageInfoText(label = stringResource(id = R.string.used_ram), size = ramInfo.usedRam)
+        StorageInfoText(label = stringResource(id = R.string.free_ram), size = ramInfo.availableRam)
+        StorageInfoText(label = stringResource(id = R.string.total_ram), size = ramInfo.totalRam)
     }
 }
 
@@ -357,8 +366,8 @@ fun DotsIndicator(
 ) {
     LazyRow(
         modifier = modifier
-                .wrapContentWidth()
-                .wrapContentHeight()
+            .wrapContentWidth()
+            .wrapContentHeight()
     ) {
         items(totalDots) { index ->
             IndicatorDot(
@@ -381,8 +390,8 @@ fun IndicatorDot(
 ) {
     Box(
         modifier = modifier
-                .size(size)
-                .clip(CircleShape)
-                .background(color)
+            .size(size)
+            .clip(CircleShape)
+            .background(color)
     )
 }

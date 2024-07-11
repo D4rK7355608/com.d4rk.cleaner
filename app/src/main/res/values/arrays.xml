@@ -344,6 +344,7 @@
         <item>@string/spanish</item>
         <item>@string/turkish</item>
         <item>@string/ukrainian</item>
+        <item>@string/traditional_chinese</item>
     </string-array>
     <string-array name="preference_language_values">
         <item>bg</item>
@@ -361,6 +362,7 @@
         <item>es</item>
         <item>tr</item>
         <item>uk</item>
+        <item>zh-rTW</item>
     </string-array>
     <string-array name="file_sizes">
         <item>200</item>

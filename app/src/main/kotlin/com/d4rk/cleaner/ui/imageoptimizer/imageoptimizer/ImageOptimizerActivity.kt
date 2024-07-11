@@ -19,7 +19,6 @@ import com.d4rk.cleaner.databinding.ActivityImageOptimizerBinding
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.tabs.FileSizeFragment
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.tabs.ManualModeFragment
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.tabs.QuickCompressFragment
-import com.d4rk.cleaner.ui.viewmodel.ImageOptimizerViewModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar

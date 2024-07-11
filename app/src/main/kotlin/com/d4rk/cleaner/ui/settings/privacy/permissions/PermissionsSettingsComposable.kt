@@ -84,11 +84,7 @@ fun PermissionsSettingsComposable(activity: PermissionsSettingsActivity) {
                     summary = stringResource(R.string.summary_preference_permissions_foreground_service),
                 )
                 PreferenceItem(
-                    title = stringResource(R.string.receive_boot_completed),
-                    summary = stringResource(R.string.summary_preference_permissions_receive_boot_completed),
-                )
-                PreferenceItem(
-                    title = stringResource(R.string.summary_preference_permissions_request_delete_packages),
+                    title = stringResource(R.string.request_delete_packages),
                     summary = stringResource(R.string.summary_preference_permissions_request_delete_packages),
                 )
             }

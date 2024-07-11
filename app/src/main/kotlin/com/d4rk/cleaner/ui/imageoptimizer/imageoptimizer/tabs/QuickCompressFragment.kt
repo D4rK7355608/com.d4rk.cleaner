@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.databinding.FragmentQuickCompressBinding
-import com.d4rk.cleaner.ui.viewmodel.ImageOptimizerViewModel
+import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.ImageOptimizerViewModel
 
 class QuickCompressFragment : Fragment() {
     private lateinit var binding: FragmentQuickCompressBinding

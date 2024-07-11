@@ -21,7 +21,6 @@ free and open-source software!
 
 # Features
 
-- Automatic daily cleaning
 - App management
 - Image optimization
 - Clean empty folders

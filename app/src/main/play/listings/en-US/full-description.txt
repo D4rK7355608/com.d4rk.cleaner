@@ -7,7 +7,6 @@ It includes a variety of other features to help you keep your phone clean and ru
 Our app is designed to be simple and easy to use, while also being fast and lightweight. Plus, it's free and open-source software!
 
 Features
-• Automatic daily cleaning
 • App management
 • Image optimization
 • Clean empty folders

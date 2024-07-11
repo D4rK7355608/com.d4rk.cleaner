@@ -59,6 +59,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.asFlow
@@ -198,7 +199,7 @@ fun HomeComposable() {
                             contentDescription = null,
                             modifier = Modifier.size(ButtonDefaults.IconSize)
                         )
-                        Text(text = "Clean", style = MaterialTheme.typography.bodyMedium)
+                        Text(text = stringResource(R.string.clean), style = MaterialTheme.typography.bodyMedium)
                     }
                 }
             }
@@ -224,7 +225,7 @@ fun HomeComposable() {
                         contentDescription = null,
                         modifier = Modifier.size(ButtonDefaults.IconSize)
                     )
-                    Text(text = "Analyze", style = MaterialTheme.typography.bodyMedium)
+                    Text(text = stringResource(R.string.analyze), style = MaterialTheme.typography.bodyMedium)
                 }
             }
         }
@@ -291,9 +292,9 @@ fun AnalyzeComposable(launchScanningKey: MutableState<Boolean>, imageLoader: Ima
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             val statusText = if (selectedFileCount > 0) {
-                "Status: Selected $selectedFileCount files"
+                stringResource(id = R.string.status_selected_files, selectedFileCount)
             } else {
-                "Status: No files selected"
+                stringResource(id = R.string.status_no_files_selected)
             }
             val statusColor by animateColorAsState(
                 targetValue = if (selectedFileCount > 0) {
@@ -432,7 +433,7 @@ fun SelectAllComposable(
             onClick = {
                 onCheckedChange(!checked)
             },
-            label = { Text("Select All") },
+            label = { Text(stringResource(id = R.string.select_all)) },
             leadingIcon = {
                 AnimatedContent(targetState = checked, label = "") { targetChecked ->
                     if (targetChecked) {

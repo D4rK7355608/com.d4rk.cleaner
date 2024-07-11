@@ -76,7 +76,11 @@ fun AppManagerComposable() {
         factory = AppManagerViewModelFactory(LocalContext.current.applicationContext as Application)
     )
     val context = LocalContext.current
-    val tabs = listOf("Installed Apps", "System Apps", "App Install Files")
+    val tabs = listOf(
+        stringResource(id = R.string.installed_apps),
+        stringResource(id = R.string.system_apps),
+        stringResource(id = R.string.app_install_files)
+    )
     val pagerState = rememberPagerState(pageCount = { tabs.size })
     val coroutineScope = rememberCoroutineScope()
     val isLoading by viewModel.isLoading.collectAsState()
@@ -353,7 +357,7 @@ fun ApkItemComposable(apkPath: String) {
                         context.startActivity(Intent.createChooser(shareIntent, "Share APK"))
                     })
 
-                    DropdownMenuItem(text = { Text("Install") }, onClick = {
+                    DropdownMenuItem(text = { Text(stringResource(id = R.string.installed)) }, onClick = {
                         val installIntent = Intent(Intent.ACTION_VIEW)
                         installIntent.setDataAndType(
                             Uri.fromFile(apkFile),

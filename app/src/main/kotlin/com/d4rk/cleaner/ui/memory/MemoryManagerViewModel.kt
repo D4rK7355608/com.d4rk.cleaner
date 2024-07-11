@@ -8,6 +8,7 @@ import android.os.StatFs
 import android.os.storage.StorageManager
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.memorymanager.InternalStorageInfo
 import com.d4rk.cleaner.data.model.ui.memorymanager.RamInfo
 import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
@@ -118,23 +119,23 @@ class MemoryManagerViewModel : ViewModel() {
      * @param context The application context.
      * @return A map containing storage usage by category (e.g., "Installed Apps", "Music", etc.).
      */
-    private fun getStorageBreakdown(context : Context) : Map<String , Long> {
-        val breakdown = mutableMapOf<String , Long>()
+    private fun getStorageBreakdown(context: Context): Map<String, Long> {
+        val breakdown = mutableMapOf<String, Long>()
         val externalStoragePath = Environment.getExternalStorageDirectory().absolutePath
 
-        breakdown["Installed Apps"] = getInstalledAppsSize(context)
-        breakdown["System"] = getDirectorySize(Environment.getRootDirectory())
-        breakdown["Music"] = getDirectorySize(File(externalStoragePath , "Music"))
-        breakdown["Images"] =
-                getDirectorySize(File(externalStoragePath , "DCIM")) + getDirectorySize(
-                    File(
-                        externalStoragePath ,
-                        "Pictures"
-                    )
+        breakdown[context.getString(R.string.installed_apps)] = getInstalledAppsSize(context)
+        breakdown[context.getString(R.string.system)] = getDirectorySize(Environment.getRootDirectory())
+        breakdown[context.getString(R.string.music)] = getDirectorySize(File(externalStoragePath, "Music"))
+        breakdown[context.getString(R.string.images)] =
+            getDirectorySize(File(externalStoragePath, "DCIM")) + getDirectorySize(
+                File(
+                    externalStoragePath,
+                    "Pictures"
                 )
-        breakdown["Documents"] = getDirectorySize(File(externalStoragePath , "Documents"))
-        breakdown["Downloads"] = getDirectorySize(File(externalStoragePath , "Download"))
-        breakdown["Other Files"] = getOtherFilesSize(breakdown)
+            )
+        breakdown[context.getString(R.string.documents)] = getDirectorySize(File(externalStoragePath, "Documents"))
+        breakdown[context.getString(R.string.downloads)] = getDirectorySize(File(externalStoragePath, "Download"))
+        breakdown[context.getString(R.string.other_files)] = getOtherFilesSize(breakdown)
 
         return breakdown
     }

@@ -165,7 +165,7 @@ fun MainComposable() {
                     }
                 }) {
                     Icon(
-                        imageVector = Icons.Default.Menu, contentDescription = "Menu"
+                        imageVector = Icons.Default.Menu, contentDescription = stringResource(id = R.string.navigation_drawer_open)
                     )
                 }
             }, actions = {
@@ -174,7 +174,7 @@ fun MainComposable() {
                 }) {
                     Icon(
                         Icons.Outlined.VolunteerActivism,
-                        contentDescription = "Support"
+                        contentDescription = stringResource(id = R.string.support_us)
                     )
                 }
             })
