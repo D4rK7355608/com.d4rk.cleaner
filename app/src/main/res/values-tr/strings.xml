@@ -83,7 +83,7 @@
 <string name="running_cycle">Çalışma Döngüsü %1$d/%2$d</string>
 <string name="finished_cycle">Tamamlanan Döngü %1$d/%2$d</string>
 <string name="analyze">Analiz Et</string>
-<string name="status">Durum: Boşta...</string>
+<string name="status">Durum: Boşta…</string>
 <string name="status_running">Durum: Çalışıyor</string>
 <string name="found">Bulundu: </string>
 <string name="freed">Boşaltıldı: </string>

@@ -1,7 +1,5 @@
 package com.d4rk.cleaner.ui.startup
 
-import android.Manifest
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -11,15 +9,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.d4rk.cleaner.ui.settings.display.theme.style.AppTheme
-import com.d4rk.cleaner.utils.PermissionsUtils
 import com.google.android.ump.ConsentForm
 import com.google.android.ump.ConsentInformation
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class StartupActivity : AppCompatActivity() {
     private lateinit var consentInformation : ConsentInformation
     private lateinit var consentForm : ConsentForm
+    val consentFormShown = MutableStateFlow(false)
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,7 +27,7 @@ class StartupActivity : AppCompatActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    StartupComposable()
+                    StartupComposable(this@StartupActivity)
                 }
             }
         }
@@ -39,9 +38,6 @@ class StartupActivity : AppCompatActivity() {
                 loadForm()
             }
         } , {})
-        if (!PermissionsUtils.hasNotificationPermission(this)) {
-            PermissionsUtils.requestNotificationPermission(this)
-        }
     }
 
     /**
@@ -59,6 +55,7 @@ class StartupActivity : AppCompatActivity() {
         UserMessagingPlatform.loadConsentForm(this , { consentForm ->
             this.consentForm = consentForm
             if (consentInformation.consentStatus == ConsentInformation.ConsentStatus.REQUIRED) {
+                consentFormShown.value = true
                 consentForm.show(this) {
                     loadForm()
                 }

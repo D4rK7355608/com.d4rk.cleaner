@@ -33,7 +33,7 @@ fun VersionInfoDialog(onDismiss: () -> Unit) {
 @Composable
 fun VersionInfoContent() {
     val context = LocalContext.current
-    val appName = context.getString(R.string.app_name)
+    val appName = context.getString(R.string.app_full_name)
     val versionName = BuildConfig.VERSION_NAME
     val versionString =
         stringResource(R.string.version, versionName)

@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">Cleaner</string>
     <string name="app_full_name" translatable="false">Cleaner for Android</string>
-    <string name="main_progress_0" translatable="false">0%</string>
-    <string name="ram_usage_percentage" translatable="false">%.0f%%</string>
-    <string name="memory_used_mb" translatable="false">%d MB/</string>
     <string name="image_compressor_percentage_format" translatable="false">%d%%</string>
     <string name="feedback_for" translatable="false">Feedback for </string>
     <string name="dear_developer" translatable="false">Dear developer, </string>
@@ -23,7 +20,6 @@
     <string name="spanish" translatable="false">Español</string>
     <string name="turkish" translatable="false">Türkçe</string>
     <string name="ukrainian" translatable="false">Українська</string>
-    <string name="app_version" translatable="false">%1$s (%2$s)</string>
     <string name="copyright" translatable="false">Copyright ©2020-2024, D4rK</string>
     <string name="arch" translatable="false">Arch:</string>
     <string name="app_build" translatable="false">%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
