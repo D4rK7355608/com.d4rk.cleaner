@@ -10,13 +10,13 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LargeTopAppBar
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -24,15 +24,16 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -140,8 +141,10 @@ fun ImageOptimizerComposable(activity: ImageOptimizerActivity, viewModel: ImageO
                 }
             }
 
-            Button(
-                onClick = { /* Handle Compress button click */ },
+            OutlinedButton(
+                onClick = {
+
+                },
                 modifier = Modifier
                     .constrainAs(compressButton) {
                         start.linkTo(parent.start)
@@ -173,25 +176,33 @@ fun ImageOptimizerComposable(activity: ImageOptimizerActivity, viewModel: ImageO
 
 @Composable
 fun ImageDisplay(viewModel: ImageOptimizerViewModel) {
-    val state by viewModel.uiState.collectAsState()
+    val state = viewModel.uiState.collectAsState()
+    val showCompressedImage = remember { mutableStateOf(false) }
+
+    LaunchedEffect(key1 = state.value.compressedImageUri) {
+        if (state.value.compressedImageUri != null) {
+            showCompressedImage.value = true
+        }
+    }
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .aspectRatio(1f),
         contentAlignment = Alignment.Center
     ) {
-        if (state.isLoading) {
+        if (state.value.isLoading) {
             CircularProgressIndicator()
         } else {
-            state.compressedImageUri?.let { imageUri ->
-                AsyncImage(
-                    model = imageUri,
-                    contentDescription = "Selected Image",
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop,
-                    placeholder = painterResource(id = R.drawable.ic_image),
-                    error = painterResource(id = R.drawable.ic_image)
-                )
+            if (showCompressedImage.value) {
+                state.value.compressedImageUri?.let { imageUri ->
+                    AsyncImage(
+                        model = imageUri,
+                        contentDescription = "Selected Image",
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop,
+                    )
+                }
             }
         }
     }

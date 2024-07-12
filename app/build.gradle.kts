@@ -14,7 +14,7 @@ android {
         applicationId = "com.d4rk.cleaner"
         minSdk = 26
         targetSdk = 34
-        versionCode = 93
+        versionCode = 94
         versionName = "2.0.0"
         archivesName = "${applicationId}-v${versionName}"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -151,10 +151,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-
-
-    // TODO: Clean-up
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.gridlayout:gridlayout:1.0.0")
 }

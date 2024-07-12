@@ -8,7 +8,6 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.provider.OpenableColumns
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.data.model.ui.imageoptimizer.ImageOptimizerState
 import id.zelory.compressor.Compressor
@@ -26,16 +25,10 @@ import java.io.FileOutputStream
 
 class ImageOptimizerViewModel(application: Application) : AndroidViewModel(application) {
 
-    val _uiState = MutableStateFlow(ImageOptimizerState())
+    private val _uiState = MutableStateFlow(ImageOptimizerState())
     val uiState = _uiState.asStateFlow()
-    private val compressionLevelLiveData = MutableLiveData<Int>()
 
     private fun getAppContext(): Context = getApplication<Application>().applicationContext
-
-
-    fun setCompressionLevel(compressionLevel: Int) {
-        compressionLevelLiveData.value = compressionLevel
-    }
 
     suspend fun setQuickCompressValue(value: Int) {
         _uiState.emit(_uiState.value.copy(quickCompressValue = value))
@@ -64,19 +57,16 @@ class ImageOptimizerViewModel(application: Application) : AndroidViewModel(appli
 
     }
 
-
     private fun compressImage() = viewModelScope.launch {
         _uiState.emit(_uiState.value.copy(isLoading = true))
         val context = getAppContext()
         val originalFile = _uiState.value.selectedImageUri?.let { getRealFileFromUri(context, it) }
-
-        // Fetch the current tab index BEFORE the suspension point
-        val currentTab = _uiState.value.currentTab // Access _uiState.value here
+        val currentTab = _uiState.value.currentTab
         val compressedFile = originalFile?.let { file ->
             withContext(Dispatchers.IO) {
                 try {
                     Compressor.compress(context, file) {
-                        when (currentTab) {  // Use the fetched currentTab value
+                        when (currentTab) {
                             0 -> {
                                 quality(_uiState.value.quickCompressValue)
                                 format(Bitmap.CompressFormat.JPEG)
@@ -106,12 +96,11 @@ class ImageOptimizerViewModel(application: Application) : AndroidViewModel(appli
             _uiState.value.copy(
                 isLoading = false,
                 compressedImageUri = compressedFile?.let { Uri.fromFile(it) }
-                    ?: _uiState.value.selectedImageUri
+                    ?: _uiState.value.selectedImageUri,
             )
         )
     }
 
-    // Now a member function of the ViewModel
     private fun getRealFileFromUri(context: Context, uri: Uri): File? {
         if (uri.scheme == "content") {
             val cursor: Cursor? = context.contentResolver.query(uri, null, null, null, null)

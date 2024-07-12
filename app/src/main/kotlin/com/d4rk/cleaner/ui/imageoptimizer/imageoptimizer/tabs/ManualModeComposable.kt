@@ -85,10 +85,16 @@ fun ManualModeScreen(viewModel: ImageOptimizerViewModel) {
 
         Spacer(modifier = Modifier.height(4.dp))
 
-        Row(modifier = Modifier.fillMaxWidth(),
+        Row(
+            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = stringResource(R.string.image_compressor_percentage_format, qualityValue.toInt()))
+            Text(
+                text = stringResource(
+                    R.string.image_compressor_percentage_format,
+                    qualityValue.toInt()
+                )
+            )
             Slider(
                 value = qualityValue,
                 onValueChange = { newValue ->
@@ -101,7 +107,6 @@ fun ManualModeScreen(viewModel: ImageOptimizerViewModel) {
                         )
                     }
                 },
-                // ... rest of the Slider parameters ...
             )
         }
     }

@@ -11,5 +11,5 @@ data class ImageOptimizerState(
     val manualWidth: Int = 0,
     val manualHeight: Int = 0,
     val manualQuality: Int = 50,
-    val currentTab: Int = 0
+    val currentTab: Int = 0,
 )
