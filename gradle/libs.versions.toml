@@ -1,5 +1,5 @@
 [versions]
-agp = "8.5.0"
+agp = "8.5.1"
 appcompat = "1.7.0"
 appUpdateKtx = "2.1.0"
 billing = "7.0.0"
@@ -13,7 +13,7 @@ firebaseBom = "32.8.1"
 glide = "4.16.0"
 lifecycle = "2.8.3"
 volley = "1.2.1"
-kotlin = "1.9.23"
+kotlin = "2.0.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -90,3 +90,4 @@ jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "k
 googlePlayServices = { id = "com.google.gms.google-services", version.ref = "google-services" }
 googleOssServices = { id = "com.google.android.gms.oss-licenses-plugin", version.ref = "google-oss-services" }
 googleFirebase = { id = "com.google.firebase.crashlytics", version.ref = "google-firebase-crashlytics" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

@@ -47,7 +47,7 @@ class AppManagerViewModel(private val application: Application) : ViewModel() {
     }
 
     private fun loadInstalledApps() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _installedApps.value = getInstalledApps()
         }
     }
@@ -59,7 +59,7 @@ class AppManagerViewModel(private val application: Application) : ViewModel() {
     }
 
     private fun loadApkFiles() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _apkFiles.value = getApkFilesFromStorage()
         }
     }

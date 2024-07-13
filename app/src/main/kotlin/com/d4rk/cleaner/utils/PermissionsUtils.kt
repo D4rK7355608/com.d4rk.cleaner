@@ -12,14 +12,12 @@ import android.os.Environment
 import android.provider.Settings
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.d4rk.cleaner.constants.permissions.PermissionsConstants
 
 /**
  * Utility class for handling runtime permissions.
  */
 object PermissionsUtils {
-
-    const val REQUEST_CODE_STORAGE_PERMISSIONS = 1
-    const val REQUEST_CODE_NOTIFICATION_PERMISSION = 2
 
     /**
      * Checks if the app has all necessary storage permissions.
@@ -114,7 +112,7 @@ object PermissionsUtils {
         ActivityCompat.requestPermissions(
             activity,
             requiredPermissions.toTypedArray(),
-            REQUEST_CODE_STORAGE_PERMISSIONS
+            PermissionsConstants.REQUEST_CODE_STORAGE_PERMISSIONS
         )
     }
 
@@ -166,7 +164,7 @@ object PermissionsUtils {
             ActivityCompat.requestPermissions(
                 activity,
                 arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                REQUEST_CODE_NOTIFICATION_PERMISSION
+                PermissionsConstants.REQUEST_CODE_NOTIFICATION_PERMISSION
             )
         }
     }
