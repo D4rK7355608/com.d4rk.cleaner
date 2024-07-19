@@ -18,12 +18,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AppManagerViewModel(private val application: Application) : ViewModel() {
+class AppManagerViewModel(private val application : Application) : ViewModel() {
     private val _installedApps = MutableStateFlow<List<ApplicationInfo>>(emptyList())
-    val installedApps: StateFlow<List<ApplicationInfo>> = _installedApps.asStateFlow()
+    val installedApps : StateFlow<List<ApplicationInfo>> = _installedApps.asStateFlow()
 
     private val _apkFiles = MutableStateFlow<List<ApkInfo>>(emptyList())
-    val apkFiles: StateFlow<List<ApkInfo>> = _apkFiles.asStateFlow()
+    val apkFiles : StateFlow<List<ApkInfo>> = _apkFiles.asStateFlow()
 
     private val _isLoading = MutableStateFlow(true)
     val isLoading : StateFlow<Boolean> = _isLoading.asStateFlow()
@@ -32,14 +32,13 @@ class AppManagerViewModel(private val application: Application) : ViewModel() {
         loadAppData()
     }
 
-    private fun loadAppData() {
+    fun loadAppData() {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                awaitAll(
-                    async { loadInstalledApps() },
-                    async { loadApkFiles() }
-                )
+                _installedApps.value = emptyList()
+                _apkFiles.value = emptyList()
+                awaitAll(async { loadInstalledApps() } , async { loadApkFiles() })
             } finally {
                 _isLoading.value = false
             }
@@ -52,7 +51,7 @@ class AppManagerViewModel(private val application: Application) : ViewModel() {
         }
     }
 
-    private suspend fun getInstalledApps(): List<ApplicationInfo> {
+    private suspend fun getInstalledApps() : List<ApplicationInfo> {
         return withContext(Dispatchers.IO) {
             application.packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
         }
@@ -64,19 +63,19 @@ class AppManagerViewModel(private val application: Application) : ViewModel() {
         }
     }
 
-    private suspend fun getApkFilesFromStorage(): List<ApkInfo> {
+    private suspend fun getApkFilesFromStorage() : List<ApkInfo> {
         return withContext(Dispatchers.IO) {
             val apkFiles = mutableListOf<ApkInfo>()
-            val uri: Uri = MediaStore.Files.getContentUri("external")
+            val uri : Uri = MediaStore.Files.getContentUri("external")
             val projection = arrayOf(
-                MediaStore.Files.FileColumns._ID,
-                MediaStore.Files.FileColumns.DATA,
+                MediaStore.Files.FileColumns._ID ,
+                MediaStore.Files.FileColumns.DATA ,
                 MediaStore.Files.FileColumns.SIZE
             )
             val selection = "${MediaStore.Files.FileColumns.MIME_TYPE} = ?"
             val selectionArgs = arrayOf("application/vnd.android.package-archive")
-            val cursor: Cursor? = application.contentResolver.query(
-                uri, projection, selection, selectionArgs, null
+            val cursor : Cursor? = application.contentResolver.query(
+                uri , projection , selection , selectionArgs , null
             )
 
             cursor?.use {
@@ -88,7 +87,7 @@ class AppManagerViewModel(private val application: Application) : ViewModel() {
                     val id = it.getLong(idColumn)
                     val path = it.getString(dataColumn)
                     val size = it.getLong(sizeColumn)
-                    apkFiles.add(ApkInfo(id, path, size))
+                    apkFiles.add(ApkInfo(id , path , size))
                 }
             }
             apkFiles

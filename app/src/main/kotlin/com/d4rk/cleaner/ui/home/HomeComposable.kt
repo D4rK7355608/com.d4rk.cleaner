@@ -315,7 +315,6 @@ fun AnalyzeComposable(launchScanningKey: MutableState<Boolean>, imageLoader: Ima
     }
 }
 
-
 @Composable
 fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
     val context = LocalContext.current

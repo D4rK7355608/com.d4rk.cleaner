@@ -31,6 +31,7 @@ import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -40,6 +41,8 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
+import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -54,6 +57,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.stringResource
@@ -69,89 +73,97 @@ import java.io.File
 /**
  * Composable function for managing and displaying different app categories.
  */
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class , ExperimentalMaterial3Api::class)
 @Composable
 fun AppManagerComposable() {
-    val viewModel: AppManagerViewModel = viewModel(
+    val viewModel : AppManagerViewModel = viewModel(
         factory = AppManagerViewModelFactory(LocalContext.current.applicationContext as Application)
     )
     val context = LocalContext.current
     val tabs = listOf(
-        stringResource(id = R.string.installed_apps),
-        stringResource(id = R.string.system_apps),
-        stringResource(id = R.string.app_install_files)
+        stringResource(id = R.string.installed_apps) ,
+        stringResource(id = R.string.system_apps) ,
+        stringResource(id = R.string.app_install_files) ,
     )
     val pagerState = rememberPagerState(pageCount = { tabs.size })
     val coroutineScope = rememberCoroutineScope()
     val isLoading by viewModel.isLoading.collectAsState()
-    val transition = updateTransition(targetState = ! isLoading, label = "LoadingTransition")
+    val state = rememberPullToRefreshState()
+    val transition = updateTransition(targetState = ! isLoading , label = "LoadingTransition")
 
     val contentAlpha by transition.animateFloat(label = "Content Alpha") {
         if (it) 1f else 0f
     }
 
     LaunchedEffect(context) {
-        if (!PermissionsUtils.hasStoragePermissions(context)) {
+        if (! PermissionsUtils.hasStoragePermissions(context)) {
             PermissionsUtils.requestStoragePermissions(context as Activity)
         }
     }
 
-    if (isLoading) {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            CircularProgressIndicator()
+    if (state.isRefreshing) {
+        LaunchedEffect(true) {
+            viewModel.loadAppData()
+            state.endRefresh()
         }
-    } else {
-        Column(
-            modifier = Modifier.alpha(contentAlpha),
-        ) {
-            TabRow(
-                selectedTabIndex = pagerState.currentPage,
-                indicator = { tabPositions ->
-                    TabRowDefaults.PrimaryIndicator(
-                        modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
-                        shape = RoundedCornerShape(
-                            topStart = 3.dp, topEnd = 3.dp, bottomEnd = 0.dp, bottomStart = 0.dp
-                        ),
-                    )
-                },
+    }
+
+    Box(Modifier.nestedScroll(state.nestedScrollConnection)) {
+        if (isLoading) {
+            Box(
+                modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center
             ) {
-                tabs.forEachIndexed { index, title ->
-                    Tab(
-                        text = {
+                CircularProgressIndicator()
+            }
+        }
+        else {
+            Column(
+                modifier = Modifier.alpha(contentAlpha) ,
+            ) {
+                TabRow(
+                    selectedTabIndex = pagerState.currentPage ,
+                    indicator = { tabPositions ->
+                        TabRowDefaults.PrimaryIndicator(
+                            modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]) ,
+                            shape = RoundedCornerShape(
+                                topStart = 3.dp ,
+                                topEnd = 3.dp ,
+                                bottomEnd = 0.dp ,
+                                bottomStart = 0.dp ,
+                            ) ,
+                        )
+                    } ,
+                ) {
+                    tabs.forEachIndexed { index , title ->
+                        Tab(text = {
                             Text(
-                                text = title,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
+                                text = title ,
+                                maxLines = 1 ,
+                                overflow = TextOverflow.Ellipsis ,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
-                        },
-                        selected = pagerState.currentPage == index,
-                        onClick = {
+                        } , selected = pagerState.currentPage == index , onClick = {
                             coroutineScope.launch {
                                 pagerState.animateScrollToPage(index)
                             }
-                        }
-                    )
+                        })
+                    }
                 }
-            }
 
-            HorizontalPager(
-                state = pagerState,
-            ) { page ->
-                when (page) {
-                    0 -> AppsComposable(
-                        apps = viewModel.installedApps.collectAsState().value.filter { it.flags and ApplicationInfo.FLAG_SYSTEM == 0 }
-                    )
-                    1 -> AppsComposable(
-                        apps = viewModel.installedApps.collectAsState().value.filter { it.flags and ApplicationInfo.FLAG_SYSTEM != 0 }
-                    )
-                    2 -> ApksComposable(apkFiles = viewModel.apkFiles.collectAsState().value)
+                HorizontalPager(
+                    state = pagerState ,
+                ) { page ->
+                    when (page) {
+                        0 -> AppsComposable(apps = viewModel.installedApps.collectAsState().value.filter { it.flags and ApplicationInfo.FLAG_SYSTEM == 0 })
+
+                        1 -> AppsComposable(apps = viewModel.installedApps.collectAsState().value.filter { it.flags and ApplicationInfo.FLAG_SYSTEM != 0 })
+
+                        2 -> ApksComposable(apkFiles = viewModel.apkFiles.collectAsState().value)
+                    }
                 }
             }
         }
+        PullToRefreshContainer(state = state , modifier = Modifier.align(Alignment.TopCenter))
     }
 }
 
@@ -161,7 +173,7 @@ fun AppManagerComposable() {
  * @param apps List of ApplicationInfo objects representing the apps to display.
  */
 @Composable
-fun AppsComposable(apps: List<ApplicationInfo>) {
+fun AppsComposable(apps : List<ApplicationInfo>) {
     LazyColumn {
         items(apps) { app ->
             AppItemComposable(app)
@@ -176,7 +188,7 @@ fun AppsComposable(apps: List<ApplicationInfo>) {
  */
 @Composable
 fun AppItemComposable(
-    app: ApplicationInfo
+    app : ApplicationInfo
 ) {
     val context = LocalContext.current
     val packageManager = context.packageManager
@@ -191,81 +203,85 @@ fun AppItemComposable(
         val drawable = app.loadIcon(packageManager)
         val bitmap = if (drawable is BitmapDrawable) {
             drawable.bitmap
-        } else {
+        }
+        else {
             val bitmap = Bitmap.createBitmap(
-                drawable.intrinsicWidth, drawable.intrinsicHeight, Bitmap.Config.ARGB_8888
+                drawable.intrinsicWidth , drawable.intrinsicHeight , Bitmap.Config.ARGB_8888
             )
             val canvas = Canvas(bitmap)
-            drawable.setBounds(0, 0, canvas.width, canvas.height)
+            drawable.setBounds(0 , 0 , canvas.width , canvas.height)
             drawable.draw(canvas)
             bitmap
         }
         bitmap.asImageBitmap()
     }
     var showMenu by remember { mutableStateOf(false) }
-    OutlinedCard(modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)) {
+    OutlinedCard(modifier = Modifier.padding(start = 8.dp , end = 8.dp , top = 8.dp)) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-                .clip(RoundedCornerShape(16.dp)),
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .clip(RoundedCornerShape(16.dp)) ,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                bitmap = appIcon, contentDescription = null, modifier = Modifier.size(48.dp)
+                bitmap = appIcon , contentDescription = null , modifier = Modifier.size(48.dp)
             )
             Column(
                 modifier = Modifier
-                    .padding(16.dp)
-                    .weight(1f)
+                        .padding(16.dp)
+                        .weight(1f)
             ) {
                 Text(
-                    text = appName,
-                    style = MaterialTheme.typography.titleMedium,
+                    text = appName ,
+                    style = MaterialTheme.typography.titleMedium ,
                 )
                 Text(
-                    text = appSize, style = MaterialTheme.typography.bodyMedium
+                    text = appSize , style = MaterialTheme.typography.bodyMedium
                 )
             }
 
 
             Box {
                 IconButton(onClick = { showMenu = true }) {
-                    Icon(Icons.Outlined.MoreVert, contentDescription = null)
+                    Icon(Icons.Outlined.MoreVert , contentDescription = null)
                 }
 
-                DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
+                DropdownMenu(expanded = showMenu , onDismissRequest = { showMenu = false }) {
                     DropdownMenuItem(text = {
                         Text(stringResource(R.string.uninstall))
-                    },
-                        onClick = {
-                            val uri = Uri.fromParts("package", app.packageName, null)
-                            val intent = Intent(Intent.ACTION_DELETE, uri)
-                            context.startActivity(intent)
-                        })
-                    DropdownMenuItem(text = { Text(stringResource(R.string.share)) }, onClick = {
+                    } , onClick = {
+                        val uri = Uri.fromParts("package" , app.packageName , null)
+                        val intent = Intent(Intent.ACTION_DELETE , uri)
+                        context.startActivity(intent)
+                    })
+                    DropdownMenuItem(text = { Text(stringResource(R.string.share)) } , onClick = {
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
-                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Check out this app")
+                        shareIntent.putExtra(Intent.EXTRA_SUBJECT , "Check out this app")
                         @Suppress("DEPRECATION") val isFromPlayStore =
-                            context.packageManager.getInstallerPackageName(app.packageName) == "com.android.vending"
+                                context.packageManager.getInstallerPackageName(app.packageName) == "com.android.vending"
                         if (isFromPlayStore) {
                             val playStoreLink =
-                                "https://play.google.com/store/apps/details?id=${app.packageName}"
+                                    "https://play.google.com/store/apps/details?id=${app.packageName}"
                             val shareMessage = "Check out this app: $appName\n$playStoreLink"
-                            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
-                        } else {
-                            val shareMessage = "Check out this app: $appName\n$app.packageName"
-                            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
+                            shareIntent.putExtra(Intent.EXTRA_TEXT , shareMessage)
                         }
-                        context.startActivity(Intent.createChooser(shareIntent, "Share App"))
+                        else {
+                            val shareMessage = "Check out this app: $appName\n$app.packageName"
+                            shareIntent.putExtra(Intent.EXTRA_TEXT , shareMessage)
+                        }
+                        context.startActivity(Intent.createChooser(shareIntent , "Share App"))
                     })
-                    DropdownMenuItem(text = { Text(stringResource(R.string.app_info)) }, onClick = {
-                        val appInfoIntent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                        val packageUri = Uri.fromParts("package", app.packageName, null)
-                        appInfoIntent.data = packageUri
-                        context.startActivity(appInfoIntent)
-                    })
+                    DropdownMenuItem(text = { Text(stringResource(R.string.app_info)) } ,
+                                     onClick = {
+                                         val appInfoIntent =
+                                                 Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                                         val packageUri =
+                                                 Uri.fromParts("package" , app.packageName , null)
+                                         appInfoIntent.data = packageUri
+                                         context.startActivity(appInfoIntent)
+                                     })
                 }
             }
         }
@@ -276,7 +292,7 @@ fun AppItemComposable(
  * Composable function for displaying a list of APK files on the device.
  */
 @Composable
-fun ApksComposable(apkFiles: List<ApkInfo>) {
+fun ApksComposable(apkFiles : List<ApkInfo>) {
 
     LazyColumn {
         items(apkFiles) { apkInfo ->
@@ -292,7 +308,7 @@ fun ApksComposable(apkFiles: List<ApkInfo>) {
  * @param apkPath Path to the APK file.
  */
 @Composable
-fun ApkItemComposable(apkPath: String) {
+fun ApkItemComposable(apkPath : String) {
     val context = LocalContext.current
     val apkFile = File(apkPath)
     val sizeInBytes = apkFile.length()
@@ -301,16 +317,17 @@ fun ApkItemComposable(apkPath: String) {
     val apkSize = "%.2f MB".format(sizeInMB.toFloat())
     val apkName = apkFile.name
 
-    val packageInfo = context.packageManager.getPackageArchiveInfo(apkPath, 0)
+    val packageInfo = context.packageManager.getPackageArchiveInfo(apkPath , 0)
     val appIcon = packageInfo?.applicationInfo?.loadIcon(context.packageManager)?.let {
         val bitmap = if (it is BitmapDrawable) {
             it.bitmap
-        } else {
+        }
+        else {
             val bitmap = Bitmap.createBitmap(
-                it.intrinsicWidth, it.intrinsicHeight, Bitmap.Config.ARGB_8888
+                it.intrinsicWidth , it.intrinsicHeight , Bitmap.Config.ARGB_8888
             )
             val canvas = Canvas(bitmap)
-            it.setBounds(0, 0, canvas.width, canvas.height)
+            it.setBounds(0 , 0 , canvas.width , canvas.height)
             it.draw(canvas)
             bitmap
         }
@@ -319,53 +336,54 @@ fun ApkItemComposable(apkPath: String) {
 
     var showMenu by remember { mutableStateOf(false) }
 
-    OutlinedCard(modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)) {
+    OutlinedCard(modifier = Modifier.padding(start = 8.dp , end = 8.dp , top = 8.dp)) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-                .clip(RoundedCornerShape(16.dp)),
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .clip(RoundedCornerShape(16.dp)) ,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                bitmap = appIcon, contentDescription = null, modifier = Modifier.size(48.dp)
+                bitmap = appIcon , contentDescription = null , modifier = Modifier.size(48.dp)
             )
             Column(
                 modifier = Modifier
-                    .padding(16.dp)
-                    .weight(1f)
+                        .padding(16.dp)
+                        .weight(1f)
             ) {
                 Text(
-                    text = apkName,
-                    style = MaterialTheme.typography.titleMedium,
+                    text = apkName ,
+                    style = MaterialTheme.typography.titleMedium ,
                 )
                 Text(
-                    text = apkSize, style = MaterialTheme.typography.bodyMedium
+                    text = apkSize , style = MaterialTheme.typography.bodyMedium
                 )
             }
 
             Box {
                 IconButton(onClick = { showMenu = true }) {
-                    Icon(Icons.Outlined.MoreVert, contentDescription = null)
+                    Icon(Icons.Outlined.MoreVert , contentDescription = null)
                 }
 
-                DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
-                    DropdownMenuItem(text = { Text(stringResource(R.string.share)) }, onClick = {
+                DropdownMenu(expanded = showMenu , onDismissRequest = { showMenu = false }) {
+                    DropdownMenuItem(text = { Text(stringResource(R.string.share)) } , onClick = {
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "application/vnd.android.package-archive"
-                        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(apkFile))
-                        context.startActivity(Intent.createChooser(shareIntent, "Share APK"))
+                        shareIntent.putExtra(Intent.EXTRA_STREAM , Uri.fromFile(apkFile))
+                        context.startActivity(Intent.createChooser(shareIntent , "Share APK"))
                     })
 
-                    DropdownMenuItem(text = { Text(stringResource(id = R.string.installed)) }, onClick = {
-                        val installIntent = Intent(Intent.ACTION_VIEW)
-                        installIntent.setDataAndType(
-                            Uri.fromFile(apkFile),
-                            "application/vnd.android.package-archive"
-                        )
-                        installIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                        context.startActivity(installIntent)
-                    })
+                    DropdownMenuItem(text = { Text(stringResource(id = R.string.installed)) } ,
+                                     onClick = {
+                                         val installIntent = Intent(Intent.ACTION_VIEW)
+                                         installIntent.setDataAndType(
+                                             Uri.fromFile(apkFile) ,
+                                             "application/vnd.android.package-archive"
+                                         )
+                                         installIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                         context.startActivity(installIntent)
+                                     })
                 }
             }
         }
