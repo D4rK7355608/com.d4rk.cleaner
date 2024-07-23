@@ -13,27 +13,27 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 suspend fun getVideoThumbnail(
-    videoPath: String,
-    thumbnailWidth: Int = 64,
-    thumbnailHeight: Int = 64,
-): Bitmap? = withContext(Dispatchers.IO) {
+    videoPath : String ,
+    thumbnailWidth : Int = 64 ,
+    thumbnailHeight : Int = 64 ,
+) : Bitmap? = withContext(Dispatchers.IO) {
     val mediaMetadataRetriever = MediaMetadataRetriever()
     try {
         mediaMetadataRetriever.setDataSource(videoPath)
         val bitmap = mediaMetadataRetriever.getFrameAtTime(
-            1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC
+            1000 , MediaMetadataRetriever.OPTION_CLOSEST_SYNC
         )
         bitmap?.let {
-            Bitmap.createScaledBitmap(it, thumbnailWidth, thumbnailHeight, false)
+            Bitmap.createScaledBitmap(it , thumbnailWidth , thumbnailHeight , false)
         }
-    } catch (e: Exception) {
+    } catch (e : Exception) {
         null
     } finally {
         mediaMetadataRetriever.release()
     }
 }
 
-fun getFileIcon(extension: String, context: Context): Int {
+fun getFileIcon(extension : String , context : Context) : Int {
     val lowercaseExtension = extension.lowercase()
     val resources = context.resources
     return when (lowercaseExtension) {
@@ -46,16 +46,16 @@ fun getFileIcon(extension: String, context: Context): Int {
     }
 }
 
-fun Drawable.toBitmapDrawable(resources: Resources = Resources.getSystem()): BitmapDrawable {
+fun Drawable.toBitmapDrawable(resources : Resources = Resources.getSystem()) : BitmapDrawable {
     return when (this) {
         is BitmapDrawable -> this
         is AdaptiveIconDrawable -> {
             val bitmap =
-                Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
+                    Bitmap.createBitmap(intrinsicWidth , intrinsicHeight , Bitmap.Config.ARGB_8888)
             val canvas = Canvas(bitmap)
-            setBounds(0, 0, canvas.width, canvas.height)
+            setBounds(0 , 0 , canvas.width , canvas.height)
             draw(canvas)
-            BitmapDrawable(resources, bitmap)
+            BitmapDrawable(resources , bitmap)
         }
 
         else -> throw IllegalArgumentException("Unsupported drawable type: ${this::class.java.name}")

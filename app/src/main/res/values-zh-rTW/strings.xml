@@ -49,6 +49,7 @@
     <string name="other_files">其他檔案</string>
 
     <string name="image_optimizer">圖片優化器</string>
+    <string name="summary_select_image">選擇您要優化的圖片</string>
     <string name="choose_image">選擇圖片</string>
     <string name="optimize_image">優化圖片</string>
     <string name="image_saved">圖片已儲存到： </string>

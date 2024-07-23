@@ -11,8 +11,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.utils.cleaning.FileScanner
 import com.d4rk.cleaner.utils.PermissionsUtils
+import com.d4rk.cleaner.utils.cleaning.FileScanner
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -23,26 +23,26 @@ import java.io.File
 import java.util.UUID
 import kotlin.math.roundToInt
 
-class HomeViewModel(application: Application) : AndroidViewModel(application) {
+class HomeViewModel(application : Application) : AndroidViewModel(application) {
     val progress = MutableLiveData(0f)
     val storageUsed = MutableLiveData<String>()
     val storageTotal = MutableLiveData<String>()
-    var fileScanner: FileScanner
+    var fileScanner : FileScanner
     val scannedFiles = MutableLiveData<List<File>>()
     val allFilesSelected = mutableStateOf(false)
-    val fileSelectionStates = mutableStateMapOf<File, Boolean>()
-    private val dataStoreInstance: DataStore = DataStore(application)
+    val fileSelectionStates = mutableStateMapOf<File , Boolean>()
+    private val dataStoreInstance : DataStore = DataStore(application)
     val showCleaningComposable = MutableLiveData(false)
     val isAnalyzing = MutableLiveData(false)
     var showRescanDialog = mutableStateOf(false)
     private var hasScanned = mutableStateOf(false)
     private var isUserConfirmedRescan = mutableStateOf(false)
     val _selectedFileCount = MutableStateFlow(0)
-    val selectedFileCount: StateFlow<Int> = _selectedFileCount.asStateFlow()
+    val selectedFileCount : StateFlow<Int> = _selectedFileCount.asStateFlow()
 
     init {
         updateStorageInfo()
-        fileScanner = FileScanner(dataStoreInstance, application.resources)
+        fileScanner = FileScanner(dataStoreInstance , application.resources)
     }
 
     /**
@@ -63,15 +63,15 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private fun updateStorageInfo() {
         viewModelScope.launch {
             val storageManager =
-                getApplication<Application>().getSystemService(Context.STORAGE_SERVICE) as StorageManager
+                    getApplication<Application>().getSystemService(Context.STORAGE_SERVICE) as StorageManager
             val storageStatsManager =
-                getApplication<Application>().getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
+                    getApplication<Application>().getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
             val storageVolume = storageManager.primaryStorageVolume
-            val totalSize: Long
-            val usedSize: Long
+            val totalSize : Long
+            val usedSize : Long
             val uuidStr = storageVolume.uuid
-            val uuid: UUID =
-                if (uuidStr == null) StorageManager.UUID_DEFAULT else UUID.fromString(uuidStr)
+            val uuid : UUID =
+                    if (uuidStr == null) StorageManager.UUID_DEFAULT else UUID.fromString(uuidStr)
             totalSize = storageStatsManager.getTotalBytes(uuid)
             usedSize = totalSize - storageStatsManager.getFreeBytes(uuid)
             storageUsed.postValue((usedSize / (1024.0 * 1024.0 * 1024.0)).roundToInt().toString())
@@ -80,7 +80,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun onFileSelectionChange(file: File, isChecked: Boolean) {
+    fun onFileSelectionChange(file : File , isChecked : Boolean) {
         fileSelectionStates[file] = isChecked
         _selectedFileCount.value = fileSelectionStates.count { it.value }
         allFilesSelected.value = fileSelectionStates.all { it.value }
@@ -98,7 +98,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
      * selectAllFiles(true)  // Selects all files
      * selectAllFiles(false) // Deselects all files
      */
-    fun selectAllFiles(selectAll: Boolean) {
+    fun selectAllFiles(selectAll : Boolean) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 scannedFiles.value?.forEach { file ->
@@ -117,13 +117,13 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
      *
      * @param activity The Activity instance required to request permissions.
      */
-    fun analyze(activity: Activity) {
-        if (!PermissionsUtils.hasStoragePermissions(getApplication())) {
+    fun analyze(activity : Activity) {
+        if (! PermissionsUtils.hasStoragePermissions(getApplication())) {
             PermissionsUtils.requestStoragePermissions(activity)
             return
         }
 
-        if (hasScanned.value && !isUserConfirmedRescan.value) {
+        if (hasScanned.value && ! isUserConfirmedRescan.value) {
             showRescanDialog.value = true
         }
 
@@ -145,7 +145,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun rescan(activity: Activity) {
+    fun rescan(activity : Activity) {
         showRescanDialog.value = false
         scannedFiles.value = emptyList()
         analyze(activity)
@@ -156,8 +156,8 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
      *
      * @param activity The Activity instance required to request permissions.
      */
-    fun clean(activity: Activity) {
-        if (!PermissionsUtils.hasStoragePermissions(getApplication())) {
+    fun clean(activity : Activity) {
+        if (! PermissionsUtils.hasStoragePermissions(getApplication())) {
             PermissionsUtils.requestStoragePermissions(activity)
             return
         }

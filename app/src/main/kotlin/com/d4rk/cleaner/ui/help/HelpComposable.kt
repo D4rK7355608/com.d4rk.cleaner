@@ -53,7 +53,7 @@ import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HelpComposable(activity : HelpActivity, viewModel: HelpViewModel) {
+fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     var showMenu by remember { mutableStateOf(false) }
     val context = LocalContext.current
@@ -79,41 +79,41 @@ fun HelpComposable(activity : HelpActivity, viewModel: HelpViewModel) {
             }
             DropdownMenu(expanded = showMenu , onDismissRequest = { showMenu = false }) {
                 DropdownMenuItem(text = { Text(stringResource(R.string.view_in_google_play_store)) } ,
-                    onClick = {
-                        IntentUtils.openUrl(
-                            context ,
-                            "https://play.google.com/store/apps/details?id=${activity.packageName}"
-                        )
-                    })
+                                 onClick = {
+                                     IntentUtils.openUrl(
+                                         context ,
+                                         "https://play.google.com/store/apps/details?id=${activity.packageName}"
+                                     )
+                                 })
                 DropdownMenuItem(text = { Text(stringResource(R.string.version_info)) } ,
-                    onClick = { showDialog.value = true })
+                                 onClick = { showDialog.value = true })
                 DropdownMenuItem(text = { Text(stringResource(R.string.beta_program)) } ,
-                    onClick = {
-                        IntentUtils.openUrl(
-                            context ,
-                            "https://play.google.com/apps/testing/${activity.packageName}"
-                        )
-                    })
+                                 onClick = {
+                                     IntentUtils.openUrl(
+                                         context ,
+                                         "https://play.google.com/apps/testing/${activity.packageName}"
+                                     )
+                                 })
                 DropdownMenuItem(text = { Text(stringResource(R.string.terms_of_service)) } ,
-                    onClick = {
-                        IntentUtils.openUrl(
-                            context ,
-                            "https://sites.google.com/view/d4rk7355608/more/apps/terms-of-service"
-                        )
-                    })
+                                 onClick = {
+                                     IntentUtils.openUrl(
+                                         context ,
+                                         "https://sites.google.com/view/d4rk7355608/more/apps/terms-of-service"
+                                     )
+                                 })
                 DropdownMenuItem(text = { Text(stringResource(R.string.privacy_policy)) } ,
-                    onClick = {
-                        IntentUtils.openUrl(
-                            context ,
-                            "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy"
-                        )
-                    })
+                                 onClick = {
+                                     IntentUtils.openUrl(
+                                         context ,
+                                         "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy"
+                                     )
+                                 })
                 DropdownMenuItem(text = { Text(stringResource(com.google.android.gms.oss.licenses.R.string.oss_license_title)) } ,
-                    onClick = {
-                        IntentUtils.openActivity(
-                            context , OssLicensesMenuActivity::class.java
-                        )
-                    })
+                                 onClick = {
+                                     IntentUtils.openActivity(
+                                         context , OssLicensesMenuActivity::class.java
+                                     )
+                                 })
             }
             if (showDialog.value) {
                 VersionInfoDialog(onDismiss = { showDialog.value = false })
@@ -122,25 +122,25 @@ fun HelpComposable(activity : HelpActivity, viewModel: HelpViewModel) {
     }) { paddingValues ->
         Box(
             modifier = Modifier
-                .padding(start = 16.dp , end = 16.dp)
-                .fillMaxSize()
-                .safeDrawingPadding()
+                    .padding(start = 16.dp , end = 16.dp)
+                    .fillMaxSize()
+                    .safeDrawingPadding()
         ) {
             ConstraintLayout(modifier = Modifier.padding(paddingValues)) {
                 val (faqTitle , faqCard) = createRefs()
                 Text(text = stringResource(R.string.faq) ,
-                    modifier = Modifier
-                        .padding(bottom = 24.dp)
-                        .constrainAs(faqTitle) {
-                            top.linkTo(parent.top)
-                            start.linkTo(parent.start)
-                        })
+                     modifier = Modifier
+                             .padding(bottom = 24.dp)
+                             .constrainAs(faqTitle) {
+                                 top.linkTo(parent.top)
+                                 start.linkTo(parent.start)
+                             })
                 Card(modifier = Modifier
-                    .fillMaxWidth()
-                    .constrainAs(faqCard) {
-                        top.linkTo(faqTitle.bottom)
-                        bottom.linkTo(parent.bottom)
-                    }) {
+                        .fillMaxWidth()
+                        .constrainAs(faqCard) {
+                            top.linkTo(faqTitle.bottom)
+                            bottom.linkTo(parent.bottom)
+                        }) {
                     FAQComposable()
                 }
             }
@@ -148,18 +148,18 @@ fun HelpComposable(activity : HelpActivity, viewModel: HelpViewModel) {
                 text = { Text(stringResource(id = R.string.feedback)) } ,
                 onClick = {
                     viewModel.reviewInfo.value?.let { safeReviewInfo ->
-                        viewModel.launchReviewFlow(activity, safeReviewInfo)
+                        viewModel.launchReviewFlow(activity , safeReviewInfo)
                     }
-                },
+                } ,
                 icon = {
                     Icon(
                         Icons.Default.MailOutline , contentDescription = null
                     )
                 } ,
                 modifier = Modifier
-                    .bounceClick()
-                    .padding(bottom = 16.dp)
-                    .align(Alignment.BottomEnd) ,
+                        .bounceClick()
+                        .padding(bottom = 16.dp)
+                        .align(Alignment.BottomEnd) ,
             )
         }
     }
@@ -229,19 +229,19 @@ fun FAQComposable() {
 fun QuestionComposable(title : String , summary : String) {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp) ,
+                .fillMaxWidth()
+                .padding(16.dp) ,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
             Icons.Outlined.QuestionAnswer ,
             contentDescription = null ,
             modifier = Modifier
-                .size(48.dp)
-                .background(
-                    color = MaterialTheme.colorScheme.primaryContainer , shape = CircleShape
-                )
-                .padding(8.dp)
+                    .size(48.dp)
+                    .background(
+                        color = MaterialTheme.colorScheme.primaryContainer , shape = CircleShape
+                    )
+                    .padding(8.dp)
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column {

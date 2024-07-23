@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FileSizeScreen(viewModel: ImageOptimizerViewModel) {
+fun FileSizeScreen(viewModel : ImageOptimizerViewModel) {
     val state = viewModel.uiState.collectAsState()
     var fileSizeText by remember { mutableStateOf(state.value.fileSizeKB.toString()) }
     var expanded by remember { mutableStateOf(false) }
@@ -36,48 +36,38 @@ fun FileSizeScreen(viewModel: ImageOptimizerViewModel) {
     var selectedPresetSize by remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
     Column(modifier = Modifier.padding(16.dp)) {
-        ExposedDropdownMenuBox(
-            expanded = expanded,
-            onExpandedChange = { expanded = !expanded }
-        ) {
-            OutlinedTextField(
-                value = fileSizeText,
-                onValueChange = { newValue ->
-                    fileSizeText = newValue
-                    coroutineScope.launch {
-                        viewModel.setFileSize(newValue.toIntOrNull() ?: 0)
-                    }
-                },
-                label = { Text(stringResource(R.string.file_size)) },
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                supportingText = {
-                    Text(text = stringResource(R.string.enter_a_value))
-                },
-                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                isError = fileSizeText.isNotEmpty() && fileSizeText.toFloatOrNull() == null,
-                modifier = Modifier
-                    .menuAnchor()
-                    .fillMaxWidth()
-                    .padding(top = 12.dp)
+        ExposedDropdownMenuBox(expanded = expanded , onExpandedChange = { expanded = ! expanded }) {
+            OutlinedTextField(value = fileSizeText ,
+                              onValueChange = { newValue ->
+                                  fileSizeText = newValue
+                                  coroutineScope.launch {
+                                      viewModel.setFileSize(newValue.toIntOrNull() ?: 0)
+                                  }
+                              } ,
+                              label = { Text(stringResource(R.string.file_size)) } ,
+                              singleLine = true ,
+                              keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number) ,
+                              supportingText = {
+                                  Text(text = stringResource(R.string.enter_a_value))
+                              } ,
+                              trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) } ,
+                              isError = fileSizeText.isNotEmpty() && fileSizeText.toFloatOrNull() == null ,
+                              modifier = Modifier
+                                      .menuAnchor()
+                                      .fillMaxWidth()
+                                      .padding(top = 12.dp)
             )
 
-            ExposedDropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false }
-            ) {
+            ExposedDropdownMenu(expanded = expanded , onDismissRequest = { expanded = false }) {
                 presetSizes.forEach { size ->
-                    DropdownMenuItem(
-                        text = { Text("$size KB") },
-                        onClick = {
-                            selectedPresetSize = size
-                            fileSizeText = size
-                            coroutineScope.launch {
-                                viewModel.setFileSize(size.toIntOrNull() ?: 0)
-                            }
-                            expanded = false
+                    DropdownMenuItem(text = { Text("$size KB") } , onClick = {
+                        selectedPresetSize = size
+                        fileSizeText = size
+                        coroutineScope.launch {
+                            viewModel.setFileSize(size.toIntOrNull() ?: 0)
                         }
-                    )
+                        expanded = false
+                    })
                 }
             }
         }

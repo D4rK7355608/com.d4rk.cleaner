@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import com.d4rk.cleaner.ui.settings.display.theme.style.AppTheme
 
 class HelpActivity : AppCompatActivity() {
-    private val viewModel: HelpViewModel by viewModels()
+    private val viewModel : HelpViewModel by viewModels()
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,7 +21,7 @@ class HelpActivity : AppCompatActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    HelpComposable(this@HelpActivity, viewModel)
+                    HelpComposable(this@HelpActivity , viewModel)
                 }
             }
         }

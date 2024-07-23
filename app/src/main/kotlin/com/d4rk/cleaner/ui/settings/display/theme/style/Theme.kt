@@ -118,9 +118,9 @@ private fun getColorScheme(
     isDarkTheme : Boolean , isAmoledMode : Boolean , isDynamicColors : Boolean , context : Context
 ) : ColorScheme {
     val dynamicDark =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) dynamicDarkColorScheme(context) else darkScheme
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) dynamicDarkColorScheme(context) else darkScheme
     val dynamicLight =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) dynamicLightColorScheme(context) else lightScheme
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) dynamicLightColorScheme(context) else lightScheme
 
     return when {
         isAmoledMode && isDarkTheme && isDynamicColors -> dynamicDark.copy(
@@ -163,11 +163,11 @@ fun AppTheme(
             val window = (view.context as Activity).window
             window.statusBarColor = Color.Transparent.toArgb()
             WindowCompat.getInsetsController(window , view).isAppearanceLightStatusBars =
-                ! isDarkTheme
+                    ! isDarkTheme
         }
     }
 
     MaterialTheme(
-        colorScheme = colorScheme , typography = Typography, content = content
+        colorScheme = colorScheme , typography = Typography , content = content
     )
 }

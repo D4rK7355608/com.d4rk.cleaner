@@ -60,91 +60,92 @@ import kotlinx.coroutines.launch
 @Composable
 fun MainComposable() {
     val bottomBarItems = listOf(
-        BottomNavigationScreen.Home, BottomNavigationScreen.AppManager, BottomNavigationScreen.MemoryManager
+        BottomNavigationScreen.Home ,
+        BottomNavigationScreen.AppManager ,
+        BottomNavigationScreen.MemoryManager
     )
     val drawerItems = listOf(
 
         NavigationDrawerItem(
-            title = R.string.image_optimizer, selectedIcon = Icons.Outlined.Image
-        ),
+            title = R.string.image_optimizer , selectedIcon = Icons.Outlined.Image
+        ) ,
 
         NavigationDrawerItem(
-            title = R.string.settings,
-            selectedIcon = Icons.Outlined.Settings,
-        ),
+            title = R.string.settings ,
+            selectedIcon = Icons.Outlined.Settings ,
+        ) ,
         NavigationDrawerItem(
-            title = R.string.help_and_feedback,
-            selectedIcon = Icons.AutoMirrored.Outlined.HelpOutline,
-        ),
+            title = R.string.help_and_feedback ,
+            selectedIcon = Icons.AutoMirrored.Outlined.HelpOutline ,
+        ) ,
         NavigationDrawerItem(
-            title = R.string.updates,
-            selectedIcon = Icons.AutoMirrored.Outlined.EventNote,
-        ),
+            title = R.string.updates ,
+            selectedIcon = Icons.AutoMirrored.Outlined.EventNote ,
+        ) ,
         NavigationDrawerItem(
-            title = R.string.share, selectedIcon = Icons.Outlined.Share
-        ),
+            title = R.string.share , selectedIcon = Icons.Outlined.Share
+        ) ,
     )
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val navController = rememberNavController()
     val context = LocalContext.current
     val dataStore = DataStore.getInstance(context)
-    val selectedItemIndex by rememberSaveable { mutableIntStateOf(-1) }
-    ModalNavigationDrawer(drawerState = drawerState, drawerContent = {
+    val selectedItemIndex by rememberSaveable { mutableIntStateOf(- 1) }
+    ModalNavigationDrawer(drawerState = drawerState , drawerContent = {
         ModalDrawerSheet {
             Spacer(modifier = Modifier.height(16.dp))
-            drawerItems.forEachIndexed { index, item ->
+            drawerItems.forEachIndexed { index , item ->
                 val title = stringResource(item.title)
-                NavigationDrawerItem(
-                    label = { Text(text = title) },
-                    selected = index == selectedItemIndex,
-                    onClick = {
-                        when (item.title) {
+                NavigationDrawerItem(label = { Text(text = title) } ,
+                                     selected = index == selectedItemIndex ,
+                                     onClick = {
+                                         when (item.title) {
 
-                            R.string.image_optimizer -> {
-                                IntentUtils.openActivity(
-                                    context, ImagePickerActivity::class.java
-                                )
-                            }
+                                             R.string.image_optimizer -> {
+                                                 IntentUtils.openActivity(
+                                                     context , ImagePickerActivity::class.java
+                                                 )
+                                             }
 
-                            R.string.settings -> {
-                                IntentUtils.openActivity(
-                                    context, SettingsActivity::class.java
-                                )
-                            }
+                                             R.string.settings -> {
+                                                 IntentUtils.openActivity(
+                                                     context , SettingsActivity::class.java
+                                                 )
+                                             }
 
-                            R.string.help_and_feedback -> {
-                                IntentUtils.openActivity(
-                                    context, HelpActivity::class.java
-                                )
-                            }
+                                             R.string.help_and_feedback -> {
+                                                 IntentUtils.openActivity(
+                                                     context , HelpActivity::class.java
+                                                 )
+                                             }
 
-                            R.string.updates -> {
-                                IntentUtils.openUrl(
-                                    context,
-                                    "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md"
-                                )
-                            }
+                                             R.string.updates -> {
+                                                 IntentUtils.openUrl(
+                                                     context ,
+                                                     "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md"
+                                                 )
+                                             }
 
-                            R.string.share -> {
-                                IntentUtils.shareApp(context)
-                            }
-                        }
-                        scope.launch {
-                            drawerState.close()
-                        }
-                    },
-                    icon = {
-                        Icon(
-                            item.selectedIcon, contentDescription = title
-                        )
-                    },
-                    badge = {
-                        item.badgeCount?.let {
-                            Text(text = item.badgeCount.toString())
-                        }
-                    },
-                    modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+                                             R.string.share -> {
+                                                 IntentUtils.shareApp(context)
+                                             }
+                                         }
+                                         scope.launch {
+                                             drawerState.close()
+                                         }
+                                     } ,
+                                     icon = {
+                                         Icon(
+                                             item.selectedIcon , contentDescription = title
+                                         )
+                                     } ,
+                                     badge = {
+                                         item.badgeCount?.let {
+                                             Text(text = item.badgeCount.toString())
+                                         }
+                                     } ,
+                                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                 )
                 if (item.title == R.string.image_optimizer) {
                     HorizontalDivider(modifier = Modifier.padding(8.dp))
@@ -152,11 +153,11 @@ fun MainComposable() {
             }
         }
 
-    }, content = {
+    } , content = {
         Scaffold(topBar = {
             TopAppBar(title = {
                 Text(text = stringResource(R.string.app_name))
-            }, navigationIcon = {
+            } , navigationIcon = {
                 IconButton(onClick = {
                     scope.launch {
                         drawerState.apply {
@@ -165,44 +166,45 @@ fun MainComposable() {
                     }
                 }) {
                     Icon(
-                        imageVector = Icons.Default.Menu, contentDescription = stringResource(id = R.string.navigation_drawer_open)
+                        imageVector = Icons.Default.Menu ,
+                        contentDescription = stringResource(id = R.string.navigation_drawer_open)
                     )
                 }
-            }, actions = {
+            } , actions = {
                 IconButton(onClick = {
-                    IntentUtils.openActivity(context, SupportActivity::class.java)
+                    IntentUtils.openActivity(context , SupportActivity::class.java)
                 }) {
                     Icon(
-                        Icons.Outlined.VolunteerActivism,
+                        Icons.Outlined.VolunteerActivism ,
                         contentDescription = stringResource(id = R.string.support_us)
                     )
                 }
             })
-        }, bottomBar = {
+        } , bottomBar = {
             Column {
-                FullBannerAdsComposable(modifier = Modifier.fillMaxWidth(), dataStore = dataStore)
+                FullBannerAdsComposable(modifier = Modifier.fillMaxWidth() , dataStore = dataStore)
                 NavigationBar {
                     val navBackStackEntry by navController.currentBackStackEntryAsState()
                     val currentRoute = navBackStackEntry?.destination?.route
                     bottomBarItems.forEach { screen ->
                         NavigationBarItem(icon = {
                             val iconResource =
-                                if (currentRoute == screen.route) screen.selectedIcon else screen.icon
-                            Icon(iconResource, contentDescription = null)
-                        },
-                            label = { Text(stringResource(screen.title)) },
-                            selected = currentRoute == screen.route,
-                            onClick = {
-                                navController.navigate(screen.route) {
-                                    popUpTo(navController.graph.startDestinationId)
-                                    launchSingleTop = true
-                                }
-                            })
+                                    if (currentRoute == screen.route) screen.selectedIcon else screen.icon
+                            Icon(iconResource , contentDescription = null)
+                        } ,
+                                          label = { Text(stringResource(screen.title)) } ,
+                                          selected = currentRoute == screen.route ,
+                                          onClick = {
+                                              navController.navigate(screen.route) {
+                                                  popUpTo(navController.graph.startDestinationId)
+                                                  launchSingleTop = true
+                                              }
+                                          })
                     }
                 }
             }
         }) { innerPadding ->
-            NavHost(navController, startDestination = BottomNavigationScreen.Home.route) {
+            NavHost(navController , startDestination = BottomNavigationScreen.Home.route) {
                 composable(BottomNavigationScreen.Home.route) {
                     Box(modifier = Modifier.padding(innerPadding)) {
                         HomeComposable()

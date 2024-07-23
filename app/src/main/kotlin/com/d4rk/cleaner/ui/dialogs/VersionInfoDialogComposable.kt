@@ -22,11 +22,11 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.utils.cleaning.toBitmapDrawable
 
 @Composable
-fun VersionInfoDialog(onDismiss: () -> Unit) {
+fun VersionInfoDialog(onDismiss : () -> Unit) {
     AlertDialog(
-        onDismissRequest = onDismiss,
-        text = { VersionInfoContent() },
-        confirmButton = {},
+        onDismissRequest = onDismiss ,
+        text = { VersionInfoContent() } ,
+        confirmButton = {} ,
     )
 }
 
@@ -35,36 +35,31 @@ fun VersionInfoContent() {
     val context = LocalContext.current
     val appName = context.getString(R.string.app_full_name)
     val versionName = BuildConfig.VERSION_NAME
-    val versionString =
-        stringResource(R.string.version, versionName)
+    val versionString = stringResource(R.string.version , versionName)
     val copyright = context.getString(R.string.copyright)
 
     val appIcon = context.packageManager.getApplicationIcon(context.packageName)
     val bitmapDrawable = appIcon.toBitmapDrawable()
 
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
     ) {
         Image(
-            bitmap = bitmapDrawable.bitmap.asImageBitmap(),
-            contentDescription = null,
+            bitmap = bitmapDrawable.bitmap.asImageBitmap() ,
+            contentDescription = null ,
             modifier = Modifier.size(48.dp)
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column {
             Text(
-                text = appName,
-                style = MaterialTheme.typography.titleLarge
+                text = appName , style = MaterialTheme.typography.titleLarge
             )
             Text(
-                text = versionString,
-                style = MaterialTheme.typography.bodyMedium
+                text = versionString , style = MaterialTheme.typography.bodyMedium
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = copyright,
-                style = MaterialTheme.typography.bodyMedium
+                text = copyright , style = MaterialTheme.typography.bodyMedium
             )
         }
     }

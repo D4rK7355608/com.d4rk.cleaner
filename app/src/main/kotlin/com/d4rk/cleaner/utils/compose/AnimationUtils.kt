@@ -25,23 +25,23 @@ fun Modifier.bounceClick() = composed {
         if (buttonState == ButtonState.Pressed) 0.95f else 1f , label = ""
     )
     this
-        .graphicsLayer {
-            scaleX = scale
-            scaleY = scale
-        }
-        .clickable(interactionSource = remember { MutableInteractionSource() } ,
-            indication = null ,
-            onClick = { })
-        .pointerInput(buttonState) {
-            awaitPointerEventScope {
-                buttonState = if (buttonState == ButtonState.Pressed) {
-                    waitForUpOrCancellation()
-                    ButtonState.Idle
-                }
-                else {
-                    awaitFirstDown(false)
-                    ButtonState.Pressed
+            .graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+            }
+            .clickable(interactionSource = remember { MutableInteractionSource() } ,
+                       indication = null ,
+                       onClick = { })
+            .pointerInput(buttonState) {
+                awaitPointerEventScope {
+                    buttonState = if (buttonState == ButtonState.Pressed) {
+                        waitForUpOrCancellation()
+                        ButtonState.Idle
+                    }
+                    else {
+                        awaitFirstDown(false)
+                        ButtonState.Pressed
+                    }
                 }
             }
-        }
 }

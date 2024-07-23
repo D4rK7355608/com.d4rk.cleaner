@@ -34,11 +34,11 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.ui.dialogs.LanguageDialog
 import com.d4rk.cleaner.ui.settings.display.theme.ThemeSettingsActivity
+import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.utils.compose.components.PreferenceCategoryItem
 import com.d4rk.cleaner.utils.compose.components.PreferenceItem
 import com.d4rk.cleaner.utils.compose.components.SwitchPreferenceItem
 import com.d4rk.cleaner.utils.compose.components.SwitchPreferenceItemWithDivider
-import com.d4rk.cleaner.utils.IntentUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -73,36 +73,36 @@ fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
     }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
-                .fillMaxHeight()
-                .padding(paddingValues) ,
+                    .fillMaxHeight()
+                    .padding(paddingValues) ,
         ) {
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.appearance))
                 SwitchPreferenceItemWithDivider(title = stringResource(R.string.dark_theme) ,
-                    summary = themeSummary ,
-                    checked = switchState.value ,
-                    onCheckedChange = { isChecked ->
-                        switchState.value = isChecked
-                    } ,
-                    onSwitchClick = { isChecked ->
-                        scope.launch(Dispatchers.IO) {
-                            if (isChecked) {
-                                dataStore.saveThemeMode(darkModeString)
-                                dataStore.themeModeState.value =
-                                    darkModeString
-                            }
-                            else {
-                                dataStore.saveThemeMode(lightModeString)
-                                dataStore.themeModeState.value =
-                                    lightModeString
-                            }
-                        }
-                    } ,
-                    onClick = {
-                        IntentUtils.openActivity(
-                            context , ThemeSettingsActivity::class.java
-                        )
-                    })
+                                                summary = themeSummary ,
+                                                checked = switchState.value ,
+                                                onCheckedChange = { isChecked ->
+                                                    switchState.value = isChecked
+                                                } ,
+                                                onSwitchClick = { isChecked ->
+                                                    scope.launch(Dispatchers.IO) {
+                                                        if (isChecked) {
+                                                            dataStore.saveThemeMode(darkModeString)
+                                                            dataStore.themeModeState.value =
+                                                                    darkModeString
+                                                        }
+                                                        else {
+                                                            dataStore.saveThemeMode(lightModeString)
+                                                            dataStore.themeModeState.value =
+                                                                    lightModeString
+                                                        }
+                                                    }
+                                                } ,
+                                                onClick = {
+                                                    IntentUtils.openActivity(
+                                                        context , ThemeSettingsActivity::class.java
+                                                    )
+                                                })
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     SwitchPreferenceItem(
@@ -119,49 +119,49 @@ fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.language))
                 PreferenceItem(title = stringResource(R.string.language) ,
-                    summary = stringResource(id = R.string.summary_preference_settings_language) ,
-                    onClick = {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                            val localeIntent =
-                                Intent(Settings.ACTION_APP_LOCALE_SETTINGS).setData(
-                                    Uri.fromParts(
-                                        "package" , context.packageName , null
-                                    )
-                                )
-                            val detailsIntent =
-                                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).setData(
-                                    Uri.fromParts(
-                                        "package" , context.packageName , null
-                                    )
-                                )
-                            when {
-                                context.packageManager.resolveActivity(
-                                    localeIntent , 0
-                                ) != null -> context.startActivity(localeIntent)
+                               summary = stringResource(id = R.string.summary_preference_settings_language) ,
+                               onClick = {
+                                   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                                       val localeIntent =
+                                               Intent(Settings.ACTION_APP_LOCALE_SETTINGS).setData(
+                                                   Uri.fromParts(
+                                                       "package" , context.packageName , null
+                                                   )
+                                               )
+                                       val detailsIntent =
+                                               Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).setData(
+                                                   Uri.fromParts(
+                                                       "package" , context.packageName , null
+                                                   )
+                                               )
+                                       when {
+                                           context.packageManager.resolveActivity(
+                                               localeIntent , 0
+                                           ) != null -> context.startActivity(localeIntent)
 
-                                context.packageManager.resolveActivity(
-                                    detailsIntent , 0
-                                ) != null -> context.startActivity(detailsIntent)
+                                           context.packageManager.resolveActivity(
+                                               detailsIntent , 0
+                                           ) != null -> context.startActivity(detailsIntent)
 
-                                else -> {
-                                    showLanguageDialog = true
-                                }
-                            }
-                        }
-                        else {
-                            showLanguageDialog = true
-                        }
-                    })
+                                           else -> {
+                                               showLanguageDialog = true
+                                           }
+                                       }
+                                   }
+                                   else {
+                                       showLanguageDialog = true
+                                   }
+                               })
                 if (showLanguageDialog) {
                     LanguageDialog(dataStore = dataStore ,
-                        onDismiss = { showLanguageDialog = false } ,
-                        onLanguageSelected = { newLanguageCode ->
-                            AppCompatDelegate.setApplicationLocales(
-                                LocaleListCompat.forLanguageTags(
-                                    newLanguageCode
-                                )
-                            )
-                        })
+                                   onDismiss = { showLanguageDialog = false } ,
+                                   onLanguageSelected = { newLanguageCode ->
+                                       AppCompatDelegate.setApplicationLocales(
+                                           LocaleListCompat.forLanguageTags(
+                                               newLanguageCode
+                                           )
+                                       )
+                                   })
                 }
             }
         }

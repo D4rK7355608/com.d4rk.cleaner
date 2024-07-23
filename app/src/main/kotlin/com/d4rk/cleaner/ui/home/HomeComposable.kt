@@ -71,17 +71,17 @@ import coil.memory.MemoryCache
 import coil.request.ImageRequest
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ui.dialogs.RescanAlertDialog
-import com.d4rk.cleaner.utils.compose.components.CircularDeterminateIndicator
-import com.d4rk.cleaner.utils.compose.bounceClick
 import com.d4rk.cleaner.utils.cleaning.getFileIcon
 import com.d4rk.cleaner.utils.cleaning.getVideoThumbnail
+import com.d4rk.cleaner.utils.compose.bounceClick
+import com.d4rk.cleaner.utils.compose.components.CircularDeterminateIndicator
 import com.google.common.io.Files.getFileExtension
 import java.io.File
 
 @Composable
 fun HomeComposable() {
     val context = LocalContext.current
-    val viewModel: HomeViewModel = viewModel()
+    val viewModel : HomeViewModel = viewModel()
     val progress by viewModel.progress.observeAsState(0.3f)
     val storageUsed by viewModel.storageUsed.observeAsState("0")
     val storageTotal by viewModel.storageTotal.observeAsState("0")
@@ -89,32 +89,22 @@ fun HomeComposable() {
     val isAnalyzing by viewModel.isAnalyzing.observeAsState(false)
     val selectedFileCount by viewModel.selectedFileCount.collectAsState()
 
-    val imageLoader = ImageLoader.Builder(context)
-        .memoryCache {
-            MemoryCache.Builder(context)
-                .maxSizePercent(0.24)
-                .build()
-        }
-        .diskCache {
-            DiskCache.Builder()
-                .directory(context.cacheDir.resolve("image_cache"))
-                .maxSizePercent(0.02)
-                .build()
-        }
-        .build()
+    val imageLoader = ImageLoader.Builder(context).memoryCache {
+                MemoryCache.Builder(context).maxSizePercent(0.24).build()
+            }.diskCache {
+                DiskCache.Builder().directory(context.cacheDir.resolve("image_cache"))
+                        .maxSizePercent(0.02).build()
+            }.build()
 
     val launchScanningKey = remember { mutableStateOf(false) }
 
     if (viewModel.showRescanDialog.value) {
-        RescanAlertDialog(
-            onYes = {
-                viewModel.rescan(
-                    context as Activity
-                )
-                viewModel.showRescanDialog.value = false
-            },
-            onDismiss = { viewModel.showRescanDialog.value = false }
-        )
+        RescanAlertDialog(onYes = {
+            viewModel.rescan(
+                context as Activity
+            )
+            viewModel.showRescanDialog.value = false
+        } , onDismiss = { viewModel.showRescanDialog.value = false })
     }
 
     Column(
@@ -122,110 +112,117 @@ fun HomeComposable() {
     ) {
         Box(
             modifier = Modifier
-                .weight(4f)
-                .fillMaxWidth()
+                    .weight(4f)
+                    .fillMaxWidth()
         ) {
-            if (!showCleaningComposable) {
+            if (! showCleaningComposable) {
                 CircularDeterminateIndicator(
-                    progress = progress,
-                    storageUsed = storageUsed,
-                    storageTotal = storageTotal,
+                    progress = progress ,
+                    storageUsed = storageUsed ,
+                    storageTotal = storageTotal ,
                     modifier = Modifier
-                        .align(Alignment.TopCenter)
-                        .offset(y = 98.dp)
+                            .align(Alignment.TopCenter)
+                            .offset(y = 98.dp)
                 )
                 Image(
-                    painter = painterResource(R.drawable.ic_clean),
-                    contentDescription = null,
+                    painter = painterResource(R.drawable.ic_clean) ,
+                    contentDescription = null ,
                     modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .padding(24.dp)
-                        .size(128.dp, 66.dp)
+                            .align(Alignment.BottomCenter)
+                            .padding(24.dp)
+                            .size(128.dp , 66.dp)
                 )
-            } else {
-                AnalyzeComposable(launchScanningKey, imageLoader)
+            }
+            else {
+                AnalyzeComposable(launchScanningKey , imageLoader)
             }
         }
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(102.dp)
-                .padding(bottom = 16.dp),
+                    .fillMaxWidth()
+                    .height(102.dp)
+                    .padding(bottom = 16.dp) ,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             AnimatedVisibility(
-                visible = showCleaningComposable,
+                visible = showCleaningComposable ,
                 enter = fadeIn(animationSpec = tween(durationMillis = 400)) + expandHorizontally(
-                    animationSpec = tween(durationMillis = 400), expandFrom = Alignment.Start
-                ),
+                    animationSpec = tween(durationMillis = 400) , expandFrom = Alignment.Start
+                ) ,
                 exit = fadeOut(animationSpec = tween(durationMillis = 400)) + shrinkHorizontally(
-                    animationSpec = tween(durationMillis = 400), shrinkTowards = Alignment.Start
-                ),
+                    animationSpec = tween(durationMillis = 400) , shrinkTowards = Alignment.Start
+                ) ,
                 modifier = Modifier.weight(1f)
             ) {
-                val enabled = !isAnalyzing && selectedFileCount > 0
+                val enabled = ! isAnalyzing && selectedFileCount > 0
 
                 val animateStateButtonColor = animateColorAsState(
-                    targetValue = if (enabled) MaterialTheme.colorScheme.secondaryContainer else Color.LightGray,
-                    animationSpec = tween(400, 0, LinearEasing),
+                    targetValue = if (enabled) MaterialTheme.colorScheme.secondaryContainer else Color.LightGray ,
+                    animationSpec = tween(400 , 0 , LinearEasing) ,
                     label = ""
                 )
 
                 FilledTonalButton(
                     modifier = Modifier
-                        .weight(1f)
-                        .fillMaxHeight()
-                        .animateContentSize()
-                        .padding(start = 16.dp, end = 8.dp)
-                        .bounceClick(),
+                            .weight(1f)
+                            .fillMaxHeight()
+                            .animateContentSize()
+                            .padding(start = 16.dp , end = 8.dp)
+                            .bounceClick() ,
                     onClick = {
                         viewModel.clean(activity = context as Activity)
-                    },
-                    shape = MaterialTheme.shapes.medium,
-                    enabled = enabled,
+                    } ,
+                    shape = MaterialTheme.shapes.medium ,
+                    enabled = enabled ,
                     colors = ButtonDefaults.filledTonalButtonColors(
-                        containerColor = animateStateButtonColor.value,
-                    ),
+                        containerColor = animateStateButtonColor.value ,
+                    ) ,
                 ) {
                     Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally ,
+                        verticalArrangement = Arrangement.Center ,
                         modifier = Modifier
-                            .fillMaxSize()
-                            .padding(ButtonDefaults.ContentPadding)
+                                .fillMaxSize()
+                                .padding(ButtonDefaults.ContentPadding)
                     ) {
                         Icon(
-                            painterResource(R.drawable.ic_broom),
-                            contentDescription = null,
+                            painterResource(R.drawable.ic_broom) ,
+                            contentDescription = null ,
                             modifier = Modifier.size(ButtonDefaults.IconSize)
                         )
-                        Text(text = stringResource(R.string.clean), style = MaterialTheme.typography.bodyMedium)
+                        Text(
+                            text = stringResource(R.string.clean) ,
+                            style = MaterialTheme.typography.bodyMedium
+                        )
                     }
                 }
             }
             FilledTonalButton(
                 modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight()
-                    .animateContentSize()
-                    .padding(start = if (showCleaningComposable) 8.dp else 16.dp, end = 16.dp)
-                    .bounceClick(), onClick = {
+                        .weight(1f)
+                        .fillMaxHeight()
+                        .animateContentSize()
+                        .padding(start = if (showCleaningComposable) 8.dp else 16.dp , end = 16.dp)
+                        .bounceClick() , onClick = {
                     viewModel.analyze(activity = context as Activity)
-                }, shape = MaterialTheme.shapes.medium
+                } , shape = MaterialTheme.shapes.medium
             ) {
                 Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally ,
+                    verticalArrangement = Arrangement.Center ,
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(ButtonDefaults.ContentPadding)
+                            .fillMaxSize()
+                            .padding(ButtonDefaults.ContentPadding)
                 ) {
                     Icon(
-                        painterResource(R.drawable.ic_search),
-                        contentDescription = null,
+                        painterResource(R.drawable.ic_search) ,
+                        contentDescription = null ,
                         modifier = Modifier.size(ButtonDefaults.IconSize)
                     )
-                    Text(text = stringResource(R.string.analyze), style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        text = stringResource(R.string.analyze) ,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                 }
             }
         }
@@ -241,8 +238,8 @@ fun HomeComposable() {
  * @param viewModel The HomeViewModel instance used to interact with the data and business logic.
  */
 @Composable
-fun AnalyzeComposable(launchScanningKey: MutableState<Boolean>, imageLoader: ImageLoader) {
-    val viewModel: HomeViewModel = viewModel()
+fun AnalyzeComposable(launchScanningKey : MutableState<Boolean> , imageLoader : ImageLoader) {
+    val viewModel : HomeViewModel = viewModel()
     val files by viewModel.scannedFiles.asFlow().collectAsState(initial = listOf())
     val isAnalyzing by viewModel.isAnalyzing.observeAsState(false)
     val allFilesSelected by viewModel.allFilesSelected
@@ -259,64 +256,67 @@ fun AnalyzeComposable(launchScanningKey: MutableState<Boolean>, imageLoader: Ima
 
     Column(
         modifier = Modifier
-            .animateContentSize()
-            .fillMaxWidth()
-            .padding(16.dp),
+                .animateContentSize()
+                .fillMaxWidth()
+                .padding(16.dp) ,
         horizontalAlignment = Alignment.End
     ) {
         OutlinedCard(
             modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth(),
+                    .weight(1f)
+                    .fillMaxWidth() ,
         ) {
             if (isAnalyzing && files.isEmpty()) {
-                Box (modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
                     CircularProgressIndicator()
                 }
-            } else {
+            }
+            else {
                 LazyVerticalGrid(
-                    columns = GridCells.Fixed(3),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.padding(8.dp),
+                    columns = GridCells.Fixed(3) ,
+                    verticalArrangement = Arrangement.spacedBy(8.dp) ,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp) ,
+                    modifier = Modifier.padding(8.dp) ,
                 ) {
-                    items(files, key = { file -> file.absolutePath }) { file ->
-                        FileCard(file = file, viewModel = viewModel, imageLoader = imageLoader)
+                    items(files , key = { file -> file.absolutePath }) { file ->
+                        FileCard(file = file , viewModel = viewModel , imageLoader = imageLoader)
                     }
                 }
             }
         }
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth() ,
+            verticalAlignment = Alignment.CenterVertically ,
+            horizontalArrangement = Arrangement.SpaceBetween ,
         ) {
             val statusText = if (selectedFileCount > 0) {
-                stringResource(id = R.string.status_selected_files, selectedFileCount)
-            } else {
+                stringResource(id = R.string.status_selected_files , selectedFileCount)
+            }
+            else {
                 stringResource(id = R.string.status_no_files_selected)
             }
             val statusColor by animateColorAsState(
                 targetValue = if (selectedFileCount > 0) {
                     MaterialTheme.colorScheme.primary
-                } else {
+                }
+                else {
                     MaterialTheme.colorScheme.secondary
-                }, animationSpec = tween(), label = ""
+                } , animationSpec = tween() , label = ""
             )
 
             Text(
-                text = statusText, color = statusColor, modifier = Modifier.animateContentSize()
+                text = statusText , color = statusColor , modifier = Modifier.animateContentSize()
             )
             SelectAllComposable(
-                checked = allFilesSelected,
-                onCheckedChange = { viewModel.selectAllFiles(it) },
+                checked = allFilesSelected ,
+                onCheckedChange = { viewModel.selectAllFiles(it) } ,
             )
         }
     }
 }
 
 @Composable
-fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
+fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader) {
     val context = LocalContext.current
     val fileExtension = getFileExtension(file.name)
 
@@ -328,9 +328,9 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
 
     Card(
         modifier = Modifier
-            .fillMaxWidth()
-            .aspectRatio(1f)
-            .bounceClick(),
+                .fillMaxWidth()
+                .aspectRatio(1f)
+                .bounceClick() ,
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -338,68 +338,66 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
                 in context.resources.getStringArray(R.array.image_extensions).toList() -> {
                     AsyncImage(
                         model = remember(file) {
-                            ImageRequest.Builder(context)
-                                .data(file)
-                                .size(64)
-                                .crossfade(true)
-                                .build()
-                        },
-                        imageLoader = imageLoader,
-                        contentDescription = file.name,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxSize(),
+                            ImageRequest.Builder(context).data(file).size(64).crossfade(true)
+                                    .build()
+                        } ,
+                        imageLoader = imageLoader ,
+                        contentDescription = file.name ,
+                        contentScale = ContentScale.Crop ,
+                        modifier = Modifier.fillMaxSize() ,
                     )
                 }
 
                 in context.resources.getStringArray(R.array.video_extensions).toList() -> {
                     if (thumbnail != null) {
                         Image(
-                            bitmap = thumbnail!!.asImageBitmap(),
-                            contentDescription = file.name,
-                            contentScale = ContentScale.Crop,
+                            bitmap = thumbnail !!.asImageBitmap() ,
+                            contentDescription = file.name ,
+                            contentScale = ContentScale.Crop ,
                             modifier = Modifier.fillMaxSize()
                         )
-                    } else {
+                    }
+                    else {
                         Icon(
-                            painter = painterResource(R.drawable.ic_video_file),
-                            contentDescription = null,
+                            painter = painterResource(R.drawable.ic_video_file) ,
+                            contentDescription = null ,
                             modifier = Modifier
-                                .size(24.dp)
-                                .align(Alignment.Center)
+                                    .size(24.dp)
+                                    .align(Alignment.Center)
                         )
                     }
                 }
 
                 else -> {
                     Icon(
-                        painter = painterResource(getFileIcon(fileExtension, context)),
-                        contentDescription = null,
+                        painter = painterResource(getFileIcon(fileExtension , context)) ,
+                        contentDescription = null ,
                         modifier = Modifier
-                            .size(24.dp)
-                            .align(Alignment.Center)
+                                .size(24.dp)
+                                .align(Alignment.Center)
                     )
                 }
             }
 
             Checkbox(
-                checked = viewModel.fileSelectionStates[file] ?: false,
+                checked = viewModel.fileSelectionStates[file] ?: false ,
                 onCheckedChange = { isChecked ->
-                    viewModel.onFileSelectionChange(file, isChecked)
-                },
+                    viewModel.onFileSelectionChange(file , isChecked)
+                } ,
                 modifier = Modifier.align(Alignment.TopEnd)
             )
 
             Text(
-                text = file.name,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+                text = file.name ,
+                maxLines = 1 ,
+                overflow = TextOverflow.Ellipsis ,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .background(
-                        color = Color.Black.copy(alpha = 0.4f)
-                    )
-                    .padding(8.dp)
-                    .align(Alignment.BottomCenter)
+                        .fillMaxWidth()
+                        .background(
+                            color = Color.Black.copy(alpha = 0.4f)
+                        )
+                        .padding(8.dp)
+                        .align(Alignment.BottomCenter)
             )
         }
     }
@@ -416,34 +414,34 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
  */
 @Composable
 fun SelectAllComposable(
-    checked: Boolean, onCheckedChange: (Boolean) -> Unit
+    checked : Boolean , onCheckedChange : (Boolean) -> Unit
 ) {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .animateContentSize(),
-        verticalAlignment = Alignment.CenterVertically,
+                .fillMaxWidth()
+                .animateContentSize() ,
+        verticalAlignment = Alignment.CenterVertically ,
         horizontalArrangement = Arrangement.End
     ) {
         val interactionSource = remember { MutableInteractionSource() }
         FilterChip(
-            modifier = Modifier.bounceClick(),
-            selected = checked,
+            modifier = Modifier.bounceClick() ,
+            selected = checked ,
             onClick = {
-                onCheckedChange(!checked)
-            },
-            label = { Text(stringResource(id = R.string.select_all)) },
+                onCheckedChange(! checked)
+            } ,
+            label = { Text(stringResource(id = R.string.select_all)) } ,
             leadingIcon = {
-                AnimatedContent(targetState = checked, label = "") { targetChecked ->
+                AnimatedContent(targetState = checked , label = "") { targetChecked ->
                     if (targetChecked) {
                         Icon(
-                            imageVector = Icons.Filled.Check,
-                            contentDescription = null,
+                            imageVector = Icons.Filled.Check ,
+                            contentDescription = null ,
                         )
                     }
                 }
-            },
-            interactionSource = interactionSource,
+            } ,
+            interactionSource = interactionSource ,
         )
     }
 }

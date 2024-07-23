@@ -66,8 +66,8 @@ fun ThemeSettingsComposable(activity : ThemeSettingsActivity) {
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues) ,
+                        .fillMaxSize()
+                        .padding(paddingValues) ,
             ) {
                 item {
                     SwitchCardComposable(
@@ -81,8 +81,8 @@ fun ThemeSettingsComposable(activity : ThemeSettingsActivity) {
                 item {
                     Column(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(24.dp)
+                                .fillMaxWidth()
+                                .padding(24.dp)
                     ) {
                         themeOptions.forEach { text ->
                             Row(
@@ -107,8 +107,8 @@ fun ThemeSettingsComposable(activity : ThemeSettingsActivity) {
                 item {
                     Column(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(24.dp)
+                                .fillMaxWidth()
+                                .padding(24.dp)
                     ) {
                         Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))

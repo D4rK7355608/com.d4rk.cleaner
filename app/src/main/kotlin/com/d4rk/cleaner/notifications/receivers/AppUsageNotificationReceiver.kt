@@ -8,7 +8,7 @@ import androidx.work.WorkManager
 import com.d4rk.cleaner.notifications.workers.AppUsageNotificationWorker
 
 class AppUsageNotificationReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context, intent: Intent?) {
+    override fun onReceive(context : Context , intent : Intent?) {
         val workRequest = OneTimeWorkRequestBuilder<AppUsageNotificationWorker>().build()
         WorkManager.getInstance(context).enqueue(workRequest)
     }

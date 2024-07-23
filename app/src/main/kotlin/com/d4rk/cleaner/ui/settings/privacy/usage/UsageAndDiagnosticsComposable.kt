@@ -35,8 +35,8 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.utils.compose.components.SwitchCardComposable
 import com.d4rk.cleaner.utils.IntentUtils
+import com.d4rk.cleaner.utils.compose.components.SwitchCardComposable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -50,22 +50,22 @@ fun UsageAndDiagnosticsComposable(activity : UsageAndDiagnosticsActivity) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.usage_and_diagnostics)) } ,
-            navigationIcon = {
-                IconButton(onClick = {
-                    activity.finish()
-                }) {
-                    Icon(
-                        Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null
-                    )
-                }
-            } ,
-            scrollBehavior = scrollBehavior)
+                       navigationIcon = {
+                           IconButton(onClick = {
+                               activity.finish()
+                           }) {
+                               Icon(
+                                   Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null
+                               )
+                           }
+                       } ,
+                       scrollBehavior = scrollBehavior)
     }) { innerPadding ->
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding) ,
+                        .fillMaxSize()
+                        .padding(innerPadding) ,
             ) {
                 item {
                     SwitchCardComposable(
@@ -80,8 +80,8 @@ fun UsageAndDiagnosticsComposable(activity : UsageAndDiagnosticsActivity) {
                 item {
                     Column(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(24.dp)
+                                .fillMaxWidth()
+                                .padding(24.dp)
                     ) {
                         Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
@@ -104,9 +104,9 @@ fun UsageAndDiagnosticsComposable(activity : UsageAndDiagnosticsActivity) {
                         }
                         ClickableText(text = annotatedString , onClick = { offset ->
                             annotatedString.getStringAnnotations("URL" , offset , offset)
-                                .firstOrNull()?.let { annotation ->
-                                    IntentUtils.openUrl(context , annotation.item)
-                                }
+                                    .firstOrNull()?.let { annotation ->
+                                        IntentUtils.openUrl(context , annotation.item)
+                                    }
                         })
                     }
                 }

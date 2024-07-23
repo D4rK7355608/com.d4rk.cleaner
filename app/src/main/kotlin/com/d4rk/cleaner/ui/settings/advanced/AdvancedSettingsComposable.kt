@@ -19,9 +19,9 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.utils.compose.components.PreferenceCategoryItem
 import com.d4rk.cleaner.utils.compose.components.PreferenceItem
-import com.d4rk.cleaner.utils.IntentUtils
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,19 +41,19 @@ fun AdvancedSettingsComposable(activity : AdvancedSettingsActivity) {
     }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
-                .fillMaxHeight()
-                .padding(paddingValues) ,
+                    .fillMaxHeight()
+                    .padding(paddingValues) ,
         ) {
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.error_reporting))
                 PreferenceItem(title = stringResource(R.string.bug_report) ,
-                    summary = stringResource(R.string.summary_preference_settings_bug_report) ,
-                    onClick = {
-                        IntentUtils.openUrl(
-                            context ,
-                            "https://github.com/D4rK7355608/${context.packageName}/issues/new"
-                        )
-                    })
+                               summary = stringResource(R.string.summary_preference_settings_bug_report) ,
+                               onClick = {
+                                   IntentUtils.openUrl(
+                                       context ,
+                                       "https://github.com/D4rK7355608/${context.packageName}/issues/new"
+                                   )
+                               })
             }
         }
     }

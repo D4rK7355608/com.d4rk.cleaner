@@ -17,14 +17,14 @@ import java.io.File
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
-    private lateinit var fileScanner: FileScanner
+    private lateinit var fileScanner : FileScanner
 
     @Before
     fun init() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        val path = File(Environment.getExternalStorageDirectory(), "")
+        val path = File(Environment.getExternalStorageDirectory() , "")
         val res = appContext.resources
-        fileScanner = FileScanner(path, appContext).apply {
+        fileScanner = FileScanner(path , appContext).apply {
             setAutoWhite(false)
             setResources(res)
             setDelete(true)
@@ -34,14 +34,19 @@ class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        Assert.assertEquals("com.d4rk.cleaner", appContext.packageName)
+        Assert.assertEquals("com.d4rk.cleaner" , appContext.packageName)
     }
 
     @Test
     fun checkLogFiles() {
         val logFile = createFile("testfile.loG")
         val clogFile = createFile("clogs.pnG")
-        fileScanner.setUpFilters(generic = true, aggressive = false, apk = false, archive = false)
+        fileScanner.setUpFilters(
+            generic = true ,
+            aggressive = false ,
+            apk = false ,
+            archive = false
+        )
         fileScanner.startScan()
         Assert.assertTrue(clogFile.exists())
         Assert.assertFalse(logFile.exists())
@@ -50,7 +55,12 @@ class ExampleInstrumentedTest {
     @Test
     fun checkTempFiles() {
         val tmpFile = createFile("testfile.tMp")
-        fileScanner.setUpFilters(generic = true, aggressive = false, apk = false, archive = false)
+        fileScanner.setUpFilters(
+            generic = true ,
+            aggressive = false ,
+            apk = false ,
+            archive = false
+        )
         fileScanner.startScan()
         Assert.assertFalse(tmpFile.exists())
     }
@@ -58,7 +68,12 @@ class ExampleInstrumentedTest {
     @Test
     fun checkThumbFiles() {
         val thumbFile = createFile("thumbs.Db")
-        fileScanner.setUpFilters(generic = false, aggressive = true, apk = false, archive = false)
+        fileScanner.setUpFilters(
+            generic = false ,
+            aggressive = true ,
+            apk = false ,
+            archive = false
+        )
         fileScanner.startScan()
         Assert.assertFalse(thumbFile.exists())
     }
@@ -66,7 +81,7 @@ class ExampleInstrumentedTest {
     @Test
     fun checkAPKFiles() {
         val thumbFile = createFile("chrome.aPk")
-        fileScanner.setUpFilters(generic = true, aggressive = true, apk = true, archive = false)
+        fileScanner.setUpFilters(generic = true , aggressive = true , apk = true , archive = false)
         fileScanner.startScan()
         Assert.assertFalse(thumbFile.exists())
     }
@@ -74,14 +89,19 @@ class ExampleInstrumentedTest {
     @Test
     fun checkEmptyDir() {
         val emptyDir = createDir()
-        fileScanner.setUpFilters(generic = true, aggressive = false, apk = false, archive = false)
+        fileScanner.setUpFilters(
+            generic = true ,
+            aggressive = false ,
+            apk = false ,
+            archive = false
+        )
         fileScanner.setEmptyDir(true)
         fileScanner.startScan()
         Assert.assertFalse(emptyDir.exists())
     }
 
-    private fun createFile(name: String): File {
-        val file = File(Environment.getExternalStorageDirectory(), name)
+    private fun createFile(name : String) : File {
+        val file = File(Environment.getExternalStorageDirectory() , name)
         file.createNewFile().let {
             Assert.assertTrue(it)
         }
@@ -89,8 +109,8 @@ class ExampleInstrumentedTest {
         return file
     }
 
-    private fun createDir(): File {
-        val file = File(Environment.getExternalStorageDirectory(), "testdir")
+    private fun createDir() : File {
+        val file = File(Environment.getExternalStorageDirectory() , "testdir")
         file.mkdir().let {
             Assert.assertTrue(it)
         }

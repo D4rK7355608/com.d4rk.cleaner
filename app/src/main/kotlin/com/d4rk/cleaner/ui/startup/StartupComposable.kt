@@ -45,12 +45,12 @@ import com.d4rk.cleaner.utils.compose.bounceClick
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StartupComposable(activity: StartupActivity) {
+fun StartupComposable(activity : StartupActivity) {
     val context = LocalContext.current
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     val fabEnabled = remember { mutableStateOf(false) }
     LaunchedEffect(context) {
-        if (!PermissionsUtils.hasNotificationPermission(context)) {
+        if (! PermissionsUtils.hasNotificationPermission(context)) {
             PermissionsUtils.requestNotificationPermission(context as Activity)
         }
         activity.consentFormShown.collect { shown ->
@@ -58,81 +58,81 @@ fun StartupComposable(activity: StartupActivity) {
         }
     }
 
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
         LargeTopAppBar(
-            title = { Text(stringResource(R.string.welcome)) },
-            scrollBehavior = scrollBehavior
+            title = { Text(stringResource(R.string.welcome)) } , scrollBehavior = scrollBehavior
         )
     }) { innerPadding ->
         Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(24.dp)
-                .safeDrawingPadding()
+                    .fillMaxSize()
+                    .padding(24.dp)
+                    .safeDrawingPadding()
         ) {
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
+                        .fillMaxSize()
+                        .padding(innerPadding) ,
             ) {
                 item {
                     Image(
-                        painter = painterResource(id = R.drawable.il_startup),
+                        painter = painterResource(id = R.drawable.il_startup) ,
                         contentDescription = null
                     )
                     Icon(
-                        Icons.Outlined.Info, contentDescription = null
+                        Icons.Outlined.Info , contentDescription = null
                     )
                 }
                 item {
                     Text(
-                        text = stringResource(R.string.summary_browse_terms_of_service_and_privacy_policy),
-                        modifier = Modifier.padding(top = 24.dp, bottom = 24.dp)
+                        text = stringResource(R.string.summary_browse_terms_of_service_and_privacy_policy) ,
+                        modifier = Modifier.padding(top = 24.dp , bottom = 24.dp)
                     )
                     val annotatedString = buildAnnotatedString {
                         withStyle(
                             style = SpanStyle(
-                                color = MaterialTheme.colorScheme.primary,
+                                color = MaterialTheme.colorScheme.primary ,
                                 textDecoration = TextDecoration.Underline
                             )
                         ) {
                             append(stringResource(R.string.browse_terms_of_service_and_privacy_policy))
                         }
                         addStringAnnotation(
-                            tag = "URL",
-                            annotation = "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy",
-                            start = 0,
+                            tag = "URL" ,
+                            annotation = "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy" ,
+                            start = 0 ,
                             end = stringResource(R.string.browse_terms_of_service_and_privacy_policy).length
                         )
                     }
-                    ClickableText(text = annotatedString, onClick = { offset ->
-                        annotatedString.getStringAnnotations("URL", offset, offset).firstOrNull()
-                            ?.let { annotation ->
-                                IntentUtils.openUrl(context, annotation.item)
-                            }
+                    ClickableText(text = annotatedString , onClick = { offset ->
+                        annotatedString.getStringAnnotations("URL" , offset , offset).firstOrNull()
+                                ?.let { annotation ->
+                                    IntentUtils.openUrl(context , annotation.item)
+                                }
                     })
                 }
             }
             ExtendedFloatingActionButton(modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .bounceClick(),
-                containerColor = if (fabEnabled.value) {
-                    FloatingActionButtonDefaults.containerColor
-                } else {
-                    Gray
-                },
-                text = { Text(stringResource(R.string.agree)) },
-                onClick = {
-                    IntentUtils.openActivity(
-                        context , MainActivity::class.java
-                    )
-                },
-                icon = {
-                    Icon(
-                        Icons.Outlined.CheckCircle,
-                        contentDescription = null
-                    )
-                })
+                    .align(Alignment.BottomEnd)
+                    .bounceClick() ,
+                                         containerColor = if (fabEnabled.value) {
+                                             FloatingActionButtonDefaults.containerColor
+                                         }
+                                         else {
+                                             Gray
+                                         } ,
+                                         text = { Text(stringResource(R.string.agree)) } ,
+                                         onClick = {
+                                             IntentUtils.openActivity(
+                                                 context , MainActivity::class.java
+                                             )
+                                         } ,
+                                         icon = {
+                                             Icon(
+                                                 Icons.Outlined.CheckCircle ,
+                                                 contentDescription = null
+                                             )
+                                         })
         }
     }
 }

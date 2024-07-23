@@ -1,16 +1,26 @@
 # Version 2.0.0:
-- **New**: Added a progress bar to the main screen, offering an approximate visualization of storage usage.
-- **New**: Users can now select specific files for deletion after the scan completes, allowing for granular control.
-- **New**: Enhanced the post-scan screen to display previews of images and videos, aiding in file selection.
-- **New**: Introduced the option to select all files for deletion, streamlining the cleaning process.
-- **New**: Completely overhauled the memory manager, now showcasing storage usage categorized by file types.
-- **New**: Added support for dynamic colors on compatible devices, allowing the app to adapt to system-wide color palettes.
+
+- **New**: Added a progress bar to the main screen, offering an approximate visualization of storage
+  usage.
+- **New**: Users can now select specific files for deletion after the scan completes, allowing for
+  granular control.
+- **New**: Enhanced the post-scan screen to display previews of images and videos, aiding in file
+  selection.
+- **New**: Introduced the option to select all files for deletion, streamlining the cleaning
+  process.
+- **New**: Completely overhauled the memory manager, now showcasing storage usage categorized by
+  file types.
+- **New**: Added support for dynamic colors on compatible devices, allowing the app to adapt to
+  system-wide color palettes.
 - **New**: Refined the AMOLED theme for a more immersive dark mode experience.
 - **New**: Incorporated updated translations thanks to valuable contributions from the community.
 - **New**: Introduced a dedicated section for managing security and privacy settings within the app.
-- **New**: Implemented new animations and improved overall app responsiveness for a smoother user experience.
-- **Major**: Migrated the entire app to Jetpack Compose, providing a modern and improved user interface.
-- **Major**: Completely reworked the app's logic using view models and coroutines for enhanced performance and maintainability.
+- **New**: Implemented new animations and improved overall app responsiveness for a smoother user
+  experience.
+- **Major**: Migrated the entire app to Jetpack Compose, providing a modern and improved user
+  interface.
+- **Major**: Completely reworked the app's logic using view models and coroutines for enhanced
+  performance and maintainability.
 
 # Version 1.1.0:
 

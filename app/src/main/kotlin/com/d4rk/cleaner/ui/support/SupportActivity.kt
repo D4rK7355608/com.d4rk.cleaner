@@ -17,18 +17,17 @@ import com.android.billingclient.api.SkuDetails
 import com.d4rk.cleaner.ui.settings.display.theme.style.AppTheme
 
 class SupportActivity : AppCompatActivity() {
-    private val viewModel: SupportViewModel by viewModels()
+    private val viewModel : SupportViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    SupportComposable(viewModel, this@SupportActivity)
+                    SupportComposable(viewModel , this@SupportActivity)
                 }
             }
         }

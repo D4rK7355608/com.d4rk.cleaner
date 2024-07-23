@@ -12,15 +12,12 @@ object FileUtils {
      * @param size The file size in bytes.
      * @return A formatted string representing the file size.
      */
-    fun formatSize(size: Long): String {
+    fun formatSize(size : Long) : String {
         if (size <= 0) return "0 B"
-        val units = arrayOf("B", "KB", "MB", "GB", "TB")
+        val units = arrayOf("B" , "KB" , "MB" , "GB" , "TB")
         val digitGroups = (log10(size.toDouble()) / log10(1024.0)).toInt()
         return String.format(
-            Locale.US,
-            "%.2f %s",
-            size / 1024.0.pow(digitGroups.toDouble()),
-            units[digitGroups]
+            Locale.US , "%.2f %s" , size / 1024.0.pow(digitGroups.toDouble()) , units[digitGroups]
         )
     }
 }

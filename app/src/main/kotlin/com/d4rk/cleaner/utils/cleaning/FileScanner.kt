@@ -3,6 +3,7 @@ package com.d4rk.cleaner.utils.cleaning
 import android.content.res.Resources
 import android.os.Environment
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.constants.cleaning.ExtensionsConstants
 import com.d4rk.cleaner.data.datastore.DataStore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -20,10 +21,10 @@ import java.io.File
  * @property dataStore A DataStore instance used for accessing user preferences.
  * @property resources A Resources instance used for accessing string arrays that define file types.
  */
-class FileScanner(private val dataStore: DataStore, private val resources: Resources) {
+class FileScanner(private val dataStore : DataStore , private val resources : Resources) {
 
-    private var preferences: Map<String, Boolean> = emptyMap()
-    private var filteredFiles: List<File> = emptyList()
+    private var preferences : Map<String , Boolean> = emptyMap()
+    private var filteredFiles : List<File> = emptyList()
 
     /**
      * Initiates the file scanning process asynchronously.
@@ -43,14 +44,16 @@ class FileScanner(private val dataStore: DataStore, private val resources: Resou
      * The preferences include whether to filter generic files, archive files, APK files, audio files, video files, and image files.
      */
     private suspend fun loadPreferences() {
-        preferences = mapOf(
-            "generic_extensions" to dataStore.genericFilter.first(),
-            "archive_extensions" to dataStore.deleteArchives.first(),
-            "apk_extensions" to dataStore.deleteApkFiles.first(),
-            "image_extensions" to dataStore.deleteImageFiles.first(),
-            "audio_extensions" to dataStore.deleteAudioFiles.first(),
-            "video_extensions" to dataStore.deleteVideoFiles.first()
-        )
+        preferences = with(ExtensionsConstants) {
+            mapOf(
+                GENERIC_EXTENSIONS to dataStore.genericFilter.first() ,
+                ARCHIVE_EXTENSIONS to dataStore.deleteArchives.first() ,
+                APK_EXTENSIONS to dataStore.deleteApkFiles.first() ,
+                IMAGE_EXTENSIONS to dataStore.deleteImageFiles.first() ,
+                AUDIO_EXTENSIONS to dataStore.deleteAudioFiles.first() ,
+                VIDEO_EXTENSIONS to dataStore.deleteVideoFiles.first()
+            )
+        }
     }
 
     /**
@@ -58,7 +61,7 @@ class FileScanner(private val dataStore: DataStore, private val resources: Resou
      *
      * @return A list of all files found in the external storage directory.
      */
-    private fun getAllFiles(): List<File> {
+    private fun getAllFiles() : List<File> {
         val files = mutableListOf<File>()
         val stack = ArrayDeque<File>()
         val root = Environment.getExternalStorageDirectory()
@@ -68,7 +71,8 @@ class FileScanner(private val dataStore: DataStore, private val resources: Resou
             val currentFile = stack.removeFirst()
             if (currentFile.isDirectory) {
                 currentFile.listFiles()?.forEach { stack.addLast(it) }
-            } else {
+            }
+            else {
                 files.add(currentFile)
             }
         }
@@ -76,47 +80,46 @@ class FileScanner(private val dataStore: DataStore, private val resources: Resou
         return files
     }
 
-    private fun filterFiles(allFiles: List<File>): Flow<File> = flow {
+    private fun filterFiles(allFiles : List<File>) : Flow<File> = flow {
         allFiles.filter(::shouldFilterFile).forEach { emit(it) }
     }
 
-    private fun shouldFilterFile(file: File): Boolean {
-        return preferences.any { (key, value) ->
-            when (key) {
-                "generic_extensions" -> {
-                    val extensions =
-                        resources.getStringArray(R.array.generic_extensions)
-                    value && extensions.map { it.removePrefix(".") }
-                        .contains(file.extension)
-                }
+    private fun shouldFilterFile(file : File) : Boolean {
+        return preferences.any { (key , value) ->
+            with(ExtensionsConstants) {
+                when (key) {
+                    GENERIC_EXTENSIONS -> {
+                        val extensions = resources.getStringArray(R.array.generic_extensions)
+                        value && extensions.map { it.removePrefix(".") }.contains(file.extension)
+                    }
 
-                "archive_extensions" -> {
-                    val extensions =
-                        resources.getStringArray(R.array.archive_extensions)
-                    value && extensions.contains(file.extension)
-                }
+                    ARCHIVE_EXTENSIONS -> {
+                        val extensions = resources.getStringArray(R.array.archive_extensions)
+                        value && extensions.contains(file.extension)
+                    }
 
-                "apk_extensions" -> {
-                    val extensions = resources.getStringArray(R.array.apk_extensions)
-                    value && extensions.contains(file.extension)
-                }
+                    APK_EXTENSIONS -> {
+                        val extensions = resources.getStringArray(R.array.apk_extensions)
+                        value && extensions.contains(file.extension)
+                    }
 
-                "audio_extensions" -> {
-                    val extensions = resources.getStringArray(R.array.audio_extensions)
-                    value && extensions.contains(file.extension)
-                }
+                    AUDIO_EXTENSIONS -> {
+                        val extensions = resources.getStringArray(R.array.audio_extensions)
+                        value && extensions.contains(file.extension)
+                    }
 
-                "video_extensions" -> {
-                    val extensions = resources.getStringArray(R.array.video_extensions)
-                    value && extensions.contains(file.extension)
-                }
+                    VIDEO_EXTENSIONS -> {
+                        val extensions = resources.getStringArray(R.array.video_extensions)
+                        value && extensions.contains(file.extension)
+                    }
 
-                "image_extensions" -> {
-                    val extensions = resources.getStringArray(R.array.image_extensions)
-                    value && extensions.contains(file.extension)
-                }
+                    IMAGE_EXTENSIONS -> {
+                        val extensions = resources.getStringArray(R.array.image_extensions)
+                        value && extensions.contains(file.extension)
+                    }
 
-                else -> false
+                    else -> false
+                }
             }
         }
     }
@@ -126,7 +129,7 @@ class FileScanner(private val dataStore: DataStore, private val resources: Resou
      *
      * @return A list of files that match the user-defined preferences.
      */
-    fun getFilteredFiles(): List<File> {
+    fun getFilteredFiles() : List<File> {
         return filteredFiles
     }
 }

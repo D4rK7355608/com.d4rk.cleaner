@@ -29,7 +29,7 @@ import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.ImageOptimizerViewModel
 import kotlinx.coroutines.launch
 
 @Composable
-fun ManualModeScreen(viewModel: ImageOptimizerViewModel) {
+fun ManualModeScreen(viewModel : ImageOptimizerViewModel) {
     val state = viewModel.uiState.collectAsState()
     var widthText by remember { mutableStateOf(state.value.manualWidth.toString()) }
     var heightText by remember { mutableStateOf(state.value.manualHeight.toString()) }
@@ -38,40 +38,40 @@ fun ManualModeScreen(viewModel: ImageOptimizerViewModel) {
     Column(modifier = Modifier.padding(16.dp)) {
         Row(modifier = Modifier.fillMaxWidth()) {
             OutlinedTextField(
-                value = widthText,
+                value = widthText ,
                 onValueChange = { newValue ->
                     widthText = newValue
                     coroutineScope.launch {
                         viewModel.setManualCompressSettings(
-                            newValue.toIntOrNull() ?: 0,
-                            heightText.toIntOrNull() ?: 0,
+                            newValue.toIntOrNull() ?: 0 ,
+                            heightText.toIntOrNull() ?: 0 ,
                             qualityValue.toInt()
                         )
                     }
-                },
-                label = { Text(stringResource(R.string.width)) },
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                } ,
+                label = { Text(stringResource(R.string.width)) } ,
+                singleLine = true ,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number) ,
                 modifier = Modifier
-                    .weight(1f)
-                    .padding(end = 8.dp)
+                        .weight(1f)
+                        .padding(end = 8.dp)
             )
 
             OutlinedTextField(
-                value = heightText,
+                value = heightText ,
                 onValueChange = { newValue ->
                     heightText = newValue
                     coroutineScope.launch {
                         viewModel.setManualCompressSettings(
-                            widthText.toIntOrNull() ?: 0,
-                            newValue.toIntOrNull() ?: 0,
+                            widthText.toIntOrNull() ?: 0 ,
+                            newValue.toIntOrNull() ?: 0 ,
                             qualityValue.toInt()
                         )
                     }
-                },
-                label = { Text(stringResource(R.string.height)) },
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                } ,
+                label = { Text(stringResource(R.string.height)) } ,
+                singleLine = true ,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number) ,
                 modifier = Modifier.weight(1f)
             )
         }
@@ -79,34 +79,31 @@ fun ManualModeScreen(viewModel: ImageOptimizerViewModel) {
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = stringResource(R.string.quality),
-            style = MaterialTheme.typography.bodyLarge
+            text = stringResource(R.string.quality) , style = MaterialTheme.typography.bodyLarge
         )
 
         Spacer(modifier = Modifier.height(4.dp))
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier.fillMaxWidth() , verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = stringResource(
-                    R.string.image_compressor_percentage_format,
-                    qualityValue.toInt()
+                    R.string.image_compressor_percentage_format , qualityValue.toInt()
                 )
             )
             Slider(
-                value = qualityValue,
+                value = qualityValue ,
                 onValueChange = { newValue ->
                     coroutineScope.launch {
                         qualityValue = newValue
                         viewModel.setManualCompressSettings(
-                            widthText.toIntOrNull() ?: 0,
-                            heightText.toIntOrNull() ?: 0,
+                            widthText.toIntOrNull() ?: 0 ,
+                            heightText.toIntOrNull() ?: 0 ,
                             newValue.toInt()
                         )
                     }
-                },
+                } ,
             )
         }
     }

@@ -16,33 +16,33 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ui.settings.display.theme.style.AppTheme
 
 class ImagePickerActivity : AppCompatActivity() {
-    private val viewModel: ImagePickerViewModel by viewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
+    private val viewModel : ImagePickerViewModel by viewModels()
+    override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    ImagePickerComposable(this, viewModel)
+                    ImagePickerComposable(this , viewModel)
                 }
             }
         }
     }
 
     private val launcher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
-                val selectedImageUri = result.data?.data
-                viewModel.setSelectedImageUri(selectedImageUri)
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+                    val selectedImageUri = result.data?.data
+                    viewModel.setSelectedImageUri(selectedImageUri)
+                }
             }
-        }
 
     fun selectImage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        val chooser = Intent.createChooser(intent, getString(R.string.select_image))
+        val chooser = Intent.createChooser(intent , getString(R.string.select_image))
         launcher.launch(chooser)
     }
 }

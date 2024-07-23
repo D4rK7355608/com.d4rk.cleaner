@@ -49,6 +49,7 @@
     <string name="other_files">Other Files</string>
 
     <string name="image_optimizer">Image optimizer</string>
+    <string name="summary_select_image">Select the image you want to optimize</string>
     <string name="choose_image">Choose image</string>
     <string name="optimize_image">Optimize image</string>
     <string name="image_saved">Image saved to: </string>

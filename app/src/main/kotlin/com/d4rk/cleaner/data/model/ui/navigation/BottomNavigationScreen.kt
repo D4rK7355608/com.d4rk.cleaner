@@ -12,29 +12,23 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.constants.ui.bottombar.BottomBarRoutes
 
 sealed class BottomNavigationScreen(
-    val route: String,
-    val icon: ImageVector,
-    val selectedIcon: ImageVector,
-    val title: Int
+    val route : String , val icon : ImageVector , val selectedIcon : ImageVector , val title : Int
 ) {
     data object Home : BottomNavigationScreen(
-        BottomBarRoutes.HOME,
-        Icons.Outlined.Home,
-        Icons.Filled.Home,
-        R.string.home
+        BottomBarRoutes.HOME , Icons.Outlined.Home , Icons.Filled.Home , R.string.home
     )
 
     data object AppManager : BottomNavigationScreen(
-        BottomBarRoutes.APP_MANAGER,
-        Icons.Sharp.AppRegistration,
-        Icons.Rounded.AppRegistration,
+        BottomBarRoutes.APP_MANAGER ,
+        Icons.Sharp.AppRegistration ,
+        Icons.Rounded.AppRegistration ,
         R.string.app_manager
     )
 
     data object MemoryManager : BottomNavigationScreen(
-        BottomBarRoutes.MEMORY_MANAGER,
-        Icons.Sharp.Storage,
-        Icons.Rounded.Storage,
+        BottomBarRoutes.MEMORY_MANAGER ,
+        Icons.Sharp.Storage ,
+        Icons.Rounded.Storage ,
         R.string.memory_manager
     )
 }

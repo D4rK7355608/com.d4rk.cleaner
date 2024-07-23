@@ -49,6 +49,7 @@
     <string name="other_files">Alte fișiere</string>
 
     <string name="image_optimizer">Optimizator de imagini</string>
+    <string name="summary_select_image">Selectați imaginea pe care doriți să o optimizați</string>
     <string name="choose_image">Alegeți imagine</string>
     <string name="optimize_image">Optimizați imaginea</string>
     <string name="image_saved">Imaginea a fost salvată la: </string>

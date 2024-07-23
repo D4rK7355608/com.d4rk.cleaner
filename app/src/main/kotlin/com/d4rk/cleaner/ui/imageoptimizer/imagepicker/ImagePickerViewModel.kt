@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 
 class ImagePickerViewModel : ViewModel() {
     private val _selectedImageUri = mutableStateOf<Uri?>(null)
-    val selectedImageUri: Uri? get() = _selectedImageUri.value
+    val selectedImageUri : Uri? get() = _selectedImageUri.value
 
-    fun setSelectedImageUri(uri: Uri?) {
+    fun setSelectedImageUri(uri : Uri?) {
         _selectedImageUri.value = uri
     }
 }

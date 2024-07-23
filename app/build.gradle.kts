@@ -14,27 +14,27 @@ android {
         applicationId = "com.d4rk.cleaner"
         minSdk = 26
         targetSdk = 34
-        versionCode = 96
+        versionCode = 97
         versionName = "2.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations += listOf(
-            "en",
-            "de",
-            "es",
-            "fr",
-            "hi",
-            "hu",
-            "in",
-            "it",
-            "ja",
-            "ro",
-            "ru",
-            "tr",
-            "sv",
-            "bg",
-            "pl",
-            "uk",
-            "b+zh+rTW",
+            "en" ,
+            "de" ,
+            "es" ,
+            "fr" ,
+            "hi" ,
+            "hu" ,
+            "in" ,
+            "it" ,
+            "ja" ,
+            "ro" ,
+            "ru" ,
+            "tr" ,
+            "sv" ,
+            "bg" ,
+            "pl" ,
+            "uk" ,
+            "b+zh+rTW" ,
         )
         vectorDrawables {
             useSupportLibrary = true
@@ -49,8 +49,7 @@ android {
             isDebuggable = false
             versionNameSuffix = null
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt") , "proguard-rules.pro"
             )
         }
         debug {
@@ -58,8 +57,7 @@ android {
             isDebuggable = true
             versionNameSuffix = null
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt") , "proguard-rules.pro"
             )
         }
     }
@@ -73,7 +71,6 @@ android {
     }
 
     buildFeatures {
-        viewBinding = true
         buildConfig = true
         compose = true
     }
@@ -150,7 +147,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }

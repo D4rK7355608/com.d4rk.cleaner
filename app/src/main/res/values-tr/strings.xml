@@ -49,6 +49,7 @@
     <string name="other_files">Diğer Dosyalar</string>
 
     <string name="image_optimizer">Resim optimize edici</string>
+    <string name="summary_select_image">Optimize etmek istediğiniz resmi seçin</string>
     <string name="choose_image">Resim seçin</string>
     <string name="optimize_image">Resmi optimize et</string>
     <string name="image_saved">Resim şuraya kaydedildi: </string>

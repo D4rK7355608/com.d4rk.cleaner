@@ -35,9 +35,9 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
+import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.utils.compose.components.PreferenceItem
 import com.d4rk.cleaner.utils.compose.components.SwitchCardComposable
-import com.d4rk.cleaner.utils.IntentUtils
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
 import kotlinx.coroutines.Dispatchers
@@ -65,8 +65,8 @@ fun AdsSettingsComposable(activity : AdsSettingsActivity) {
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding) ,
+                        .fillMaxSize()
+                        .padding(innerPadding) ,
             ) {
                 item {
                     SwitchCardComposable(
@@ -80,29 +80,29 @@ fun AdsSettingsComposable(activity : AdsSettingsActivity) {
                 item {
                     Box(modifier = Modifier.padding(horizontal = 8.dp)) {
                         PreferenceItem(title = stringResource(R.string.personalized_ads) ,
-                            enabled = switchState.value ,
-                            summary = stringResource(id = R.string.summary_ads_personalized_ads) ,
-                            onClick = {
-                                val params = ConsentRequestParameters.Builder()
-                                    .setTagForUnderAgeOfConsent(false).build()
-                                val consentInformation =
-                                    UserMessagingPlatform.getConsentInformation(
-                                        context
-                                    )
-                                consentInformation.requestConsentInfoUpdate(activity ,
-                                    params ,
-                                    {
-                                        activity.openForm()
-                                    } ,
-                                    {})
-                            })
+                                       enabled = switchState.value ,
+                                       summary = stringResource(id = R.string.summary_ads_personalized_ads) ,
+                                       onClick = {
+                                           val params = ConsentRequestParameters.Builder()
+                                                   .setTagForUnderAgeOfConsent(false).build()
+                                           val consentInformation =
+                                                   UserMessagingPlatform.getConsentInformation(
+                                                       context
+                                                   )
+                                           consentInformation.requestConsentInfoUpdate(activity ,
+                                                                                       params ,
+                                                                                       {
+                                                                                           activity.openForm()
+                                                                                       } ,
+                                                                                       {})
+                                       })
                     }
                 }
                 item {
                     Column(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(24.dp)
+                                .fillMaxWidth()
+                                .padding(24.dp)
                     ) {
                         Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
@@ -125,9 +125,9 @@ fun AdsSettingsComposable(activity : AdsSettingsActivity) {
                         }
                         ClickableText(text = annotatedString , onClick = { offset ->
                             annotatedString.getStringAnnotations("URL" , offset , offset)
-                                .firstOrNull()?.let { annotation ->
-                                    IntentUtils.openUrl(context , annotation.item)
-                                }
+                                    .firstOrNull()?.let { annotation ->
+                                        IntentUtils.openUrl(context , annotation.item)
+                                    }
                         })
                     }
                 }

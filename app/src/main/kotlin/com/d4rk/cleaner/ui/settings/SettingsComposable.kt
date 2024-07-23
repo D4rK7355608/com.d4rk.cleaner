@@ -30,79 +30,88 @@ import com.d4rk.cleaner.ui.settings.advanced.AdvancedSettingsActivity
 import com.d4rk.cleaner.ui.settings.cleaning.CleaningSettingsActivity
 import com.d4rk.cleaner.ui.settings.display.DisplaySettingsActivity
 import com.d4rk.cleaner.ui.settings.privacy.PrivacySettingsActivity
-import com.d4rk.cleaner.utils.compose.components.PreferenceItem
 import com.d4rk.cleaner.utils.IntentUtils
+import com.d4rk.cleaner.utils.compose.components.PreferenceItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsComposable(activity: SettingsActivity) {
+fun SettingsComposable(activity : SettingsActivity) {
     val context = LocalContext.current
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.settings)) }, navigationIcon = {
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.settings)) } , navigationIcon = {
             IconButton(onClick = {
                 activity.finish()
             }) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+                Icon(Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null)
             }
-        }, scrollBehavior = scrollBehavior)
+        } , scrollBehavior = scrollBehavior)
     }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
-                .fillMaxHeight()
-                .padding(paddingValues),
+                    .fillMaxHeight()
+                    .padding(paddingValues) ,
         ) {
             item {
-                PreferenceItem(Icons.Outlined.Palette,
-                    title = stringResource(R.string.display),
-                    summary = stringResource(R.string.summary_preference_settings_display),
-                    onClick = {
-                        IntentUtils.openActivity(context, DisplaySettingsActivity::class.java)
-                    })
+                PreferenceItem(Icons.Outlined.Palette ,
+                               title = stringResource(R.string.display) ,
+                               summary = stringResource(R.string.summary_preference_settings_display) ,
+                               onClick = {
+                                   IntentUtils.openActivity(
+                                       context ,
+                                       DisplaySettingsActivity::class.java
+                                   )
+                               })
             }
             item {
-                PreferenceItem(Icons.Outlined.CleaningServices,
-                    title = stringResource(R.string.cleaning),
-                    summary = stringResource(R.string.summary_preference_settings_cleaning),
-                    onClick = {
-                        IntentUtils.openActivity(
-                            context, CleaningSettingsActivity::class.java
-                        )
-                    })
+                PreferenceItem(Icons.Outlined.CleaningServices ,
+                               title = stringResource(R.string.cleaning) ,
+                               summary = stringResource(R.string.summary_preference_settings_cleaning) ,
+                               onClick = {
+                                   IntentUtils.openActivity(
+                                       context , CleaningSettingsActivity::class.java
+                                   )
+                               })
             }
             item {
-                PreferenceItem(Icons.Outlined.Notifications,
-                    title = stringResource(R.string.notifications),
-                    summary = stringResource(R.string.summary_preference_settings_notifications),
-                    onClick = {
-                        IntentUtils.openAppNotificationSettings(context)
-                    })
+                PreferenceItem(Icons.Outlined.Notifications ,
+                               title = stringResource(R.string.notifications) ,
+                               summary = stringResource(R.string.summary_preference_settings_notifications) ,
+                               onClick = {
+                                   IntentUtils.openAppNotificationSettings(context)
+                               })
             }
             item {
-                PreferenceItem(Icons.Outlined.Build,
-                    title = stringResource(R.string.advanced),
-                    summary = stringResource(R.string.summary_preference_settings_advanced),
-                    onClick = {
-                        IntentUtils.openActivity(
-                            context, AdvancedSettingsActivity::class.java
-                        )
-                    })
+                PreferenceItem(Icons.Outlined.Build ,
+                               title = stringResource(R.string.advanced) ,
+                               summary = stringResource(R.string.summary_preference_settings_advanced) ,
+                               onClick = {
+                                   IntentUtils.openActivity(
+                                       context , AdvancedSettingsActivity::class.java
+                                   )
+                               })
             }
             item {
-                PreferenceItem(Icons.Outlined.SafetyCheck,
-                    title = stringResource(R.string.security_and_privacy),
-                    summary = stringResource(R.string.summary_preference_settings_privacy_and_security),
-                    onClick = {
-                        IntentUtils.openActivity(context, PrivacySettingsActivity::class.java)
-                    })
+                PreferenceItem(Icons.Outlined.SafetyCheck ,
+                               title = stringResource(R.string.security_and_privacy) ,
+                               summary = stringResource(R.string.summary_preference_settings_privacy_and_security) ,
+                               onClick = {
+                                   IntentUtils.openActivity(
+                                       context ,
+                                       PrivacySettingsActivity::class.java
+                                   )
+                               })
             }
             item {
-                PreferenceItem(Icons.Outlined.Info,
-                    title = stringResource(R.string.about),
-                    summary = stringResource(R.string.summary_preference_settings_about),
-                    onClick = {
-                        IntentUtils.openActivity(context, AboutSettingsActivity::class.java)
-                    })
+                PreferenceItem(Icons.Outlined.Info ,
+                               title = stringResource(R.string.about) ,
+                               summary = stringResource(R.string.summary_preference_settings_about) ,
+                               onClick = {
+                                   IntentUtils.openActivity(
+                                       context ,
+                                       AboutSettingsActivity::class.java
+                                   )
+                               })
             }
         }
     }
