@@ -1,0 +1,258 @@
+<resources>
+    <string name="app_description">हर रोज़ इस्तेमाल के लिए यह आखिरी Android क्लीनर है जिसकी आपको कभी आवश्यकता होगी!</string>
+    <string name="notification_update_title">नया अपडेट उपलब्ध है!</string>
+    <string name="summary_notification_update">ऐप का एक नया संस्करण उपलब्ध है। अपडेट करने के लिए क्लिक करें!</string>
+    <string name="notification_last_time_used_title">कुछ समय हो गया है!</string>
+    <string name="summary_notification_last_time_used">चलिए कुछ जगह खाली करते हैं! हम खुश हैं कि आप वापस आ गए हैं!</string>
+
+    <string name="welcome">स्वागत है</string>
+    <string name="browse_terms_of_service_and_privacy_policy"><i><u>सेवा की शर्तें</u></i> और <i><u>गोपनीयता नीति</u></i> ब्राउज़ करें</string>
+    <string name="summary_browse_terms_of_service_and_privacy_policy">जारी रखने के लिए हमारी सेवा की शर्तों और गोपनीयता नीति को पढ़ें और सहमत हों</string>
+    <string name="agree">सहमत</string>
+
+    <string name="navigation_drawer_open">नेविगेशन ड्रॉअर खोलें</string>
+
+    <string name="home">होम</string>
+    <string name="storage_used">%1$s/%2$s GB\nइस्तेमाल हुआ</string>
+    <string name="analyze">विश्लेषण करें</string>
+    <string name="clean">साफ करें</string>
+    <string name="status_selected_files">स्थिति: %1$d फ़ाइलें चयनित</string>
+    <string name="status_no_files_selected">स्थिति: कोई फ़ाइलें चयनित नहीं हैं</string>
+    <string name="select_all">सबका चयन करें</string>
+    <string name="rescan_title">पुनः स्कैन करें?</string>
+    <string name="rescan_message">क्या आप सुनिश्चित हैं कि आप फिर से स्कैन करना चाहते हैं?</string>
+
+    <string name="app_manager">ऐप मैनेजर</string>
+    <string name="installed_apps">स्थापित एप्लिकेशन</string>
+    <string name="system_apps">सिस्टम ऐप्स</string>
+    <string name="app_install_files">ऐप इंस्टॉल फ़ाइलें (एपीके)</string>
+    <string name="uninstall">अनइंस्टॉल करें</string>
+    <string name="share">साझा करें</string>
+    <string name="app_info">ऐप जानकारी</string>
+    <string name="installed">स्थापित"</string>
+
+    <string name="memory_manager">मेमोरी मैनेजर</string>
+    <string name="storage_information">स्टोरेज जानकारी</string>
+    <string name="used">इस्तेमाल हुआ:</string>
+    <string name="free">खाली:</string>
+    <string name="total">कुल:</string>
+    <string name="ram_information">RAM जानकारी</string>
+    <string name="used_ram">इस्तेमाल किया गया RAM:</string>
+    <string name="free_ram">खाली RAM:</string>
+    <string name="total_ram">कुल RAM:</string>
+    <string name="categories">श्रेणियाँ</string>
+    <string name="system">सिस्टम</string>
+    <string name="music">संगीत</string>
+    <string name="images">चित्र</string>
+    <string name="documents">दस्तावेज़</string>
+    <string name="downloads">डाउनलोड</string>
+    <string name="other_files">अन्य फ़ाइलें</string>
+
+    <string name="image_optimizer">छवि अनुकूलक</string>
+    <string name="summary_select_image">उस छवि का चयन करें जिसे आप अनुकूलित करना चाहते हैं</string>
+    <string name="choose_image">छवि चुनें</string>
+    <string name="optimize_image">छवि अनुकूलित करें</string>
+    <string name="image_saved">छवि सहेजी गई:</string>
+    <string name="quick_compress">त्वरित संपीड़ित करें</string>
+    <string name="select_image">छवि चुनें</string>
+    <string name="low">कम</string>
+    <string name="medium">मध्यम</string>
+    <string name="high">उच्च</string>
+    <string name="file_size">फ़ाइल का आकार (KB)</string>
+    <string name="enter_a_value">एक मान दर्ज करें</string>
+    <string name="manual">मैन्युअल</string>
+    <string name="width">चौड़ाई (px)</string>
+    <string name="height">ऊँचाई (px)</string>
+    <string name="quality">गुणवत्ता</string>
+
+    <string name="settings">सेटिंग्स</string>
+
+    <string name="display">प्रदर्शन</string>
+    <string name="summary_preference_settings_display">अपने ऐप के लुक और फील को वैयक्तिकृत करें</string>
+
+    <string name="appearance">रूप-रंग</string>
+    <string name="dark_theme">डार्क थीम</string>
+    <string name="will_turn_on_automatically_by_system">सिस्टम द्वारा स्वचालित रूप से चालू हो जाएगा</string>
+    <string name="will_never_turn_on_automatically">स्वचालित रूप से कभी चालू नहीं होगा</string>
+    <string name="amoled_mode">AMOLED मोड</string>
+    <string name="follow_system">सिस्टम मोड का पालन करें</string>
+    <string name="light_mode">लाइट मोड</string>
+    <string name="dark_mode">डार्क मोड</string>
+    <string name="summary_dark_theme">डार्क थीम एक गहरी पृष्ठभूमि का उपयोग करता है ताकि आपकी बैटरी को लंबे समय तक जीवित रखने में मदद मिल सके</string>
+
+    <string name="dynamic_colors">गतिशील रंग</string>
+    <string name="summary_preference_settings_dynamic_colors">वॉलपेपर से रंगों को ऐप थीम पर लागू करें</string>
+
+    <string name="language">भाषा</string>
+    <string name="summary_preference_settings_language">ऐप में उपयोग की जाने वाली भाषा को बदलता है</string>
+    <string name="dialog_language_subtitle">अपनी पसंदीदा भाषा चुनें</string>
+    <string name="dialog_info_language">अपनी पसंदीदा भाषा के साथ अपने अनुभव को वैयक्तिकृत करें। आपके द्वारा किए गए कोई भी भाषा परिवर्तन तुरंत प्रभावी हो जाते हैं, जिससे आपकी चुनी हुई भाषा में एक सहज अनुभव सुनिश्चित होता है</string>
+
+    <string name="cleaning">सफाई</string>
+    <string name="summary_preference_settings_cleaning">अपने सफाई अनुभव को अनुकूलित करें</string>
+    <string name="filters">फ़िल्टर</string>
+    <string name="generic_filter">सामान्य फ़िल्टर</string>
+    <string name="summary_preference_settings_generic_filter">अस्थायी, लॉग, लॉग और अन्य बेकार फ़ाइलें और फ़ोल्डर हटाएं</string>
+    <string name="delete_empty_folders">खाली फ़ोल्डर हटाएं</string>
+    <string name="delete_archives">संग्रह हटाएं</string>
+    <string name="summary_preference_settings_archive_filter">अपने डिवाइस से संग्रह हटाएं</string>
+    <string name="delete_corpse_files">लाश फ़ाइलें हटाएं</string>
+    <string name="summary_preference_settings_delete_corpse_files">अनइंस्टॉल/हटाए गए ऐप्स से बची हुई फ़ाइलें हटाएं</string>
+    <string name="delete_apk_files">एपीके फ़ाइलें हटाएं</string>
+    <string name="summary_preference_settings_delete_apk_files">एंड्रॉइड के लिए इंस्टॉलर फ़ाइलें (.apk) फ़ाइलें हटाएं</string>
+    <string name="media">मीडिया</string>
+    <string name="delete_audio">ऑडियो हटाएं</string>
+    <string name="summary_preference_settings_delete_audio">डिवाइस से ऑडियो फ़ाइलें हटाएं</string>
+    <string name="delete_video">वीडियो हटाएं</string>
+    <string name="summary_preference_settings_delete_video">डिवाइस से वीडियो फ़ाइलें हटाएं</string>
+    <string name="delete_images">चित्र हटाएं</string>
+    <string name="summary_preference_settings_delete_images">डिवाइस से छवि फ़ाइलें हटाएं</string>
+    <string name="delete_invalid_media">अमान्य मीडिया हटाएं</string>
+    <string name="summary_preference_settings_delete_invalid_media">भ्रष्ट छवियों को हटाएं</string>
+    <string name="scanner">स्कैनर</string>
+    <string name="clipboard_clean">क्लिपबोर्ड साफ करें</string>
+
+    <string name="notifications">सूचनाएं</string>
+    <string name="summary_preference_settings_notifications">ऐप सूचनाओं का प्रबंधन करें</string>
+
+    <string name="app_usage_notifications">ऐप उपयोग सूचनाएं</string>
+    <string name="update_notifications">अपडेट सूचनाएं</string>
+
+    <string name="advanced">उन्नत</string>
+    <string name="summary_preference_settings_advanced">अधिक उन्नत सेटिंग्स का अन्वेषण करें</string>
+    <string name="error_reporting">त्रुटि रिपोर्टिंग</string>
+    <string name="bug_report">बग रिपोर्ट</string>
+    <string name="summary_preference_settings_bug_report">ऐप के GitHub रिपॉजिटरी समस्या पृष्ठ पर बग रिपोर्ट और सुविधा अनुरोध भेजें</string>
+
+    <string name="security_and_privacy">सुरक्षा और गोपनीयता</string>
+    <string name="summary_preference_settings_privacy_and_security">अपनी गोपनीयता सेटिंग्स का प्रबंधन करें</string>
+    <string name="privacy">गोपनीयता</string>
+    <string name="privacy_policy">गोपनीयता नीति</string>
+    <string name="summary_preference_settings_privacy_policy">उस नीति को देखें जो आपके डेटा को संभालने के तरीके को नियंत्रित करती है</string>
+    <string name="terms_of_service">सेवा की शर्तें</string>
+    <string name="summary_preference_settings_terms_of_service">हमारी सेवा का उपयोग करते समय आप जिन शर्तों से सहमत होते हैं, उनकी समीक्षा करें</string>
+    <string name="code_of_conduct">आचार संहिता</string>
+    <string name="summary_preference_settings_code_of_conduct">हमारी सेवा के भीतर व्यवहार के लिए नियमों और दिशानिर्देशों को समझें</string>
+
+    <string name="permissions">अनुमतियाँ</string>
+    <string name="summary_preference_settings_permissions">हमारी सेवा को दी गई अनुमतियों का प्रबंधन करें</string>
+    <string name="normal">सामान्य</string>
+    <string name="ad_id">विज्ञापन आईडी [AD_ID]</string>
+    <string name="summary_preference_permissions_ad_id">ऐप को उपयोगकर्ता के डिवाइस से जुड़ी विज्ञापन पहचानकर्ता को पुनः प्राप्त करने और उपयोग करने की अनुमति देता है, व्यक्तिगत विज्ञापन प्रदान करता है, विज्ञापन प्रभावशीलता को मापता है और Android 13 या बाद के उपकरणों पर विज्ञापन दिखाता है।</string>
+    <string name="internet">इंटरनेट [INTERNET]</string>
+    <string name="summary_preference_permissions_internet">ऐप को त्रुटि रिपोर्ट भेजने या अपडेट की जांच करने के लिए इंटरनेट कनेक्शन स्थापित करने की अनुमति देता है।</string>
+    <string name="post_notifications">सूचनाएं पोस्ट करें [POST_NOTIFICATIONS]</string>
+    <string name="summary_preference_permissions_post_notifications">ऐप को Android 13 या बाद के उपकरणों पर सूचनाएं प्रदर्शित करने की अनुमति देता है।</string>
+    <string name="runtime">रनटाइम</string>
+    <string name="access_network_state">नेटवर्क स्थिति तक पहुँचें [ACCESS_NETWORK_STATE]</string>
+    <string name="summary_preference_permissions_access_network_state">ऐप को नेटवर्क कनेक्टिविटी की जांच करने और वाई-फाई के बारे में जानकारी प्राप्त करने की अनुमति देता है, जिसमें सक्षम स्थिति और कनेक्टेड वाई-फाई डिवाइस नाम शामिल हैं।</string>
+    <string name="access_notification_policy">सूचना नीति तक पहुँचें [ACCESS_NOTIFICATION_POLICY]</string>
+    <string name="summary_preference_permissions_access_notification_policy">ऐप को डिवाइस की सूचना नीति तक पहुँचने और उसे संशोधित करने की अनुमति देता है, यह नियंत्रित करता है कि सूचनाएं उपयोगकर्ता को कैसे और कब दिखाई जाती हैं और कस्टम सूचना प्रबंधन सुविधाएँ प्रदान करती हैं।</string>
+    <string name="billing">बिलिंग [BILLING]</string>
+    <string name="summary_preference_permissions_billing">ऐप को इन-ऐप खरीदारी और दान को संभालने के लिए Google Play बिलिंग लाइब्रेरी का उपयोग करने की अनुमति देता है</string>
+    <string name="check_license">लाइसेंस जांचें [CHECK_LICENSE]</string>
+    <string name="summary_preference_permissions_check_license">ऐप को लाइसेंस समझौते के साथ अपने अनुपालन को सत्यापित करने और बौद्धिक संपदा की सुरक्षा के लिए लाइसेंस शर्तों को लागू करने की अनुमति देता है।</string>
+    <string name="foreground_service">फोरग्राउंड सेवा [FOREGROUND_SERVICE]</string>
+    <string name="summary_preference_permissions_foreground_service">ऐप को उन सेवाओं को बनाने और उपयोग करने की अनुमति देता है जो अग्रभूमि में चलती हैं, उन्हें अन्य पृष्ठभूमि प्रक्रियाओं पर प्राथमिकता देती हैं और प्रदर्शन और विश्वसनीयता में सुधार करती हैं।</string>
+    <string name="request_delete_packages">पैकेज हटाने का अनुरोध करें [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">ऐप को पैकेजों के हटाने का अनुरोध करने की अनुमति देता है। इसका उपयोग डिवाइस से अन्य ऐप्स को अनइंस्टॉल करने के लिए किया जा सकता है</string>
+    <string name="storage">भंडारण</string>
+    <string name="access_media_location">मीडिया स्थान तक पहुँचें [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">ऐप को डिवाइस की मीडिया फ़ाइलों के स्थान तक पहुँचने की अनुमति देता है</string>
+    <string name="action_open_document_tree">डॉक्यूमेंट ट्री खोलें क्रिया [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">ऐप को दस्तावेजों के पेड़ तक पहुँचने की अनुमति देता है, जिसमें पेड़ में फ़ाइलों को पढ़ने और लिखने की क्षमता शामिल है</string>
+    <string name="manage_external_storage">बाहरी स्टोरेज प्रबंधित करें [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">ऐप को डिवाइस के स्टोरेज पर फ़ाइलों को हटाने और नाम बदलने जैसी कार्रवाइयाँ करने की अनुमति देता है, जिसमें आंतरिक और बाहरी दोनों स्टोरेज शामिल हैं</string>
+    <string name="package_usage_stats">पैकेज उपयोग आँकड़े [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">ऐप को उपयोगकर्ता के ऐप उपयोग के बारे में जानकारी तक पहुँचने की अनुमति देता है, जिसमें यह शामिल है कि किन ऐप्स का उपयोग किया गया है, उनका उपयोग कितने समय तक किया गया है और उनका उपयोग कितनी बार किया गया है</string>
+    <string name="query_all_packages">सभी पैकेजों को क्वेरी करें [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">ऐप को डिवाइस पर स्थापित सभी पैकेजों के बारे में जानकारी के लिए क्वेरी करने की अनुमति देता है। ऐप इस जानकारी का उपयोग यह निर्धारित करने के लिए करता है कि कौन सी फाइलें रखनी हैं या हटाना है</string>
+    <string name="read_external_storage">बाहरी स्टोरेज पढ़ें [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">ऐप को डिवाइस के स्टोरेज से फ़ाइलें पढ़ने की अनुमति देता है, जिसमें आंतरिक और बाहरी दोनों स्टोरेज शामिल हैं</string>
+    <string name="read_media_audio">मीडिया ऑडियो पढ़ें [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">ऐप को डिवाइस के स्टोरेज से ऑडियो फ़ाइलें पढ़ने की अनुमति देता है</string>
+    <string name="read_media_images">मीडिया छवियां पढ़ें [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">ऐप को डिवाइस के स्टोरेज से छवि फ़ाइलें पढ़ने की अनुमति देता है</string>
+    <string name="read_media_video">मीडिया वीडियो पढ़ें [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">ऐप को डिवाइस के स्टोरेज से वीडियो फ़ाइलें पढ़ने की अनुमति देता है</string>
+    <string name="write_external_storage">बाहरी स्टोरेज लिखें [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">ऐप को डिवाइस के स्टोरेज में फ़ाइलें लिखने की अनुमति देता है, जिसमें आंतरिक और बाहरी दोनों स्टोरेज शामिल हैं</string>
+
+    <string name="ads">विज्ञापन</string>
+    <string name="summary_preference_settings_ads">नियंत्रण करें कि हम आपको प्रासंगिक विज्ञापन दिखाने के लिए आपकी जानकारी का उपयोग कैसे करते हैं</string>
+    <string name="display_ads">विज्ञापन प्रदर्शित करें</string>
+    <string name="personalized_ads">वैयक्तिकृत विज्ञापन</string>
+    <string name="summary_ads_personalized_ads">अपनी रुचियों के आधार पर हम आपके लिए विज्ञापनों को कैसे वैयक्तिकृत करते हैं, इसका चयन करें</string>
+    <string name="summary_ads">ऐसे विज्ञापन देखें जो आपके लिए प्रासंगिक हैं। अपने ऐप गतिविधि के आधार पर व्यक्तिगत विज्ञापन दिखाने के लिए उपयोग की जाने वाली जानकारी का प्रबंधन करें। आप हमेशा यहां वैयक्तिकरण बंद कर सकते हैं।\n</string>
+
+    <string name="usage_and_diagnostics">उपयोग और निदान</string>
+    <string name="summary_preference_settings_usage_and_diagnostics">Android के लिए क्लीनर को बेहतर बनाने में मदद करने के लिए डेटा साझा करें</string>
+    <string name="summary_usage_and_diagnostics">अपने अनुभव को बेहतर बनाने में मदद करें, स्वचालित रूप से निदान, डिवाइस और ऐप उपयोग डेटा हमें भेजकर। इससे ऐप के प्रदर्शन, स्थिरता और अन्य संवर्द्धन में सुधार होगा। कुछ कुल डेटा हमारे ऐप्स को भी मदद करेंगे।\n\nयह आपके डिवाइस के बारे में सामान्य जानकारी है और आप हमारे ऐप्स का उपयोग कैसे करते हैं (जैसे बैटरी स्तर, सिस्टम और ऐप गतिविधि, और त्रुटियां)। डेटा का उपयोग हमारे ऐप्स को बेहतर बनाने के लिए किया जाएगा\n\nइस सुविधा को बंद करने से आपके डिवाइस की ऐप अपडेट और सुरक्षा जैसी आवश्यक सेवाओं के लिए आवश्यक जानकारी भेजने की क्षमता प्रभावित नहीं होती है।\n</string>
+
+    <string name="legal">कानूनी</string>
+    <string name="legal_notices">कानूनी नोटिस</string>
+    <string name="summary_preference_settings_legal_notices">हमारी सेवा के बारे में कानूनी जानकारी देखें</string>
+    <string name="license">लाइसेंस</string>
+
+    <string name="about">के बारे में</string>
+    <string name="summary_preference_settings_about">क्लीनर के बारे में और जानें</string>
+
+    <string name="app_build_version">ऐप्लिकेशन बिल्ड संस्करण</string>
+    <string name="summary_preference_settings_oss">ओपन सोर्स सॉफ्टवेयर के लिए लाइसेंस विवरण</string>
+    <string name="device_info">डिवाइस जानकारी</string>
+    <string name="app_build">ऐप बिल्ड: रिलीज़\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="manufacturer">निर्माता:</string>
+    <string name="device_model">डिवाइस मॉडल:</string>
+    <string name="android_version">एंड्रॉइड संस्करण:</string>
+    <string name="api_level">एपीआई स्तर:</string>
+
+    <string name="help_and_feedback">मदद और प्रतिक्रिया</string>
+    <string name="help">मदद</string>
+    <string name="faq">अक्सर पूछे जाने वाले प्रश्न</string>
+    <string name="view_in_google_play_store">Google Play Store में देखें</string>
+    <string name="version_info">संस्करण जानकारी</string>
+    <string name="version">संस्करण %1$s</string>
+    <string name="beta_program">बीटा प्रोग्राम</string>
+    <string name="question_1">क्लीनर क्या है?</string>
+    <string name="summary_preference_faq_1">क्लीनर एक मुफ्त और ओपन-सोर्स एंड्रॉइड ऐप है जो आपको अपने डिवाइस के प्रदर्शन को अनुकूलित करने और स्टोरेज स्पेस खाली करने में मदद करता है। यह आपके डिवाइस को अनावश्यक फ़ाइलों के लिए स्कैन कर सकता है और उन्हें हटा सकता है, साथ ही आपके डिवाइस की गति में सुधार के लिए आपका कैश साफ़ कर सकता है</string>
+    <string name="question_2">क्या क्लीनर का उपयोग करना सुरक्षित है?</string>
+    <string name="summary_preference_faq_2">हाँ, क्लीनर का उपयोग करना सुरक्षित है। यह केवल उन फ़ाइलों को हटाता है जो आपके डिवाइस या ऐप्स के संचालन के लिए आवश्यक नहीं हैं, और यह आपके किसी भी व्यक्तिगत डेटा या महत्वपूर्ण सिस्टम फ़ाइलों को नहीं हटाता है</string>
+    <string name="question_3">मैं क्लीनर का उपयोग कैसे करूँ?</string>
+    <string name="summary_preference_faq_3">क्लीनर का उपयोग करने के लिए, बस Google Play Store या किसी सम्मानित तृतीय-पक्ष ऐप स्टोर से ऐप डाउनलोड और इंस्टॉल करें। फिर, ऐप खोलें और अपने डिवाइस को स्कैन करने और अनावश्यक फ़ाइलों को हटाने के लिए संकेतों का पालन करें। आप उन फ़ाइलों के प्रकारों को अनुकूलित करने के लिए ऐप की सेटिंग तक भी पहुँच सकते हैं जिन्हें क्लीनर ढूँढता है और हटाता है</string>
+    <string name="question_4">क्या क्लीनर ऐप कैश हटा सकता है?</string>
+    <string name="summary_preference_faq_4">हाँ, क्लीनर ऐप कैश हटा सकता है। हालांकि, यह ध्यान रखना महत्वपूर्ण है कि कैश हटाने से ऐप को अगली बार जब आप इसका उपयोग करेंगे तो लोड होने या कुछ कार्यों को करने में अधिक समय लग सकता है</string>
+    <string name="question_5">क्या क्लीनर को रूट एक्सेस की आवश्यकता है?</string>
+    <string name="summary_preference_faq_5">नहीं, क्लीनर को काम करने के लिए रूट एक्सेस की आवश्यकता नहीं है। आप इसे अपने डिवाइस को रूट किए बिना किसी भी एंड्रॉइड डिवाइस पर उपयोग कर सकते हैं</string>
+    <string name="question_6">क्या क्लीनर iOS के लिए उपलब्ध है?</string>
+    <string name="summary_preference_faq_6">नहीं, क्लीनर वर्तमान में केवल एंड्रॉइड उपकरणों के लिए उपलब्ध है</string>
+    <string name="question_7">क्या क्लीनर बैटरी जीवन में सुधार करता है?</string>
+    <string name="summary_preference_faq_7">क्लीनर का उपयोग करके अपने कैश को साफ़ करने से अनावश्यक प्रक्रियाओं द्वारा उपयोग की जाने वाली बिजली और संसाधनों की मात्रा को कम करके आपके डिवाइस की बैटरी लाइफ में सुधार करने में मदद मिल सकती है। हालाँकि, क्लीनर आपके डिवाइस की बैटरी लाइफ में सुधार कितना कर सकता है, यह आपके डिवाइस के मेक और मॉडल, आपके द्वारा उपयोग किए जाने वाले ऐप्स और आपके उपयोग की आदतों जैसे कई कारकों पर निर्भर करेगा</string>
+    <string name="question_8">मुझे क्लीनर का उपयोग कितनी बार करना चाहिए?</string>
+    <string name="summary_preference_faq_8">क्लीनर का उपयोग करने के लिए कोई निर्धारित नियम नहीं है, क्योंकि यह आपके डिवाइस के उपयोग और समय के साथ जमा होने वाली अनावश्यक फ़ाइलों की मात्रा पर निर्भर करेगा। कुछ उपयोगकर्ता इसे साप्ताहिक या मासिक चलाना उपयोगी पा सकते हैं, जबकि अन्य को केवल कभी-कभी इसका उपयोग करने की आवश्यकता हो सकती है</string>
+    <string name="question_9">क्या क्लीनर सभी एंड्रॉइड उपकरणों के साथ संगत है?</string>
+    <string name="summary_preference_faq_9">क्लीनर को अधिकांश एंड्रॉइड उपकरणों के साथ संगत होना चाहिए जो ऐप की न्यूनतम सिस्टम आवश्यकताओं को पूरा करते हैं। हालाँकि, यह हमेशा एक अच्छा विचार है कि अपने विशिष्ट डिवाइस के साथ संगतता की पुष्टि करने के लिए Google Play Store या आपके द्वारा उपयोग किए जा रहे ऐप स्टोर पर ऐप के पृष्ठ की जाँच करें। यदि आपको क्लीनर का उपयोग करते समय कोई समस्या आती है, तो आप समस्या का निवारण करने का प्रयास कर सकते हैं या सहायता के लिए ऐप की सहायता टीम से संपर्क कर सकते हैं</string>
+    <string name="feedback">प्रतिक्रिया</string>
+
+    <string name="updates">अपडेट</string>
+
+    <string name="support_us">हमारा समर्थन करें</string>
+    <string name="paid_support">पेड सपोर्ट</string>
+    <string name="summary_donations">कोई फर्क नहीं पड़ता कि आप कितना दान करते हैं, आप हमें हमारे ऐप को चालू रखने और हमारी सुविधाओं को बेहतर बनाने में मदद करेंगे। हम आपकी उदारता और दयालुता की सराहना करते हैं!</string>
+    <string name="non_paid_support">गैर-भुगतान समर्थन</string>
+    <string name="web_ad">वेब विज्ञापन</string>
+
+    <string name="snack_app_updated">ऐप सफलतापूर्वक अपडेट हो गया है</string>
+    <string name="snack_update_failed">अपडेट प्रक्रिया में एक समस्या आई</string>
+    <string name="try_again">पुनः प्रयास करें</string>
+    <string name="summary_share_message">इस अद्भुत ऐप को देखें जिसका मैं उपयोग कर रहा हूँ! इसमें कुछ बहुत ही शानदार फीचर हैं जो आपको दिलचस्प लग सकते हैं। आप इसे Play Store से डाउनलोड कर सकते हैं: %1$s</string>
+    <string name="learn_more">और जानें</string>
+
+    <string name="close">बंद करें?</string>
+    <string name="require_restart">पुनः प्रारंभ करने की आवश्यकता है!</string>
+    <string name="snack_network_error">अपडेट की जाँच करते समय नेटवर्क त्रुटि हुई</string>
+    <string name="snack_general_error">अपडेट की जाँच करते समय एक त्रुटि हुई</string>
+    <string name="summary_close">क्या आप सुनिश्चित हैं कि आप बाहर निकलना चाहते हैं?</string>
+    <string name="summary_require_restart">प्रभावी होने के लिए कृपया ऐप को पुनः प्रारंभ करें!</string>
+    <string name="snack_no_image">कोई छवि प्रदान नहीं की गई</string>
+    <string name="snack_validate_file">कृपया एक मान्य फ़ाइल आकार चुनें</string>
+</resources>
