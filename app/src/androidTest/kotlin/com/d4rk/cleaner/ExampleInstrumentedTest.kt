@@ -42,10 +42,7 @@ class ExampleInstrumentedTest {
         val logFile = createFile("testfile.loG")
         val clogFile = createFile("clogs.pnG")
         fileScanner.setUpFilters(
-            generic = true ,
-            aggressive = false ,
-            apk = false ,
-            archive = false
+            generic = true , aggressive = false , apk = false , archive = false
         )
         fileScanner.startScan()
         Assert.assertTrue(clogFile.exists())
@@ -56,10 +53,7 @@ class ExampleInstrumentedTest {
     fun checkTempFiles() {
         val tmpFile = createFile("testfile.tMp")
         fileScanner.setUpFilters(
-            generic = true ,
-            aggressive = false ,
-            apk = false ,
-            archive = false
+            generic = true , aggressive = false , apk = false , archive = false
         )
         fileScanner.startScan()
         Assert.assertFalse(tmpFile.exists())
@@ -69,10 +63,7 @@ class ExampleInstrumentedTest {
     fun checkThumbFiles() {
         val thumbFile = createFile("thumbs.Db")
         fileScanner.setUpFilters(
-            generic = false ,
-            aggressive = true ,
-            apk = false ,
-            archive = false
+            generic = false , aggressive = true , apk = false , archive = false
         )
         fileScanner.startScan()
         Assert.assertFalse(thumbFile.exists())
@@ -90,10 +81,7 @@ class ExampleInstrumentedTest {
     fun checkEmptyDir() {
         val emptyDir = createDir()
         fileScanner.setUpFilters(
-            generic = true ,
-            aggressive = false ,
-            apk = false ,
-            archive = false
+            generic = true , aggressive = false , apk = false , archive = false
         )
         fileScanner.setEmptyDir(true)
         fileScanner.startScan()

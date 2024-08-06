@@ -1,6 +1,7 @@
 package com.d4rk.cleaner.ui.startup
 
 import android.app.Activity
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,9 +21,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -32,6 +35,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
@@ -46,9 +50,10 @@ import com.d4rk.cleaner.utils.compose.bounceClick
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StartupComposable(activity : StartupActivity) {
-    val context = LocalContext.current
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    val fabEnabled = remember { mutableStateOf(false) }
+    val context : Context = LocalContext.current
+    val scrollBehavior : TopAppBarScrollBehavior =
+            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val fabEnabled : MutableState<Boolean> = remember { mutableStateOf(value = false) }
     LaunchedEffect(context) {
         if (! PermissionsUtils.hasNotificationPermission(context)) {
             PermissionsUtils.requestNotificationPermission(context as Activity)
@@ -59,9 +64,8 @@ fun StartupComposable(activity : StartupActivity) {
     }
 
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
-        LargeTopAppBar(
-            title = { Text(stringResource(R.string.welcome)) } , scrollBehavior = scrollBehavior
-        )
+        LargeTopAppBar(title = { Text(stringResource(R.string.welcome)) } ,
+                       scrollBehavior = scrollBehavior)
     }) { innerPadding ->
         Box(
             modifier = Modifier
@@ -88,7 +92,7 @@ fun StartupComposable(activity : StartupActivity) {
                         text = stringResource(R.string.summary_browse_terms_of_service_and_privacy_policy) ,
                         modifier = Modifier.padding(top = 24.dp , bottom = 24.dp)
                     )
-                    val annotatedString = buildAnnotatedString {
+                    val annotatedString : AnnotatedString = buildAnnotatedString {
                         withStyle(
                             style = SpanStyle(
                                 color = MaterialTheme.colorScheme.primary ,
@@ -105,8 +109,8 @@ fun StartupComposable(activity : StartupActivity) {
                         )
                     }
                     ClickableText(text = annotatedString , onClick = { offset ->
-                        annotatedString.getStringAnnotations("URL" , offset , offset).firstOrNull()
-                                ?.let { annotation ->
+                        annotatedString.getStringAnnotations(tag = "URL" , offset , offset)
+                                .firstOrNull()?.let { annotation ->
                                     IntentUtils.openUrl(context , annotation.item)
                                 }
                     })

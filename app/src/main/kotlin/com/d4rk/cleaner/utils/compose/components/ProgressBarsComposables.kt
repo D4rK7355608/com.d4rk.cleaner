@@ -39,7 +39,7 @@ import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
 fun CircularDeterminateIndicator(
     progress : Float , storageUsed : String , storageTotal : String , modifier : Modifier = Modifier
 ) {
-    val animatedProgress by animateFloatAsState(
+    val animatedProgress : Float by animateFloatAsState(
         targetValue = progress ,
         animationSpec = tween(durationMillis = 1000 , easing = LinearOutSlowInEasing) ,
         label = ""
@@ -73,7 +73,7 @@ fun CircularDeterminateIndicator(
 
 @Composable
 fun StorageProgressBar(storageInfo : StorageInfo) {
-    val progress =
+    val progress : Float =
             (storageInfo.usedStorage.toFloat() / storageInfo.totalStorage.toFloat()).coerceIn(
                 0f , 1f
             )

@@ -20,7 +20,7 @@ suspend fun getVideoThumbnail(
     val mediaMetadataRetriever = MediaMetadataRetriever()
     try {
         mediaMetadataRetriever.setDataSource(videoPath)
-        val bitmap = mediaMetadataRetriever.getFrameAtTime(
+        val bitmap : Bitmap? = mediaMetadataRetriever.getFrameAtTime(
             1000 , MediaMetadataRetriever.OPTION_CLOSEST_SYNC
         )
         bitmap?.let {
@@ -34,8 +34,8 @@ suspend fun getVideoThumbnail(
 }
 
 fun getFileIcon(extension : String , context : Context) : Int {
-    val lowercaseExtension = extension.lowercase()
-    val resources = context.resources
+    val lowercaseExtension : String = extension.lowercase()
+    val resources : Resources = context.resources
     return when (lowercaseExtension) {
         in resources.getStringArray(R.array.apk_extensions) -> R.drawable.ic_apk_document
         in resources.getStringArray(R.array.image_extensions) -> R.drawable.ic_image
@@ -50,7 +50,7 @@ fun Drawable.toBitmapDrawable(resources : Resources = Resources.getSystem()) : B
     return when (this) {
         is BitmapDrawable -> this
         is AdaptiveIconDrawable -> {
-            val bitmap =
+            val bitmap : Bitmap =
                     Bitmap.createBitmap(intrinsicWidth , intrinsicHeight , Bitmap.Config.ARGB_8888)
             val canvas = Canvas(bitmap)
             setBounds(0 , 0 , canvas.width , canvas.height)

@@ -19,7 +19,7 @@ class PermissionsSettingsActivity : AppCompatActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    PermissionsSettingsComposable(this@PermissionsSettingsActivity)
+                    PermissionsSettingsComposable(activity = this@PermissionsSettingsActivity)
                 }
             }
         }

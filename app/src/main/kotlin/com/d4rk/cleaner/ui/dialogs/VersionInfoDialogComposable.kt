@@ -1,5 +1,8 @@
 package com.d4rk.cleaner.ui.dialogs
 
+import android.content.Context
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,14 +35,14 @@ fun VersionInfoDialog(onDismiss : () -> Unit) {
 
 @Composable
 fun VersionInfoContent() {
-    val context = LocalContext.current
-    val appName = context.getString(R.string.app_full_name)
-    val versionName = BuildConfig.VERSION_NAME
-    val versionString = stringResource(R.string.version , versionName)
-    val copyright = context.getString(R.string.copyright)
+    val context : Context = LocalContext.current
+    val appName : String = context.getString(R.string.app_full_name)
+    val versionName : String = BuildConfig.VERSION_NAME
+    val versionString : String = stringResource(R.string.version , versionName)
+    val copyright : String = context.getString(R.string.copyright)
 
-    val appIcon = context.packageManager.getApplicationIcon(context.packageName)
-    val bitmapDrawable = appIcon.toBitmapDrawable()
+    val appIcon : Drawable = context.packageManager.getApplicationIcon(context.packageName)
+    val bitmapDrawable : BitmapDrawable = appIcon.toBitmapDrawable()
 
     Row(
         modifier = Modifier.fillMaxWidth()

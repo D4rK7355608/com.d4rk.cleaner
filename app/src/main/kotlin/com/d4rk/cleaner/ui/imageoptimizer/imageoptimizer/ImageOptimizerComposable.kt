@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer
 
+import android.content.Context
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -22,9 +24,12 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,34 +41,37 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil.compose.AsyncImage
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ads.BannerAdsComposable
 import com.d4rk.cleaner.data.datastore.DataStore
+import com.d4rk.cleaner.data.model.ui.imageoptimizer.ImageOptimizerState
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.tabs.FileSizeScreen
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.tabs.ManualModeScreen
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.tabs.QuickCompressScreen
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class , ExperimentalFoundationApi::class)
 @Composable
 fun ImageOptimizerComposable(
-    activity : ImageOptimizerActivity ,
-    viewModel : ImageOptimizerViewModel
+    activity : ImageOptimizerActivity , viewModel : ImageOptimizerViewModel
 ) {
-    val context = LocalContext.current
-    val dataStore = DataStore.getInstance(context)
-    val coroutineScope = rememberCoroutineScope()
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    val adsState = dataStore.ads.collectAsState(initial = true)
-    val tabs = listOf(
+    val context : Context = LocalContext.current
+    val dataStore : DataStore = DataStore.getInstance(context)
+    val coroutineScope : CoroutineScope = rememberCoroutineScope()
+    val scrollBehavior : TopAppBarScrollBehavior =
+            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val adsState : State<Boolean> = dataStore.ads.collectAsState(initial = true)
+    val tabs : List<String> = listOf(
         stringResource(R.string.quick_compress) ,
         stringResource(R.string.file_size) ,
         stringResource(R.string.manual) ,
     )
-    val pagerState = rememberPagerState(pageCount = { tabs.size })
+    val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.image_optimizer)) } ,
                        navigationIcon = {
@@ -71,20 +79,18 @@ fun ImageOptimizerComposable(
                                activity.finish()
                            }) {
                                Icon(
-                                   Icons.AutoMirrored.Filled.ArrowBack ,
-                                   contentDescription = null
+                                   Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null
                                )
                            }
                        } ,
-                       scrollBehavior = scrollBehavior
-        )
+                       scrollBehavior = scrollBehavior)
     }) { paddingValues ->
         ConstraintLayout(
             modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
         ) {
-            val (imageCardView , tabLayout , viewPager , compressButton , adView) = createRefs()
+            val (imageCardView : ConstrainedLayoutReference , tabLayout : ConstrainedLayoutReference , viewPager : ConstrainedLayoutReference , compressButton : ConstrainedLayoutReference , adView : ConstrainedLayoutReference) = createRefs()
 
             Card(
                 modifier = Modifier
@@ -102,10 +108,10 @@ fun ImageOptimizerComposable(
 
             TabRow(selectedTabIndex = pagerState.currentPage ,
                    modifier = Modifier.constrainAs(tabLayout) {
-                               top.linkTo(imageCardView.bottom)
-                               start.linkTo(parent.start)
-                               end.linkTo(parent.end)
-                           }) {
+                       top.linkTo(imageCardView.bottom)
+                       start.linkTo(parent.start)
+                       end.linkTo(parent.end)
+                   }) {
                 tabs.forEachIndexed { index , title ->
                     Tab(text = { Text(title) } ,
                         selected = pagerState.currentPage == index ,
@@ -118,12 +124,12 @@ fun ImageOptimizerComposable(
             }
 
             HorizontalPager(state = pagerState , modifier = Modifier.constrainAs(viewPager) {
-                        top.linkTo(tabLayout.bottom)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(compressButton.top)
-                        height = Dimension.fillToConstraints
-                    }) { page ->
+                top.linkTo(tabLayout.bottom)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                bottom.linkTo(compressButton.top)
+                height = Dimension.fillToConstraints
+            }) { page ->
                 when (page) {
                     0 -> QuickCompressScreen(viewModel)
                     1 -> FileSizeScreen(viewModel)
@@ -148,13 +154,11 @@ fun ImageOptimizerComposable(
                 Text(stringResource(R.string.optimize_image))
             }
 
-            BannerAdsComposable(
-                modifier = Modifier.constrainAs(adView) {
-                            bottom.linkTo(parent.bottom)
-                            start.linkTo(parent.start)
-                            end.linkTo(parent.end)
-                        } , dataStore = dataStore
-            )
+            BannerAdsComposable(modifier = Modifier.constrainAs(adView) {
+                bottom.linkTo(parent.bottom)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+            } , dataStore = dataStore)
         }
     }
 }
@@ -162,8 +166,8 @@ fun ImageOptimizerComposable(
 
 @Composable
 fun ImageDisplay(viewModel : ImageOptimizerViewModel) {
-    val state = viewModel.uiState.collectAsState()
-    val showCompressedImage = remember { mutableStateOf(false) }
+    val state : State<ImageOptimizerState> = viewModel.uiState.collectAsState()
+    val showCompressedImage : MutableState<Boolean> = remember { mutableStateOf(value = false) }
 
     LaunchedEffect(key1 = state.value.compressedImageUri) {
         if (state.value.compressedImageUri != null) {
@@ -174,7 +178,8 @@ fun ImageDisplay(viewModel : ImageOptimizerViewModel) {
     Box(
         modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(1f) , contentAlignment = Alignment.Center
+                .aspectRatio(ratio = 1f) ,
+        contentAlignment = Alignment.Center
     ) {
         if (state.value.isLoading) {
             CircularProgressIndicator()

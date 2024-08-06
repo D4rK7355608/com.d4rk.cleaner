@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.ui.imageoptimizer.imagepicker
 
+import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,9 +21,11 @@ import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,6 +33,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ads.BannerAdsComposable
@@ -42,10 +46,11 @@ import com.d4rk.cleaner.utils.compose.bounceClick
 fun ImagePickerComposable(
     activity : ImagePickerActivity , viewModel : ImagePickerViewModel
 ) {
-    val context = LocalContext.current
-    val dataStore = DataStore.getInstance(context)
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    val adsState = dataStore.ads.collectAsState(initial = true)
+    val context : Context = LocalContext.current
+    val dataStore : DataStore = DataStore.getInstance(context)
+    val scrollBehavior : TopAppBarScrollBehavior =
+            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val adsState : State<Boolean> = dataStore.ads.collectAsState(initial = true)
 
     LaunchedEffect(key1 = viewModel.selectedImageUri) {
         viewModel.selectedImageUri?.let { uri ->
@@ -65,15 +70,14 @@ fun ImagePickerComposable(
                                Icon(Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null)
                            }
                        } ,
-                       scrollBehavior = scrollBehavior
-        )
+                       scrollBehavior = scrollBehavior)
     }) { paddingValues ->
         ConstraintLayout(
             modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
         ) {
-            val (fab , adView , imagePrompt) = createRefs()
+            val (fab : ConstrainedLayoutReference , adView : ConstrainedLayoutReference , imagePrompt : ConstrainedLayoutReference) = createRefs()
 
             Column(modifier = Modifier.constrainAs(imagePrompt) {
                 start.linkTo(parent.start)
@@ -111,13 +115,11 @@ fun ImagePickerComposable(
                 )
             })
 
-            BannerAdsComposable(
-                modifier = Modifier.constrainAs(adView) {
-                            bottom.linkTo(parent.bottom)
-                            start.linkTo(parent.start)
-                            end.linkTo(parent.end)
-                        } , dataStore = dataStore
-            )
+            BannerAdsComposable(modifier = Modifier.constrainAs(adView) {
+                bottom.linkTo(parent.bottom)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+            } , dataStore = dataStore)
         }
     }
 }

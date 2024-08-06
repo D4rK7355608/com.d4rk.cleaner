@@ -14,7 +14,7 @@ android {
         applicationId = "com.d4rk.cleaner"
         minSdk = 26
         targetSdk = 34
-        versionCode = 97
+        versionCode = 99
         versionName = "2.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations += listOf(
@@ -47,17 +47,15 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             isDebuggable = false
-            versionNameSuffix = null
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt") , "proguard-rules.pro"
+                getDefaultProguardFile(name = "proguard-android-optimize.txt") , "proguard-rules.pro"
             )
         }
         debug {
             multiDexEnabled = true
             isDebuggable = true
-            versionNameSuffix = null
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt") , "proguard-rules.pro"
+                getDefaultProguardFile(name = "proguard-android-optimize.txt") , "proguard-rules.pro"
             )
         }
     }

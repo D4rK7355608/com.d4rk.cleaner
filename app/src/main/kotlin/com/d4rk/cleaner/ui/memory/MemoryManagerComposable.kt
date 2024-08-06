@@ -1,7 +1,11 @@
 package com.d4rk.cleaner.ui.memory
 
 import android.app.Activity
+import android.content.Context
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.Transition
+import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -19,7 +23,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -55,6 +58,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -77,23 +81,24 @@ import kotlin.math.min
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MemoryManagerComposable() {
-    val viewModel = viewModel<MemoryManagerViewModel>()
-    val storageInfo by viewModel.storageInfo.collectAsState()
-    val ramInfo by viewModel.ramInfo.collectAsState()
-    val isLoading by viewModel.isLoading.collectAsState()
-    val listExpanded by viewModel.listExpanded.collectAsState()
-    val context = LocalContext.current
+    val viewModel : MemoryManagerViewModel = viewModel<MemoryManagerViewModel>()
+    val storageInfo : StorageInfo by viewModel.storageInfo.collectAsState()
+    val ramInfo : RamInfo by viewModel.ramInfo.collectAsState()
+    val isLoading : Boolean by viewModel.isLoading.collectAsState()
+    val listExpanded : Boolean by viewModel.listExpanded.collectAsState()
+    val context : Context = LocalContext.current
 
-    val transition = updateTransition(targetState = ! isLoading , label = "LoadingTransition")
+    val transition : Transition<Boolean> =
+            updateTransition(targetState = ! isLoading , label = "LoadingTransition")
 
-    val progressAlpha by transition.animateFloat(label = "Progress Alpha") {
+    val progressAlpha : Float by transition.animateFloat(label = "Progress Alpha") {
         if (it) 0f else 1f
     }
-    val contentAlpha by transition.animateFloat(label = "Content Alpha") {
+    val contentAlpha : Float by transition.animateFloat(label = "Content Alpha") {
         if (it) 1f else 0f
     }
 
-    val pagerState = rememberPagerState { 2 }
+    val pagerState : PagerState = rememberPagerState { 2 }
 
     LaunchedEffect(Unit) {
         viewModel.updateStorageInfo(context)
@@ -191,14 +196,15 @@ fun <T> CarouselLayout(
         modifier = Modifier.fillMaxWidth() ,
         contentPadding = PaddingValues(horizontal = peekPreviewWidth)
     ) { page ->
-        val pageOffset = (pagerState.currentPage - page).toFloat().absoluteValue
+        val pageOffset : Float = (pagerState.currentPage - page).toFloat().absoluteValue
 
-        val scale by animateFloatAsState(
+        val scale : Float by animateFloatAsState(
             targetValue = lerp(
                 start = 0.95f , stop = 1f , fraction = 1f - pageOffset.coerceIn(0f , 1f)
             ) , animationSpec = tween(durationMillis = 250) , label = ""
         )
-        val alpha = lerp(start = 0.5f , stop = 1f , fraction = 1f - pageOffset.coerceIn(0f , 1f))
+        val alpha : Float =
+                lerp(start = 0.5f , stop = 1f , fraction = 1f - pageOffset.coerceIn(0f , 1f))
 
         Card(modifier = Modifier
                 .fillMaxWidth()
@@ -247,7 +253,7 @@ fun StorageInfoCard(storageInfo : StorageInfo) {
 
 @Composable
 fun StorageBreakdownGrid(storageBreakdown : Map<String , Long>) {
-    val items = storageBreakdown.entries.toList()
+    val items : List<Map.Entry<String , Long>> = storageBreakdown.entries.toList()
     val chunkSize = 2
 
     LazyColumn(
@@ -256,15 +262,17 @@ fun StorageBreakdownGrid(storageBreakdown : Map<String , Long>) {
                 .animateContentSize()
                 .padding(horizontal = 16.dp)
     ) {
-        items((items.size + chunkSize - 1) / chunkSize) { rowIndex ->
+        items(count = (items.size + chunkSize - 1) / chunkSize) { rowIndex ->
             Row(
                 modifier = Modifier
                         .fillMaxWidth()
                         .animateContentSize()
             ) {
-                for (columnIndex in 0 until min(chunkSize , items.size - rowIndex * chunkSize)) {
-                    val index = rowIndex * chunkSize + columnIndex
-                    val (icon , size) = items[index]
+                for (columnIndex : Int in 0 until min(
+                    chunkSize , b = items.size - rowIndex * chunkSize
+                )) {
+                    val index : Int = rowIndex * chunkSize + columnIndex
+                    val (icon : String , size : Long) = items[index]
                     StorageBreakdownItem(icon = icon , size = size , modifier = Modifier.weight(1f))
                 }
             }
@@ -274,7 +282,7 @@ fun StorageBreakdownGrid(storageBreakdown : Map<String , Long>) {
 
 @Composable
 fun StorageBreakdownItem(icon : String , size : Long , modifier : Modifier = Modifier) {
-    val storageIcons = mapOf(
+    val storageIcons : Map<String , ImageVector> = mapOf(
         stringResource(id = R.string.installed_apps) to Icons.Outlined.Apps ,
         stringResource(id = R.string.system) to Icons.Outlined.Android ,
         stringResource(id = R.string.music) to Icons.Outlined.MusicNote ,
@@ -347,8 +355,7 @@ fun RamInfoCard(ramInfo : RamInfo) {
         Spacer(modifier = Modifier.height(8.dp))
         StorageInfoText(label = stringResource(id = R.string.used_ram) , size = ramInfo.usedRam)
         StorageInfoText(
-            label = stringResource(id = R.string.free_ram) ,
-            size = ramInfo.availableRam
+            label = stringResource(id = R.string.free_ram) , size = ramInfo.availableRam
         )
         StorageInfoText(label = stringResource(id = R.string.total_ram) , size = ramInfo.totalRam)
     }
@@ -362,16 +369,28 @@ fun DotsIndicator(
     selectedColor : Color = MaterialTheme.colorScheme.primary ,
     unSelectedColor : Color = Color.Gray ,
     dotSize : Dp ,
+    animationDuration : Int = 300
 ) {
+    val transition : Transition<Int> =
+            updateTransition(targetState = selectedIndex , label = "Dot Transition")
+
     LazyRow(
-        modifier = modifier
-                .wrapContentWidth()
-                .wrapContentHeight()
+        modifier = modifier.wrapContentWidth().height(dotSize) , verticalAlignment = Alignment.CenterVertically
     ) {
         items(totalDots) { index ->
+            val animatedDotSize : Dp by transition.animateDp(
+                transitionSpec = {
+                    tween(durationMillis = animationDuration , easing = FastOutSlowInEasing)
+                } , label = "Dot Size Animation"
+            ) {
+                if (it == index) dotSize else dotSize / 1.4f
+            }
+
+            val isSelected : Boolean = index == selectedIndex
+            val size : Dp = if (isSelected) animatedDotSize else animatedDotSize
+
             IndicatorDot(
-                color = if (index == selectedIndex) selectedColor else unSelectedColor ,
-                size = dotSize
+                color = if (isSelected) selectedColor else unSelectedColor , size = size
             )
 
             if (index != totalDots - 1) {

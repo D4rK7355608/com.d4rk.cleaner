@@ -75,7 +75,7 @@ class AppCoreManager : MultiDexApplication() , Application.ActivityLifecycleCall
                 return
             }
             isLoadingAd = true
-            val request = AdRequest.Builder().build()
+            val request : AdRequest = AdRequest.Builder().build()
             AppOpenAd.load(context ,
                            AdsConstants.APP_OPEN_UNIT_ID ,
                            request ,
@@ -114,7 +114,7 @@ class AppCoreManager : MultiDexApplication() , Application.ActivityLifecycleCall
         fun showAdIfAvailable(
             activity : Activity , onShowAdCompleteListener : OnShowAdCompleteListener
         ) {
-            val isAdsChecked = runBlocking { dataStore.ads.first() }
+            val isAdsChecked : Boolean = runBlocking { dataStore.ads.first() }
             if (isShowingAd || ! isAdsChecked) {
                 return
             }

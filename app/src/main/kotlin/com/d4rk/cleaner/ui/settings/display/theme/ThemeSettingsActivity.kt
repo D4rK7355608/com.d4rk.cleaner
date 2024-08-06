@@ -19,7 +19,7 @@ class ThemeSettingsActivity : AppCompatActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    ThemeSettingsComposable(this@ThemeSettingsActivity)
+                    ThemeSettingsComposable(activity = this@ThemeSettingsActivity)
                 }
             }
         }

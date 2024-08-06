@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.ui.settings.advanced
 
+import android.content.Context
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,6 +13,7 @@ import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -26,8 +28,9 @@ import com.d4rk.cleaner.utils.compose.components.PreferenceItem
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AdvancedSettingsComposable(activity : AdvancedSettingsActivity) {
-    val context = LocalContext.current
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val context : Context = LocalContext.current
+    val scrollBehavior : TopAppBarScrollBehavior =
+            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.advanced)) } , navigationIcon = {
             IconButton(onClick = {
@@ -51,7 +54,7 @@ fun AdvancedSettingsComposable(activity : AdvancedSettingsActivity) {
                                onClick = {
                                    IntentUtils.openUrl(
                                        context ,
-                                       "https://github.com/D4rK7355608/${context.packageName}/issues/new"
+                                       url = "https://github.com/D4rK7355608/${context.packageName}/issues/new"
                                    )
                                })
             }

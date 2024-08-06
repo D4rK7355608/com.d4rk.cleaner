@@ -20,7 +20,7 @@ class ImageOptimizerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val selectedImageUriString = intent.getStringExtra("selectedImageUri")
+        val selectedImageUriString : String? = intent.getStringExtra("selectedImageUri")
         if (! selectedImageUriString.isNullOrEmpty()) {
             lifecycleScope.launch {
                 viewModel.onImageSelected(Uri.parse(selectedImageUriString))
@@ -32,7 +32,7 @@ class ImageOptimizerActivity : AppCompatActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    ImageOptimizerComposable(this@ImageOptimizerActivity , viewModel)
+                    ImageOptimizerComposable(activity = this@ImageOptimizerActivity , viewModel)
                 }
             }
         }

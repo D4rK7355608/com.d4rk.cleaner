@@ -20,8 +20,8 @@ import com.d4rk.cleaner.data.model.ui.button.ButtonState
 @SuppressLint("ReturnFromAwaitPointerEventScope")
 @Composable
 fun Modifier.bounceClick() = composed {
-    var buttonState by remember { mutableStateOf(ButtonState.Idle) }
-    val scale by animateFloatAsState(
+    var buttonState : ButtonState by remember { mutableStateOf(ButtonState.Idle) }
+    val scale : Float by animateFloatAsState(
         if (buttonState == ButtonState.Pressed) 0.95f else 1f , label = ""
     )
     this
@@ -39,7 +39,7 @@ fun Modifier.bounceClick() = composed {
                         ButtonState.Idle
                     }
                     else {
-                        awaitFirstDown(false)
+                        awaitFirstDown(requireUnconsumed = false)
                         ButtonState.Pressed
                     }
                 }

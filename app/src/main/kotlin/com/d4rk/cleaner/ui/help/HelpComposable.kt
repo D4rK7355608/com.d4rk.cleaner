@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.ui.help
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,9 +32,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -44,21 +47,24 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ui.dialogs.VersionInfoDialog
 import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.utils.compose.bounceClick
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import com.google.android.play.core.review.ReviewInfo
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    var showMenu by remember { mutableStateOf(false) }
-    val context = LocalContext.current
-    val showDialog = remember { mutableStateOf(false) }
-    val reviewInfo = viewModel.reviewInfo.value
+    val scrollBehavior : TopAppBarScrollBehavior =
+            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    var showMenu : Boolean by remember { mutableStateOf(value = false) }
+    val context : Context = LocalContext.current
+    val showDialog : MutableState<Boolean> = remember { mutableStateOf(value = false) }
+    val reviewInfo : ReviewInfo? = viewModel.reviewInfo.value
 
     if (reviewInfo != null) {
         LaunchedEffect(key1 = reviewInfo) {
@@ -82,7 +88,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                                  onClick = {
                                      IntentUtils.openUrl(
                                          context ,
-                                         "https://play.google.com/store/apps/details?id=${activity.packageName}"
+                                         url = "https://play.google.com/store/apps/details?id=${activity.packageName}"
                                      )
                                  })
                 DropdownMenuItem(text = { Text(stringResource(R.string.version_info)) } ,
@@ -91,21 +97,21 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                                  onClick = {
                                      IntentUtils.openUrl(
                                          context ,
-                                         "https://play.google.com/apps/testing/${activity.packageName}"
+                                         url = "https://play.google.com/apps/testing/${activity.packageName}"
                                      )
                                  })
                 DropdownMenuItem(text = { Text(stringResource(R.string.terms_of_service)) } ,
                                  onClick = {
                                      IntentUtils.openUrl(
                                          context ,
-                                         "https://sites.google.com/view/d4rk7355608/more/apps/terms-of-service"
+                                         url = "https://sites.google.com/view/d4rk7355608/more/apps/terms-of-service"
                                      )
                                  })
                 DropdownMenuItem(text = { Text(stringResource(R.string.privacy_policy)) } ,
                                  onClick = {
                                      IntentUtils.openUrl(
                                          context ,
-                                         "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy"
+                                         url = "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy"
                                      )
                                  })
                 DropdownMenuItem(text = { Text(stringResource(com.google.android.gms.oss.licenses.R.string.oss_license_title)) } ,
@@ -127,7 +133,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                     .safeDrawingPadding()
         ) {
             ConstraintLayout(modifier = Modifier.padding(paddingValues)) {
-                val (faqTitle , faqCard) = createRefs()
+                val (faqTitle : ConstrainedLayoutReference , faqCard : ConstrainedLayoutReference) = createRefs()
                 Text(text = stringResource(R.string.faq) ,
                      modifier = Modifier
                              .padding(bottom = 24.dp)

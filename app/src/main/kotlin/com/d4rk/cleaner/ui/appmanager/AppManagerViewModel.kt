@@ -25,7 +25,7 @@ class AppManagerViewModel(private val application : Application) : ViewModel() {
     private val _apkFiles = MutableStateFlow<List<ApkInfo>>(emptyList())
     val apkFiles : StateFlow<List<ApkInfo>> = _apkFiles.asStateFlow()
 
-    private val _isLoading = MutableStateFlow(true)
+    private val _isLoading = MutableStateFlow(value = true)
     val isLoading : StateFlow<Boolean> = _isLoading.asStateFlow()
 
     init {
@@ -65,28 +65,28 @@ class AppManagerViewModel(private val application : Application) : ViewModel() {
 
     private suspend fun getApkFilesFromStorage() : List<ApkInfo> {
         return withContext(Dispatchers.IO) {
-            val apkFiles = mutableListOf<ApkInfo>()
+            val apkFiles : MutableList<ApkInfo> = mutableListOf<ApkInfo>()
             val uri : Uri = MediaStore.Files.getContentUri("external")
-            val projection = arrayOf(
+            val projection : Array<String> = arrayOf(
                 MediaStore.Files.FileColumns._ID ,
                 MediaStore.Files.FileColumns.DATA ,
                 MediaStore.Files.FileColumns.SIZE
             )
             val selection = "${MediaStore.Files.FileColumns.MIME_TYPE} = ?"
-            val selectionArgs = arrayOf("application/vnd.android.package-archive")
+            val selectionArgs : Array<String> = arrayOf("application/vnd.android.package-archive")
             val cursor : Cursor? = application.contentResolver.query(
                 uri , projection , selection , selectionArgs , null
             )
 
             cursor?.use {
-                val idColumn = it.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID)
-                val dataColumn = it.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA)
-                val sizeColumn = it.getColumnIndexOrThrow(MediaStore.Files.FileColumns.SIZE)
+                val idColumn : Int = it.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID)
+                val dataColumn : Int = it.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA)
+                val sizeColumn : Int = it.getColumnIndexOrThrow(MediaStore.Files.FileColumns.SIZE)
 
                 while (it.moveToNext()) {
-                    val id = it.getLong(idColumn)
-                    val path = it.getString(dataColumn)
-                    val size = it.getLong(sizeColumn)
+                    val id : Long = it.getLong(idColumn)
+                    val path : String = it.getString(dataColumn)
+                    val size : Long = it.getLong(sizeColumn)
                     apkFiles.add(ApkInfo(id , path , size))
                 }
             }

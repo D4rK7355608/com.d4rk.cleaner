@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.ui.settings.display
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -17,8 +18,11 @@ import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -46,21 +50,23 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
-    val context = LocalContext.current
-    val dataStore = DataStore.getInstance(context)
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    var showLanguageDialog by remember { mutableStateOf(false) }
-    val themeMode = dataStore.themeMode.collectAsState(initial = "follow_system").value
-    val darkModeString = stringResource(R.string.dark_mode)
-    val lightModeString = stringResource(R.string.light_mode)
-    val themeSummary = when (themeMode) {
+    val context : Context = LocalContext.current
+    val dataStore : DataStore = DataStore.getInstance(context)
+    val scrollBehavior : TopAppBarScrollBehavior =
+            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    var showLanguageDialog : Boolean by remember { mutableStateOf(value = false) }
+    val themeMode : String = dataStore.themeMode.collectAsState(initial = "follow_system").value
+    val darkModeString : String = stringResource(R.string.dark_mode)
+    val lightModeString : String = stringResource(R.string.light_mode)
+    val themeSummary : String = when (themeMode) {
         darkModeString , lightModeString -> stringResource(R.string.will_never_turn_on_automatically)
         else -> stringResource(R.string.will_turn_on_automatically_by_system)
     }
-    val switchState = remember { mutableStateOf(themeMode == darkModeString) }
+    val switchState : MutableState<Boolean> =
+            remember { mutableStateOf(value = themeMode == darkModeString) }
 
-    val isDynamicColors = dataStore.dynamicColors.collectAsState(initial = true)
-    val scope = rememberCoroutineScope()
+    val isDynamicColors : State<Boolean> = dataStore.dynamicColors.collectAsState(initial = true)
+    val scope : CoroutineScope = rememberCoroutineScope()
 
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.display)) } , navigationIcon = {
@@ -122,13 +128,13 @@ fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
                                summary = stringResource(id = R.string.summary_preference_settings_language) ,
                                onClick = {
                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                                       val localeIntent =
+                                       val localeIntent : Intent =
                                                Intent(Settings.ACTION_APP_LOCALE_SETTINGS).setData(
                                                    Uri.fromParts(
                                                        "package" , context.packageName , null
                                                    )
                                                )
-                                       val detailsIntent =
+                                       val detailsIntent : Intent =
                                                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).setData(
                                                    Uri.fromParts(
                                                        "package" , context.packageName , null

@@ -22,6 +22,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
+import java.io.InputStream
 
 class ImageOptimizerViewModel(application : Application) : AndroidViewModel(application) {
 
@@ -43,9 +44,7 @@ class ImageOptimizerViewModel(application : Application) : AndroidViewModel(appl
     suspend fun setManualCompressSettings(width : Int , height : Int , quality : Int) {
         _uiState.emit(
             _uiState.value.copy(
-                manualWidth = width ,
-                manualHeight = height ,
-                manualQuality = quality
+                manualWidth = width , manualHeight = height , manualQuality = quality
             )
         )
         compressImage()
@@ -55,7 +54,7 @@ class ImageOptimizerViewModel(application : Application) : AndroidViewModel(appl
         _uiState.emit(
             _uiState.value.copy(
                 selectedImageUri = uri ,
-                compressedImageUri = uri , // Initially show original image
+                compressedImageUri = uri ,
             )
         )
 
@@ -63,10 +62,11 @@ class ImageOptimizerViewModel(application : Application) : AndroidViewModel(appl
 
     private fun compressImage() = viewModelScope.launch {
         _uiState.emit(_uiState.value.copy(isLoading = true))
-        val context = getAppContext()
-        val originalFile = _uiState.value.selectedImageUri?.let { getRealFileFromUri(context , it) }
-        val currentTab = _uiState.value.currentTab
-        val compressedFile = originalFile?.let { file ->
+        val context : Context = getAppContext()
+        val originalFile : File? =
+                _uiState.value.selectedImageUri?.let { getRealFileFromUri(context , it) }
+        val currentTab : Int = _uiState.value.currentTab
+        val compressedFile : File? = originalFile?.let { file ->
             withContext(Dispatchers.IO) {
                 try {
                     Compressor.compress(context , file) {
@@ -77,7 +77,7 @@ class ImageOptimizerViewModel(application : Application) : AndroidViewModel(appl
                             }
 
                             1 -> {
-                                size(_uiState.value.fileSizeKB * 1024L)
+                                size(maxFileSize = _uiState.value.fileSizeKB * 1024L)
                                 format(Bitmap.CompressFormat.JPEG)
                             }
 
@@ -110,7 +110,7 @@ class ImageOptimizerViewModel(application : Application) : AndroidViewModel(appl
                     val nameIndex : Int = it.getColumnIndex(OpenableColumns.DISPLAY_NAME)
                     val fileName : String = it.getString(nameIndex)
                     val file = File(context.cacheDir , fileName)
-                    val inputStream = context.contentResolver.openInputStream(uri)
+                    val inputStream : InputStream? = context.contentResolver.openInputStream(uri)
                     inputStream?.use { stream ->
                         val outputStream = FileOutputStream(file)
                         stream.copyTo(outputStream)

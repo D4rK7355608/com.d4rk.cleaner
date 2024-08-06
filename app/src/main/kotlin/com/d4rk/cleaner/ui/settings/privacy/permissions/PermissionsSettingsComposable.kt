@@ -12,6 +12,7 @@ import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,7 +25,8 @@ import com.d4rk.cleaner.utils.compose.components.PreferenceItem
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PermissionsSettingsComposable(activity : PermissionsSettingsActivity) {
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val scrollBehavior : TopAppBarScrollBehavior =
+            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.permissions)) } , navigationIcon = {
             IconButton(onClick = {
@@ -34,8 +36,7 @@ fun PermissionsSettingsComposable(activity : PermissionsSettingsActivity) {
                     Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null
                 )
             }
-        } , scrollBehavior = scrollBehavior
-        )
+        } , scrollBehavior = scrollBehavior)
     }) { paddingValues ->
         LazyColumn(
             modifier = Modifier

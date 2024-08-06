@@ -3,6 +3,8 @@ package com.d4rk.cleaner.ui.settings.display.theme.style
 import android.app.Activity
 import android.content.Context
 import android.os.Build
+import android.view.View
+import android.view.Window
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
@@ -117,9 +119,9 @@ private val darkScheme = darkColorScheme(
 private fun getColorScheme(
     isDarkTheme : Boolean , isAmoledMode : Boolean , isDynamicColors : Boolean , context : Context
 ) : ColorScheme {
-    val dynamicDark =
+    val dynamicDark : ColorScheme =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) dynamicDarkColorScheme(context) else darkScheme
-    val dynamicLight =
+    val dynamicLight : ColorScheme =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) dynamicLightColorScheme(context) else lightScheme
 
     return when {
@@ -142,25 +144,26 @@ private fun getColorScheme(
 fun AppTheme(
     content : @Composable () -> Unit
 ) {
-    val context = LocalContext.current
-    val dataStore = DataStore.getInstance(context)
-    val themeMode = dataStore.themeMode.collectAsState(initial = "follow_system").value
-    val isDynamicColors = dataStore.dynamicColors.collectAsState(initial = true).value
-    val isAmoledMode = dataStore.amoledMode.collectAsState(initial = false).value
+    val context : Context = LocalContext.current
+    val dataStore : DataStore = DataStore.getInstance(context)
+    val themeMode : String = dataStore.themeMode.collectAsState(initial = "follow_system").value
+    val isDynamicColors : Boolean = dataStore.dynamicColors.collectAsState(initial = true).value
+    val isAmoledMode : Boolean = dataStore.amoledMode.collectAsState(initial = false).value
 
-    val isSystemDarkTheme = isSystemInDarkTheme()
-    val isDarkTheme = when (themeMode) {
+    val isSystemDarkTheme : Boolean = isSystemInDarkTheme()
+    val isDarkTheme : Boolean = when (themeMode) {
         stringResource(R.string.dark_mode) -> true
         stringResource(R.string.light_mode) -> false
         else -> isSystemDarkTheme
     }
 
-    val colorScheme = getColorScheme(isDarkTheme , isAmoledMode , isDynamicColors , context)
+    val colorScheme : ColorScheme =
+            getColorScheme(isDarkTheme , isAmoledMode , isDynamicColors , context)
 
-    val view = LocalView.current
+    val view : View = LocalView.current
     if (! view.isInEditMode) {
         SideEffect {
-            val window = (view.context as Activity).window
+            val window : Window = (view.context as Activity).window
             window.statusBarColor = Color.Transparent.toArgb()
             WindowCompat.getInsetsController(window , view).isAppearanceLightStatusBars =
                     ! isDarkTheme
@@ -168,6 +171,6 @@ fun AppTheme(
     }
 
     MaterialTheme(
-        colorScheme = colorScheme , typography = Typography , content = content
+        colorScheme = colorScheme , content = content
     )
 }

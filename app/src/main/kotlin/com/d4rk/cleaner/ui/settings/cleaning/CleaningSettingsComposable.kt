@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.ui.settings.cleaning
 
+import android.content.Context
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,6 +13,7 @@ import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -31,19 +33,20 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
-    val context = LocalContext.current
-    val dataStore = DataStore.getInstance(context)
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    val genericFilter by dataStore.genericFilter.collectAsState(initial = true)
-    val deleteEmptyFolders by dataStore.deleteEmptyFolders.collectAsState(initial = true)
-    val deleteArchives by dataStore.deleteArchives.collectAsState(initial = false)
-    val deleteInvalidMedia by dataStore.deleteInvalidMedia.collectAsState(initial = false)
-    val deleteCorpseFiles by dataStore.deleteCorpseFiles.collectAsState(initial = false)
-    val deleteApkFiles by dataStore.deleteApkFiles.collectAsState(initial = true)
-    val deleteAudioFiles by dataStore.deleteAudioFiles.collectAsState(initial = false)
-    val deleteVideoFiles by dataStore.deleteVideoFiles.collectAsState(initial = false)
-    val deleteImageFiles by dataStore.deleteImageFiles.collectAsState(initial = false)
-    val clipboardClean by dataStore.clipboardClean.collectAsState(initial = false)
+    val context : Context = LocalContext.current
+    val dataStore : DataStore = DataStore.getInstance(context)
+    val scrollBehavior : TopAppBarScrollBehavior =
+            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val genericFilter : Boolean by dataStore.genericFilter.collectAsState(initial = true)
+    val deleteEmptyFolders : Boolean by dataStore.deleteEmptyFolders.collectAsState(initial = true)
+    val deleteArchives : Boolean by dataStore.deleteArchives.collectAsState(initial = false)
+    val deleteInvalidMedia : Boolean by dataStore.deleteInvalidMedia.collectAsState(initial = false)
+    val deleteCorpseFiles : Boolean by dataStore.deleteCorpseFiles.collectAsState(initial = false)
+    val deleteApkFiles : Boolean by dataStore.deleteApkFiles.collectAsState(initial = true)
+    val deleteAudioFiles : Boolean by dataStore.deleteAudioFiles.collectAsState(initial = false)
+    val deleteVideoFiles : Boolean by dataStore.deleteVideoFiles.collectAsState(initial = false)
+    val deleteImageFiles : Boolean by dataStore.deleteImageFiles.collectAsState(initial = false)
+    val clipboardClean : Boolean by dataStore.clipboardClean.collectAsState(initial = false)
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.cleaning)) } , navigationIcon = {
             IconButton(onClick = {

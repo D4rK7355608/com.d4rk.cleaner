@@ -1,25 +1,23 @@
 package com.d4rk.cleaner.ui.memory
 
 import android.app.ActivityManager
-import android.app.usage.StorageStatsManager
 import android.content.Context
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import android.os.Environment
 import android.os.StatFs
-import android.os.storage.StorageManager
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.memorymanager.InternalStorageInfo
 import com.d4rk.cleaner.data.model.ui.memorymanager.RamInfo
 import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
-import kotlinx.coroutines.Dispatchers
+import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.io.File
-import java.util.UUID
 
 /**
  * ViewModel for managing and providing information about device memory (RAM and storage).
@@ -31,10 +29,10 @@ class MemoryManagerViewModel : ViewModel() {
     private val _ramInfo = MutableStateFlow(RamInfo())
     val ramInfo : StateFlow<RamInfo> = _ramInfo.asStateFlow()
 
-    private val _isLoading = MutableStateFlow(true)
+    private val _isLoading = MutableStateFlow(value = true)
     val isLoading : StateFlow<Boolean> = _isLoading.asStateFlow()
 
-    private val _listExpanded = MutableStateFlow(true)
+    private val _listExpanded = MutableStateFlow(value = true)
     val listExpanded : StateFlow<Boolean> = _listExpanded.asStateFlow()
 
     /**
@@ -42,10 +40,18 @@ class MemoryManagerViewModel : ViewModel() {
      *
      * @param context The application context.
      */
-    fun updateStorageInfo(context : Context) {
+    fun updateStorageInfo(context: Context) {
         viewModelScope.launch {
             try {
-                _storageInfo.value = getStorageInfo(context)
+                StorageUtils.getStorageInfo(context) { used , total , _ ->
+                    val storageBreakdown = getStorageBreakdown(context)
+                    _storageInfo.value = StorageInfo(
+                        totalStorage = total.toLongOrNull() ?: 0,
+                        freeStorage = (total.toLongOrNull() ?: 0) - (used.toLongOrNull() ?: 0),
+                        usedStorage = used.toLongOrNull() ?: 0,
+                        storageBreakdown = storageBreakdown
+                    )
+                }
             } finally {
                 _isLoading.value = false
             }
@@ -64,51 +70,19 @@ class MemoryManagerViewModel : ViewModel() {
     }
 
     /**
-     * Fetches the current storage information from the device.
-     *
-     * @param context The application context.
-     * @return A [StorageInfo] object containing details about total, free, and used storage.
-     */
-    private suspend fun getStorageInfo(context : Context) : StorageInfo =
-            withContext(Dispatchers.IO) {
-                val storageManager =
-                        context.getSystemService(Context.STORAGE_SERVICE) as StorageManager
-                val storageStatsManager =
-                        context.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
-                val storageVolume = storageManager.primaryStorageVolume
-                val totalSize : Long
-                val usedSize : Long
-                val freeSize : Long
-                val uuidStr = storageVolume.uuid
-                val uuid : UUID = if (uuidStr == null) StorageManager.UUID_DEFAULT
-                else UUID.fromString(uuidStr)
-                totalSize = storageStatsManager.getTotalBytes(uuid)
-                freeSize = storageStatsManager.getFreeBytes(uuid)
-                usedSize = totalSize - freeSize
-                _isLoading.value = true
-                val storageBreakdown = getStorageBreakdown(context)
-                StorageInfo(
-                    totalStorage = totalSize ,
-                    freeStorage = freeSize ,
-                    usedStorage = usedSize ,
-                    storageBreakdown = storageBreakdown
-                )
-            }
-
-    /**
      * Retrieves information about the internal storage.
      *
      * @return An [InternalStorageInfo] object containing details about total, free, and used internal storage.
      */
     private fun getInternalStorageInfo() : InternalStorageInfo {
         val statFs = StatFs(Environment.getDataDirectory().path)
-        val blockSizeBytes = statFs.blockSizeLong
-        val totalBlocks = statFs.blockCountLong
-        val availableBlocks = statFs.availableBlocksLong
+        val blockSizeBytes : Long = statFs.blockSizeLong
+        val totalBlocks : Long = statFs.blockCountLong
+        val availableBlocks : Long = statFs.availableBlocksLong
 
-        val totalStorage = totalBlocks * blockSizeBytes
-        val freeStorage = availableBlocks * blockSizeBytes
-        val usedStorage = totalStorage - freeStorage
+        val totalStorage : Long = totalBlocks * blockSizeBytes
+        val freeStorage : Long = availableBlocks * blockSizeBytes
+        val usedStorage : Long = totalStorage - freeStorage
 
         return InternalStorageInfo(totalStorage , freeStorage , usedStorage)
     }
@@ -120,8 +94,8 @@ class MemoryManagerViewModel : ViewModel() {
      * @return A map containing storage usage by category (e.g., "Installed Apps", "Music", etc.).
      */
     private fun getStorageBreakdown(context : Context) : Map<String , Long> {
-        val breakdown = mutableMapOf<String , Long>()
-        val externalStoragePath = Environment.getExternalStorageDirectory().absolutePath
+        val breakdown : MutableMap<String , Long> = mutableMapOf()
+        val externalStoragePath : String = Environment.getExternalStorageDirectory().absolutePath
 
         breakdown[context.getString(R.string.installed_apps)] = getInstalledAppsSize(context)
         breakdown[context.getString(R.string.system)] =
@@ -150,10 +124,11 @@ class MemoryManagerViewModel : ViewModel() {
      * @return The total size of installed apps in bytes.
      */
     private fun getInstalledAppsSize(context : Context) : Long {
-        val packageManager = context.packageManager
-        val installedApps = packageManager.getInstalledApplications(0)
+        val packageManager : PackageManager = context.packageManager
+        val installedApps : MutableList<ApplicationInfo> =
+                packageManager.getInstalledApplications(0)
         var installedAppsSize = 0L
-        for (app in installedApps) {
+        for (app : ApplicationInfo in installedApps) {
             installedAppsSize += getApkSize(context , app.packageName)
         }
         return installedAppsSize
@@ -185,9 +160,9 @@ class MemoryManagerViewModel : ViewModel() {
     private fun getDirectorySize(directory : File?) : Long {
         if (directory == null || ! directory.exists() || ! directory.isDirectory) return 0
         var size = 0L
-        val files = directory.listFiles()
+        val files : Array<out File>? = directory.listFiles()
         if (files != null) {
-            for (file in files) {
+            for (file : File in files) {
                 size += if (file.isDirectory) {
                     getDirectorySize(file)
                 }
@@ -207,8 +182,8 @@ class MemoryManagerViewModel : ViewModel() {
      * @return The size of "other files" in bytes.
      */
     private fun getOtherFilesSize(breakdown : MutableMap<String , Long>) : Long {
-        val totalUsedStorage = getInternalStorageInfo().usedStorage
-        val calculatedSize = breakdown.values.sum()
+        val totalUsedStorage : Long = getInternalStorageInfo().usedStorage
+        val calculatedSize : Long = breakdown.values.sum()
         return totalUsedStorage - calculatedSize
     }
 
@@ -219,7 +194,8 @@ class MemoryManagerViewModel : ViewModel() {
      * @return A [RamInfo] object containing details about total, available, and used RAM.
      */
     private fun getRamInfo(context : Context) : RamInfo {
-        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val activityManager : ActivityManager =
+                context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val memoryInfo = ActivityManager.MemoryInfo()
         activityManager.getMemoryInfo(memoryInfo)
         return RamInfo(

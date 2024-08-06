@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 class StartupActivity : AppCompatActivity() {
     private lateinit var consentInformation : ConsentInformation
     private lateinit var consentForm : ConsentForm
-    val consentFormShown = MutableStateFlow(false)
+    val consentFormShown = MutableStateFlow(value = false)
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,11 +27,12 @@ class StartupActivity : AppCompatActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    StartupComposable(this@StartupActivity)
+                    StartupComposable(activity = this@StartupActivity)
                 }
             }
         }
-        val params = ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(false).build()
+        val params : ConsentRequestParameters =
+                ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(false).build()
         consentInformation = UserMessagingPlatform.getConsentInformation(this)
         consentInformation.requestConsentInfoUpdate(this , params , {
             if (consentInformation.isConsentFormAvailable) {
@@ -52,7 +53,7 @@ class StartupActivity : AppCompatActivity() {
      * @see com.google.ads.consent.ConsentInformation
      */
     private fun loadForm() {
-        UserMessagingPlatform.loadConsentForm(this , { consentForm ->
+        UserMessagingPlatform.loadConsentForm(this@StartupActivity , { consentForm ->
             this.consentForm = consentForm
             if (consentInformation.consentStatus == ConsentInformation.ConsentStatus.REQUIRED) {
                 consentFormShown.value = true

@@ -19,7 +19,7 @@ class AdvancedSettingsActivity : AppCompatActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    AdvancedSettingsComposable(this@AdvancedSettingsActivity)
+                    AdvancedSettingsComposable(activity = this@AdvancedSettingsActivity)
                 }
             }
         }

@@ -11,6 +11,7 @@ import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,18 +24,20 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.data.model.ui.imageoptimizer.ImageOptimizerState
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.ImageOptimizerViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FileSizeScreen(viewModel : ImageOptimizerViewModel) {
-    val state = viewModel.uiState.collectAsState()
-    var fileSizeText by remember { mutableStateOf(state.value.fileSizeKB.toString()) }
-    var expanded by remember { mutableStateOf(false) }
-    val presetSizes = stringArrayResource(R.array.file_sizes).toList()
-    var selectedPresetSize by remember { mutableStateOf("") }
-    val coroutineScope = rememberCoroutineScope()
+    val state : State<ImageOptimizerState> = viewModel.uiState.collectAsState()
+    var fileSizeText : String by remember { mutableStateOf(state.value.fileSizeKB.toString()) }
+    var expanded : Boolean by remember { mutableStateOf(value = false) }
+    val presetSizes : List<String> = stringArrayResource(R.array.file_sizes).toList()
+    var selectedPresetSize : String by remember { mutableStateOf(value = "") }
+    val coroutineScope : CoroutineScope = rememberCoroutineScope()
     Column(modifier = Modifier.padding(16.dp)) {
         ExposedDropdownMenuBox(expanded = expanded , onExpandedChange = { expanded = ! expanded }) {
             OutlinedTextField(value = fileSizeText ,
@@ -55,12 +58,11 @@ fun FileSizeScreen(viewModel : ImageOptimizerViewModel) {
                               modifier = Modifier
                                       .menuAnchor()
                                       .fillMaxWidth()
-                                      .padding(top = 12.dp)
-            )
+                                      .padding(top = 12.dp))
 
             ExposedDropdownMenu(expanded = expanded , onDismissRequest = { expanded = false }) {
                 presetSizes.forEach { size ->
-                    DropdownMenuItem(text = { Text("$size KB") } , onClick = {
+                    DropdownMenuItem(text = { Text(text = "$size KB") } , onClick = {
                         selectedPresetSize = size
                         fileSizeText = size
                         coroutineScope.launch {

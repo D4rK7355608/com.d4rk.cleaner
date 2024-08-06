@@ -54,7 +54,7 @@ object IntentUtils {
      * @param context The Android context in which the app's notification settings should be opened.
      */
     fun openAppNotificationSettings(context : Context) {
-        val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
+        val intent : Intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
             putExtra(Settings.EXTRA_APP_PACKAGE , context.packageName)
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
@@ -70,11 +70,11 @@ object IntentUtils {
      * @param context The Android context in which the share sheet should be opened.
      */
     fun shareApp(context : Context) {
-        val shareMessage = context.getString(
+        val shareMessage : String = context.getString(
             R.string.summary_share_message ,
             "https://play.google.com/store/apps/details?id=${context.packageName}"
         )
-        val shareIntent = Intent().apply {
+        val shareIntent : Intent = Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_TEXT , shareMessage)
             type = "text/plain"
@@ -98,11 +98,11 @@ object IntentUtils {
      */
     fun sendEmailToDeveloper(context : Context) {
         val developerEmail = "d4rk7355608@gmail.com"
-        val appName = context.getString(R.string.app_name)
-        val subject = context.getString(R.string.feedback_for) + appName
-        val body = context.getString(R.string.dear_developer) + "\n\n"
+        val appName : String = context.getString(R.string.app_name)
+        val subject : String = context.getString(R.string.feedback_for) + appName
+        val body : String = context.getString(R.string.dear_developer) + "\n\n"
 
-        val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
+        val emailIntent : Intent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("mailto:$developerEmail")
             putExtra(Intent.EXTRA_SUBJECT , subject)
             putExtra(Intent.EXTRA_TEXT , body)

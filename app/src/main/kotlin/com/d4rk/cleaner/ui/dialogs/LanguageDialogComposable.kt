@@ -36,9 +36,11 @@ import kotlinx.coroutines.flow.firstOrNull
 fun LanguageDialog(
     dataStore : DataStore , onDismiss : () -> Unit , onLanguageSelected : (String) -> Unit
 ) {
-    val selectedLanguage = remember { mutableStateOf("") }
-    val languageEntries = stringArrayResource(R.array.preference_language_entries).toList()
-    val languageValues = stringArrayResource(R.array.preference_language_values).toList()
+    val selectedLanguage : MutableState<String> = remember { mutableStateOf(value = "") }
+    val languageEntries : List<String> =
+            stringArrayResource(R.array.preference_language_entries).toList()
+    val languageValues : List<String> =
+            stringArrayResource(R.array.preference_language_values).toList()
 
     AlertDialog(onDismissRequest = onDismiss , text = {
         LanguageDialogContent(

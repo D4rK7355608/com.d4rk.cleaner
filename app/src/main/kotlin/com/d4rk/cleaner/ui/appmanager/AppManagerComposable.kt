@@ -2,13 +2,18 @@ package com.d4rk.cleaner.ui.appmanager
 
 import android.app.Activity
 import android.app.Application
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.provider.Settings
+import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.updateTransition
 
@@ -24,6 +29,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -42,6 +48,7 @@ import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
+import androidx.compose.material3.pulltorefresh.PullToRefreshState
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -67,6 +74,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
 import com.d4rk.cleaner.utils.PermissionsUtils
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -79,19 +87,20 @@ fun AppManagerComposable() {
     val viewModel : AppManagerViewModel = viewModel(
         factory = AppManagerViewModelFactory(LocalContext.current.applicationContext as Application)
     )
-    val context = LocalContext.current
-    val tabs = listOf(
+    val context : Context = LocalContext.current
+    val tabs : List<String> = listOf(
         stringResource(id = R.string.installed_apps) ,
         stringResource(id = R.string.system_apps) ,
         stringResource(id = R.string.app_install_files) ,
     )
-    val pagerState = rememberPagerState(pageCount = { tabs.size })
-    val coroutineScope = rememberCoroutineScope()
-    val isLoading by viewModel.isLoading.collectAsState()
-    val state = rememberPullToRefreshState()
-    val transition = updateTransition(targetState = ! isLoading , label = "LoadingTransition")
+    val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
+    val coroutineScope : CoroutineScope = rememberCoroutineScope()
+    val isLoading : Boolean by viewModel.isLoading.collectAsState()
+    val state : PullToRefreshState = rememberPullToRefreshState()
+    val transition : Transition<Boolean> =
+            updateTransition(targetState = ! isLoading , label = "LoadingTransition")
 
-    val contentAlpha by transition.animateFloat(label = "Content Alpha") {
+    val contentAlpha : Float by transition.animateFloat(label = "Content Alpha") {
         if (it) 1f else 0f
     }
 
@@ -102,7 +111,7 @@ fun AppManagerComposable() {
     }
 
     if (state.isRefreshing) {
-        LaunchedEffect(true) {
+        LaunchedEffect(key1 = true) {
             viewModel.loadAppData()
             state.endRefresh()
         }
@@ -190,22 +199,22 @@ fun AppsComposable(apps : List<ApplicationInfo>) {
 fun AppItemComposable(
     app : ApplicationInfo
 ) {
-    val context = LocalContext.current
-    val packageManager = context.packageManager
-    val appName = app.loadLabel(packageManager).toString()
-    val apkPath = app.publicSourceDir
+    val context : Context = LocalContext.current
+    val packageManager : PackageManager = context.packageManager
+    val appName : String = app.loadLabel(packageManager).toString()
+    val apkPath : String = app.publicSourceDir
     val apkFile = File(apkPath)
-    val sizeInBytes = apkFile.length()
-    val sizeInKB = sizeInBytes / 1024
-    val sizeInMB = sizeInKB / 1024
-    val appSize = "%.2f MB".format(sizeInMB.toFloat())
-    val appIcon = remember(app.packageName) {
-        val drawable = app.loadIcon(packageManager)
-        val bitmap = if (drawable is BitmapDrawable) {
+    val sizeInBytes : Long = apkFile.length()
+    val sizeInKB : Long = sizeInBytes / 1024
+    val sizeInMB : Long = sizeInKB / 1024
+    val appSize : String = "%.2f MB".format(sizeInMB.toFloat())
+    val appIcon : ImageBitmap = remember(app.packageName) {
+        val drawable : Drawable = app.loadIcon(packageManager)
+        val bitmap : Bitmap = if (drawable is BitmapDrawable) {
             drawable.bitmap
         }
         else {
-            val bitmap = Bitmap.createBitmap(
+            val bitmap : Bitmap = Bitmap.createBitmap(
                 drawable.intrinsicWidth , drawable.intrinsicHeight , Bitmap.Config.ARGB_8888
             )
             val canvas = Canvas(bitmap)
@@ -215,7 +224,7 @@ fun AppItemComposable(
         }
         bitmap.asImageBitmap()
     }
-    var showMenu by remember { mutableStateOf(false) }
+    var showMenu : Boolean by remember { mutableStateOf(false) }
     OutlinedCard(modifier = Modifier.padding(start = 8.dp , end = 8.dp , top = 8.dp)) {
         Row(
             modifier = Modifier
@@ -251,7 +260,7 @@ fun AppItemComposable(
                     DropdownMenuItem(text = {
                         Text(stringResource(R.string.uninstall))
                     } , onClick = {
-                        val uri = Uri.fromParts("package" , app.packageName , null)
+                        val uri : Uri = Uri.fromParts("package" , app.packageName , null)
                         val intent = Intent(Intent.ACTION_DELETE , uri)
                         context.startActivity(intent)
                     })
@@ -259,7 +268,7 @@ fun AppItemComposable(
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT , "Check out this app")
-                        @Suppress("DEPRECATION") val isFromPlayStore =
+                        @Suppress("DEPRECATION") val isFromPlayStore : Boolean =
                                 context.packageManager.getInstallerPackageName(app.packageName) == "com.android.vending"
                         if (isFromPlayStore) {
                             val playStoreLink =
@@ -277,7 +286,7 @@ fun AppItemComposable(
                                      onClick = {
                                          val appInfoIntent =
                                                  Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                                         val packageUri =
+                                         val packageUri : Uri =
                                                  Uri.fromParts("package" , app.packageName , null)
                                          appInfoIntent.data = packageUri
                                          context.startActivity(appInfoIntent)
@@ -309,32 +318,33 @@ fun ApksComposable(apkFiles : List<ApkInfo>) {
  */
 @Composable
 fun ApkItemComposable(apkPath : String) {
-    val context = LocalContext.current
+    val context : Context = LocalContext.current
     val apkFile = File(apkPath)
-    val sizeInBytes = apkFile.length()
-    val sizeInKB = sizeInBytes / 1024
-    val sizeInMB = sizeInKB / 1024
-    val apkSize = "%.2f MB".format(sizeInMB.toFloat())
-    val apkName = apkFile.name
+    val sizeInBytes : Long = apkFile.length()
+    val sizeInKB : Long = sizeInBytes / 1024
+    val sizeInMB : Long = sizeInKB / 1024
+    val apkSize : String = "%.2f MB".format(sizeInMB.toFloat())
+    val apkName : String = apkFile.name
 
-    val packageInfo = context.packageManager.getPackageArchiveInfo(apkPath , 0)
-    val appIcon = packageInfo?.applicationInfo?.loadIcon(context.packageManager)?.let {
-        val bitmap = if (it is BitmapDrawable) {
-            it.bitmap
-        }
-        else {
-            val bitmap = Bitmap.createBitmap(
-                it.intrinsicWidth , it.intrinsicHeight , Bitmap.Config.ARGB_8888
-            )
-            val canvas = Canvas(bitmap)
-            it.setBounds(0 , 0 , canvas.width , canvas.height)
-            it.draw(canvas)
-            bitmap
-        }
-        bitmap.asImageBitmap()
-    } ?: ImageBitmap.imageResource(id = R.mipmap.ic_launcher)
+    val packageInfo : PackageInfo? = context.packageManager.getPackageArchiveInfo(apkPath , 0)
+    val appIcon : ImageBitmap =
+            packageInfo?.applicationInfo?.loadIcon(context.packageManager)?.let {
+                val bitmap : Bitmap = if (it is BitmapDrawable) {
+                    it.bitmap
+                }
+                else {
+                    val bitmap : Bitmap = Bitmap.createBitmap(
+                        it.intrinsicWidth , it.intrinsicHeight , Bitmap.Config.ARGB_8888
+                    )
+                    val canvas = Canvas(bitmap)
+                    it.setBounds(0 , 0 , canvas.width , canvas.height)
+                    it.draw(canvas)
+                    bitmap
+                }
+                bitmap.asImageBitmap()
+            } ?: ImageBitmap.imageResource(id = R.mipmap.ic_launcher)
 
-    var showMenu by remember { mutableStateOf(false) }
+    var showMenu : Boolean by remember { mutableStateOf(value = false) }
 
     OutlinedCard(modifier = Modifier.padding(start = 8.dp , end = 8.dp , top = 8.dp)) {
         Row(

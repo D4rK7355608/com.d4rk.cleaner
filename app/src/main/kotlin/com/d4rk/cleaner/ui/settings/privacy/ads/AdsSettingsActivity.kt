@@ -29,7 +29,7 @@ class AdsSettingsActivity : AppCompatActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    AdsSettingsComposable(this@AdsSettingsActivity)
+                    AdsSettingsComposable(activity = this@AdsSettingsActivity)
                 }
             }
         }
@@ -47,7 +47,8 @@ class AdsSettingsActivity : AppCompatActivity() {
     }
 
     private fun loadForm() {
-        val params = ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(false).build()
+        val params : ConsentRequestParameters =
+                ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(false).build()
         consentInformation.requestConsentInfoUpdate(this@AdsSettingsActivity , params , {
             UserMessagingPlatform.loadAndShowConsentFormIfRequired(
                 this@AdsSettingsActivity

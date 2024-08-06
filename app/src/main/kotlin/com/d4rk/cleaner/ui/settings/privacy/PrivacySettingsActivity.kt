@@ -19,7 +19,7 @@ class PrivacySettingsActivity : AppCompatActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    PrivacySettingsComposable(this@PrivacySettingsActivity)
+                    PrivacySettingsComposable(activity = this@PrivacySettingsActivity)
                 }
             }
         }

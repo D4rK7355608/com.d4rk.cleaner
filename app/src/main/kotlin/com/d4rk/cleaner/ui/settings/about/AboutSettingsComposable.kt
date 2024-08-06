@@ -16,6 +16,7 @@ import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -32,9 +33,11 @@ import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AboutSettingsComposable(activity : AboutSettingsActivity) {
-    val context = LocalContext.current
-    val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val context : Context = LocalContext.current
+    val clipboardManager : ClipboardManager =
+            context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    val scrollBehavior : TopAppBarScrollBehavior =
+            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.about)) } , navigationIcon = {
             IconButton(onClick = {
@@ -63,8 +66,7 @@ fun AboutSettingsComposable(activity : AboutSettingsActivity) {
                                summary = stringResource(R.string.summary_preference_settings_oss) ,
                                onClick = {
                                    IntentUtils.openActivity(
-                                       context ,
-                                       OssLicensesMenuActivity::class.java
+                                       context , OssLicensesMenuActivity::class.java
                                    )
                                })
             }

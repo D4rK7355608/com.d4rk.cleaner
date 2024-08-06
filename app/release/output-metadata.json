@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 78,
+      "versionCode": 97,
       "versionName": "2.0.0",
-      "outputFile": "com.d4rk.cleaner-v2.0.0-release.apk"
+      "outputFile": "app-release.apk"
     }
   ],
   "elementType": "File",
@@ -22,14 +22,14 @@
       "minApi": 28,
       "maxApi": 30,
       "baselineProfiles": [
-        "baselineProfiles/1/com.d4rk.cleaner-v2.0.0-release.dm"
+        "baselineProfiles/1/app-release.dm"
       ]
     },
     {
       "minApi": 31,
       "maxApi": 2147483647,
       "baselineProfiles": [
-        "baselineProfiles/0/com.d4rk.cleaner-v2.0.0-release.dm"
+        "baselineProfiles/0/app-release.dm"
       ]
     }
   ],

@@ -19,7 +19,7 @@ class CleaningSettingsActivity : AppCompatActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    CleaningSettingsComposable(this@CleaningSettingsActivity)
+                    CleaningSettingsComposable(activity = this@CleaningSettingsActivity)
                 }
             }
         }

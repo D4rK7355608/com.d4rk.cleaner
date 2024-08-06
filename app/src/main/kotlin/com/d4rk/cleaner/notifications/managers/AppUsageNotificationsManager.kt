@@ -30,7 +30,7 @@ class AppUsageNotificationsManager(private val context : Context) {
      * an instance of the AppUsageNotificationWorker to handle the app usage check.
      */
     fun scheduleAppUsageCheck() {
-        val triggerTime = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(3)
+        val triggerTime : Long = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(3)
         alarmManager.setRepeating(
             AlarmManager.RTC_WAKEUP , triggerTime , TimeUnit.DAYS.toMillis(3) , notificationIntent
         )

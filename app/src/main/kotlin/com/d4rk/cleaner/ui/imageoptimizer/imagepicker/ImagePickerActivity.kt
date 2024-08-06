@@ -2,6 +2,7 @@ package com.d4rk.cleaner.ui.imageoptimizer.imagepicker
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -25,7 +26,7 @@ class ImagePickerActivity : AppCompatActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    ImagePickerComposable(this , viewModel)
+                    ImagePickerComposable(activity = this@ImagePickerActivity , viewModel)
                 }
             }
         }
@@ -34,7 +35,7 @@ class ImagePickerActivity : AppCompatActivity() {
     private val launcher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK && result.data != null) {
-                    val selectedImageUri = result.data?.data
+                    val selectedImageUri : Uri? = result.data?.data
                     viewModel.setSelectedImageUri(selectedImageUri)
                 }
             }
@@ -42,7 +43,7 @@ class ImagePickerActivity : AppCompatActivity() {
     fun selectImage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        val chooser = Intent.createChooser(intent , getString(R.string.select_image))
+        val chooser : Intent = Intent.createChooser(intent , getString(R.string.select_image))
         launcher.launch(chooser)
     }
 }

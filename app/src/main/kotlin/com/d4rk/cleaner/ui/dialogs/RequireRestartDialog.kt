@@ -17,11 +17,12 @@ class RequireRestartDialog : DialogFragment() {
                 .setMessage(R.string.summary_require_restart)
                 .setPositiveButton(android.R.string.ok) { _ , _ ->
                     activity?.recreate()
-                    val nManager =
+                    val nManager : NotificationManager =
                             requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                     nManager.cancelAll()
                     val pm : PackageManager = requireContext().packageManager
-                    val intent = pm.getLaunchIntentForPackage(requireContext().packageName)
+                    val intent : Intent? =
+                            pm.getLaunchIntentForPackage(requireContext().packageName)
                     intent?.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                     requireContext().startActivity(intent)
                     Process.killProcess(Process.myPid())

@@ -19,7 +19,7 @@ class UsageAndDiagnosticsActivity : AppCompatActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    UsageAndDiagnosticsComposable(this@UsageAndDiagnosticsActivity)
+                    UsageAndDiagnosticsComposable(activity = this@UsageAndDiagnosticsActivity)
                 }
             }
         }

@@ -37,11 +37,11 @@ class AppUsageNotificationWorker(context : Context , workerParams : WorkerParame
      * @return The result of the worker operation, indicating success or failure.
      */
     override fun doWork() : Result {
-        val currentTimestamp = System.currentTimeMillis()
-        val notificationThreshold = 3 * 24 * 60 * 60 * 1000
-        val lastUsedTimestamp = runBlocking { dataStore.lastUsed.first() }
+        val currentTimestamp : Long = System.currentTimeMillis()
+        val notificationThreshold : Int = 3 * 24 * 60 * 60 * 1000
+        val lastUsedTimestamp : Long = runBlocking { dataStore.lastUsed.first() }
         if (currentTimestamp - lastUsedTimestamp > notificationThreshold) {
-            val notificationManager =
+            val notificationManager : NotificationManager =
                     applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             val appUsageChannel = NotificationChannel(
                 appUsageChannelId ,
@@ -49,7 +49,7 @@ class AppUsageNotificationWorker(context : Context , workerParams : WorkerParame
                 NotificationManager.IMPORTANCE_HIGH
             )
             notificationManager.createNotificationChannel(appUsageChannel)
-            val notificationBuilder =
+            val notificationBuilder : NotificationCompat.Builder =
                     NotificationCompat.Builder(applicationContext , appUsageChannelId)
                             .setSmallIcon(R.drawable.ic_notification_important)
                             .setContentTitle(applicationContext.getString(R.string.notification_last_time_used_title))

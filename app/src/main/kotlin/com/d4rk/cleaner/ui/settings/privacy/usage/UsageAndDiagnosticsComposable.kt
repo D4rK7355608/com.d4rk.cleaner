@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.ui.settings.privacy.usage
 
+import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,14 +21,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
@@ -37,17 +41,19 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.utils.compose.components.SwitchCardComposable
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UsageAndDiagnosticsComposable(activity : UsageAndDiagnosticsActivity) {
-    val context = LocalContext.current
-    val dataStore = DataStore.getInstance(context)
-    val switchState = dataStore.usageAndDiagnostics.collectAsState(initial = true)
-    val scope = rememberCoroutineScope()
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val context : Context = LocalContext.current
+    val dataStore : DataStore = DataStore.getInstance(context)
+    val switchState : State<Boolean> = dataStore.usageAndDiagnostics.collectAsState(initial = true)
+    val scope : CoroutineScope = rememberCoroutineScope()
+    val scrollBehavior : TopAppBarScrollBehavior =
+            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.usage_and_diagnostics)) } ,
                        navigationIcon = {
@@ -86,7 +92,7 @@ fun UsageAndDiagnosticsComposable(activity : UsageAndDiagnosticsActivity) {
                         Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(stringResource(R.string.summary_usage_and_diagnostics))
-                        val annotatedString = buildAnnotatedString {
+                        val annotatedString : AnnotatedString = buildAnnotatedString {
                             withStyle(
                                 style = SpanStyle(
                                     color = MaterialTheme.colorScheme.primary ,
@@ -103,7 +109,7 @@ fun UsageAndDiagnosticsComposable(activity : UsageAndDiagnosticsActivity) {
                             )
                         }
                         ClickableText(text = annotatedString , onClick = { offset ->
-                            annotatedString.getStringAnnotations("URL" , offset , offset)
+                            annotatedString.getStringAnnotations(tag = "URL" , offset , offset)
                                     .firstOrNull()?.let { annotation ->
                                         IntentUtils.openUrl(context , annotation.item)
                                     }

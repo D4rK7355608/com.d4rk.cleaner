@@ -1,5 +1,6 @@
 package com.d4rk.cleaner
 
+import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -35,9 +36,12 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -54,12 +58,13 @@ import com.d4rk.cleaner.ui.memory.MemoryManagerComposable
 import com.d4rk.cleaner.ui.settings.SettingsActivity
 import com.d4rk.cleaner.ui.support.SupportActivity
 import com.d4rk.cleaner.utils.IntentUtils
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainComposable() {
-    val bottomBarItems = listOf(
+    val bottomBarItems : List<BottomNavigationScreen> = listOf(
         BottomNavigationScreen.Home ,
         BottomNavigationScreen.AppManager ,
         BottomNavigationScreen.MemoryManager
@@ -87,16 +92,16 @@ fun MainComposable() {
         ) ,
     )
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
-    val navController = rememberNavController()
-    val context = LocalContext.current
-    val dataStore = DataStore.getInstance(context)
-    val selectedItemIndex by rememberSaveable { mutableIntStateOf(- 1) }
+    val scope : CoroutineScope = rememberCoroutineScope()
+    val navController : NavHostController = rememberNavController()
+    val context : Context = LocalContext.current
+    val dataStore : DataStore = DataStore.getInstance(context)
+    val selectedItemIndex : Int by rememberSaveable { mutableIntStateOf(- 1) }
     ModalNavigationDrawer(drawerState = drawerState , drawerContent = {
         ModalDrawerSheet {
             Spacer(modifier = Modifier.height(16.dp))
             drawerItems.forEachIndexed { index , item ->
-                val title = stringResource(item.title)
+                val title : String = stringResource(item.title)
                 NavigationDrawerItem(label = { Text(text = title) } ,
                                      selected = index == selectedItemIndex ,
                                      onClick = {
@@ -145,8 +150,7 @@ fun MainComposable() {
                                              Text(text = item.badgeCount.toString())
                                          }
                                      } ,
-                                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
-                )
+                                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding))
                 if (item.title == R.string.image_optimizer) {
                     HorizontalDivider(modifier = Modifier.padding(8.dp))
                 }
@@ -184,11 +188,11 @@ fun MainComposable() {
             Column {
                 FullBannerAdsComposable(modifier = Modifier.fillMaxWidth() , dataStore = dataStore)
                 NavigationBar {
-                    val navBackStackEntry by navController.currentBackStackEntryAsState()
-                    val currentRoute = navBackStackEntry?.destination?.route
+                    val navBackStackEntry : NavBackStackEntry? by navController.currentBackStackEntryAsState()
+                    val currentRoute : String? = navBackStackEntry?.destination?.route
                     bottomBarItems.forEach { screen ->
                         NavigationBarItem(icon = {
-                            val iconResource =
+                            val iconResource : ImageVector =
                                     if (currentRoute == screen.route) screen.selectedIcon else screen.icon
                             Icon(iconResource , contentDescription = null)
                         } ,

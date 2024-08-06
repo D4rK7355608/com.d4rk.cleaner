@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.ui.settings.privacy.ads
 
+import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,8 +21,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -38,19 +41,22 @@ import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.utils.compose.components.PreferenceItem
 import com.d4rk.cleaner.utils.compose.components.SwitchCardComposable
+import com.google.android.ump.ConsentInformation
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AdsSettingsComposable(activity : AdsSettingsActivity) {
-    val context = LocalContext.current
-    val dataStore = DataStore.getInstance(context)
-    val switchState = dataStore.ads.collectAsState(initial = true)
-    val scope = rememberCoroutineScope()
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val context : Context = LocalContext.current
+    val dataStore : DataStore = DataStore.getInstance(context)
+    val switchState : State<Boolean> = dataStore.ads.collectAsState(initial = true)
+    val scope : CoroutineScope = rememberCoroutineScope()
+    val scrollBehavior : TopAppBarScrollBehavior =
+            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.ads)) } , navigationIcon = {
             IconButton(onClick = {
@@ -83,9 +89,11 @@ fun AdsSettingsComposable(activity : AdsSettingsActivity) {
                                        enabled = switchState.value ,
                                        summary = stringResource(id = R.string.summary_ads_personalized_ads) ,
                                        onClick = {
-                                           val params = ConsentRequestParameters.Builder()
-                                                   .setTagForUnderAgeOfConsent(false).build()
-                                           val consentInformation =
+                                           val params : ConsentRequestParameters =
+                                                   ConsentRequestParameters.Builder()
+                                                           .setTagForUnderAgeOfConsent(false)
+                                                           .build()
+                                           val consentInformation : ConsentInformation =
                                                    UserMessagingPlatform.getConsentInformation(
                                                        context
                                                    )
@@ -124,7 +132,7 @@ fun AdsSettingsComposable(activity : AdsSettingsActivity) {
                             )
                         }
                         ClickableText(text = annotatedString , onClick = { offset ->
-                            annotatedString.getStringAnnotations("URL" , offset , offset)
+                            annotatedString.getStringAnnotations(tag = "URL" , offset , offset)
                                     .firstOrNull()?.let { annotation ->
                                         IntentUtils.openUrl(context , annotation.item)
                                     }

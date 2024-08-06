@@ -5,6 +5,7 @@ import android.app.Application
 import android.app.usage.StorageStatsManager
 import android.content.Context
 import android.os.storage.StorageManager
+import android.os.storage.StorageVolume
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
@@ -13,6 +14,7 @@ import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.cleaning.FileScanner
+import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,15 +31,15 @@ class HomeViewModel(application : Application) : AndroidViewModel(application) {
     val storageTotal = MutableLiveData<String>()
     var fileScanner : FileScanner
     val scannedFiles = MutableLiveData<List<File>>()
-    val allFilesSelected = mutableStateOf(false)
+    val allFilesSelected = mutableStateOf(value = false)
     val fileSelectionStates = mutableStateMapOf<File , Boolean>()
     private val dataStoreInstance : DataStore = DataStore(application)
     val showCleaningComposable = MutableLiveData(false)
     val isAnalyzing = MutableLiveData(false)
-    var showRescanDialog = mutableStateOf(false)
-    private var hasScanned = mutableStateOf(false)
-    private var isUserConfirmedRescan = mutableStateOf(false)
-    val _selectedFileCount = MutableStateFlow(0)
+    var showRescanDialog = mutableStateOf(value = false)
+    private var hasScanned = mutableStateOf(value = false)
+    private var isUserConfirmedRescan = mutableStateOf(value = false)
+    val _selectedFileCount = MutableStateFlow(value = 0)
     val selectedFileCount : StateFlow<Int> = _selectedFileCount.asStateFlow()
 
     init {
@@ -62,21 +64,11 @@ class HomeViewModel(application : Application) : AndroidViewModel(application) {
      */
     private fun updateStorageInfo() {
         viewModelScope.launch {
-            val storageManager =
-                    getApplication<Application>().getSystemService(Context.STORAGE_SERVICE) as StorageManager
-            val storageStatsManager =
-                    getApplication<Application>().getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
-            val storageVolume = storageManager.primaryStorageVolume
-            val totalSize : Long
-            val usedSize : Long
-            val uuidStr = storageVolume.uuid
-            val uuid : UUID =
-                    if (uuidStr == null) StorageManager.UUID_DEFAULT else UUID.fromString(uuidStr)
-            totalSize = storageStatsManager.getTotalBytes(uuid)
-            usedSize = totalSize - storageStatsManager.getFreeBytes(uuid)
-            storageUsed.postValue((usedSize / (1024.0 * 1024.0 * 1024.0)).roundToInt().toString())
-            storageTotal.postValue((totalSize / (1024.0 * 1024.0 * 1024.0)).roundToInt().toString())
-            progress.postValue(usedSize.toFloat() / totalSize.toFloat())
+            StorageUtils.getStorageInfo(getApplication()) { used , total , usageProgress ->
+                storageUsed.postValue(used)
+                storageTotal.postValue(total)
+                progress.postValue(usageProgress)
+            }
         }
     }
 
@@ -125,13 +117,14 @@ class HomeViewModel(application : Application) : AndroidViewModel(application) {
 
         if (hasScanned.value && ! isUserConfirmedRescan.value) {
             showRescanDialog.value = true
+            return
         }
 
         isUserConfirmedRescan.value = false
         isAnalyzing.value = true
         showCleaningComposable.value = true
         viewModelScope.launch {
-            val filteredFiles = withContext(Dispatchers.IO) {
+            val filteredFiles : List<File> = withContext(Dispatchers.IO) {
                 fileScanner.startScanning()
                 fileScanner.getFilteredFiles()
             }
@@ -163,7 +156,7 @@ class HomeViewModel(application : Application) : AndroidViewModel(application) {
         }
 
         viewModelScope.launch(Dispatchers.IO) {
-            val filesToDelete = fileSelectionStates.filter { it.value }.keys
+            val filesToDelete : Set<File> = fileSelectionStates.filter { it.value }.keys
             filesToDelete.forEach { file ->
                 if (file.exists()) {
                     file.deleteRecursively()
@@ -173,7 +166,7 @@ class HomeViewModel(application : Application) : AndroidViewModel(application) {
             withContext(Dispatchers.Main) {
                 scannedFiles.value = scannedFiles.value?.filterNot { filesToDelete.contains(it) }
                 fileSelectionStates.clear()
-                selectAllFiles(false)
+                selectAllFiles(selectAll = false)
                 _selectedFileCount.value = 0
                 updateStorageInfo()
             }

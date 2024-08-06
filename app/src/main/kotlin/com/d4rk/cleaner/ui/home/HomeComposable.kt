@@ -1,6 +1,7 @@
 package com.d4rk.cleaner.ui.home
 
 import android.app.Activity
+import android.content.Context
 import android.graphics.Bitmap
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
@@ -80,23 +81,23 @@ import java.io.File
 
 @Composable
 fun HomeComposable() {
-    val context = LocalContext.current
+    val context : Context = LocalContext.current
     val viewModel : HomeViewModel = viewModel()
-    val progress by viewModel.progress.observeAsState(0.3f)
-    val storageUsed by viewModel.storageUsed.observeAsState("0")
-    val storageTotal by viewModel.storageTotal.observeAsState("0")
-    val showCleaningComposable by viewModel.showCleaningComposable.observeAsState(false)
-    val isAnalyzing by viewModel.isAnalyzing.observeAsState(false)
-    val selectedFileCount by viewModel.selectedFileCount.collectAsState()
+    val progress : Float by viewModel.progress.observeAsState(initial = 0.3f)
+    val storageUsed : String by viewModel.storageUsed.observeAsState(initial = "0")
+    val storageTotal : String by viewModel.storageTotal.observeAsState(initial = "0")
+    val showCleaningComposable : Boolean by viewModel.showCleaningComposable.observeAsState(initial = false)
+    val isAnalyzing : Boolean by viewModel.isAnalyzing.observeAsState(initial = false)
+    val selectedFileCount : Int by viewModel.selectedFileCount.collectAsState()
 
-    val imageLoader = ImageLoader.Builder(context).memoryCache {
-                MemoryCache.Builder(context).maxSizePercent(0.24).build()
-            }.diskCache {
-                DiskCache.Builder().directory(context.cacheDir.resolve("image_cache"))
-                        .maxSizePercent(0.02).build()
-            }.build()
+    val imageLoader : ImageLoader = ImageLoader.Builder(context).memoryCache {
+        MemoryCache.Builder(context).maxSizePercent(percent = 0.24).build()
+    }.diskCache {
+        DiskCache.Builder().directory(context.cacheDir.resolve(relative = "image_cache"))
+                .maxSizePercent(percent = 0.02).build()
+    }.build()
 
-    val launchScanningKey = remember { mutableStateOf(false) }
+    val launchScanningKey : MutableState<Boolean> = remember { mutableStateOf(value = false) }
 
     if (viewModel.showRescanDialog.value) {
         RescanAlertDialog(onYes = {
@@ -197,16 +198,14 @@ fun HomeComposable() {
                     }
                 }
             }
-            FilledTonalButton(
-                modifier = Modifier
-                        .weight(1f)
-                        .fillMaxHeight()
-                        .animateContentSize()
-                        .padding(start = if (showCleaningComposable) 8.dp else 16.dp , end = 16.dp)
-                        .bounceClick() , onClick = {
-                    viewModel.analyze(activity = context as Activity)
-                } , shape = MaterialTheme.shapes.medium
-            ) {
+            FilledTonalButton(modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .animateContentSize()
+                    .padding(start = if (showCleaningComposable) 8.dp else 16.dp , end = 16.dp)
+                    .bounceClick() , onClick = {
+                viewModel.analyze(activity = context as Activity)
+            } , shape = MaterialTheme.shapes.medium) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally ,
                     verticalArrangement = Arrangement.Center ,
@@ -240,10 +239,10 @@ fun HomeComposable() {
 @Composable
 fun AnalyzeComposable(launchScanningKey : MutableState<Boolean> , imageLoader : ImageLoader) {
     val viewModel : HomeViewModel = viewModel()
-    val files by viewModel.scannedFiles.asFlow().collectAsState(initial = listOf())
-    val isAnalyzing by viewModel.isAnalyzing.observeAsState(false)
-    val allFilesSelected by viewModel.allFilesSelected
-    val selectedFileCount by viewModel.selectedFileCount.collectAsState()
+    val files : List<File> by viewModel.scannedFiles.asFlow().collectAsState(initial = listOf())
+    val isAnalyzing : Boolean by viewModel.isAnalyzing.observeAsState(initial = false)
+    val allFilesSelected : Boolean by viewModel.allFilesSelected
+    val selectedFileCount : Int by viewModel.selectedFileCount.collectAsState()
 
     LaunchedEffect(key1 = launchScanningKey.value) {
         viewModel.fileScanner.startScanning()
@@ -273,7 +272,7 @@ fun AnalyzeComposable(launchScanningKey : MutableState<Boolean> , imageLoader : 
             }
             else {
                 LazyVerticalGrid(
-                    columns = GridCells.Fixed(3) ,
+                    columns = GridCells.Fixed(count = 3) ,
                     verticalArrangement = Arrangement.spacedBy(8.dp) ,
                     horizontalArrangement = Arrangement.spacedBy(8.dp) ,
                     modifier = Modifier.padding(8.dp) ,
@@ -289,13 +288,13 @@ fun AnalyzeComposable(launchScanningKey : MutableState<Boolean> , imageLoader : 
             verticalAlignment = Alignment.CenterVertically ,
             horizontalArrangement = Arrangement.SpaceBetween ,
         ) {
-            val statusText = if (selectedFileCount > 0) {
+            val statusText : String = if (selectedFileCount > 0) {
                 stringResource(id = R.string.status_selected_files , selectedFileCount)
             }
             else {
                 stringResource(id = R.string.status_no_files_selected)
             }
-            val statusColor by animateColorAsState(
+            val statusColor : Color by animateColorAsState(
                 targetValue = if (selectedFileCount > 0) {
                     MaterialTheme.colorScheme.primary
                 }
@@ -317,10 +316,10 @@ fun AnalyzeComposable(launchScanningKey : MutableState<Boolean> , imageLoader : 
 
 @Composable
 fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader) {
-    val context = LocalContext.current
-    val fileExtension = getFileExtension(file.name)
+    val context : Context = LocalContext.current
+    val fileExtension : String = getFileExtension(file.name)
 
-    var thumbnail by remember(file.absolutePath) { mutableStateOf<Bitmap?>(null) }
+    var thumbnail : Bitmap? by remember(file.absolutePath) { mutableStateOf(value = null) }
 
     LaunchedEffect(file.absolutePath) {
         thumbnail = getVideoThumbnail(file.absolutePath)
@@ -338,8 +337,8 @@ fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader
                 in context.resources.getStringArray(R.array.image_extensions).toList() -> {
                     AsyncImage(
                         model = remember(file) {
-                            ImageRequest.Builder(context).data(file).size(64).crossfade(true)
-                                    .build()
+                            ImageRequest.Builder(context).data(file).size(64)
+                                    .crossfade(enable = true).build()
                         } ,
                         imageLoader = imageLoader ,
                         contentDescription = file.name ,
@@ -379,13 +378,11 @@ fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader
                 }
             }
 
-            Checkbox(
-                checked = viewModel.fileSelectionStates[file] ?: false ,
-                onCheckedChange = { isChecked ->
-                    viewModel.onFileSelectionChange(file , isChecked)
-                } ,
-                modifier = Modifier.align(Alignment.TopEnd)
-            )
+            Checkbox(checked = viewModel.fileSelectionStates[file] ?: false ,
+                     onCheckedChange = { isChecked ->
+                         viewModel.onFileSelectionChange(file , isChecked)
+                     } ,
+                     modifier = Modifier.align(Alignment.TopEnd))
 
             Text(
                 text = file.name ,
@@ -423,7 +420,7 @@ fun SelectAllComposable(
         verticalAlignment = Alignment.CenterVertically ,
         horizontalArrangement = Arrangement.End
     ) {
-        val interactionSource = remember { MutableInteractionSource() }
+        val interactionSource : MutableInteractionSource = remember { MutableInteractionSource() }
         FilterChip(
             modifier = Modifier.bounceClick() ,
             selected = checked ,

@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.ui.settings.display.theme
 
+import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,8 +22,10 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -34,20 +37,22 @@ import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.compose.components.SwitchCardComposable
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ThemeSettingsComposable(activity : ThemeSettingsActivity) {
-    val context = LocalContext.current
-    val dataStore = DataStore.getInstance(context)
-    val scope = rememberCoroutineScope()
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    val themeMode = dataStore.themeMode.collectAsState(initial = "follow_system").value
-    val isAmoledMode = dataStore.amoledMode.collectAsState(initial = false)
+    val context : Context = LocalContext.current
+    val dataStore : DataStore = DataStore.getInstance(context)
+    val scope : CoroutineScope = rememberCoroutineScope()
+    val scrollBehavior : TopAppBarScrollBehavior =
+            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val themeMode : String = dataStore.themeMode.collectAsState(initial = "follow_system").value
+    val isAmoledMode : State<Boolean> = dataStore.amoledMode.collectAsState(initial = false)
 
-    val themeOptions = listOf(
+    val themeOptions : List<String> = listOf(
         stringResource(R.string.follow_system) ,
         stringResource(R.string.dark_mode) ,
         stringResource(R.string.light_mode) ,

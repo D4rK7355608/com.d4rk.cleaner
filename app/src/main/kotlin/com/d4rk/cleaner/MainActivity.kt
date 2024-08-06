@@ -21,6 +21,7 @@ import com.d4rk.cleaner.ui.startup.StartupActivity
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.ActivityResult
@@ -105,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == 1) {
             when (resultCode) {
                 RESULT_OK -> {
-                    val snackbar = Snackbar.make(
+                    val snackbar : Snackbar = Snackbar.make(
                         findViewById(android.R.id.content) ,
                         R.string.snack_app_updated ,
                         Snackbar.LENGTH_LONG
@@ -137,7 +138,7 @@ class MainActivity : AppCompatActivity() {
     private fun checkForFlexibleUpdate() {
         lifecycleScope.launch {
             try {
-                val appUpdateInfo = appUpdateManager.appUpdateInfo.await()
+                val appUpdateInfo : AppUpdateInfo = appUpdateManager.appUpdateInfo.await()
                 if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && appUpdateInfo.isUpdateTypeAllowed(
                         AppUpdateType.IMMEDIATE
                     ) && appUpdateInfo.updateAvailability() != UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
@@ -202,7 +203,7 @@ class MainActivity : AppCompatActivity() {
      * to check for updates and initiate the appropriate update flow if conditions are met.
      */
     private fun showUpdateFailedSnackbar() {
-        val snackbar = Snackbar.make(
+        val snackbar : Snackbar = Snackbar.make(
             findViewById(android.R.id.content) , R.string.snack_update_failed , Snackbar.LENGTH_LONG
         ).setAction(R.string.try_again) {
             checkForFlexibleUpdate()

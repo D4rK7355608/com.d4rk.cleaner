@@ -21,7 +21,7 @@ class HelpActivity : AppCompatActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    HelpComposable(this@HelpActivity , viewModel)
+                    HelpComposable(activity = this@HelpActivity , viewModel)
                 }
             }
         }

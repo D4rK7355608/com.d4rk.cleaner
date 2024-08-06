@@ -16,7 +16,7 @@ import com.google.android.gms.ads.AdView
 fun BannerAdsComposable(
     modifier : Modifier = Modifier , dataStore : DataStore
 ) {
-    val showAds by dataStore.ads.collectAsState(initial = true)
+    val showAds : Boolean by dataStore.ads.collectAsState(initial = true)
 
     if (showAds) {
         AndroidView(modifier = modifier.fillMaxWidth() , factory = { context ->
@@ -33,7 +33,7 @@ fun BannerAdsComposable(
 fun FullBannerAdsComposable(
     modifier : Modifier = Modifier , dataStore : DataStore
 ) {
-    val showAds by dataStore.ads.collectAsState(initial = true)
+    val showAds : Boolean by dataStore.ads.collectAsState(initial = true)
 
     if (showAds) {
         AndroidView(modifier = modifier.fillMaxWidth() , factory = { context ->
@@ -50,7 +50,7 @@ fun FullBannerAdsComposable(
 fun LargeBannerAdsComposable(
     modifier : Modifier = Modifier , dataStore : DataStore
 ) {
-    val showAds by dataStore.ads.collectAsState(initial = true)
+    val showAds : Boolean by dataStore.ads.collectAsState(initial = true)
 
     if (showAds) {
         AndroidView(modifier = modifier.fillMaxWidth() , factory = { context ->

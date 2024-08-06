@@ -25,31 +25,30 @@ import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.data.model.ui.imageoptimizer.CompressionLevel
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.ImageOptimizerViewModel
 import com.d4rk.cleaner.utils.imageoptimizer.getCompressionLevelFromSliderValue
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
 fun QuickCompressScreen(viewModel : ImageOptimizerViewModel) {
-    var sliderValue by remember { mutableFloatStateOf(50f) }
-    val selectedCompression = getCompressionLevelFromSliderValue(sliderValue)
-    val coroutineScope = rememberCoroutineScope()
+    var sliderValue : Float by remember { mutableFloatStateOf(50f) }
+    val selectedCompression : CompressionLevel = getCompressionLevelFromSliderValue(sliderValue)
+    val coroutineScope : CoroutineScope = rememberCoroutineScope()
     Column(modifier = Modifier.padding(16.dp)) {
         Row(modifier = Modifier.fillMaxWidth()) {
-            for (compressionLevel in CompressionLevel.entries) {
-                OutlinedButton(
-                    onClick = {
-                        coroutineScope.launch {
-                            sliderValue = compressionLevel.defaultPercentage.toFloat()
-                            viewModel.setQuickCompressValue(sliderValue.toInt())
-                        }
-                    } , modifier = Modifier.weight(1f) , border = BorderStroke(
-                        width = 1.dp ,
-                        color = if (selectedCompression == compressionLevel) MaterialTheme.colorScheme.primary
-                        else MaterialTheme.colorScheme.outline
-                    ) , colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = if (selectedCompression == compressionLevel) MaterialTheme.colorScheme.primary
-                        else MaterialTheme.colorScheme.onSurface
-                    )
-                ) {
+            for (compressionLevel : CompressionLevel in CompressionLevel.entries) {
+                OutlinedButton(onClick = {
+                    coroutineScope.launch {
+                        sliderValue = compressionLevel.defaultPercentage.toFloat()
+                        viewModel.setQuickCompressValue(sliderValue.toInt())
+                    }
+                } , modifier = Modifier.weight(1f) , border = BorderStroke(
+                    width = 1.dp ,
+                    color = if (selectedCompression == compressionLevel) MaterialTheme.colorScheme.primary
+                    else MaterialTheme.colorScheme.outline
+                ) , colors = ButtonDefaults.outlinedButtonColors(
+                    contentColor = if (selectedCompression == compressionLevel) MaterialTheme.colorScheme.primary
+                    else MaterialTheme.colorScheme.onSurface
+                )) {
                     Text(text = stringResource(compressionLevel.stringRes))
                 }
                 Spacer(modifier = Modifier.width(8.dp))
@@ -58,13 +57,11 @@ fun QuickCompressScreen(viewModel : ImageOptimizerViewModel) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Slider(
-            value = sliderValue , onValueChange = { newValue ->
-                coroutineScope.launch {
-                    sliderValue = newValue
-                    viewModel.setQuickCompressValue(newValue.toInt())
-                }
-            } , valueRange = 0f..100f , steps = 99
-        )
+        Slider(value = sliderValue , onValueChange = { newValue ->
+            coroutineScope.launch {
+                sliderValue = newValue
+                viewModel.setQuickCompressValue(newValue.toInt())
+            }
+        } , valueRange = 0f..100f , steps = 99)
     }
 }

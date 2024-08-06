@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.ui.settings.privacy
 
+import android.content.Context
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,6 +13,7 @@ import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,8 +31,9 @@ import com.d4rk.cleaner.utils.compose.components.PreferenceItem
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PrivacySettingsComposable(activity : PrivacySettingsActivity) {
-    val context = LocalContext.current
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val context : Context = LocalContext.current
+    val scrollBehavior : TopAppBarScrollBehavior =
+            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.security_and_privacy)) } ,
                        navigationIcon = {
@@ -56,7 +59,7 @@ fun PrivacySettingsComposable(activity : PrivacySettingsActivity) {
                                onClick = {
                                    IntentUtils.openUrl(
                                        context ,
-                                       "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy"
+                                       url = "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy"
                                    )
                                })
                 PreferenceItem(title = stringResource(R.string.terms_of_service) ,
@@ -64,7 +67,7 @@ fun PrivacySettingsComposable(activity : PrivacySettingsActivity) {
                                onClick = {
                                    IntentUtils.openUrl(
                                        context ,
-                                       "https://sites.google.com/view/d4rk7355608/more/apps/terms-of-service"
+                                       url = "https://sites.google.com/view/d4rk7355608/more/apps/terms-of-service"
                                    )
                                })
                 PreferenceItem(title = stringResource(R.string.code_of_conduct) ,
@@ -72,7 +75,7 @@ fun PrivacySettingsComposable(activity : PrivacySettingsActivity) {
                                onClick = {
                                    IntentUtils.openUrl(
                                        context ,
-                                       "https://sites.google.com/view/d4rk7355608/more/code-of-conduct"
+                                       url = "https://sites.google.com/view/d4rk7355608/more/code-of-conduct"
                                    )
                                })
                 PreferenceItem(title = stringResource(R.string.permissions) ,
@@ -104,15 +107,14 @@ fun PrivacySettingsComposable(activity : PrivacySettingsActivity) {
                                onClick = {
                                    IntentUtils.openUrl(
                                        context ,
-                                       "https://sites.google.com/view/d4rk7355608/more/apps/legal-notices"
+                                       url = "https://sites.google.com/view/d4rk7355608/more/apps/legal-notices"
                                    )
                                })
                 PreferenceItem(title = stringResource(R.string.license) ,
                                summary = stringResource(R.string.summary_preference_settings_license) ,
                                onClick = {
                                    IntentUtils.openUrl(
-                                       context ,
-                                       "https://www.gnu.org/licenses/gpl-3.0"
+                                       context , url = "https://www.gnu.org/licenses/gpl-3.0"
                                    )
                                })
             }

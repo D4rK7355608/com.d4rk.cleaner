@@ -62,13 +62,13 @@ class FileScanner(private val dataStore : DataStore , private val resources : Re
      * @return A list of all files found in the external storage directory.
      */
     private fun getAllFiles() : List<File> {
-        val files = mutableListOf<File>()
+        val files : MutableList<File> = mutableListOf()
         val stack = ArrayDeque<File>()
-        val root = Environment.getExternalStorageDirectory()
+        val root : File = Environment.getExternalStorageDirectory()
         stack.addFirst(root)
 
         while (stack.isNotEmpty()) {
-            val currentFile = stack.removeFirst()
+            val currentFile : File = stack.removeFirst()
             if (currentFile.isDirectory) {
                 currentFile.listFiles()?.forEach { stack.addLast(it) }
             }
@@ -85,36 +85,42 @@ class FileScanner(private val dataStore : DataStore , private val resources : Re
     }
 
     private fun shouldFilterFile(file : File) : Boolean {
-        return preferences.any { (key , value) ->
+        return preferences.any { (key : String , value : Boolean) ->
             with(ExtensionsConstants) {
                 when (key) {
                     GENERIC_EXTENSIONS -> {
-                        val extensions = resources.getStringArray(R.array.generic_extensions)
+                        val extensions : Array<String> =
+                                resources.getStringArray(R.array.generic_extensions)
                         value && extensions.map { it.removePrefix(".") }.contains(file.extension)
                     }
 
                     ARCHIVE_EXTENSIONS -> {
-                        val extensions = resources.getStringArray(R.array.archive_extensions)
+                        val extensions : Array<String> =
+                                resources.getStringArray(R.array.archive_extensions)
                         value && extensions.contains(file.extension)
                     }
 
                     APK_EXTENSIONS -> {
-                        val extensions = resources.getStringArray(R.array.apk_extensions)
+                        val extensions : Array<String> =
+                                resources.getStringArray(R.array.apk_extensions)
                         value && extensions.contains(file.extension)
                     }
 
                     AUDIO_EXTENSIONS -> {
-                        val extensions = resources.getStringArray(R.array.audio_extensions)
+                        val extensions : Array<String> =
+                                resources.getStringArray(R.array.audio_extensions)
                         value && extensions.contains(file.extension)
                     }
 
                     VIDEO_EXTENSIONS -> {
-                        val extensions = resources.getStringArray(R.array.video_extensions)
+                        val extensions : Array<String> =
+                                resources.getStringArray(R.array.video_extensions)
                         value && extensions.contains(file.extension)
                     }
 
                     IMAGE_EXTENSIONS -> {
-                        val extensions = resources.getStringArray(R.array.image_extensions)
+                        val extensions : Array<String> =
+                                resources.getStringArray(R.array.image_extensions)
                         value && extensions.contains(file.extension)
                     }
 
