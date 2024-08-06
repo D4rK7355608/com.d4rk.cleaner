@@ -36,20 +36,18 @@ object StorageUtils {
             val totalFormatted : String =
                     (totalSize / (1024.0 * 1024.0 * 1024.0)).roundToInt().toString()
             val usageProgress : Float = usedSize.toFloat() / totalSize.toFloat()
-
-
-
-           //  val storageBreakdown = getStorageBreakdown(context)
             StorageInfo(
                 totalStorage = totalSize ,
-                // freeStorage = freeSize ,
                 usedStorage = usedSize ,
-                // storageBreakdown = storageBreakdown
             )
 
             withContext(Dispatchers.Main) {
                 callback(usedFormatted , totalFormatted , usageProgress)
             }
         }
+    }
+
+    fun bytesToGB(bytes: Long): String {
+        return String.format("%.2f GB", bytes / (1024.0 * 1024.0 * 1024.0))
     }
 }

@@ -43,7 +43,7 @@ class MemoryManagerViewModel : ViewModel() {
     fun updateStorageInfo(context: Context) {
         viewModelScope.launch {
             try {
-                StorageUtils.getStorageInfo(context) { used , total , _ ->
+                StorageUtils.getStorageInfo(context) { used, total, _ ->
                     val storageBreakdown = getStorageBreakdown(context)
                     _storageInfo.value = StorageInfo(
                         totalStorage = total.toLongOrNull() ?: 0,
