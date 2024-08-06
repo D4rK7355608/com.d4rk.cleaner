@@ -14,7 +14,7 @@ android {
         applicationId = "com.d4rk.cleaner"
         minSdk = 26
         targetSdk = 34
-        versionCode = 99
+        versionCode = 100
         versionName = "2.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations += listOf(
@@ -138,7 +138,6 @@ dependencies {
 
     // Image Compression
     implementation(libs.compressor)
-    implementation(libs.glide)
     implementation(libs.coil.compose)
 
     // Test

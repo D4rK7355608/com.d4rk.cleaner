@@ -241,7 +241,7 @@ class MainActivity : AppCompatActivity() {
     private fun startupScreen() {
         lifecycleScope.launch {
             if (dataStore.startup.first()) {
-                dataStore.saveStartup(false)
+                dataStore.saveStartup(isFirstTime = false)
                 startActivity(Intent(this@MainActivity , StartupActivity::class.java))
             }
         }

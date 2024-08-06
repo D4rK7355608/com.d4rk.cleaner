@@ -1,0 +1,258 @@
+<resources>
+    <string name="app_description">Az utolsó Android Cleaner, amire valaha szükséged lesz a mindennapi használathoz!</string>
+    <string name="notification_update_title">Új frissítés érhető el!</string>
+    <string name="summary_notification_update">Az alkalmazás új verziója elérhető. Kattints a frissítéshez!</string>
+    <string name="notification_last_time_used_title">Eltelt egy kis idő!</string>
+    <string name="summary_notification_last_time_used"> Szabadítsunk fel egy kis helyet! Örülünk, hogy visszatértél!</string>
+
+    <string name="welcome">Üdvözöljük</string>
+    <string name="browse_terms_of_service_and_privacy_policy">Tekintse meg a <i><u>Szolgáltatási feltételeket</u></i> és az <i><u>Adatvédelmi irányelveket</u></i></string>
+    <string name="summary_browse_terms_of_service_and_privacy_policy">Olvassa el és fogadja el a Szolgáltatási feltételeket és az Adatvédelmi irányelveket a folytatáshoz</string>
+    <string name="agree">Elfogadom</string>
+
+    <string name="navigation_drawer_open">Navigációs fiók megnyitása</string>
+
+    <string name="home">Kezdőlap</string>
+    <string name="storage_used">%1$s/%2$s GB\nHasznált</string>
+    <string name="analyze">Elemzés</string>
+    <string name="clean">Tisztítás</string>
+    <string name="status_selected_files">Állapot: Kiválasztva %1$d fájl</string>
+    <string name="status_no_files_selected">Állapot: Nincsenek kiválasztva fájlok</string>
+    <string name="select_all">Összes kijelölése</string>
+    <string name="rescan_title">Újraellenőrzés?</string>
+    <string name="rescan_message">Biztosan újra szeretnéd ellenőrizni?</string>
+
+    <string name="app_manager">Alkalmazáskezelő</string>
+    <string name="installed_apps">Telepített alkalmazások</string>
+    <string name="system_apps">Rendszeralkalmazások</string>
+    <string name="app_install_files">Alkalmazástelepítő fájlok (APK)</string>
+    <string name="uninstall">Eltávolítás</string>
+    <string name="share">Megosztás</string>
+    <string name="app_info">Alkalmazásinformációk</string>
+    <string name="installed">Telepítve"</string>
+
+    <string name="memory_manager">Memóriakezelő</string>
+    <string name="storage_information">Tárhely információ</string>
+    <string name="used">Használt:</string>
+    <string name="free">Szabad:</string>
+    <string name="total">Összesen:</string>
+    <string name="ram_information">RAM információ</string>
+    <string name="used_ram">Használt RAM:</string>
+    <string name="free_ram">Szabad RAM:</string>
+    <string name="total_ram">Összes RAM:</string>
+    <string name="categories">Kategóriák</string>
+    <string name="system">Rendszer</string>
+    <string name="music">Zene</string>
+    <string name="images">Képek</string>
+    <string name="documents">Dokumentumok</string>
+    <string name="downloads">Letöltések</string>
+    <string name="other_files">Egyéb fájlok</string>
+
+    <string name="image_optimizer">Kép optimalizáló</string>
+    <string name="summary_select_image">Válassza ki a képet, amelyet optimalizálni szeretne</string>
+    <string name="choose_image">Kép kiválasztása</string>
+    <string name="optimize_image">Kép optimalizálása</string>
+    <string name="image_saved">Kép mentve ide: </string>
+    <string name="quick_compress">Gyors tömörítés</string>
+    <string name="select_image">Kép kiválasztása</string>
+    <string name="low">Alacsony</string>
+    <string name="medium">Közepes</string>
+    <string name="high">Magas</string>
+    <string name="file_size">Fájlméret (KB)</string>
+    <string name="enter_a_value">Érték megadása</string>
+    <string name="manual">Kézi</string>
+    <string name="width">Szélesség (px)</string>
+    <string name="height">Magasság (px)</string>
+    <string name="quality">Minőség</string>
+
+    <string name="settings">Beállítások</string>
+
+    <string name="display">Kijelző</string>
+    <string name="summary_preference_settings_display">Személyre szabhatja az alkalmazás megjelenését</string>
+
+    <string name="appearance">Megjelenés</string>
+    <string name="dark_theme">Sötét téma</string>
+    <string name="will_turn_on_automatically_by_system">A rendszer automatikusan bekapcsolja</string>
+    <string name="will_never_turn_on_automatically">Soha nem kapcsol be automatikusan</string>
+    <string name="amoled_mode">AMOLED mód</string>
+    <string name="follow_system">Kövesse a rendszer módot</string>
+    <string name="light_mode">Világos mód</string>
+    <string name="dark_mode">Sötét mód</string>
+    <string name="summary_dark_theme">A sötét téma sötét hátteret használ, hogy segítsen meghosszabbítani az akkumulátor élettartamát</string>
+
+    <string name="dynamic_colors">Dinamikus színek</string>
+    <string name="summary_preference_settings_dynamic_colors">A háttérképek színeinek alkalmazása az alkalmazás témájára</string>
+
+    <string name="language">Nyelv</string>
+    <string name="summary_preference_settings_language">Az alkalmazásban használt nyelv megváltoztatása</string>
+    <string name="dialog_language_subtitle">Válassza ki a kívánt nyelvet</string>
+    <string name="dialog_info_language">Személyre szabhatja élményeit a kívánt nyelv kiválasztásával. Az Ön által végrehajtott nyelvváltások azonnal érvénybe lépnek, biztosítva a zökkenőmentes élményt a választott nyelven</string>
+
+    <string name="cleaning">Tisztítás</string>
+    <string name="summary_preference_settings_cleaning">A tisztítási élmény testreszabása</string>
+    <string name="filters">Szűrők</string>
+    <string name="generic_filter">Általános szűrő</string>
+    <string name="summary_preference_settings_generic_filter">Törölje az ideiglenes, napló- és egyéb felesleges fájlokat és mappákat</string>
+    <string name="delete_empty_folders">Üres mappák törlése</string>
+    <string name="delete_archives">Archívumok törlése</string>
+    <string name="summary_preference_settings_archive_filter">Archívumok törlése az eszközről</string>
+    <string name="delete_corpse_files">Szemétfájlok törlése</string>
+    <string name="summary_preference_settings_delete_corpse_files">Az eltávolított/törölt alkalmazásokból megmaradt fájlok törlése</string>
+    <string name="delete_apk_files">APK fájlok törlése</string>
+    <string name="summary_preference_settings_delete_apk_files">Android telepítőfájlok (.apk) törlése</string>
+    <string name="media">Média</string>
+    <string name="delete_audio">Hangfájlok törlése</string>
+    <string name="summary_preference_settings_delete_audio">Az eszközről származó hangfájlok törlése</string>
+    <string name="delete_video">Videofájlok törlése</string>
+    <string name="summary_preference_settings_delete_video">Az eszközről származó videofájlok törlése</string>
+    <string name="delete_images">Képfájlok törlése</string>
+    <string name="summary_preference_settings_delete_images">Az eszközről származó képfájlok törlése</string>
+    <string name="delete_invalid_media">Érvénytelen médiafájlok törlése</string>
+    <string name="summary_preference_settings_delete_invalid_media">Sérült képek törlése</string>
+    <string name="scanner">Leolvasó</string>
+    <string name="clipboard_clean">Vágólap tisztítása</string>
+
+    <string name="notifications">Értesítések</string>
+    <string name="summary_preference_settings_notifications">Alkalmazásértesítések kezelése</string>
+
+    <string name="app_usage_notifications">Alkalmazáshasználati értesítések</string>
+    <string name="update_notifications">Frissítési értesítések</string>
+
+    <string name="advanced">Speciális</string>
+    <string name="summary_preference_settings_advanced">Fedezze fel a speciálisabb beállításokat</string>
+    <string name="error_reporting">Hibajelentés</string>
+    <string name="bug_report">Hibabejelentés</string>
+    <string name="summary_preference_settings_bug_report">Hibajelentések és funkciókérések küldése az alkalmazás GitHub-tárházának hibajegy oldalára</string>
+
+    <string name="security_and_privacy">Biztonság és adatvédelem</string>
+    <string name="summary_preference_settings_privacy_and_security">Az adatvédelmi beállítások kezelése</string>
+    <string name="privacy">Adatvédelem</string>
+    <string name="privacy_policy">Adatvédelmi irányelvek</string>
+    <string name="summary_preference_settings_privacy_policy">Tekintse meg az adatkezelési irányelveinket</string>
+    <string name="terms_of_service">Szolgáltatási feltételek</string>
+    <string name="summary_preference_settings_terms_of_service">Tekintse át a szolgáltatásunk használatakor elfogadott feltételeket</string>
+    <string name="code_of_conduct">Magatartási kódex</string>
+    <string name="summary_preference_settings_code_of_conduct">Értse meg a szolgáltatásunkon belüli viselkedésre vonatkozó szabályokat és irányelveket</string>
+
+    <string name="permissions">Engedélyek</string>
+    <string name="summary_preference_settings_permissions">A szolgáltatásunkhoz biztosított engedélyek kezelése</string>
+    <string name="normal">Normál</string>
+    <string name="ad_id">Hirdetésazonosító [AD_ID]</string>
+    <string name="summary_preference_permissions_ad_id">Lehetővé teszi az alkalmazás számára, hogy lekérje és felhasználja a felhasználó eszközéhez társított hirdetésazonosítót, személyre szabott hirdetéseket jelenítsen meg, mérje a hirdetések hatékonyságát, és hirdetéseket jelenítsen meg Android 13 vagy újabb eszközökön.</string>
+    <string name="internet">Internet [INTERNET]</string>
+    <string name="summary_preference_permissions_internet">Lehetővé teszi az alkalmazás számára, hogy internetkapcsolatot létesítsen hibajelentések küldéséhez vagy frissítések ellenőrzéséhez.</string>
+    <string name="post_notifications">Értesítések közzététele [POST_NOTIFICATIONS]</string>
+    <string name="summary_preference_permissions_post_notifications">Lehetővé teszi az alkalmazás számára, hogy értesítéseket jelenítsen meg az Android 13 vagy újabb eszközökön.</string>
+    <string name="runtime">Runtime</string>
+    <string name="access_network_state">Hálózati állapot elérése [ACCESS_NETWORK_STATE]</string>
+    <string name="summary_preference_permissions_access_network_state">Lehetővé teszi az alkalmazás számára, hogy ellenőrizze a hálózati kapcsolatot, és információkat szerezzen a Wi-Fi-ről, beleértve az engedélyezett állapotot és a csatlakoztatott Wi-Fi-eszközök nevét.</string>
+    <string name="access_notification_policy">Értesítési szabályzat elérése [ACCESS_NOTIFICATION_POLICY]</string>
+    <string name="summary_preference_permissions_access_notification_policy">Lehetővé teszi az alkalmazás számára, hogy hozzáférjen és módosítsa az eszköz értesítési szabályzatát, szabályozva, hogyan és mikor jelenjenek meg az értesítések a felhasználó számára, és egyéni értesítéskezelési funkciókat biztosítson.</string>
+    <string name="billing">Számlázás [BILLING]</string>
+    <string name="summary_preference_permissions_billing">Lehetővé teszi az alkalmazás számára, hogy a Google Play számlázási könyvtárát használja az alkalmazáson belüli vásárlások és adományok kezelésére</string>
+    <string name="check_license">Licenc ellenőrzése [CHECK_LICENSE]</string>
+    <string name="summary_preference_permissions_check_license">Lehetővé teszi az alkalmazás számára, hogy ellenőrizze a licencszerződésnek való megfelelést, és érvényesítse a licencfeltételeket a szellemi tulajdon védelme érdekében.</string>
+    <string name="foreground_service">Előtér-szolgáltatás [FOREGROUND_SERVICE]</string>
+    <string name="summary_preference_permissions_foreground_service">Lehetővé teszi az alkalmazás számára, hogy létrehozzon és használjon olyan szolgáltatásokat, amelyek az előtérben futnak, prioritást biztosítva számukra más háttérfolyamatokkal szemben, és javítva a teljesítményt és a megbízhatóságot.</string>
+    <string name="request_delete_packages">Csomagok törlésének kérése [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">Lehetővé teszi az alkalmazás számára, hogy csomagok törlését kérje. Ez felhasználható más alkalmazások eltávolítására az eszközről</string>
+    <string name="storage">Tárolás</string>
+    <string name="access_media_location">Hozzáférés a médiafájlok helyéhez [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">Lehetővé teszi az alkalmazás számára, hogy hozzáférjen az eszköz médiafájljainak helyéhez</string>
+    <string name="action_open_document_tree">Dokumentumfa megnyitásának művelete [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">Lehetővé teszi az alkalmazás számára, hogy hozzáférjen egy dokumentumfához, beleértve a fájlok olvasásának és írásának lehetőségét a fában</string>
+    <string name="manage_external_storage">Külső tárhely kezelése [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">Lehetővé teszi az alkalmazás számára, hogy olyan műveleteket hajtson végre, mint a fájlok törlése és átnevezése az eszköz tárolóján, beleértve a belső és a külső tárhelyet is</string>
+    <string name="package_usage_stats">Csomag felhasználási statisztikák [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">Lehetővé teszi az alkalmazás számára, hogy hozzáférjen a felhasználó alkalmazáshasználati információihoz, beleértve a használt alkalmazásokat, a használatuk időtartamát és a használatuk gyakoriságát</string>
+    <string name="query_all_packages">Összes csomag lekérdezése [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">Lehetővé teszi az alkalmazás számára, hogy lekérdezze az összes telepített csomag információit az eszközön. Az alkalmazás ezeket az információkat felhasználja annak meghatározására, hogy mely fájlokat tartsa meg, és melyeket törölje</string>
+    <string name="read_external_storage">Külső tárhely olvasása [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">Lehetővé teszi az alkalmazás számára, hogy fájlokat olvasson az eszköz tárolójáról, beleértve a belső és a külső tárhelyet is</string>
+    <string name="read_media_audio">Média hanganyag olvasása [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">Lehetővé teszi az alkalmazás számára, hogy hangfájlokat olvasson az eszköz tárolójáról</string>
+    <string name="read_media_images">Média képek olvasása [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">Lehetővé teszi az alkalmazás számára, hogy képfájlokat olvasson az eszköz tárolójáról</string>
+    <string name="read_media_video">Média videók olvasása [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">Lehetővé teszi az alkalmazás számára, hogy videofájlokat olvasson az eszköz tárolójáról</string>
+    <string name="write_external_storage">Írás a külső tárhelyre [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">Lehetővé teszi az alkalmazás számára, hogy fájlokat írjon az eszköz tárolójára, beleértve a belső és a külső tárhelyet is</string>
+
+    <string name="ads">Hirdetések</string>
+    <string name="summary_preference_settings_ads">Irányítsd, hogyan használjuk fel az adataidat a releváns hirdetések megjelenítéséhez</string>
+    <string name="display_ads">Hirdetések megjelenítése</string>
+    <string name="personalized_ads">Személyre szabott hirdetések</string>
+    <string name="summary_ads_personalized_ads">Válaszd ki, hogyan szabjuk személyre a hirdetéseket az érdeklődési köröd alapján</string>
+    <string name="summary_ads">Tekints meg olyan hirdetéseket, amelyek relevánsak számodra. Kezeld azokat az információkat, amelyeket a személyre szabott hirdetések megjelenítéséhez használunk az alkalmazástevékenységed alapján. A személyre szabást itt bármikor kikapcsolhatod.\n</string>
+
+    <string name="usage_and_diagnostics">Használat és diagnosztika</string>
+    <string name="summary_preference_settings_usage_and_diagnostics">Adatok megosztása a Cleaner for Android fejlesztésének elősegítése érdekében</string>
+    <string name="summary_usage_and_diagnostics">Segíts a felhasználói élmény javításában azáltal, hogy automatikusan elküldi nekünk a diagnosztikai, eszköz- és alkalmazáshasználati adatokat. Ez segít javítani az alkalmazás teljesítményét, stabilitását és egyéb fejlesztéseit. Néhány összesített adat segíti az alkalmazásainkat is.\n\nEz általános információ az eszközödről és az alkalmazásaink használatáról (például az akkumulátor töltöttségi szintje, a rendszer és az alkalmazás aktivitása, valamint a hibák). Az adatokat az alkalmazásaink fejlesztésére fogjuk felhasználni.\n\nA funkció kikapcsolása nem befolyásolja az eszköz azon képességét, hogy elküldje a létfontosságú szolgáltatásokhoz (például az alkalmazásfrissítésekhez és a biztonsághoz) szükséges információkat.\n</string>
+
+    <string name="legal">Jogi</string>
+    <string name="legal_notices">Jogi közlemények</string>
+    <string name="summary_preference_settings_legal_notices">Tekintse meg a szolgáltatásunkkal kapcsolatos jogi információkat</string>
+    <string name="license">Licenc</string>
+
+    <string name="about">Névjegy</string>
+    <string name="summary_preference_settings_about">Tudjon meg többet a Cleanerről</string>
+
+    <string name="app_build_version">Alkalmazás build verziója</string>
+    <string name="summary_preference_settings_oss">Licenc részletei a nyílt forráskódú szoftverekhez</string>
+    <string name="device_info">Eszközinformáció</string>
+    <string name="app_build">Alkalmazás build: Kiadás\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="manufacturer">Gyártó:</string>
+    <string name="device_model">Eszköz modell:</string>
+    <string name="android_version">Android verzió:</string>
+    <string name="api_level">API szint:</string>
+
+    <string name="help_and_feedback">Súgó és visszajelzés</string>
+    <string name="help">Súgó</string>
+    <string name="faq">GYIK</string>
+    <string name="view_in_google_play_store">Megtekintés a Google Play Áruházban</string>
+    <string name="version_info">Verzióinformációk</string>
+    <string name="version">Verzió %1$s</string>
+    <string name="beta_program">Béta program</string>
+    <string name="question_1">Mi az a Cleaner?</string>
+    <string name="summary_preference_faq_1">A Cleaner egy ingyenes és nyílt forráskódú Android-alkalmazás, amely segít optimalizálni az eszköz teljesítményét és felszabadítani a tárhelyet. Képes beolvasni az eszközt a felesleges fájlok után, és törölni azokat, valamint kiüríteni a gyorsítótárat az eszköz sebességének javítása érdekében</string>
+    <string name="question_2">Biztonságos a Cleaner használata?</string>
+    <string name="summary_preference_faq_2">Igen, a Cleaner biztonságosan használható. Csak azokat a fájlokat távolítja el, amelyek nem létfontosságúak az eszköz vagy az alkalmazások működéséhez, és nem törli a személyes adataidat vagy a fontos rendszerfájlokat</string>
+    <string name="question_3">Hogyan használjam a Cleanert?</string>
+    <string name="summary_preference_faq_3">A Cleaner használatához egyszerűen töltse le és telepítse az alkalmazást a Google Play Áruházból vagy egy megbízható harmadik féltől származó alkalmazásboltból. Ezután nyissa meg az alkalmazást, és kövesse az utasításokat az eszköz beolvasásához és a felesleges fájlok törléséhez. Az alkalmazás beállításaiban testreszabhatja a Cleaner által keresett és törölt fájltípusokat</string>
+    <string name="question_4">Törölheti a Cleaner az alkalmazás gyorsítótárát?</string>
+    <string name="summary_preference_faq_4">Igen, a Cleaner törölheti az alkalmazás gyorsítótárát. Fontos azonban megjegyezni, hogy a gyorsítótár törlése miatt az alkalmazás hosszabb ideig tölthet be, vagy bizonyos feladatok elvégzése hosszabb ideig tarthat, amikor legközelebb használja</string>
+    <string name="question_5">Root hozzáférés szükséges a Cleaner használatához?</string>
+    <string name="summary_preference_faq_5">Nem, a Cleaner nem igényel root hozzáférést a működéshez. Bármilyen Android-eszközön használhatja anélkül, hogy root hozzáférést biztosítana az eszközhöz</string>
+    <string name="question_6">Elérhető a Cleaner iOS-re?</string>
+    <string name="summary_preference_faq_6">Nem, a Cleaner jelenleg csak Android-eszközökre érhető el</string>
+    <string name="question_7">Javítja a Cleaner az akkumulátor élettartamát?</string>
+    <string name="summary_preference_faq_7">A Cleaner használata a gyorsítótár törlésére segíthet javítani az eszköz akkumulátorának élettartamát azáltal, hogy csökkenti a felesleges folyamatok által használt energia és erőforrások mennyiségét. Azonban, hogy a Cleaner milyen mértékben tudja javítani az akkumulátor élettartamát, számos tényezőtől függ, például az eszköz márkájától és modelljétől, a használt alkalmazásoktól és a használati szokásoktól</string>
+    <string name="question_8">Milyen gyakran kell használnom a Cleanert?</string>
+    <string name="summary_preference_faq_8">Nincsenek meghatározott szabályok arra vonatkozóan, hogy milyen gyakran kell használnia a Cleanert, mivel ez az eszköz használatától és az idővel felhalmozódó felesleges fájlok mennyiségétől függ. Egyes felhasználók hasznosnak találhatják a Cleaner heti vagy havi futtatását, míg másoknak csak alkalmanként kell használniuk</string>
+    <string name="question_9">Kompatibilis a Cleaner minden Android-eszközzel?</string>
+    <string name="summary_preference_faq_9">A Cleanernek kompatibilisnek kell lennie a legtöbb Android-eszközzel, amely megfelel az alkalmazás minimális rendszerkövetelményeinek. Azonban mindig jó ötlet ellenőrizni az alkalmazás oldalát a Google Play Áruházban vagy az Ön által használt alkalmazásboltban, hogy megerősítse a kompatibilitást az adott eszközzel. Ha bármilyen problémába ütközik a Cleaner használata során, megpróbálhatja elhárítani a problémát, vagy felveheti a kapcsolatot az alkalmazás támogatási csapatával segítségért</string>
+    <string name="feedback">Visszajelzés</string>
+
+    <string name="updates">Frissítések</string>
+
+    <string name="support_us">Támogass minket</string>
+    <string name="paid_support">Fizetett támogatás</string>
+    <string name="summary_donations">Nem számít, mennyit adományoz, segít nekünk fenntartani az alkalmazásunkat és javítani a funkcióit. Nagyra értékeljük a nagylelkűségét és a kedvességét!</string>
+    <string name="non_paid_support">Ingyenes támogatás</string>
+    <string name="web_ad">Webes hirdetés</string>
+
+    <string name="snack_app_updated">Az alkalmazás sikeresen frissült</string>
+    <string name="snack_update_failed">Hiba történt a frissítési folyamat során</string>
+    <string name="try_again">Próbáld újra</string>
+    <string name="summary_share_message">Nézd meg ezt a fantasztikus alkalmazást, amit használok! Van benne néhány igazán klassz funkció, ami tetszhet. Letöltheted a Play Áruházból itt: %1$s</string>
+    <string name="learn_more">Tudj meg többet</string>
+
+    <string name="close">Bezárás?</string>
+    <string name="require_restart">Újraindítás szükséges!</string>
+    <string name="snack_network_error">Hálózati hiba történt a frissítések ellenőrzése során</string>
+    <string name="snack_general_error">Hiba történt a frissítések ellenőrzése során</string>
+    <string name="summary_close">Biztosan ki szeretne lépni?</string>
+    <string name="summary_require_restart">A módosítások érvénybe léptetéséhez kérjük, indítsa újra az alkalmazást!</string>
+    <string name="snack_no_image">Nincs kép megadva</string>
+    <string name="snack_validate_file">Kérjük, válasszon érvényes fájlméretet</string>
+</resources>

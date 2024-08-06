@@ -1,0 +1,258 @@
+<resources>
+    <string name="app_description">L\'ultimo Android Cleaner di cui avrai bisogno per l\'uso quotidiano!</string>
+    <string name="notification_update_title">È disponibile un nuovo aggiornamento!</string>
+    <string name="summary_notification_update">È disponibile una nuova versione dell\'app. Clicca per aggiornare!</string>
+    <string name="notification_last_time_used_title">È passato un po\' di tempo!</string>
+    <string name="summary_notification_last_time_used"> Liberiamo un po\' di spazio! Siamo felici che tu sia tornato!</string>
+
+    <string name="welcome">Benvenuto</string>
+    <string name="browse_terms_of_service_and_privacy_policy">Consulta i <i><u>Termini di servizio</u></i> e l\'<i><u>Informativa sulla privacy</u></i></string>
+    <string name="summary_browse_terms_of_service_and_privacy_policy">Leggi e accetta i nostri Termini di servizio e l\'Informativa sulla privacy per continuare</string>
+    <string name="agree">Accetto</string>
+
+    <string name="navigation_drawer_open">Apri il cassetto di navigazione</string>
+
+    <string name="home">Home</string>
+    <string name="storage_used">%1$s/%2$s GB\nUtilizzato</string>
+    <string name="analyze">Analizza</string>
+    <string name="clean">Pulisci</string>
+    <string name="status_selected_files">Stato: %1$d file selezionati</string>
+    <string name="status_no_files_selected">Stato: Nessun file selezionato</string>
+    <string name="select_all">Seleziona tutto</string>
+    <string name="rescan_title">Scansionare di nuovo?</string>
+    <string name="rescan_message">Sei sicuro di voler scansionare di nuovo?</string>
+
+    <string name="app_manager">Gestione app</string>
+    <string name="installed_apps">App installate</string>
+    <string name="system_apps">App di sistema</string>
+    <string name="app_install_files">File di installazione app (APK)</string>
+    <string name="uninstall">Disinstalla</string>
+    <string name="share">Condividi</string>
+    <string name="app_info">Info app</string>
+    <string name="installed">Installato"</string>
+
+    <string name="memory_manager">Gestione memoria</string>
+    <string name="storage_information">Informazioni memoria</string>
+    <string name="used">Utilizzato:</string>
+    <string name="free">Libero:</string>
+    <string name="total">Totale:</string>
+    <string name="ram_information">Informazioni RAM</string>
+    <string name="used_ram">RAM utilizzata:</string>
+    <string name="free_ram">RAM libera:</string>
+    <string name="total_ram">RAM totale:</string>
+    <string name="categories">Categorie</string>
+    <string name="system">Sistema</string>
+    <string name="music">Musica</string>
+    <string name="images">Immagini</string>
+    <string name="documents">Documenti</string>
+    <string name="downloads">Download</string>
+    <string name="other_files">Altri file</string>
+
+    <string name="image_optimizer">Ottimizzatore immagini</string>
+    <string name="summary_select_image">Seleziona l\'immagine che vuoi ottimizzare</string>
+    <string name="choose_image">Scegli immagine</string>
+    <string name="optimize_image">Ottimizza immagine</string>
+    <string name="image_saved">Immagine salvata in: </string>
+    <string name="quick_compress">Compressione rapida</string>
+    <string name="select_image">Seleziona immagine</string>
+    <string name="low">Basso</string>
+    <string name="medium">Medio</string>
+    <string name="high">Alto</string>
+    <string name="file_size">Dimensione file (KB)</string>
+    <string name="enter_a_value">Inserisci un valore</string>
+    <string name="manual">Manuale</string>
+    <string name="width">Larghezza (px)</string>
+    <string name="height">Altezza (px)</string>
+    <string name="quality">Qualità</string>
+
+    <string name="settings">Impostazioni</string>
+
+    <string name="display">Schermo</string>
+    <string name="summary_preference_settings_display">Personalizza l\'aspetto e il comportamento dell\'app</string>
+
+    <string name="appearance">Aspetto</string>
+    <string name="dark_theme">Tema scuro</string>
+    <string name="will_turn_on_automatically_by_system">Si attiverà automaticamente con il sistema</string>
+    <string name="will_never_turn_on_automatically">Non si attiverà mai automaticamente</string>
+    <string name="amoled_mode">Modalità AMOLED</string>
+    <string name="follow_system">Segui modalità sistema</string>
+    <string name="light_mode">Modalità chiara</string>
+    <string name="dark_mode">Modalità scura</string>
+    <string name="summary_dark_theme">Il tema scuro utilizza uno sfondo scuro per aiutare a prolungare la durata della batteria</string>
+
+    <string name="dynamic_colors">Colori dinamici</string>
+    <string name="summary_preference_settings_dynamic_colors">Applica i colori degli sfondi al tema dell\'app</string>
+
+    <string name="language">Lingua</string>
+    <string name="summary_preference_settings_language">Modifica la lingua utilizzata nell\'app</string>
+    <string name="dialog_language_subtitle">Seleziona la tua lingua preferita</string>
+    <string name="dialog_info_language">Personalizza la tua esperienza con la tua lingua preferita. Qualsiasi modifica della lingua apportata avrà effetto immediato, garantendo un\'esperienza fluida nella lingua scelta</string>
+
+    <string name="cleaning">Pulizia</string>
+    <string name="summary_preference_settings_cleaning">Personalizza la tua esperienza di pulizia</string>
+    <string name="filters">Filtri</string>
+    <string name="generic_filter">Filtro generico</string>
+    <string name="summary_preference_settings_generic_filter">Elimina file e cartelle temporanei, log e altri file inutili</string>
+    <string name="delete_empty_folders">Elimina cartelle vuote</string>
+    <string name="delete_archives">Elimina archivi</string>
+    <string name="summary_preference_settings_archive_filter">Elimina gli archivi dal tuo dispositivo</string>
+    <string name="delete_corpse_files">Elimina file residui</string>
+    <string name="summary_preference_settings_delete_corpse_files">Elimina i file rimasti dalle app disinstallate/rimosse</string>
+    <string name="delete_apk_files">Elimina file APK</string>
+    <string name="summary_preference_settings_delete_apk_files">Elimina i file di installazione (.apk) per Android</string>
+    <string name="media">Media</string>
+    <string name="delete_audio">Elimina audio</string>
+    <string name="summary_preference_settings_delete_audio">Elimina i file audio dal dispositivo</string>
+    <string name="delete_video">Elimina video</string>
+    <string name="summary_preference_settings_delete_video">Elimina i file video dal dispositivo</string>
+    <string name="delete_images">Elimina immagini</string>
+    <string name="summary_preference_settings_delete_images">Elimina i file immagine dal dispositivo</string>
+    <string name="delete_invalid_media">Elimina file multimediali non validi</string>
+    <string name="summary_preference_settings_delete_invalid_media">Elimina le immagini danneggiate</string>
+    <string name="scanner">Scanner</string>
+    <string name="clipboard_clean">Pulisci appunti</string>
+
+    <string name="notifications">Notifiche</string>
+    <string name="summary_preference_settings_notifications">Gestisci le notifiche dell\'app</string>
+
+    <string name="app_usage_notifications">Notifiche sull\'utilizzo delle app</string>
+    <string name="update_notifications">Notifiche di aggiornamento</string>
+
+    <string name="advanced">Avanzate</string>
+    <string name="summary_preference_settings_advanced">Esplora impostazioni più avanzate</string>
+    <string name="error_reporting">Segnalazione errori</string>
+    <string name="bug_report">Segnala bug</string>
+    <string name="summary_preference_settings_bug_report">Invia segnalazioni di bug e richieste di funzionalità alla pagina dei problemi del repository GitHub dell\'app</string>
+
+    <string name="security_and_privacy">Sicurezza e privacy</string>
+    <string name="summary_preference_settings_privacy_and_security">Gestisci le tue impostazioni sulla privacy</string>
+    <string name="privacy">Privacy</string>
+    <string name="privacy_policy">Informativa sulla privacy</string>
+    <string name="summary_preference_settings_privacy_policy">Visualizza l\'informativa che regola il modo in cui gestiamo i tuoi dati</string>
+    <string name="terms_of_service">Termini di servizio</string>
+    <string name="summary_preference_settings_terms_of_service">Rivedi i termini che accetti quando utilizzi il nostro servizio</string>
+    <string name="code_of_conduct">Codice di condotta</string>
+    <string name="summary_preference_settings_code_of_conduct">Comprendi le regole e le linee guida per il comportamento all\'interno del nostro servizio</string>
+
+    <string name="permissions">Autorizzazioni</string>
+    <string name="summary_preference_settings_permissions">Gestisci le autorizzazioni concesse al nostro servizio</string>
+    <string name="normal">Normale</string>
+    <string name="ad_id">ID annuncio [AD_ID]</string>
+    <string name="summary_preference_permissions_ad_id">Consente all\'app di recuperare e utilizzare l\'identificatore pubblicitario associato al dispositivo dell\'utente, fornendo annunci personalizzati, misurando l\'efficacia degli annunci e mostrando annunci su dispositivi Android 13 o versioni successive.</string>
+    <string name="internet">Internet [INTERNET]</string>
+    <string name="summary_preference_permissions_internet">Consente all\'app di stabilire una connessione Internet per inviare segnalazioni di errori o controllare gli aggiornamenti.</string>
+    <string name="post_notifications">Pubblica notifiche [POST_NOTIFICATIONS]</string>
+    <string name="summary_preference_permissions_post_notifications">Consente all\'app di visualizzare le notifiche sui dispositivi con Android 13 o versioni successive.</string>
+    <string name="runtime">Runtime</string>
+    <string name="access_network_state">Accedi allo stato della rete [ACCESS_NETWORK_STATE]</string>
+    <string name="summary_preference_permissions_access_network_state">Consente all\'app di controllare la connettività di rete e recuperare informazioni sul Wi-Fi, inclusi lo stato abilitato e i nomi dei dispositivi Wi-Fi connessi.</string>
+    <string name="access_notification_policy">Accedi alle norme di notifica [ACCESS_NOTIFICATION_POLICY]</string>
+    <string name="summary_preference_permissions_access_notification_policy">Consente all\'app di accedere e modificare le norme di notifica del dispositivo, controllando come e quando le notifiche vengono visualizzate all\'utente e fornendo funzionalità personalizzate di gestione delle notifiche.</string>
+    <string name="billing">Fatturazione [BILLING]</string>
+    <string name="summary_preference_permissions_billing">Consente all\'app di utilizzare la libreria Google Play Billing per gestire gli acquisti in-app e le donazioni</string>
+    <string name="check_license">Controlla licenza [CHECK_LICENSE]</string>
+    <string name="summary_preference_permissions_check_license">Consente all\'app di verificare la sua conformità con il contratto di licenza e di applicare i termini di licenza per proteggere la proprietà intellettuale.</string>
+    <string name="foreground_service">Servizio in primo piano [FOREGROUND_SERVICE]</string>
+    <string name="summary_preference_permissions_foreground_service">Consente all\'app di creare e utilizzare servizi in esecuzione in primo piano, assegnando loro la priorità rispetto ad altri processi in background e migliorando le prestazioni e l\'affidabilità.</string>
+    <string name="request_delete_packages">Richiedi l\'eliminazione dei pacchetti [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">Consente all\'app di richiedere l\'eliminazione dei pacchetti. Questo può essere utilizzato per disinstallare altre app dal dispositivo</string>
+    <string name="storage">Archiviazione</string>
+    <string name="access_media_location">Accedi alla posizione dei file multimediali [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">Consente all\'app di accedere alla posizione dei file multimediali del dispositivo</string>
+    <string name="action_open_document_tree">Azione apri albero documenti [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">Consente all\'app di accedere a un albero di documenti, inclusa la possibilità di leggere e scrivere file nell\'albero</string>
+    <string name="manage_external_storage">Gestisci archiviazione esterna [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">Consente all\'app di eseguire azioni come l\'eliminazione e la ridenominazione di file sull\'archiviazione del dispositivo, inclusi sia l\'archiviazione interna che esterna</string>
+    <string name="package_usage_stats">Statistiche di utilizzo del pacchetto [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">Consente all\'app di accedere alle informazioni sull\'utilizzo delle app da parte dell\'utente, incluse le app utilizzate, per quanto tempo sono state utilizzate e con quale frequenza sono state utilizzate</string>
+    <string name="query_all_packages">Interroga tutti i pacchetti [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">Consente all\'app di richiedere informazioni su tutti i pacchetti installati sul dispositivo. L\'app utilizza queste informazioni per determinare quali file conservare o eliminare</string>
+    <string name="read_external_storage">Leggi archiviazione esterna [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">Consente all\'app di leggere i file dall\'archiviazione del dispositivo, inclusi sia l\'archiviazione interna che esterna</string>
+    <string name="read_media_audio">Leggi audio multimediale [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">Consente all\'app di leggere i file audio dall\'archiviazione del dispositivo</string>
+    <string name="read_media_images">Leggi immagini multimediali [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">Consente all\'app di leggere i file immagine dall\'archiviazione del dispositivo</string>
+    <string name="read_media_video">Leggi video multimediale [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">Consente all\'app di leggere i file video dall\'archiviazione del dispositivo</string>
+    <string name="write_external_storage">Scrivi su archiviazione esterna [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">Consente all\'app di scrivere file sull\'archiviazione del dispositivo, inclusi sia l\'archiviazione interna che esterna</string>
+
+    <string name="ads">Annunci</string>
+    <string name="summary_preference_settings_ads">Controlla come utilizziamo le tue informazioni per mostrarti annunci pertinenti</string>
+    <string name="display_ads">Mostra annunci</string>
+    <string name="personalized_ads">Annunci personalizzati</string>
+    <string name="summary_ads_personalized_ads">Scegli come personalizziamo gli annunci per te in base ai tuoi interessi</string>
+    <string name="summary_ads">Visualizza annunci pertinenti per te. Gestisci le informazioni utilizzate per mostrare annunci personalizzati in base all\'attività dell\'app. Puoi sempre disattivare la personalizzazione qui.\n</string>
+
+    <string name="usage_and_diagnostics">Utilizzo e diagnostica</string>
+    <string name="summary_preference_settings_usage_and_diagnostics">Condividi i dati per aiutare a migliorare Cleaner per Android</string>
+    <string name="summary_usage_and_diagnostics">Aiuta a migliorare la tua esperienza inviandoci automaticamente dati diagnostici, del dispositivo e sull\'utilizzo delle app. Ciò contribuirà a migliorare le prestazioni dell\'app, la stabilità e altri miglioramenti. Alcuni dati aggregati aiuteranno anche le nostre app.\n\nQueste sono informazioni generali sul tuo dispositivo e su come utilizzi le nostre app (come il livello della batteria, l\'attività del sistema e delle app e gli errori). I dati verranno utilizzati per migliorare le nostre app\n\nLa disattivazione di questa funzione non influisce sulla capacità del tuo dispositivo di inviare le informazioni necessarie per i servizi essenziali come gli aggiornamenti delle app e la sicurezza.\n</string>
+
+    <string name="legal">Note legali</string>
+    <string name="legal_notices">Note legali</string>
+    <string name="summary_preference_settings_legal_notices">Visualizza le informazioni legali sul nostro servizio</string>
+    <string name="license">Licenza</string>
+
+    <string name="about">Informazioni</string>
+    <string name="summary_preference_settings_about">Scopri di più su Cleaner</string>
+
+    <string name="app_build_version">Versione di build dell\'applicazione</string>
+    <string name="summary_preference_settings_oss">Dettagli sulla licenza per il software open source</string>
+    <string name="device_info">Informazioni sul dispositivo</string>
+    <string name="app_build">Build dell\'app: Release\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="manufacturer">Produttore:</string>
+    <string name="device_model">Modello del dispositivo:</string>
+    <string name="android_version">Versione Android:</string>
+    <string name="api_level">Livello API:</string>
+
+    <string name="help_and_feedback">Aiuto e feedback</string>
+    <string name="help">Aiuto</string>
+    <string name="faq">FAQ</string>
+    <string name="view_in_google_play_store">Visualizza su Google Play Store</string>
+    <string name="version_info">Informazioni sulla versione</string>
+    <string name="version">Versione %1$s</string>
+    <string name="beta_program">Programma beta</string>
+    <string name="question_1">Cos\'è Cleaner?</string>
+    <string name="summary_preference_faq_1">Cleaner è un\'app Android gratuita e open source che ti aiuta a ottimizzare le prestazioni del tuo dispositivo e a liberare spazio di archiviazione. Può scansionare il tuo dispositivo alla ricerca di file non necessari ed eliminarli, nonché svuotare la cache per migliorare la velocità del tuo dispositivo</string>
+    <string name="question_2">Cleaner è sicuro da usare?</string>
+    <string name="summary_preference_faq_2">Sì, Cleaner è sicuro da usare. Rimuove solo i file che non sono essenziali per il funzionamento del tuo dispositivo o delle app e non elimina nessuno dei tuoi dati personali o file di sistema importanti</string>
+    <string name="question_3">Come si usa Cleaner?</string>
+    <string name="summary_preference_faq_3">Per utilizzare Cleaner, è sufficiente scaricare e installare l\'app dal Google Play Store o da un app store di terze parti affidabile. Quindi, apri l\'app e segui le istruzioni per scansionare il tuo dispositivo ed eliminare i file non necessari. Puoi anche accedere alle impostazioni dell\'app per personalizzare i tipi di file che Cleaner cerca ed elimina</string>
+    <string name="question_4">Cleaner può eliminare la cache delle app?</string>
+    <string name="summary_preference_faq_4">Sì, Cleaner può eliminare la cache delle app. Tuttavia, è importante notare che l\'eliminazione della cache potrebbe causare un caricamento più lungo dell\'app o l\'esecuzione di determinate attività al successivo utilizzo</string>
+    <string name="question_5">Cleaner richiede l\'accesso root?</string>
+    <string name="summary_preference_faq_5">No, Cleaner non richiede l\'accesso root per funzionare. Puoi usarlo su qualsiasi dispositivo Android senza eseguire il root del dispositivo</string>
+    <string name="question_6">Cleaner è disponibile per iOS?</string>
+    <string name="summary_preference_faq_6">No, Cleaner è attualmente disponibile solo per dispositivi Android</string>
+    <string name="question_7">Cleaner migliora la durata della batteria?</string>
+    <string name="summary_preference_faq_7">L\'utilizzo di Cleaner per svuotare la cache potrebbe aiutare a migliorare la durata della batteria del dispositivo riducendo la quantità di energia e risorse utilizzate da processi non necessari. Tuttavia, la misura in cui Cleaner può migliorare la durata della batteria dipenderà da vari fattori come marca e modello del dispositivo, app utilizzate e abitudini di utilizzo</string>
+    <string name="question_8">Con quale frequenza dovrei utilizzare Cleaner?</string>
+    <string name="summary_preference_faq_8">Non esiste una regola precisa sulla frequenza con cui utilizzare Cleaner, poiché dipenderà dall\'utilizzo del dispositivo e dalla quantità di file non necessari che si accumulano nel tempo. Alcuni utenti potrebbero trovare utile eseguire Cleaner settimanalmente o mensilmente, mentre altri potrebbero aver bisogno di usarlo solo occasionalmente</string>
+    <string name="question_9">Cleaner è compatibile con tutti i dispositivi Android?</string>
+    <string name="summary_preference_faq_9">Cleaner dovrebbe essere compatibile con la maggior parte dei dispositivi Android che soddisfano i requisiti minimi di sistema dell\'app. Tuttavia, è sempre una buona idea controllare la pagina dell\'app su Google Play Store o l\'app store che stai utilizzando per confermare la compatibilità con il tuo dispositivo specifico. Se riscontri problemi durante l\'utilizzo di Cleaner, puoi provare a risolvere il problema o contattare il team di supporto dell\'app per assistenza</string>
+    <string name="feedback">Feedback</string>
+
+    <string name="updates">Aggiornamenti</string>
+
+    <string name="support_us">Sostienici</string>
+    <string name="paid_support">Supporto a pagamento</string>
+    <string name="summary_donations">Indipendentemente da quanto doni, ci aiuterai a mantenere la nostra app in esecuzione e a migliorare le nostre funzionalità. Apprezziamo la tua generosità e gentilezza!</string>
+    <string name="non_paid_support">Supporto gratuito</string>
+    <string name="web_ad">Annuncio Web</string>
+
+    <string name="snack_app_updated">L\'app è stata aggiornata correttamente</string>
+    <string name="snack_update_failed">Si è verificato un problema durante l\'aggiornamento</string>
+    <string name="try_again">Riprova</string>
+    <string name="summary_share_message">Dai un\'occhiata a questa fantastica app che sto usando! Ha alcune funzionalità davvero interessanti che potresti trovare interessanti. Puoi scaricarla dal Play Store all\'indirizzo: %1$s</string>
+    <string name="learn_more">Scopri di più</string>
+
+    <string name="close">Chiudere?</string>
+    <string name="require_restart">Richiedi riavvio!</string>
+    <string name="snack_network_error">Errore di rete durante la ricerca di aggiornamenti</string>
+    <string name="snack_general_error">Si è verificato un errore durante la ricerca di aggiornamenti</string>
+    <string name="summary_close">Sei sicuro di voler uscire?</string>
+    <string name="summary_require_restart">Per rendere effettive le modifiche, riavvia l\'app!</string>
+    <string name="snack_no_image">Nessuna immagine fornita</string>
+    <string name="snack_validate_file">Seleziona una dimensione file valida</string>
+</resources>

@@ -1,0 +1,258 @@
+<resources>
+    <string name="app_description">Останній Android Cleaner, який вам коли-небудь знадобиться для щоденного використання!</string>
+    <string name="notification_update_title">Доступне нове оновлення!</string>
+    <string name="summary_notification_update">Доступна нова версія програми. Натисніть, щоб оновити!</string>
+    <string name="notification_last_time_used_title">Минуло вже деякий час!</string>
+    <string name="summary_notification_last_time_used"> Давайте звільнимо місце! Ми раді, що ви повернулися!</string>
+
+    <string name="welcome">Ласкаво просимо</string>
+    <string name="browse_terms_of_service_and_privacy_policy">Перегляньте <i><u>Умови обслуговування</u></i> та <i><u>Політику конфіденційності</u></i></string>
+    <string name="summary_browse_terms_of_service_and_privacy_policy">Прочитайте та погодьтеся з нашими Умовами обслуговування та Політикою конфіденційності, щоб продовжити</string>
+    <string name="agree">Погоджуюсь</string>
+
+    <string name="navigation_drawer_open">Відкрити панель навігації</string>
+
+    <string name="home">Головна</string>
+    <string name="storage_used">%1$s/%2$s ГБ\nВикористано</string>
+    <string name="analyze">Аналізувати</string>
+    <string name="clean">Очистити</string>
+    <string name="status_selected_files">Статус: Вибрано %1$d файлів</string>
+    <string name="status_no_files_selected">Статус: Не вибрано файлів</string>
+    <string name="select_all">Вибрати все</string>
+    <string name="rescan_title">Пересканувати?</string>
+    <string name="rescan_message">Ви впевнені, що хочете сканувати знову?</string>
+
+    <string name="app_manager">Менеджер програм</string>
+    <string name="installed_apps">Встановлені програми</string>
+    <string name="system_apps">Системні програми</string>
+    <string name="app_install_files">Файли встановлення програм (APK)</string>
+    <string name="uninstall">Видалити</string>
+    <string name="share">Поділитися</string>
+    <string name="app_info">Інформація про програму</string>
+    <string name="installed">Встановлено"</string>
+
+    <string name="memory_manager">Менеджер пам\'яті</string>
+    <string name="storage_information">Інформація про сховище</string>
+    <string name="used">Використано:</string>
+    <string name="free">Вільний:</string>
+    <string name="total">Всього:</string>
+    <string name="ram_information">Інформація про оперативну пам\'ять</string>
+    <string name="used_ram">Використана оперативна пам\'ять:</string>
+    <string name="free_ram">Вільна оперативна пам\'ять:</string>
+    <string name="total_ram">Всього оперативної пам\'яті:</string>
+    <string name="categories">Категорії</string>
+    <string name="system">Система</string>
+    <string name="music">Музика</string>
+    <string name="images">Зображення</string>
+    <string name="documents">Документи</string>
+    <string name="downloads">Завантаження</string>
+    <string name="other_files">Інші файли</string>
+
+    <string name="image_optimizer">Оптимізатор зображень</string>
+    <string name="summary_select_image">Виберіть зображення, яке ви хочете оптимізувати</string>
+    <string name="choose_image">Вибрати зображення</string>
+    <string name="optimize_image">Оптимізувати зображення</string>
+    <string name="image_saved">Зображення збережено в: </string>
+    <string name="quick_compress">Швидке стиснення</string>
+    <string name="select_image">Вибрати зображення</string>
+    <string name="low">Низький</string>
+    <string name="medium">Середній</string>
+    <string name="high">Високий</string>
+    <string name="file_size">Розмір файлу (КБ)</string>
+    <string name="enter_a_value">Введіть значення</string>
+    <string name="manual">Вручну</string>
+    <string name="width">Ширина (пікселів)</string>
+    <string name="height">Висота (пікселів)</string>
+    <string name="quality">Якість</string>
+
+    <string name="settings">Налаштування</string>
+
+    <string name="display">Дисплей</string>
+    <string name="summary_preference_settings_display">Персоналізуйте зовнішній вигляд вашої програми</string>
+
+    <string name="appearance">Зовнішній вигляд</string>
+    <string name="dark_theme">Темна тема</string>
+    <string name="will_turn_on_automatically_by_system">Буде вмикатися автоматично системою</string>
+    <string name="will_never_turn_on_automatically">Ніколи не буде вмикатися автоматично</string>
+    <string name="amoled_mode">Режим AMOLED</string>
+    <string name="follow_system">Слідкувати за режимом системи</string>
+    <string name="light_mode">Світлий режим</string>
+    <string name="dark_mode">Темний режим</string>
+    <string name="summary_dark_theme">Темна тема використовує глибокий фон, щоб допомогти зберегти заряд батареї</string>
+
+    <string name="dynamic_colors">Динамічні кольори</string>
+    <string name="summary_preference_settings_dynamic_colors">Застосувати кольори з шпалер до теми програми</string>
+
+    <string name="language">Мова</string>
+    <string name="summary_preference_settings_language">Змінює мову, яка використовується в програмі</string>
+    <string name="dialog_language_subtitle">Виберіть бажану мову</string>
+    <string name="dialog_info_language">Персоналізуйте свій досвід, вибравши бажану мову. Будь-які зміни мови, які ви вносите, набувають чинності негайно, забезпечуючи безперебійну роботу обраною мовою</string>
+
+    <string name="cleaning">Очищення</string>
+    <string name="summary_preference_settings_cleaning">Налаштуйте процес очищення</string>
+    <string name="filters">Фільтри</string>
+    <string name="generic_filter">Загальний фільтр</string>
+    <string name="summary_preference_settings_generic_filter">Видалити тимчасові, журнальні та інші непотрібні файли та папки</string>
+    <string name="delete_empty_folders">Видалити порожні папки</string>
+    <string name="delete_archives">Видалити архіви</string>
+    <string name="summary_preference_settings_archive_filter">Видалити архіви з вашого пристрою</string>
+    <string name="delete_corpse_files">Видалити залишкові файли</string>
+    <string name="summary_preference_settings_delete_corpse_files">Видалити файли, що залишилися від видалених програм</string>
+    <string name="delete_apk_files">Видалити APK-файли</string>
+    <string name="summary_preference_settings_delete_apk_files">Видалити файли інсталятора (.apk) для Android</string>
+    <string name="media">Медіа</string>
+    <string name="delete_audio">Видалити аудіо</string>
+    <string name="summary_preference_settings_delete_audio">Видалити аудіофайли з пристрою</string>
+    <string name="delete_video">Видалити відео</string>
+    <string name="summary_preference_settings_delete_video">Видалити відеофайли з пристрою</string>
+    <string name="delete_images">Видалити зображення</string>
+    <string name="summary_preference_settings_delete_images">Видалити файли зображень з пристрою</string>
+    <string name="delete_invalid_media">Видалити недійсні медіафайли</string>
+    <string name="summary_preference_settings_delete_invalid_media">Видалити пошкоджені зображення</string>
+    <string name="scanner">Сканер</string>
+    <string name="clipboard_clean">Очищення буфера обміну</string>
+
+    <string name="notifications">Сповіщення</string>
+    <string name="summary_preference_settings_notifications">Керування сповіщеннями програми</string>
+
+    <string name="app_usage_notifications">Сповіщення про використання програми</string>
+    <string name="update_notifications">Сповіщення про оновлення</string>
+
+    <string name="advanced">Додатково</string>
+    <string name="summary_preference_settings_advanced">Дослідіть додаткові налаштування</string>
+    <string name="error_reporting">Звіт про помилки</string>
+    <string name="bug_report">Звіт про помилку</string>
+    <string name="summary_preference_settings_bug_report">Надіслати звіти про помилки та запити на функції на сторінку проблем репозиторію GitHub програми</string>
+
+    <string name="security_and_privacy">Безпека та конфіденційність</string>
+    <string name="summary_preference_settings_privacy_and_security">Керуйте налаштуваннями конфіденційності</string>
+    <string name="privacy">Конфіденційність</string>
+    <string name="privacy_policy">Політика конфіденційності</string>
+    <string name="summary_preference_settings_privacy_policy">Переглянути політику, яка регулює обробку ваших даних</string>
+    <string name="terms_of_service">Умови обслуговування</string>
+    <string name="summary_preference_settings_terms_of_service">Переглянути умови, з якими ви погоджуєтесь, використовуючи наш сервіс</string>
+    <string name="code_of_conduct">Правила поведінки</string>
+    <string name="summary_preference_settings_code_of_conduct">Зрозуміти правила та рекомендації щодо поведінки в межах нашого сервісу</string>
+
+    <string name="permissions">Дозволи</string>
+    <string name="summary_preference_settings_permissions">Керуйте дозволами, наданими нашому сервісу</string>
+    <string name="normal">Звичайний</string>
+    <string name="ad_id">Ідентифікатор реклами [AD_ID]</string>
+    <string name="summary_preference_permissions_ad_id">Дозволяє програмі отримувати та використовувати рекламний ідентифікатор, пов\'язаний з пристроєм користувача, надаючи персоналізовану рекламу, вимірюючи ефективність реклами та показуючи рекламу на пристроях Android 13 або пізнішої версії.</string>
+    <string name="internet">Інтернет [INTERNET]</string>
+    <string name="summary_preference_permissions_internet">Дозволяє програмі встановлювати інтернет-з\'єднання для надсилання звітів про помилки або перевірки наявності оновлень.</string>
+    <string name="post_notifications">Надсилати сповіщення [POST_NOTIFICATIONS]</string>
+    <string name="summary_preference_permissions_post_notifications">Дозволяє програмі відображати сповіщення на пристроях з Android 13 або пізнішої версії.</string>
+    <string name="runtime">Runtime</string>
+    <string name="access_network_state">Доступ до стану мережі [ACCESS_NETWORK_STATE]</string>
+    <string name="summary_preference_permissions_access_network_state">Дозволяє програмі перевіряти підключення до мережі та отримувати інформацію про Wi-Fi, включаючи стан увімкнення та назви підключених пристроїв Wi-Fi.</string>
+    <string name="access_notification_policy">Доступ до політики сповіщень [ACCESS_NOTIFICATION_POLICY]</string>
+    <string name="summary_preference_permissions_access_notification_policy">Дозволяє програмі отримувати доступ та змінювати політику сповіщень пристрою, контролюючи, як і коли сповіщення відображаються користувачеві, та надаючи функції керування сповіщеннями.</string>
+    <string name="billing">Оплата [BILLING]</string>
+    <string name="summary_preference_permissions_billing">Дозволяє програмі використовувати бібліотеку Google Play Billing для обробки покупок у програмі та пожертвувань.</string>
+    <string name="check_license">Перевірити ліцензію [CHECK_LICENSE]</string>
+    <string name="summary_preference_permissions_check_license">Дозволяє програмі перевіряти свою відповідність ліцензійній угоді та забезпечувати дотримання ліцензійних умов для захисту інтелектуальної власності.</string>
+    <string name="foreground_service">Служба переднього плану [FOREGROUND_SERVICE]</string>
+    <string name="summary_preference_permissions_foreground_service">Дозволяє програмі створювати та використовувати служби, які працюють на передньому плані, надаючи їм пріоритет над іншими фоновими процесами та покращуючи продуктивність та надійність.</string>
+    <string name="request_delete_packages">Запит на видалення пакетів [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">Дозволяє програмі запитувати видалення пакетів. Це може використовуватися для видалення інших програм з пристрою.</string>
+    <string name="storage">Сховище</string>
+    <string name="access_media_location">Доступ до розташування медіафайлів [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">Дозволяє програмі отримувати доступ до розташування медіафайлів на пристрої.</string>
+    <string name="action_open_document_tree">Дія відкриття дерева документів [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">Дозволяє програмі отримувати доступ до дерева документів, включаючи можливість читання та запису файлів у дереві.</string>
+    <string name="manage_external_storage">Керування зовнішнім сховищем [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">Дозволяє програмі виконувати такі дії, як видалення та перейменування файлів на сховищі пристрою, включаючи як внутрішнє, так і зовнішнє сховище.</string>
+    <string name="package_usage_stats">Статистика використання пакетів [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">Дозволяє програмі отримувати доступ до інформації про використання програм користувачем, включаючи які програми були використані, як довго вони використовувались та як часто вони використовувались.</string>
+    <string name="query_all_packages">Запит до всіх пакетів [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">Дозволяє програмі запитувати інформацію про всі встановлені пакети на пристрої. Програма використовує цю інформацію, щоб визначити, які файли зберігати або видаляти.</string>
+    <string name="read_external_storage">Читати зовнішнє сховище [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">Дозволяє програмі читати файли з сховища пристрою, включаючи як внутрішнє, так і зовнішнє сховище.</string>
+    <string name="read_media_audio">Читати медіа-аудіо [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">Дозволяє програмі читати аудіофайли з сховища пристрою.</string>
+    <string name="read_media_images">Читати медіа-зображення [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">Дозволяє програмі читати файли зображень з сховища пристрою.</string>
+    <string name="read_media_video">Читати медіа-відео [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">Дозволяє програмі читати відеофайли з сховища пристрою.</string>
+    <string name="write_external_storage">Записувати на зовнішнє сховище [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">Дозволяє програмі записувати файли на сховище пристрою, включаючи як внутрішнє, так і зовнішнє сховище.</string>
+
+    <string name="ads">Реклама</string>
+    <string name="summary_preference_settings_ads">Контролюйте, як ми використовуємо вашу інформацію, щоб показувати вам релевантну рекламу.</string>
+    <string name="display_ads">Відображати рекламу</string>
+    <string name="personalized_ads">Персоналізована реклама</string>
+    <string name="summary_ads_personalized_ads">Виберіть, як ми персоналізуємо рекламу для вас на основі ваших інтересів.</string>
+    <string name="summary_ads">Переглядайте рекламу, яка є релевантною для вас. Керуйте інформацією, яка використовується для показу персоналізованої реклами на основі вашої активності в програмі. Ви завжди можете вимкнути персоналізацію тут.\n</string>
+
+    <string name="usage_and_diagnostics">Використання та діагностика</string>
+    <string name="summary_preference_settings_usage_and_diagnostics">Надішліть дані, щоб допомогти покращити Cleaner для Android.</string>
+    <string name="summary_usage_and_diagnostics">Допоможіть покращити ваш досвід, автоматично надсилаючи нам діагностичні дані, дані про пристрій та використання програми. Це допоможе покращити продуктивність програми, стабільність та інші вдосконалення. Деякі зведені дані також допоможуть нашим програмам.\n\nЦе загальна інформація про ваш пристрій та те, як ви використовуєте наші програми (наприклад, рівень заряду батареї, активність системи та програми та помилки). Дані будуть використані для покращення наших програм.\n\nВимкнення цієї функції не впливає на здатність вашого пристрою надсилати інформацію, необхідну для основних служб, таких як оновлення програм та безпека.\n</string>
+
+    <string name="legal">Юридична інформація</string>
+    <string name="legal_notices">Юридичні повідомлення</string>
+    <string name="summary_preference_settings_legal_notices">Переглянути юридичну інформацію про наш сервіс.</string>
+    <string name="license">Ліцензія</string>
+
+    <string name="about">Про програму</string>
+    <string name="summary_preference_settings_about">Дізнайтеся більше про Cleaner.</string>
+
+    <string name="app_build_version">Версія збірки програми</string>
+    <string name="summary_preference_settings_oss">Відомості про ліцензію для програмного забезпечення з відкритим кодом.</string>
+    <string name="device_info">Інформація про пристрій</string>
+    <string name="app_build">Збірка програми: Реліз\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="manufacturer">Виробник:</string>
+    <string name="device_model">Модель пристрою:</string>
+    <string name="android_version">Версія Android:</string>
+    <string name="api_level">Рівень API:</string>
+
+    <string name="help_and_feedback">Допомога та відгуки</string>
+    <string name="help">Допомога</string>
+    <string name="faq">Часті питання</string>
+    <string name="view_in_google_play_store">Переглянути в Google Play Store</string>
+    <string name="version_info">Інформація про версію</string>
+    <string name="version">Версія %1$s</string>
+    <string name="beta_program">Бета-програма</string>
+    <string name="question_1">Що таке Cleaner?</string>
+    <string name="summary_preference_faq_1">Cleaner - це безкоштовна програма для Android з відкритим кодом, яка допомагає вам оптимізувати продуктивність вашого пристрою та звільнити місце для зберігання. Вона може сканувати ваш пристрій на наявність непотрібних файлів та видаляти їх, а також очищати кеш, щоб покращити швидкість вашого пристрою.</string>
+    <string name="question_2">Чи безпечно використовувати Cleaner?</string>
+    <string name="summary_preference_faq_2">Так, Cleaner безпечно використовувати. Він видаляє лише файли, які не є важливими для роботи вашого пристрою або програм, і не видаляє жодні ваші особисті дані або важливі системні файли.</string>
+    <string name="question_3">Як використовувати Cleaner?</string>
+    <string name="summary_preference_faq_3">Щоб використовувати Cleaner, просто завантажте та встановіть програму з Google Play Store або надійного стороннього магазину програм. Потім відкрийте програму та дотримуйтесь вказівок, щоб просканувати ваш пристрій та видалити непотрібні файли. Ви також можете отримати доступ до налаштувань програми, щоб налаштувати типи файлів, які Cleaner шукає та видаляє.</string>
+    <string name="question_4">Чи може Cleaner видаляти кеш програм?</string>
+    <string name="summary_preference_faq_4">Так, Cleaner може видаляти кеш програм. Однак важливо зазначити, що видалення кешу може призвести до того, що програма завантажуватиметься довше або виконуватиме певні завдання наступного разу, коли ви її використовуватимете.</string>
+    <string name="question_5">Чи вимагає Cleaner root-доступ?</string>
+    <string name="summary_preference_faq_5">Ні, Cleaner не вимагає root-доступу для роботи. Ви можете використовувати його на будь-якому пристрої Android без рутування вашого пристрою.</string>
+    <string name="question_6">Чи доступний Cleaner для iOS?</string>
+    <string name="summary_preference_faq_6">Ні, Cleaner наразі доступний лише для пристроїв Android.</string>
+    <string name="question_7">Чи покращує Cleaner час автономної роботи?</string>
+    <string name="summary_preference_faq_7">Використання Cleaner для очищення кешу може допомогти покращити час автономної роботи вашого пристрою, зменшуючи кількість енергії та ресурсів, які використовуються непотрібними процесами. Однак ступінь, до якої Cleaner може покращити час автономної роботи, залежатиме від різних факторів, таких як марка та модель вашого пристрою, програми, які ви використовуєте, та ваші звички використання.</string>
+    <string name="question_8">Як часто слід використовувати Cleaner?</string>
+    <string name="summary_preference_faq_8">Немає встановленого правила щодо того, як часто слід використовувати Cleaner, оскільки це залежатиме від використання вашого пристрою та кількості непотрібних файлів, які накопичуються з часом. Деяким користувачам може бути корисним запускати Cleaner щотижня або щомісяця, тоді як іншим може знадобитися використовувати його лише зрідка.</string>
+    <string name="question_9">Чи сумісний Cleaner з усіма пристроями Android?</string>
+    <string name="summary_preference_faq_9">Cleaner має бути сумісний з більшістю пристроїв Android, які відповідають мінімальним системним вимогам програми. Однак завжди гарною ідеєю є перевірити сторінку програми в Google Play Store або магазині програм, який ви використовуєте, щоб підтвердити сумісність з вашим конкретним пристроєм. Якщо у вас виникли проблеми під час використання Cleaner, ви можете спробувати усунути неполадки або звернутися до служби підтримки програми за допомогою.</string>
+    <string name="feedback">Відгуки</string>
+
+    <string name="updates">Оновлення</string>
+
+    <string name="support_us">Підтримайте нас</string>
+    <string name="paid_support">Платна підтримка</string>
+    <string name="summary_donations">Незалежно від того, скільки ви пожертвуєте, ви допоможете нам підтримувати роботу нашої програми та покращувати її функції. Ми цінуємо вашу щедрість та доброту!</string>
+    <string name="non_paid_support">Безкоштовна підтримка</string>
+    <string name="web_ad">Веб-реклама</string>
+
+    <string name="snack_app_updated">Програму успішно оновлено</string>
+    <string name="snack_update_failed">Під час оновлення виникла помилка</string>
+    <string name="try_again">Спробуйте ще раз</string>
+    <string name="summary_share_message">Подивіться на цю дивовижну програму, яку я використовую! Вона має деякі дійсно круті функції, які можуть вас зацікавити. Ви можете завантажити її з Play Store за адресою: %1$s</string>
+    <string name="learn_more">Дізнатися більше</string>
+
+    <string name="close">Закрити?</string>
+    <string name="require_restart">Потрібне перезавантаження!</string>
+    <string name="snack_network_error">Під час перевірки наявності оновлень сталася помилка мережі</string>
+    <string name="snack_general_error">Під час перевірки наявності оновлень сталася помилка</string>
+    <string name="summary_close">Ви впевнені, що хочете вийти?</string>
+    <string name="summary_require_restart">Щоб зміни набули чинності, перезавантажте програму!</string>
+    <string name="snack_no_image">Зображення не надано</string>
+    <string name="snack_validate_file">Виберіть допустимий розмір файлу</string>
+</resources>
