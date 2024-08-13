@@ -331,7 +331,7 @@ fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader
     Card(
         modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(1f)
+                .aspectRatio(ratio = 1f)
                 .bounceClick() ,
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {

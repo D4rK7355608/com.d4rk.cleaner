@@ -64,6 +64,7 @@ fun CircularDeterminateIndicator(
             strokeCap = StrokeCap.Round ,
         )
         Text(
+            modifier = Modifier.animateContentSize(),
             text = stringResource(R.string.storage_used , storageUsed , storageTotal) ,
             textAlign = TextAlign.Center ,
             style = MaterialTheme.typography.titleLarge
