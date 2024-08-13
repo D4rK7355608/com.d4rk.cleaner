@@ -4,12 +4,14 @@ import android.app.usage.StorageStatsManager
 import android.content.Context
 import android.os.storage.StorageManager
 import android.os.storage.StorageVolume
-import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.Locale
 import java.util.UUID
+import kotlin.math.log10
+import kotlin.math.pow
 import kotlin.math.roundToInt
 
 object StorageUtils {
@@ -36,10 +38,6 @@ object StorageUtils {
             val totalFormatted : String =
                     (totalSize / (1024.0 * 1024.0 * 1024.0)).roundToInt().toString()
             val usageProgress : Float = usedSize.toFloat() / totalSize.toFloat()
-            StorageInfo(
-                totalStorage = totalSize ,
-                usedStorage = usedSize ,
-            )
 
             withContext(Dispatchers.Main) {
                 callback(usedFormatted , totalFormatted , usageProgress)
@@ -47,7 +45,23 @@ object StorageUtils {
         }
     }
 
-    fun bytesToGB(bytes: Long): String {
-        return String.format("%.2f GB", bytes / (1024.0 * 1024.0 * 1024.0))
+    fun formatSize(size : Long) : String {
+        if (size <= 0) return "0 B"
+        val units : Array<String> = arrayOf("B" , "KB" , "MB" , "GB" , "TB")
+        val digitGroups : Int = (log10(size.toDouble()) / log10(x= 1024.0)).toInt()
+        val value : Double = size / 1024.0.pow(digitGroups.toDouble())
+
+        return if (value.compareTo(value.toLong()) == 0) {
+            String.format(Locale.US , format = "%d %s" , value.toLong() , units[digitGroups])
+        }
+        else {
+            val decimalPart : Int = (value * 100).toInt() % 100
+            if (decimalPart == 0) {
+                String.format(Locale.US , format = "%d %s" , value.toLong() , units[digitGroups])
+            }
+            else {
+                String.format(Locale.US , format = "%.2f %s" , value , units[digitGroups])
+            }
+        }
     }
 }

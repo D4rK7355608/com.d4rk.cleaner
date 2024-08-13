@@ -70,7 +70,7 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.memorymanager.RamInfo
 import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
 import com.d4rk.cleaner.utils.PermissionsUtils
-import com.d4rk.cleaner.utils.cleaning.FileUtils.formatSize
+import com.d4rk.cleaner.utils.cleaning.StorageUtils.formatSize
 import com.d4rk.cleaner.utils.compose.bounceClick
 import com.d4rk.cleaner.utils.compose.components.StorageProgressBar
 import kotlinx.coroutines.delay
@@ -165,8 +165,9 @@ fun MemoryManagerComposable() {
                 )
 
                 Spacer(modifier = Modifier.width(8.dp))
-                IconButton(modifier = Modifier.bounceClick() ,
-                           onClick = { viewModel.toggleListExpanded() }) {
+                IconButton(
+                    modifier = Modifier.bounceClick() ,
+                    onClick = { viewModel.toggleListExpanded() }) {
                     Icon(
                         imageVector = if (listExpanded) Icons.Outlined.ArrowDropDown else Icons.AutoMirrored.Filled.ArrowLeft ,
                         contentDescription = if (listExpanded) "Collapse" else "Expand"
@@ -375,14 +376,15 @@ fun DotsIndicator(
             updateTransition(targetState = selectedIndex , label = "Dot Transition")
 
     LazyRow(
-        modifier = modifier.wrapContentWidth().height(dotSize) , verticalAlignment = Alignment.CenterVertically
+        modifier = modifier
+                .wrapContentWidth()
+                .height(dotSize) ,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         items(totalDots) { index ->
-            val animatedDotSize : Dp by transition.animateDp(
-                transitionSpec = {
-                    tween(durationMillis = animationDuration , easing = FastOutSlowInEasing)
-                } , label = "Dot Size Animation"
-            ) {
+            val animatedDotSize : Dp by transition.animateDp(transitionSpec = {
+                tween(durationMillis = animationDuration , easing = FastOutSlowInEasing)
+            } , label = "Dot Size Animation") {
                 if (it == index) dotSize else dotSize / 1.4f
             }
 

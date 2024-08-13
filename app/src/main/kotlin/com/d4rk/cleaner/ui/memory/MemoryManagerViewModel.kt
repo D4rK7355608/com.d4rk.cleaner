@@ -40,15 +40,21 @@ class MemoryManagerViewModel : ViewModel() {
      *
      * @param context The application context.
      */
-    fun updateStorageInfo(context: Context) {
+    fun updateStorageInfo(context : Context) {
         viewModelScope.launch {
             try {
                 StorageUtils.getStorageInfo(context) { used, total, _ ->
-                    val storageBreakdown = getStorageBreakdown(context)
+
+                    val usedStorageBytes : Double =
+                            (used.toDoubleOrNull() ?: 0.0) * 1024 * 1024 * 1024
+                    val totalStorageBytes : Double =
+                            (total.toDoubleOrNull() ?: 0.0) * 1024 * 1024 * 1024
+
+                    val storageBreakdown : Map<String , Long> = getStorageBreakdown(context)
                     _storageInfo.value = StorageInfo(
-                        totalStorage = total.toLongOrNull() ?: 0,
-                        freeStorage = (total.toLongOrNull() ?: 0) - (used.toLongOrNull() ?: 0),
-                        usedStorage = used.toLongOrNull() ?: 0,
+                        totalStorage = totalStorageBytes.toLong() ,
+                        freeStorage = (totalStorageBytes - usedStorageBytes).toLong() ,
+                        usedStorage = usedStorageBytes.toLong() ,
                         storageBreakdown = storageBreakdown
                     )
                 }
