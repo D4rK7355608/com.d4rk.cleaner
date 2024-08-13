@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
@@ -75,7 +76,6 @@ import com.d4rk.cleaner.utils.compose.bounceClick
 import com.d4rk.cleaner.utils.compose.components.StorageProgressBar
 import kotlinx.coroutines.delay
 import kotlin.math.absoluteValue
-import kotlin.math.min
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -103,8 +103,12 @@ fun MemoryManagerComposable() {
     LaunchedEffect(Unit) {
         viewModel.updateStorageInfo(context)
         viewModel.updateRamInfo(context)
-        if (! PermissionsUtils.hasStoragePermissions(context)) {
+        if (!PermissionsUtils.hasStoragePermissions(context)) {
             PermissionsUtils.requestStoragePermissions(context as Activity)
+        }
+
+        if(!PermissionsUtils.hasUsageAccessPermissions(context)) {
+            PermissionsUtils.requestUsageAccess(context as Activity)
         }
 
         while (true) {
@@ -112,6 +116,7 @@ fun MemoryManagerComposable() {
             viewModel.updateRamInfo(context)
         }
     }
+
     if (isLoading) {
         Box(
             modifier = Modifier
@@ -253,8 +258,8 @@ fun StorageInfoCard(storageInfo : StorageInfo) {
 }
 
 @Composable
-fun StorageBreakdownGrid(storageBreakdown : Map<String , Long>) {
-    val items : List<Map.Entry<String , Long>> = storageBreakdown.entries.toList()
+fun StorageBreakdownGrid(storageBreakdown: Map<String, Long>) {
+    val items: List<Map.Entry<String, Long>> = storageBreakdown.entries.toList()
     val chunkSize = 2
 
     LazyColumn(
@@ -263,18 +268,18 @@ fun StorageBreakdownGrid(storageBreakdown : Map<String , Long>) {
                 .animateContentSize()
                 .padding(horizontal = 16.dp)
     ) {
-        items(count = (items.size + chunkSize - 1) / chunkSize) { rowIndex ->
+        items(
+            items = items.chunked(chunkSize),
+            key = { chunk -> chunk.firstOrNull()?.key ?: "" }
+        ) { chunk ->
             Row(
                 modifier = Modifier
                         .fillMaxWidth()
                         .animateContentSize()
             ) {
-                for (columnIndex : Int in 0 until min(
-                    chunkSize , b = items.size - rowIndex * chunkSize
-                )) {
-                    val index : Int = rowIndex * chunkSize + columnIndex
-                    val (icon : String , size : Long) = items[index]
-                    StorageBreakdownItem(icon = icon , size = size , modifier = Modifier.weight(1f))
+                for (item in chunk) {
+                    val (icon, size) = item
+                    StorageBreakdownItem(icon = icon, size = size, modifier = Modifier.weight(1f))
                 }
             }
         }
@@ -364,35 +369,37 @@ fun RamInfoCard(ramInfo : RamInfo) {
 
 @Composable
 fun DotsIndicator(
-    modifier : Modifier = Modifier ,
-    totalDots : Int ,
-    selectedIndex : Int ,
-    selectedColor : Color = MaterialTheme.colorScheme.primary ,
-    unSelectedColor : Color = Color.Gray ,
-    dotSize : Dp ,
-    animationDuration : Int = 300
+    modifier: Modifier = Modifier,
+    totalDots: Int,
+    selectedIndex: Int,
+    selectedColor: Color = MaterialTheme.colorScheme.primary,
+    unSelectedColor: Color = Color.Gray,
+    dotSize: Dp,
+    animationDuration: Int = 300
 ) {
-    val transition : Transition<Int> =
-            updateTransition(targetState = selectedIndex , label = "Dot Transition")
+    val transition: Transition<Int> = updateTransition(targetState = selectedIndex, label = "Dot Transition")
 
     LazyRow(
         modifier = modifier
                 .wrapContentWidth()
-                .height(dotSize) ,
+                .height(dotSize),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        items(totalDots) { index ->
-            val animatedDotSize : Dp by transition.animateDp(transitionSpec = {
-                tween(durationMillis = animationDuration , easing = FastOutSlowInEasing)
-            } , label = "Dot Size Animation") {
+        items(
+            count = totalDots,
+            key = { index -> index }
+        ) { index ->
+            val animatedDotSize: Dp by transition.animateDp(transitionSpec = {
+                tween(durationMillis = animationDuration, easing = FastOutSlowInEasing)
+            }, label = "Dot Size Animation") {
                 if (it == index) dotSize else dotSize / 1.4f
             }
 
-            val isSelected : Boolean = index == selectedIndex
-            val size : Dp = if (isSelected) animatedDotSize else animatedDotSize
+            val isSelected: Boolean = index == selectedIndex
+            val size: Dp = if (isSelected) animatedDotSize else animatedDotSize
 
             IndicatorDot(
-                color = if (isSelected) selectedColor else unSelectedColor , size = size
+                color = if (isSelected) selectedColor else unSelectedColor, size = size
             )
 
             if (index != totalDots - 1) {

@@ -272,13 +272,16 @@ fun AnalyzeComposable(launchScanningKey : MutableState<Boolean> , imageLoader : 
             }
             else {
                 LazyVerticalGrid(
-                    columns = GridCells.Fixed(count = 3) ,
-                    verticalArrangement = Arrangement.spacedBy(8.dp) ,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp) ,
-                    modifier = Modifier.padding(8.dp) ,
+                    columns = GridCells.Fixed(count = 3),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.padding(8.dp),
                 ) {
-                    items(files , key = { file -> file.absolutePath }) { file ->
-                        FileCard(file = file , viewModel = viewModel , imageLoader = imageLoader)
+                    items(
+                        items = files,
+                        key = { file -> file.absolutePath }
+                    ) { file ->
+                        FileCard(file = file, viewModel = viewModel, imageLoader = imageLoader)
                     }
                 }
             }

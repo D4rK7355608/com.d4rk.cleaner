@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.ui.imageoptimizer.imagepicker
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
@@ -39,6 +40,7 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ads.BannerAdsComposable
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.ImageOptimizerActivity
+import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.compose.bounceClick
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -60,6 +62,13 @@ fun ImagePickerComposable(
             viewModel.setSelectedImageUri(null)
         }
     }
+
+    LaunchedEffect(key1 = true) {
+        if (! PermissionsUtils.hasMediaPermissions(context)) {
+            PermissionsUtils.requestMediaPermissions(context as Activity)
+        }
+    }
+
 
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.image_optimizer)) } ,

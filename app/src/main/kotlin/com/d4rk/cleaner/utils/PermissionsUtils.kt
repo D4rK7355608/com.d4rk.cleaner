@@ -46,29 +46,8 @@ object PermissionsUtils {
             true
         }
 
-        val hasUsageStatsPermission : Boolean = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            isAccessGranted(context)
-        }
-        else {
-            true
-        }
-
-        val hasMediaPermissions : Boolean = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            ContextCompat.checkSelfPermission(
-                context , Manifest.permission.READ_MEDIA_AUDIO
-            ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                context , Manifest.permission.READ_MEDIA_IMAGES
-            ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                context , Manifest.permission.READ_MEDIA_VIDEO
-            ) == PackageManager.PERMISSION_GRANTED
-        }
-        else {
-            true
-        }
-
-        return hasStoragePermissions && hasManageStoragePermission && hasUsageStatsPermission && hasMediaPermissions
+        return hasStoragePermissions && hasManageStoragePermission
     }
-
 
     /**
      * Requests the necessary storage permissions.
@@ -88,20 +67,6 @@ object PermissionsUtils {
                 activity.startActivity(intent)
             }
 
-            if (! isAccessGranted(activity)) {
-                val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
-                activity.startActivity(intent)
-            }
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            requiredPermissions.addAll(
-                listOf(
-                    Manifest.permission.READ_MEDIA_AUDIO ,
-                    Manifest.permission.READ_MEDIA_IMAGES ,
-                    Manifest.permission.READ_MEDIA_VIDEO
-                )
-            )
         }
 
         ActivityCompat.requestPermissions(
@@ -109,6 +74,61 @@ object PermissionsUtils {
             requiredPermissions.toTypedArray() ,
             PermissionsConstants.REQUEST_CODE_STORAGE_PERMISSIONS
         )
+    }
+
+    fun hasMediaPermissions(context : Context) : Boolean {
+        val hasMediaPermissions : Boolean = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ContextCompat.checkSelfPermission(
+                context , Manifest.permission.READ_MEDIA_AUDIO
+            ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                context , Manifest.permission.READ_MEDIA_IMAGES
+            ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                context , Manifest.permission.READ_MEDIA_VIDEO
+            ) == PackageManager.PERMISSION_GRANTED
+        }
+        else {
+            true
+        }
+
+        return hasMediaPermissions
+    }
+
+    fun requestMediaPermissions(activity : Activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val requiredPermissions =
+                    listOf(
+                        Manifest.permission.READ_MEDIA_AUDIO,
+                        Manifest.permission.READ_MEDIA_IMAGES,
+                        Manifest.permission.READ_MEDIA_VIDEO
+                    )
+
+
+            ActivityCompat.requestPermissions(
+                activity,
+                requiredPermissions.toTypedArray(),
+                PermissionsConstants.REQUEST_CODE_STORAGE_PERMISSIONS
+            )
+        }
+    }
+
+    fun hasUsageAccessPermissions(context : Context) : Boolean {
+        val hasUsageStatsPermission : Boolean = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            isAccessGranted(context)
+        }
+        else {
+            true
+        }
+
+        return hasUsageStatsPermission
+    }
+
+    fun requestUsageAccess(activity : Activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (! isAccessGranted(activity)) {
+                val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
+                activity.startActivity(intent)
+            }
+        }
     }
 
     /**

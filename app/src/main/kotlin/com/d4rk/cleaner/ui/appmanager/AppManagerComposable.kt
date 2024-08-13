@@ -106,8 +106,8 @@ fun AppManagerComposable() {
     }
 
     LaunchedEffect(context) {
-        if (! PermissionsUtils.hasStoragePermissions(context)) {
-            PermissionsUtils.requestStoragePermissions(context as Activity)
+        if (! PermissionsUtils.hasUsageAccessPermissions(context)) {
+            PermissionsUtils.requestUsageAccess(context as Activity)
         }
     }
 
@@ -183,9 +183,12 @@ fun AppManagerComposable() {
  * @param apps List of ApplicationInfo objects representing the apps to display.
  */
 @Composable
-fun AppsComposable(apps : List<ApplicationInfo>) {
+fun AppsComposable(apps: List<ApplicationInfo>) {
     LazyColumn {
-        items(apps) { app ->
+        items(
+            items = apps,
+            key = { app -> app.packageName }
+        ) { app ->
             AppItemComposable(app)
         }
     }
@@ -302,10 +305,12 @@ fun AppItemComposable(
  * Composable function for displaying a list of APK files on the device.
  */
 @Composable
-fun ApksComposable(apkFiles : List<ApkInfo>) {
-
+fun ApksComposable(apkFiles: List<ApkInfo>) {
     LazyColumn {
-        items(apkFiles) { apkInfo ->
+        items(
+            items = apkFiles,
+            key = { apkInfo -> apkInfo.id }
+        ) { apkInfo ->
             ApkItemComposable(apkPath = apkInfo.path)
         }
     }
