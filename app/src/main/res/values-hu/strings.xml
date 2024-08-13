@@ -30,6 +30,8 @@
     <string name="share">Megosztás</string>
     <string name="app_info">Alkalmazásinformációk</string>
     <string name="installed">Telepítve"</string>
+    <string name="install">Telepítés</string>
+    <string name="share_apk">APK megosztása</string>
 
     <string name="memory_manager">Memóriakezelő</string>
     <string name="storage_information">Tárhely információ</string>

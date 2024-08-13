@@ -30,6 +30,8 @@
     <string name="share">साझा करें</string>
     <string name="app_info">ऐप जानकारी</string>
     <string name="installed">स्थापित"</string>
+    <string name="install">इंस्टॉल करें</string>
+    <string name="share_apk">APK साझा करें</string>
 
     <string name="memory_manager">मेमोरी मैनेजर</string>
     <string name="storage_information">स्टोरेज जानकारी</string>

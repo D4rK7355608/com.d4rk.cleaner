@@ -30,6 +30,8 @@
     <string name="share">Bagikan</string>
     <string name="app_info">Info aplikasi</string>
     <string name="installed">Terpasang"</string>
+    <string name="install">Pasang</string>
+    <string name="share_apk">Bagikan APK</string>
 
     <string name="memory_manager">Manajer Memori</string>
     <string name="storage_information">Informasi Penyimpanan</string>

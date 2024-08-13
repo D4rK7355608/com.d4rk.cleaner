@@ -30,6 +30,8 @@
     <string name="share">Dela</string>
     <string name="app_info">Appinformation</string>
     <string name="installed">Installerad"</string>
+    <string name="install">Installera</string>
+    <string name="share_apk">Dela APK</string>
 
     <string name="memory_manager">Minneshanterare</string>
     <string name="storage_information">Lagringsinformation</string>

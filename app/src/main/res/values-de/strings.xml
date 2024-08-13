@@ -30,6 +30,8 @@
     <string name="share">Teilen</string>
     <string name="app_info">App-Info</string>
     <string name="installed">Installiert"</string>
+    <string name="install">Installieren</string>
+    <string name="share_apk">APK teilen</string>
 
     <string name="memory_manager">Speichermanager</string>
     <string name="storage_information">Speicherinformationen</string>

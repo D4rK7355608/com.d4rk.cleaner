@@ -30,6 +30,8 @@
     <string name="share">共有</string>
     <string name="app_info">アプリ情報</string>
     <string name="installed">インストール済み"</string>
+    <string name="install">インストール</string>
+    <string name="share_apk">APKを共有</string>
 
     <string name="memory_manager">メモリマネージャー</string>
     <string name="storage_information">ストレージ情報</string>

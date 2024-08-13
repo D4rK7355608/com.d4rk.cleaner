@@ -30,6 +30,8 @@
     <string name="share">Споделяне</string>
     <string name="app_info">Информация за приложението</string>
     <string name="installed">Инсталирано"</string>
+    <string name="install">Инсталирай</string>
+    <string name="share_apk">Сподели APK</string>
 
     <string name="memory_manager">Мениджър на паметта</string>
     <string name="storage_information">Информация за съхранението</string>

@@ -30,6 +30,8 @@
     <string name="share">分享</string>
     <string name="app_info">應用程式資訊</string>
     <string name="installed">已安裝"</string>
+    <string name="install">安裝</string>
+    <string name="share_apk">分享 APK</string>
 
     <string name="memory_manager">記憶體管理員</string>
     <string name="storage_information">儲存空間資訊</string>

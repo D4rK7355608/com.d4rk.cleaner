@@ -30,6 +30,8 @@
     <string name="share">Partajează</string>
     <string name="app_info">Informații despre aplicație</string>
     <string name="installed">Instalat"</string>
+    <string name="install">Instalează</string>
+    <string name="share_apk">Partajează APK</string>
 
     <string name="memory_manager">Manager de memorie</string>
     <string name="storage_information">Informații despre spațiul de stocare</string>

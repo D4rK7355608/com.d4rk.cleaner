@@ -30,6 +30,8 @@
     <string name="share">Udostępnij</string>
     <string name="app_info">Informacje o aplikacji</string>
     <string name="installed">Zainstalowano"</string>
+    <string name="install">Zainstaluj</string>
+    <string name="share_apk">Udostępnij APK</string>
 
     <string name="memory_manager">Menedżer pamięci</string>
     <string name="storage_information">Informacje o pamięci</string>

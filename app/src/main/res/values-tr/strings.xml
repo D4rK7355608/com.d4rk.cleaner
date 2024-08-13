@@ -30,6 +30,8 @@
     <string name="share">Paylaş</string>
     <string name="app_info">Uygulama bilgisi</string>
     <string name="installed">Yüklü"</string>
+    <string name="install">Yükle</string>
+    <string name="share_apk">APK\'yı Paylaş</string>
 
     <string name="memory_manager">Bellek Yöneticisi</string>
     <string name="storage_information">Depolama Bilgileri</string>
