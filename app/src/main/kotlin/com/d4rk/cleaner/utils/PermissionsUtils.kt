@@ -39,12 +39,13 @@ object PermissionsUtils {
             else -> true
         }
 
-        val hasManageStoragePermission : Boolean = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            Environment.isExternalStorageManager()
-        }
-        else {
-            true
-        }
+        val hasManageStoragePermission : Boolean =
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    Environment.isExternalStorageManager()
+                }
+                else {
+                    true
+                }
 
         return hasStoragePermissions && hasManageStoragePermission
     }
@@ -77,47 +78,47 @@ object PermissionsUtils {
     }
 
     fun hasMediaPermissions(context : Context) : Boolean {
-        val hasMediaPermissions : Boolean = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            ContextCompat.checkSelfPermission(
-                context , Manifest.permission.READ_MEDIA_AUDIO
-            ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                context , Manifest.permission.READ_MEDIA_IMAGES
-            ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                context , Manifest.permission.READ_MEDIA_VIDEO
-            ) == PackageManager.PERMISSION_GRANTED
-        }
-        else {
-            true
-        }
+        val hasMediaPermissions : Boolean =
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    ContextCompat.checkSelfPermission(
+                        context , Manifest.permission.READ_MEDIA_AUDIO
+                    ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                        context , Manifest.permission.READ_MEDIA_IMAGES
+                    ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                        context , Manifest.permission.READ_MEDIA_VIDEO
+                    ) == PackageManager.PERMISSION_GRANTED
+                }
+                else {
+                    true
+                }
 
         return hasMediaPermissions
     }
 
     fun requestMediaPermissions(activity : Activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            val requiredPermissions =
-                    listOf(
-                        Manifest.permission.READ_MEDIA_AUDIO,
-                        Manifest.permission.READ_MEDIA_IMAGES,
-                        Manifest.permission.READ_MEDIA_VIDEO
-                    )
-
+            val requiredPermissions : List<String> = listOf(
+                Manifest.permission.READ_MEDIA_AUDIO ,
+                Manifest.permission.READ_MEDIA_IMAGES ,
+                Manifest.permission.READ_MEDIA_VIDEO
+            )
 
             ActivityCompat.requestPermissions(
-                activity,
-                requiredPermissions.toTypedArray(),
+                activity ,
+                requiredPermissions.toTypedArray() ,
                 PermissionsConstants.REQUEST_CODE_STORAGE_PERMISSIONS
             )
         }
     }
 
     fun hasUsageAccessPermissions(context : Context) : Boolean {
-        val hasUsageStatsPermission : Boolean = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            isAccessGranted(context)
-        }
-        else {
-            true
-        }
+        val hasUsageStatsPermission : Boolean =
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    isAccessGranted(context)
+                }
+                else {
+                    true
+                }
 
         return hasUsageStatsPermission
     }
@@ -139,8 +140,10 @@ object PermissionsUtils {
      */
     private fun isAccessGranted(context : Context) : Boolean = try {
         val packageManager : PackageManager = context.packageManager
-        val applicationInfo : ApplicationInfo = packageManager.getApplicationInfo(context.packageName , 0)
-        val appOpsManager : AppOpsManager = context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+        val applicationInfo : ApplicationInfo =
+                packageManager.getApplicationInfo(context.packageName , 0)
+        val appOpsManager : AppOpsManager =
+                context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
         @Suppress("DEPRECATION") val mode : Int = appOpsManager.checkOpNoThrow(
             AppOpsManager.OPSTR_GET_USAGE_STATS , applicationInfo.uid , applicationInfo.packageName
         )
