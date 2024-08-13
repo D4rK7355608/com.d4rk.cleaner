@@ -13,29 +13,29 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 suspend fun getVideoThumbnail(
-    videoPath : String ,
-    thumbnailWidth : Int = 64 ,
-    thumbnailHeight : Int = 64 ,
-) : Bitmap? = withContext(Dispatchers.IO) {
+    videoPath: String,
+    thumbnailWidth: Int = 64,
+    thumbnailHeight: Int = 64,
+): Bitmap? = withContext(Dispatchers.IO) {
     val mediaMetadataRetriever = MediaMetadataRetriever()
     try {
         mediaMetadataRetriever.setDataSource(videoPath)
-        val bitmap : Bitmap? = mediaMetadataRetriever.getFrameAtTime(
-            1000 , MediaMetadataRetriever.OPTION_CLOSEST_SYNC
+        val bitmap: Bitmap? = mediaMetadataRetriever.getFrameAtTime(
+            1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC
         )
         bitmap?.let {
-            Bitmap.createScaledBitmap(it , thumbnailWidth , thumbnailHeight , false)
+            Bitmap.createScaledBitmap(it, thumbnailWidth, thumbnailHeight, false)
         }
-    } catch (e : Exception) {
+    } catch (e: Exception) {
         null
     } finally {
         mediaMetadataRetriever.release()
     }
 }
 
-fun getFileIcon(extension : String , context : Context) : Int {
-    val lowercaseExtension : String = extension.lowercase()
-    val resources : Resources = context.resources
+fun getFileIcon(extension: String, context: Context): Int {
+    val lowercaseExtension: String = extension.lowercase()
+    val resources: Resources = context.resources
     return when (lowercaseExtension) {
         in resources.getStringArray(R.array.apk_extensions) -> R.drawable.ic_apk_document
         in resources.getStringArray(R.array.image_extensions) -> R.drawable.ic_image
@@ -46,16 +46,16 @@ fun getFileIcon(extension : String , context : Context) : Int {
     }
 }
 
-fun Drawable.toBitmapDrawable(resources : Resources = Resources.getSystem()) : BitmapDrawable {
+fun Drawable.toBitmapDrawable(resources: Resources = Resources.getSystem()): BitmapDrawable {
     return when (this) {
         is BitmapDrawable -> this
         is AdaptiveIconDrawable -> {
-            val bitmap : Bitmap =
-                    Bitmap.createBitmap(intrinsicWidth , intrinsicHeight , Bitmap.Config.ARGB_8888)
+            val bitmap: Bitmap =
+                Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
             val canvas = Canvas(bitmap)
-            setBounds(0 , 0 , canvas.width , canvas.height)
+            setBounds(0, 0, canvas.width, canvas.height)
             draw(canvas)
-            BitmapDrawable(resources , bitmap)
+            BitmapDrawable(resources, bitmap)
         }
 
         else -> throw IllegalArgumentException("Unsupported drawable type: ${this::class.java.name}")

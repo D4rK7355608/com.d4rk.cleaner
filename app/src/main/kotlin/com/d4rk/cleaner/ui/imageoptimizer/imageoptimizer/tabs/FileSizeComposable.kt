@@ -31,38 +31,38 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FileSizeScreen(viewModel : ImageOptimizerViewModel) {
-    val state : State<ImageOptimizerState> = viewModel.uiState.collectAsState()
-    var fileSizeText : String by remember { mutableStateOf(state.value.fileSizeKB.toString()) }
-    var expanded : Boolean by remember { mutableStateOf(value = false) }
-    val presetSizes : List<String> = stringArrayResource(R.array.file_sizes).toList()
-    var selectedPresetSize : String by remember { mutableStateOf(value = "") }
-    val coroutineScope : CoroutineScope = rememberCoroutineScope()
+fun FileSizeScreen(viewModel: ImageOptimizerViewModel) {
+    val state: State<ImageOptimizerState> = viewModel.uiState.collectAsState()
+    var fileSizeText: String by remember { mutableStateOf(state.value.fileSizeKB.toString()) }
+    var expanded: Boolean by remember { mutableStateOf(value = false) }
+    val presetSizes: List<String> = stringArrayResource(R.array.file_sizes).toList()
+    var selectedPresetSize: String by remember { mutableStateOf(value = "") }
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
     Column(modifier = Modifier.padding(16.dp)) {
-        ExposedDropdownMenuBox(expanded = expanded , onExpandedChange = { expanded = ! expanded }) {
-            OutlinedTextField(value = fileSizeText ,
-                              onValueChange = { newValue ->
-                                  fileSizeText = newValue
-                                  coroutineScope.launch {
-                                      viewModel.setFileSize(newValue.toIntOrNull() ?: 0)
-                                  }
-                              } ,
-                              label = { Text(stringResource(R.string.file_size)) } ,
-                              singleLine = true ,
-                              keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number) ,
-                              supportingText = {
-                                  Text(text = stringResource(R.string.enter_a_value))
-                              } ,
-                              trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) } ,
-                              isError = fileSizeText.isNotEmpty() && fileSizeText.toFloatOrNull() == null ,
-                              modifier = Modifier
-                                      .menuAnchor()
-                                      .fillMaxWidth()
-                                      .padding(top = 12.dp))
+        ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }) {
+            OutlinedTextField(value = fileSizeText,
+                onValueChange = { newValue ->
+                    fileSizeText = newValue
+                    coroutineScope.launch {
+                        viewModel.setFileSize(newValue.toIntOrNull() ?: 0)
+                    }
+                },
+                label = { Text(stringResource(R.string.file_size)) },
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                supportingText = {
+                    Text(text = stringResource(R.string.enter_a_value))
+                },
+                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                isError = fileSizeText.isNotEmpty() && fileSizeText.toFloatOrNull() == null,
+                modifier = Modifier
+                    .menuAnchor()
+                    .fillMaxWidth()
+                    .padding(top = 12.dp))
 
-            ExposedDropdownMenu(expanded = expanded , onDismissRequest = { expanded = false }) {
+            ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
                 presetSizes.forEach { size ->
-                    DropdownMenuItem(text = { Text(text = "$size KB") } , onClick = {
+                    DropdownMenuItem(text = { Text(text = "$size KB") }, onClick = {
                         selectedPresetSize = size
                         fileSizeText = size
                         coroutineScope.launch {

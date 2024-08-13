@@ -55,66 +55,66 @@ import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.tabs.QuickCompressScree
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class , ExperimentalFoundationApi::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun ImageOptimizerComposable(
-    activity : ImageOptimizerActivity , viewModel : ImageOptimizerViewModel
+    activity: ImageOptimizerActivity, viewModel: ImageOptimizerViewModel
 ) {
-    val context : Context = LocalContext.current
-    val dataStore : DataStore = DataStore.getInstance(context)
-    val coroutineScope : CoroutineScope = rememberCoroutineScope()
-    val scrollBehavior : TopAppBarScrollBehavior =
-            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    val adsState : State<Boolean> = dataStore.ads.collectAsState(initial = true)
-    val tabs : List<String> = listOf(
-        stringResource(R.string.quick_compress) ,
-        stringResource(R.string.file_size) ,
-        stringResource(R.string.manual) ,
+    val context: Context = LocalContext.current
+    val dataStore: DataStore = DataStore.getInstance(context)
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
+    val scrollBehavior: TopAppBarScrollBehavior =
+        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val adsState: State<Boolean> = dataStore.ads.collectAsState(initial = true)
+    val tabs: List<String> = listOf(
+        stringResource(R.string.quick_compress),
+        stringResource(R.string.file_size),
+        stringResource(R.string.manual),
     )
-    val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.image_optimizer)) } ,
-                       navigationIcon = {
-                           IconButton(onClick = {
-                               activity.finish()
-                           }) {
-                               Icon(
-                                   Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null
-                               )
-                           }
-                       } ,
-                       scrollBehavior = scrollBehavior)
+    val pagerState: PagerState = rememberPagerState(pageCount = { tabs.size })
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.image_optimizer)) },
+            navigationIcon = {
+                IconButton(onClick = {
+                    activity.finish()
+                }) {
+                    Icon(
+                        Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null
+                    )
+                }
+            },
+            scrollBehavior = scrollBehavior)
     }) { paddingValues ->
         ConstraintLayout(
             modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues)
+                .fillMaxSize()
+                .padding(paddingValues)
         ) {
-            val (imageCardView : ConstrainedLayoutReference , tabLayout : ConstrainedLayoutReference , viewPager : ConstrainedLayoutReference , compressButton : ConstrainedLayoutReference , adView : ConstrainedLayoutReference) = createRefs()
+            val (imageCardView: ConstrainedLayoutReference, tabLayout: ConstrainedLayoutReference, viewPager: ConstrainedLayoutReference, compressButton: ConstrainedLayoutReference, adView: ConstrainedLayoutReference) = createRefs()
 
             Card(
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .constrainAs(imageCardView) {
-                            top.linkTo(parent.top)
-                            start.linkTo(parent.start)
-                            end.linkTo(parent.end)
-                            bottom.linkTo(tabLayout.top)
-                        }
-                        .padding(24.dp) ,
+                    .fillMaxWidth()
+                    .constrainAs(imageCardView) {
+                        top.linkTo(parent.top)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                        bottom.linkTo(tabLayout.top)
+                    }
+                    .padding(24.dp),
             ) {
                 ImageDisplay(viewModel)
             }
 
-            TabRow(selectedTabIndex = pagerState.currentPage ,
-                   modifier = Modifier.constrainAs(tabLayout) {
-                       top.linkTo(imageCardView.bottom)
-                       start.linkTo(parent.start)
-                       end.linkTo(parent.end)
-                   }) {
-                tabs.forEachIndexed { index , title ->
-                    Tab(text = { Text(title) } ,
-                        selected = pagerState.currentPage == index ,
+            TabRow(selectedTabIndex = pagerState.currentPage,
+                modifier = Modifier.constrainAs(tabLayout) {
+                    top.linkTo(imageCardView.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }) {
+                tabs.forEachIndexed { index, title ->
+                    Tab(text = { Text(title) },
+                        selected = pagerState.currentPage == index,
                         onClick = {
                             coroutineScope.launch {
                                 pagerState.animateScrollToPage(index)
@@ -123,7 +123,7 @@ fun ImageOptimizerComposable(
                 }
             }
 
-            HorizontalPager(state = pagerState , modifier = Modifier.constrainAs(viewPager) {
+            HorizontalPager(state = pagerState, modifier = Modifier.constrainAs(viewPager) {
                 top.linkTo(tabLayout.bottom)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
@@ -139,18 +139,17 @@ fun ImageOptimizerComposable(
 
             OutlinedButton(onClick = {
 
-            } , modifier = Modifier
-                    .constrainAs(compressButton) {
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        if (adsState.value) {
-                            bottom.linkTo(adView.top)
-                        }
-                        else {
-                            bottom.linkTo(parent.bottom)
-                        }
+            }, modifier = Modifier
+                .constrainAs(compressButton) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    if (adsState.value) {
+                        bottom.linkTo(adView.top)
+                    } else {
+                        bottom.linkTo(parent.bottom)
                     }
-                    .padding(12.dp)) {
+                }
+                .padding(12.dp)) {
                 Text(stringResource(R.string.optimize_image))
             }
 
@@ -158,16 +157,16 @@ fun ImageOptimizerComposable(
                 bottom.linkTo(parent.bottom)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
-            } , dataStore = dataStore)
+            }, dataStore = dataStore)
         }
     }
 }
 
 
 @Composable
-fun ImageDisplay(viewModel : ImageOptimizerViewModel) {
-    val state : State<ImageOptimizerState> = viewModel.uiState.collectAsState()
-    val showCompressedImage : MutableState<Boolean> = remember { mutableStateOf(value = false) }
+fun ImageDisplay(viewModel: ImageOptimizerViewModel) {
+    val state: State<ImageOptimizerState> = viewModel.uiState.collectAsState()
+    val showCompressedImage: MutableState<Boolean> = remember { mutableStateOf(value = false) }
 
     LaunchedEffect(key1 = state.value.compressedImageUri) {
         if (state.value.compressedImageUri != null) {
@@ -177,21 +176,20 @@ fun ImageDisplay(viewModel : ImageOptimizerViewModel) {
 
     Box(
         modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(ratio = 1f) ,
+            .fillMaxWidth()
+            .aspectRatio(ratio = 1f),
         contentAlignment = Alignment.Center
     ) {
         if (state.value.isLoading) {
             CircularProgressIndicator()
-        }
-        else {
+        } else {
             if (showCompressedImage.value) {
                 state.value.compressedImageUri?.let { imageUri ->
                     AsyncImage(
-                        model = imageUri ,
-                        contentDescription = "Selected Image" ,
-                        modifier = Modifier.fillMaxSize() ,
-                        contentScale = ContentScale.Crop ,
+                        model = imageUri,
+                        contentDescription = "Selected Image",
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop,
                     )
                 }
             }

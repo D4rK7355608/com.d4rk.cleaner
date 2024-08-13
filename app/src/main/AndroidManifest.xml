@@ -161,15 +161,7 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <!--        <receiver
-                    android:name=".receivers.CleanReceiver"
-                    android:exported="false">
-                    <intent-filter>
-                        <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                    </intent-filter>
-                </receiver>-->
         <!--suppress AndroidDomInspection -->
-
         <service
             android:name="com.google.android.gms.metadata.ModuleDependencies"
             android:enabled="false"

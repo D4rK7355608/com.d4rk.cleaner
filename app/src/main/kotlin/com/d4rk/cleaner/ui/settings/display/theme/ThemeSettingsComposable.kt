@@ -43,40 +43,40 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ThemeSettingsComposable(activity : ThemeSettingsActivity) {
-    val context : Context = LocalContext.current
-    val dataStore : DataStore = DataStore.getInstance(context)
-    val scope : CoroutineScope = rememberCoroutineScope()
-    val scrollBehavior : TopAppBarScrollBehavior =
-            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    val themeMode : String = dataStore.themeMode.collectAsState(initial = "follow_system").value
-    val isAmoledMode : State<Boolean> = dataStore.amoledMode.collectAsState(initial = false)
+fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
+    val context: Context = LocalContext.current
+    val dataStore: DataStore = DataStore.getInstance(context)
+    val scope: CoroutineScope = rememberCoroutineScope()
+    val scrollBehavior: TopAppBarScrollBehavior =
+        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val themeMode: String = dataStore.themeMode.collectAsState(initial = "follow_system").value
+    val isAmoledMode: State<Boolean> = dataStore.amoledMode.collectAsState(initial = false)
 
-    val themeOptions : List<String> = listOf(
-        stringResource(R.string.follow_system) ,
-        stringResource(R.string.dark_mode) ,
-        stringResource(R.string.light_mode) ,
+    val themeOptions: List<String> = listOf(
+        stringResource(R.string.follow_system),
+        stringResource(R.string.dark_mode),
+        stringResource(R.string.light_mode),
     )
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.dark_theme)) } , navigationIcon = {
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.dark_theme)) }, navigationIcon = {
             IconButton(onClick = {
                 activity.finish()
             }) {
                 Icon(
-                    Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null
+                    Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null
                 )
             }
-        } , scrollBehavior = scrollBehavior)
+        }, scrollBehavior = scrollBehavior)
     }) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues) ,
+                    .fillMaxSize()
+                    .padding(paddingValues),
             ) {
                 item {
                     SwitchCardComposable(
-                        title = stringResource(R.string.amoled_mode) , switchState = isAmoledMode
+                        title = stringResource(R.string.amoled_mode), switchState = isAmoledMode
                     ) { isChecked ->
                         scope.launch(Dispatchers.IO) {
                             dataStore.saveAmoledMode(isChecked)
@@ -86,23 +86,23 @@ fun ThemeSettingsComposable(activity : ThemeSettingsActivity) {
                 item {
                     Column(
                         modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(24.dp)
+                            .fillMaxWidth()
+                            .padding(24.dp)
                     ) {
                         themeOptions.forEach { text ->
                             Row(
-                                Modifier.fillMaxWidth() ,
+                                Modifier.fillMaxWidth(),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                RadioButton(selected = (text == themeMode) , onClick = {
+                                RadioButton(selected = (text == themeMode), onClick = {
                                     scope.launch(Dispatchers.IO) {
                                         dataStore.saveThemeMode(text)
                                         dataStore.themeModeState.value = text
                                     }
                                 })
                                 Text(
-                                    text = text ,
-                                    style = MaterialTheme.typography.bodyMedium.merge() ,
+                                    text = text,
+                                    style = MaterialTheme.typography.bodyMedium.merge(),
                                     modifier = Modifier.padding(start = 16.dp)
                                 )
                             }
@@ -112,10 +112,10 @@ fun ThemeSettingsComposable(activity : ThemeSettingsActivity) {
                 item {
                     Column(
                         modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(24.dp)
+                            .fillMaxWidth()
+                            .padding(24.dp)
                     ) {
-                        Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
+                        Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(stringResource(R.string.summary_dark_theme))
                     }

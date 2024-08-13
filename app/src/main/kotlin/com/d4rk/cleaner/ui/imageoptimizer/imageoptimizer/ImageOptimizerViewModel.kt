@@ -24,37 +24,37 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 
-class ImageOptimizerViewModel(application : Application) : AndroidViewModel(application) {
+class ImageOptimizerViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _uiState = MutableStateFlow(ImageOptimizerState())
     val uiState = _uiState.asStateFlow()
 
-    private fun getAppContext() : Context = getApplication<Application>().applicationContext
+    private fun getAppContext(): Context = getApplication<Application>().applicationContext
 
-    suspend fun setQuickCompressValue(value : Int) {
+    suspend fun setQuickCompressValue(value: Int) {
         _uiState.emit(_uiState.value.copy(quickCompressValue = value))
         compressImage()
     }
 
-    suspend fun setFileSize(size : Int) {
+    suspend fun setFileSize(size: Int) {
         _uiState.emit(_uiState.value.copy(fileSizeKB = size))
         compressImage()
     }
 
-    suspend fun setManualCompressSettings(width : Int , height : Int , quality : Int) {
+    suspend fun setManualCompressSettings(width: Int, height: Int, quality: Int) {
         _uiState.emit(
             _uiState.value.copy(
-                manualWidth = width , manualHeight = height , manualQuality = quality
+                manualWidth = width, manualHeight = height, manualQuality = quality
             )
         )
         compressImage()
     }
 
-    suspend fun onImageSelected(uri : Uri) {
+    suspend fun onImageSelected(uri: Uri) {
         _uiState.emit(
             _uiState.value.copy(
-                selectedImageUri = uri ,
-                compressedImageUri = uri ,
+                selectedImageUri = uri,
+                compressedImageUri = uri,
             )
         )
 
@@ -62,14 +62,14 @@ class ImageOptimizerViewModel(application : Application) : AndroidViewModel(appl
 
     private fun compressImage() = viewModelScope.launch {
         _uiState.emit(_uiState.value.copy(isLoading = true))
-        val context : Context = getAppContext()
-        val originalFile : File? =
-                _uiState.value.selectedImageUri?.let { getRealFileFromUri(context , it) }
-        val currentTab : Int = _uiState.value.currentTab
-        val compressedFile : File? = originalFile?.let { file ->
+        val context: Context = getAppContext()
+        val originalFile: File? =
+            _uiState.value.selectedImageUri?.let { getRealFileFromUri(context, it) }
+        val currentTab: Int = _uiState.value.currentTab
+        val compressedFile: File? = originalFile?.let { file ->
             withContext(Dispatchers.IO) {
                 try {
-                    Compressor.compress(context , file) {
+                    Compressor.compress(context, file) {
                         when (currentTab) {
                             0 -> {
                                 quality(_uiState.value.quickCompressValue)
@@ -83,34 +83,34 @@ class ImageOptimizerViewModel(application : Application) : AndroidViewModel(appl
 
                             2 -> {
                                 resolution(
-                                    _uiState.value.manualWidth , _uiState.value.manualHeight
+                                    _uiState.value.manualWidth, _uiState.value.manualHeight
                                 )
                                 quality(_uiState.value.manualQuality)
                             }
                         }
                     }
-                } catch (e : Exception) {
+                } catch (e: Exception) {
                     null
                 }
             }
         }
 
         _uiState.emit(_uiState.value.copy(
-            isLoading = false ,
+            isLoading = false,
             compressedImageUri = compressedFile?.let { Uri.fromFile(it) }
-                ?: _uiState.value.selectedImageUri ,
+                ?: _uiState.value.selectedImageUri,
         ))
     }
 
-    private fun getRealFileFromUri(context : Context , uri : Uri) : File? {
+    private fun getRealFileFromUri(context: Context, uri: Uri): File? {
         if (uri.scheme == "content") {
-            val cursor : Cursor? = context.contentResolver.query(uri , null , null , null , null)
+            val cursor: Cursor? = context.contentResolver.query(uri, null, null, null, null)
             cursor?.use {
                 if (it.moveToFirst()) {
-                    val nameIndex : Int = it.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-                    val fileName : String = it.getString(nameIndex)
-                    val file = File(context.cacheDir , fileName)
-                    val inputStream : InputStream? = context.contentResolver.openInputStream(uri)
+                    val nameIndex: Int = it.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                    val fileName: String = it.getString(nameIndex)
+                    val file = File(context.cacheDir, fileName)
+                    val inputStream: InputStream? = context.contentResolver.openInputStream(uri)
                     inputStream?.use { stream ->
                         val outputStream = FileOutputStream(file)
                         stream.copyTo(outputStream)
@@ -118,9 +118,8 @@ class ImageOptimizerViewModel(application : Application) : AndroidViewModel(appl
                     return file
                 }
             }
-        }
-        else if (uri.scheme == "file") {
-            return File(uri.path !!)
+        } else if (uri.scheme == "file") {
+            return File(uri.path!!)
         }
         return null
     }

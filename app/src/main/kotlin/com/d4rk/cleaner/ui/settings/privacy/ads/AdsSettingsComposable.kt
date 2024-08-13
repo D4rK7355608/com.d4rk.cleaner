@@ -50,33 +50,33 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AdsSettingsComposable(activity : AdsSettingsActivity) {
-    val context : Context = LocalContext.current
-    val dataStore : DataStore = DataStore.getInstance(context)
-    val switchState : State<Boolean> = dataStore.ads.collectAsState(initial = true)
-    val scope : CoroutineScope = rememberCoroutineScope()
-    val scrollBehavior : TopAppBarScrollBehavior =
-            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.ads)) } , navigationIcon = {
+fun AdsSettingsComposable(activity: AdsSettingsActivity) {
+    val context: Context = LocalContext.current
+    val dataStore: DataStore = DataStore.getInstance(context)
+    val switchState: State<Boolean> = dataStore.ads.collectAsState(initial = true)
+    val scope: CoroutineScope = rememberCoroutineScope()
+    val scrollBehavior: TopAppBarScrollBehavior =
+        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.ads)) }, navigationIcon = {
             IconButton(onClick = {
                 activity.finish()
             }) {
                 Icon(
-                    Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null
+                    Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null
                 )
             }
-        } , scrollBehavior = scrollBehavior)
+        }, scrollBehavior = scrollBehavior)
     }) { innerPadding ->
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding) ,
+                    .fillMaxSize()
+                    .padding(innerPadding),
             ) {
                 item {
                     SwitchCardComposable(
-                        title = stringResource(R.string.display_ads) , switchState = switchState
+                        title = stringResource(R.string.display_ads), switchState = switchState
                     ) { isChecked ->
                         scope.launch(Dispatchers.IO) {
                             dataStore.saveAds(isChecked)
@@ -85,57 +85,57 @@ fun AdsSettingsComposable(activity : AdsSettingsActivity) {
                 }
                 item {
                     Box(modifier = Modifier.padding(horizontal = 8.dp)) {
-                        PreferenceItem(title = stringResource(R.string.personalized_ads) ,
-                                       enabled = switchState.value ,
-                                       summary = stringResource(id = R.string.summary_ads_personalized_ads) ,
-                                       onClick = {
-                                           val params : ConsentRequestParameters =
-                                                   ConsentRequestParameters.Builder()
-                                                           .setTagForUnderAgeOfConsent(false)
-                                                           .build()
-                                           val consentInformation : ConsentInformation =
-                                                   UserMessagingPlatform.getConsentInformation(
-                                                       context
-                                                   )
-                                           consentInformation.requestConsentInfoUpdate(activity ,
-                                                                                       params ,
-                                                                                       {
-                                                                                           activity.openForm()
-                                                                                       } ,
-                                                                                       {})
-                                       })
+                        PreferenceItem(title = stringResource(R.string.personalized_ads),
+                            enabled = switchState.value,
+                            summary = stringResource(id = R.string.summary_ads_personalized_ads),
+                            onClick = {
+                                val params: ConsentRequestParameters =
+                                    ConsentRequestParameters.Builder()
+                                        .setTagForUnderAgeOfConsent(false)
+                                        .build()
+                                val consentInformation: ConsentInformation =
+                                    UserMessagingPlatform.getConsentInformation(
+                                        context
+                                    )
+                                consentInformation.requestConsentInfoUpdate(activity,
+                                    params,
+                                    {
+                                        activity.openForm()
+                                    },
+                                    {})
+                            })
                     }
                 }
                 item {
                     Column(
                         modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(24.dp)
+                            .fillMaxWidth()
+                            .padding(24.dp)
                     ) {
-                        Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
+                        Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(stringResource(R.string.summary_ads))
                         val annotatedString = buildAnnotatedString {
                             withStyle(
                                 style = SpanStyle(
-                                    color = MaterialTheme.colorScheme.primary ,
+                                    color = MaterialTheme.colorScheme.primary,
                                     textDecoration = TextDecoration.Underline
                                 )
                             ) {
                                 append(stringResource(R.string.learn_more))
                             }
                             addStringAnnotation(
-                                tag = "URL" ,
-                                annotation = "https://sites.google.com/view/d4rk7355608/more/apps/ads-help-center" ,
-                                start = 0 ,
+                                tag = "URL",
+                                annotation = "https://sites.google.com/view/d4rk7355608/more/apps/ads-help-center",
+                                start = 0,
                                 end = stringResource(R.string.learn_more).length
                             )
                         }
-                        ClickableText(text = annotatedString , onClick = { offset ->
-                            annotatedString.getStringAnnotations(tag = "URL" , offset , offset)
-                                    .firstOrNull()?.let { annotation ->
-                                        IntentUtils.openUrl(context , annotation.item)
-                                    }
+                        ClickableText(text = annotatedString, onClick = { offset ->
+                            annotatedString.getStringAnnotations(tag = "URL", offset, offset)
+                                .firstOrNull()?.let { annotation ->
+                                    IntentUtils.openUrl(context, annotation.item)
+                                }
                         })
                     }
                 }

@@ -18,15 +18,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AppManagerViewModel(private val application : Application) : ViewModel() {
+class AppManagerViewModel(private val application: Application) : ViewModel() {
     private val _installedApps = MutableStateFlow<List<ApplicationInfo>>(emptyList())
-    val installedApps : StateFlow<List<ApplicationInfo>> = _installedApps.asStateFlow()
+    val installedApps: StateFlow<List<ApplicationInfo>> = _installedApps.asStateFlow()
 
     private val _apkFiles = MutableStateFlow<List<ApkInfo>>(emptyList())
-    val apkFiles : StateFlow<List<ApkInfo>> = _apkFiles.asStateFlow()
+    val apkFiles: StateFlow<List<ApkInfo>> = _apkFiles.asStateFlow()
 
     private val _isLoading = MutableStateFlow(value = true)
-    val isLoading : StateFlow<Boolean> = _isLoading.asStateFlow()
+    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
     init {
         loadAppData()
@@ -38,7 +38,7 @@ class AppManagerViewModel(private val application : Application) : ViewModel() {
             try {
                 _installedApps.value = emptyList()
                 _apkFiles.value = emptyList()
-                awaitAll(async { loadInstalledApps() } , async { loadApkFiles() })
+                awaitAll(async { loadInstalledApps() }, async { loadApkFiles() })
             } finally {
                 _isLoading.value = false
             }
@@ -51,7 +51,7 @@ class AppManagerViewModel(private val application : Application) : ViewModel() {
         }
     }
 
-    private suspend fun getInstalledApps() : List<ApplicationInfo> {
+    private suspend fun getInstalledApps(): List<ApplicationInfo> {
         return withContext(Dispatchers.IO) {
             application.packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
         }
@@ -63,31 +63,31 @@ class AppManagerViewModel(private val application : Application) : ViewModel() {
         }
     }
 
-    private suspend fun getApkFilesFromStorage() : List<ApkInfo> {
+    private suspend fun getApkFilesFromStorage(): List<ApkInfo> {
         return withContext(Dispatchers.IO) {
-            val apkFiles : MutableList<ApkInfo> = mutableListOf<ApkInfo>()
-            val uri : Uri = MediaStore.Files.getContentUri("external")
-            val projection : Array<String> = arrayOf(
-                MediaStore.Files.FileColumns._ID ,
-                MediaStore.Files.FileColumns.DATA ,
+            val apkFiles: MutableList<ApkInfo> = mutableListOf<ApkInfo>()
+            val uri: Uri = MediaStore.Files.getContentUri("external")
+            val projection: Array<String> = arrayOf(
+                MediaStore.Files.FileColumns._ID,
+                MediaStore.Files.FileColumns.DATA,
                 MediaStore.Files.FileColumns.SIZE
             )
             val selection = "${MediaStore.Files.FileColumns.MIME_TYPE} = ?"
-            val selectionArgs : Array<String> = arrayOf("application/vnd.android.package-archive")
-            val cursor : Cursor? = application.contentResolver.query(
-                uri , projection , selection , selectionArgs , null
+            val selectionArgs: Array<String> = arrayOf("application/vnd.android.package-archive")
+            val cursor: Cursor? = application.contentResolver.query(
+                uri, projection, selection, selectionArgs, null
             )
 
             cursor?.use {
-                val idColumn : Int = it.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID)
-                val dataColumn : Int = it.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA)
-                val sizeColumn : Int = it.getColumnIndexOrThrow(MediaStore.Files.FileColumns.SIZE)
+                val idColumn: Int = it.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID)
+                val dataColumn: Int = it.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA)
+                val sizeColumn: Int = it.getColumnIndexOrThrow(MediaStore.Files.FileColumns.SIZE)
 
                 while (it.moveToNext()) {
-                    val id : Long = it.getLong(idColumn)
-                    val path : String = it.getString(dataColumn)
-                    val size : Long = it.getLong(sizeColumn)
-                    apkFiles.add(ApkInfo(id , path , size))
+                    val id: Long = it.getLong(idColumn)
+                    val path: String = it.getString(dataColumn)
+                    val size: Long = it.getLong(sizeColumn)
+                    apkFiles.add(ApkInfo(id, path, size))
                 }
             }
             apkFiles

@@ -34,12 +34,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var dataStore : DataStore
-    private lateinit var appUpdateManager : AppUpdateManager
-    private var appUpdateNotificationsManager : AppUpdateNotificationsManager =
-            AppUpdateNotificationsManager(this)
+    private lateinit var dataStore: DataStore
+    private lateinit var appUpdateManager: AppUpdateManager
+    private var appUpdateNotificationsManager: AppUpdateNotificationsManager =
+        AppUpdateNotificationsManager(this)
 
-    override fun onCreate(savedInstanceState : Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         enableEdgeToEdge()
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                     MainComposable()
                 }
@@ -81,10 +81,10 @@ class MainActivity : AppCompatActivity() {
     @Suppress("DEPRECATION")
     override fun onBackPressed() {
         MaterialAlertDialogBuilder(this).setTitle(R.string.close).setMessage(R.string.summary_close)
-                .setPositiveButton(android.R.string.yes) { _ , _ ->
-                    super.onBackPressed()
-                    moveTaskToBack(true)
-                }.setNegativeButton(android.R.string.no , null).apply { show() }
+            .setPositiveButton(android.R.string.yes) { _, _ ->
+                super.onBackPressed()
+                moveTaskToBack(true)
+            }.setNegativeButton(android.R.string.no, null).apply { show() }
     }
 
     /**
@@ -101,16 +101,16 @@ class MainActivity : AppCompatActivity() {
      * @param data An Intent, which can return result data to the caller (various data can be attached to Intent "extras").
      */
     @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode : Int , resultCode : Int , data : Intent?) {
-        super.onActivityResult(requestCode , resultCode , data)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1) {
             when (resultCode) {
                 RESULT_OK -> {
-                    val snackbar : Snackbar = Snackbar.make(
-                        findViewById(android.R.id.content) ,
-                        R.string.snack_app_updated ,
+                    val snackbar: Snackbar = Snackbar.make(
+                        findViewById(android.R.id.content),
+                        R.string.snack_app_updated,
                         Snackbar.LENGTH_LONG
-                    ).setAction(android.R.string.ok , null)
+                    ).setAction(android.R.string.ok, null)
                     snackbar.show()
                 }
 
@@ -138,7 +138,7 @@ class MainActivity : AppCompatActivity() {
     private fun checkForFlexibleUpdate() {
         lifecycleScope.launch {
             try {
-                val appUpdateInfo : AppUpdateInfo = appUpdateManager.appUpdateInfo.await()
+                val appUpdateInfo: AppUpdateInfo = appUpdateManager.appUpdateInfo.await()
                 if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && appUpdateInfo.isUpdateTypeAllowed(
                         AppUpdateType.IMMEDIATE
                     ) && appUpdateInfo.updateAvailability() != UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity() {
                                 info.clientVersionStalenessDays()?.let {
                                     if (it > 90) {
                                         appUpdateManager.startUpdateFlowForResult(
-                                            info , AppUpdateType.IMMEDIATE , this@MainActivity , 1
+                                            info, AppUpdateType.IMMEDIATE, this@MainActivity, 1
                                         )
                                     }
                                 }
@@ -163,7 +163,7 @@ class MainActivity : AppCompatActivity() {
                                 info.clientVersionStalenessDays()?.let {
                                     if (it < 90) {
                                         appUpdateManager.startUpdateFlowForResult(
-                                            info , AppUpdateType.FLEXIBLE , this@MainActivity , 1
+                                            info, AppUpdateType.FLEXIBLE, this@MainActivity, 1
                                         )
                                     }
                                 }
@@ -171,21 +171,21 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
-            } catch (e : Exception) {
-                if (! BuildConfig.DEBUG) {
+            } catch (e: Exception) {
+                if (!BuildConfig.DEBUG) {
                     when (e) {
-                        is NoConnectionError , is TimeoutError -> {
+                        is NoConnectionError, is TimeoutError -> {
                             Snackbar.make(
-                                findViewById(android.R.id.content) ,
-                                getString(R.string.snack_network_error) ,
+                                findViewById(android.R.id.content),
+                                getString(R.string.snack_network_error),
                                 Snackbar.LENGTH_LONG
                             ).show()
                         }
 
                         else -> {
                             Snackbar.make(
-                                findViewById(android.R.id.content) ,
-                                getString(R.string.snack_general_error) ,
+                                findViewById(android.R.id.content),
+                                getString(R.string.snack_general_error),
                                 Snackbar.LENGTH_LONG
                             ).show()
                         }
@@ -203,8 +203,8 @@ class MainActivity : AppCompatActivity() {
      * to check for updates and initiate the appropriate update flow if conditions are met.
      */
     private fun showUpdateFailedSnackbar() {
-        val snackbar : Snackbar = Snackbar.make(
-            findViewById(android.R.id.content) , R.string.snack_update_failed , Snackbar.LENGTH_LONG
+        val snackbar: Snackbar = Snackbar.make(
+            findViewById(android.R.id.content), R.string.snack_update_failed, Snackbar.LENGTH_LONG
         ).setAction(R.string.try_again) {
             checkForFlexibleUpdate()
         }
@@ -233,7 +233,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             val isEnabled = dataStore.usageAndDiagnostics.first()
             FirebaseAnalytics.getInstance(this@MainActivity)
-                    .setAnalyticsCollectionEnabled(isEnabled)
+                .setAnalyticsCollectionEnabled(isEnabled)
             FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(isEnabled)
         }
     }
@@ -242,7 +242,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             if (dataStore.startup.first()) {
                 dataStore.saveStartup(isFirstTime = false)
-                startActivity(Intent(this@MainActivity , StartupActivity::class.java))
+                startActivity(Intent(this@MainActivity, StartupActivity::class.java))
             }
         }
     }

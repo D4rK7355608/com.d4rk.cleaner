@@ -26,26 +26,25 @@ object PermissionsUtils {
      * @param context The application context.
      * @return True if all required permissions are granted, false otherwise.
      */
-    fun hasStoragePermissions(context : Context) : Boolean {
-        val hasStoragePermissions : Boolean = when {
+    fun hasStoragePermissions(context: Context): Boolean {
+        val hasStoragePermissions: Boolean = when {
             Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q -> ContextCompat.checkSelfPermission(
-                context , Manifest.permission.WRITE_EXTERNAL_STORAGE
+                context, Manifest.permission.WRITE_EXTERNAL_STORAGE
             ) == PackageManager.PERMISSION_GRANTED
 
             Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2 -> ContextCompat.checkSelfPermission(
-                context , Manifest.permission.READ_EXTERNAL_STORAGE
+                context, Manifest.permission.READ_EXTERNAL_STORAGE
             ) == PackageManager.PERMISSION_GRANTED
 
             else -> true
         }
 
-        val hasManageStoragePermission : Boolean =
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    Environment.isExternalStorageManager()
-                }
-                else {
-                    true
-                }
+        val hasManageStoragePermission: Boolean =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                Environment.isExternalStorageManager()
+            } else {
+                true
+            }
 
         return hasStoragePermissions && hasManageStoragePermission
     }
@@ -55,15 +54,15 @@ object PermissionsUtils {
      *
      * @param activity The Activity instance required to request permissions.
      */
-    fun requestStoragePermissions(activity : Activity) {
-        val requiredPermissions : MutableList<String> = mutableListOf(
-            Manifest.permission.WRITE_EXTERNAL_STORAGE , Manifest.permission.READ_EXTERNAL_STORAGE
+    fun requestStoragePermissions(activity: Activity) {
+        val requiredPermissions: MutableList<String> = mutableListOf(
+            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE
         )
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (! Environment.isExternalStorageManager()) {
+            if (!Environment.isExternalStorageManager()) {
                 val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
-                val uri : Uri = Uri.fromParts("package" , activity.packageName , null)
+                val uri: Uri = Uri.fromParts("package", activity.packageName, null)
                 intent.data = uri
                 activity.startActivity(intent)
             }
@@ -71,61 +70,59 @@ object PermissionsUtils {
         }
 
         ActivityCompat.requestPermissions(
-            activity ,
-            requiredPermissions.toTypedArray() ,
+            activity,
+            requiredPermissions.toTypedArray(),
             PermissionsConstants.REQUEST_CODE_STORAGE_PERMISSIONS
         )
     }
 
-    fun hasMediaPermissions(context : Context) : Boolean {
-        val hasMediaPermissions : Boolean =
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    ContextCompat.checkSelfPermission(
-                        context , Manifest.permission.READ_MEDIA_AUDIO
-                    ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                        context , Manifest.permission.READ_MEDIA_IMAGES
-                    ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                        context , Manifest.permission.READ_MEDIA_VIDEO
-                    ) == PackageManager.PERMISSION_GRANTED
-                }
-                else {
-                    true
-                }
+    fun hasMediaPermissions(context: Context): Boolean {
+        val hasMediaPermissions: Boolean =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                ContextCompat.checkSelfPermission(
+                    context, Manifest.permission.READ_MEDIA_AUDIO
+                ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                    context, Manifest.permission.READ_MEDIA_IMAGES
+                ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                    context, Manifest.permission.READ_MEDIA_VIDEO
+                ) == PackageManager.PERMISSION_GRANTED
+            } else {
+                true
+            }
 
         return hasMediaPermissions
     }
 
-    fun requestMediaPermissions(activity : Activity) {
+    fun requestMediaPermissions(activity: Activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            val requiredPermissions : List<String> = listOf(
-                Manifest.permission.READ_MEDIA_AUDIO ,
-                Manifest.permission.READ_MEDIA_IMAGES ,
+            val requiredPermissions: List<String> = listOf(
+                Manifest.permission.READ_MEDIA_AUDIO,
+                Manifest.permission.READ_MEDIA_IMAGES,
                 Manifest.permission.READ_MEDIA_VIDEO
             )
 
             ActivityCompat.requestPermissions(
-                activity ,
-                requiredPermissions.toTypedArray() ,
+                activity,
+                requiredPermissions.toTypedArray(),
                 PermissionsConstants.REQUEST_CODE_STORAGE_PERMISSIONS
             )
         }
     }
 
-    fun hasUsageAccessPermissions(context : Context) : Boolean {
-        val hasUsageStatsPermission : Boolean =
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    isAccessGranted(context)
-                }
-                else {
-                    true
-                }
+    fun hasUsageAccessPermissions(context: Context): Boolean {
+        val hasUsageStatsPermission: Boolean =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                isAccessGranted(context)
+            } else {
+                true
+            }
 
         return hasUsageStatsPermission
     }
 
-    fun requestUsageAccess(activity : Activity) {
+    fun requestUsageAccess(activity: Activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (! isAccessGranted(activity)) {
+            if (!isAccessGranted(activity)) {
                 val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
                 activity.startActivity(intent)
             }
@@ -138,17 +135,17 @@ object PermissionsUtils {
      * @param context The application context.
      * @return True if access is granted, false otherwise.
      */
-    private fun isAccessGranted(context : Context) : Boolean = try {
-        val packageManager : PackageManager = context.packageManager
-        val applicationInfo : ApplicationInfo =
-                packageManager.getApplicationInfo(context.packageName , 0)
-        val appOpsManager : AppOpsManager =
-                context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
-        @Suppress("DEPRECATION") val mode : Int = appOpsManager.checkOpNoThrow(
-            AppOpsManager.OPSTR_GET_USAGE_STATS , applicationInfo.uid , applicationInfo.packageName
+    private fun isAccessGranted(context: Context): Boolean = try {
+        val packageManager: PackageManager = context.packageManager
+        val applicationInfo: ApplicationInfo =
+            packageManager.getApplicationInfo(context.packageName, 0)
+        val appOpsManager: AppOpsManager =
+            context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+        @Suppress("DEPRECATION") val mode: Int = appOpsManager.checkOpNoThrow(
+            AppOpsManager.OPSTR_GET_USAGE_STATS, applicationInfo.uid, applicationInfo.packageName
         )
         mode == AppOpsManager.MODE_ALLOWED
-    } catch (e : PackageManager.NameNotFoundException) {
+    } catch (e: PackageManager.NameNotFoundException) {
         false
     }
 
@@ -159,13 +156,12 @@ object PermissionsUtils {
      * @param context The application context.
      * @return True if the permission is granted, false otherwise.
      */
-    fun hasNotificationPermission(context : Context) : Boolean {
+    fun hasNotificationPermission(context: Context): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             ContextCompat.checkSelfPermission(
-                context , Manifest.permission.POST_NOTIFICATIONS
+                context, Manifest.permission.POST_NOTIFICATIONS
             ) == PackageManager.PERMISSION_GRANTED
-        }
-        else {
+        } else {
             true
         }
     }
@@ -175,11 +171,11 @@ object PermissionsUtils {
      *
      * @param activity The Activity instance required to request the permission.
      */
-    fun requestNotificationPermission(activity : Activity) {
+    fun requestNotificationPermission(activity: Activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             ActivityCompat.requestPermissions(
-                activity ,
-                arrayOf(Manifest.permission.POST_NOTIFICATIONS) ,
+                activity,
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
                 PermissionsConstants.REQUEST_CODE_NOTIFICATION_PERMISSION
             )
         }

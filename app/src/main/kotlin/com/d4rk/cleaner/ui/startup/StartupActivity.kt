@@ -16,29 +16,29 @@ import com.google.android.ump.UserMessagingPlatform
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class StartupActivity : AppCompatActivity() {
-    private lateinit var consentInformation : ConsentInformation
-    private lateinit var consentForm : ConsentForm
+    private lateinit var consentInformation: ConsentInformation
+    private lateinit var consentForm: ConsentForm
     val consentFormShown = MutableStateFlow(value = false)
-    override fun onCreate(savedInstanceState : Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                     StartupComposable(activity = this@StartupActivity)
                 }
             }
         }
-        val params : ConsentRequestParameters =
-                ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(false).build()
+        val params: ConsentRequestParameters =
+            ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(false).build()
         consentInformation = UserMessagingPlatform.getConsentInformation(this)
-        consentInformation.requestConsentInfoUpdate(this , params , {
+        consentInformation.requestConsentInfoUpdate(this, params, {
             if (consentInformation.isConsentFormAvailable) {
                 loadForm()
             }
-        } , {})
+        }, {})
     }
 
     /**
@@ -53,7 +53,7 @@ class StartupActivity : AppCompatActivity() {
      * @see com.google.ads.consent.ConsentInformation
      */
     private fun loadForm() {
-        UserMessagingPlatform.loadConsentForm(this@StartupActivity , { consentForm ->
+        UserMessagingPlatform.loadConsentForm(this@StartupActivity, { consentForm ->
             this.consentForm = consentForm
             if (consentInformation.consentStatus == ConsentInformation.ConsentStatus.REQUIRED) {
                 consentFormShown.value = true
@@ -61,6 +61,6 @@ class StartupActivity : AppCompatActivity() {
                     loadForm()
                 }
             }
-        } , {})
+        }, {})
     }
 }

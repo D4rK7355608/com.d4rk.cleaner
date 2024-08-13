@@ -25,44 +25,44 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.utils.cleaning.toBitmapDrawable
 
 @Composable
-fun VersionInfoDialog(onDismiss : () -> Unit) {
+fun VersionInfoDialog(onDismiss: () -> Unit) {
     AlertDialog(
-        onDismissRequest = onDismiss ,
-        text = { VersionInfoContent() } ,
-        confirmButton = {} ,
+        onDismissRequest = onDismiss,
+        text = { VersionInfoContent() },
+        confirmButton = {},
     )
 }
 
 @Composable
 fun VersionInfoContent() {
-    val context : Context = LocalContext.current
-    val appName : String = context.getString(R.string.app_full_name)
-    val versionName : String = BuildConfig.VERSION_NAME
-    val versionString : String = stringResource(R.string.version , versionName)
-    val copyright : String = context.getString(R.string.copyright)
+    val context: Context = LocalContext.current
+    val appName: String = context.getString(R.string.app_full_name)
+    val versionName: String = BuildConfig.VERSION_NAME
+    val versionString: String = stringResource(R.string.version, versionName)
+    val copyright: String = context.getString(R.string.copyright)
 
-    val appIcon : Drawable = context.packageManager.getApplicationIcon(context.packageName)
-    val bitmapDrawable : BitmapDrawable = appIcon.toBitmapDrawable()
+    val appIcon: Drawable = context.packageManager.getApplicationIcon(context.packageName)
+    val bitmapDrawable: BitmapDrawable = appIcon.toBitmapDrawable()
 
     Row(
         modifier = Modifier.fillMaxWidth()
     ) {
         Image(
-            bitmap = bitmapDrawable.bitmap.asImageBitmap() ,
-            contentDescription = null ,
+            bitmap = bitmapDrawable.bitmap.asImageBitmap(),
+            contentDescription = null,
             modifier = Modifier.size(48.dp)
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column {
             Text(
-                text = appName , style = MaterialTheme.typography.titleLarge
+                text = appName, style = MaterialTheme.typography.titleLarge
             )
             Text(
-                text = versionString , style = MaterialTheme.typography.bodyMedium
+                text = versionString, style = MaterialTheme.typography.bodyMedium
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = copyright , style = MaterialTheme.typography.bodyMedium
+                text = copyright, style = MaterialTheme.typography.bodyMedium
             )
         }
     }

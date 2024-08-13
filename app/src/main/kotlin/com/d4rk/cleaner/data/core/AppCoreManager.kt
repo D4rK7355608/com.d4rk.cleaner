@@ -25,11 +25,11 @@ import kotlinx.coroutines.runBlocking
 import java.util.Date
 
 @Suppress("SameParameterValue")
-class AppCoreManager : MultiDexApplication() , Application.ActivityLifecycleCallbacks ,
+class AppCoreManager : MultiDexApplication(), Application.ActivityLifecycleCallbacks,
     LifecycleObserver {
-    private lateinit var appOpenAdManager : AppOpenAdManager
-    private var currentActivity : Activity? = null
-    private lateinit var dataStore : DataStore
+    private lateinit var appOpenAdManager: AppOpenAdManager
+    private var currentActivity: Activity? = null
+    private lateinit var dataStore: DataStore
     override fun onCreate() {
         super.onCreate()
         registerActivityLifecycleCallbacks(this)
@@ -46,18 +46,18 @@ class AppCoreManager : MultiDexApplication() , Application.ActivityLifecycleCall
         currentActivity?.let { appOpenAdManager.showAdIfAvailable(it) }
     }
 
-    override fun onActivityCreated(activity : Activity , savedInstanceState : Bundle?) {}
-    override fun onActivityStarted(activity : Activity) {
-        if (! appOpenAdManager.isShowingAd) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
+    override fun onActivityStarted(activity: Activity) {
+        if (!appOpenAdManager.isShowingAd) {
             currentActivity = activity
         }
     }
 
-    override fun onActivityResumed(activity : Activity) {}
-    override fun onActivityPaused(activity : Activity) {}
-    override fun onActivityStopped(activity : Activity) {}
-    override fun onActivitySaveInstanceState(activity : Activity , outState : Bundle) {}
-    override fun onActivityDestroyed(activity : Activity) {}
+    override fun onActivityResumed(activity: Activity) {}
+    override fun onActivityPaused(activity: Activity) {}
+    override fun onActivityStopped(activity: Activity) {}
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
+    override fun onActivityDestroyed(activity: Activity) {}
 
     interface OnShowAdCompleteListener {
         @Suppress("EmptyMethod")
@@ -65,65 +65,65 @@ class AppCoreManager : MultiDexApplication() , Application.ActivityLifecycleCall
     }
 
     private inner class AppOpenAdManager {
-        private var appOpenAd : AppOpenAd? = null
+        private var appOpenAd: AppOpenAd? = null
         private var isLoadingAd = false
         var isShowingAd = false
-        private var loadTime : Long = 0
+        private var loadTime: Long = 0
 
-        fun loadAd(context : Context) {
+        fun loadAd(context: Context) {
             if (isLoadingAd || isAdAvailable()) {
                 return
             }
             isLoadingAd = true
-            val request : AdRequest = AdRequest.Builder().build()
-            AppOpenAd.load(context ,
-                           AdsConstants.APP_OPEN_UNIT_ID ,
-                           request ,
-                           AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT ,
-                           object : AppOpenAd.AppOpenAdLoadCallback() {
-                               override fun onAdLoaded(ad : AppOpenAd) {
-                                   appOpenAd = ad
-                                   isLoadingAd = false
-                                   loadTime = Date().time
-                               }
+            val request: AdRequest = AdRequest.Builder().build()
+            AppOpenAd.load(context,
+                AdsConstants.APP_OPEN_UNIT_ID,
+                request,
+                AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
+                object : AppOpenAd.AppOpenAdLoadCallback() {
+                    override fun onAdLoaded(ad: AppOpenAd) {
+                        appOpenAd = ad
+                        isLoadingAd = false
+                        loadTime = Date().time
+                    }
 
-                               override fun onAdFailedToLoad(loadAdError : LoadAdError) {
-                                   isLoadingAd = false
-                               }
-                           })
+                    override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+                        isLoadingAd = false
+                    }
+                })
         }
 
-        private fun wasLoadTimeLessThanNHoursAgo(numHours : Long) : Boolean {
-            val dateDifference : Long = Date().time - loadTime
-            val numMilliSecondsPerHour : Long = 3600000
+        private fun wasLoadTimeLessThanNHoursAgo(numHours: Long): Boolean {
+            val dateDifference: Long = Date().time - loadTime
+            val numMilliSecondsPerHour: Long = 3600000
             return dateDifference < numMilliSecondsPerHour * numHours
         }
 
         @Suppress("BooleanMethodIsAlwaysInverted")
-        private fun isAdAvailable() : Boolean {
+        private fun isAdAvailable(): Boolean {
             return appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4)
         }
 
-        fun showAdIfAvailable(activity : Activity) {
-            showAdIfAvailable(activity , object : OnShowAdCompleteListener {
+        fun showAdIfAvailable(activity: Activity) {
+            showAdIfAvailable(activity, object : OnShowAdCompleteListener {
                 override fun onShowAdComplete() {
                 }
             })
         }
 
         fun showAdIfAvailable(
-            activity : Activity , onShowAdCompleteListener : OnShowAdCompleteListener
+            activity: Activity, onShowAdCompleteListener: OnShowAdCompleteListener
         ) {
-            val isAdsChecked : Boolean = runBlocking { dataStore.ads.first() }
-            if (isShowingAd || ! isAdsChecked) {
+            val isAdsChecked: Boolean = runBlocking { dataStore.ads.first() }
+            if (isShowingAd || !isAdsChecked) {
                 return
             }
-            if (! isAdAvailable()) {
+            if (!isAdAvailable()) {
                 onShowAdCompleteListener.onShowAdComplete()
                 loadAd(activity)
                 return
             }
-            appOpenAd !!.fullScreenContentCallback = object : FullScreenContentCallback() {
+            appOpenAd!!.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
                     appOpenAd = null
                     isShowingAd = false
@@ -131,7 +131,7 @@ class AppCoreManager : MultiDexApplication() , Application.ActivityLifecycleCall
                     loadAd(activity)
                 }
 
-                override fun onAdFailedToShowFullScreenContent(adError : AdError) {
+                override fun onAdFailedToShowFullScreenContent(adError: AdError) {
                     appOpenAd = null
                     isShowingAd = false
                     onShowAdCompleteListener.onShowAdComplete()
@@ -142,7 +142,7 @@ class AppCoreManager : MultiDexApplication() , Application.ActivityLifecycleCall
                 }
             }
             isShowingAd = true
-            appOpenAd !!.show(activity)
+            appOpenAd!!.show(activity)
         }
     }
 }

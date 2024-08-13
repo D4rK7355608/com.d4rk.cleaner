@@ -46,59 +46,59 @@ import com.d4rk.cleaner.utils.compose.bounceClick
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ImagePickerComposable(
-    activity : ImagePickerActivity , viewModel : ImagePickerViewModel
+    activity: ImagePickerActivity, viewModel: ImagePickerViewModel
 ) {
-    val context : Context = LocalContext.current
-    val dataStore : DataStore = DataStore.getInstance(context)
-    val scrollBehavior : TopAppBarScrollBehavior =
-            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    val adsState : State<Boolean> = dataStore.ads.collectAsState(initial = true)
+    val context: Context = LocalContext.current
+    val dataStore: DataStore = DataStore.getInstance(context)
+    val scrollBehavior: TopAppBarScrollBehavior =
+        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val adsState: State<Boolean> = dataStore.ads.collectAsState(initial = true)
 
     LaunchedEffect(key1 = viewModel.selectedImageUri) {
         viewModel.selectedImageUri?.let { uri ->
-            val intent = Intent(context , ImageOptimizerActivity::class.java)
-            intent.putExtra("selectedImageUri" , uri.toString())
+            val intent = Intent(context, ImageOptimizerActivity::class.java)
+            intent.putExtra("selectedImageUri", uri.toString())
             activity.startActivity(intent)
             viewModel.setSelectedImageUri(null)
         }
     }
 
     LaunchedEffect(key1 = true) {
-        if (! PermissionsUtils.hasMediaPermissions(context)) {
+        if (!PermissionsUtils.hasMediaPermissions(context)) {
             PermissionsUtils.requestMediaPermissions(context as Activity)
         }
     }
 
 
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.image_optimizer)) } ,
-                       navigationIcon = {
-                           IconButton(onClick = {
-                               activity.finish()
-                           }) {
-                               Icon(Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null)
-                           }
-                       } ,
-                       scrollBehavior = scrollBehavior)
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.image_optimizer)) },
+            navigationIcon = {
+                IconButton(onClick = {
+                    activity.finish()
+                }) {
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+                }
+            },
+            scrollBehavior = scrollBehavior)
     }) { paddingValues ->
         ConstraintLayout(
             modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues)
+                .fillMaxSize()
+                .padding(paddingValues)
         ) {
-            val (fab : ConstrainedLayoutReference , adView : ConstrainedLayoutReference , imagePrompt : ConstrainedLayoutReference) = createRefs()
+            val (fab: ConstrainedLayoutReference, adView: ConstrainedLayoutReference, imagePrompt: ConstrainedLayoutReference) = createRefs()
 
             Column(modifier = Modifier.constrainAs(imagePrompt) {
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
                 top.linkTo(parent.top)
                 bottom.linkTo(parent.bottom)
-            } ,
-                   verticalArrangement = Arrangement.Center ,
-                   horizontalAlignment = Alignment.CenterHorizontally) {
+            },
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally) {
                 Icon(
-                    imageVector = Icons.Outlined.ImageSearch ,
-                    contentDescription = null ,
+                    imageVector = Icons.Outlined.ImageSearch,
+                    contentDescription = null,
                     modifier = Modifier.size(72.dp)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
@@ -106,21 +106,20 @@ fun ImagePickerComposable(
             }
 
             ExtendedFloatingActionButton(modifier = Modifier
-                    .padding(16.dp)
-                    .bounceClick()
-                    .constrainAs(fab) {
-                        end.linkTo(parent.end)
-                        if (adsState.value) {
-                            bottom.linkTo(adView.top)
-                        }
-                        else {
-                            bottom.linkTo(parent.bottom)
-                        }
-                    } , text = { Text(stringResource(R.string.choose_image)) } , onClick = {
+                .padding(16.dp)
+                .bounceClick()
+                .constrainAs(fab) {
+                    end.linkTo(parent.end)
+                    if (adsState.value) {
+                        bottom.linkTo(adView.top)
+                    } else {
+                        bottom.linkTo(parent.bottom)
+                    }
+                }, text = { Text(stringResource(R.string.choose_image)) }, onClick = {
                 activity.selectImage()
-            } , icon = {
+            }, icon = {
                 Icon(
-                    Icons.Outlined.AddPhotoAlternate , contentDescription = null
+                    Icons.Outlined.AddPhotoAlternate, contentDescription = null
                 )
             })
 
@@ -128,7 +127,7 @@ fun ImagePickerComposable(
                 bottom.linkTo(parent.bottom)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
-            } , dataStore = dataStore)
+            }, dataStore = dataStore)
         }
     }
 }

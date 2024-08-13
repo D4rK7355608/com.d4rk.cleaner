@@ -47,35 +47,35 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UsageAndDiagnosticsComposable(activity : UsageAndDiagnosticsActivity) {
-    val context : Context = LocalContext.current
-    val dataStore : DataStore = DataStore.getInstance(context)
-    val switchState : State<Boolean> = dataStore.usageAndDiagnostics.collectAsState(initial = true)
-    val scope : CoroutineScope = rememberCoroutineScope()
-    val scrollBehavior : TopAppBarScrollBehavior =
-            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.usage_and_diagnostics)) } ,
-                       navigationIcon = {
-                           IconButton(onClick = {
-                               activity.finish()
-                           }) {
-                               Icon(
-                                   Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null
-                               )
-                           }
-                       } ,
-                       scrollBehavior = scrollBehavior)
+fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
+    val context: Context = LocalContext.current
+    val dataStore: DataStore = DataStore.getInstance(context)
+    val switchState: State<Boolean> = dataStore.usageAndDiagnostics.collectAsState(initial = true)
+    val scope: CoroutineScope = rememberCoroutineScope()
+    val scrollBehavior: TopAppBarScrollBehavior =
+        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.usage_and_diagnostics)) },
+            navigationIcon = {
+                IconButton(onClick = {
+                    activity.finish()
+                }) {
+                    Icon(
+                        Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null
+                    )
+                }
+            },
+            scrollBehavior = scrollBehavior)
     }) { innerPadding ->
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding) ,
+                    .fillMaxSize()
+                    .padding(innerPadding),
             ) {
                 item {
                     SwitchCardComposable(
-                        title = stringResource(R.string.usage_and_diagnostics) ,
+                        title = stringResource(R.string.usage_and_diagnostics),
                         switchState = switchState
                     ) { isChecked ->
                         scope.launch(Dispatchers.IO) {
@@ -86,33 +86,33 @@ fun UsageAndDiagnosticsComposable(activity : UsageAndDiagnosticsActivity) {
                 item {
                     Column(
                         modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(24.dp)
+                            .fillMaxWidth()
+                            .padding(24.dp)
                     ) {
-                        Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
+                        Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(stringResource(R.string.summary_usage_and_diagnostics))
-                        val annotatedString : AnnotatedString = buildAnnotatedString {
+                        val annotatedString: AnnotatedString = buildAnnotatedString {
                             withStyle(
                                 style = SpanStyle(
-                                    color = MaterialTheme.colorScheme.primary ,
+                                    color = MaterialTheme.colorScheme.primary,
                                     textDecoration = TextDecoration.Underline
                                 )
                             ) {
                                 append(stringResource(R.string.learn_more))
                             }
                             addStringAnnotation(
-                                tag = "URL" ,
-                                annotation = "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy" ,
-                                start = 0 ,
+                                tag = "URL",
+                                annotation = "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy",
+                                start = 0,
                                 end = stringResource(R.string.learn_more).length
                             )
                         }
-                        ClickableText(text = annotatedString , onClick = { offset ->
-                            annotatedString.getStringAnnotations(tag = "URL" , offset , offset)
-                                    .firstOrNull()?.let { annotation ->
-                                        IntentUtils.openUrl(context , annotation.item)
-                                    }
+                        ClickableText(text = annotatedString, onClick = { offset ->
+                            annotatedString.getStringAnnotations(tag = "URL", offset, offset)
+                                .firstOrNull()?.let { annotation ->
+                                    IntentUtils.openUrl(context, annotation.item)
+                                }
                         })
                     }
                 }

@@ -34,28 +34,28 @@ import kotlinx.coroutines.flow.firstOrNull
 
 @Composable
 fun LanguageDialog(
-    dataStore : DataStore , onDismiss : () -> Unit , onLanguageSelected : (String) -> Unit
+    dataStore: DataStore, onDismiss: () -> Unit, onLanguageSelected: (String) -> Unit
 ) {
-    val selectedLanguage : MutableState<String> = remember { mutableStateOf(value = "") }
-    val languageEntries : List<String> =
-            stringArrayResource(R.array.preference_language_entries).toList()
-    val languageValues : List<String> =
-            stringArrayResource(R.array.preference_language_values).toList()
+    val selectedLanguage: MutableState<String> = remember { mutableStateOf(value = "") }
+    val languageEntries: List<String> =
+        stringArrayResource(R.array.preference_language_entries).toList()
+    val languageValues: List<String> =
+        stringArrayResource(R.array.preference_language_values).toList()
 
-    AlertDialog(onDismissRequest = onDismiss , text = {
+    AlertDialog(onDismissRequest = onDismiss, text = {
         LanguageDialogContent(
-            selectedLanguage , dataStore , languageEntries , languageValues
+            selectedLanguage, dataStore, languageEntries, languageValues
         )
-    } , icon = {
-        Icon(Icons.Outlined.Language , contentDescription = null)
-    } , confirmButton = {
+    }, icon = {
+        Icon(Icons.Outlined.Language, contentDescription = null)
+    }, confirmButton = {
         TextButton(onClick = {
             onLanguageSelected(selectedLanguage.value)
             onDismiss()
         }) {
             Text(stringResource(android.R.string.ok))
         }
-    } , dismissButton = {
+    }, dismissButton = {
         TextButton(onClick = onDismiss) {
             Text(stringResource(android.R.string.cancel))
         }
@@ -64,10 +64,10 @@ fun LanguageDialog(
 
 @Composable
 fun LanguageDialogContent(
-    selectedLanguage : MutableState<String> ,
-    dataStore : DataStore ,
-    languageEntries : List<String> ,
-    languageValues : List<String>
+    selectedLanguage: MutableState<String>,
+    dataStore: DataStore,
+    languageEntries: List<String>,
+    languageValues: List<String>
 ) {
     LaunchedEffect(Unit) {
         selectedLanguage.value = dataStore.getLanguage().firstOrNull() ?: ""
@@ -77,23 +77,23 @@ fun LanguageDialogContent(
         Text(stringResource(id = R.string.dialog_language_subtitle))
         Box(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f)
+                .fillMaxWidth()
+                .weight(1f)
         ) {
             LazyColumn {
                 items(languageEntries.size) { index ->
                     Row(
-                        Modifier.fillMaxWidth() ,
-                        verticalAlignment = Alignment.CenterVertically ,
+                        Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Start
                     ) {
-                        RadioButton(selected = selectedLanguage.value == languageValues[index] ,
-                                    onClick = {
-                                        selectedLanguage.value = languageValues[index]
-                                    })
+                        RadioButton(selected = selectedLanguage.value == languageValues[index],
+                            onClick = {
+                                selectedLanguage.value = languageValues[index]
+                            })
                         Text(
-                            modifier = Modifier.padding(start = 8.dp) ,
-                            text = languageEntries[index] ,
+                            modifier = Modifier.padding(start = 8.dp),
+                            text = languageEntries[index],
                             style = MaterialTheme.typography.bodyMedium.merge()
                         )
                     }
@@ -101,7 +101,7 @@ fun LanguageDialogContent(
             }
         }
         Spacer(modifier = Modifier.height(24.dp))
-        Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
+        Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
         Spacer(modifier = Modifier.height(12.dp))
         Text(stringResource(id = R.string.dialog_info_language))
     }

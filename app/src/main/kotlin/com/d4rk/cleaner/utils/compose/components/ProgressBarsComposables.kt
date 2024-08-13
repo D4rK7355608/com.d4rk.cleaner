@@ -37,53 +37,53 @@ import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
  */
 @Composable
 fun CircularDeterminateIndicator(
-    progress : Float , storageUsed : String , storageTotal : String , modifier : Modifier = Modifier
+    progress: Float, storageUsed: String, storageTotal: String, modifier: Modifier = Modifier
 ) {
-    val animatedProgress : Float by animateFloatAsState(
-        targetValue = progress ,
-        animationSpec = tween(durationMillis = 1000 , easing = LinearOutSlowInEasing) ,
+    val animatedProgress: Float by animateFloatAsState(
+        targetValue = progress,
+        animationSpec = tween(durationMillis = 1000, easing = LinearOutSlowInEasing),
         label = ""
     )
 
     Box(
-        contentAlignment = Alignment.Center , modifier = modifier.size(240.dp)
+        contentAlignment = Alignment.Center, modifier = modifier.size(240.dp)
     ) {
         CircularProgressIndicator(
-            progress = { 1f } ,
-            modifier = Modifier.fillMaxSize() ,
-            color = MaterialTheme.colorScheme.primaryContainer ,
-            strokeWidth = 6.dp ,
+            progress = { 1f },
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.primaryContainer,
+            strokeWidth = 6.dp,
         )
         CircularProgressIndicator(
-            progress = { animatedProgress } ,
+            progress = { animatedProgress },
             modifier = Modifier
-                    .animateContentSize()
-                    .fillMaxSize() ,
-            color = MaterialTheme.colorScheme.primary ,
-            strokeWidth = 6.dp ,
-            strokeCap = StrokeCap.Round ,
+                .animateContentSize()
+                .fillMaxSize(),
+            color = MaterialTheme.colorScheme.primary,
+            strokeWidth = 6.dp,
+            strokeCap = StrokeCap.Round,
         )
         Text(
             modifier = Modifier.animateContentSize(),
-            text = stringResource(R.string.storage_used , storageUsed , storageTotal) ,
-            textAlign = TextAlign.Center ,
+            text = stringResource(R.string.storage_used, storageUsed, storageTotal),
+            textAlign = TextAlign.Center,
             style = MaterialTheme.typography.titleLarge
         )
     }
 }
 
 @Composable
-fun StorageProgressBar(storageInfo : StorageInfo) {
-    val progress : Float =
-            (storageInfo.usedStorage.toFloat() / storageInfo.totalStorage.toFloat()).coerceIn(
-                0f , 1f
-            )
+fun StorageProgressBar(storageInfo: StorageInfo) {
+    val progress: Float =
+        (storageInfo.usedStorage.toFloat() / storageInfo.totalStorage.toFloat()).coerceIn(
+            0f, 1f
+        )
     LinearProgressIndicator(
-        progress = { progress } ,
+        progress = { progress },
         modifier = Modifier
-                .fillMaxWidth()
-                .animateContentSize()
-                .height(8.dp) ,
-        color = MaterialTheme.colorScheme.primary ,
+            .fillMaxWidth()
+            .animateContentSize()
+            .height(8.dp),
+        color = MaterialTheme.colorScheme.primary,
     )
 }

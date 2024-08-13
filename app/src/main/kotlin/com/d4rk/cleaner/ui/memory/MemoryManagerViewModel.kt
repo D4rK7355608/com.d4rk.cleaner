@@ -24,37 +24,37 @@ import java.io.File
  */
 class MemoryManagerViewModel : ViewModel() {
     private val _storageInfo = MutableStateFlow(StorageInfo())
-    val storageInfo : StateFlow<StorageInfo> = _storageInfo.asStateFlow()
+    val storageInfo: StateFlow<StorageInfo> = _storageInfo.asStateFlow()
 
     private val _ramInfo = MutableStateFlow(RamInfo())
-    val ramInfo : StateFlow<RamInfo> = _ramInfo.asStateFlow()
+    val ramInfo: StateFlow<RamInfo> = _ramInfo.asStateFlow()
 
     private val _isLoading = MutableStateFlow(value = true)
-    val isLoading : StateFlow<Boolean> = _isLoading.asStateFlow()
+    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
     private val _listExpanded = MutableStateFlow(value = true)
-    val listExpanded : StateFlow<Boolean> = _listExpanded.asStateFlow()
+    val listExpanded: StateFlow<Boolean> = _listExpanded.asStateFlow()
 
     /**
      * Updates the storage information by fetching the latest data from the device.
      *
      * @param context The application context.
      */
-    fun updateStorageInfo(context : Context) {
+    fun updateStorageInfo(context: Context) {
         viewModelScope.launch {
             try {
                 StorageUtils.getStorageInfo(context) { used, total, _ ->
 
-                    val usedStorageBytes : Double =
-                            (used.toDoubleOrNull() ?: 0.0) * 1024 * 1024 * 1024
-                    val totalStorageBytes : Double =
-                            (total.toDoubleOrNull() ?: 0.0) * 1024 * 1024 * 1024
+                    val usedStorageBytes: Double =
+                        (used.toDoubleOrNull() ?: 0.0) * 1024 * 1024 * 1024
+                    val totalStorageBytes: Double =
+                        (total.toDoubleOrNull() ?: 0.0) * 1024 * 1024 * 1024
 
-                    val storageBreakdown : Map<String , Long> = getStorageBreakdown(context)
+                    val storageBreakdown: Map<String, Long> = getStorageBreakdown(context)
                     _storageInfo.value = StorageInfo(
-                        totalStorage = totalStorageBytes.toLong() ,
-                        freeStorage = (totalStorageBytes - usedStorageBytes).toLong() ,
-                        usedStorage = usedStorageBytes.toLong() ,
+                        totalStorage = totalStorageBytes.toLong(),
+                        freeStorage = (totalStorageBytes - usedStorageBytes).toLong(),
+                        usedStorage = usedStorageBytes.toLong(),
                         storageBreakdown = storageBreakdown
                     )
                 }
@@ -69,7 +69,7 @@ class MemoryManagerViewModel : ViewModel() {
      *
      * @param context The application context.
      */
-    fun updateRamInfo(context : Context) {
+    fun updateRamInfo(context: Context) {
         viewModelScope.launch {
             _ramInfo.value = getRamInfo(context)
         }
@@ -80,17 +80,17 @@ class MemoryManagerViewModel : ViewModel() {
      *
      * @return An [InternalStorageInfo] object containing details about total, free, and used internal storage.
      */
-    private fun getInternalStorageInfo() : InternalStorageInfo {
+    private fun getInternalStorageInfo(): InternalStorageInfo {
         val statFs = StatFs(Environment.getDataDirectory().path)
-        val blockSizeBytes : Long = statFs.blockSizeLong
-        val totalBlocks : Long = statFs.blockCountLong
-        val availableBlocks : Long = statFs.availableBlocksLong
+        val blockSizeBytes: Long = statFs.blockSizeLong
+        val totalBlocks: Long = statFs.blockCountLong
+        val availableBlocks: Long = statFs.availableBlocksLong
 
-        val totalStorage : Long = totalBlocks * blockSizeBytes
-        val freeStorage : Long = availableBlocks * blockSizeBytes
-        val usedStorage : Long = totalStorage - freeStorage
+        val totalStorage: Long = totalBlocks * blockSizeBytes
+        val freeStorage: Long = availableBlocks * blockSizeBytes
+        val usedStorage: Long = totalStorage - freeStorage
 
-        return InternalStorageInfo(totalStorage , freeStorage , usedStorage)
+        return InternalStorageInfo(totalStorage, freeStorage, usedStorage)
     }
 
     /**
@@ -99,25 +99,25 @@ class MemoryManagerViewModel : ViewModel() {
      * @param context The application context.
      * @return A map containing storage usage by category (e.g., "Installed Apps", "Music", etc.).
      */
-    private fun getStorageBreakdown(context : Context) : Map<String , Long> {
-        val breakdown : MutableMap<String , Long> = mutableMapOf()
-        val externalStoragePath : String = Environment.getExternalStorageDirectory().absolutePath
+    private fun getStorageBreakdown(context: Context): Map<String, Long> {
+        val breakdown: MutableMap<String, Long> = mutableMapOf()
+        val externalStoragePath: String = Environment.getExternalStorageDirectory().absolutePath
 
         breakdown[context.getString(R.string.installed_apps)] = getInstalledAppsSize(context)
         breakdown[context.getString(R.string.system)] =
-                getDirectorySize(Environment.getRootDirectory())
+            getDirectorySize(Environment.getRootDirectory())
         breakdown[context.getString(R.string.music)] =
-                getDirectorySize(File(externalStoragePath , "Music"))
+            getDirectorySize(File(externalStoragePath, "Music"))
         breakdown[context.getString(R.string.images)] =
-                getDirectorySize(File(externalStoragePath , "DCIM")) + getDirectorySize(
-                    File(
-                        externalStoragePath , "Pictures"
-                    )
+            getDirectorySize(File(externalStoragePath, "DCIM")) + getDirectorySize(
+                File(
+                    externalStoragePath, "Pictures"
                 )
+            )
         breakdown[context.getString(R.string.documents)] =
-                getDirectorySize(File(externalStoragePath , "Documents"))
+            getDirectorySize(File(externalStoragePath, "Documents"))
         breakdown[context.getString(R.string.downloads)] =
-                getDirectorySize(File(externalStoragePath , "Download"))
+            getDirectorySize(File(externalStoragePath, "Download"))
         breakdown[context.getString(R.string.other_files)] = getOtherFilesSize(breakdown)
 
         return breakdown
@@ -129,13 +129,13 @@ class MemoryManagerViewModel : ViewModel() {
      * @param context The application context.
      * @return The total size of installed apps in bytes.
      */
-    private fun getInstalledAppsSize(context : Context) : Long {
-        val packageManager : PackageManager = context.packageManager
-        val installedApps : MutableList<ApplicationInfo> =
-                packageManager.getInstalledApplications(0)
+    private fun getInstalledAppsSize(context: Context): Long {
+        val packageManager: PackageManager = context.packageManager
+        val installedApps: MutableList<ApplicationInfo> =
+            packageManager.getInstalledApplications(0)
         var installedAppsSize = 0L
-        for (app : ApplicationInfo in installedApps) {
-            installedAppsSize += getApkSize(context , app.packageName)
+        for (app: ApplicationInfo in installedApps) {
+            installedAppsSize += getApkSize(context, app.packageName)
         }
         return installedAppsSize
     }
@@ -147,12 +147,12 @@ class MemoryManagerViewModel : ViewModel() {
      * @param packageName The package name of the app.
      * @return The size of the APK file in bytes.
      */
-    private fun getApkSize(context : Context , packageName : String) : Long {
+    private fun getApkSize(context: Context, packageName: String): Long {
         return try {
             context.packageManager.getApplicationInfo(
-                packageName , 0
+                packageName, 0
             ).sourceDir.let { File(it).length() }
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             0L
         }
     }
@@ -163,16 +163,15 @@ class MemoryManagerViewModel : ViewModel() {
      * @param directory The directory to calculate the size for.
      * @return The size of the directory in bytes.
      */
-    private fun getDirectorySize(directory : File?) : Long {
-        if (directory == null || ! directory.exists() || ! directory.isDirectory) return 0
+    private fun getDirectorySize(directory: File?): Long {
+        if (directory == null || !directory.exists() || !directory.isDirectory) return 0
         var size = 0L
-        val files : Array<out File>? = directory.listFiles()
+        val files: Array<out File>? = directory.listFiles()
         if (files != null) {
-            for (file : File in files) {
+            for (file: File in files) {
                 size += if (file.isDirectory) {
                     getDirectorySize(file)
-                }
-                else {
+                } else {
                     file.length()
                 }
             }
@@ -187,9 +186,9 @@ class MemoryManagerViewModel : ViewModel() {
      * @param breakdown The current storage breakdown map.
      * @return The size of "other files" in bytes.
      */
-    private fun getOtherFilesSize(breakdown : MutableMap<String , Long>) : Long {
-        val totalUsedStorage : Long = getInternalStorageInfo().usedStorage
-        val calculatedSize : Long = breakdown.values.sum()
+    private fun getOtherFilesSize(breakdown: MutableMap<String, Long>): Long {
+        val totalUsedStorage: Long = getInternalStorageInfo().usedStorage
+        val calculatedSize: Long = breakdown.values.sum()
         return totalUsedStorage - calculatedSize
     }
 
@@ -199,14 +198,14 @@ class MemoryManagerViewModel : ViewModel() {
      * @param context The application context.
      * @return A [RamInfo] object containing details about total, available, and used RAM.
      */
-    private fun getRamInfo(context : Context) : RamInfo {
-        val activityManager : ActivityManager =
-                context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    private fun getRamInfo(context: Context): RamInfo {
+        val activityManager: ActivityManager =
+            context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val memoryInfo = ActivityManager.MemoryInfo()
         activityManager.getMemoryInfo(memoryInfo)
         return RamInfo(
-            totalRam = memoryInfo.totalMem ,
-            availableRam = memoryInfo.availMem ,
+            totalRam = memoryInfo.totalMem,
+            availableRam = memoryInfo.availMem,
             usedRam = memoryInfo.totalMem - memoryInfo.availMem
         )
     }
@@ -215,6 +214,6 @@ class MemoryManagerViewModel : ViewModel() {
      * Toggles the expansion state of the storage breakdown list.
      */
     fun toggleListExpanded() {
-        _listExpanded.value = ! _listExpanded.value
+        _listExpanded.value = !_listExpanded.value
     }
 }

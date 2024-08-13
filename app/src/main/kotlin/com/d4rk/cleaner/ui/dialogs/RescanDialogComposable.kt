@@ -10,19 +10,19 @@ import com.d4rk.cleaner.R
 
 @Composable
 fun RescanAlertDialog(
-    onYes : () -> Unit , onDismiss : () -> Unit
+    onYes: () -> Unit, onDismiss: () -> Unit
 ) {
-    AlertDialog(onDismissRequest = onDismiss ,
-                title = { Text(stringResource(id = R.string.rescan_title)) } ,
-                text = { Text(stringResource(id = R.string.rescan_message)) } ,
-                confirmButton = {
-                    TextButton(onClick = onYes) {
-                        Text(stringResource(android.R.string.ok))
-                    }
-                } ,
-                dismissButton = {
-                    TextButton(onClick = onDismiss) {
-                        Text(stringResource(android.R.string.cancel))
-                    }
-                })
+    AlertDialog(onDismissRequest = onDismiss,
+        title = { Text(stringResource(id = R.string.rescan_title)) },
+        text = { Text(stringResource(id = R.string.rescan_message)) },
+        confirmButton = {
+            TextButton(onClick = onYes) {
+                Text(stringResource(android.R.string.ok))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text(stringResource(android.R.string.cancel))
+            }
+        })
 }

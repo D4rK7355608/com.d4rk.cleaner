@@ -18,23 +18,23 @@ android {
         versionName = "2.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations += listOf(
-            "en" ,
-            "de" ,
-            "es" ,
-            "fr" ,
-            "hi" ,
-            "hu" ,
-            "in" ,
-            "it" ,
-            "ja" ,
-            "ro" ,
-            "ru" ,
-            "tr" ,
-            "sv" ,
-            "bg" ,
-            "pl" ,
-            "uk" ,
-            "b+zh+rTW" ,
+            "en",
+            "de",
+            "es",
+            "fr",
+            "hi",
+            "hu",
+            "in",
+            "it",
+            "ja",
+            "ro",
+            "ru",
+            "tr",
+            "sv",
+            "bg",
+            "pl",
+            "uk",
+            "b+zh+rTW",
         )
         vectorDrawables {
             useSupportLibrary = true
@@ -48,14 +48,14 @@ android {
             isShrinkResources = true
             isDebuggable = false
             proguardFiles(
-                getDefaultProguardFile(name = "proguard-android-optimize.txt") , "proguard-rules.pro"
+                getDefaultProguardFile(name = "proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
         debug {
             multiDexEnabled = true
             isDebuggable = true
             proguardFiles(
-                getDefaultProguardFile(name = "proguard-android-optimize.txt") , "proguard-rules.pro"
+                getDefaultProguardFile(name = "proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }

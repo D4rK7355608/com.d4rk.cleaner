@@ -22,7 +22,7 @@ import com.google.android.play.core.install.model.UpdateAvailability
  *
  * @property context The application context used for notification management.
  */
-class AppUpdateNotificationsManager(private val context : Context) {
+class AppUpdateNotificationsManager(private val context: Context) {
     private val updateChannelId = "update_channel"
     private val updateNotificationId = 0
 
@@ -33,35 +33,35 @@ class AppUpdateNotificationsManager(private val context : Context) {
      * a notification with a deep link to the Play Store if a flexible update is available.
      */
     fun checkAndSendUpdateNotification() {
-        val notificationManager : NotificationManager =
-                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val appUpdateInfoTask : Task<AppUpdateInfo> =
-                AppUpdateManagerFactory.create(context).appUpdateInfo
+        val notificationManager: NotificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val appUpdateInfoTask: Task<AppUpdateInfo> =
+            AppUpdateManagerFactory.create(context).appUpdateInfo
         appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
             if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && appUpdateInfo.isUpdateTypeAllowed(
                     AppUpdateType.FLEXIBLE
                 )
             ) {
                 val updateChannel = NotificationChannel(
-                    updateChannelId ,
-                    context.getString(R.string.update_notifications) ,
+                    updateChannelId,
+                    context.getString(R.string.update_notifications),
                     NotificationManager.IMPORTANCE_HIGH
                 )
                 notificationManager.createNotificationChannel(updateChannel)
-                val updateBuilder : NotificationCompat.Builder =
-                        NotificationCompat.Builder(context , updateChannelId)
-                                .setSmallIcon(R.drawable.ic_notification_update)
-                                .setContentTitle(context.getString(R.string.notification_update_title))
-                                .setContentText(context.getString(R.string.summary_notification_update))
-                                .setAutoCancel(true).setContentIntent(
-                                    PendingIntent.getActivity(
-                                        context , 0 , Intent(
-                                            Intent.ACTION_VIEW ,
-                                            Uri.parse("market://details?id=${context.packageName}")
-                                        ) , PendingIntent.FLAG_IMMUTABLE
-                                    )
-                                )
-                notificationManager.notify(updateNotificationId , updateBuilder.build())
+                val updateBuilder: NotificationCompat.Builder =
+                    NotificationCompat.Builder(context, updateChannelId)
+                        .setSmallIcon(R.drawable.ic_notification_update)
+                        .setContentTitle(context.getString(R.string.notification_update_title))
+                        .setContentText(context.getString(R.string.summary_notification_update))
+                        .setAutoCancel(true).setContentIntent(
+                            PendingIntent.getActivity(
+                                context, 0, Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("market://details?id=${context.packageName}")
+                                ), PendingIntent.FLAG_IMMUTABLE
+                            )
+                        )
+                notificationManager.notify(updateNotificationId, updateBuilder.build())
             }
         }
     }

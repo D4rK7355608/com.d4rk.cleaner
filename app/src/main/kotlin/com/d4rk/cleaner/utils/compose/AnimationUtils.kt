@@ -20,28 +20,27 @@ import com.d4rk.cleaner.data.model.ui.button.ButtonState
 @SuppressLint("ReturnFromAwaitPointerEventScope")
 @Composable
 fun Modifier.bounceClick() = composed {
-    var buttonState : ButtonState by remember { mutableStateOf(ButtonState.Idle) }
-    val scale : Float by animateFloatAsState(
-        if (buttonState == ButtonState.Pressed) 0.95f else 1f , label = ""
+    var buttonState: ButtonState by remember { mutableStateOf(ButtonState.Idle) }
+    val scale: Float by animateFloatAsState(
+        if (buttonState == ButtonState.Pressed) 0.95f else 1f, label = ""
     )
     this
-            .graphicsLayer {
-                scaleX = scale
-                scaleY = scale
-            }
-            .clickable(interactionSource = remember { MutableInteractionSource() } ,
-                       indication = null ,
-                       onClick = { })
-            .pointerInput(buttonState) {
-                awaitPointerEventScope {
-                    buttonState = if (buttonState == ButtonState.Pressed) {
-                        waitForUpOrCancellation()
-                        ButtonState.Idle
-                    }
-                    else {
-                        awaitFirstDown(requireUnconsumed = false)
-                        ButtonState.Pressed
-                    }
+        .graphicsLayer {
+            scaleX = scale
+            scaleY = scale
+        }
+        .clickable(interactionSource = remember { MutableInteractionSource() },
+            indication = null,
+            onClick = { })
+        .pointerInput(buttonState) {
+            awaitPointerEventScope {
+                buttonState = if (buttonState == ButtonState.Pressed) {
+                    waitForUpOrCancellation()
+                    ButtonState.Idle
+                } else {
+                    awaitFirstDown(requireUnconsumed = false)
+                    ButtonState.Pressed
                 }
             }
+        }
 }
