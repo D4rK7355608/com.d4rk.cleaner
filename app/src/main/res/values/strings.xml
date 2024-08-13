@@ -30,6 +30,8 @@
     <string name="share">Share</string>
     <string name="app_info">App info</string>
     <string name="installed">Installed"</string>
+    <string name="install">Install"</string>
+    <string name="share_apk">Share APK</string>
 
     <string name="memory_manager">Memory Manager</string>
     <string name="storage_information">Storage Information</string>

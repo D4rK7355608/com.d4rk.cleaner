@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.AppOpsManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
@@ -26,7 +27,7 @@ object PermissionsUtils {
      * @return True if all required permissions are granted, false otherwise.
      */
     fun hasStoragePermissions(context : Context) : Boolean {
-        val hasStoragePermissions = when {
+        val hasStoragePermissions : Boolean = when {
             Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q -> ContextCompat.checkSelfPermission(
                 context , Manifest.permission.WRITE_EXTERNAL_STORAGE
             ) == PackageManager.PERMISSION_GRANTED
@@ -38,21 +39,21 @@ object PermissionsUtils {
             else -> true
         }
 
-        val hasManageStoragePermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        val hasManageStoragePermission : Boolean = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             Environment.isExternalStorageManager()
         }
         else {
             true
         }
 
-        val hasUsageStatsPermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        val hasUsageStatsPermission : Boolean = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             isAccessGranted(context)
         }
         else {
             true
         }
 
-        val hasMediaPermissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        val hasMediaPermissions : Boolean = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             ContextCompat.checkSelfPermission(
                 context , Manifest.permission.READ_MEDIA_AUDIO
             ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
@@ -75,14 +76,14 @@ object PermissionsUtils {
      * @param activity The Activity instance required to request permissions.
      */
     fun requestStoragePermissions(activity : Activity) {
-        val requiredPermissions = mutableListOf(
+        val requiredPermissions : MutableList<String> = mutableListOf(
             Manifest.permission.WRITE_EXTERNAL_STORAGE , Manifest.permission.READ_EXTERNAL_STORAGE
         )
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             if (! Environment.isExternalStorageManager()) {
                 val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
-                val uri = Uri.fromParts("package" , activity.packageName , null)
+                val uri : Uri = Uri.fromParts("package" , activity.packageName , null)
                 intent.data = uri
                 activity.startActivity(intent)
             }
@@ -117,9 +118,9 @@ object PermissionsUtils {
      * @return True if access is granted, false otherwise.
      */
     private fun isAccessGranted(context : Context) : Boolean = try {
-        val packageManager = context.packageManager
-        val applicationInfo = packageManager.getApplicationInfo(context.packageName , 0)
-        val appOpsManager = context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+        val packageManager : PackageManager = context.packageManager
+        val applicationInfo : ApplicationInfo = packageManager.getApplicationInfo(context.packageName , 0)
+        val appOpsManager : AppOpsManager = context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
         @Suppress("DEPRECATION") val mode : Int = appOpsManager.checkOpNoThrow(
             AppOpsManager.OPSTR_GET_USAGE_STATS , applicationInfo.uid , applicationInfo.packageName
         )

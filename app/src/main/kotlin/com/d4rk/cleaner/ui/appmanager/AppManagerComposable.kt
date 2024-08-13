@@ -70,6 +70,7 @@ import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.core.content.FileProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
@@ -380,18 +381,19 @@ fun ApkItemComposable(apkPath : String) {
                     DropdownMenuItem(text = { Text(stringResource(R.string.share)) } , onClick = {
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "application/vnd.android.package-archive"
-                        shareIntent.putExtra(Intent.EXTRA_STREAM , Uri.fromFile(apkFile))
-                        context.startActivity(Intent.createChooser(shareIntent , "Share APK"))
+                        val contentUri : Uri = FileProvider.getUriForFile(context , "${context.packageName}.fileprovider" , apkFile)
+                        shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri)
+                        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                        context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_apk)))
                     })
 
-                    DropdownMenuItem(text = { Text(stringResource(id = R.string.installed)) } ,
+                    DropdownMenuItem(text = { Text(stringResource(id = R.string.install)) } ,
                                      onClick = {
                                          val installIntent = Intent(Intent.ACTION_VIEW)
-                                         installIntent.setDataAndType(
-                                             Uri.fromFile(apkFile) ,
-                                             "application/vnd.android.package-archive"
-                                         )
+                                         val contentUri : Uri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", apkFile)
+                                         installIntent.setDataAndType(contentUri, "application/vnd.android.package-archive")
                                          installIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                         installIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                                          context.startActivity(installIntent)
                                      })
                 }
