@@ -3,6 +3,7 @@ package com.d4rk.cleaner.ui.imageoptimizer.imagepicker
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.view.View
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -32,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
@@ -42,6 +44,7 @@ import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.ImageOptimizerActivity
 import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.compose.bounceClick
+import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -49,6 +52,7 @@ fun ImagePickerComposable(
     activity: ImagePickerActivity, viewModel: ImagePickerViewModel
 ) {
     val context: Context = LocalContext.current
+    val view : View = LocalView.current
     val dataStore: DataStore = DataStore.getInstance(context)
     val scrollBehavior: TopAppBarScrollBehavior =
         TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
@@ -74,6 +78,7 @@ fun ImagePickerComposable(
         LargeTopAppBar(title = { Text(stringResource(R.string.image_optimizer)) },
             navigationIcon = {
                 IconButton(onClick = {
+                    view.weakHapticFeedback()
                     activity.finish()
                 }) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)

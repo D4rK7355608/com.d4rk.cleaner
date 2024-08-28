@@ -1,6 +1,7 @@
 package com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer
 
 import android.content.Context
+import android.view.View
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
@@ -39,6 +40,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
@@ -52,6 +54,7 @@ import com.d4rk.cleaner.data.model.ui.imageoptimizer.ImageOptimizerState
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.tabs.FileSizeScreen
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.tabs.ManualModeScreen
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.tabs.QuickCompressScreen
+import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -61,6 +64,7 @@ fun ImageOptimizerComposable(
     activity: ImageOptimizerActivity, viewModel: ImageOptimizerViewModel
 ) {
     val context: Context = LocalContext.current
+    val view : View = LocalView.current
     val dataStore: DataStore = DataStore.getInstance(context)
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val scrollBehavior: TopAppBarScrollBehavior =
@@ -76,6 +80,7 @@ fun ImageOptimizerComposable(
         LargeTopAppBar(title = { Text(stringResource(R.string.image_optimizer)) },
             navigationIcon = {
                 IconButton(onClick = {
+                    view.weakHapticFeedback()
                     activity.finish()
                 }) {
                     Icon(
@@ -116,6 +121,7 @@ fun ImageOptimizerComposable(
                     Tab(text = { Text(title) },
                         selected = pagerState.currentPage == index,
                         onClick = {
+                            view.weakHapticFeedback()
                             coroutineScope.launch {
                                 pagerState.animateScrollToPage(index)
                             }
@@ -138,7 +144,7 @@ fun ImageOptimizerComposable(
             }
 
             OutlinedButton(onClick = {
-
+                view.weakHapticFeedback()
             }, modifier = Modifier
                 .constrainAs(compressButton) {
                     start.linkTo(parent.start)

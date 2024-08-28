@@ -36,6 +36,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.core.os.LocaleListCompat
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
+import com.d4rk.cleaner.ui.dialogs.BottomBarStartupDialog
 import com.d4rk.cleaner.ui.dialogs.LanguageDialog
 import com.d4rk.cleaner.ui.settings.display.theme.ThemeSettingsActivity
 import com.d4rk.cleaner.utils.IntentUtils
@@ -55,6 +56,7 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
     val scrollBehavior: TopAppBarScrollBehavior =
         TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     var showLanguageDialog: Boolean by remember { mutableStateOf(value = false) }
+    var showStartupDialog : Boolean by remember { mutableStateOf(value = false) }
     val themeMode: String = dataStore.themeMode.collectAsState(initial = "follow_system").value
     val darkModeString: String = stringResource(R.string.dark_mode)
     val lightModeString: String = stringResource(R.string.light_mode)
@@ -119,6 +121,24 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
                             dataStore.saveDynamicColors(isChecked)
                         }
                     }
+                }
+            }
+            item {
+                PreferenceCategoryItem(title = stringResource(R.string.navigation))
+                PreferenceItem(title = stringResource(R.string.startup_page),
+                               summary = stringResource(R.string.summary_preference_settings_startup_page),
+                               onClick = { showStartupDialog = true })
+
+                if (showStartupDialog) {
+                    BottomBarStartupDialog(
+                        dataStore = dataStore,
+                        onDismiss = { showStartupDialog = false },
+                        onStartupSelected = { selectedStartup ->
+                            scope.launch {
+                                dataStore.saveStartupPage(selectedStartup)
+                            }
+                        }
+                    )
                 }
             }
             item {

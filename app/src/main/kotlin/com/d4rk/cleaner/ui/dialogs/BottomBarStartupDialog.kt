@@ -11,8 +11,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material.icons.outlined.Language
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -31,31 +31,29 @@ import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.constants.ui.bottombar.BottomBarRoutes
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 import kotlinx.coroutines.flow.firstOrNull
 
 @Composable
-fun LanguageDialog(
-    dataStore: DataStore, onDismiss: () -> Unit, onLanguageSelected: (String) -> Unit
-) {
+fun BottomBarStartupDialog(dataStore: DataStore, onDismiss: () -> Unit, onStartupSelected: (String) -> Unit) {
+    val defaultPage: MutableState<String> = remember { mutableStateOf(BottomBarRoutes.HOME) }
+    val startupEntries: List<String> =
+            stringArrayResource(R.array.preference_startup_entries).toList()
+    val startupValues: List<String> =
+            stringArrayResource(R.array.preference_startup_values).toList()
     val view : View = LocalView.current
-    val selectedLanguage: MutableState<String> = remember { mutableStateOf(value = "") }
-    val languageEntries: List<String> =
-        stringArrayResource(R.array.preference_language_entries).toList()
-    val languageValues: List<String> =
-        stringArrayResource(R.array.preference_language_values).toList()
-
     AlertDialog(onDismissRequest = onDismiss, text = {
-        LanguageDialogContent(
-            selectedLanguage, dataStore, languageEntries, languageValues
+        BottomBarStartupDialogContent(
+            defaultPage, dataStore, startupEntries, startupValues
         )
     }, icon = {
-        Icon(Icons.Outlined.Language, contentDescription = null)
+        Icon(Icons.Outlined.Home , contentDescription = null)
     }, confirmButton = {
         TextButton(onClick = {
             view.weakHapticFeedback()
-            onLanguageSelected(selectedLanguage.value)
+            onStartupSelected(defaultPage.value)
             onDismiss()
         }) {
             Text(stringResource(android.R.string.ok))
@@ -69,39 +67,38 @@ fun LanguageDialog(
 }
 
 @Composable
-fun LanguageDialogContent(
-    selectedLanguage: MutableState<String>,
+fun BottomBarStartupDialogContent(
+    selectedPage: MutableState<String>,
     dataStore: DataStore,
-    languageEntries: List<String>,
-    languageValues: List<String>
+    startupEntries: List<String>,
+    startupValues: List<String>
 ) {
     val view : View = LocalView.current
     LaunchedEffect(Unit) {
-        selectedLanguage.value = dataStore.getLanguage().firstOrNull() ?: ""
+        selectedPage.value = dataStore.getStartupPage().firstOrNull() ?: BottomBarRoutes.HOME
     }
 
     Column {
-        Text(stringResource(id = R.string.dialog_language_subtitle))
+        Text(stringResource(id = R.string.dialog_startup_subtitle))
         Box(
             modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
+                    .fillMaxWidth()
         ) {
             LazyColumn {
-                items(languageEntries.size) { index ->
+                items(startupEntries.size) { index ->
                     Row(
                         Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Start
                     ) {
-                        RadioButton(selected = selectedLanguage.value == languageValues[index],
-                            onClick = {
-                                view.weakHapticFeedback()
-                                selectedLanguage.value = languageValues[index]
-                            })
+                        RadioButton(selected = selectedPage.value == startupValues[index],
+                                    onClick = {
+                                        view.weakHapticFeedback()
+                                        selectedPage.value = startupValues[index]
+                                    })
                         Text(
                             modifier = Modifier.padding(start = 8.dp),
-                            text = languageEntries[index],
+                            text = startupEntries[index],
                             style = MaterialTheme.typography.bodyMedium.merge()
                         )
                     }
@@ -111,10 +108,10 @@ fun LanguageDialogContent(
         Spacer(modifier = Modifier.height(24.dp))
         Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
         Spacer(modifier = Modifier.height(12.dp))
-        Text(stringResource(id = R.string.dialog_info_language))
+        Text(stringResource(id = R.string.dialog_info_startup))
     }
 
-    LaunchedEffect(selectedLanguage.value) {
-        dataStore.saveLanguage(selectedLanguage.value)
+    LaunchedEffect(selectedPage.value) {
+        dataStore.saveStartupPage(selectedPage.value)
     }
 }

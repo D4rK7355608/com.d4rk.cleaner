@@ -7,10 +7,11 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.d4rk.cleaner.constants.ui.bottombar.BottomBarRoutes
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-val Context.dataStore by preferencesDataStore("settings")
+val Context.dataStore by preferencesDataStore(name = "settings")
 
 class DataStore(context: Context) {
     private val dataStore = context.dataStore
@@ -82,6 +83,30 @@ class DataStore(context: Context) {
     suspend fun saveDynamicColors(isChecked: Boolean) {
         dataStore.edit { preferences ->
             preferences[dynamicColorsKey] = isChecked
+        }
+    }
+
+    fun getStartupPage(): Flow<String> {
+        return dataStore.data.map { preferences ->
+            preferences[stringPreferencesKey(name = "startup_page")] ?: BottomBarRoutes.HOME
+        }
+    }
+
+    suspend fun saveStartupPage(startupPage: String) {
+        dataStore.edit { preferences ->
+            preferences[stringPreferencesKey(name = "startup_page")] = startupPage
+        }
+    }
+
+    fun getShowBottomBarLabels(): Flow<Boolean> {
+        return dataStore.data.map { preferences ->
+            preferences[booleanPreferencesKey(name = "show_bottom_bar_labels")] ?: true
+        }
+    }
+
+    suspend fun setShowBottomBarLabels(showLabels: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[booleanPreferencesKey(name = "show_bottom_bar_labels")] = showLabels
         }
     }
 

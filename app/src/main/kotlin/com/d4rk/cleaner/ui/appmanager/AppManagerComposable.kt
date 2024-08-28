@@ -13,6 +13,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.provider.Settings
+import android.view.View
 import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.updateTransition
@@ -65,6 +66,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -74,6 +76,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
 import com.d4rk.cleaner.utils.PermissionsUtils
+import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.io.File
@@ -202,6 +205,7 @@ fun AppItemComposable(
     app: ApplicationInfo
 ) {
     val context: Context = LocalContext.current
+    val view : View = LocalView.current
     val packageManager: PackageManager = context.packageManager
     val appName: String = app.loadLabel(packageManager).toString()
     val apkPath: String = app.publicSourceDir
@@ -253,19 +257,25 @@ fun AppItemComposable(
 
 
             Box {
-                IconButton(onClick = { showMenu = true }) {
+                IconButton(onClick = {
+                    view.weakHapticFeedback()
+                    showMenu = true }) {
                     Icon(Icons.Outlined.MoreVert, contentDescription = null)
                 }
 
-                DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
+                DropdownMenu(expanded = showMenu, onDismissRequest = {
+                    view.weakHapticFeedback()
+                    showMenu = false }) {
                     DropdownMenuItem(text = {
                         Text(stringResource(R.string.uninstall))
                     }, onClick = {
+                        view.weakHapticFeedback()
                         val uri: Uri = Uri.fromParts("package", app.packageName, null)
                         val intent = Intent(Intent.ACTION_DELETE, uri)
                         context.startActivity(intent)
                     })
                     DropdownMenuItem(text = { Text(stringResource(R.string.share)) }, onClick = {
+                        view.weakHapticFeedback()
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Check out this app")
@@ -284,6 +294,7 @@ fun AppItemComposable(
                     })
                     DropdownMenuItem(text = { Text(stringResource(R.string.app_info)) },
                         onClick = {
+                            view.weakHapticFeedback()
                             val appInfoIntent =
                                 Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                             val packageUri: Uri =
@@ -321,6 +332,7 @@ fun ApksComposable(apkFiles: List<ApkInfo>) {
 @Composable
 fun ApkItemComposable(apkPath: String) {
     val context: Context = LocalContext.current
+    val view : View = LocalView.current
     val apkFile = File(apkPath)
     val sizeInBytes: Long = apkFile.length()
     val sizeInKB: Long = sizeInBytes / 1024
@@ -373,12 +385,17 @@ fun ApkItemComposable(apkPath: String) {
             }
 
             Box {
-                IconButton(onClick = { showMenu = true }) {
+                IconButton(onClick = {
+                    view.weakHapticFeedback()
+                    showMenu = true }) {
                     Icon(Icons.Outlined.MoreVert, contentDescription = null)
                 }
 
-                DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
+                DropdownMenu(expanded = showMenu, onDismissRequest = {
+                    view.weakHapticFeedback()
+                    showMenu = false }) {
                     DropdownMenuItem(text = { Text(stringResource(R.string.share)) }, onClick = {
+                        view.weakHapticFeedback()
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "application/vnd.android.package-archive"
                         val contentUri: Uri = FileProvider.getUriForFile(
@@ -398,6 +415,7 @@ fun ApkItemComposable(apkPath: String) {
 
                     DropdownMenuItem(text = { Text(stringResource(id = R.string.install)) },
                         onClick = {
+                            view.weakHapticFeedback()
                             val installIntent = Intent(Intent.ACTION_VIEW)
                             val contentUri: Uri = FileProvider.getUriForFile(
                                 context,

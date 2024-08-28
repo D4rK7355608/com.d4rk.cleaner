@@ -42,7 +42,7 @@ fun CircularDeterminateIndicator(
     val animatedProgress: Float by animateFloatAsState(
         targetValue = progress,
         animationSpec = tween(durationMillis = 1000, easing = LinearOutSlowInEasing),
-        label = ""
+        label = "Storage Progress Load Animation"
     )
 
     Box(
@@ -52,7 +52,7 @@ fun CircularDeterminateIndicator(
             progress = { 1f },
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.primaryContainer,
-            strokeWidth = 6.dp,
+            strokeWidth = 8.dp,
         )
         CircularProgressIndicator(
             progress = { animatedProgress },
@@ -60,7 +60,7 @@ fun CircularDeterminateIndicator(
                 .animateContentSize()
                 .fillMaxSize(),
             color = MaterialTheme.colorScheme.primary,
-            strokeWidth = 6.dp,
+            strokeWidth =8.dp,
             strokeCap = StrokeCap.Round,
         )
         Text(

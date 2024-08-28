@@ -2,6 +2,7 @@ package com.d4rk.cleaner.ui.startup
 
 import android.app.Activity
 import android.content.Context
+import android.view.View
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -33,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
@@ -46,16 +48,18 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.compose.bounceClick
+import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StartupComposable(activity: StartupActivity) {
-    val context: Context = LocalContext.current
-    val scrollBehavior: TopAppBarScrollBehavior =
-        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    val fabEnabled: MutableState<Boolean> = remember { mutableStateOf(value = false) }
+fun StartupComposable(activity : StartupActivity) {
+    val context : Context = LocalContext.current
+    val view : View = LocalView.current
+    val scrollBehavior : TopAppBarScrollBehavior =
+            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val fabEnabled : MutableState<Boolean> = remember { mutableStateOf(value = false) }
     LaunchedEffect(context) {
-        if (!PermissionsUtils.hasNotificationPermission(context)) {
+        if (! PermissionsUtils.hasNotificationPermission(context)) {
             PermissionsUtils.requestNotificationPermission(context as Activity)
         }
         activity.consentFormShown.collect { shown ->
@@ -63,79 +67,82 @@ fun StartupComposable(activity: StartupActivity) {
         }
     }
 
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.welcome)) },
-            scrollBehavior = scrollBehavior)
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.welcome)) } ,
+                       scrollBehavior = scrollBehavior
+        )
     }) { innerPadding ->
         Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(24.dp)
-                .safeDrawingPadding()
+                    .fillMaxSize()
+                    .padding(24.dp)
+                    .safeDrawingPadding()
         ) {
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
+                        .fillMaxSize()
+                        .padding(innerPadding) ,
             ) {
                 item {
                     Image(
-                        painter = painterResource(id = R.drawable.il_startup),
+                        painter = painterResource(id = R.drawable.il_startup) ,
                         contentDescription = null
                     )
                     Icon(
-                        Icons.Outlined.Info, contentDescription = null
+                        Icons.Outlined.Info , contentDescription = null
                     )
                 }
                 item {
                     Text(
-                        text = stringResource(R.string.summary_browse_terms_of_service_and_privacy_policy),
-                        modifier = Modifier.padding(top = 24.dp, bottom = 24.dp)
+                        text = stringResource(R.string.summary_browse_terms_of_service_and_privacy_policy) ,
+                        modifier = Modifier.padding(top = 24.dp , bottom = 24.dp)
                     )
-                    val annotatedString: AnnotatedString = buildAnnotatedString {
+                    val annotatedString : AnnotatedString = buildAnnotatedString {
                         withStyle(
                             style = SpanStyle(
-                                color = MaterialTheme.colorScheme.primary,
+                                color = MaterialTheme.colorScheme.primary ,
                                 textDecoration = TextDecoration.Underline
                             )
                         ) {
                             append(stringResource(R.string.browse_terms_of_service_and_privacy_policy))
                         }
                         addStringAnnotation(
-                            tag = "URL",
-                            annotation = "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy",
-                            start = 0,
+                            tag = "URL" ,
+                            annotation = "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy" ,
+                            start = 0 ,
                             end = stringResource(R.string.browse_terms_of_service_and_privacy_policy).length
                         )
                     }
-                    ClickableText(text = annotatedString, onClick = { offset ->
-                        annotatedString.getStringAnnotations(tag = "URL", offset, offset)
-                            .firstOrNull()?.let { annotation ->
-                                IntentUtils.openUrl(context, annotation.item)
-                            }
+                    ClickableText(text = annotatedString , onClick = { offset ->
+                        annotatedString.getStringAnnotations(tag = "URL" , offset , offset)
+                                .firstOrNull()?.let { annotation ->
+                                    IntentUtils.openUrl(context , annotation.item)
+                                }
                     })
                 }
             }
             ExtendedFloatingActionButton(modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .bounceClick(),
-                containerColor = if (fabEnabled.value) {
-                    FloatingActionButtonDefaults.containerColor
-                } else {
-                    Gray
-                },
-                text = { Text(stringResource(R.string.agree)) },
-                onClick = {
-                    IntentUtils.openActivity(
-                        context, MainActivity::class.java
-                    )
-                },
-                icon = {
-                    Icon(
-                        Icons.Outlined.CheckCircle,
-                        contentDescription = null
-                    )
-                })
+                    .align(Alignment.BottomEnd)
+                    .bounceClick() ,
+                                         containerColor = if (fabEnabled.value) {
+                                             FloatingActionButtonDefaults.containerColor
+                                         }
+                                         else {
+                                             Gray
+                                         } ,
+                                         text = { Text(stringResource(R.string.agree)) } ,
+                                         onClick = {
+                                             view.weakHapticFeedback()
+                                             IntentUtils.openActivity(
+                                                 context , MainActivity::class.java
+                                             )
+                                         } ,
+                                         icon = {
+                                             Icon(
+                                                 Icons.Outlined.CheckCircle ,
+                                                 contentDescription = null
+                                             )
+                                         })
         }
     }
 }

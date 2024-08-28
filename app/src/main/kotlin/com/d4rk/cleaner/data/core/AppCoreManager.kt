@@ -6,12 +6,14 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.multidex.MultiDexApplication
 import com.d4rk.cleaner.constants.ads.AdsConstants
+import com.d4rk.cleaner.constants.ui.bottombar.BottomBarRoutes
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.notifications.managers.AppUsageNotificationsManager
 import com.google.android.gms.ads.AdError
@@ -20,7 +22,11 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.appopen.AppOpenAd
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.util.Date
 
@@ -30,6 +36,7 @@ class AppCoreManager : MultiDexApplication(), Application.ActivityLifecycleCallb
     private lateinit var appOpenAdManager: AppOpenAdManager
     private var currentActivity: Activity? = null
     private lateinit var dataStore: DataStore
+    private var isAppLoaded = false
     override fun onCreate() {
         super.onCreate()
         registerActivityLifecycleCallbacks(this)
@@ -39,6 +46,21 @@ class AppCoreManager : MultiDexApplication(), Application.ActivityLifecycleCallb
         appOpenAdManager = AppOpenAdManager()
         val notificationsManager = AppUsageNotificationsManager(this)
         notificationsManager.scheduleAppUsageCheck()
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val startupPage : String = dataStore.getStartupPage().firstOrNull() ?: BottomBarRoutes.HOME
+            val showLabels: Boolean = dataStore.getShowBottomBarLabels().firstOrNull() ?: true
+
+            markAppAsLoaded()
+        }
+    }
+
+    private fun markAppAsLoaded() {
+        isAppLoaded = true
+    }
+
+    fun isAppLoaded(): Boolean {
+        return isAppLoaded
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)

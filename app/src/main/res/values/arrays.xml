@@ -328,6 +328,17 @@
         <item>venv</item>
     </string-array>
 
+    <string-array name="preference_startup_entries">
+        <item>Home</item>
+        <item>App Manager</item>
+        <item>Memory Manager</item>
+    </string-array>
+    <string-array name="preference_startup_values">
+        <item>home</item>
+        <item>app_manager</item>
+        <item>memory_manager</item>
+    </string-array>
+
     <string-array name="preference_language_entries">
         <item>@string/bulgarian</item>
         <item>@string/english</item>
