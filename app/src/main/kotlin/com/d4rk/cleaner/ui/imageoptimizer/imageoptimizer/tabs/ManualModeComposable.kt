@@ -40,7 +40,8 @@ fun ManualModeScreen(viewModel: ImageOptimizerViewModel) {
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     Column(modifier = Modifier.padding(16.dp)) {
         Row(modifier = Modifier.fillMaxWidth()) {
-            OutlinedTextField(value = widthText,
+            OutlinedTextField(
+                value = widthText,
                 onValueChange = { newValue ->
                     widthText = newValue
                     coroutineScope.launch {
@@ -56,9 +57,11 @@ fun ManualModeScreen(viewModel: ImageOptimizerViewModel) {
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier
                     .weight(1f)
-                    .padding(end = 8.dp))
+                    .padding(end = 8.dp)
+            )
 
-            OutlinedTextField(value = heightText,
+            OutlinedTextField(
+                value = heightText,
                 onValueChange = { newValue ->
                     heightText = newValue
                     coroutineScope.launch {
@@ -72,7 +75,8 @@ fun ManualModeScreen(viewModel: ImageOptimizerViewModel) {
                 label = { Text(stringResource(R.string.height)) },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                modifier = Modifier.weight(1f))
+                modifier = Modifier.weight(1f)
+            )
         }
 
         Spacer(modifier = Modifier.height(8.dp))

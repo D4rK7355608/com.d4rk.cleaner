@@ -52,7 +52,7 @@ fun ImagePickerComposable(
     activity: ImagePickerActivity, viewModel: ImagePickerViewModel
 ) {
     val context: Context = LocalContext.current
-    val view : View = LocalView.current
+    val view: View = LocalView.current
     val dataStore: DataStore = DataStore.getInstance(context)
     val scrollBehavior: TopAppBarScrollBehavior =
         TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
@@ -75,7 +75,8 @@ fun ImagePickerComposable(
 
 
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.image_optimizer)) },
+        LargeTopAppBar(
+            title = { Text(stringResource(R.string.image_optimizer)) },
             navigationIcon = {
                 IconButton(onClick = {
                     view.weakHapticFeedback()
@@ -84,7 +85,8 @@ fun ImagePickerComposable(
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
                 }
             },
-            scrollBehavior = scrollBehavior)
+            scrollBehavior = scrollBehavior
+        )
     }) { paddingValues ->
         ConstraintLayout(
             modifier = Modifier
@@ -93,14 +95,16 @@ fun ImagePickerComposable(
         ) {
             val (fab: ConstrainedLayoutReference, adView: ConstrainedLayoutReference, imagePrompt: ConstrainedLayoutReference) = createRefs()
 
-            Column(modifier = Modifier.constrainAs(imagePrompt) {
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-                top.linkTo(parent.top)
-                bottom.linkTo(parent.bottom)
-            },
+            Column(
+                modifier = Modifier.constrainAs(imagePrompt) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+                },
                 verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally) {
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Icon(
                     imageVector = Icons.Outlined.ImageSearch,
                     contentDescription = null,

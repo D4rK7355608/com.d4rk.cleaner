@@ -39,7 +39,7 @@ import kotlinx.coroutines.flow.firstOrNull
 fun LanguageDialog(
     dataStore: DataStore, onDismiss: () -> Unit, onLanguageSelected: (String) -> Unit
 ) {
-    val view : View = LocalView.current
+    val view: View = LocalView.current
     val selectedLanguage: MutableState<String> = remember { mutableStateOf(value = "") }
     val languageEntries: List<String> =
         stringArrayResource(R.array.preference_language_entries).toList()
@@ -75,7 +75,7 @@ fun LanguageDialogContent(
     languageEntries: List<String>,
     languageValues: List<String>
 ) {
-    val view : View = LocalView.current
+    val view: View = LocalView.current
     LaunchedEffect(Unit) {
         selectedLanguage.value = dataStore.getLanguage().firstOrNull() ?: ""
     }

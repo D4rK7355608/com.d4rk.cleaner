@@ -37,19 +37,23 @@ import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 import kotlinx.coroutines.flow.firstOrNull
 
 @Composable
-fun BottomBarStartupDialog(dataStore: DataStore, onDismiss: () -> Unit, onStartupSelected: (String) -> Unit) {
+fun BottomBarStartupDialog(
+    dataStore: DataStore,
+    onDismiss: () -> Unit,
+    onStartupSelected: (String) -> Unit
+) {
     val defaultPage: MutableState<String> = remember { mutableStateOf(BottomBarRoutes.HOME) }
     val startupEntries: List<String> =
-            stringArrayResource(R.array.preference_startup_entries).toList()
+        stringArrayResource(R.array.preference_startup_entries).toList()
     val startupValues: List<String> =
-            stringArrayResource(R.array.preference_startup_values).toList()
-    val view : View = LocalView.current
+        stringArrayResource(R.array.preference_startup_values).toList()
+    val view: View = LocalView.current
     AlertDialog(onDismissRequest = onDismiss, text = {
         BottomBarStartupDialogContent(
             defaultPage, dataStore, startupEntries, startupValues
         )
     }, icon = {
-        Icon(Icons.Outlined.Home , contentDescription = null)
+        Icon(Icons.Outlined.Home, contentDescription = null)
     }, confirmButton = {
         TextButton(onClick = {
             view.weakHapticFeedback()
@@ -73,7 +77,7 @@ fun BottomBarStartupDialogContent(
     startupEntries: List<String>,
     startupValues: List<String>
 ) {
-    val view : View = LocalView.current
+    val view: View = LocalView.current
     LaunchedEffect(Unit) {
         selectedPage.value = dataStore.getStartupPage().firstOrNull() ?: BottomBarRoutes.HOME
     }
@@ -82,7 +86,7 @@ fun BottomBarStartupDialogContent(
         Text(stringResource(id = R.string.dialog_startup_subtitle))
         Box(
             modifier = Modifier
-                    .fillMaxWidth()
+                .fillMaxWidth()
         ) {
             LazyColumn {
                 items(startupEntries.size) { index ->
@@ -92,10 +96,10 @@ fun BottomBarStartupDialogContent(
                         horizontalArrangement = Arrangement.Start
                     ) {
                         RadioButton(selected = selectedPage.value == startupValues[index],
-                                    onClick = {
-                                        view.weakHapticFeedback()
-                                        selectedPage.value = startupValues[index]
-                                    })
+                            onClick = {
+                                view.weakHapticFeedback()
+                                selectedPage.value = startupValues[index]
+                            })
                         Text(
                             modifier = Modifier.padding(start = 8.dp),
                             text = startupEntries[index],

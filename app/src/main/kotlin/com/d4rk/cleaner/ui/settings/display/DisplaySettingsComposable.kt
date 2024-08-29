@@ -56,7 +56,7 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
     val scrollBehavior: TopAppBarScrollBehavior =
         TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     var showLanguageDialog: Boolean by remember { mutableStateOf(value = false) }
-    var showStartupDialog : Boolean by remember { mutableStateOf(value = false) }
+    var showStartupDialog: Boolean by remember { mutableStateOf(value = false) }
     val themeMode: String = dataStore.themeMode.collectAsState(initial = "follow_system").value
     val darkModeString: String = stringResource(R.string.dark_mode)
     val lightModeString: String = stringResource(R.string.light_mode)
@@ -126,8 +126,8 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
             item {
                 PreferenceCategoryItem(title = stringResource(R.string.navigation))
                 PreferenceItem(title = stringResource(R.string.startup_page),
-                               summary = stringResource(R.string.summary_preference_settings_startup_page),
-                               onClick = { showStartupDialog = true })
+                    summary = stringResource(R.string.summary_preference_settings_startup_page),
+                    onClick = { showStartupDialog = true })
 
                 if (showStartupDialog) {
                     BottomBarStartupDialog(

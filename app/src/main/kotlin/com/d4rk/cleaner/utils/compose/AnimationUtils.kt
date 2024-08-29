@@ -24,9 +24,10 @@ import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 @Composable
 fun Modifier.bounceClick() = composed {
     var buttonState: ButtonState by remember { mutableStateOf(ButtonState.Idle) }
-    val view : View = LocalView.current
+    val view: View = LocalView.current
     val scale: Float by animateFloatAsState(
-        if (buttonState == ButtonState.Pressed) 0.95f else 1f, label = "Button Press Scale Animation"
+        if (buttonState == ButtonState.Pressed) 0.95f else 1f,
+        label = "Button Press Scale Animation"
     )
     this
         .graphicsLayer {

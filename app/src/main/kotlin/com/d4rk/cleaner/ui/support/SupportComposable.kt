@@ -51,95 +51,97 @@ import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity) {
-    val context : Context = LocalContext.current
-    val view : View = LocalView.current
-    val dataStore : DataStore = DataStore.getInstance(context)
-    val billingClient : BillingClient = rememberBillingClient(context , viewModel)
-    val scrollBehavior : TopAppBarScrollBehavior =
-            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.support_us)) } , navigationIcon = {
+fun SupportComposable(viewModel: SupportViewModel, activity: SupportActivity) {
+    val context: Context = LocalContext.current
+    val view: View = LocalView.current
+    val dataStore: DataStore = DataStore.getInstance(context)
+    val billingClient: BillingClient = rememberBillingClient(context, viewModel)
+    val scrollBehavior: TopAppBarScrollBehavior =
+        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
+        LargeTopAppBar(title = { Text(stringResource(R.string.support_us)) }, navigationIcon = {
             IconButton(onClick = {
                 view.weakHapticFeedback()
                 activity.finish()
             }) {
                 Icon(
-                    Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null
+                    Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null
                 )
             }
-        } , scrollBehavior = scrollBehavior)
+        }, scrollBehavior = scrollBehavior)
     }) { paddingValues ->
         Box(
             modifier = Modifier
-                    .padding(paddingValues)
-                    .fillMaxHeight()
+                .padding(paddingValues)
+                .fillMaxHeight()
         ) {
             LazyColumn {
                 item {
                     Text(
-                        text = stringResource(R.string.paid_support) ,
-                        modifier = Modifier.padding(start = 16.dp , top = 16.dp) ,
-                        style = MaterialTheme.typography.titleLarge ,
+                        text = stringResource(R.string.paid_support),
+                        modifier = Modifier.padding(start = 16.dp, top = 16.dp),
+                        style = MaterialTheme.typography.titleLarge,
                     )
                 }
                 item {
                     OutlinedCard(
                         modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(16.dp)
+                            .fillMaxWidth()
+                            .padding(16.dp)
                     ) {
                         Column {
                             Text(
-                                text = stringResource(R.string.summary_donations) ,
+                                text = stringResource(R.string.summary_donations),
                                 modifier = Modifier.padding(16.dp)
                             )
                             LazyRow(
                                 modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(horizontal = 16.dp) ,
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 16.dp),
                                 horizontalArrangement = Arrangement.SpaceEvenly
                             ) {
                                 item {
                                     FilledTonalButton(
                                         modifier = Modifier
-                                                .fillMaxWidth()
-                                                .bounceClick() ,
+                                            .fillMaxWidth()
+                                            .bounceClick(),
                                         onClick = {
                                             view.weakHapticFeedback()
                                             activity.initiatePurchase(
-                                                sku = "low_donation" ,
-                                                viewModel.skuDetails ,
-                                                billingClient ,
+                                                sku = "low_donation",
+                                                viewModel.skuDetails,
+                                                billingClient,
                                             )
-                                        } ,
+                                        },
                                     ) {
                                         Icon(
-                                            Icons.Outlined.Paid ,
-                                            contentDescription = null ,
+                                            Icons.Outlined.Paid,
+                                            contentDescription = null,
                                             modifier = Modifier.size(ButtonDefaults.IconSize)
                                         )
                                         Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-                                        Text(text = viewModel.skuDetails["low_donation"]?.price ?: "")
+                                        Text(
+                                            text = viewModel.skuDetails["low_donation"]?.price ?: ""
+                                        )
                                     }
                                 }
                                 item {
                                     FilledTonalButton(
                                         modifier = Modifier
-                                                .fillMaxWidth()
-                                                .bounceClick() ,
+                                            .fillMaxWidth()
+                                            .bounceClick(),
                                         onClick = {
                                             view.weakHapticFeedback()
                                             activity.initiatePurchase(
-                                                sku = "normal_donation" ,
-                                                viewModel.skuDetails ,
-                                                billingClient ,
+                                                sku = "normal_donation",
+                                                viewModel.skuDetails,
+                                                billingClient,
                                             )
-                                        } ,
+                                        },
                                     ) {
                                         Icon(
-                                            Icons.Outlined.Paid ,
-                                            contentDescription = null ,
+                                            Icons.Outlined.Paid,
+                                            contentDescription = null,
                                             modifier = Modifier.size(ButtonDefaults.IconSize)
                                         )
                                         Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
@@ -152,27 +154,27 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                             }
                             LazyRow(
                                 modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(16.dp) ,
+                                    .fillMaxWidth()
+                                    .padding(16.dp),
                                 horizontalArrangement = Arrangement.SpaceEvenly
                             ) {
                                 item {
                                     FilledTonalButton(
                                         modifier = Modifier
-                                                .fillMaxWidth()
-                                                .bounceClick() ,
+                                            .fillMaxWidth()
+                                            .bounceClick(),
                                         onClick = {
                                             view.weakHapticFeedback()
                                             activity.initiatePurchase(
-                                                sku = "high_donation" ,
-                                                viewModel.skuDetails ,
-                                                billingClient ,
+                                                sku = "high_donation",
+                                                viewModel.skuDetails,
+                                                billingClient,
                                             )
-                                        } ,
+                                        },
                                     ) {
                                         Icon(
-                                            Icons.Outlined.Paid ,
-                                            contentDescription = null ,
+                                            Icons.Outlined.Paid,
+                                            contentDescription = null,
                                             modifier = Modifier.size(ButtonDefaults.IconSize)
                                         )
                                         Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
@@ -186,20 +188,20 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                                     FilledTonalButton(
 
                                         modifier = Modifier
-                                                .fillMaxWidth()
-                                                .bounceClick() ,
+                                            .fillMaxWidth()
+                                            .bounceClick(),
                                         onClick = {
                                             view.weakHapticFeedback()
                                             activity.initiatePurchase(
-                                                sku = "extreme_donation" ,
-                                                viewModel.skuDetails ,
-                                                billingClient ,
+                                                sku = "extreme_donation",
+                                                viewModel.skuDetails,
+                                                billingClient,
                                             )
-                                        } ,
+                                        },
                                     ) {
                                         Icon(
-                                            Icons.Outlined.Paid ,
-                                            contentDescription = null ,
+                                            Icons.Outlined.Paid,
+                                            contentDescription = null,
                                             modifier = Modifier.size(ButtonDefaults.IconSize)
                                         )
                                         Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
@@ -215,9 +217,9 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                 }
                 item {
                     Text(
-                        text = stringResource(R.string.non_paid_support) ,
-                        modifier = Modifier.padding(start = 16.dp) ,
-                        style = MaterialTheme.typography.titleLarge ,
+                        text = stringResource(R.string.non_paid_support),
+                        modifier = Modifier.padding(start = 16.dp),
+                        style = MaterialTheme.typography.titleLarge,
                     )
                 }
                 item {
@@ -225,17 +227,17 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                         onClick = {
                             view.weakHapticFeedback()
                             IntentUtils.openUrl(
-                                context , url = "https://direct-link.net/548212/agOqI7123501341"
+                                context, url = "https://direct-link.net/548212/agOqI7123501341"
                             )
-                        } ,
+                        },
                         modifier = Modifier
-                                .fillMaxWidth()
-                                .bounceClick()
-                                .padding(16.dp) ,
+                            .fillMaxWidth()
+                            .bounceClick()
+                            .padding(16.dp),
                     ) {
                         Icon(
-                            Icons.Outlined.Paid ,
-                            contentDescription = null ,
+                            Icons.Outlined.Paid,
+                            contentDescription = null,
                             modifier = Modifier.size(ButtonDefaults.IconSize)
                         )
                         Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
@@ -244,7 +246,7 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                 }
                 item {
                     LargeBannerAdsComposable(
-                        modifier = Modifier.padding(bottom = 12.dp) , dataStore = dataStore
+                        modifier = Modifier.padding(bottom = 12.dp), dataStore = dataStore
                     )
                 }
             }
@@ -254,15 +256,15 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
 
 @Composable
 fun rememberBillingClient(
-    context : Context , viewModel : SupportViewModel
-) : BillingClient {
-    val billingClient : BillingClient = remember {
-        BillingClient.newBuilder(context).setListener { _ , _ -> }.enablePendingPurchases().build()
+    context: Context, viewModel: SupportViewModel
+): BillingClient {
+    val billingClient: BillingClient = remember {
+        BillingClient.newBuilder(context).setListener { _, _ -> }.enablePendingPurchases().build()
     }
 
     DisposableEffect(billingClient) {
         billingClient.startConnection(object : BillingClientStateListener {
-            override fun onBillingSetupFinished(billingResult : BillingResult) {
+            override fun onBillingSetupFinished(billingResult: BillingResult) {
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                     viewModel.querySkuDetails(billingClient)
                 }

@@ -60,7 +60,7 @@ fun CircularDeterminateIndicator(
                 .animateContentSize()
                 .fillMaxSize(),
             color = MaterialTheme.colorScheme.primary,
-            strokeWidth =8.dp,
+            strokeWidth = 8.dp,
             strokeCap = StrokeCap.Round,
         )
         Text(

@@ -64,7 +64,7 @@ fun ImageOptimizerComposable(
     activity: ImageOptimizerActivity, viewModel: ImageOptimizerViewModel
 ) {
     val context: Context = LocalContext.current
-    val view : View = LocalView.current
+    val view: View = LocalView.current
     val dataStore: DataStore = DataStore.getInstance(context)
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val scrollBehavior: TopAppBarScrollBehavior =
@@ -77,7 +77,8 @@ fun ImageOptimizerComposable(
     )
     val pagerState: PagerState = rememberPagerState(pageCount = { tabs.size })
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.image_optimizer)) },
+        LargeTopAppBar(
+            title = { Text(stringResource(R.string.image_optimizer)) },
             navigationIcon = {
                 IconButton(onClick = {
                     view.weakHapticFeedback()
@@ -88,7 +89,8 @@ fun ImageOptimizerComposable(
                     )
                 }
             },
-            scrollBehavior = scrollBehavior)
+            scrollBehavior = scrollBehavior
+        )
     }) { paddingValues ->
         ConstraintLayout(
             modifier = Modifier

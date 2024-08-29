@@ -55,7 +55,8 @@ fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
     val scrollBehavior: TopAppBarScrollBehavior =
         TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.usage_and_diagnostics)) },
+        LargeTopAppBar(
+            title = { Text(stringResource(R.string.usage_and_diagnostics)) },
             navigationIcon = {
                 IconButton(onClick = {
                     activity.finish()
@@ -65,7 +66,8 @@ fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
                     )
                 }
             },
-            scrollBehavior = scrollBehavior)
+            scrollBehavior = scrollBehavior
+        )
     }) { innerPadding ->
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(

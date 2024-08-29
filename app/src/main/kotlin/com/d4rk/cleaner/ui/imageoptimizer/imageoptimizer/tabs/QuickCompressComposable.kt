@@ -36,19 +36,21 @@ fun QuickCompressScreen(viewModel: ImageOptimizerViewModel) {
     Column(modifier = Modifier.padding(16.dp)) {
         Row(modifier = Modifier.fillMaxWidth()) {
             for (compressionLevel: CompressionLevel in CompressionLevel.entries) {
-                OutlinedButton(onClick = {
-                    coroutineScope.launch {
-                        sliderValue = compressionLevel.defaultPercentage.toFloat()
-                        viewModel.setQuickCompressValue(sliderValue.toInt())
-                    }
-                }, modifier = Modifier.weight(1f), border = BorderStroke(
-                    width = 1.dp,
-                    color = if (selectedCompression == compressionLevel) MaterialTheme.colorScheme.primary
-                    else MaterialTheme.colorScheme.outline
-                ), colors = ButtonDefaults.outlinedButtonColors(
-                    contentColor = if (selectedCompression == compressionLevel) MaterialTheme.colorScheme.primary
-                    else MaterialTheme.colorScheme.onSurface
-                )) {
+                OutlinedButton(
+                    onClick = {
+                        coroutineScope.launch {
+                            sliderValue = compressionLevel.defaultPercentage.toFloat()
+                            viewModel.setQuickCompressValue(sliderValue.toInt())
+                        }
+                    }, modifier = Modifier.weight(1f), border = BorderStroke(
+                        width = 1.dp,
+                        color = if (selectedCompression == compressionLevel) MaterialTheme.colorScheme.primary
+                        else MaterialTheme.colorScheme.outline
+                    ), colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = if (selectedCompression == compressionLevel) MaterialTheme.colorScheme.primary
+                        else MaterialTheme.colorScheme.onSurface
+                    )
+                ) {
                     Text(text = stringResource(compressionLevel.stringRes))
                 }
                 Spacer(modifier = Modifier.width(8.dp))

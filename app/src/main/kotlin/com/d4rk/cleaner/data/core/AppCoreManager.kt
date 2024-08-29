@@ -6,7 +6,6 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
@@ -48,7 +47,8 @@ class AppCoreManager : MultiDexApplication(), Application.ActivityLifecycleCallb
         notificationsManager.scheduleAppUsageCheck()
 
         CoroutineScope(Dispatchers.Main).launch {
-            val startupPage : String = dataStore.getStartupPage().firstOrNull() ?: BottomBarRoutes.HOME
+            val startupPage: String =
+                dataStore.getStartupPage().firstOrNull() ?: BottomBarRoutes.HOME
             val showLabels: Boolean = dataStore.getShowBottomBarLabels().firstOrNull() ?: true
 
             markAppAsLoaded()

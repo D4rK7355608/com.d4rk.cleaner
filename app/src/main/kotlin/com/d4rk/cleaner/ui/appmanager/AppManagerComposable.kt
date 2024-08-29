@@ -205,7 +205,7 @@ fun AppItemComposable(
     app: ApplicationInfo
 ) {
     val context: Context = LocalContext.current
-    val view : View = LocalView.current
+    val view: View = LocalView.current
     val packageManager: PackageManager = context.packageManager
     val appName: String = app.loadLabel(packageManager).toString()
     val apkPath: String = app.publicSourceDir
@@ -259,13 +259,15 @@ fun AppItemComposable(
             Box {
                 IconButton(onClick = {
                     view.weakHapticFeedback()
-                    showMenu = true }) {
+                    showMenu = true
+                }) {
                     Icon(Icons.Outlined.MoreVert, contentDescription = null)
                 }
 
                 DropdownMenu(expanded = showMenu, onDismissRequest = {
                     view.weakHapticFeedback()
-                    showMenu = false }) {
+                    showMenu = false
+                }) {
                     DropdownMenuItem(text = {
                         Text(stringResource(R.string.uninstall))
                     }, onClick = {
@@ -332,7 +334,7 @@ fun ApksComposable(apkFiles: List<ApkInfo>) {
 @Composable
 fun ApkItemComposable(apkPath: String) {
     val context: Context = LocalContext.current
-    val view : View = LocalView.current
+    val view: View = LocalView.current
     val apkFile = File(apkPath)
     val sizeInBytes: Long = apkFile.length()
     val sizeInKB: Long = sizeInBytes / 1024
@@ -387,13 +389,15 @@ fun ApkItemComposable(apkPath: String) {
             Box {
                 IconButton(onClick = {
                     view.weakHapticFeedback()
-                    showMenu = true }) {
+                    showMenu = true
+                }) {
                     Icon(Icons.Outlined.MoreVert, contentDescription = null)
                 }
 
                 DropdownMenu(expanded = showMenu, onDismissRequest = {
                     view.weakHapticFeedback()
-                    showMenu = false }) {
+                    showMenu = false
+                }) {
                     DropdownMenuItem(text = { Text(stringResource(R.string.share)) }, onClick = {
                         view.weakHapticFeedback()
                         val shareIntent = Intent(Intent.ACTION_SEND)

@@ -35,7 +35,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FileSizeScreen(viewModel: ImageOptimizerViewModel) {
-    val view : View = LocalView.current
+    val view: View = LocalView.current
     val state: State<ImageOptimizerState> = viewModel.uiState.collectAsState()
     var fileSizeText: String by remember { mutableStateOf(state.value.fileSizeKB.toString()) }
     var expanded: Boolean by remember { mutableStateOf(value = false) }
@@ -44,7 +44,8 @@ fun FileSizeScreen(viewModel: ImageOptimizerViewModel) {
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     Column(modifier = Modifier.padding(16.dp)) {
         ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }) {
-            OutlinedTextField(value = fileSizeText,
+            OutlinedTextField(
+                value = fileSizeText,
                 onValueChange = { newValue ->
                     fileSizeText = newValue
                     coroutineScope.launch {
@@ -62,7 +63,8 @@ fun FileSizeScreen(viewModel: ImageOptimizerViewModel) {
                 modifier = Modifier
                     .menuAnchor()
                     .fillMaxWidth()
-                    .padding(top = 12.dp))
+                    .padding(top = 12.dp)
+            )
 
             ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
                 presetSizes.forEach { size ->

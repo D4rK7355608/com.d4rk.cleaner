@@ -35,7 +35,8 @@ fun PrivacySettingsComposable(activity: PrivacySettingsActivity) {
     val scrollBehavior: TopAppBarScrollBehavior =
         TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.security_and_privacy)) },
+        LargeTopAppBar(
+            title = { Text(stringResource(R.string.security_and_privacy)) },
             navigationIcon = {
                 IconButton(onClick = {
                     activity.finish()
@@ -45,7 +46,8 @@ fun PrivacySettingsComposable(activity: PrivacySettingsActivity) {
                     )
                 }
             },
-            scrollBehavior = scrollBehavior)
+            scrollBehavior = scrollBehavior
+        )
     }) { paddingValues ->
         LazyColumn(
             modifier = Modifier

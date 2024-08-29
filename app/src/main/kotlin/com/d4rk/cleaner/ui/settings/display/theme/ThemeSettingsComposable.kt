@@ -48,7 +48,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
     val context: Context = LocalContext.current
-    val view : View = LocalView.current
+    val view: View = LocalView.current
     val dataStore: DataStore = DataStore.getInstance(context)
     val scope: CoroutineScope = rememberCoroutineScope()
     val scrollBehavior: TopAppBarScrollBehavior =
