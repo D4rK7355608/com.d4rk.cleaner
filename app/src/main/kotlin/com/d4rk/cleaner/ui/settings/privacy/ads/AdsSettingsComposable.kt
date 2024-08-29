@@ -1,6 +1,7 @@
 package com.d4rk.cleaner.ui.settings.privacy.ads
 
 import android.content.Context
+import android.view.View
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -30,6 +31,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -41,6 +43,7 @@ import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.utils.compose.components.PreferenceItem
 import com.d4rk.cleaner.utils.compose.components.SwitchCardComposable
+import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 import com.google.android.ump.ConsentInformation
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
@@ -52,6 +55,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun AdsSettingsComposable(activity: AdsSettingsActivity) {
     val context: Context = LocalContext.current
+    val view: View = LocalView.current
     val dataStore: DataStore = DataStore.getInstance(context)
     val switchState: State<Boolean> = dataStore.ads.collectAsState(initial = true)
     val scope: CoroutineScope = rememberCoroutineScope()
@@ -60,6 +64,7 @@ fun AdsSettingsComposable(activity: AdsSettingsActivity) {
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.ads)) }, navigationIcon = {
             IconButton(onClick = {
+                view.weakHapticFeedback()
                 activity.finish()
             }) {
                 Icon(
@@ -132,6 +137,7 @@ fun AdsSettingsComposable(activity: AdsSettingsActivity) {
                             )
                         }
                         ClickableText(text = annotatedString, onClick = { offset ->
+                            view.weakHapticFeedback()
                             annotatedString.getStringAnnotations(tag = "URL", offset, offset)
                                 .firstOrNull()?.let { annotation ->
                                     IntentUtils.openUrl(context, annotation.item)

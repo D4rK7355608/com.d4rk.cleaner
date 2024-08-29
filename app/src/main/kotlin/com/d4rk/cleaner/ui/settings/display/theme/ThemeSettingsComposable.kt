@@ -64,6 +64,7 @@ fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.dark_theme)) }, navigationIcon = {
             IconButton(onClick = {
+                view.weakHapticFeedback()
                 activity.finish()
             }) {
                 Icon(

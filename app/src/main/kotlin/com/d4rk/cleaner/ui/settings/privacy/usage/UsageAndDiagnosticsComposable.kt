@@ -1,6 +1,7 @@
 package com.d4rk.cleaner.ui.settings.privacy.usage
 
 import android.content.Context
+import android.view.View
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -30,6 +31,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -41,6 +43,7 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.utils.compose.components.SwitchCardComposable
+import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -49,6 +52,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
     val context: Context = LocalContext.current
+    val view: View = LocalView.current
     val dataStore: DataStore = DataStore.getInstance(context)
     val switchState: State<Boolean> = dataStore.usageAndDiagnostics.collectAsState(initial = true)
     val scope: CoroutineScope = rememberCoroutineScope()
@@ -59,6 +63,7 @@ fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
             title = { Text(stringResource(R.string.usage_and_diagnostics)) },
             navigationIcon = {
                 IconButton(onClick = {
+                    view.weakHapticFeedback()
                     activity.finish()
                 }) {
                     Icon(
@@ -111,6 +116,7 @@ fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
                             )
                         }
                         ClickableText(text = annotatedString, onClick = { offset ->
+                            view.weakHapticFeedback()
                             annotatedString.getStringAnnotations(tag = "URL", offset, offset)
                                 .firstOrNull()?.let { annotation ->
                                     IntentUtils.openUrl(context, annotation.item)

@@ -66,7 +66,10 @@ fun SwitchCardComposable(
             Text(text = title)
             Switch(
                 checked = switchState.value,
-                onCheckedChange = onSwitchToggled,
+                onCheckedChange = { isChecked ->
+                    view.weakHapticFeedback()
+                    onSwitchToggled(isChecked)
+                },
                 thumbContent = if (switchState.value) {
                     {
                         Icon(
@@ -202,7 +205,10 @@ fun SwitchPreferenceItem(
         }
         Switch(
             checked = checked,
-            onCheckedChange = onCheckedChange,
+            onCheckedChange = { isChecked ->
+                view.weakHapticFeedback()
+                onCheckedChange(isChecked)
+            },
             modifier = Modifier.padding(16.dp)
         )
     }
@@ -265,9 +271,9 @@ fun SwitchPreferenceItemWithDivider(
             thickness = 1.dp
         )
         Switch(checked = checked, onCheckedChange = { isChecked ->
+            view.weakHapticFeedback()
             onCheckedChange(isChecked)
             onSwitchClick(isChecked)
         }, modifier = Modifier.padding(16.dp))
-
     }
 }
