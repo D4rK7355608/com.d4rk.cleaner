@@ -47,11 +47,13 @@ import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 fun SwitchCardComposable(
     title : String , switchState : State<Boolean> , onSwitchToggled : (Boolean) -> Unit
 ) {
+    val view : View = LocalView.current
     Card(modifier = Modifier
             .fillMaxWidth()
             .padding(24.dp)
             .clip(RoundedCornerShape(28.dp))
             .clickable {
+                view.weakHapticFeedback()
                 onSwitchToggled(! switchState.value)
             }) {
         Row(
@@ -62,7 +64,8 @@ fun SwitchCardComposable(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(text = title)
-            Switch(checked = switchState.value ,
+            Switch(
+                checked = switchState.value ,
                    onCheckedChange = onSwitchToggled ,
                    thumbContent = if (switchState.value) {
                        {

@@ -2,6 +2,7 @@ package com.d4rk.cleaner.ui.memory
 
 import android.app.Activity
 import android.content.Context
+import android.view.View
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.Transition
@@ -61,6 +62,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
@@ -74,6 +76,7 @@ import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.cleaning.StorageUtils.formatSize
 import com.d4rk.cleaner.utils.compose.bounceClick
 import com.d4rk.cleaner.utils.compose.components.StorageProgressBar
+import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 import kotlinx.coroutines.delay
 import kotlin.math.absoluteValue
 
@@ -86,7 +89,7 @@ fun MemoryManagerComposable() {
     val isLoading : Boolean by viewModel.isLoading.collectAsState()
     val listExpanded : Boolean by viewModel.listExpanded.collectAsState()
     val context : Context = LocalContext.current
-
+    val view : View = LocalView.current
     val transition : Transition<Boolean> =
             updateTransition(targetState = ! isLoading , label = "LoadingTransition")
 
@@ -170,6 +173,7 @@ fun MemoryManagerComposable() {
 
                 Spacer(modifier = Modifier.width(8.dp))
                 IconButton(modifier = Modifier.bounceClick() , onClick = {
+                    view.weakHapticFeedback()
                     viewModel.toggleListExpanded()
                 }) {
                     Icon(

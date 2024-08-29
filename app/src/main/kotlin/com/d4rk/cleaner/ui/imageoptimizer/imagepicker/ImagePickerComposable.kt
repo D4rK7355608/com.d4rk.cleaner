@@ -121,6 +121,7 @@ fun ImagePickerComposable(
                         bottom.linkTo(parent.bottom)
                     }
                 }, text = { Text(stringResource(R.string.choose_image)) }, onClick = {
+                view.weakHapticFeedback()
                 activity.selectImage()
             }, icon = {
                 Icon(

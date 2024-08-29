@@ -223,6 +223,7 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                 item {
                     FilledTonalButton(
                         onClick = {
+                            view.weakHapticFeedback()
                             IntentUtils.openUrl(
                                 context , url = "https://direct-link.net/548212/agOqI7123501341"
                             )

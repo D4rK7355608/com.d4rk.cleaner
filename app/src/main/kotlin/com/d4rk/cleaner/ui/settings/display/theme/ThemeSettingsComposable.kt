@@ -1,6 +1,7 @@
 package com.d4rk.cleaner.ui.settings.display.theme
 
 import android.content.Context
+import android.view.View
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,11 +33,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.compose.components.SwitchCardComposable
+import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -45,6 +48,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
     val context: Context = LocalContext.current
+    val view : View = LocalView.current
     val dataStore: DataStore = DataStore.getInstance(context)
     val scope: CoroutineScope = rememberCoroutineScope()
     val scrollBehavior: TopAppBarScrollBehavior =
@@ -95,6 +99,7 @@ fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 RadioButton(selected = (text == themeMode), onClick = {
+                                    view.weakHapticFeedback()
                                     scope.launch(Dispatchers.IO) {
                                         dataStore.saveThemeMode(text)
                                         dataStore.themeModeState.value = text
