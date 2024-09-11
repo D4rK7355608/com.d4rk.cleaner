@@ -112,7 +112,7 @@ fun AppManagerComposable() {
         }
     }
 
-    if (state.isRefreshing) { // FIXME: Unresolved reference: isRefreshing
+/*    if (state.isRefreshing) { // FIXME: Unresolved reference: isRefreshing
         LaunchedEffect(key1 = true) {
             viewModel.loadAppData()
             state.endRefresh() // FIXME: Unresolved reference: endRefresh
@@ -173,7 +173,7 @@ fun AppManagerComposable() {
                 }
             }
         }
-    }
+    }*/
 }
 
 /**

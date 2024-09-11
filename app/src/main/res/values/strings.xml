@@ -268,5 +268,9 @@
     <string name="startup">Startup</string>
     <string name="startup_page">Startup page</string>
     <string name="summary_preference_settings_startup_page">Choose the screen to be displayed when the app starts.</string>
+    <string name="storage_permission_error">Storage permission is required.</string>
+    <string name="analysis_error">An error occurred during analysis.</string>
+    <string name="cleaning_error">An error occurred during cleaning.</string>
+    <string name="unknown_error">An unknown error occurred.</string>
 
 </resources>

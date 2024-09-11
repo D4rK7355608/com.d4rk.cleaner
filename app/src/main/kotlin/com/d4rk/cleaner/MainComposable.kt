@@ -1,6 +1,7 @@
 package com.d4rk.cleaner
 
 import android.content.Context
+import android.view.SoundEffectConstants
 import android.view.View
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -216,7 +217,7 @@ fun MainComposable() {
                             label = { if (showLabels) Text(text = stringResource(screen.title)) },
                             selected = currentRoute == screen.route,
                             onClick = {
-                                view.weakHapticFeedback()
+                                view.playSoundEffect(SoundEffectConstants.CLICK)
                                 navController.navigate(screen.route) {
                                     popUpTo(navController.graph.startDestinationId)
                                     launchSingleTop = true

@@ -84,46 +84,38 @@ import java.io.File
 fun HomeComposable() {
     val context: Context = LocalContext.current
     val view: View = LocalView.current
-    val activity : Activity = LocalContext.current as Activity
+    val activity: Activity = LocalContext.current as Activity
     val viewModel: HomeViewModel = viewModel()
-    val progress: Float by viewModel.progress.collectAsState()
-    val storageUsed: String by viewModel.storageUsed.collectAsState()
-    val storageTotal: String by viewModel.storageTotal.collectAsState()
-    val showCleaningComposable: Boolean by viewModel.showCleaningComposable.collectAsState()
-    val isAnalyzing: Boolean by viewModel.isAnalyzing.collectAsState()
-    val selectedFileCount: Int by viewModel.selectedFileCount.collectAsState()
-    val showErrorDialog by viewModel.showErrorDialog.collectAsState()
-    val errorMessage by viewModel.errorMessage.collectAsState()
+
+    val uiState by viewModel.uiState.collectAsState()
 
     val imageLoader: ImageLoader = ImageLoader.Builder(context).memoryCache {
         MemoryCache.Builder(context).maxSizePercent(percent = 0.24).build()
     }.diskCache {
         DiskCache.Builder().directory(context.cacheDir.resolve(relative = "image_cache"))
-                .maxSizePercent(percent = 0.02).build()
+            .maxSizePercent(percent = 0.02).build()
     }.build()
 
-    if (viewModel.showRescanDialog.value) {
+    if (uiState.showRescanDialog) {
         RescanAlertDialog(onYes = {
             viewModel.rescan()
             view.weakHapticFeedback()
-            viewModel.showRescanDialog.value = false
+            viewModel._uiState.value = uiState.copy(showRescanDialog = false)
         }, onDismiss = {
-            viewModel.showRescanDialog.value = false
+            viewModel._uiState.value = uiState.copy(showRescanDialog = false)
             view.weakHapticFeedback()
         })
     }
 
-    if (showErrorDialog) {
-        AlertDialog(
-            onDismissRequest = { viewModel.dismissErrorDialog() },
+    if (uiState.showErrorDialog) {
+        AlertDialog(onDismissRequest = { viewModel.dismissErrorDialog() },
             title = { Text("Error") },
-            text = { Text(errorMessage) },
+            text = { Text(uiState.errorMessage) },
             confirmButton = {
                 TextButton(onClick = { viewModel.dismissErrorDialog() }) {
                     Text("OK")
                 }
-            }
-        )
+            })
     }
 
     Column(
@@ -131,25 +123,25 @@ fun HomeComposable() {
     ) {
         Box(
             modifier = Modifier
-                    .weight(4f)
-                    .fillMaxWidth()
+                .weight(4f)
+                .fillMaxWidth()
         ) {
-            if (!showCleaningComposable) {
+            if (!uiState.showCleaningComposable) {
                 CircularDeterminateIndicator(
-                    progress = progress,
-                    storageUsed = storageUsed,
-                    storageTotal = storageTotal,
+                    progress = uiState.progress,
+                    storageUsed = uiState.storageUsed,
+                    storageTotal = uiState.storageTotal,
                     modifier = Modifier
-                            .align(Alignment.TopCenter)
-                            .offset(y = 98.dp)
+                        .align(Alignment.TopCenter)
+                        .offset(y = 98.dp)
                 )
                 Image(
                     painter = painterResource(R.drawable.ic_clean),
                     contentDescription = null,
                     modifier = Modifier
-                            .align(Alignment.BottomCenter)
-                            .padding(24.dp)
-                            .size(128.dp, 66.dp)
+                        .align(Alignment.BottomCenter)
+                        .padding(24.dp)
+                        .size(128.dp, 66.dp)
                 )
             } else {
                 AnalyzeComposable(imageLoader)
@@ -157,13 +149,13 @@ fun HomeComposable() {
         }
         Row(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .height(102.dp)
-                    .padding(bottom = 16.dp),
+                .fillMaxWidth()
+                .height(102.dp)
+                .padding(bottom = 16.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             AnimatedVisibility(
-                visible = showCleaningComposable,
+                visible = uiState.showCleaningComposable,
                 enter = fadeIn(animationSpec = tween(durationMillis = 400)) + expandHorizontally(
                     animationSpec = tween(durationMillis = 400), expandFrom = Alignment.Start
                 ),
@@ -172,7 +164,7 @@ fun HomeComposable() {
                 ),
                 modifier = Modifier.weight(1f)
             ) {
-                val enabled: Boolean = !isAnalyzing && selectedFileCount > 0
+                val enabled: Boolean = !uiState.isAnalyzing && uiState.selectedFileCount > 0
 
                 val animateStateButtonColor: State<Color> = animateColorAsState(
                     targetValue = if (enabled) MaterialTheme.colorScheme.secondaryContainer else Color.LightGray,
@@ -182,11 +174,11 @@ fun HomeComposable() {
 
                 FilledTonalButton(
                     modifier = Modifier
-                            .weight(1f)
-                            .fillMaxHeight()
-                            .animateContentSize()
-                            .padding(start = 16.dp, end = 8.dp)
-                            .bounceClick(),
+                        .weight(1f)
+                        .fillMaxHeight()
+                        .animateContentSize()
+                        .padding(start = 16.dp, end = 8.dp)
+                        .bounceClick(),
                     onClick = {
                         view.weakHapticFeedback()
                         viewModel.clean(activity = activity)
@@ -201,8 +193,8 @@ fun HomeComposable() {
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center,
                         modifier = Modifier
-                                .fillMaxSize()
-                                .padding(ButtonDefaults.ContentPadding)
+                            .fillMaxSize()
+                            .padding(ButtonDefaults.ContentPadding)
                     ) {
                         Icon(
                             painterResource(R.drawable.ic_broom),
@@ -216,22 +208,25 @@ fun HomeComposable() {
                     }
                 }
             }
-            FilledTonalButton(modifier = Modifier
+            FilledTonalButton(
+                modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
                     .animateContentSize()
-                    .padding(start = if (showCleaningComposable) 8.dp else 16.dp, end = 16.dp)
+                    .padding(
+                        start = if (uiState.showCleaningComposable) 8.dp else 16.dp, end = 16.dp
+                    )
                     .bounceClick(), onClick = {
-                view.weakHapticFeedback()
-                viewModel.analyze()
-            }, shape = MaterialTheme.shapes.medium
+                    view.weakHapticFeedback()
+                    viewModel.analyze()
+                }, shape = MaterialTheme.shapes.medium
             ) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
                     modifier = Modifier
-                            .fillMaxSize()
-                            .padding(ButtonDefaults.ContentPadding)
+                        .fillMaxSize()
+                        .padding(ButtonDefaults.ContentPadding)
                 ) {
                     Icon(
                         painterResource(R.drawable.ic_search),
@@ -252,11 +247,7 @@ fun HomeComposable() {
 @Composable
 fun AnalyzeComposable(imageLoader: ImageLoader) {
     val viewModel: HomeViewModel = viewModel()
-    val files: List<File> by viewModel.scannedFiles.collectAsState()
-    val isAnalyzing: Boolean by viewModel.isAnalyzing.collectAsState()
-    val allFilesSelected: Boolean by viewModel.allFilesSelected
-    val selectedFileCount: Int by viewModel.selectedFileCount.collectAsState()
-
+    val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
         viewModel.analyze()
@@ -264,17 +255,17 @@ fun AnalyzeComposable(imageLoader: ImageLoader) {
 
     Column(
         modifier = Modifier
-                .animateContentSize()
-                .fillMaxWidth()
-                .padding(16.dp),
+            .animateContentSize()
+            .fillMaxWidth()
+            .padding(16.dp),
         horizontalAlignment = Alignment.End
     ) {
         OutlinedCard(
             modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth(),
+                .weight(1f)
+                .fillMaxWidth(),
         ) {
-            if (isAnalyzing && files.isEmpty()) {
+            if (uiState.isAnalyzing && uiState.scannedFiles.isEmpty()) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator()
                 }
@@ -285,7 +276,8 @@ fun AnalyzeComposable(imageLoader: ImageLoader) {
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.padding(8.dp),
                 ) {
-                    items(items = files, key = { file -> file.absolutePath }) { file ->
+                    items(items = uiState.scannedFiles,
+                        key = { file -> file.absolutePath }) { file ->
                         FileCard(file = file, viewModel = viewModel, imageLoader = imageLoader)
                     }
                 }
@@ -296,13 +288,13 @@ fun AnalyzeComposable(imageLoader: ImageLoader) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            val statusText: String = if (selectedFileCount > 0) {
-                stringResource(id = R.string.status_selected_files, selectedFileCount)
+            val statusText: String = if (uiState.selectedFileCount > 0) {
+                stringResource(id = R.string.status_selected_files, uiState.selectedFileCount)
             } else {
                 stringResource(id = R.string.status_no_files_selected)
             }
             val statusColor: Color by animateColorAsState(
-                targetValue = if (selectedFileCount > 0) {
+                targetValue = if (uiState.selectedFileCount > 0) {
                     MaterialTheme.colorScheme.primary
                 } else {
                     MaterialTheme.colorScheme.secondary
@@ -313,7 +305,7 @@ fun AnalyzeComposable(imageLoader: ImageLoader) {
                 text = statusText, color = statusColor, modifier = Modifier.animateContentSize()
             )
             SelectAllComposable(
-                checked = allFilesSelected,
+                checked = uiState.allFilesSelected,
                 onCheckedChange = { viewModel.selectAllFiles(it) },
             )
         }
@@ -336,9 +328,9 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
 
     Card(
         modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(ratio = 1f)
-                .bounceClick(),
+            .fillMaxWidth()
+            .aspectRatio(ratio = 1f)
+            .bounceClick(),
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             when (fileExtension) {
@@ -346,7 +338,7 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
                     AsyncImage(
                         model = remember(file) {
                             ImageRequest.Builder(context).data(file).size(64)
-                                    .crossfade(enable = true).build()
+                                .crossfade(enable = true).build()
                         },
                         imageLoader = imageLoader,
                         contentDescription = file.name,
@@ -368,8 +360,8 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
                             painter = painterResource(R.drawable.ic_video_file),
                             contentDescription = null,
                             modifier = Modifier
-                                    .size(24.dp)
-                                    .align(Alignment.Center)
+                                .size(24.dp)
+                                .align(Alignment.Center)
                         )
                     }
                 }
@@ -379,14 +371,14 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
                         painter = painterResource(getFileIcon(fileExtension, context)),
                         contentDescription = null,
                         modifier = Modifier
-                                .size(24.dp)
-                                .align(Alignment.Center)
+                            .size(24.dp)
+                            .align(Alignment.Center)
                     )
                 }
             }
 
             Checkbox(
-                checked = viewModel.fileSelectionStates[file] ?: false,
+                checked = viewModel.uiState.value.fileSelectionStates[file] ?: false,
                 onCheckedChange = { isChecked ->
                     view.weakHapticFeedback()
                     viewModel.onFileSelectionChange(file, isChecked)
@@ -399,12 +391,12 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .background(
-                            color = Color.Black.copy(alpha = 0.4f)
-                        )
-                        .padding(8.dp)
-                        .align(Alignment.BottomCenter)
+                    .fillMaxWidth()
+                    .background(
+                        color = Color.Black.copy(alpha = 0.4f)
+                    )
+                    .padding(8.dp)
+                    .align(Alignment.BottomCenter)
             )
         }
     }
@@ -426,8 +418,8 @@ fun SelectAllComposable(
     val view: View = LocalView.current
     Row(
         modifier = Modifier
-                .fillMaxWidth()
-                .animateContentSize(),
+            .fillMaxWidth()
+            .animateContentSize(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.End
     ) {
@@ -442,8 +434,7 @@ fun SelectAllComposable(
             label = { Text(stringResource(id = R.string.select_all)) },
             leadingIcon = {
                 AnimatedContent(
-                    targetState = checked,
-                    label = "Checkmark Animation"
+                    targetState = checked, label = "Checkmark Animation"
                 ) { targetChecked ->
                     if (targetChecked) {
                         Icon(
