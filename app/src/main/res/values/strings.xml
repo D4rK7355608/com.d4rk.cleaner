@@ -272,5 +272,6 @@
     <string name="analysis_error">An error occurred during analysis.</string>
     <string name="cleaning_error">An error occurred during cleaning.</string>
     <string name="unknown_error">An unknown error occurred.</string>
+    <string name="app_loading_error">Error loading app data.</string>
 
 </resources>

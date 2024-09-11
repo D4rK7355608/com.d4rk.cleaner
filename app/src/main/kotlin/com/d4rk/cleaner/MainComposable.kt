@@ -58,7 +58,7 @@ import com.d4rk.cleaner.data.model.ui.navigation.BottomNavigationScreen
 import com.d4rk.cleaner.data.model.ui.navigation.NavigationDrawerItem
 import com.d4rk.cleaner.ui.appmanager.AppManagerComposable
 import com.d4rk.cleaner.ui.help.HelpActivity
-import com.d4rk.cleaner.ui.home.HomeComposable
+import com.d4rk.cleaner.ui.home.HomeScreen
 import com.d4rk.cleaner.ui.imageoptimizer.imagepicker.ImagePickerActivity
 import com.d4rk.cleaner.ui.memory.MemoryManagerComposable
 import com.d4rk.cleaner.ui.settings.SettingsActivity
@@ -230,7 +230,7 @@ fun MainComposable() {
             NavHost(navController, startDestination = startupPage) {
                 composable(BottomNavigationScreen.Home.route) {
                     Box(modifier = Modifier.padding(innerPadding)) {
-                        HomeComposable()
+                        HomeScreen()
                     }
                 }
                 composable(BottomNavigationScreen.AppManager.route) {

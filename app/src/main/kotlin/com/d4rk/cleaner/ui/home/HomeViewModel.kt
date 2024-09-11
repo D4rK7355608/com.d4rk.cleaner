@@ -2,7 +2,7 @@ package com.d4rk.cleaner.ui.home
 
 import android.app.Activity
 import android.app.Application
-import android.graphics.Bitmap
+import android.content.Context
 import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.constants.error.ErrorType
@@ -38,15 +38,19 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
                 showErrorDialog = true,
                 errorMessage = getApplication<Application>().getString(R.string.storage_permission_error)
             )
+
             ErrorType.CLEANING_ERROR -> _uiState.value = _uiState.value.copy(
                 showErrorDialog = true,
                 errorMessage = exception.message
                     ?: getApplication<Application>().getString(R.string.cleaning_error)
             )
-            ErrorType.UNKNOWN_ERROR -> _uiState.value = _uiState.value.copy(
-                showErrorDialog = true,
-                errorMessage = getApplication<Application>().getString(R.string.unknown_error)
-            )
+
+            else -> {
+                _uiState.value = _uiState.value.copy(
+                    showErrorDialog = true,
+                    errorMessage = getApplication<Application>().getString(R.string.unknown_error)
+                )
+            }
         }
     }
 
@@ -55,10 +59,11 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
     }
 
     fun onFileSelectionChange(file: File, isChecked: Boolean) {
+        val updatedFileSelectionStates = _uiState.value.fileSelectionStates + (file to isChecked)
         _uiState.value = _uiState.value.copy(
-            fileSelectionStates = _uiState.value.fileSelectionStates + (file to isChecked),
-            selectedFileCount = _uiState.value.fileSelectionStates.count { it.value } + if (isChecked) 1 else 0, // Update count based on isChecked
-            allFilesSelected = (_uiState.value.fileSelectionStates + (file to isChecked)).all { it.value } // Update allFilesSelected
+            fileSelectionStates = updatedFileSelectionStates,
+            selectedFileCount = updatedFileSelectionStates.count { it.value },
+            allFilesSelected = updatedFileSelectionStates.all { it.value } && updatedFileSelectionStates.isNotEmpty()
         )
     }
 
@@ -110,11 +115,23 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
-    fun getVideoThumbnail(filePath: String, callback: (Bitmap?) -> Unit) {
+    fun getVideoThumbnail(filePath: String, context: Context, callback: (File?) -> Unit) {
         viewModelScope.launch(coroutineExceptionHandler) {
             val bitmap = repository.getVideoThumbnail(filePath)
-            withContext(Dispatchers.Main) {
-                callback(bitmap)
+            if (bitmap != null) {
+                val thumbnailFile = File(context.cacheDir, "thumbnail_${filePath.hashCode()}.png")
+                val savedSuccessfully = repository.saveBitmapToFile(bitmap, thumbnailFile)
+                withContext(Dispatchers.Main) {
+                    if (savedSuccessfully) {
+                        callback(thumbnailFile)
+                    } else {
+                        callback(null)
+                    }
+                }
+            } else {
+                withContext(Dispatchers.Main) {
+                    callback(null)
+                }
             }
         }
     }

@@ -2,7 +2,6 @@ package com.d4rk.cleaner.ui.home
 
 import android.app.Activity
 import android.content.Context
-import android.graphics.Bitmap
 import android.view.View
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
@@ -57,7 +56,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -81,7 +79,7 @@ import com.google.common.io.Files.getFileExtension
 import java.io.File
 
 @Composable
-fun HomeComposable() {
+fun HomeScreen() {
     val context: Context = LocalContext.current
     val view: View = LocalView.current
     val activity: Activity = LocalContext.current as Activity
@@ -318,11 +316,11 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
     val view: View = LocalView.current
     val fileExtension: String = getFileExtension(file.name)
 
-    var thumbnail: Bitmap? by remember(file.absolutePath) { mutableStateOf(value = null) }
+    var thumbnailFile: File? by remember(file.absolutePath) { mutableStateOf(value = null) }
 
     LaunchedEffect(file.absolutePath) {
-        viewModel.getVideoThumbnail(file.absolutePath) { bitmap ->
-            thumbnail = bitmap
+        viewModel.getVideoThumbnail(filePath = file.absolutePath, context = context) { file ->
+            thumbnailFile = file
         }
     }
 
@@ -348,9 +346,9 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
                 }
 
                 in context.resources.getStringArray(R.array.video_extensions).toList() -> {
-                    if (thumbnail != null) {
-                        Image(
-                            bitmap = thumbnail!!.asImageBitmap(),
+                    if (thumbnailFile != null) {
+                        AsyncImage(
+                            model = thumbnailFile,
                             contentDescription = file.name,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()

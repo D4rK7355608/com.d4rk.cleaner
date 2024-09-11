@@ -8,7 +8,8 @@ class AppManagerViewModelFactory(private val application: Application) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(AppManagerViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST") return AppManagerViewModel(application) as T
+            @Suppress("UNCHECKED_CAST")
+            return AppManagerViewModel(application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

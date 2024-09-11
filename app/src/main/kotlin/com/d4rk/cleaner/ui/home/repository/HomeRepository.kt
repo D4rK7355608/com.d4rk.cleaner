@@ -13,6 +13,7 @@ import com.d4rk.cleaner.utils.cleaning.FileScanner
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
+import java.io.FileOutputStream
 import java.util.UUID
 import kotlin.math.roundToInt
 
@@ -63,6 +64,20 @@ class HomeRepository(
                 if (file.exists()) {
                     file.deleteRecursively()
                 }
+            }
+        }
+    }
+
+    suspend fun saveBitmapToFile(bitmap: Bitmap, file: File): Boolean {
+        return withContext(Dispatchers.IO) {
+            try {
+                val outputStream = FileOutputStream(file)
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+                outputStream.flush()
+                outputStream.close()
+                true
+            } catch (e: Exception) {
+                false
             }
         }
     }
