@@ -7,31 +7,7 @@ import android.graphics.Canvas
 import android.graphics.drawable.AdaptiveIconDrawable
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.media.MediaMetadataRetriever
 import com.d4rk.cleaner.R
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-
-suspend fun getVideoThumbnail(
-    videoPath: String,
-    thumbnailWidth: Int = 64,
-    thumbnailHeight: Int = 64,
-): Bitmap? = withContext(Dispatchers.IO) {
-    val mediaMetadataRetriever = MediaMetadataRetriever()
-    try {
-        mediaMetadataRetriever.setDataSource(videoPath)
-        val bitmap: Bitmap? = mediaMetadataRetriever.getFrameAtTime(
-            1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC
-        )
-        bitmap?.let {
-            Bitmap.createScaledBitmap(it, thumbnailWidth, thumbnailHeight, false)
-        }
-    } catch (e: Exception) {
-        null
-    } finally {
-        mediaMetadataRetriever.release()
-    }
-}
 
 fun getFileIcon(extension: String, context: Context): Int {
     val lowercaseExtension: String = extension.lowercase()

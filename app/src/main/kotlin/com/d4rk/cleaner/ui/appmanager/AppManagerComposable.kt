@@ -47,7 +47,6 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
-import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
 import androidx.compose.material3.pulltorefresh.PullToRefreshState
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
@@ -113,14 +112,14 @@ fun AppManagerComposable() {
         }
     }
 
-    if (state.isRefreshing) {
+    if (state.isRefreshing) { // FIXME: Unresolved reference: isRefreshing
         LaunchedEffect(key1 = true) {
             viewModel.loadAppData()
-            state.endRefresh()
+            state.endRefresh() // FIXME: Unresolved reference: endRefresh
         }
     }
 
-    Box(Modifier.nestedScroll(state.nestedScrollConnection)) {
+    Box(Modifier.nestedScroll(state.nestedScrollConnection)) { // FIXME: Unresolved reference: nestedScrollConnection
         if (isLoading) {
             Box(
                 modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
@@ -174,7 +173,6 @@ fun AppManagerComposable() {
                 }
             }
         }
-        PullToRefreshContainer(state = state, modifier = Modifier.align(Alignment.TopCenter))
     }
 }
 

@@ -2,67 +2,66 @@ package com.d4rk.cleaner.ui.home
 
 import android.app.Activity
 import android.app.Application
-import android.app.usage.StorageStatsManager
+import android.graphics.Bitmap
+import android.media.MediaMetadataRetriever
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.cleaning.FileScanner
 import com.d4rk.cleaner.utils.cleaning.StorageUtils
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
-    val progress = MutableLiveData(0f)
-    val storageUsed = MutableLiveData<String>()
-    val storageTotal = MutableLiveData<String>()
-    var fileScanner: FileScanner
-    val scannedFiles = MutableLiveData<List<File>>()
+    private val _progress = MutableStateFlow(0f)
+    val progress: StateFlow<Float> = _progress
+    private val _storageUsed = MutableStateFlow("")
+    val storageUsed: StateFlow<String> = _storageUsed
+    private val _storageTotal = MutableStateFlow("")
+    val storageTotal: StateFlow<String> = _storageTotal
+    private var fileScanner: FileScanner
+    private val _scannedFiles = MutableStateFlow<List<File>>(emptyList())
+    val scannedFiles: StateFlow<List<File>> = _scannedFiles
     val allFilesSelected = mutableStateOf(value = false)
     val fileSelectionStates = mutableStateMapOf<File, Boolean>()
     private val dataStoreInstance: DataStore = DataStore(application)
-    val showCleaningComposable = MutableLiveData(false)
-    val isAnalyzing = MutableLiveData(false)
+    private val _showCleaningComposable = MutableStateFlow(false)
+    val showCleaningComposable: StateFlow<Boolean> = _showCleaningComposable
+    private val _isAnalyzing = MutableStateFlow(false)
+    val isAnalyzing: StateFlow<Boolean> = _isAnalyzing
     var showRescanDialog = mutableStateOf(value = false)
     private var hasScanned = mutableStateOf(value = false)
     private var isUserConfirmedRescan = mutableStateOf(value = false)
-    val _selectedFileCount = MutableStateFlow(value = 0)
-    val selectedFileCount: StateFlow<Int> = _selectedFileCount.asStateFlow()
+    private val _selectedFileCount = MutableStateFlow(fileSelectionStates.count { it.value })
+    val selectedFileCount: StateFlow<Int> = _selectedFileCount
+    private val _showErrorDialog = MutableStateFlow(false)
+    val showErrorDialog: StateFlow<Boolean> = _showErrorDialog
+    private val _errorMessage = MutableStateFlow("")
+    val errorMessage: StateFlow<String> = _errorMessage
 
     init {
         updateStorageInfo()
         fileScanner = FileScanner(dataStoreInstance, application.resources)
     }
 
-    /**
-     * Updates storage information asynchronously.
-     *
-     * This function retrieves and updates storage-related information such as total storage size, used storage size,
-     * and storage usage progress.
-     * It utilizes the Android StorageManager and StorageStatsManager to fetch storage statistics.
-     * The updated storage information is then posted to corresponding LiveData objects for observation.
-     *
-     * @see android.content.Context.STORAGE_SERVICE
-     * @see android.content.Context.STORAGE_STATS_SERVICE
-     * @see android.os.storage.StorageManager
-     * @see android.os.storage.StorageStatsManager
-     * @see android.os.storage.StorageVolume
-     * @param viewModelScope The coroutine scope associated with the ViewModel for launching asynchronous tasks.
-     */
+    fun dismissErrorDialog() {
+        _showErrorDialog.value = false
+    }
+
     private fun updateStorageInfo() {
         viewModelScope.launch {
             StorageUtils.getStorageInfo(getApplication()) { used, total, usageProgress ->
-                storageUsed.postValue(used)
-                storageTotal.postValue(total)
-                progress.postValue(usageProgress)
+                _storageUsed.value = used
+                _storageTotal.value = total
+                _progress.value = usageProgress
             }
         }
     }
@@ -87,26 +86,19 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
      */
     fun selectAllFiles(selectAll: Boolean) {
         viewModelScope.launch {
+            allFilesSelected.value = selectAll
             withContext(Dispatchers.IO) {
-                scannedFiles.value?.forEach { file ->
+                scannedFiles.value.forEach { file ->
                     fileSelectionStates[file] = selectAll
                 }
             }
-            allFilesSelected.value = selectAll
             _selectedFileCount.value = if (selectAll) fileSelectionStates.size else 0
         }
     }
 
-    /**
-     * Initiates the file analysis process.
-     *
-     * This function checks for necessary permissions and, if granted, triggers the file* scanning process asynchronously.
-     *
-     * @param activity The Activity instance required to request permissions.
-     */
-    fun analyze(activity: Activity) {
+    fun analyze() {
         if (!PermissionsUtils.hasStoragePermissions(getApplication())) {
-            PermissionsUtils.requestStoragePermissions(activity)
+            // Handle permission request (e.g., show a dialog or navigate to settings)
             return
         }
 
@@ -116,9 +108,13 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
 
         isUserConfirmedRescan.value = false
-        isAnalyzing.value = true
-        showCleaningComposable.value = true
-        viewModelScope.launch {
+        _isAnalyzing.value = true
+        _showCleaningComposable.value = true
+        viewModelScope.launch(CoroutineExceptionHandler { _ , exception ->
+            _showErrorDialog.value = true
+            _errorMessage.value = exception.message ?: "An error occurred during analysis."
+            _isAnalyzing.value = false
+        }) {
             val filteredFiles: List<File> = withContext(Dispatchers.IO) {
                 fileScanner.startScanning()
                 fileScanner.getFilteredFiles()
@@ -126,17 +122,17 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
             withContext(Dispatchers.Main) {
                 fileSelectionStates.clear()
-                scannedFiles.value = filteredFiles
-                isAnalyzing.value = false
+                _scannedFiles.value = filteredFiles
+                _isAnalyzing.value = false
                 hasScanned.value = true
             }
         }
     }
 
-    fun rescan(activity: Activity) {
+    fun rescan() {
         showRescanDialog.value = false
-        scannedFiles.value = emptyList()
-        analyze(activity)
+        _scannedFiles.value = emptyList()
+        analyze()
     }
 
     /**
@@ -150,20 +146,43 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             return
         }
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(CoroutineExceptionHandler { _, exception ->
+            _showErrorDialog.value = true
+            _errorMessage.value = exception.message ?: "An error occurred during cleaning."
+        }) {
             val filesToDelete: Set<File> = fileSelectionStates.filter { it.value }.keys
-            filesToDelete.forEach { file ->
-                if (file.exists()) {
-                    file.deleteRecursively()
+            withContext(Dispatchers.IO) {
+                filesToDelete.forEach { file ->
+                    if (file.exists()) {
+                        file.deleteRecursively()
+                    }
                 }
             }
 
             withContext(Dispatchers.Main) {
-                scannedFiles.value = scannedFiles.value?.filterNot { filesToDelete.contains(it) }
+                _scannedFiles.value = scannedFiles.value.filterNot { filesToDelete.contains(it) }
                 fileSelectionStates.clear()
                 selectAllFiles(selectAll = false)
                 _selectedFileCount.value = 0
                 updateStorageInfo()
+            }
+        }
+    }
+
+
+    fun getVideoThumbnail(filePath: String, callback: (Bitmap?) -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val bitmap: Bitmap? = try {
+                val mediaMetadataRetriever = MediaMetadataRetriever()
+                mediaMetadataRetriever.setDataSource(filePath)
+                val frame : Bitmap? = mediaMetadataRetriever.getFrameAtTime(0)
+                mediaMetadataRetriever.release()
+                frame
+            } catch (e: Exception) {
+                null
+            }
+            withContext(Dispatchers.Main) {
+                callback(bitmap)
             }
         }
     }
