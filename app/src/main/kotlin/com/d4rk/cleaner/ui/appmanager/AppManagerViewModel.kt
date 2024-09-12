@@ -1,9 +1,15 @@
 package com.d4rk.cleaner.ui.appmanager
 
 import android.app.Application
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.content.pm.ApplicationInfo
 import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.constants.error.ErrorType
+import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
 import com.d4rk.cleaner.data.model.ui.screens.UiAppManagerModel
 import com.d4rk.cleaner.ui.appmanager.repository.AppManagerRepository
 import com.d4rk.cleaner.utils.viewmodel.BaseViewModel
@@ -19,27 +25,50 @@ class AppManagerViewModel(application: Application) : BaseViewModel(application)
     private val _uiState = MutableStateFlow(UiAppManagerModel())
     val uiState: StateFlow<UiAppManagerModel> = _uiState.asStateFlow()
 
+    private val packageRemovedReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context? , intent: Intent?) {
+            if (intent?.action == Intent.ACTION_PACKAGE_REMOVED) {
+                viewModelScope.launch {
+                    loadAppData()
+                }
+            }
+        }
+    }
+
     init {
         viewModelScope.launch(coroutineExceptionHandler) {
             loadAppData()
         }
+
+        val filter = IntentFilter(Intent.ACTION_PACKAGE_REMOVED)
+        filter.addDataScheme("package")
+        getApplication<Application>().registerReceiver(packageRemovedReceiver, filter)
+    }
+
+    override fun onCleared() {
+        getApplication<Application>().unregisterReceiver(packageRemovedReceiver)
+        super.onCleared()
     }
 
     private suspend fun loadAppData() {
         showLoading()
         try {
-            val installedApps = withContext(Dispatchers.IO) {
-                repository.getInstalledApps()
-            }
-            val apkFiles = withContext(Dispatchers.IO) {
-                repository.getApkFilesFromStorage()
-            }
+            val installedApps : List<ApplicationInfo> = loadInstalledApps()
+            val apkFiles : List<ApkInfo> = loadApkFiles()
             _uiState.value = UiAppManagerModel(installedApps, apkFiles)
         } catch (e: Exception) {
             handleError(ErrorType.APP_LOADING_ERROR, e)
         } finally {
             hideLoading()
         }
+    }
+
+    private suspend fun loadInstalledApps(): List<ApplicationInfo> = withContext(Dispatchers.IO) {
+        repository.getInstalledApps()
+    }
+
+    private suspend fun loadApkFiles(): List<ApkInfo> = withContext(Dispatchers.IO) {
+        repository.getApkFilesFromStorage()
     }
 
     override fun handleError(errorType: ErrorType, exception: Throwable) {

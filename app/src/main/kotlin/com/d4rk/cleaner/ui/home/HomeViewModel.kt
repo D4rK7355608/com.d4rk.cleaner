@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.viewModelScope
-import com.d4rk.cleaner.R
 import com.d4rk.cleaner.constants.error.ErrorType
 import com.d4rk.cleaner.constants.error.ErrorType.STORAGE_PERMISSION
 import com.d4rk.cleaner.data.datastore.DataStore
@@ -34,23 +33,8 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
     override fun handleError(errorType: ErrorType, exception: Throwable) {
         when (errorType) {
             ErrorType.ANALYSIS_ERROR -> _uiState.value = _uiState.value.copy(isAnalyzing = false)
-            STORAGE_PERMISSION -> _uiState.value = _uiState.value.copy(
-                showErrorDialog = true,
-                errorMessage = getApplication<Application>().getString(R.string.storage_permission_error)
-            )
-
-            ErrorType.CLEANING_ERROR -> _uiState.value = _uiState.value.copy(
-                showErrorDialog = true,
-                errorMessage = exception.message
-                    ?: getApplication<Application>().getString(R.string.cleaning_error)
-            )
-
-            else -> {
-                _uiState.value = _uiState.value.copy(
-                    showErrorDialog = true,
-                    errorMessage = getApplication<Application>().getString(R.string.unknown_error)
-                )
-            }
+            ErrorType.STORAGE_PERMISSION -> TODO()
+            else -> super.handleError(errorType, exception)
         }
     }
 
@@ -142,9 +126,5 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
                 _uiState.value.copy(showRescanDialog = false, scannedFiles = emptyList())
             analyze()
         }
-    }
-
-    fun dismissErrorDialog() {
-        _uiState.value = _uiState.value.copy(showErrorDialog = false)
     }
 }

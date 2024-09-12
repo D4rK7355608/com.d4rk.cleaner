@@ -273,5 +273,7 @@
     <string name="cleaning_error">An error occurred during cleaning.</string>
     <string name="unknown_error">An unknown error occurred.</string>
     <string name="app_loading_error">Error loading app data.</string>
+    <string name="no_apk_found">No APK found</string>
+    <string name="no_app_installed">No apps installed</string>
 
 </resources>
