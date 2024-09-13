@@ -61,7 +61,7 @@ fun FileSizeScreen(viewModel: ImageOptimizerViewModel) {
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 isError = fileSizeText.isNotEmpty() && fileSizeText.toFloatOrNull() == null,
                 modifier = Modifier
-                    .menuAnchor()
+                    .menuAnchor() // FIXME: 'menuAnchor(): Modifier' is deprecated. Use overload that takes MenuAnchorType and enabled parameters
                     .fillMaxWidth()
                     .padding(top = 12.dp)
             )

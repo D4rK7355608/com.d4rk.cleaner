@@ -276,4 +276,8 @@
     <string name="no_apk_found">No APK found</string>
     <string name="no_app_installed">No apps installed</string>
 
+    <string name="storage_info_error">Error retrieving storage information. Please try again later.</string>
+    <string name="ram_info_error">Error retrieving RAM information. Please try again later.</string>
+    <string name="storage_breakdown_error">Error calculating storage breakdown. Please try again later.</string>
+
 </resources>

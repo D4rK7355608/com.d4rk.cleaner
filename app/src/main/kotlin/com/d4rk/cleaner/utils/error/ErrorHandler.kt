@@ -12,7 +12,9 @@ object ErrorHandler {
             ErrorType.STORAGE_PERMISSION -> applicationContext.getString(R.string.storage_permission_error)
             ErrorType.ANALYSIS_ERROR -> applicationContext.getString(R.string.analysis_error)
             ErrorType.CLEANING_ERROR -> applicationContext.getString(R.string.cleaning_error)
-
+            ErrorType.STORAGE_INFO_ERROR -> applicationContext.getString(R.string.storage_info_error)
+            ErrorType.RAM_INFO_ERROR -> applicationContext.getString(R.string.ram_info_error)
+            ErrorType.STORAGE_BREAKDOWN_ERROR -> applicationContext.getString(R.string.storage_breakdown_error)
             ErrorType.APP_LOADING_ERROR -> applicationContext.getString(R.string.app_loading_error)
 
             ErrorType.UNKNOWN_ERROR -> applicationContext.getString(R.string.unknown_error)

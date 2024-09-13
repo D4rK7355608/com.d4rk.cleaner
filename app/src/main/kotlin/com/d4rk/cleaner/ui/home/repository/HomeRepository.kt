@@ -1,21 +1,19 @@
 package com.d4rk.cleaner.ui.home.repository
 
-import android.app.usage.StorageStatsManager
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever
-import android.os.storage.StorageManager
-import android.os.storage.StorageVolume
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.cleaning.FileScanner
+import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
-import java.util.UUID
-import kotlin.math.roundToInt
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class HomeRepository(
     dataStore: DataStore,
@@ -25,29 +23,17 @@ class HomeRepository(
 
     suspend fun getStorageInfo(context: Context): UiHomeModel {
         return withContext(Dispatchers.IO) {
-            val storageManager: StorageManager =
-                context.getSystemService(Context.STORAGE_SERVICE) as StorageManager
-            val storageStatsManager: StorageStatsManager =
-                context.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
-            val storageVolume: StorageVolume = storageManager.primaryStorageVolume
-            val totalSize: Long
-            val usedSize: Long
-            val uuidStr: String? = storageVolume.uuid
-            val uuid: UUID =
-                if (uuidStr == null) StorageManager.UUID_DEFAULT else UUID.fromString(uuidStr)
-            totalSize = storageStatsManager.getTotalBytes(uuid)
-            usedSize = totalSize - storageStatsManager.getFreeBytes(uuid)
-            val usedFormatted: String =
-                (usedSize / (1024.0 * 1024.0 * 1024.0)).roundToInt().toString()
-            val totalFormatted: String =
-                (totalSize / (1024.0 * 1024.0 * 1024.0)).roundToInt().toString()
-            val usageProgress: Float = usedSize.toFloat() / totalSize.toFloat()
-
-            UiHomeModel(
-                progress = usageProgress,
-                storageUsed = usedFormatted,
-                storageTotal = totalFormatted
-            )
+            suspendCoroutine { continuation ->
+                StorageUtils.getStorageInfo(context) { used, total, usageProgress ->
+                    continuation.resume(
+                        UiHomeModel(
+                            progress = usageProgress,
+                            storageUsed = used,
+                            storageTotal = total
+                        )
+                    )
+                }
+            }
         }
     }
 

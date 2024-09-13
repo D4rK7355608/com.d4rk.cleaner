@@ -11,7 +11,6 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -70,26 +69,27 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.memorymanager.RamInfo
 import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
+import com.d4rk.cleaner.ui.dialogs.ErrorAlertDialog
 import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.cleaning.StorageUtils.formatSize
 import com.d4rk.cleaner.utils.compose.bounceClick
 import com.d4rk.cleaner.utils.compose.components.StorageProgressBar
 import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
-import kotlinx.coroutines.delay
 import kotlin.math.absoluteValue
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MemoryManagerComposable() {
     val viewModel: MemoryManagerViewModel = viewModel<MemoryManagerViewModel>()
-    val storageInfo: StorageInfo by viewModel.storageInfo.collectAsState()
-    val ramInfo: RamInfo by viewModel.ramInfo.collectAsState()
-    val isLoading: Boolean by viewModel.isLoading.collectAsState()
-    val listExpanded: Boolean by viewModel.listExpanded.collectAsState()
+    val uiErrorModel: UiErrorModel by viewModel.uiErrorModel.collectAsState()
+    val uiState by viewModel.uiMemoryManagerModel.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
     val context: Context = LocalContext.current
     val view: View = LocalView.current
+
+
     val transition: Transition<Boolean> =
         updateTransition(targetState = !isLoading, label = "LoadingTransition")
 
@@ -102,20 +102,17 @@ fun MemoryManagerComposable() {
 
     val pagerState: PagerState = rememberPagerState { 2 }
 
+    if (uiErrorModel.showErrorDialog) {
+        ErrorAlertDialog(errorMessage = uiErrorModel.errorMessage,
+            onDismiss = { viewModel.dismissErrorDialog() })
+    }
+
     LaunchedEffect(Unit) {
-        viewModel.updateStorageInfo(context)
-        viewModel.updateRamInfo(context)
         if (!PermissionsUtils.hasStoragePermissions(context)) {
             PermissionsUtils.requestStoragePermissions(context as Activity)
         }
-
         if (!PermissionsUtils.hasUsageAccessPermissions(context)) {
             PermissionsUtils.requestUsageAccess(context as Activity)
-        }
-
-        while (true) {
-            delay(5000)
-            viewModel.updateRamInfo(context)
         }
     }
 
@@ -136,7 +133,7 @@ fun MemoryManagerComposable() {
                 .alpha(contentAlpha)
         ) {
             CarouselLayout(
-                items = listOf(storageInfo, ramInfo),
+                items = listOf(uiState.storageInfo, uiState.ramInfo),
                 peekPreviewWidth = 24.dp,
                 pagerState = pagerState
             ) { item ->
@@ -176,22 +173,21 @@ fun MemoryManagerComposable() {
                     viewModel.toggleListExpanded()
                 }) {
                     Icon(
-                        imageVector = if (listExpanded) Icons.Outlined.ArrowDropDown else Icons.AutoMirrored.Filled.ArrowLeft,
-                        contentDescription = if (listExpanded) "Collapse" else "Expand"
+                        imageVector = if (uiState.listExpanded) Icons.Outlined.ArrowDropDown else Icons.AutoMirrored.Filled.ArrowLeft,
+                        contentDescription = if (uiState.listExpanded) "Collapse" else "Expand"
                     )
                 }
             }
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            if (listExpanded) {
-                StorageBreakdownGrid(storageInfo.storageBreakdown)
+            if (uiState.listExpanded) {
+                StorageBreakdownGrid(uiState.storageInfo.storageBreakdown)
             }
         }
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun <T> CarouselLayout(
     items: List<T>,
