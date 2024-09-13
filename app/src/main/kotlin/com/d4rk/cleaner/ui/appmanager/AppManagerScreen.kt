@@ -81,7 +81,7 @@ import java.io.File
  * Composable function for managing and displaying different app categories.
  */
 @Composable
-fun AppManagerComposable() {
+fun AppManagerScreen() {
     val viewModel : AppManagerViewModel = viewModel()
     val context : Context = LocalContext.current
     val tabs : List<String> = listOf(

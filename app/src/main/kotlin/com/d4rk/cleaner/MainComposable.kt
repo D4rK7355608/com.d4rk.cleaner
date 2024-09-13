@@ -56,7 +56,7 @@ import com.d4rk.cleaner.constants.ui.bottombar.BottomBarRoutes
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.navigation.BottomNavigationScreen
 import com.d4rk.cleaner.data.model.ui.navigation.NavigationDrawerItem
-import com.d4rk.cleaner.ui.appmanager.AppManagerComposable
+import com.d4rk.cleaner.ui.appmanager.AppManagerScreen
 import com.d4rk.cleaner.ui.help.HelpActivity
 import com.d4rk.cleaner.ui.home.HomeScreen
 import com.d4rk.cleaner.ui.imageoptimizer.imagepicker.ImagePickerActivity
@@ -235,7 +235,7 @@ fun MainComposable() {
                 }
                 composable(BottomNavigationScreen.AppManager.route) {
                     Box(modifier = Modifier.padding(innerPadding)) {
-                        AppManagerComposable()
+                        AppManagerScreen()
                     }
                 }
                 composable(BottomNavigationScreen.MemoryManager.route) {

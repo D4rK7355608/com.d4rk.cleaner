@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.constants.error.ErrorType
 import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
+import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.screens.UiAppManagerModel
 import com.d4rk.cleaner.ui.appmanager.repository.AppManagerRepository
 import com.d4rk.cleaner.utils.viewmodel.BaseViewModel
@@ -74,14 +75,18 @@ class AppManagerViewModel(application: Application) : BaseViewModel(application)
     override fun handleError(errorType: ErrorType, exception: Throwable) {
         when (errorType) {
             ErrorType.APP_LOADING_ERROR -> _uiState.value = _uiState.value.copy(
-                showErrorDialog = true,
-                errorMessage = exception.message
-                    ?: getApplication<Application>().getString(R.string.app_loading_error)
+                error = UiErrorModel(
+                    showErrorDialog = true,
+                    errorMessage = exception.message
+                        ?: getApplication<Application>().getString(R.string.app_loading_error)
+                )
             )
             else -> {
                 _uiState.value = _uiState.value.copy(
-                    showErrorDialog = true,
-                    errorMessage = getApplication<Application>().getString(R.string.unknown_error)
+                    error = UiErrorModel(
+                        showErrorDialog = true,
+                        errorMessage = getApplication<Application>().getString(R.string.unknown_error)
+                    )
                 )
             }
         }
