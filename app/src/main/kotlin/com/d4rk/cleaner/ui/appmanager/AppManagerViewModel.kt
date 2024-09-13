@@ -14,12 +14,10 @@ import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.screens.UiAppManagerModel
 import com.d4rk.cleaner.ui.appmanager.repository.AppManagerRepository
 import com.d4rk.cleaner.utils.viewmodel.BaseViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class AppManagerViewModel(application: Application) : BaseViewModel(application) {
     private val repository = AppManagerRepository(application)
@@ -54,8 +52,8 @@ class AppManagerViewModel(application: Application) : BaseViewModel(application)
     private suspend fun loadAppData() {
         showLoading()
         try {
-            val installedApps : List<ApplicationInfo> = loadInstalledApps()
-            val apkFiles : List<ApkInfo> = loadApkFiles()
+            val installedApps: List<ApplicationInfo> = loadInstalledApps()
+            val apkFiles: List<ApkInfo> = loadApkFiles()
             _uiState.value = UiAppManagerModel(installedApps, apkFiles)
         } catch (e: Exception) {
             handleError(ErrorType.APP_LOADING_ERROR, e)
@@ -64,12 +62,24 @@ class AppManagerViewModel(application: Application) : BaseViewModel(application)
         }
     }
 
-    private suspend fun loadInstalledApps(): List<ApplicationInfo> = withContext(Dispatchers.IO) {
-        repository.getInstalledApps()
+    private suspend fun loadInstalledApps(): List<ApplicationInfo> {
+        var installedApps: List<ApplicationInfo> = emptyList()
+        viewModelScope.launch(coroutineExceptionHandler) {
+            repository.getInstalledApps { apps ->
+                installedApps = apps
+            }
+        }
+        return installedApps
     }
 
-    private suspend fun loadApkFiles(): List<ApkInfo> = withContext(Dispatchers.IO) {
-        repository.getApkFilesFromStorage()
+    private suspend fun loadApkFiles(): List<ApkInfo> {
+        var apkFiles: List<ApkInfo> = emptyList()
+        viewModelScope.launch(coroutineExceptionHandler) {
+            repository.getApkFilesFromStorage { files ->
+                apkFiles = files
+            }
+        }
+        return apkFiles
     }
 
     override fun handleError(errorType: ErrorType, exception: Throwable) {
