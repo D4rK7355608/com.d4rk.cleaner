@@ -1,6 +1,5 @@
 package com.d4rk.cleaner.ui.dialogs
 
-import android.view.View
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,20 +25,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 import kotlinx.coroutines.flow.firstOrNull
 
 @Composable
 fun LanguageDialog(
     dataStore: DataStore, onDismiss: () -> Unit, onLanguageSelected: (String) -> Unit
 ) {
-    val view: View = LocalView.current
     val selectedLanguage: MutableState<String> = remember { mutableStateOf(value = "") }
     val languageEntries: List<String> =
         stringArrayResource(R.array.preference_language_entries).toList()
@@ -54,14 +50,12 @@ fun LanguageDialog(
         Icon(Icons.Outlined.Language, contentDescription = null)
     }, confirmButton = {
         TextButton(onClick = {
-            view.weakHapticFeedback()
             onLanguageSelected(selectedLanguage.value)
             onDismiss()
         }) {
             Text(stringResource(android.R.string.ok))
         }
     }, dismissButton = {
-        view.weakHapticFeedback()
         TextButton(onClick = onDismiss) {
             Text(stringResource(android.R.string.cancel))
         }
@@ -75,7 +69,6 @@ fun LanguageDialogContent(
     languageEntries: List<String>,
     languageValues: List<String>
 ) {
-    val view: View = LocalView.current
     LaunchedEffect(Unit) {
         selectedLanguage.value = dataStore.getLanguage().firstOrNull() ?: ""
     }
@@ -96,7 +89,6 @@ fun LanguageDialogContent(
                     ) {
                         RadioButton(selected = selectedLanguage.value == languageValues[index],
                             onClick = {
-                                view.weakHapticFeedback()
                                 selectedLanguage.value = languageValues[index]
                             })
                         Text(

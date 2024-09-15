@@ -2,7 +2,6 @@ package com.d4rk.cleaner.ui.appmanager
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
@@ -10,9 +9,6 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.net.Uri
-import android.provider.Settings
-import android.view.View
 import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.updateTransition
@@ -59,12 +55,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.core.content.FileProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
@@ -72,7 +66,8 @@ import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.screens.UiAppManagerModel
 import com.d4rk.cleaner.ui.dialogs.ErrorAlertDialog
 import com.d4rk.cleaner.utils.PermissionsUtils
-import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
+import com.d4rk.cleaner.utils.compose.bounceClick
+import com.d4rk.cleaner.utils.compose.hapticPagerSwipe
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.io.File
@@ -94,7 +89,6 @@ fun AppManagerScreen() {
     val isLoading : Boolean by viewModel.isLoading.collectAsState()
     val transition : Transition<Boolean> =
             updateTransition(targetState = ! isLoading , label = "LoadingTransition")
-
     val contentAlpha : Float by transition.animateFloat(label = "Content Alpha") {
         if (it) 1f else 0f
     }
@@ -139,7 +133,7 @@ fun AppManagerScreen() {
                 } ,
             ) {
                 tabs.forEachIndexed { index , title ->
-                    Tab(text = {
+                    Tab(modifier = Modifier.bounceClick() , text = {
                         Text(
                             text = title ,
                             maxLines = 1 ,
@@ -155,18 +149,21 @@ fun AppManagerScreen() {
             }
 
             HorizontalPager(
+                modifier = Modifier.hapticPagerSwipe(pagerState) ,
                 state = pagerState ,
             ) { page ->
                 when (page) {
                     0 -> AppsComposable(apps = uiState.installedApps.filter { app : ApplicationInfo ->
                         app.flags and ApplicationInfo.FLAG_SYSTEM == 0
-                    })
+                    } , isLoading , viewModel = viewModel)
 
                     1 -> AppsComposable(apps = uiState.installedApps.filter { app : ApplicationInfo ->
                         app.flags and ApplicationInfo.FLAG_SYSTEM != 0
-                    })
+                    } , isLoading , viewModel = viewModel)
 
-                    2 -> ApksComposable(apkFiles = uiState.apkFiles)
+                    2 -> ApksComposable(
+                        apkFiles = uiState.apkFiles , isLoading , viewModel = viewModel
+                    )
                 }
             }
         }
@@ -179,8 +176,15 @@ fun AppManagerScreen() {
  * @param apps List of ApplicationInfo objects representing the apps to display.
  */
 @Composable
-fun AppsComposable(apps : List<ApplicationInfo>) {
-    if (apps.isEmpty()) {
+fun AppsComposable(
+    apps : List<ApplicationInfo> , isLoading : Boolean , viewModel : AppManagerViewModel
+) {
+    if (isLoading) {
+        Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
+            CircularProgressIndicator()
+        }
+    }
+    else if (apps.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
             Text(text = stringResource(R.string.no_app_installed))
         }
@@ -188,7 +192,7 @@ fun AppsComposable(apps : List<ApplicationInfo>) {
     else {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(items = apps , key = { app -> app.packageName }) { app ->
-                AppItemComposable(app)
+                AppItemComposable(app , viewModel = viewModel)
             }
         }
     }
@@ -201,10 +205,9 @@ fun AppsComposable(apps : List<ApplicationInfo>) {
  */
 @Composable
 fun AppItemComposable(
-    app : ApplicationInfo
+    app : ApplicationInfo , viewModel : AppManagerViewModel
 ) {
     val context : Context = LocalContext.current
-    val view : View = LocalView.current
     val packageManager : PackageManager = context.packageManager
     val appName : String = app.loadLabel(packageManager).toString()
     val apkPath : String = app.publicSourceDir
@@ -255,56 +258,33 @@ fun AppItemComposable(
                 )
             }
 
-
             Box {
-                IconButton(onClick = {
-                    view.weakHapticFeedback()
+                IconButton(modifier = Modifier.bounceClick() , onClick = {
                     showMenu = true
                 }) {
                     Icon(Icons.Outlined.MoreVert , contentDescription = null)
                 }
 
                 DropdownMenu(expanded = showMenu , onDismissRequest = {
-                    view.weakHapticFeedback()
                     showMenu = false
                 }) {
-                    DropdownMenuItem(text = {
+                    DropdownMenuItem(modifier = Modifier.bounceClick() , text = {
                         Text(stringResource(R.string.uninstall))
                     } , onClick = {
-                        view.weakHapticFeedback()
-                        val uri : Uri = Uri.fromParts("package" , app.packageName , null)
-                        val intent = Intent(Intent.ACTION_DELETE , uri)
-                        context.startActivity(intent)
+                        viewModel.uninstallApp(app.packageName)
                     })
-                    DropdownMenuItem(text = { Text(stringResource(R.string.share)) } , onClick = {
-                        view.weakHapticFeedback()
-                        val shareIntent = Intent(Intent.ACTION_SEND)
-                        shareIntent.type = "text/plain"
-                        shareIntent.putExtra(Intent.EXTRA_SUBJECT , "Check out this app")
-                        @Suppress("DEPRECATION") val isFromPlayStore : Boolean =
-                                context.packageManager.getInstallerPackageName(app.packageName) == "com.android.vending"
-                        if (isFromPlayStore) {
-                            val playStoreLink =
-                                    "https://play.google.com/store/apps/details?id=${app.packageName}"
-                            val shareMessage = "Check out this app: $appName\n$playStoreLink"
-                            shareIntent.putExtra(Intent.EXTRA_TEXT , shareMessage)
-                        }
-                        else {
-                            val shareMessage = "Check out this app: $appName\n$app.packageName"
-                            shareIntent.putExtra(Intent.EXTRA_TEXT , shareMessage)
-                        }
-                        context.startActivity(Intent.createChooser(shareIntent , "Share App"))
-                    })
-                    DropdownMenuItem(text = { Text(stringResource(R.string.app_info)) } ,
-                                     onClick = {
-                                         view.weakHapticFeedback()
-                                         val appInfoIntent =
-                                                 Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                                         val packageUri : Uri =
-                                                 Uri.fromParts("package" , app.packageName , null)
-                                         appInfoIntent.data = packageUri
-                                         context.startActivity(appInfoIntent)
-                                     })
+                    DropdownMenuItem(
+                        modifier = Modifier.bounceClick() ,
+                        text = { Text(stringResource(R.string.share)) } ,
+                        onClick = {
+                            viewModel.shareApp(app.packageName)
+                        })
+                    DropdownMenuItem(
+                        modifier = Modifier.bounceClick() ,
+                        text = { Text(stringResource(R.string.app_info)) } ,
+                        onClick = {
+                            viewModel.openAppInfo(app.packageName)
+                        })
                 }
             }
         }
@@ -315,8 +295,15 @@ fun AppItemComposable(
  * Composable function for displaying a list of APK files on the device.
  */
 @Composable
-fun ApksComposable(apkFiles : List<ApkInfo>) {
-    if (apkFiles.isEmpty()) {
+fun ApksComposable(
+    apkFiles : List<ApkInfo> , isLoading : Boolean , viewModel : AppManagerViewModel
+) {
+    if (isLoading) {
+        Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
+            CircularProgressIndicator()
+        }
+    }
+    else if (apkFiles.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
             Text(text = stringResource(R.string.no_apk_found))
         }
@@ -324,7 +311,7 @@ fun ApksComposable(apkFiles : List<ApkInfo>) {
     else {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(items = apkFiles , key = { apkInfo -> apkInfo.id }) { apkInfo ->
-                ApkItemComposable(apkPath = apkInfo.path)
+                ApkItemComposable(apkPath = apkInfo.path , viewModel = viewModel)
             }
         }
     }
@@ -337,9 +324,8 @@ fun ApksComposable(apkFiles : List<ApkInfo>) {
  * @param apkPath Path to the APK file.
  */
 @Composable
-fun ApkItemComposable(apkPath : String) {
+fun ApkItemComposable(apkPath : String , viewModel : AppManagerViewModel) {
     val context : Context = LocalContext.current
-    val view : View = LocalView.current
     val apkFile = File(apkPath)
     val sizeInBytes : Long = apkFile.length()
     val sizeInKB : Long = sizeInBytes / 1024
@@ -393,49 +379,28 @@ fun ApkItemComposable(apkPath : String) {
             }
 
             Box {
-                IconButton(onClick = {
-                    view.weakHapticFeedback()
+                IconButton(modifier = Modifier.bounceClick() , onClick = {
                     showMenu = true
                 }) {
                     Icon(Icons.Outlined.MoreVert , contentDescription = null)
                 }
 
                 DropdownMenu(expanded = showMenu , onDismissRequest = {
-                    view.weakHapticFeedback()
                     showMenu = false
                 }) {
-                    DropdownMenuItem(text = { Text(stringResource(R.string.share)) } , onClick = {
-                        view.weakHapticFeedback()
-                        val shareIntent = Intent(Intent.ACTION_SEND)
-                        shareIntent.type = "application/vnd.android.package-archive"
-                        val contentUri : Uri = FileProvider.getUriForFile(
-                            context , "${context.packageName}.fileprovider" , apkFile
-                        )
-                        shareIntent.putExtra(Intent.EXTRA_STREAM , contentUri)
-                        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                        context.startActivity(
-                            Intent.createChooser(
-                                shareIntent , context.getString(R.string.share_apk)
-                            )
-                        )
-                    })
+                    DropdownMenuItem(
+                        modifier = Modifier.bounceClick() ,
+                        text = { Text(stringResource(R.string.share)) } ,
+                        onClick = {
+                            viewModel.shareApk(apkPath)
+                        })
 
-                    DropdownMenuItem(text = { Text(stringResource(id = R.string.install)) } ,
-                                     onClick = {
-                                         view.weakHapticFeedback()
-                                         val installIntent = Intent(Intent.ACTION_VIEW)
-                                         val contentUri : Uri = FileProvider.getUriForFile(
-                                             context ,
-                                             "${context.packageName}.fileprovider" ,
-                                             apkFile
-                                         )
-                                         installIntent.setDataAndType(
-                                             contentUri , "application/vnd.android.package-archive"
-                                         )
-                                         installIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                                         installIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                                         context.startActivity(installIntent)
-                                     })
+                    DropdownMenuItem(
+                        modifier = Modifier.bounceClick() ,
+                        text = { Text(stringResource(id = R.string.install)) } ,
+                        onClick = {
+                            viewModel.installApk(apkPath)
+                        })
                 }
             }
         }

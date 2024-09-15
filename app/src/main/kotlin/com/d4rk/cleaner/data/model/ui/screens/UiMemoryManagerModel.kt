@@ -8,5 +8,4 @@ data class UiMemoryManagerModel(
     val storageInfo: StorageInfo = StorageInfo(),
     val ramInfo: RamInfo = RamInfo(),
     val listExpanded: Boolean = true,
-    val error: UiErrorModel = UiErrorModel(),
 )

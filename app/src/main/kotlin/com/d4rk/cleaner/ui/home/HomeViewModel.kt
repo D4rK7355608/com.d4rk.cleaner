@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.viewModelScope
-import com.d4rk.cleaner.constants.error.ErrorType
 import com.d4rk.cleaner.constants.error.ErrorType.STORAGE_PERMISSION
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
@@ -20,26 +19,32 @@ import kotlinx.coroutines.withContext
 import java.io.File
 
 class HomeViewModel(application: Application) : BaseViewModel(application) {
-    private val repository = HomeRepository(DataStore(application), application.resources)
-    val _uiState = MutableStateFlow(UiHomeModel())
+    private val repository = HomeRepository(DataStore(application), application)
+    private val _uiState = MutableStateFlow(UiHomeModel())
     val uiState: StateFlow<UiHomeModel> = _uiState
 
     init {
+        updateStorageInfo()
+    }
+
+    private fun updateStorageInfo() {
         viewModelScope.launch(coroutineExceptionHandler) {
-            updateStorageInfo()
+            repository.getStorageInfo { uiHomeModel ->
+                _uiState.value = uiHomeModel
+            }
         }
     }
 
-    override fun handleError(errorType: ErrorType, exception: Throwable) {
-        when (errorType) {
-            ErrorType.ANALYSIS_ERROR -> _uiState.value = _uiState.value.copy(isAnalyzing = false)
-            ErrorType.STORAGE_PERMISSION -> TODO()
-            else -> super.handleError(errorType, exception)
-        }
-    }
+    fun analyze() {
+        viewModelScope.launch(coroutineExceptionHandler) {
+            _uiState.value = _uiState.value.copy(isAnalyzing = true, showCleaningComposable = true)
+            val filteredFiles = repository.analyzeFiles()
 
-    private suspend fun updateStorageInfo() {
-        _uiState.value = repository.getStorageInfo(getApplication())
+            _uiState.value = _uiState.value.copy(
+                scannedFiles = filteredFiles,
+                isAnalyzing = false,
+            )
+        }
     }
 
     fun onFileSelectionChange(file: File, isChecked: Boolean) {
@@ -58,23 +63,6 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
                 allFilesSelected = selectAll,
                 fileSelectionStates = newFileSelectionStates,
                 selectedFileCount = if (selectAll) newFileSelectionStates.size else 0
-            )
-        }
-    }
-
-    fun analyze() {
-        if (!PermissionsUtils.hasStoragePermissions(getApplication())) {
-            ErrorHandler.handleError(getApplication(), STORAGE_PERMISSION)
-            return
-        }
-
-        viewModelScope.launch(coroutineExceptionHandler) {
-            _uiState.value = _uiState.value.copy(isAnalyzing = true, showCleaningComposable = true)
-            val filteredFiles = repository.analyzeFiles()
-
-            _uiState.value = _uiState.value.copy(
-                scannedFiles = filteredFiles,
-                isAnalyzing = false,
             )
         }
     }

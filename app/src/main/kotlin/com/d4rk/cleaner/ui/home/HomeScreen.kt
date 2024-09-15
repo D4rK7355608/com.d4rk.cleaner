@@ -2,7 +2,6 @@ package com.d4rk.cleaner.ui.home
 
 import android.app.Activity
 import android.content.Context
-import android.view.View
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
@@ -30,12 +29,9 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.FilterChip
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -51,7 +47,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -67,10 +62,10 @@ import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.ui.dialogs.ErrorAlertDialog
 import com.d4rk.cleaner.ui.dialogs.RescanAlertDialog
+import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.cleaning.getFileIcon
 import com.d4rk.cleaner.utils.compose.bounceClick
 import com.d4rk.cleaner.utils.compose.components.CircularDeterminateIndicator
-import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 import com.google.common.io.Files.getFileExtension
 import java.io.File
 
@@ -78,7 +73,6 @@ import java.io.File
 fun HomeScreen() {
     val context : Context = LocalContext.current
     val viewModel : HomeViewModel = viewModel()
-    val activity : Activity = LocalContext.current as Activity
     val uiState : UiHomeModel by viewModel.uiState.collectAsState()
     val uiErrorModel : UiErrorModel by viewModel.uiErrorModel.collectAsState()
 
@@ -91,6 +85,12 @@ fun HomeScreen() {
         }.build()
     }
     var showRescanDialog : Boolean by remember { mutableStateOf(value = false) }
+
+    LaunchedEffect(Unit) {
+        if (! PermissionsUtils.hasStoragePermissions(context)) {
+            PermissionsUtils.requestStoragePermissions(context as Activity)
+        }
+    }
 
     LaunchedEffect(uiState.showRescanDialog) {
         showRescanDialog = uiState.showRescanDialog
@@ -249,7 +249,6 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
 @Composable
 fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader) {
     val context : Context = LocalContext.current
-    val view : View = LocalView.current
     val fileExtension : String = getFileExtension(file.name)
 
     var thumbnailFile : File? by remember(file.absolutePath) { mutableStateOf(value = null) }
@@ -314,7 +313,6 @@ fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader
 
             Checkbox(checked = viewModel.uiState.value.fileSelectionStates[file] ?: false ,
                      onCheckedChange = { isChecked ->
-                         view.weakHapticFeedback()
                          viewModel.onFileSelectionChange(file , isChecked)
                      } ,
                      modifier = Modifier.align(Alignment.TopEnd))
@@ -348,7 +346,6 @@ fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader
 fun SelectAllComposable(
     checked : Boolean , onCheckedChange : (Boolean) -> Unit
 ) {
-    val view : View = LocalView.current
     Row(
         modifier = Modifier
                 .fillMaxWidth()
@@ -361,7 +358,6 @@ fun SelectAllComposable(
             modifier = Modifier.bounceClick() ,
             selected = checked ,
             onClick = {
-                view.weakHapticFeedback()
                 onCheckedChange(! checked)
             } ,
             label = { Text(stringResource(id = R.string.select_all)) } ,

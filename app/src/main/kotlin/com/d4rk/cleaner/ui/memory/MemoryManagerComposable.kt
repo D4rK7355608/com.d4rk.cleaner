@@ -2,7 +2,6 @@ package com.d4rk.cleaner.ui.memory
 
 import android.app.Activity
 import android.content.Context
-import android.view.View
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.Transition
@@ -61,7 +60,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
@@ -72,46 +70,46 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.memorymanager.RamInfo
 import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
+import com.d4rk.cleaner.data.model.ui.screens.UiMemoryManagerModel
 import com.d4rk.cleaner.ui.dialogs.ErrorAlertDialog
 import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.cleaning.StorageUtils.formatSize
 import com.d4rk.cleaner.utils.compose.bounceClick
 import com.d4rk.cleaner.utils.compose.components.StorageProgressBar
-import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
+import com.d4rk.cleaner.utils.compose.hapticPagerSwipe
 import kotlin.math.absoluteValue
 
 @Composable
 fun MemoryManagerComposable() {
-    val viewModel: MemoryManagerViewModel = viewModel<MemoryManagerViewModel>()
-    val uiErrorModel: UiErrorModel by viewModel.uiErrorModel.collectAsState()
-    val uiState by viewModel.uiMemoryManagerModel.collectAsState()
-    val isLoading by viewModel.isLoading.collectAsState()
-    val context: Context = LocalContext.current
-    val view: View = LocalView.current
+    val viewModel : MemoryManagerViewModel = viewModel<MemoryManagerViewModel>()
+    val uiErrorModel : UiErrorModel by viewModel.uiErrorModel.collectAsState()
+    val uiState : UiMemoryManagerModel by viewModel.uiMemoryManagerModel.collectAsState()
+    val isLoading : Boolean by viewModel.isLoading.collectAsState()
+    val context : Context = LocalContext.current
 
 
-    val transition: Transition<Boolean> =
-        updateTransition(targetState = !isLoading, label = "LoadingTransition")
+    val transition : Transition<Boolean> =
+            updateTransition(targetState = ! isLoading , label = "LoadingTransition")
 
-    val progressAlpha: Float by transition.animateFloat(label = "Progress Alpha") {
+    val progressAlpha : Float by transition.animateFloat(label = "Progress Alpha") {
         if (it) 0f else 1f
     }
-    val contentAlpha: Float by transition.animateFloat(label = "Content Alpha") {
+    val contentAlpha : Float by transition.animateFloat(label = "Content Alpha") {
         if (it) 1f else 0f
     }
 
-    val pagerState: PagerState = rememberPagerState { 2 }
+    val pagerState : PagerState = rememberPagerState { 2 }
 
     if (uiErrorModel.showErrorDialog) {
-        ErrorAlertDialog(errorMessage = uiErrorModel.errorMessage,
-            onDismiss = { viewModel.dismissErrorDialog() })
+        ErrorAlertDialog(errorMessage = uiErrorModel.errorMessage ,
+                         onDismiss = { viewModel.dismissErrorDialog() })
     }
 
     LaunchedEffect(Unit) {
-        if (!PermissionsUtils.hasStoragePermissions(context)) {
+        if (! PermissionsUtils.hasStoragePermissions(context)) {
             PermissionsUtils.requestStoragePermissions(context as Activity)
         }
-        if (!PermissionsUtils.hasUsageAccessPermissions(context)) {
+        if (! PermissionsUtils.hasUsageAccessPermissions(context)) {
             PermissionsUtils.requestUsageAccess(context as Activity)
         }
     }
@@ -119,22 +117,23 @@ fun MemoryManagerComposable() {
     if (isLoading) {
         Box(
             modifier = Modifier
-                .fillMaxSize()
-                .animateContentSize()
-                .alpha(progressAlpha),
+                    .fillMaxSize()
+                    .animateContentSize()
+                    .alpha(progressAlpha) ,
             contentAlignment = Alignment.Center
         ) {
             CircularProgressIndicator()
         }
-    } else {
+    }
+    else {
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .alpha(contentAlpha)
+                    .fillMaxSize()
+                    .alpha(contentAlpha)
         ) {
             CarouselLayout(
-                items = listOf(uiState.storageInfo, uiState.ramInfo),
-                peekPreviewWidth = 24.dp,
+                items = listOf(uiState.storageInfo , uiState.ramInfo) ,
+                peekPreviewWidth = 24.dp ,
                 pagerState = pagerState
             ) { item ->
                 when (item) {
@@ -146,9 +145,9 @@ fun MemoryManagerComposable() {
             Spacer(modifier = Modifier.height(16.dp))
 
             DotsIndicator(
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                totalDots = 2,
-                selectedIndex = pagerState.currentPage,
+                modifier = Modifier.align(Alignment.CenterHorizontally) ,
+                totalDots = 2 ,
+                selectedIndex = pagerState.currentPage ,
                 dotSize = 6.dp
             )
 
@@ -156,24 +155,23 @@ fun MemoryManagerComposable() {
 
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize()
-                    .padding(horizontal = 16.dp),
+                        .fillMaxWidth()
+                        .animateContentSize()
+                        .padding(horizontal = 16.dp) ,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = stringResource(id = R.string.categories),
-                    modifier = Modifier.weight(1f),
-                    style = MaterialTheme.typography.headlineSmall,
+                    text = stringResource(id = R.string.categories) ,
+                    modifier = Modifier.weight(1f) ,
+                    style = MaterialTheme.typography.headlineSmall ,
                 )
 
                 Spacer(modifier = Modifier.width(8.dp))
-                IconButton(modifier = Modifier.bounceClick(), onClick = {
-                    view.weakHapticFeedback()
+                IconButton(modifier = Modifier.bounceClick() , onClick = {
                     viewModel.toggleListExpanded()
                 }) {
                     Icon(
-                        imageVector = if (uiState.listExpanded) Icons.Outlined.ArrowDropDown else Icons.AutoMirrored.Filled.ArrowLeft,
+                        imageVector = if (uiState.listExpanded) Icons.Outlined.ArrowDropDown else Icons.AutoMirrored.Filled.ArrowLeft ,
                         contentDescription = if (uiState.listExpanded) "Collapse" else "Expand"
                     )
                 }
@@ -190,101 +188,105 @@ fun MemoryManagerComposable() {
 
 @Composable
 fun <T> CarouselLayout(
-    items: List<T>,
-    peekPreviewWidth: Dp,
-    pagerState: PagerState,
-    itemContent: @Composable (item: T) -> Unit
+    items : List<T> ,
+    peekPreviewWidth : Dp ,
+    pagerState : PagerState ,
+    itemContent : @Composable (item : T) -> Unit
 ) {
     HorizontalPager(
-        state = pagerState,
-        modifier = Modifier.fillMaxWidth(),
+        state = pagerState ,
+        modifier = Modifier
+                .fillMaxWidth()
+                .hapticPagerSwipe(pagerState) ,
         contentPadding = PaddingValues(horizontal = peekPreviewWidth)
     ) { page ->
-        val pageOffset: Float = (pagerState.currentPage - page).toFloat().absoluteValue
+        val pageOffset : Float = (pagerState.currentPage - page).toFloat().absoluteValue
 
-        val scale: Float by animateFloatAsState(
+        val scale : Float by animateFloatAsState(
             targetValue = lerp(
-                start = 0.95f, stop = 1f, fraction = 1f - pageOffset.coerceIn(0f, 1f)
-            ),
-            animationSpec = tween(durationMillis = 250),
+                start = 0.95f , stop = 1f , fraction = 1f - pageOffset.coerceIn(0f , 1f)
+            ) ,
+            animationSpec = tween(durationMillis = 250) ,
             label = "Carousel Item Scale Animation"
         )
-        val alpha: Float =
-            lerp(start = 0.5f, stop = 1f, fraction = 1f - pageOffset.coerceIn(0f, 1f))
+        val alpha : Float =
+                lerp(start = 0.5f , stop = 1f , fraction = 1f - pageOffset.coerceIn(0f , 1f))
 
         Card(modifier = Modifier
-            .fillMaxWidth()
-            .graphicsLayer {
-                scaleX = scale
-                scaleY = scale
-                this.alpha = alpha
-            }) {
+                .fillMaxWidth()
+                .graphicsLayer {
+                    scaleX = scale
+                    scaleY = scale
+                    this.alpha = alpha
+                }) {
             itemContent(items[page])
         }
     }
 }
 
 @Composable
-fun StorageInfoCard(storageInfo: StorageInfo) {
+fun StorageInfoCard(storageInfo : StorageInfo) {
 
-    val progress: Float = if (storageInfo.totalStorage == 0L) {
+    val progress : Float = if (storageInfo.totalStorage == 0L) {
         0f
-    } else {
+    }
+    else {
         storageInfo.usedStorage.toFloat() / storageInfo.totalStorage.toFloat()
     }
 
     Column(
         modifier = Modifier
-            .padding(16.dp)
-            .animateContentSize()
+                .padding(16.dp)
+                .animateContentSize()
     ) {
         Text(
-            text = stringResource(id = R.string.storage_information),
-            style = MaterialTheme.typography.headlineSmall,
+            text = stringResource(id = R.string.storage_information) ,
+            style = MaterialTheme.typography.headlineSmall ,
             fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.height(8.dp))
         LinearProgressIndicator(
-            progress = { progress },
+            progress = { progress } ,
             modifier = Modifier
-                .fillMaxWidth()
-                .height(8.dp),
-            color = MaterialTheme.colorScheme.primary,
+                    .fillMaxWidth()
+                    .height(8.dp) ,
+            color = MaterialTheme.colorScheme.primary ,
         )
         Spacer(modifier = Modifier.height(8.dp))
         StorageInfoText(
-            label = stringResource(id = R.string.used), size = storageInfo.usedStorage
+            label = stringResource(id = R.string.used) , size = storageInfo.usedStorage
         )
         StorageInfoText(
-            label = stringResource(id = R.string.free), size = storageInfo.freeStorage
+            label = stringResource(id = R.string.free) , size = storageInfo.freeStorage
         )
         StorageInfoText(
-            label = stringResource(id = R.string.total), size = storageInfo.totalStorage
+            label = stringResource(id = R.string.total) , size = storageInfo.totalStorage
         )
     }
 }
 
 @Composable
-fun StorageBreakdownGrid(storageBreakdown: Map<String, Long>) {
-    val items: List<Map.Entry<String, Long>> = storageBreakdown.entries.toList()
+fun StorageBreakdownGrid(storageBreakdown : Map<String , Long>) {
+    val items : List<Map.Entry<String , Long>> = storageBreakdown.entries.toList()
     val chunkSize = 2
 
     LazyColumn(
         modifier = Modifier
-            .fillMaxWidth()
-            .animateContentSize()
-            .padding(horizontal = 16.dp)
+                .fillMaxWidth()
+                .animateContentSize()
+                .padding(horizontal = 16.dp)
     ) {
-        items(items = items.chunked(chunkSize),
+        items(
+            items = items.chunked(chunkSize) ,
             key = { chunk -> chunk.firstOrNull()?.key ?: "" }) { chunk ->
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize()
+                        .fillMaxWidth()
+                        .animateContentSize()
             ) {
-                for (item in chunk) {
-                    val (icon, size) = item
-                    StorageBreakdownItem(icon = icon, size = size, modifier = Modifier.weight(1f))
+                for (item : Map.Entry<String , Long> in chunk) {
+                    val (icon : String , size : Long) = item
+                    StorageBreakdownItem(icon = icon , size = size , modifier = Modifier.weight(1f))
                 }
             }
         }
@@ -292,36 +294,37 @@ fun StorageBreakdownGrid(storageBreakdown: Map<String, Long>) {
 }
 
 @Composable
-fun StorageBreakdownItem(icon: String, size: Long, modifier: Modifier = Modifier) {
-    val storageIcons: Map<String, ImageVector> = mapOf(
-        stringResource(id = R.string.installed_apps) to Icons.Outlined.Apps,
-        stringResource(id = R.string.system) to Icons.Outlined.Android,
-        stringResource(id = R.string.music) to Icons.Outlined.MusicNote,
-        stringResource(id = R.string.images) to Icons.Outlined.Image,
-        stringResource(id = R.string.documents) to Icons.Outlined.FolderOpen,
-        stringResource(id = R.string.downloads) to Icons.Outlined.Download,
-        stringResource(id = R.string.other_files) to Icons.Outlined.FolderOpen,
+fun StorageBreakdownItem(icon : String , size : Long , modifier : Modifier = Modifier) {
+    val storageIcons : Map<String , ImageVector> = mapOf(
+        stringResource(id = R.string.installed_apps) to Icons.Outlined.Apps ,
+        stringResource(id = R.string.system) to Icons.Outlined.Android ,
+        stringResource(id = R.string.music) to Icons.Outlined.MusicNote ,
+        stringResource(id = R.string.images) to Icons.Outlined.Image ,
+        stringResource(id = R.string.documents) to Icons.Outlined.FolderOpen ,
+        stringResource(id = R.string.downloads) to Icons.Outlined.Download ,
+        stringResource(id = R.string.other_files) to Icons.Outlined.FolderOpen ,
     )
     Card(
         modifier = modifier
-            .padding(vertical = 4.dp, horizontal = 4.dp)
-            .animateContentSize()
+                .padding(vertical = 4.dp , horizontal = 4.dp)
+                .animateContentSize()
     ) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .animateContentSize()
-                .padding(16.dp),
+                    .fillMaxWidth()
+                    .animateContentSize()
+                    .padding(16.dp) ,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Card(
-                modifier = Modifier.size(48.dp),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                modifier = Modifier.size(48.dp) ,
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer) ,
             ) {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
                     Icon(
-                        imageVector = storageIcons[icon] ?: Icons.Outlined.SnippetFolder,
-                        contentDescription = icon,
+                        modifier = Modifier.bounceClick() ,
+                        imageVector = storageIcons[icon] ?: Icons.Outlined.SnippetFolder ,
+                        contentDescription = icon ,
                         tint = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                 }
@@ -331,78 +334,78 @@ fun StorageBreakdownItem(icon: String, size: Long, modifier: Modifier = Modifier
 
             Column {
                 Text(
-                    text = icon,
-                    style = MaterialTheme.typography.bodyMedium,
+                    text = icon ,
+                    style = MaterialTheme.typography.bodyMedium ,
                     fontWeight = FontWeight.Bold
                 )
-                Text(text = formatSize(size), style = MaterialTheme.typography.bodySmall)
+                Text(text = formatSize(size) , style = MaterialTheme.typography.bodySmall)
             }
         }
     }
 }
 
 @Composable
-fun StorageInfoText(label: String, size: Long) {
-    Text(text = "$label ${formatSize(size)}", style = MaterialTheme.typography.bodyMedium)
+fun StorageInfoText(label : String , size : Long) {
+    Text(text = "$label ${formatSize(size)}" , style = MaterialTheme.typography.bodyMedium)
 }
 
 
 @Composable
-fun RamInfoCard(ramInfo: RamInfo) {
+fun RamInfoCard(ramInfo : RamInfo) {
     Column(modifier = Modifier.padding(16.dp)) {
         Text(
-            text = stringResource(id = R.string.ram_information),
-            style = MaterialTheme.typography.headlineSmall,
+            text = stringResource(id = R.string.ram_information) ,
+            style = MaterialTheme.typography.headlineSmall ,
             fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.height(8.dp))
         StorageProgressBar(
             StorageInfo(
-                totalStorage = ramInfo.totalRam,
-                usedStorage = ramInfo.usedRam,
+                totalStorage = ramInfo.totalRam ,
+                usedStorage = ramInfo.usedRam ,
                 freeStorage = ramInfo.availableRam
             )
         )
         Spacer(modifier = Modifier.height(8.dp))
-        StorageInfoText(label = stringResource(id = R.string.used_ram), size = ramInfo.usedRam)
+        StorageInfoText(label = stringResource(id = R.string.used_ram) , size = ramInfo.usedRam)
         StorageInfoText(
-            label = stringResource(id = R.string.free_ram), size = ramInfo.availableRam
+            label = stringResource(id = R.string.free_ram) , size = ramInfo.availableRam
         )
-        StorageInfoText(label = stringResource(id = R.string.total_ram), size = ramInfo.totalRam)
+        StorageInfoText(label = stringResource(id = R.string.total_ram) , size = ramInfo.totalRam)
     }
 }
 
 @Composable
 fun DotsIndicator(
-    modifier: Modifier = Modifier,
-    totalDots: Int,
-    selectedIndex: Int,
-    selectedColor: Color = MaterialTheme.colorScheme.primary,
-    unSelectedColor: Color = Color.Gray,
-    dotSize: Dp,
-    animationDuration: Int = 300
+    modifier : Modifier = Modifier ,
+    totalDots : Int ,
+    selectedIndex : Int ,
+    selectedColor : Color = MaterialTheme.colorScheme.primary ,
+    unSelectedColor : Color = Color.Gray ,
+    dotSize : Dp ,
+    animationDuration : Int = 300
 ) {
-    val transition: Transition<Int> =
-        updateTransition(targetState = selectedIndex, label = "Dot Transition")
+    val transition : Transition<Int> =
+            updateTransition(targetState = selectedIndex , label = "Dot Transition")
 
     LazyRow(
         modifier = modifier
-            .wrapContentWidth()
-            .height(dotSize),
+                .wrapContentWidth()
+                .height(dotSize) ,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        items(count = totalDots, key = { index -> index }) { index ->
-            val animatedDotSize: Dp by transition.animateDp(transitionSpec = {
-                tween(durationMillis = animationDuration, easing = FastOutSlowInEasing)
-            }, label = "Dot Size Animation") {
+        items(count = totalDots , key = { index -> index }) { index ->
+            val animatedDotSize : Dp by transition.animateDp(transitionSpec = {
+                tween(durationMillis = animationDuration , easing = FastOutSlowInEasing)
+            } , label = "Dot Size Animation") {
                 if (it == index) dotSize else dotSize / 1.4f
             }
 
-            val isSelected: Boolean = index == selectedIndex
-            val size: Dp = if (isSelected) animatedDotSize else animatedDotSize
+            val isSelected : Boolean = index == selectedIndex
+            val size : Dp = if (isSelected) animatedDotSize else animatedDotSize
 
             IndicatorDot(
-                color = if (isSelected) selectedColor else unSelectedColor, size = size
+                color = if (isSelected) selectedColor else unSelectedColor , size = size
             )
 
             if (index != totalDots - 1) {
@@ -414,14 +417,14 @@ fun DotsIndicator(
 
 @Composable
 fun IndicatorDot(
-    modifier: Modifier = Modifier,
-    size: Dp,
-    color: Color,
+    modifier : Modifier = Modifier ,
+    size : Dp ,
+    color : Color ,
 ) {
     Box(
         modifier = modifier
-            .size(size)
-            .clip(CircleShape)
-            .background(color)
+                .size(size)
+                .clip(CircleShape)
+                .background(color)
     )
 }

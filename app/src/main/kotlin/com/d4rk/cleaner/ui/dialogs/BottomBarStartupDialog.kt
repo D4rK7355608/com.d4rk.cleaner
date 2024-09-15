@@ -1,6 +1,5 @@
 package com.d4rk.cleaner.ui.dialogs
 
-import android.view.View
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,14 +25,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.constants.ui.bottombar.BottomBarRoutes
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 import kotlinx.coroutines.flow.firstOrNull
 
 @Composable
@@ -47,7 +44,6 @@ fun BottomBarStartupDialog(
         stringArrayResource(R.array.preference_startup_entries).toList()
     val startupValues: List<String> =
         stringArrayResource(R.array.preference_startup_values).toList()
-    val view: View = LocalView.current
     AlertDialog(onDismissRequest = onDismiss, text = {
         BottomBarStartupDialogContent(
             defaultPage, dataStore, startupEntries, startupValues
@@ -56,14 +52,12 @@ fun BottomBarStartupDialog(
         Icon(Icons.Outlined.Home, contentDescription = null)
     }, confirmButton = {
         TextButton(onClick = {
-            view.weakHapticFeedback()
             onStartupSelected(defaultPage.value)
             onDismiss()
         }) {
             Text(stringResource(android.R.string.ok))
         }
     }, dismissButton = {
-        view.weakHapticFeedback()
         TextButton(onClick = onDismiss) {
             Text(stringResource(android.R.string.cancel))
         }
@@ -77,7 +71,6 @@ fun BottomBarStartupDialogContent(
     startupEntries: List<String>,
     startupValues: List<String>
 ) {
-    val view: View = LocalView.current
     LaunchedEffect(Unit) {
         selectedPage.value = dataStore.getStartupPage().firstOrNull() ?: BottomBarRoutes.HOME
     }
@@ -97,7 +90,6 @@ fun BottomBarStartupDialogContent(
                     ) {
                         RadioButton(selected = selectedPage.value == startupValues[index],
                             onClick = {
-                                view.weakHapticFeedback()
                                 selectedPage.value = startupValues[index]
                             })
                         Text(

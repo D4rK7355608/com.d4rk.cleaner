@@ -14,7 +14,7 @@ android {
         applicationId = "com.d4rk.cleaner"
         minSdk = 26
         targetSdk = 34
-        versionCode = 114
+        versionCode = 117
         versionName = "2.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations += listOf(
@@ -107,6 +107,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.icons.extended)
+    implementation(libs.datastore.preferences)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.foundation)
     implementation(libs.androidx.navigation.compose)

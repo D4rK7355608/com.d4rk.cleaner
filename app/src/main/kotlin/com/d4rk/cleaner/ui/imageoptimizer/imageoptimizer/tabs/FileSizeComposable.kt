@@ -1,6 +1,5 @@
 package com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.tabs
 
-import android.view.View
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,7 +19,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -28,14 +26,12 @@ import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.imageoptimizer.ImageOptimizerState
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.ImageOptimizerViewModel
-import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FileSizeScreen(viewModel: ImageOptimizerViewModel) {
-    val view: View = LocalView.current
     val state: State<ImageOptimizerState> = viewModel.uiState.collectAsState()
     var fileSizeText: String by remember { mutableStateOf(state.value.fileSizeKB.toString()) }
     var expanded: Boolean by remember { mutableStateOf(value = false) }
@@ -69,7 +65,6 @@ fun FileSizeScreen(viewModel: ImageOptimizerViewModel) {
             ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
                 presetSizes.forEach { size ->
                     DropdownMenuItem(text = { Text(text = "$size KB") }, onClick = {
-                        view.weakHapticFeedback()
                         selectedPresetSize = size
                         fileSizeText = size
                         coroutineScope.launch {

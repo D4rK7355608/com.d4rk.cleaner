@@ -3,7 +3,6 @@ package com.d4rk.cleaner.ui.imageoptimizer.imagepicker
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.view.View
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,28 +11,18 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.outlined.AddPhotoAlternate
 import androidx.compose.material.icons.outlined.ImageSearch
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.LargeTopAppBar
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.TopAppBarScrollBehavior
-import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
@@ -44,18 +33,14 @@ import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.ImageOptimizerActivity
 import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.compose.bounceClick
-import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
+import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffold
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ImagePickerComposable(
     activity: ImagePickerActivity, viewModel: ImagePickerViewModel
 ) {
     val context: Context = LocalContext.current
-    val view: View = LocalView.current
     val dataStore: DataStore = DataStore.getInstance(context)
-    val scrollBehavior: TopAppBarScrollBehavior =
-        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     val adsState: State<Boolean> = dataStore.ads.collectAsState(initial = true)
 
     LaunchedEffect(key1 = viewModel.selectedImageUri) {
@@ -74,20 +59,9 @@ fun ImagePickerComposable(
     }
 
 
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
-        LargeTopAppBar(
-            title = { Text(stringResource(R.string.image_optimizer)) },
-            navigationIcon = {
-                IconButton(onClick = {
-                    view.weakHapticFeedback()
-                    activity.finish()
-                }) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
-                }
-            },
-            scrollBehavior = scrollBehavior
-        )
-    }) { paddingValues ->
+    TopAppBarScaffold(
+        title = stringResource(R.string.image_optimizer) ,
+        onBackClicked = { activity.finish() }) { paddingValues ->
         ConstraintLayout(
             modifier = Modifier
                 .fillMaxSize()
@@ -125,7 +99,6 @@ fun ImagePickerComposable(
                         bottom.linkTo(parent.bottom)
                     }
                 }, text = { Text(stringResource(R.string.choose_image)) }, onClick = {
-                view.weakHapticFeedback()
                 activity.selectImage()
             }, icon = {
                 Icon(

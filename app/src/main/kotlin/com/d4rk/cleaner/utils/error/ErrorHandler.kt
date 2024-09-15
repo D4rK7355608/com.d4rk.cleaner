@@ -8,7 +8,7 @@ import com.google.android.material.snackbar.Snackbar
 
 object ErrorHandler {
     fun handleError(applicationContext: Context, errorType: ErrorType) {
-        val message = when (errorType) {
+        val message: String = when (errorType) {
             ErrorType.STORAGE_PERMISSION -> applicationContext.getString(R.string.storage_permission_error)
             ErrorType.ANALYSIS_ERROR -> applicationContext.getString(R.string.analysis_error)
             ErrorType.CLEANING_ERROR -> applicationContext.getString(R.string.cleaning_error)
@@ -16,7 +16,11 @@ object ErrorHandler {
             ErrorType.RAM_INFO_ERROR -> applicationContext.getString(R.string.ram_info_error)
             ErrorType.STORAGE_BREAKDOWN_ERROR -> applicationContext.getString(R.string.storage_breakdown_error)
             ErrorType.APP_LOADING_ERROR -> applicationContext.getString(R.string.app_loading_error)
-
+            ErrorType.APK_INSTALLATION_ERROR -> applicationContext.getString(R.string.apk_installation_error)
+            ErrorType.APK_SHARING_ERROR -> applicationContext.getString(R.string.apk_sharing_error) // Added
+            ErrorType.APP_SHARING_ERROR -> applicationContext.getString(R.string.app_sharing_error) // Added
+            ErrorType.APP_INFO_ERROR -> applicationContext.getString(R.string.app_info_error) // Added
+            ErrorType.APP_UNINSTALLATION_ERROR -> applicationContext.getString(R.string.app_uninstallation_error) // Added
             ErrorType.UNKNOWN_ERROR -> applicationContext.getString(R.string.unknown_error)
         }
 

@@ -272,12 +272,20 @@
     <string name="analysis_error">An error occurred during analysis.</string>
     <string name="cleaning_error">An error occurred during cleaning.</string>
     <string name="unknown_error">An unknown error occurred.</string>
-    <string name="app_loading_error">Error loading app data.</string>
     <string name="no_apk_found">No APK found</string>
     <string name="no_app_installed">No apps installed</string>
+    <string name="apk_installation_error">Failed to install APK</string>
+    <string name="app_loading_error">Error loading apps.</string>
+    <string name="apk_sharing_error">Error sharing APK.</string>
+    <string name="app_sharing_error">Error sharing app.</string>
+    <string name="app_info_error">Error opening app info.</string>
+    <string name="app_uninstallation_error">Error uninstalling app.</string>
 
     <string name="storage_info_error">Error retrieving storage information. Please try again later.</string>
     <string name="ram_info_error">Error retrieving RAM information. Please try again later.</string>
     <string name="storage_breakdown_error">Error calculating storage breakdown. Please try again later.</string>
+
+
+    <string name="snack_device_info_copied">Device info copied to clipboard</string>
 
 </resources>

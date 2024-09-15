@@ -7,5 +7,4 @@ import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 data class UiAppManagerModel(
     val installedApps: List<ApplicationInfo> = emptyList(),
     val apkFiles: List<ApkInfo> = emptyList(),
-    val error: UiErrorModel = UiErrorModel(),
 )

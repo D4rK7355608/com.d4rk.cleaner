@@ -1,7 +1,6 @@
 package com.d4rk.cleaner.ui.help
 
 import android.content.Context
-import android.view.View
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -46,7 +45,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
@@ -55,7 +53,6 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ui.dialogs.VersionInfoDialog
 import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.utils.compose.bounceClick
-import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.play.core.review.ReviewInfo
 
@@ -68,7 +65,6 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
     val context : Context = LocalContext.current
     val showDialog : MutableState<Boolean> = remember { mutableStateOf(value = false) }
     val reviewInfo : ReviewInfo? = viewModel.reviewInfo.value
-    val view : View = LocalView.current
     if (reviewInfo != null) {
         LaunchedEffect(key1 = reviewInfo) {
             viewModel.requestReviewFlow()
@@ -77,67 +73,70 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
 
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.help)) } , navigationIcon = {
-            IconButton(onClick = {
-                view.weakHapticFeedback()
+            IconButton(modifier = Modifier.bounceClick() , onClick = {
                 activity.finish()
             }) {
                 Icon(Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null)
             }
         } , actions = {
-            IconButton(onClick = {
-                view.weakHapticFeedback()
+            IconButton(modifier = Modifier.bounceClick() , onClick = {
                 showMenu = true
             }) {
                 Icon(Icons.Default.MoreVert , contentDescription = "Localized description")
             }
             DropdownMenu(expanded = showMenu , onDismissRequest = {
-                view.weakHapticFeedback()
                 showMenu = false
             }) {
-                DropdownMenuItem(text = { Text(stringResource(R.string.view_in_google_play_store)) } ,
-                                 onClick = {
-                                     view.weakHapticFeedback()
-                                     IntentUtils.openUrl(
-                                         context ,
-                                         url = "https://play.google.com/store/apps/details?id=${activity.packageName}"
-                                     )
-                                 })
-                DropdownMenuItem(text = { Text(stringResource(R.string.version_info)) } ,
-                                 onClick = {
-                                     view.weakHapticFeedback()
-                                     showDialog.value = true
-                                 })
-                DropdownMenuItem(text = { Text(stringResource(R.string.beta_program)) } ,
-                                 onClick = {
-                                     view.weakHapticFeedback()
-                                     IntentUtils.openUrl(
-                                         context ,
-                                         url = "https://play.google.com/apps/testing/${activity.packageName}"
-                                     )
-                                 })
-                DropdownMenuItem(text = { Text(stringResource(R.string.terms_of_service)) } ,
-                                 onClick = {
-                                     view.weakHapticFeedback()
-                                     IntentUtils.openUrl(
-                                         context ,
-                                         url = "https://sites.google.com/view/d4rk7355608/more/apps/terms-of-service"
-                                     )
-                                 })
-                DropdownMenuItem(text = { Text(stringResource(R.string.privacy_policy)) } ,
-                                 onClick = {
-                                     view.weakHapticFeedback()
-                                     IntentUtils.openUrl(
-                                         context ,
-                                         url = "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy"
-                                     )
-                                 })
-                DropdownMenuItem(text = { Text(stringResource(com.google.android.gms.oss.licenses.R.string.oss_license_title)) } ,
-                                 onClick = {
-                                     view.weakHapticFeedback()
-                                     IntentUtils.openActivity(
-                                         context , OssLicensesMenuActivity::class.java
-                                     )
-                                 })
+                DropdownMenuItem(
+                    modifier = Modifier.bounceClick() ,
+                    text = { Text(stringResource(R.string.view_in_google_play_store)) } ,
+                    onClick = {
+                        IntentUtils.openUrl(
+                            context ,
+                            url = "https://play.google.com/store/apps/details?id=${activity.packageName}"
+                        )
+                    })
+                DropdownMenuItem(
+                    modifier = Modifier.bounceClick() ,
+                    text = { Text(stringResource(R.string.version_info)) } ,
+                    onClick = {
+                        showDialog.value = true
+                    })
+                DropdownMenuItem(
+                    modifier = Modifier.bounceClick() ,
+                    text = { Text(stringResource(R.string.beta_program)) } ,
+                    onClick = {
+                        IntentUtils.openUrl(
+                            context ,
+                            url = "https://play.google.com/apps/testing/${activity.packageName}"
+                        )
+                    })
+                DropdownMenuItem(
+                    modifier = Modifier.bounceClick() ,
+                    text = { Text(stringResource(R.string.terms_of_service)) } ,
+                    onClick = {
+                        IntentUtils.openUrl(
+                            context ,
+                            url = "https://sites.google.com/view/d4rk7355608/more/apps/terms-of-service"
+                        )
+                    })
+                DropdownMenuItem(
+                    modifier = Modifier.bounceClick() ,
+                    text = { Text(stringResource(R.string.privacy_policy)) } ,
+                    onClick = {
+                        IntentUtils.openUrl(
+                            context ,
+                            url = "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy"
+                        )
+                    })
+                DropdownMenuItem(
+                    modifier = Modifier.bounceClick() ,
+                    text = { Text(stringResource(com.google.android.gms.oss.licenses.R.string.oss_license_title)) } ,
+                    onClick = {
+                        IntentUtils.openActivity(
+                            context , OssLicensesMenuActivity::class.java
+                        )
+                    })
             }
             if (showDialog.value) {
                 VersionInfoDialog(onDismiss = { showDialog.value = false })
@@ -171,7 +170,6 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
             ExtendedFloatingActionButton(
                 text = { Text(stringResource(id = R.string.feedback)) } ,
                 onClick = {
-                    view.weakHapticFeedback()
                     viewModel.reviewInfo.value?.let { safeReviewInfo ->
                         viewModel.launchReviewFlow(activity , safeReviewInfo)
                     }

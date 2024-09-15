@@ -1,7 +1,7 @@
 package com.d4rk.cleaner.ui.settings.privacy.ads
 
 import android.content.Context
-import android.view.View
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,29 +10,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.TopAppBarScrollBehavior
-import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
@@ -41,9 +31,10 @@ import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.IntentUtils
+import com.d4rk.cleaner.utils.compose.bounceClick
 import com.d4rk.cleaner.utils.compose.components.PreferenceItem
 import com.d4rk.cleaner.utils.compose.components.SwitchCardComposable
-import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
+import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffold
 import com.google.android.ump.ConsentInformation
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
@@ -51,37 +42,23 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AdsSettingsComposable(activity: AdsSettingsActivity) {
-    val context: Context = LocalContext.current
-    val view: View = LocalView.current
-    val dataStore: DataStore = DataStore.getInstance(context)
-    val switchState: State<Boolean> = dataStore.ads.collectAsState(initial = true)
-    val scope: CoroutineScope = rememberCoroutineScope()
-    val scrollBehavior: TopAppBarScrollBehavior =
-        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.ads)) }, navigationIcon = {
-            IconButton(onClick = {
-                view.weakHapticFeedback()
-                activity.finish()
-            }) {
-                Icon(
-                    Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null
-                )
-            }
-        }, scrollBehavior = scrollBehavior)
-    }) { innerPadding ->
+fun AdsSettingsComposable(activity : AdsSettingsActivity) {
+    val context : Context = LocalContext.current
+    val dataStore : DataStore = DataStore.getInstance(context)
+    val switchState : State<Boolean> = dataStore.ads.collectAsState(initial = true)
+    val scope : CoroutineScope = rememberCoroutineScope()
+    TopAppBarScaffold(title = stringResource(R.string.ads) ,
+                      onBackClicked = { activity.finish() }) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
+                        .fillMaxSize()
+                        .padding(paddingValues) ,
             ) {
                 item {
                     SwitchCardComposable(
-                        title = stringResource(R.string.display_ads), switchState = switchState
+                        title = stringResource(R.string.display_ads) , switchState = switchState
                     ) { isChecked ->
                         scope.launch(Dispatchers.IO) {
                             dataStore.saveAds(isChecked)
@@ -90,59 +67,71 @@ fun AdsSettingsComposable(activity: AdsSettingsActivity) {
                 }
                 item {
                     Box(modifier = Modifier.padding(horizontal = 8.dp)) {
-                        PreferenceItem(title = stringResource(R.string.personalized_ads),
-                            enabled = switchState.value,
-                            summary = stringResource(id = R.string.summary_ads_personalized_ads),
-                            onClick = {
-                                val params: ConsentRequestParameters =
-                                    ConsentRequestParameters.Builder()
-                                        .setTagForUnderAgeOfConsent(false)
-                                        .build()
-                                val consentInformation: ConsentInformation =
-                                    UserMessagingPlatform.getConsentInformation(
-                                        context
-                                    )
-                                consentInformation.requestConsentInfoUpdate(activity,
-                                    params,
-                                    {
-                                        activity.openForm()
-                                    },
-                                    {})
-                            })
+                        PreferenceItem(title = stringResource(R.string.personalized_ads) ,
+                                       enabled = switchState.value ,
+                                       summary = stringResource(id = R.string.summary_ads_personalized_ads) ,
+                                       onClick = {
+                                           val params : ConsentRequestParameters =
+                                                   ConsentRequestParameters.Builder()
+                                                           .setTagForUnderAgeOfConsent(false)
+                                                           .build()
+                                           val consentInformation : ConsentInformation =
+                                                   UserMessagingPlatform.getConsentInformation(
+                                                       context
+                                                   )
+                                           consentInformation.requestConsentInfoUpdate(activity ,
+                                                                                       params ,
+                                                                                       {
+                                                                                           activity.openForm()
+                                                                                       } ,
+                                                                                       {})
+                                       })
                     }
                 }
                 item {
                     Column(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(24.dp)
+                                .fillMaxWidth()
+                                .padding(24.dp)
                     ) {
-                        Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
+                        Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(stringResource(R.string.summary_ads))
-                        val annotatedString = buildAnnotatedString {
+
+                        val annotatedString : AnnotatedString = buildAnnotatedString {
+                            val startIndex : Int = length
                             withStyle(
                                 style = SpanStyle(
-                                    color = MaterialTheme.colorScheme.primary,
+                                    color = MaterialTheme.colorScheme.primary ,
                                     textDecoration = TextDecoration.Underline
                                 )
                             ) {
                                 append(stringResource(R.string.learn_more))
                             }
+                            val endIndex : Int = length
+
                             addStringAnnotation(
-                                tag = "URL",
-                                annotation = "https://sites.google.com/view/d4rk7355608/more/apps/ads-help-center",
-                                start = 0,
-                                end = stringResource(R.string.learn_more).length
+                                tag = "URL" ,
+                                annotation = "https://sites.google.com/view/d4rk7355608/more/apps/ads-help-center" ,
+                                start = startIndex ,
+                                end = endIndex
                             )
                         }
-                        ClickableText(text = annotatedString, onClick = { offset ->
-                            view.weakHapticFeedback()
-                            annotatedString.getStringAnnotations(tag = "URL", offset, offset)
-                                .firstOrNull()?.let { annotation ->
-                                    IntentUtils.openUrl(context, annotation.item)
-                                }
-                        })
+
+                        Text(text = annotatedString , modifier = Modifier
+                                .bounceClick()
+                                .clickable {
+                                    annotatedString
+                                            .getStringAnnotations(
+                                                tag = "URL" ,
+                                                start = 0 ,
+                                                end = annotatedString.length
+                                            )
+                                            .firstOrNull()
+                                            ?.let { annotation ->
+                                                IntentUtils.openUrl(context , annotation.item)
+                                            }
+                                })
                     }
                 }
             }

@@ -17,10 +17,10 @@ class SupportViewModel : ViewModel() {
 
     fun querySkuDetails(billingClient: BillingClient) {
         viewModelScope.launch(Dispatchers.IO) {
-            val skuList = listOf(
+            val skuList : List<String> = listOf(
                 "low_donation", "normal_donation", "high_donation", "extreme_donation"
             )
-            val params = SkuDetailsParams.newBuilder().setSkusList(skuList)
+            val params : SkuDetailsParams = SkuDetailsParams.newBuilder().setSkusList(skuList)
                 .setType(BillingClient.SkuType.INAPP).build()
 
             billingClient.querySkuDetailsAsync(params) { billingResult, skuDetailsList ->

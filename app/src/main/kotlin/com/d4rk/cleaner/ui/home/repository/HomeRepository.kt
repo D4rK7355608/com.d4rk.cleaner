@@ -1,83 +1,67 @@
 package com.d4rk.cleaner.ui.home.repository
 
-import android.content.Context
-import android.content.res.Resources
+import android.app.Application
 import android.graphics.Bitmap
-import android.media.MediaMetadataRetriever
 import com.d4rk.cleaner.data.datastore.DataStore
+import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.cleaning.FileScanner
-import com.d4rk.cleaner.utils.cleaning.StorageUtils
+import com.d4rk.cleaner.utils.cleaning.StorageUtils.formatSize
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import java.io.File
-import java.io.FileOutputStream
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 class HomeRepository(
     dataStore: DataStore,
-    resources: Resources
-) {
-    private val fileScanner = FileScanner(dataStore, resources)
+    application: Application
+) : HomeRepositoryImplementation(application) {
+    private val fileScanner = FileScanner(dataStore, application.resources)
 
-    suspend fun getStorageInfo(context: Context): UiHomeModel {
-        return withContext(Dispatchers.IO) {
-            suspendCoroutine { continuation ->
-                StorageUtils.getStorageInfo(context) { used, total, usageProgress ->
-                    continuation.resume(
-                        UiHomeModel(
-                            progress = usageProgress,
-                            storageUsed = used,
-                            storageTotal = total
-                        )
-                    )
-                }
+    suspend fun getStorageInfo(onSuccess: (UiHomeModel) -> Unit) {
+        withContext(Dispatchers.IO) {
+            val storageInfo: UiHomeModel = getStorageInfo()
+            withContext(Dispatchers.Main) {
+                onSuccess(storageInfo)
             }
         }
     }
 
-    suspend fun analyzeFiles(): List<File> {
-        return withContext(Dispatchers.IO) {
+    suspend fun analyzeFiles(onSuccess: (List<File>) -> Unit) {
+        withContext(Dispatchers.IO) {
+            // Add await
             fileScanner.startScanning()
             fileScanner.getFilteredFiles()
+            withContext(Dispatchers.Main) {
+                // onSuccess(filteredFiles)
+            }
         }
     }
 
-    suspend fun deleteFiles(filesToDelete: Set<File>) {
+    suspend fun deleteFiles(filesToDelete: Set<File>, onSuccess: () -> Unit) {
         withContext(Dispatchers.IO) {
-            filesToDelete.forEach { file ->
-                if (file.exists()) {
-                    file.deleteRecursively()
-                }
+            deleteFiles(filesToDelete) // Call the implementation function
+            withContext(Dispatchers.Main) {
+                onSuccess()
             }
         }
     }
 
-    suspend fun saveBitmapToFile(bitmap: Bitmap, file: File): Boolean {
-        return withContext(Dispatchers.IO) {
-            try {
-                val outputStream = FileOutputStream(file)
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-                outputStream.flush()
-                outputStream.close()
-                true
-            } catch (e: Exception) {
-                false
+    suspend fun saveBitmapToFile(bitmap: Bitmap, file: File, onSuccess: (Boolean) -> Unit) {
+        withContext(Dispatchers.IO) {
+            val success = saveBitmapToFile(bitmap, file) // Call the implementation function
+            withContext(Dispatchers.Main) {
+                onSuccess(success)
             }
         }
     }
 
-    suspend fun getVideoThumbnail(filePath: String): Bitmap? {
-        return withContext(Dispatchers.IO) {
-            try {
-                val mediaMetadataRetriever = MediaMetadataRetriever()
-                mediaMetadataRetriever.setDataSource(filePath)
-                val frame: Bitmap? = mediaMetadataRetriever.getFrameAtTime(0)
-                mediaMetadataRetriever.release()
-                frame
-            } catch (e: Exception) {
-                null
+    suspend fun getVideoThumbnail(filePath: String, onSuccess: (Bitmap?) -> Unit) {
+        withContext(Dispatchers.IO) {
+            val thumbnail = getVideoThumbnail(filePath) // Call the implementation function
+            withContext(Dispatchers.Main) {
+                onSuccess(thumbnail)
             }
         }
     }

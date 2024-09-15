@@ -104,12 +104,6 @@ class DataStore(context: Context) {
         }
     }
 
-    suspend fun setShowBottomBarLabels(showLabels: Boolean) {
-        dataStore.edit { preferences ->
-            preferences[booleanPreferencesKey(name = "show_bottom_bar_labels")] = showLabels
-        }
-    }
-
     private val languageKey = stringPreferencesKey(name = "language")
 
     fun getLanguage(): Flow<String> = dataStore.data.map { preferences ->

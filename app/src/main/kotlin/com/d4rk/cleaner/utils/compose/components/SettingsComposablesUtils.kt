@@ -1,6 +1,5 @@
 package com.d4rk.cleaner.utils.compose.components
 
-import android.view.View
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,10 +27,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
+import com.d4rk.cleaner.utils.compose.bounceClick
 
 /**
  * Creates a clickable card with a title and a switch for app preference screens.
@@ -45,43 +44,64 @@ import com.d4rk.cleaner.utils.haptic.weakHapticFeedback
  */
 @Composable
 fun SwitchCardComposable(
-    title: String, switchState: State<Boolean>, onSwitchToggled: (Boolean) -> Unit
+    title : String , switchState : State<Boolean> , onSwitchToggled : (Boolean) -> Unit
 ) {
-    val view: View = LocalView.current
     Card(modifier = Modifier
-        .fillMaxWidth()
-        .padding(24.dp)
-        .clip(RoundedCornerShape(28.dp))
-        .clickable {
-            view.weakHapticFeedback()
-            onSwitchToggled(!switchState.value)
-        }) {
+            .fillMaxWidth()
+            .bounceClick(animationEnabled = false)
+            .padding(24.dp)
+            .clip(RoundedCornerShape(28.dp))
+            .clickable {
+                onSwitchToggled(! switchState.value)
+            }) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
+                    .fillMaxWidth()
+                    .padding(16.dp) ,
+            horizontalArrangement = Arrangement.SpaceBetween ,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(text = title)
-            Switch(
-                checked = switchState.value,
-                onCheckedChange = { isChecked ->
-                    view.weakHapticFeedback()
-                    onSwitchToggled(isChecked)
-                },
-                thumbContent = if (switchState.value) {
-                    {
-                        Icon(
-                            Icons.Filled.Check,
-                            contentDescription = null,
-                            modifier = Modifier.size(SwitchDefaults.IconSize),
-                        )
-                    }
-                } else {
-                    null
-                })
+            Switch(checked = switchState.value , onCheckedChange = { isChecked ->
+                onSwitchToggled(isChecked)
+            } , thumbContent = if (switchState.value) {
+                {
+                    Icon(
+                        Icons.Filled.Check ,
+                        contentDescription = null ,
+                        modifier = Modifier.size(SwitchDefaults.IconSize) ,
+                    )
+                }
+            }
+            else {
+                null
+            })
         }
+    }
+}
+
+@Composable
+fun SettingsPreferenceItem(
+    icon : ImageVector? = null ,
+    title : String? = null ,
+    summary : String? = null ,
+    rippleEffectDp : Dp = 2.dp ,
+    onClick : () -> Unit = {}
+) {
+    Card(
+        modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(2.dp)) ,
+        shape = RoundedCornerShape(2.dp) ,
+    ) {
+        PreferenceItem(
+            rippleEffectDp = rippleEffectDp ,
+            icon = icon ,
+            title = title ,
+            summary = summary ,
+            onClick = {
+                onClick()
+            })
     }
 }
 
@@ -94,13 +114,13 @@ fun SwitchCardComposable(
  */
 @Composable
 fun PreferenceCategoryItem(
-    title: String
+    title : String
 ) {
     Text(
-        text = title,
-        color = MaterialTheme.colorScheme.primary,
-        style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-        modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+        text = title ,
+        color = MaterialTheme.colorScheme.primary ,
+        style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold) ,
+        modifier = Modifier.padding(start = 16.dp , top = 16.dp)
     )
 }
 
@@ -116,42 +136,41 @@ fun PreferenceCategoryItem(
  */
 @Composable
 fun PreferenceItem(
-    icon: ImageVector? = null,
-    title: String? = null,
-    summary: String? = null,
-    enabled: Boolean = true,
-    onClick: () -> Unit = {}
+    icon : ImageVector? = null ,
+    title : String? = null ,
+    summary : String? = null ,
+    enabled : Boolean = true ,
+    rippleEffectDp : Dp = 16.dp ,
+    onClick : () -> Unit = {}
 ) {
-    val view: View = LocalView.current
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .clickable(enabled = enabled, onClick = {
-                view.weakHapticFeedback()
-                onClick()
-            }), verticalAlignment = Alignment.CenterVertically
+                .fillMaxWidth()
+                .bounceClick(animationEnabled = false)
+                .clip(RoundedCornerShape(rippleEffectDp))
+                .clickable(enabled = enabled , onClick = {
+                    onClick()
+                }) , verticalAlignment = Alignment.CenterVertically
     ) {
         icon?.let {
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(it, contentDescription = null)
-            Spacer(modifier = Modifier.width(16.dp))
+            Icon(it , contentDescription = null)
         }
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
             title?.let {
                 Text(
-                    text = it,
-                    style = MaterialTheme.typography.titleLarge,
-                    color = if (!enabled) LocalContentColor.current.copy(alpha = 0.38f) else LocalContentColor.current
+                    text = it ,
+                    style = MaterialTheme.typography.titleLarge ,
+                    color = if (! enabled) LocalContentColor.current.copy(alpha = 0.38f) else LocalContentColor.current
                 )
             }
             summary?.let {
                 Text(
-                    text = it,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = if (!enabled) LocalContentColor.current.copy(alpha = 0.38f) else LocalContentColor.current
+                    text = it ,
+                    style = MaterialTheme.typography.bodyMedium ,
+                    color = if (! enabled) LocalContentColor.current.copy(alpha = 0.38f) else LocalContentColor.current
                 )
             }
         }
@@ -172,44 +191,40 @@ fun PreferenceItem(
  */
 @Composable
 fun SwitchPreferenceItem(
-    icon: ImageVector? = null,
-    title: String,
-    summary: String? = null,
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit
+    icon : ImageVector? = null ,
+    title : String ,
+    summary : String? = null ,
+    checked : Boolean ,
+    onCheckedChange : (Boolean) -> Unit
 ) {
-    val view: View = LocalView.current
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .clickable(onClick = {
-                view.weakHapticFeedback()
-                onCheckedChange(!checked)
-            }), verticalAlignment = Alignment.CenterVertically
+                .fillMaxWidth()
+                .bounceClick(animationEnabled = false)
+                .clip(RoundedCornerShape(16.dp))
+                .clickable(onClick = {
+                    onCheckedChange(! checked)
+                }) , verticalAlignment = Alignment.CenterVertically
     ) {
         icon?.let {
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(it, contentDescription = null)
+            Icon(it , contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
         }
         Column(
             modifier = Modifier
-                .padding(16.dp)
-                .weight(1f)
+                    .padding(16.dp)
+                    .weight(1f)
         ) {
-            Text(text = title, style = MaterialTheme.typography.titleLarge)
+            Text(text = title , style = MaterialTheme.typography.titleLarge)
             summary?.let {
-                Text(text = it, style = MaterialTheme.typography.bodyMedium)
+                Text(text = it , style = MaterialTheme.typography.bodyMedium)
             }
         }
         Switch(
-            checked = checked,
-            onCheckedChange = { isChecked ->
-                view.weakHapticFeedback()
+            checked = checked , onCheckedChange = { isChecked ->
                 onCheckedChange(isChecked)
-            },
-            modifier = Modifier.padding(16.dp)
+            } , modifier = Modifier.padding(16.dp)
         )
     }
 }
@@ -231,49 +246,47 @@ fun SwitchPreferenceItem(
  */
 @Composable
 fun SwitchPreferenceItemWithDivider(
-    icon: ImageVector? = null,
-    title: String,
-    summary: String,
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit,
-    onClick: () -> Unit,
-    onSwitchClick: (Boolean) -> Unit
+    icon : ImageVector? = null ,
+    title : String ,
+    summary : String ,
+    checked : Boolean ,
+    onCheckedChange : (Boolean) -> Unit ,
+    onClick : () -> Unit ,
+    onSwitchClick : (Boolean) -> Unit
 ) {
-    val view: View = LocalView.current
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .clickable(onClick = {
-                view.weakHapticFeedback()
-                onClick()
-            }), verticalAlignment = Alignment.CenterVertically
+                .fillMaxWidth()
+                .bounceClick(animationEnabled = false)
+                .clip(RoundedCornerShape(16.dp))
+                .clickable(onClick = {
+                    onClick()
+                }) , verticalAlignment = Alignment.CenterVertically
     ) {
         icon?.let {
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(it, contentDescription = null)
+            Icon(it , contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
         }
         Column(
             modifier = Modifier
-                .padding(16.dp)
-                .weight(1f)
+                    .padding(16.dp)
+                    .weight(1f)
         ) {
-            Text(text = title, style = MaterialTheme.typography.titleLarge)
-            Text(text = summary, style = MaterialTheme.typography.bodyMedium)
+            Text(text = title , style = MaterialTheme.typography.titleLarge)
+            Text(text = summary , style = MaterialTheme.typography.bodyMedium)
         }
 
         VerticalDivider(
             modifier = Modifier
-                .height(32.dp)
-                .align(Alignment.CenterVertically),
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
+                    .height(32.dp)
+                    .align(Alignment.CenterVertically) ,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f) ,
             thickness = 1.dp
         )
-        Switch(checked = checked, onCheckedChange = { isChecked ->
-            view.weakHapticFeedback()
+        Switch(checked = checked , onCheckedChange = { isChecked ->
             onCheckedChange(isChecked)
             onSwitchClick(isChecked)
-        }, modifier = Modifier.padding(16.dp))
+        } , modifier = Modifier.padding(16.dp))
     }
 }
