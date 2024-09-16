@@ -76,7 +76,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
     }
 
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
-        LargeTopAppBar(title = { Text(stringResource(R.string.help)) } , navigationIcon = {
+        LargeTopAppBar(title = { Text(stringResource(id = R.string.help)) }, navigationIcon = {
             IconButton(modifier = Modifier.bounceClick() , onClick = {
                 view.playSoundEffect(SoundEffectConstants.CLICK)
                 activity.finish()
@@ -95,7 +95,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
             }) {
                 DropdownMenuItem(
                     modifier = Modifier.bounceClick() ,
-                    text = { Text(stringResource(R.string.view_in_google_play_store)) } ,
+                    text = { Text(stringResource(id = R.string.view_in_google_play_store)) },
                     onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         IntentUtils.openUrl(
@@ -105,14 +105,14 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                     })
                 DropdownMenuItem(
                     modifier = Modifier.bounceClick() ,
-                    text = { Text(stringResource(R.string.version_info)) } ,
+                    text = { Text(stringResource(id = R.string.version_info)) },
                     onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         showDialog.value = true
                     })
                 DropdownMenuItem(
                     modifier = Modifier.bounceClick() ,
-                    text = { Text(stringResource(R.string.beta_program)) } ,
+                    text = { Text(stringResource(id = R.string.beta_program)) },
                     onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         IntentUtils.openUrl(
@@ -122,7 +122,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                     })
                 DropdownMenuItem(
                     modifier = Modifier.bounceClick() ,
-                    text = { Text(stringResource(R.string.terms_of_service)) } ,
+                    text = { Text(stringResource(id = R.string.terms_of_service)) },
                     onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         IntentUtils.openUrl(
@@ -132,7 +132,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                     })
                 DropdownMenuItem(
                     modifier = Modifier.bounceClick() ,
-                    text = { Text(stringResource(R.string.privacy_policy)) } ,
+                    text = { Text(stringResource(id = R.string.privacy_policy)) },
                     onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         IntentUtils.openUrl(
@@ -157,25 +157,26 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
     }) { paddingValues ->
         Box(
             modifier = Modifier
-                    .padding(start = 16.dp , end = 16.dp)
-                    .fillMaxSize()
-                    .safeDrawingPadding()
+                .padding(start = 16.dp, end = 16.dp)
+                .fillMaxSize()
+                .safeDrawingPadding()
         ) {
             ConstraintLayout(modifier = Modifier.padding(paddingValues)) {
                 val (faqTitle : ConstrainedLayoutReference , faqCard : ConstrainedLayoutReference) = createRefs()
-                Text(text = stringResource(R.string.faq) ,
+                Text(
+                    text = stringResource(id = R.string.faq),
                      modifier = Modifier
-                             .padding(bottom = 24.dp)
-                             .constrainAs(faqTitle) {
-                                 top.linkTo(parent.top)
-                                 start.linkTo(parent.start)
-                             })
+                         .padding(bottom = 24.dp)
+                         .constrainAs(faqTitle) {
+                             top.linkTo(parent.top)
+                             start.linkTo(parent.start)
+                         })
                 Card(modifier = Modifier
-                        .fillMaxWidth()
-                        .constrainAs(faqCard) {
-                            top.linkTo(faqTitle.bottom)
-                            bottom.linkTo(parent.bottom)
-                        }) {
+                    .fillMaxWidth()
+                    .constrainAs(faqCard) {
+                        top.linkTo(faqTitle.bottom)
+                        bottom.linkTo(parent.bottom)
+                    }) {
                     FAQComposable()
                 }
             }
@@ -193,9 +194,9 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                     )
                 } ,
                 modifier = Modifier
-                        .bounceClick()
-                        .padding(bottom = 16.dp)
-                        .align(Alignment.BottomEnd) ,
+                    .bounceClick()
+                    .padding(bottom = 16.dp)
+                    .align(Alignment.BottomEnd) ,
             )
         }
     }
@@ -206,56 +207,56 @@ fun FAQComposable() {
     LazyColumn {
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_1) ,
-                summary = stringResource(R.string.summary_preference_faq_1)
+                title = stringResource(id = R.string.question_1),
+                summary = stringResource(id = R.string.summary_preference_faq_1)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_2) ,
-                summary = stringResource(R.string.summary_preference_faq_2)
+                title = stringResource(id = R.string.question_2),
+                summary = stringResource(id = R.string.summary_preference_faq_2)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_3) ,
-                summary = stringResource(R.string.summary_preference_faq_3)
+                title = stringResource(id = R.string.question_3),
+                summary = stringResource(id = R.string.summary_preference_faq_3)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_4) ,
-                summary = stringResource(R.string.summary_preference_faq_4)
+                title = stringResource(id = R.string.question_4),
+                summary = stringResource(id = R.string.summary_preference_faq_4)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_5) ,
-                summary = stringResource(R.string.summary_preference_faq_5)
+                title = stringResource(id = R.string.question_5),
+                summary = stringResource(id = R.string.summary_preference_faq_5)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_6) ,
-                summary = stringResource(R.string.summary_preference_faq_6)
+                title = stringResource(id = R.string.question_6),
+                summary = stringResource(id = R.string.summary_preference_faq_6)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_7) ,
-                summary = stringResource(R.string.summary_preference_faq_7)
+                title = stringResource(id = R.string.question_7),
+                summary = stringResource(id = R.string.summary_preference_faq_7)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_8) ,
-                summary = stringResource(R.string.summary_preference_faq_8)
+                title = stringResource(id = R.string.question_8),
+                summary = stringResource(id = R.string.summary_preference_faq_8)
             )
         }
         item {
             QuestionComposable(
-                title = stringResource(R.string.question_9) ,
-                summary = stringResource(R.string.summary_preference_faq_9)
+                title = stringResource(id = R.string.question_9),
+                summary = stringResource(id = R.string.summary_preference_faq_9)
             )
         }
     }
@@ -265,19 +266,19 @@ fun FAQComposable() {
 fun QuestionComposable(title : String , summary : String) {
     Row(
         modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp) ,
+            .fillMaxWidth()
+            .padding(16.dp) ,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
             Icons.Outlined.QuestionAnswer ,
             contentDescription = null ,
             modifier = Modifier
-                    .size(48.dp)
-                    .background(
-                        color = MaterialTheme.colorScheme.primaryContainer , shape = CircleShape
-                    )
-                    .padding(8.dp)
+                .size(48.dp)
+                .background(
+                    color = MaterialTheme.colorScheme.primaryContainer, shape = CircleShape
+                )
+                .padding(8.dp)
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column {

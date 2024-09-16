@@ -116,7 +116,7 @@ fun MainComposable() {
         ModalDrawerSheet {
             Spacer(modifier = Modifier.height(16.dp))
             drawerItems.forEachIndexed { index , item ->
-                val title : String = stringResource(item.title)
+                val title: String = stringResource(id = item.title)
                 NavigationDrawerItem(label = { Text(text = title) } ,
                                      selected = index == selectedItemIndex ,
                                      onClick = {
@@ -171,8 +171,8 @@ fun MainComposable() {
                                          }
                                      } ,
                                      modifier = Modifier
-                                             .padding(NavigationDrawerItemDefaults.ItemPadding)
-                                             .bounceClick()
+                                         .padding(NavigationDrawerItemDefaults.ItemPadding)
+                                         .bounceClick()
                 )
                 if (item.title == R.string.image_optimizer) {
                     HorizontalDivider(modifier = Modifier.padding(8.dp))
@@ -183,7 +183,7 @@ fun MainComposable() {
     } , content = {
         Scaffold(topBar = {
             TopAppBar(title = {
-                Text(text = stringResource(R.string.app_name))
+                Text(text = stringResource(id = R.string.app_name))
             } , navigationIcon = {
                 IconButton(modifier = Modifier.bounceClick() , onClick = {
                     view.playSoundEffect(SoundEffectConstants.CLICK)
@@ -226,7 +226,7 @@ fun MainComposable() {
                                           label = {
                                               if (showLabels) Text(
                                                   text = stringResource(
-                                                      screen.title
+                                                      id = screen.title
                                                   )
                                               )
                                           } ,

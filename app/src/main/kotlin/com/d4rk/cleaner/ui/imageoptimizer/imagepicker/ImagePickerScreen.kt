@@ -64,7 +64,7 @@ fun ImagePickerComposable(
 
 
     TopAppBarScaffold(
-        title = stringResource(R.string.image_optimizer) ,
+        title = stringResource(id = R.string.image_optimizer),
         onBackClicked = { activity.finish() }) { paddingValues ->
         ConstraintLayout(
             modifier = Modifier
@@ -89,7 +89,7 @@ fun ImagePickerComposable(
                     modifier = Modifier.size(72.dp)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                Text(text = stringResource(R.string.summary_select_image))
+                Text(text = stringResource(id = R.string.summary_select_image))
             }
 
             ExtendedFloatingActionButton(modifier = Modifier
@@ -102,7 +102,7 @@ fun ImagePickerComposable(
                     } else {
                         bottom.linkTo(parent.bottom)
                     }
-                }, text = { Text(stringResource(R.string.choose_image)) }, onClick = {
+                }, text = { Text(stringResource(id = R.string.choose_image)) }, onClick = {
                 view.playSoundEffect(SoundEffectConstants.CLICK)
                 activity.selectImage()
             }, icon = {

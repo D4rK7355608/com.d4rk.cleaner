@@ -113,8 +113,8 @@ fun HomeScreen() {
     Column(modifier = Modifier.fillMaxSize()) {
         Box(
             modifier = Modifier
-                    .weight(4f)
-                    .fillMaxWidth()
+                .weight(4f)
+                .fillMaxWidth()
         ) {
             if (! uiState.showCleaningComposable) {
                 CircularDeterminateIndicator(
@@ -122,8 +122,8 @@ fun HomeScreen() {
                     storageUsed = uiState.storageUsed ,
                     storageTotal = uiState.storageTotal ,
                     modifier = Modifier
-                            .align(Alignment.TopCenter)
-                            .offset(y = 98.dp)
+                        .align(Alignment.TopCenter)
+                        .offset(y = 98.dp)
                 )
 
             }
@@ -144,11 +144,11 @@ fun HomeScreen() {
 
         FilledTonalButton(
             modifier = Modifier
-                    .padding(ButtonDefaults.ContentPadding)
-                    .height(102.dp)
-                    .animateContentSize()
-                    .align(Alignment.CenterHorizontally)
-                    .bounceClick() ,
+                .padding(ButtonDefaults.ContentPadding)
+                .height(102.dp)
+                .animateContentSize()
+                .align(Alignment.CenterHorizontally)
+                .bounceClick() ,
             onClick = {
                 viewModel.analyze()
             } ,
@@ -166,7 +166,7 @@ fun HomeScreen() {
                     modifier = Modifier.size(ButtonDefaults.IconSize)
                 )
                 Text(
-                    text = stringResource(R.string.analyze) ,
+                    text = stringResource(id = R.string.analyze),
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
@@ -185,15 +185,15 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
 
     Column(
         modifier = Modifier
-                .animateContentSize()
-                .fillMaxWidth()
-                .padding(16.dp) ,
+            .animateContentSize()
+            .fillMaxWidth()
+            .padding(16.dp) ,
         horizontalAlignment = Alignment.End
     ) {
         OutlinedCard(
             modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth() ,
+                .weight(1f)
+                .fillMaxWidth() ,
         ) {
             if (uiState.isAnalyzing && uiState.scannedFiles.isEmpty()) {
                 Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
@@ -261,9 +261,9 @@ fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader
 
     Card(
         modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(ratio = 1f)
-                .bounceClick() ,
+            .fillMaxWidth()
+            .aspectRatio(ratio = 1f)
+            .bounceClick() ,
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             when (fileExtension) {
@@ -294,8 +294,8 @@ fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader
                             painter = painterResource(R.drawable.ic_video_file) ,
                             contentDescription = null ,
                             modifier = Modifier
-                                    .size(24.dp)
-                                    .align(Alignment.Center)
+                                .size(24.dp)
+                                .align(Alignment.Center)
                         )
                     }
                 }
@@ -305,8 +305,8 @@ fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader
                         painter = painterResource(getFileIcon(fileExtension , context)) ,
                         contentDescription = null ,
                         modifier = Modifier
-                                .size(24.dp)
-                                .align(Alignment.Center)
+                            .size(24.dp)
+                            .align(Alignment.Center)
                     )
                 }
             }
@@ -322,12 +322,12 @@ fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader
                 maxLines = 1 ,
                 overflow = TextOverflow.Ellipsis ,
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .background(
-                            color = Color.Black.copy(alpha = 0.4f)
-                        )
-                        .padding(8.dp)
-                        .align(Alignment.BottomCenter)
+                    .fillMaxWidth()
+                    .background(
+                        color = Color.Black.copy(alpha = 0.4f)
+                    )
+                    .padding(8.dp)
+                    .align(Alignment.BottomCenter)
             )
         }
     }

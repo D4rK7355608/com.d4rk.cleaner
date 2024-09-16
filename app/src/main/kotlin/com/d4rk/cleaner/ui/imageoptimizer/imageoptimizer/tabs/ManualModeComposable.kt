@@ -52,7 +52,7 @@ fun ManualModeScreen(viewModel: ImageOptimizerViewModel) {
                         )
                     }
                 },
-                label = { Text(stringResource(R.string.width)) },
+                label = { Text(stringResource(id = R.string.width)) },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier
@@ -72,7 +72,7 @@ fun ManualModeScreen(viewModel: ImageOptimizerViewModel) {
                         )
                     }
                 },
-                label = { Text(stringResource(R.string.height)) },
+                label = { Text(stringResource(id = R.string.height)) },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier.weight(1f)
@@ -82,7 +82,7 @@ fun ManualModeScreen(viewModel: ImageOptimizerViewModel) {
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = stringResource(R.string.quality), style = MaterialTheme.typography.bodyLarge
+            text = stringResource(id = R.string.quality), style = MaterialTheme.typography.bodyLarge
         )
 
         Spacer(modifier = Modifier.height(4.dp))

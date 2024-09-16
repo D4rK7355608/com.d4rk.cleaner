@@ -35,30 +35,31 @@ import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffold
 fun SettingsComposable(activity : SettingsActivity) {
     val context : Context = LocalContext.current
 
-    TopAppBarScaffold(title = stringResource(R.string.settings) ,
+    TopAppBarScaffold(
+        title = stringResource(id = R.string.settings),
                       onBackClicked = { activity.finish() }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
-                    .fillMaxHeight()
-                    .padding(paddingValues) ,
+                .fillMaxHeight()
+                .padding(paddingValues) ,
         ) {
             item {
                 Spacer(modifier = Modifier.height(24.dp))
                 Column(
                     modifier = Modifier
-                            .padding(start = 16.dp , end = 16.dp)
-                            .clip(RoundedCornerShape(24.dp))
+                        .padding(start = 16.dp, end = 16.dp)
+                        .clip(RoundedCornerShape(24.dp))
                 ) {
                     SettingsPreferenceItem(Icons.Outlined.Notifications ,
-                                           title = stringResource(R.string.notifications) ,
-                                           summary = stringResource(R.string.summary_preference_settings_notifications) ,
+                        title = stringResource(id = R.string.notifications),
+                        summary = stringResource(id = R.string.summary_preference_settings_notifications),
                                            onClick = {
                                                IntentUtils.openAppNotificationSettings(context)
                                            })
                     Spacer(modifier = Modifier.height(2.dp))
                     SettingsPreferenceItem(Icons.Outlined.Palette ,
-                                           title = stringResource(R.string.display) ,
-                                           summary = stringResource(R.string.summary_preference_settings_display) ,
+                        title = stringResource(id = R.string.display),
+                        summary = stringResource(id = R.string.summary_preference_settings_display),
                                            onClick = {
                                                IntentUtils.openActivity(
                                                    context , DisplaySettingsActivity::class.java
@@ -70,12 +71,12 @@ fun SettingsComposable(activity : SettingsActivity) {
             item {
                 Column(
                     modifier = Modifier
-                            .padding(start = 16.dp , end = 16.dp)
-                            .clip(RoundedCornerShape(24.dp))
+                        .padding(start = 16.dp, end = 16.dp)
+                        .clip(RoundedCornerShape(24.dp))
                 ) {
                     SettingsPreferenceItem(Icons.Outlined.CleaningServices ,
-                                           title = stringResource(R.string.cleaning) ,
-                                           summary = stringResource(R.string.summary_preference_settings_cleaning) ,
+                        title = stringResource(id = R.string.cleaning),
+                        summary = stringResource(id = R.string.summary_preference_settings_cleaning),
                                            onClick = {
                                                IntentUtils.openActivity(
                                                    context , CleaningSettingsActivity::class.java
@@ -87,12 +88,12 @@ fun SettingsComposable(activity : SettingsActivity) {
             item {
                 Column(
                     modifier = Modifier
-                            .padding(start = 16.dp , end = 16.dp)
-                            .clip(RoundedCornerShape(24.dp))
+                        .padding(start = 16.dp, end = 16.dp)
+                        .clip(RoundedCornerShape(24.dp))
                 ) {
                     SettingsPreferenceItem(Icons.Outlined.SafetyCheck ,
-                                           title = stringResource(R.string.security_and_privacy) ,
-                                           summary = stringResource(R.string.summary_preference_settings_privacy_and_security) ,
+                        title = stringResource(id = R.string.security_and_privacy),
+                        summary = stringResource(id = R.string.summary_preference_settings_privacy_and_security),
                                            onClick = {
                                                IntentUtils.openActivity(
                                                    context , PrivacySettingsActivity::class.java
@@ -100,8 +101,8 @@ fun SettingsComposable(activity : SettingsActivity) {
                                            })
                     Spacer(modifier = Modifier.height(2.dp))
                     SettingsPreferenceItem(Icons.Outlined.Build ,
-                                           title = stringResource(R.string.advanced) ,
-                                           summary = stringResource(R.string.summary_preference_settings_advanced) ,
+                        title = stringResource(id = R.string.advanced),
+                        summary = stringResource(id = R.string.summary_preference_settings_advanced),
                                            onClick = {
                                                IntentUtils.openActivity(
                                                    context , AdvancedSettingsActivity::class.java
@@ -109,8 +110,8 @@ fun SettingsComposable(activity : SettingsActivity) {
                                            })
                     Spacer(modifier = Modifier.height(2.dp))
                     SettingsPreferenceItem(Icons.Outlined.Info ,
-                                           title = stringResource(R.string.about) ,
-                                           summary = stringResource(R.string.summary_preference_settings_about) ,
+                        title = stringResource(id = R.string.about),
+                        summary = stringResource(id = R.string.summary_preference_settings_about),
                                            onClick = {
                                                IntentUtils.openActivity(
                                                    context , AboutSettingsActivity::class.java

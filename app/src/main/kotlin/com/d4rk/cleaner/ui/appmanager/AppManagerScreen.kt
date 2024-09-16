@@ -59,10 +59,16 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.ImageLoader
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
+import coil.request.ImageResult
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
 import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
@@ -191,7 +197,7 @@ fun AppsComposable(
     }
     else if (apps.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
-            Text(text = stringResource(R.string.no_app_installed))
+            Text(text = stringResource(id = R.string.no_app_installed))
         }
     }
     else {
@@ -238,13 +244,14 @@ fun AppItemComposable(
         }
         bitmap.asImageBitmap()
     }
+
     var showMenu : Boolean by remember { mutableStateOf(value = false) }
     OutlinedCard(modifier = Modifier.padding(start = 8.dp , end = 8.dp , top = 8.dp)) {
         Row(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-                    .clip(RoundedCornerShape(16.dp)) ,
+                .fillMaxWidth()
+                .padding(16.dp)
+                .clip(RoundedCornerShape(16.dp)) ,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
@@ -252,8 +259,8 @@ fun AppItemComposable(
             )
             Column(
                 modifier = Modifier
-                        .padding(16.dp)
-                        .weight(1f)
+                    .padding(16.dp)
+                    .weight(1f)
             ) {
                 Text(
                     text = appName ,
@@ -276,21 +283,21 @@ fun AppItemComposable(
                     showMenu = false
                 }) {
                     DropdownMenuItem(modifier = Modifier.bounceClick() , text = {
-                        Text(stringResource(R.string.uninstall))
+                        Text(stringResource(id = R.string.uninstall))
                     } , onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         viewModel.uninstallApp(app.packageName)
                     })
                     DropdownMenuItem(
                         modifier = Modifier.bounceClick() ,
-                        text = { Text(stringResource(R.string.share)) } ,
+                        text = { Text(stringResource(id = R.string.share)) },
                         onClick = {
                             view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.shareApp(app.packageName)
                         })
                     DropdownMenuItem(
                         modifier = Modifier.bounceClick() ,
-                        text = { Text(stringResource(R.string.app_info)) } ,
+                        text = { Text(stringResource(id = R.string.app_info)) },
                         onClick = {
                             view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.openAppInfo(app.packageName)
@@ -315,7 +322,7 @@ fun ApksComposable(
     }
     else if (apkFiles.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
-            Text(text = stringResource(R.string.no_apk_found))
+            Text(text = stringResource(id = R.string.no_apk_found))
         }
     }
     else {
@@ -345,31 +352,18 @@ fun ApkItemComposable(apkPath : String , viewModel : AppManagerViewModel) {
     val apkName : String = apkFile.name
 
     val packageInfo : PackageInfo? = context.packageManager.getPackageArchiveInfo(apkPath , 0)
-    val appIcon : ImageBitmap =
-            packageInfo?.applicationInfo?.loadIcon(context.packageManager)?.let {
-                val bitmap : Bitmap = if (it is BitmapDrawable) {
-                    it.bitmap
-                }
-                else {
-                    val bitmap : Bitmap = Bitmap.createBitmap(
-                        it.intrinsicWidth , it.intrinsicHeight , Bitmap.Config.ARGB_8888
-                    )
-                    val canvas = Canvas(bitmap)
-                    it.setBounds(0 , 0 , canvas.width , canvas.height)
-                    it.draw(canvas)
-                    bitmap
-                }
-                bitmap.asImageBitmap()
-            } ?: ImageBitmap.imageResource(id = R.mipmap.ic_launcher)
+    val appIcon: ImageBitmap =
+        packageInfo?.applicationInfo?.loadIcon(context.packageManager)?.toBitmap()?.asImageBitmap()
+            ?: ImageBitmap.imageResource(id = R.mipmap.ic_launcher)
 
     var showMenu : Boolean by remember { mutableStateOf(value = false) }
 
     OutlinedCard(modifier = Modifier.padding(start = 8.dp , end = 8.dp , top = 8.dp)) {
         Row(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-                    .clip(RoundedCornerShape(16.dp)) ,
+                .fillMaxWidth()
+                .padding(16.dp)
+                .clip(RoundedCornerShape(16.dp)) ,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
@@ -377,8 +371,8 @@ fun ApkItemComposable(apkPath : String , viewModel : AppManagerViewModel) {
             )
             Column(
                 modifier = Modifier
-                        .padding(16.dp)
-                        .weight(1f)
+                    .padding(16.dp)
+                    .weight(1f)
             ) {
                 Text(
                     text = apkName ,
@@ -402,7 +396,7 @@ fun ApkItemComposable(apkPath : String , viewModel : AppManagerViewModel) {
                 }) {
                     DropdownMenuItem(
                         modifier = Modifier.bounceClick() ,
-                        text = { Text(stringResource(R.string.share)) } ,
+                        text = { Text(stringResource(id = R.string.share)) },
                         onClick = {
                             view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.shareApk(apkPath)

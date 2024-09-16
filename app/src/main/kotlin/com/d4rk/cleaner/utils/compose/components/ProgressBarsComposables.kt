@@ -65,7 +65,7 @@ fun CircularDeterminateIndicator(
         )
         Text(
             modifier = Modifier.animateContentSize(),
-            text = stringResource(R.string.storage_used, storageUsed, storageTotal),
+            text = stringResource(id = R.string.storage_used, storageUsed, storageTotal),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.titleLarge
         )

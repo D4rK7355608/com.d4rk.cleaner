@@ -44,11 +44,11 @@ fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
     var showLanguageDialog : Boolean by remember { mutableStateOf(value = false) }
     var showStartupDialog : Boolean by remember { mutableStateOf(value = false) }
     val themeMode : String = dataStore.themeMode.collectAsState(initial = "follow_system").value
-    val darkModeString : String = stringResource(R.string.dark_mode)
-    val lightModeString : String = stringResource(R.string.light_mode)
+    val darkModeString: String = stringResource(id = R.string.dark_mode)
+    val lightModeString: String = stringResource(id = R.string.light_mode)
     val themeSummary : String = when (themeMode) {
-        darkModeString , lightModeString -> stringResource(R.string.will_never_turn_on_automatically)
-        else -> stringResource(R.string.will_turn_on_automatically_by_system)
+        darkModeString, lightModeString -> stringResource(id = R.string.will_never_turn_on_automatically)
+        else -> stringResource(id = R.string.will_turn_on_automatically_by_system)
     }
     val switchState : MutableState<Boolean> =
             remember { mutableStateOf(value = themeMode == darkModeString) }
@@ -58,16 +58,18 @@ fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
     val isDynamicColors : State<Boolean> = dataStore.dynamicColors.collectAsState(initial = true)
     val scope : CoroutineScope = rememberCoroutineScope()
 
-    TopAppBarScaffold(title = stringResource(R.string.display) ,
+    TopAppBarScaffold(
+        title = stringResource(id = R.string.display),
                       onBackClicked = { activity.finish() }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
-                    .fillMaxHeight()
-                    .padding(paddingValues) ,
+                .fillMaxHeight()
+                .padding(paddingValues) ,
         ) {
             item {
-                PreferenceCategoryItem(title = stringResource(R.string.appearance))
-                SwitchPreferenceItemWithDivider(title = stringResource(R.string.dark_theme) ,
+                PreferenceCategoryItem(title = stringResource(id = R.string.appearance))
+                SwitchPreferenceItemWithDivider(
+                    title = stringResource(id = R.string.dark_theme),
                                                 summary = themeSummary ,
                                                 checked = switchState.value ,
                                                 onCheckedChange = { isChecked ->
@@ -95,8 +97,8 @@ fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     SwitchPreferenceItem(
-                        title = stringResource(R.string.dynamic_colors) ,
-                        summary = stringResource(R.string.summary_preference_settings_dynamic_colors) ,
+                        title = stringResource(id = R.string.dynamic_colors),
+                        summary = stringResource(id = R.string.summary_preference_settings_dynamic_colors),
                         checked = isDynamicColors.value ,
                     ) { isChecked ->
                         CoroutineScope(Dispatchers.IO).launch {
@@ -106,10 +108,10 @@ fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
                 }
             }
             item {
-                PreferenceCategoryItem(title = stringResource(R.string.app_behavior))
+                PreferenceCategoryItem(title = stringResource(id = R.string.app_behavior))
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.bounce_buttons) ,
-                    summary = stringResource(R.string.summary_preference_settings_bounce_buttons) ,
+                    title = stringResource(id = R.string.bounce_buttons),
+                    summary = stringResource(id = R.string.summary_preference_settings_bounce_buttons),
                     checked = bouncyButtons ,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
@@ -118,9 +120,10 @@ fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
                 }
             }
             item {
-                PreferenceCategoryItem(title = stringResource(R.string.navigation))
-                PreferenceItem(title = stringResource(R.string.startup_page) ,
-                               summary = stringResource(R.string.summary_preference_settings_startup_page) ,
+                PreferenceCategoryItem(title = stringResource(id = R.string.navigation))
+                PreferenceItem(
+                    title = stringResource(id = R.string.startup_page),
+                    summary = stringResource(id = R.string.summary_preference_settings_startup_page),
                                onClick = { showStartupDialog = true })
 
                 if (showStartupDialog) {
@@ -134,8 +137,9 @@ fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
                 }
             }
             item {
-                PreferenceCategoryItem(title = stringResource(R.string.language))
-                PreferenceItem(title = stringResource(R.string.language) ,
+                PreferenceCategoryItem(title = stringResource(id = R.string.language))
+                PreferenceItem(
+                    title = stringResource(id = R.string.language),
                                summary = stringResource(id = R.string.summary_preference_settings_language) ,
                                onClick = {
                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
