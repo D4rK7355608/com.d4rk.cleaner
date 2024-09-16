@@ -47,7 +47,7 @@ fun AboutSettingsComposable(activity : AboutSettingsActivity) {
         }
     }
 
-    TopAppBarScaffold(title = stringResource(R.string.settings) ,
+    TopAppBarScaffold(title = stringResource(R.string.about) ,
                       onBackClicked = { activity.finish() }) { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
             LazyColumn(

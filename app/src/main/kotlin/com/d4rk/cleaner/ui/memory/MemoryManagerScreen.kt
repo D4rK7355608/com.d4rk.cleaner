@@ -2,6 +2,8 @@ package com.d4rk.cleaner.ui.memory
 
 import android.app.Activity
 import android.content.Context
+import android.view.SoundEffectConstants
+import android.view.View
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.Transition
@@ -60,6 +62,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
@@ -86,7 +89,7 @@ fun MemoryManagerComposable() {
     val uiState : UiMemoryManagerModel by viewModel.uiMemoryManagerModel.collectAsState()
     val isLoading : Boolean by viewModel.isLoading.collectAsState()
     val context : Context = LocalContext.current
-
+    val view : View = LocalView.current
 
     val transition : Transition<Boolean> =
             updateTransition(targetState = ! isLoading , label = "LoadingTransition")
@@ -168,6 +171,7 @@ fun MemoryManagerComposable() {
 
                 Spacer(modifier = Modifier.width(8.dp))
                 IconButton(modifier = Modifier.bounceClick() , onClick = {
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
                     viewModel.toggleListExpanded()
                 }) {
                     Icon(

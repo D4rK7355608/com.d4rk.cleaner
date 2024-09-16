@@ -236,10 +236,10 @@ class MainActivity : AppCompatActivity() {
      */
     private fun setupSettings() {
         lifecycleScope.launch {
-            val isEnabled = dataStore.usageAndDiagnostics.first()
+            val isEnabled : Boolean = dataStore.usageAndDiagnostics.first()
             FirebaseAnalytics.getInstance(this@MainActivity)
                 .setAnalyticsCollectionEnabled(isEnabled)
-            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(isEnabled)
+            FirebaseCrashlytics.getInstance().isCrashlyticsCollectionEnabled = isEnabled
         }
     }
 

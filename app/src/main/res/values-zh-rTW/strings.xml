@@ -21,6 +21,11 @@
     <string name="select_all">選取全部</string>
     <string name="rescan_title">重新掃描？</string>
     <string name="rescan_message">您確定要再次掃描嗎？</string>
+    <string name="file_not_found">找不到檔案。</string>
+    <string name="security_error">發生安全性錯誤。請稍後再試。</string>
+    <string name="io_error">發生輸入/輸出錯誤。請檢查您的網路連線或儲存空間並再試一次。</string>
+    <string name="activity_not_found">找不到活動。</string>
+    <string name="unknown_error">發生未知的錯誤。</string>
 
     <string name="app_manager">應用程式管理員</string>
     <string name="installed_apps">已安裝的應用程式</string>
@@ -32,6 +37,9 @@
     <string name="installed">已安裝"</string>
     <string name="install">安裝</string>
     <string name="share_apk">分享 APK</string>
+    <string name="no_app_installed">沒有安裝任何應用程式</string>
+    <string name="no_apk_found">未找到 APK</string>
+    <string name="app_loading_error">載入應用程式時出錯。</string>
 
     <string name="memory_manager">記憶體管理員</string>
     <string name="storage_information">儲存空間資訊</string>

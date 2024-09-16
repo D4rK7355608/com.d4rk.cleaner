@@ -16,44 +16,36 @@ import kotlinx.coroutines.flow.asStateFlow
 import java.io.FileNotFoundException
 import java.io.IOException
 
-open class BaseViewModel(application: Application) : AndroidViewModel(application) {
+open class BaseViewModel(application : Application) : AndroidViewModel(application) {
     private val _isLoading = MutableStateFlow(value = false)
-    val isLoading: StateFlow<Boolean> = _isLoading
+    val isLoading : StateFlow<Boolean> = _isLoading
 
     private val _uiErrorModel = MutableStateFlow(UiErrorModel())
-    val uiErrorModel: StateFlow<UiErrorModel> = _uiErrorModel.asStateFlow()
+    val uiErrorModel : StateFlow<UiErrorModel> = _uiErrorModel.asStateFlow()
 
-    protected val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+    protected val coroutineExceptionHandler = CoroutineExceptionHandler { _ , exception ->
         Log.e("BaseViewModel" , "Coroutine Exception: " , exception)
         handleError(exception)
     }
 
-    private fun handleError(exception: Throwable) {
-        val errorType: ErrorType = when (exception) {
-            is SecurityException -> ErrorType.STORAGE_PERMISSION
-            is IOException -> ErrorType.ANALYSIS_ERROR
-            is FileNotFoundException -> ErrorType.CLEANING_ERROR
+    private fun handleError(exception : Throwable) {
+        val errorType : ErrorType = when (exception) {
+            is SecurityException -> ErrorType.SECURITY_EXCEPTION
+            is IOException -> ErrorType.IO_EXCEPTION
+            is FileNotFoundException -> ErrorType.FILE_NOT_FOUND
             is PackageManager.NameNotFoundException -> ErrorType.APP_LOADING_ERROR
-            is ActivityNotFoundException -> ErrorType.APP_INFO_ERROR
+            is ActivityNotFoundException -> ErrorType.ACTIVITY_NOT_FOUND
             else -> ErrorType.UNKNOWN_ERROR
         }
-        handleError(errorType, exception)
+        handleError(errorType , exception)
 
         _uiErrorModel.value = UiErrorModel(
-            showErrorDialog = true,
-            errorMessage = when (errorType) {
-                ErrorType.STORAGE_PERMISSION -> getApplication<Application>().getString(R.string.storage_permission_error)
-                ErrorType.ANALYSIS_ERROR -> getApplication<Application>().getString(R.string.analysis_error)
-                ErrorType.CLEANING_ERROR -> exception.message ?: getApplication<Application>().getString(R.string.cleaning_error)
+            showErrorDialog = true , errorMessage = when (errorType) {
+                ErrorType.SECURITY_EXCEPTION -> getApplication<Application>().getString(R.string.security_error)
+                ErrorType.IO_EXCEPTION -> getApplication<Application>().getString(R.string.io_error)
+                ErrorType.FILE_NOT_FOUND -> getApplication<Application>().getString(R.string.file_not_found)
                 ErrorType.APP_LOADING_ERROR -> getApplication<Application>().getString(R.string.app_loading_error)
-                ErrorType.APK_INSTALLATION_ERROR -> getApplication<Application>().getString(R.string.apk_installation_error)
-                ErrorType.APK_SHARING_ERROR -> getApplication<Application>().getString(R.string.apk_sharing_error)
-                ErrorType.APP_SHARING_ERROR -> getApplication<Application>().getString(R.string.app_sharing_error)
-                ErrorType.APP_INFO_ERROR -> getApplication<Application>().getString(R.string.app_info_error)
-                ErrorType.APP_UNINSTALLATION_ERROR -> getApplication<Application>().getString(R.string.app_uninstallation_error)
-                ErrorType.STORAGE_INFO_ERROR -> getApplication<Application>().getString(R.string.storage_info_error)
-                ErrorType.RAM_INFO_ERROR -> getApplication<Application>().getString(R.string.ram_info_error)
-                ErrorType.STORAGE_BREAKDOWN_ERROR -> getApplication<Application>().getString(R.string.storage_breakdown_error)
+                ErrorType.ACTIVITY_NOT_FOUND -> getApplication<Application>().getString(R.string.activity_not_found)
                 ErrorType.UNKNOWN_ERROR -> getApplication<Application>().getString(R.string.unknown_error)
             }
         )
@@ -63,8 +55,8 @@ open class BaseViewModel(application: Application) : AndroidViewModel(applicatio
         _uiErrorModel.value = UiErrorModel(showErrorDialog = false)
     }
 
-    protected open fun handleError(errorType: ErrorType, exception: Throwable) {
-        ErrorHandler.handleError(getApplication(), errorType)
+    protected open fun handleError(errorType : ErrorType , exception : Throwable) {
+        ErrorHandler.handleError(getApplication() , errorType)
     }
 
     protected fun showLoading() {

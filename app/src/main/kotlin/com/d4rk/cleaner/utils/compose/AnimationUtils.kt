@@ -1,16 +1,14 @@
 package com.d4rk.cleaner.utils.compose
 
-import android.view.SoundEffectConstants
-import android.view.View
+import android.content.Context
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.gestures.waitForUpOrCancellation
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material3.DrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,40 +19,43 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
-import androidx.compose.ui.platform.LocalView
+import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.button.ButtonState
 
 @Composable
 fun Modifier.bounceClick(
-    animationEnabled : Boolean = true , soundEnabled : Boolean = true
-) : Modifier = composed {
-    var buttonState : ButtonState by remember { mutableStateOf(ButtonState.Idle) }
-    val view : View = LocalView.current
-    val scale : Float by animateFloatAsState(
-        if (buttonState == ButtonState.Pressed && animationEnabled) 0.96f else 1f ,
+    animationEnabled: Boolean = true
+): Modifier = composed {
+    var buttonState: ButtonState by remember { mutableStateOf(ButtonState.Idle) }
+    val context: Context = LocalContext.current
+    val dataStore: DataStore = DataStore.getInstance(context)
+    val bouncyButtonsEnabled : Boolean by dataStore.bouncyButtons.collectAsState(initial = true)
+    val scale: Float by animateFloatAsState(
+        if (buttonState == ButtonState.Pressed && animationEnabled && bouncyButtonsEnabled) 0.96f else 1f,
         label = "Button Press Scale Animation"
     )
-    this.graphicsLayer {
-                scaleX = scale
-                scaleY = scale
-            }
 
-            .pointerInput(buttonState) {
-                awaitPointerEventScope {
-                    buttonState = if (buttonState == ButtonState.Pressed) {
-                        waitForUpOrCancellation()
-                        if (soundEnabled) {
-                            view.playSoundEffect(SoundEffectConstants.CLICK)
+    if (bouncyButtonsEnabled) {
+        this.graphicsLayer {
+            scaleX = scale
+            scaleY = scale
+        }
+                .pointerInput(buttonState) {
+                    awaitPointerEventScope {
+                        buttonState = if (buttonState == ButtonState.Pressed) {
+                            waitForUpOrCancellation()
+                            ButtonState.Idle
+                        } else {
+                            awaitFirstDown(requireUnconsumed = false)
+                            ButtonState.Pressed
                         }
-                        ButtonState.Idle
-                    }
-                    else {
-                        awaitFirstDown(requireUnconsumed = false)
-                        ButtonState.Pressed
                     }
                 }
-            }
+    } else {
+        this
+    }
 }
 
 fun Modifier.hapticDrawerSwipe(drawerState : DrawerState) : Modifier = composed {

@@ -21,6 +21,11 @@
     <string name="select_all">सबका चयन करें</string>
     <string name="rescan_title">पुनः स्कैन करें?</string>
     <string name="rescan_message">क्या आप सुनिश्चित हैं कि आप फिर से स्कैन करना चाहते हैं?</string>
+    <string name="file_not_found">फ़ाइल नहीं मिली।</string>
+    <string name="security_error">सुरक्षा त्रुटि हुई है। कृपया बाद में पुनः प्रयास करें।</string>
+    <string name="io_error">इनपुट/आउटपुट त्रुटि हुई है। कृपया अपनी नेटवर्क कनेक्शन या स्टोरेज की जांच करें और पुनः प्रयास करें।</string>
+    <string name="activity_not_found">गतिविधि नहीं मिली।</string>
+    <string name="unknown_error">अज्ञात त्रुटि हुई है।</string>
 
     <string name="app_manager">ऐप मैनेजर</string>
     <string name="installed_apps">स्थापित एप्लिकेशन</string>
@@ -32,6 +37,9 @@
     <string name="installed">स्थापित"</string>
     <string name="install">इंस्टॉल करें</string>
     <string name="share_apk">APK साझा करें</string>
+    <string name="no_app_installed">कोई ऐप इंस्टॉल नहीं हैं</string>
+    <string name="no_apk_found">कोई APK नहीं मिला</string>
+    <string name="app_loading_error">ऐप्स लोड करने में त्रुटि।</string>
 
     <string name="memory_manager">मेमोरी मैनेजर</string>
     <string name="storage_information">स्टोरेज जानकारी</string>

@@ -21,6 +21,11 @@
     <string name="select_all">Tümünü Seç</string>
     <string name="rescan_title">Tekrar Tara?</string>
     <string name="rescan_message">Tekrar taramak istediğinizden emin misiniz?</string>
+    <string name="file_not_found">Dosya bulunamadı.</string>
+    <string name="security_error">Bir güvenlik hatası oluştu. Lütfen daha sonra tekrar deneyin.</string>
+    <string name="io_error">Bir giriş/çıkış hatası oluştu. Ağ bağlantınızı veya depolamanızı kontrol edip tekrar deneyin.</string>
+    <string name="activity_not_found">Etkinlik bulunamadı.</string>
+    <string name="unknown_error">Bilinmeyen bir hata oluştu.</string>
 
     <string name="app_manager">Uygulama Yöneticisi</string>
     <string name="installed_apps">Yüklü uygulamalar</string>
@@ -32,6 +37,9 @@
     <string name="installed">Yüklü"</string>
     <string name="install">Yükle</string>
     <string name="share_apk">APK\'yı Paylaş</string>
+    <string name="no_app_installed">Yüklü uygulama yok</string>
+    <string name="no_apk_found">APK bulunamadı</string>
+    <string name="app_loading_error">Uygulamalar yüklenirken hata oluştu.</string>
 
     <string name="memory_manager">Bellek Yöneticisi</string>
     <string name="storage_information">Depolama Bilgileri</string>

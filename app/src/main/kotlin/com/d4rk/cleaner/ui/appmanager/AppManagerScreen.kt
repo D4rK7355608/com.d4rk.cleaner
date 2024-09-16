@@ -9,6 +9,8 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.view.SoundEffectConstants
+import android.view.View
 import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.updateTransition
@@ -55,6 +57,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -79,6 +82,7 @@ import java.io.File
 fun AppManagerScreen() {
     val viewModel : AppManagerViewModel = viewModel()
     val context : Context = LocalContext.current
+    val view : View = LocalView.current
     val tabs : List<String> = listOf(
         stringResource(id = R.string.installed_apps) ,
         stringResource(id = R.string.system_apps) ,
@@ -141,6 +145,7 @@ fun AppManagerScreen() {
                             color = MaterialTheme.colorScheme.onSurface
                         )
                     } , selected = pagerState.currentPage == index , onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
                         coroutineScope.launch {
                             pagerState.animateScrollToPage(index)
                         }
@@ -208,6 +213,7 @@ fun AppItemComposable(
     app : ApplicationInfo , viewModel : AppManagerViewModel
 ) {
     val context : Context = LocalContext.current
+    val view : View = LocalView.current
     val packageManager : PackageManager = context.packageManager
     val appName : String = app.loadLabel(packageManager).toString()
     val apkPath : String = app.publicSourceDir
@@ -260,6 +266,7 @@ fun AppItemComposable(
 
             Box {
                 IconButton(modifier = Modifier.bounceClick() , onClick = {
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
                     showMenu = true
                 }) {
                     Icon(Icons.Outlined.MoreVert , contentDescription = null)
@@ -271,18 +278,21 @@ fun AppItemComposable(
                     DropdownMenuItem(modifier = Modifier.bounceClick() , text = {
                         Text(stringResource(R.string.uninstall))
                     } , onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
                         viewModel.uninstallApp(app.packageName)
                     })
                     DropdownMenuItem(
                         modifier = Modifier.bounceClick() ,
                         text = { Text(stringResource(R.string.share)) } ,
                         onClick = {
+                            view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.shareApp(app.packageName)
                         })
                     DropdownMenuItem(
                         modifier = Modifier.bounceClick() ,
                         text = { Text(stringResource(R.string.app_info)) } ,
                         onClick = {
+                            view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.openAppInfo(app.packageName)
                         })
                 }
@@ -326,6 +336,7 @@ fun ApksComposable(
 @Composable
 fun ApkItemComposable(apkPath : String , viewModel : AppManagerViewModel) {
     val context : Context = LocalContext.current
+    val view : View = LocalView.current
     val apkFile = File(apkPath)
     val sizeInBytes : Long = apkFile.length()
     val sizeInKB : Long = sizeInBytes / 1024
@@ -380,6 +391,7 @@ fun ApkItemComposable(apkPath : String , viewModel : AppManagerViewModel) {
 
             Box {
                 IconButton(modifier = Modifier.bounceClick() , onClick = {
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
                     showMenu = true
                 }) {
                     Icon(Icons.Outlined.MoreVert , contentDescription = null)
@@ -392,6 +404,7 @@ fun ApkItemComposable(apkPath : String , viewModel : AppManagerViewModel) {
                         modifier = Modifier.bounceClick() ,
                         text = { Text(stringResource(R.string.share)) } ,
                         onClick = {
+                            view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.shareApk(apkPath)
                         })
 
@@ -399,6 +412,7 @@ fun ApkItemComposable(apkPath : String , viewModel : AppManagerViewModel) {
                         modifier = Modifier.bounceClick() ,
                         text = { Text(stringResource(id = R.string.install)) } ,
                         onClick = {
+                            view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.installApk(apkPath)
                         })
                 }

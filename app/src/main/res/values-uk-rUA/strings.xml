@@ -21,6 +21,11 @@
     <string name="select_all">Вибрати все</string>
     <string name="rescan_title">Пересканувати?</string>
     <string name="rescan_message">Ви впевнені, що хочете сканувати знову?</string>
+    <string name="file_not_found">Файл не знайдено.</string>
+    <string name="security_error">Виникла помилка безпеки. Спробуйте пізніше.</string>
+    <string name="io_error">Сталася помилка введення/виведення. Перевірте мережеве з\'єднання або сховище і спробуйте знову.</string>
+    <string name="activity_not_found">Дія не знайдена.</string>
+    <string name="unknown_error">Сталася невідома помилка.</string>
 
     <string name="app_manager">Менеджер програм</string>
     <string name="installed_apps">Встановлені програми</string>
@@ -32,6 +37,9 @@
     <string name="installed">Встановлено"</string>
     <string name="install">Встановити</string>
     <string name="share_apk">Поділитися APK</string>
+    <string name="no_app_installed">Програми не встановлені</string>
+    <string name="no_apk_found">APK не знайдено</string>
+    <string name="app_loading_error">Помилка завантаження програм.</string>
 
     <string name="memory_manager">Менеджер пам\'яті</string>
     <string name="storage_information">Інформація про сховище</string>

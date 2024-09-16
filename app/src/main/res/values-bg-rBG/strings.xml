@@ -21,6 +21,11 @@
     <string name="select_all">Избиране на всички</string>
     <string name="rescan_title">Сканиране отново?</string>
     <string name="rescan_message">Сигурни ли сте, че искате да сканирате отново?</string>
+    <string name="file_not_found">Файлът не е намерен.</string>
+    <string name="security_error">Възникна грешка със сигурността. Моля, опитайте отново по-късно.</string>
+    <string name="io_error">Възникна грешка при вход/изход. Моля, проверете мрежовата връзка или паметта и опитайте отново.</string>
+    <string name="activity_not_found">Дейността не е намерена.</string>
+    <string name="unknown_error">Възникна неизвестна грешка.</string>
 
     <string name="app_manager">Мениджър на приложения</string>
     <string name="installed_apps">Инсталирани приложения</string>
@@ -32,6 +37,9 @@
     <string name="installed">Инсталирано"</string>
     <string name="install">Инсталирай</string>
     <string name="share_apk">Сподели APK</string>
+    <string name="no_app_installed">Няма инсталирани приложения</string>
+    <string name="no_apk_found">Не е намерен APK</string>
+    <string name="app_loading_error">Грешка при зареждане на приложенията.</string>
 
     <string name="memory_manager">Мениджър на паметта</string>
     <string name="storage_information">Информация за съхранението</string>

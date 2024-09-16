@@ -21,6 +21,11 @@
     <string name="select_all">Выбрать все</string>
     <string name="rescan_title">Повторное сканирование?</string>
     <string name="rescan_message">Вы уверены, что хотите выполнить сканирование снова?</string>
+    <string name="file_not_found">Файл не найден.</string>
+    <string name="security_error">Произошла ошибка безопасности. Пожалуйста, попробуйте позже.</string>
+    <string name="io_error">Произошла ошибка ввода/вывода. Проверьте сетевое соединение или хранилище и попробуйте снова.</string>
+    <string name="activity_not_found">Действие не найдено.</string>
+    <string name="unknown_error">Произошла неизвестная ошибка.</string>
 
     <string name="app_manager">Диспетчер приложений</string>
     <string name="installed_apps">Установленные приложения</string>
@@ -32,6 +37,9 @@
     <string name="installed">Установлено"</string>
     <string name="install">Установить</string>
     <string name="share_apk">Поделиться APK</string>
+    <string name="no_app_installed">Приложения не установлены</string>
+    <string name="no_apk_found">APK не найден</string>
+    <string name="app_loading_error">Ошибка загрузки приложений.</string>
 
     <string name="memory_manager">Диспетчер памяти</string>
     <string name="storage_information">Информация о хранилище</string>

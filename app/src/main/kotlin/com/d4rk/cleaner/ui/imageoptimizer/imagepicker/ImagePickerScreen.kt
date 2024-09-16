@@ -3,6 +3,8 @@ package com.d4rk.cleaner.ui.imageoptimizer.imagepicker
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.view.SoundEffectConstants
+import android.view.View
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,6 +25,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
@@ -40,6 +43,7 @@ fun ImagePickerComposable(
     activity: ImagePickerActivity, viewModel: ImagePickerViewModel
 ) {
     val context: Context = LocalContext.current
+    val view : View = LocalView.current
     val dataStore: DataStore = DataStore.getInstance(context)
     val adsState: State<Boolean> = dataStore.ads.collectAsState(initial = true)
 
@@ -99,6 +103,7 @@ fun ImagePickerComposable(
                         bottom.linkTo(parent.bottom)
                     }
                 }, text = { Text(stringResource(R.string.choose_image)) }, onClick = {
+                view.playSoundEffect(SoundEffectConstants.CLICK)
                 activity.selectImage()
             }, icon = {
                 Icon(

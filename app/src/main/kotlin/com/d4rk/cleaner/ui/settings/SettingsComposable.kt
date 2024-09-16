@@ -47,7 +47,7 @@ fun SettingsComposable(activity : SettingsActivity) {
                 Column(
                     modifier = Modifier
                             .padding(start = 16.dp , end = 16.dp)
-                            .clip(RoundedCornerShape(28.dp))
+                            .clip(RoundedCornerShape(24.dp))
                 ) {
                     SettingsPreferenceItem(Icons.Outlined.Notifications ,
                                            title = stringResource(R.string.notifications) ,
@@ -71,7 +71,7 @@ fun SettingsComposable(activity : SettingsActivity) {
                 Column(
                     modifier = Modifier
                             .padding(start = 16.dp , end = 16.dp)
-                            .clip(RoundedCornerShape(28.dp))
+                            .clip(RoundedCornerShape(24.dp))
                 ) {
                     SettingsPreferenceItem(Icons.Outlined.CleaningServices ,
                                            title = stringResource(R.string.cleaning) ,
@@ -88,7 +88,7 @@ fun SettingsComposable(activity : SettingsActivity) {
                 Column(
                     modifier = Modifier
                             .padding(start = 16.dp , end = 16.dp)
-                            .clip(RoundedCornerShape(28.dp))
+                            .clip(RoundedCornerShape(24.dp))
                 ) {
                     SettingsPreferenceItem(Icons.Outlined.SafetyCheck ,
                                            title = stringResource(R.string.security_and_privacy) ,

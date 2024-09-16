@@ -21,6 +21,11 @@
     <string name="select_all">Zaznacz wszystko</string>
     <string name="rescan_title">Skanować ponownie?</string>
     <string name="rescan_message">Czy na pewno chcesz skanować ponownie?</string>
+    <string name="file_not_found">Plik nie znaleziony.</string>
+    <string name="security_error">Wystąpił błąd zabezpieczeń. Spróbuj ponownie później.</string>
+    <string name="io_error">Wystąpił błąd wejścia/wyjścia. Sprawdź połączenie sieciowe lub pamięć i spróbuj ponownie.</string>
+    <string name="activity_not_found">Nie znaleziono aktywności.</string>
+    <string name="unknown_error">Wystąpił nieznany błąd.</string>
 
     <string name="app_manager">Menedżer aplikacji</string>
     <string name="installed_apps">Zainstalowane aplikacje</string>
@@ -32,6 +37,9 @@
     <string name="installed">Zainstalowano"</string>
     <string name="install">Zainstaluj</string>
     <string name="share_apk">Udostępnij APK</string>
+    <string name="no_app_installed">Brak zainstalowanych aplikacji</string>
+    <string name="no_apk_found">Nie znaleziono pliku APK</string>
+    <string name="app_loading_error">Błąd podczas ładowania aplikacji.</string>
 
     <string name="memory_manager">Menedżer pamięci</string>
     <string name="storage_information">Informacje o pamięci</string>

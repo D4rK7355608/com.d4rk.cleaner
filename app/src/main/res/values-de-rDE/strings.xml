@@ -21,6 +21,11 @@
     <string name="select_all">Alle auswählen</string>
     <string name="rescan_title">Neu scannen?</string>
     <string name="rescan_message">Sind Sie sicher, dass Sie erneut scannen möchten?</string>
+    <string name="file_not_found">Datei nicht gefunden.</string>
+    <string name="security_error">Es ist ein Sicherheitsfehler aufgetreten. Bitte versuchen Sie es später erneut.</string>
+    <string name="io_error">Ein Ein-/Ausgabefehler ist aufgetreten. Bitte überprüfen Sie Ihre Netzwerkverbindung oder den Speicher und versuchen Sie es erneut.</string>
+    <string name="activity_not_found">Aktivität nicht gefunden.</string>
+    <string name="unknown_error">Ein unbekannter Fehler ist aufgetreten.</string>
 
     <string name="app_manager">App-Manager</string>
     <string name="installed_apps">Installierte Apps</string>
@@ -32,6 +37,9 @@
     <string name="installed">Installiert"</string>
     <string name="install">Installieren</string>
     <string name="share_apk">APK teilen</string>
+    <string name="no_app_installed">Keine Apps installiert</string>
+    <string name="no_apk_found">Keine APK gefunden</string>
+    <string name="app_loading_error">Fehler beim Laden der Apps.</string>
 
     <string name="memory_manager">Speichermanager</string>
     <string name="storage_information">Speicherinformationen</string>

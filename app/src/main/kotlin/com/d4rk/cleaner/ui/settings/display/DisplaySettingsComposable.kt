@@ -52,13 +52,14 @@ fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
     }
     val switchState : MutableState<Boolean> =
             remember { mutableStateOf(value = themeMode == darkModeString) }
+    val bouncyButtons : Boolean by dataStore.bouncyButtons.collectAsState(initial = true)
+
 
     val isDynamicColors : State<Boolean> = dataStore.dynamicColors.collectAsState(initial = true)
     val scope : CoroutineScope = rememberCoroutineScope()
 
-    TopAppBarScaffold(
-        title = stringResource(R.string.display) ,
-        onBackClicked = { activity.finish() }) { paddingValues ->
+    TopAppBarScaffold(title = stringResource(R.string.display) ,
+                      onBackClicked = { activity.finish() }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
                     .fillMaxHeight()
@@ -101,6 +102,18 @@ fun DisplaySettingsComposable(activity : DisplaySettingsActivity) {
                         CoroutineScope(Dispatchers.IO).launch {
                             dataStore.saveDynamicColors(isChecked)
                         }
+                    }
+                }
+            }
+            item {
+                PreferenceCategoryItem(title = stringResource(R.string.app_behavior))
+                SwitchPreferenceItem(
+                    title = stringResource(R.string.bounce_buttons) ,
+                    summary = stringResource(R.string.summary_preference_settings_bounce_buttons) ,
+                    checked = bouncyButtons ,
+                ) { isChecked ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        dataStore.saveBouncyButtons(isChecked)
                     }
                 }
             }

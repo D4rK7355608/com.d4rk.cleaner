@@ -18,7 +18,7 @@ import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffold
 fun AdvancedSettingsComposable(activity : AdvancedSettingsActivity) {
     val context : Context = LocalContext.current
     TopAppBarScaffold(
-        title = stringResource(R.string.settings) ,
+        title = stringResource(R.string.advanced) ,
         onBackClicked = { activity.finish() }) { paddingValues ->
         LazyColumn(
             modifier = Modifier

@@ -3,6 +3,8 @@
 package com.d4rk.cleaner.ui.support
 
 import android.content.Context
+import android.view.SoundEffectConstants
+import android.view.View
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,6 +28,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.android.billingclient.api.BillingClient
@@ -41,6 +44,7 @@ import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffold
 @Composable
 fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity) {
     val context : Context = LocalContext.current
+    val view : View = LocalView.current
     val dataStore : DataStore = DataStore.getInstance(context)
     val billingClient : BillingClient = rememberBillingClient(context , viewModel)
     TopAppBarScaffold(
@@ -82,6 +86,7 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                                                 .fillMaxWidth()
                                                 .bounceClick() ,
                                         onClick = {
+                                            view.playSoundEffect(SoundEffectConstants.CLICK)
                                             activity.initiatePurchase(
                                                 sku = "low_donation" ,
                                                 viewModel.skuDetails ,
@@ -106,6 +111,7 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                                                 .fillMaxWidth()
                                                 .bounceClick() ,
                                         onClick = {
+                                            view.playSoundEffect(SoundEffectConstants.CLICK)
                                             activity.initiatePurchase(
                                                 sku = "normal_donation" ,
                                                 viewModel.skuDetails ,
@@ -138,6 +144,7 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                                                 .fillMaxWidth()
                                                 .bounceClick() ,
                                         onClick = {
+                                            view.playSoundEffect(SoundEffectConstants.CLICK)
                                             activity.initiatePurchase(
                                                 sku = "high_donation" ,
                                                 viewModel.skuDetails ,
@@ -164,6 +171,7 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                                                 .fillMaxWidth()
                                                 .bounceClick() ,
                                         onClick = {
+                                            view.playSoundEffect(SoundEffectConstants.CLICK)
                                             activity.initiatePurchase(
                                                 sku = "extreme_donation" ,
                                                 viewModel.skuDetails ,
@@ -197,6 +205,7 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                 item {
                     FilledTonalButton(
                         onClick = {
+                            view.playSoundEffect(SoundEffectConstants.CLICK)
                             IntentUtils.openUrl(
                                 context , url = "https://direct-link.net/548212/agOqI7123501341"
                             )

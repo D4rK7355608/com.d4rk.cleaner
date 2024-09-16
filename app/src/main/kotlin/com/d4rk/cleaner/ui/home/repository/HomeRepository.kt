@@ -3,13 +3,9 @@ package com.d4rk.cleaner.ui.home.repository
 import android.app.Application
 import android.graphics.Bitmap
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.cleaning.FileScanner
-import com.d4rk.cleaner.utils.cleaning.StorageUtils.formatSize
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import java.io.File
 

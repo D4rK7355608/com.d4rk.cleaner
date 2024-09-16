@@ -21,6 +21,11 @@
     <string name="select_all">Seleccionar todo</string>
     <string name="rescan_title">¿Volver a escanear?</string>
     <string name="rescan_message">¿Estás seguro de que quieres escanear de nuevo?</string>
+    <string name="file_not_found">Archivo no encontrado.</string>
+    <string name="security_error">Se ha producido un error de seguridad. Por favor, inténtelo de nuevo más tarde.</string>
+    <string name="io_error">Se ha producido un error de entrada/salida. Por favor, revise su conexión a la red o el almacenamiento e inténtelo de nuevo.</string>
+    <string name="activity_not_found">Actividad no encontrada.</string>
+    <string name="unknown_error">Se ha producido un error desconocido.</string>
 
     <string name="app_manager">Administrador de aplicaciones</string>
     <string name="installed_apps">Aplicaciones instaladas</string>
@@ -32,6 +37,9 @@
     <string name="installed">Instalado"</string>
     <string name="install">Instalar</string>
     <string name="share_apk">Compartir APK</string>
+    <string name="no_app_installed">No hay aplicaciones instaladas</string>
+    <string name="no_apk_found">No se encontró APK</string>
+    <string name="app_loading_error">Error al cargar las aplicaciones.</string>
 
     <string name="memory_manager">Administrador de memoria</string>
     <string name="storage_information">Información de almacenamiento</string>

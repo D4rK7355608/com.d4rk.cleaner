@@ -86,6 +86,17 @@ class DataStore(context: Context) {
         }
     }
 
+    private val bouncyButtonsKey = booleanPreferencesKey(name = "bouncy_buttons")
+    val bouncyButtons: Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[bouncyButtonsKey] ?: true
+    }
+
+    suspend fun saveBouncyButtons(isChecked: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[bouncyButtonsKey] = isChecked
+        }
+    }
+
     fun getStartupPage(): Flow<String> {
         return dataStore.data.map { preferences ->
             preferences[stringPreferencesKey(name = "startup_page")] ?: BottomBarRoutes.HOME

@@ -21,6 +21,11 @@
     <string name="select_all">Selectează tot</string>
     <string name="rescan_title">Rescanare?</string>
     <string name="rescan_message">Sunteți sigur că doriți să scanați din nou?</string>
+    <string name="file_not_found">Fișierul nu a fost găsit.</string>
+    <string name="security_error">A apărut o eroare de securitate. Vă rugăm să încercați din nou mai târziu.</string>
+    <string name="io_error">A apărut o eroare de intrare/ieșire. Verificați conexiunea la rețea sau spațiul de stocare și încercați din nou.</string>
+    <string name="activity_not_found">Activitatea nu a fost găsită.</string>
+    <string name="unknown_error">A apărut o eroare necunoscută.</string>
 
     <string name="app_manager">Manager de aplicații</string>
     <string name="installed_apps">Aplicații instalate</string>
@@ -32,6 +37,9 @@
     <string name="installed">Instalat"</string>
     <string name="install">Instalează</string>
     <string name="share_apk">Partajează APK</string>
+    <string name="no_app_installed">Nicio aplicație instalată</string>
+    <string name="no_apk_found">Niciun APK găsit</string>
+    <string name="app_loading_error">Eroare la încărcarea aplicațiilor.</string>
 
     <string name="memory_manager">Manager de memorie</string>
     <string name="storage_information">Informații despre spațiul de stocare</string>

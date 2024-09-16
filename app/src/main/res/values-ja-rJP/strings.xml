@@ -21,6 +21,11 @@
     <string name="select_all">すべて選択</string>
     <string name="rescan_title">再スキャンしますか？</string>
     <string name="rescan_message">再スキャンしてもよろしいですか？</string>
+    <string name="file_not_found">ファイルが見つかりません。</string>
+    <string name="security_error">セキュリティエラーが発生しました。後でもう一度お試しください。</string>
+    <string name="io_error">入出力エラーが発生しました。ネットワーク接続やストレージを確認してから、もう一度お試しください。</string>
+    <string name="activity_not_found">アクティビティが見つかりません。</string>
+    <string name="unknown_error">不明なエラーが発生しました。</string>
 
     <string name="app_manager">アプリマネージャー</string>
     <string name="installed_apps">インストール済みアプリ</string>
@@ -32,6 +37,9 @@
     <string name="installed">インストール済み"</string>
     <string name="install">インストール</string>
     <string name="share_apk">APKを共有</string>
+    <string name="no_app_installed">インストールされているアプリはありません</string>
+    <string name="no_apk_found">APKが見つかりません</string>
+    <string name="app_loading_error">アプリの読み込みエラー。</string>
 
     <string name="memory_manager">メモリマネージャー</string>
     <string name="storage_information">ストレージ情報</string>

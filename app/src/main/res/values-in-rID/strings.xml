@@ -21,6 +21,11 @@
     <string name="select_all">Pilih Semua</string>
     <string name="rescan_title">Pindai ulang?</string>
     <string name="rescan_message">Anda yakin ingin memindai lagi?</string>
+    <string name="file_not_found">File tidak ditemukan.</string>
+    <string name="security_error">Terjadi kesalahan keamanan. Silakan coba lagi nanti.</string>
+    <string name="io_error">Terjadi kesalahan input/output. Harap periksa koneksi jaringan atau penyimpanan Anda dan coba lagi.</string>
+    <string name="activity_not_found">Aktivitas tidak ditemukan.</string>
+    <string name="unknown_error">Terjadi kesalahan yang tidak diketahui.</string>
 
     <string name="app_manager">Manajer Aplikasi</string>
     <string name="installed_apps">Aplikasi terpasang</string>
@@ -32,6 +37,9 @@
     <string name="installed">Terpasang"</string>
     <string name="install">Pasang</string>
     <string name="share_apk">Bagikan APK</string>
+    <string name="no_app_installed">Tidak ada aplikasi yang terinstal</string>
+    <string name="no_apk_found">Tidak ditemukan APK</string>
+    <string name="app_loading_error">Kesalahan saat memuat aplikasi.</string>
 
     <string name="memory_manager">Manajer Memori</string>
     <string name="storage_information">Informasi Penyimpanan</string>

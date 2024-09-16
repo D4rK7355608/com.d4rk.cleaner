@@ -1,6 +1,8 @@
 package com.d4rk.cleaner.ui.help
 
 import android.content.Context
+import android.view.SoundEffectConstants
+import android.view.View
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -45,6 +47,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
@@ -63,6 +66,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
             TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     var showMenu : Boolean by remember { mutableStateOf(value = false) }
     val context : Context = LocalContext.current
+    val view : View = LocalView.current
     val showDialog : MutableState<Boolean> = remember { mutableStateOf(value = false) }
     val reviewInfo : ReviewInfo? = viewModel.reviewInfo.value
     if (reviewInfo != null) {
@@ -74,12 +78,14 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
         LargeTopAppBar(title = { Text(stringResource(R.string.help)) } , navigationIcon = {
             IconButton(modifier = Modifier.bounceClick() , onClick = {
+                view.playSoundEffect(SoundEffectConstants.CLICK)
                 activity.finish()
             }) {
                 Icon(Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null)
             }
         } , actions = {
             IconButton(modifier = Modifier.bounceClick() , onClick = {
+                view.playSoundEffect(SoundEffectConstants.CLICK)
                 showMenu = true
             }) {
                 Icon(Icons.Default.MoreVert , contentDescription = "Localized description")
@@ -91,6 +97,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                     modifier = Modifier.bounceClick() ,
                     text = { Text(stringResource(R.string.view_in_google_play_store)) } ,
                     onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
                         IntentUtils.openUrl(
                             context ,
                             url = "https://play.google.com/store/apps/details?id=${activity.packageName}"
@@ -100,12 +107,14 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                     modifier = Modifier.bounceClick() ,
                     text = { Text(stringResource(R.string.version_info)) } ,
                     onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
                         showDialog.value = true
                     })
                 DropdownMenuItem(
                     modifier = Modifier.bounceClick() ,
                     text = { Text(stringResource(R.string.beta_program)) } ,
                     onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
                         IntentUtils.openUrl(
                             context ,
                             url = "https://play.google.com/apps/testing/${activity.packageName}"
@@ -115,6 +124,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                     modifier = Modifier.bounceClick() ,
                     text = { Text(stringResource(R.string.terms_of_service)) } ,
                     onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
                         IntentUtils.openUrl(
                             context ,
                             url = "https://sites.google.com/view/d4rk7355608/more/apps/terms-of-service"
@@ -124,6 +134,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                     modifier = Modifier.bounceClick() ,
                     text = { Text(stringResource(R.string.privacy_policy)) } ,
                     onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
                         IntentUtils.openUrl(
                             context ,
                             url = "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy"
@@ -133,6 +144,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                     modifier = Modifier.bounceClick() ,
                     text = { Text(stringResource(com.google.android.gms.oss.licenses.R.string.oss_license_title)) } ,
                     onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
                         IntentUtils.openActivity(
                             context , OssLicensesMenuActivity::class.java
                         )
@@ -170,6 +182,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
             ExtendedFloatingActionButton(
                 text = { Text(stringResource(id = R.string.feedback)) } ,
                 onClick = {
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
                     viewModel.reviewInfo.value?.let { safeReviewInfo ->
                         viewModel.launchReviewFlow(activity , safeReviewInfo)
                     }

@@ -1,5 +1,7 @@
 package com.d4rk.cleaner.utils.compose.components
 
+import android.view.SoundEffectConstants
+import android.view.View
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,10 +29,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.d4rk.cleaner.utils.compose.bounceClick
 
 /**
  * Creates a clickable card with a title and a switch for app preference screens.
@@ -46,12 +48,13 @@ import com.d4rk.cleaner.utils.compose.bounceClick
 fun SwitchCardComposable(
     title : String , switchState : State<Boolean> , onSwitchToggled : (Boolean) -> Unit
 ) {
+    val view : View = LocalView.current
     Card(modifier = Modifier
             .fillMaxWidth()
-            .bounceClick(animationEnabled = false)
             .padding(24.dp)
             .clip(RoundedCornerShape(28.dp))
             .clickable {
+                view.playSoundEffect(SoundEffectConstants.CLICK)
                 onSwitchToggled(! switchState.value)
             }) {
         Row(
@@ -91,7 +94,7 @@ fun SettingsPreferenceItem(
     Card(
         modifier = Modifier
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(2.dp)) ,
+                .clip(RoundedCornerShape(2.dp)),
         shape = RoundedCornerShape(2.dp) ,
     ) {
         PreferenceItem(
@@ -143,12 +146,13 @@ fun PreferenceItem(
     rippleEffectDp : Dp = 16.dp ,
     onClick : () -> Unit = {}
 ) {
+    val view : View = LocalView.current
     Row(
         modifier = Modifier
                 .fillMaxWidth()
-                .bounceClick(animationEnabled = false)
                 .clip(RoundedCornerShape(rippleEffectDp))
                 .clickable(enabled = enabled , onClick = {
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
                     onClick()
                 }) , verticalAlignment = Alignment.CenterVertically
     ) {
@@ -197,12 +201,13 @@ fun SwitchPreferenceItem(
     checked : Boolean ,
     onCheckedChange : (Boolean) -> Unit
 ) {
+    val view : View = LocalView.current
     Row(
         modifier = Modifier
                 .fillMaxWidth()
-                .bounceClick(animationEnabled = false)
                 .clip(RoundedCornerShape(16.dp))
                 .clickable(onClick = {
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
                     onCheckedChange(! checked)
                 }) , verticalAlignment = Alignment.CenterVertically
     ) {
@@ -254,12 +259,13 @@ fun SwitchPreferenceItemWithDivider(
     onClick : () -> Unit ,
     onSwitchClick : (Boolean) -> Unit
 ) {
+    val view : View = LocalView.current
     Row(
         modifier = Modifier
                 .fillMaxWidth()
-                .bounceClick(animationEnabled = false)
                 .clip(RoundedCornerShape(16.dp))
                 .clickable(onClick = {
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
                     onClick()
                 }) , verticalAlignment = Alignment.CenterVertically
     ) {

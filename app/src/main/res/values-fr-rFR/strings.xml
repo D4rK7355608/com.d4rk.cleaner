@@ -21,6 +21,11 @@
     <string name="select_all">Tout sélectionner</string>
     <string name="rescan_title">Re-scanner?</string>
     <string name="rescan_message">Êtes-vous sûr de vouloir re-scanner?</string>
+    <string name="file_not_found">Fichier introuvable.</string>
+    <string name="security_error">Une erreur de sécurité est survenue. Veuillez réessayer plus tard.</string>
+    <string name="io_error">Une erreur d\'entrée/sortie est survenue. Veuillez vérifier votre connexion réseau ou stockage et réessayer.</string>
+    <string name="activity_not_found">Activité introuvable.</string>
+    <string name="unknown_error">Une erreur inconnue est survenue.</string>
 
     <string name="app_manager">Gestionnaire d’applications</string>
     <string name="installed_apps">Applications installées</string>
@@ -32,6 +37,9 @@
     <string name="installed">Installé"</string>
     <string name="install">Installer</string>
     <string name="share_apk">Partager APK</string>
+    <string name="no_app_installed">Aucune application installée</string>
+    <string name="no_apk_found">Aucun APK trouvé</string>
+    <string name="app_loading_error">Erreur lors du chargement des applications.</string>
 
     <string name="memory_manager">Gestionnaire de mémoire</string>
     <string name="storage_information">Informations de stockage</string>

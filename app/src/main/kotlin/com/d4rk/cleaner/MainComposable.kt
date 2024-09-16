@@ -1,6 +1,8 @@
 package com.d4rk.cleaner
 
 import android.content.Context
+import android.view.SoundEffectConstants
+import android.view.View
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -40,6 +42,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
@@ -100,6 +103,7 @@ fun MainComposable() {
     val scope : CoroutineScope = rememberCoroutineScope()
     val navController : NavHostController = rememberNavController()
     val context : Context = LocalContext.current
+    val view : View = LocalView.current
     val dataStore : DataStore = DataStore.getInstance(context)
     val startupPage : String =
             dataStore.getStartupPage().collectAsState(initial = BottomBarRoutes.HOME).value
@@ -119,31 +123,36 @@ fun MainComposable() {
                                          when (item.title) {
 
                                              R.string.image_optimizer -> {
+                                                 view.playSoundEffect(SoundEffectConstants.CLICK)
                                                  IntentUtils.openActivity(
                                                      context , ImagePickerActivity::class.java
                                                  )
                                              }
 
                                              R.string.settings -> {
+                                                 view.playSoundEffect(SoundEffectConstants.CLICK)
                                                  IntentUtils.openActivity(
                                                      context , SettingsActivity::class.java
                                                  )
                                              }
 
                                              R.string.help_and_feedback -> {
+                                                 view.playSoundEffect(SoundEffectConstants.CLICK)
                                                  IntentUtils.openActivity(
                                                      context , HelpActivity::class.java
                                                  )
                                              }
 
                                              R.string.updates -> {
+                                                 view.playSoundEffect(SoundEffectConstants.CLICK)
                                                  IntentUtils.openUrl(
                                                      context ,
-                                                     "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md"
+                                                     url = "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md"
                                                  )
                                              }
 
                                              R.string.share -> {
+                                                 view.playSoundEffect(SoundEffectConstants.CLICK)
                                                  IntentUtils.shareApp(context)
                                              }
                                          }
@@ -177,6 +186,7 @@ fun MainComposable() {
                 Text(text = stringResource(R.string.app_name))
             } , navigationIcon = {
                 IconButton(modifier = Modifier.bounceClick() , onClick = {
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
                     scope.launch {
                         drawerState.apply {
                             if (isClosed) open() else close()
@@ -190,6 +200,7 @@ fun MainComposable() {
                 }
             } , actions = {
                 IconButton(modifier = Modifier.bounceClick() , onClick = {
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
                     IntentUtils.openActivity(context , SupportActivity::class.java)
                 }) {
                     Icon(
@@ -221,6 +232,7 @@ fun MainComposable() {
                                           } ,
                                           selected = currentRoute == screen.route ,
                                           onClick = {
+                                              view.playSoundEffect(SoundEffectConstants.CLICK)
                                               navController.navigate(screen.route) {
                                                   popUpTo(navController.graph.startDestinationId)
                                                   launchSingleTop = true

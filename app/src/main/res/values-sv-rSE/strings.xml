@@ -21,6 +21,11 @@
     <string name="select_all">Välj alla</string>
     <string name="rescan_title">Skanna om?</string>
     <string name="rescan_message">Är du säker på att du vill skanna igen?</string>
+    <string name="file_not_found">Filen hittades inte.</string>
+    <string name="security_error">Ett säkerhetsfel inträffade. Försök igen senare.</string>
+    <string name="io_error">Ett in-/utmatningsfel inträffade. Kontrollera din nätverksanslutning eller lagring och försök igen.</string>
+    <string name="activity_not_found">Aktiviteten hittades inte.</string>
+    <string name="unknown_error">Ett okänt fel inträffade.</string>
 
     <string name="app_manager">Apphanterare</string>
     <string name="installed_apps">Installerade appar</string>
@@ -32,6 +37,9 @@
     <string name="installed">Installerad"</string>
     <string name="install">Installera</string>
     <string name="share_apk">Dela APK</string>
+    <string name="no_app_installed">Inga appar installerade</string>
+    <string name="no_apk_found">Inget APK hittades</string>
+    <string name="app_loading_error">Fel vid inläsning av appar.</string>
 
     <string name="memory_manager">Minneshanterare</string>
     <string name="storage_information">Lagringsinformation</string>
