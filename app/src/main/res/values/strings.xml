@@ -270,8 +270,8 @@
     <string name="snack_validate_file">Please select a valid file size</string>
 
 
-    <!--// app manager-->
-
+    <!--// home error-->
+    <string name="illegal_argument_error">Invalid input or argument provided. Please check the information and try again.</string>
 
     <!--  // settings-->
     <string name="navigation">Navigation</string>

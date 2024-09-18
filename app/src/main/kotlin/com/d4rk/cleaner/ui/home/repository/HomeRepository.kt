@@ -46,7 +46,7 @@ class HomeRepository(
 
     suspend fun saveBitmapToFile(bitmap: Bitmap, file: File, onSuccess: (Boolean) -> Unit) {
         withContext(Dispatchers.IO) {
-            val success = saveBitmapToFile(bitmap, file) // Call the implementation function
+            val success : Boolean = saveBitmapToFile(bitmap, file) // Call the implementation function
             withContext(Dispatchers.Main) {
                 onSuccess(success)
             }

@@ -14,6 +14,7 @@ object ErrorHandler {
             ErrorType.FILE_NOT_FOUND -> applicationContext.getString(R.string.file_not_found)
             ErrorType.APP_LOADING_ERROR -> applicationContext.getString(R.string.app_loading_error)
             ErrorType.ACTIVITY_NOT_FOUND -> applicationContext.getString(R.string.activity_not_found)
+            ErrorType.ILLEGAL_ARGUMENT -> applicationContext.getString(R.string.illegal_argument_error)
             ErrorType.UNKNOWN_ERROR -> applicationContext.getString(R.string.unknown_error)
         }
 

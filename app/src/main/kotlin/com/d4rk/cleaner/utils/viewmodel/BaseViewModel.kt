@@ -35,6 +35,7 @@ open class BaseViewModel(application : Application) : AndroidViewModel(applicati
             is FileNotFoundException -> ErrorType.FILE_NOT_FOUND
             is PackageManager.NameNotFoundException -> ErrorType.APP_LOADING_ERROR
             is ActivityNotFoundException -> ErrorType.ACTIVITY_NOT_FOUND
+            is IllegalArgumentException -> ErrorType.ILLEGAL_ARGUMENT
             else -> ErrorType.UNKNOWN_ERROR
         }
         handleError(errorType , exception)
@@ -46,6 +47,7 @@ open class BaseViewModel(application : Application) : AndroidViewModel(applicati
                 ErrorType.FILE_NOT_FOUND -> getApplication<Application>().getString(R.string.file_not_found)
                 ErrorType.APP_LOADING_ERROR -> getApplication<Application>().getString(R.string.app_loading_error)
                 ErrorType.ACTIVITY_NOT_FOUND -> getApplication<Application>().getString(R.string.activity_not_found)
+                ErrorType.ILLEGAL_ARGUMENT -> getApplication<Application>().getString(R.string.illegal_argument_error)
                 ErrorType.UNKNOWN_ERROR -> getApplication<Application>().getString(R.string.unknown_error)
             }
         )

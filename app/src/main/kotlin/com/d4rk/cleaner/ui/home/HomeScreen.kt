@@ -3,9 +3,15 @@ package com.d4rk.cleaner.ui.home
 import android.app.Activity
 import android.content.Context
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -13,6 +19,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -24,7 +31,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.outlined.CleaningServices
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
@@ -132,43 +138,91 @@ fun HomeScreen() {
             }
         }
 
-/*        ExtendedFloatingActionButton(
+        Row(
             modifier = Modifier
-                    .padding(ButtonDefaults.ContentPadding)
-                    .bounceClick()
-                    .align(Alignment.CenterHorizontally) ,
-            onClick = { viewModel.analyze() } ,
-            icon = { Icon(Icons.Outlined.CleaningServices , contentDescription = "Extended floating action button.") } ,
-            text = { Text(text = stringResource(R.string.analyze)) } ,
-        )*/
-
-        FilledTonalButton(
-            modifier = Modifier
-                    .padding(ButtonDefaults.ContentPadding)
+                    .fillMaxWidth()
                     .height(102.dp)
-                    .animateContentSize()
-                    .align(Alignment.CenterHorizontally)
-                    .bounceClick() ,
-            onClick = {
-                viewModel.analyze()
-            } ,
-            shape = MaterialTheme.shapes.medium ,
+                    .padding(bottom = 16.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally ,
-                verticalArrangement = Arrangement.Center ,
-                modifier = Modifier
-                        .padding(ButtonDefaults.ContentPadding)
+            AnimatedVisibility(
+                visible = uiState.showCleaningComposable,
+                enter = fadeIn(animationSpec = tween(durationMillis = 400)) + expandHorizontally(
+                    animationSpec = tween(durationMillis = 400), expandFrom = Alignment.Start
+                ),
+                exit = fadeOut(animationSpec = tween(durationMillis = 400)) + shrinkHorizontally(
+                    animationSpec = tween(durationMillis = 400), shrinkTowards = Alignment.Start
+                ),
+                modifier = Modifier.weight(1f)
             ) {
-                Icon(
-                    Icons.Outlined.CleaningServices ,
-                    contentDescription = "Extended floating action button." ,
-                    modifier = Modifier.size(ButtonDefaults.IconSize)
+                val enabled = !uiState.isAnalyzing && uiState.selectedFileCount > 0
+
+                val animateStateButtonColor = animateColorAsState(
+                    targetValue = if (enabled) MaterialTheme.colorScheme.secondaryContainer else Color.LightGray,
+                    animationSpec = tween(400, 0, LinearEasing),
+                    label = ""
                 )
-                Text(
-                    text = stringResource(R.string.analyze) ,
-                    style = MaterialTheme.typography.bodyMedium
-                )
+
+                FilledTonalButton(
+                    modifier = Modifier
+                            .weight(1f)
+                            .fillMaxHeight()
+                            .animateContentSize()
+                            .padding(start = 16.dp, end = 8.dp)
+                            .bounceClick(),
+                    onClick = {
+                        viewModel.clean(activity = context as Activity)
+                    },
+                    shape = MaterialTheme.shapes.medium,
+                    enabled = enabled,
+                    colors = ButtonDefaults.filledTonalButtonColors(
+                        containerColor = animateStateButtonColor.value,
+                    ),
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center,
+                        modifier = Modifier
+                                .fillMaxSize()
+                                .padding(ButtonDefaults.ContentPadding)
+                    ) {
+                        Icon(
+                            painterResource(R.drawable.ic_broom),
+                            contentDescription = null,
+                            modifier = Modifier.size(ButtonDefaults.IconSize)
+                        )
+                        Text(
+                            text = stringResource(R.string.clean),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
+                }
+            }
+            FilledTonalButton(modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .animateContentSize()
+                    .padding(start = if (uiState.showCleaningComposable) 8.dp else 16.dp, end = 16.dp)
+                    .bounceClick(), onClick = {
+                viewModel.analyze()
+            }, shape = MaterialTheme.shapes.medium) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier
+                            .fillMaxSize()
+                            .padding(ButtonDefaults.ContentPadding)
+                ) {
+                    Icon(
+                        painterResource(R.drawable.ic_search),
+                        contentDescription = null,
+                        modifier = Modifier.size(ButtonDefaults.IconSize)
+                    )
+                    Text(
+                        text = stringResource(R.string.analyze),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
             }
         }
     }

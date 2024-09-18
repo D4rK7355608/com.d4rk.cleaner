@@ -5,16 +5,13 @@ import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.SoundEffectConstants
 import android.view.View
 import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.updateTransition
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -55,7 +52,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.imageResource
@@ -63,12 +60,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.AsyncImage
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
 import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.screens.UiAppManagerModel
 import com.d4rk.cleaner.ui.dialogs.ErrorAlertDialog
 import com.d4rk.cleaner.utils.PermissionsUtils
+import com.d4rk.cleaner.utils.cleaning.toBitmapDrawable
 import com.d4rk.cleaner.utils.compose.bounceClick
 import com.d4rk.cleaner.utils.compose.hapticPagerSwipe
 import kotlinx.coroutines.CoroutineScope
@@ -222,23 +221,8 @@ fun AppItemComposable(
     val sizeInKB : Long = sizeInBytes / 1024
     val sizeInMB : Long = sizeInKB / 1024
     val appSize : String = "%.2f MB".format(sizeInMB.toFloat())
-    val appIcon : ImageBitmap = remember(app.packageName) {
-        val drawable : Drawable = app.loadIcon(packageManager)
-        val bitmap : Bitmap = if (drawable is BitmapDrawable) {
-            drawable.bitmap
-        }
-        else {
-            val bitmap : Bitmap = Bitmap.createBitmap(
-                drawable.intrinsicWidth , drawable.intrinsicHeight , Bitmap.Config.ARGB_8888
-            )
-            val canvas = Canvas(bitmap)
-            drawable.setBounds(0 , 0 , canvas.width , canvas.height)
-            drawable.draw(canvas)
-            bitmap
-        }
-        bitmap.asImageBitmap()
-    }
     var showMenu : Boolean by remember { mutableStateOf(value = false) }
+    val model : Drawable = app.loadIcon(packageManager)
     OutlinedCard(modifier = Modifier.padding(start = 8.dp , end = 8.dp , top = 8.dp)) {
         Row(
             modifier = Modifier
@@ -247,8 +231,11 @@ fun AppItemComposable(
                     .clip(RoundedCornerShape(16.dp)) ,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Image(
-                bitmap = appIcon , contentDescription = null , modifier = Modifier.size(48.dp)
+            AsyncImage(
+                model = model,
+                contentDescription = null,
+                modifier = Modifier.size(48.dp),
+                contentScale = ContentScale.Fit
             )
             Column(
                 modifier = Modifier
@@ -327,7 +314,6 @@ fun ApksComposable(
     }
 }
 
-
 /**
  * Composable function for displaying detailed information about an APK file.
  *
@@ -345,26 +331,18 @@ fun ApkItemComposable(apkPath : String , viewModel : AppManagerViewModel) {
     val apkName : String = apkFile.name
 
     val packageInfo : PackageInfo? = context.packageManager.getPackageArchiveInfo(apkPath , 0)
-    val appIcon : ImageBitmap =
-            packageInfo?.applicationInfo?.loadIcon(context.packageManager)?.let {
-                val bitmap : Bitmap = if (it is BitmapDrawable) {
-                    it.bitmap
-                }
-                else {
-                    val bitmap : Bitmap = Bitmap.createBitmap(
-                        it.intrinsicWidth , it.intrinsicHeight , Bitmap.Config.ARGB_8888
-                    )
-                    val canvas = Canvas(bitmap)
-                    it.setBounds(0 , 0 , canvas.width , canvas.height)
-                    it.draw(canvas)
-                    bitmap
-                }
-                bitmap.asImageBitmap()
-            } ?: ImageBitmap.imageResource(id = R.mipmap.ic_launcher)
 
     var showMenu : Boolean by remember { mutableStateOf(value = false) }
 
+    val iconDrawable : Drawable? = remember(apkPath) {
+        packageInfo?.applicationInfo?.loadIcon(context.packageManager)
+    }
+
     OutlinedCard(modifier = Modifier.padding(start = 8.dp , end = 8.dp , top = 8.dp)) {
+        val model = iconDrawable?.toBitmapDrawable(context.resources)
+            ?: ImageBitmap.imageResource(id = R.mipmap.ic_launcher)
+        Log.d("ApkItemComposable1" , "Model type: ${model::class.java.name}")
+
         Row(
             modifier = Modifier
                     .fillMaxWidth()
@@ -372,8 +350,11 @@ fun ApkItemComposable(apkPath : String , viewModel : AppManagerViewModel) {
                     .clip(RoundedCornerShape(16.dp)) ,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Image(
-                bitmap = appIcon , contentDescription = null , modifier = Modifier.size(48.dp)
+            AsyncImage(
+                model = model,
+                contentDescription = null,
+                modifier = Modifier.size(48.dp),
+                contentScale = ContentScale.Fit
             )
             Column(
                 modifier = Modifier
