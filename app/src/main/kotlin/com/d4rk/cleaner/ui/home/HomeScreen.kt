@@ -192,7 +192,7 @@ fun HomeScreen() {
                             modifier = Modifier.size(ButtonDefaults.IconSize)
                         )
                         Text(
-                            text = stringResource(R.string.clean),
+                            text = stringResource(id = R.string.clean),
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }
@@ -219,7 +219,7 @@ fun HomeScreen() {
                         modifier = Modifier.size(ButtonDefaults.IconSize)
                     )
                     Text(
-                        text = stringResource(R.string.analyze),
+                        text = stringResource(id = R.string.analyze),
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }

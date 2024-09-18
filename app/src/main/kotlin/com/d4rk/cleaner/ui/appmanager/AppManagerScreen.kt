@@ -190,7 +190,7 @@ fun AppsComposable(
     }
     else if (apps.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
-            Text(text = stringResource(R.string.no_app_installed))
+            Text(text = stringResource(id = R.string.no_app_installed))
         }
     }
     else {
@@ -263,21 +263,21 @@ fun AppItemComposable(
                     showMenu = false
                 }) {
                     DropdownMenuItem(modifier = Modifier.bounceClick() , text = {
-                        Text(stringResource(R.string.uninstall))
+                        Text(stringResource(id = R.string.uninstall))
                     } , onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         viewModel.uninstallApp(app.packageName)
                     })
                     DropdownMenuItem(
                         modifier = Modifier.bounceClick() ,
-                        text = { Text(stringResource(R.string.share)) } ,
+                        text = { Text(stringResource(id = R.string.share)) } ,
                         onClick = {
                             view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.shareApp(app.packageName)
                         })
                     DropdownMenuItem(
                         modifier = Modifier.bounceClick() ,
-                        text = { Text(stringResource(R.string.app_info)) } ,
+                        text = { Text(stringResource(id = R.string.app_info)) } ,
                         onClick = {
                             view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.openAppInfo(app.packageName)
@@ -302,7 +302,7 @@ fun ApksComposable(
     }
     else if (apkFiles.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
-            Text(text = stringResource(R.string.no_apk_found))
+            Text(text = stringResource(id = R.string.no_apk_found))
         }
     }
     else {
@@ -383,7 +383,7 @@ fun ApkItemComposable(apkPath : String , viewModel : AppManagerViewModel) {
                 }) {
                     DropdownMenuItem(
                         modifier = Modifier.bounceClick() ,
-                        text = { Text(stringResource(R.string.share)) } ,
+                        text = { Text(stringResource(id = R.string.share)) } ,
                         onClick = {
                             view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.shareApk(apkPath)
