@@ -53,11 +53,11 @@ fun LanguageDialog(
             onLanguageSelected(selectedLanguage.value)
             onDismiss()
         }) {
-            Text(stringResource(android.R.string.ok))
+            Text(stringResource(id = android.R.string.ok))
         }
     }, dismissButton = {
         TextButton(onClick = onDismiss) {
-            Text(stringResource(android.R.string.cancel))
+            Text(stringResource(id = android.R.string.cancel))
         }
     })
 }

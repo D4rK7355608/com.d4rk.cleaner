@@ -53,30 +53,31 @@ fun ImageOptimizerComposable(
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     val adsState : State<Boolean> = dataStore.ads.collectAsState(initial = true)
     val tabs : List<String> = listOf(
-        stringResource(R.string.quick_compress) ,
-        stringResource(R.string.file_size) ,
-        stringResource(R.string.manual) ,
+        stringResource(id = R.string.quick_compress),
+        stringResource(id = R.string.file_size),
+        stringResource(id = R.string.manual),
     )
     val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
-    TopAppBarScaffold(title = stringResource(R.string.image_optimizer) ,
+    TopAppBarScaffold(
+        title = stringResource(id = R.string.image_optimizer),
                       onBackClicked = { activity.finish() }) { paddingValues ->
         ConstraintLayout(
             modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues)
+                .fillMaxSize()
+                .padding(paddingValues)
         ) {
             val (imageCardView : ConstrainedLayoutReference , tabLayout : ConstrainedLayoutReference , viewPager : ConstrainedLayoutReference , compressButton : ConstrainedLayoutReference , adView : ConstrainedLayoutReference) = createRefs()
 
             Card(
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .constrainAs(imageCardView) {
-                            top.linkTo(parent.top)
-                            start.linkTo(parent.start)
-                            end.linkTo(parent.end)
-                            bottom.linkTo(tabLayout.top)
-                        }
-                        .padding(24.dp) ,
+                    .fillMaxWidth()
+                    .constrainAs(imageCardView) {
+                        top.linkTo(parent.top)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                        bottom.linkTo(tabLayout.top)
+                    }
+                    .padding(24.dp) ,
             ) {
                 ImageDisplay(viewModel)
             }
@@ -113,18 +114,17 @@ fun ImageOptimizerComposable(
             }
 
             OutlinedButton(onClick = {} , modifier = Modifier
-                    .constrainAs(compressButton) {
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        if (adsState.value) {
-                            bottom.linkTo(adView.top)
-                        }
-                        else {
-                            bottom.linkTo(parent.bottom)
-                        }
+                .constrainAs(compressButton) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    if (adsState.value) {
+                        bottom.linkTo(adView.top)
+                    } else {
+                        bottom.linkTo(parent.bottom)
                     }
-                    .padding(12.dp)) {
-                Text(stringResource(R.string.optimize_image))
+                }
+                .padding(12.dp)) {
+                Text(stringResource(id = R.string.optimize_image))
             }
 
             BannerAdsComposable(modifier = Modifier.constrainAs(adView) {
@@ -150,8 +150,8 @@ fun ImageDisplay(viewModel : ImageOptimizerViewModel) {
 
     Box(
         modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(ratio = 1f) ,
+            .fillMaxWidth()
+            .aspectRatio(ratio = 1f) ,
         contentAlignment = Alignment.Center
     ) {
         if (state.value.isLoading) {

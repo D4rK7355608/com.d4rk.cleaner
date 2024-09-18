@@ -34,18 +34,18 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
     val deleteImageFiles : Boolean by dataStore.deleteImageFiles.collectAsState(initial = false)
     val clipboardClean : Boolean by dataStore.clipboardClean.collectAsState(initial = false)
     TopAppBarScaffold(
-        title = stringResource(R.string.cleaning) ,
+        title = stringResource(id = R.string.cleaning),
         onBackClicked = { activity.finish() }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
-                    .fillMaxHeight()
-                    .padding(paddingValues) ,
+                .fillMaxHeight()
+                .padding(paddingValues) ,
         ) {
             item {
-                PreferenceCategoryItem(title = stringResource(R.string.filters))
+                PreferenceCategoryItem(title = stringResource(id = R.string.filters))
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.generic_filter) ,
-                    summary = stringResource(R.string.summary_preference_settings_generic_filter) ,
+                    title = stringResource(id = R.string.generic_filter),
+                    summary = stringResource(id = R.string.summary_preference_settings_generic_filter),
                     checked = genericFilter ,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
@@ -53,7 +53,7 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                     }
                 }
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.delete_empty_folders) ,
+                    title = stringResource(id = R.string.delete_empty_folders),
                     checked = deleteEmptyFolders ,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
@@ -61,8 +61,8 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                     }
                 }
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.delete_archives) ,
-                    summary = stringResource(R.string.summary_preference_settings_archive_filter) ,
+                    title = stringResource(id = R.string.delete_archives),
+                    summary = stringResource(id = R.string.summary_preference_settings_archive_filter),
                     checked = deleteArchives ,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
@@ -70,8 +70,8 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                     }
                 }
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.delete_corpse_files) ,
-                    summary = stringResource(R.string.summary_preference_settings_delete_corpse_files) ,
+                    title = stringResource(id = R.string.delete_corpse_files),
+                    summary = stringResource(id = R.string.summary_preference_settings_delete_corpse_files),
                     checked = deleteCorpseFiles ,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
@@ -79,8 +79,8 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                     }
                 }
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.delete_apk_files) ,
-                    summary = stringResource(R.string.summary_preference_settings_delete_apk_files) ,
+                    title = stringResource(id = R.string.delete_apk_files),
+                    summary = stringResource(id = R.string.summary_preference_settings_delete_apk_files),
                     checked = deleteApkFiles ,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
@@ -90,10 +90,10 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
             }
 
             item {
-                PreferenceCategoryItem(title = stringResource(R.string.media))
+                PreferenceCategoryItem(title = stringResource(id = R.string.media))
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.delete_audio) ,
-                    summary = stringResource(R.string.summary_preference_settings_delete_audio) ,
+                    title = stringResource(id = R.string.delete_audio),
+                    summary = stringResource(id = R.string.summary_preference_settings_delete_audio),
                     checked = deleteAudioFiles ,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
@@ -101,8 +101,8 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                     }
                 }
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.delete_video) ,
-                    summary = stringResource(R.string.summary_preference_settings_delete_video) ,
+                    title = stringResource(id = R.string.delete_video),
+                    summary = stringResource(id = R.string.summary_preference_settings_delete_video),
                     checked = deleteVideoFiles ,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
@@ -110,8 +110,8 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                     }
                 }
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.delete_images) ,
-                    summary = stringResource(R.string.summary_preference_settings_delete_images) ,
+                    title = stringResource(id = R.string.delete_images),
+                    summary = stringResource(id = R.string.summary_preference_settings_delete_images),
                     checked = deleteImageFiles ,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
@@ -119,8 +119,8 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                     }
                 }
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.delete_invalid_media) ,
-                    summary = stringResource(R.string.summary_preference_settings_delete_invalid_media) ,
+                    title = stringResource(id = R.string.delete_invalid_media),
+                    summary = stringResource(id = R.string.summary_preference_settings_delete_invalid_media),
                     checked = deleteInvalidMedia ,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
@@ -130,9 +130,9 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
             }
 
             item {
-                PreferenceCategoryItem(title = stringResource(R.string.scanner))
+                PreferenceCategoryItem(title = stringResource(id = R.string.scanner))
                 SwitchPreferenceItem(
-                    title = stringResource(R.string.clipboard_clean) ,
+                    title = stringResource(id = R.string.clipboard_clean),
                     checked = clipboardClean ,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {

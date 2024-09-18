@@ -43,22 +43,23 @@ fun ThemeSettingsComposable(activity : ThemeSettingsActivity) {
     val isAmoledMode : State<Boolean> = dataStore.amoledMode.collectAsState(initial = false)
 
     val themeOptions : List<String> = listOf(
-        stringResource(R.string.follow_system) ,
-        stringResource(R.string.dark_mode) ,
-        stringResource(R.string.light_mode) ,
+        stringResource(id = R.string.follow_system),
+        stringResource(id = R.string.dark_mode),
+        stringResource(id = R.string.light_mode),
     )
     TopAppBarScaffold(
-        title = stringResource(R.string.dark_theme) ,
+        title = stringResource(id = R.string.dark_theme),
         onBackClicked = { activity.finish() }) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues) ,
+                    .fillMaxSize()
+                    .padding(paddingValues) ,
             ) {
                 item {
                     SwitchCardComposable(
-                        title = stringResource(R.string.amoled_mode) , switchState = isAmoledMode
+                        title = stringResource(id = R.string.amoled_mode),
+                        switchState = isAmoledMode
                     ) { isChecked ->
                         scope.launch(Dispatchers.IO) {
                             dataStore.saveAmoledMode(isChecked)
@@ -68,8 +69,8 @@ fun ThemeSettingsComposable(activity : ThemeSettingsActivity) {
                 item {
                     Column(
                         modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(24.dp)
+                            .fillMaxWidth()
+                            .padding(24.dp)
                     ) {
                         themeOptions.forEach { text ->
                             Row(
@@ -97,12 +98,12 @@ fun ThemeSettingsComposable(activity : ThemeSettingsActivity) {
                 item {
                     Column(
                         modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(24.dp)
+                            .fillMaxWidth()
+                            .padding(24.dp)
                     ) {
                         Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
-                        Text(stringResource(R.string.summary_dark_theme))
+                        Text(stringResource(id = R.string.summary_dark_theme))
                     }
                 }
             }

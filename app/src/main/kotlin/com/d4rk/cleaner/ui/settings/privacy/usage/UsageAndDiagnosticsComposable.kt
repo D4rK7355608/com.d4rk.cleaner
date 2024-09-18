@@ -45,17 +45,17 @@ fun UsageAndDiagnosticsComposable(activity : UsageAndDiagnosticsActivity) {
     val switchState : State<Boolean> = dataStore.usageAndDiagnostics.collectAsState(initial = true)
     val scope : CoroutineScope = rememberCoroutineScope()
     TopAppBarScaffold(
-        title = stringResource(R.string.settings) ,
+        title = stringResource(id = R.string.usage_and_diagnostics),
         onBackClicked = { activity.finish() }) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues) ,
+                    .fillMaxSize()
+                    .padding(paddingValues) ,
             ) {
                 item {
                     SwitchCardComposable(
-                        title = stringResource(R.string.usage_and_diagnostics) ,
+                        title = stringResource(id = R.string.usage_and_diagnostics),
                         switchState = switchState
                     ) { isChecked ->
                         scope.launch(Dispatchers.IO) {
@@ -66,12 +66,12 @@ fun UsageAndDiagnosticsComposable(activity : UsageAndDiagnosticsActivity) {
                 item {
                     Column(
                         modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(24.dp)
+                            .fillMaxWidth()
+                            .padding(24.dp)
                     ) {
                         Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
-                        Text(stringResource(R.string.summary_usage_and_diagnostics))
+                        Text(stringResource(id = R.string.summary_usage_and_diagnostics))
                         val annotatedString : AnnotatedString = buildAnnotatedString {
                             val startIndex : Int = length
                             withStyle(
@@ -80,7 +80,7 @@ fun UsageAndDiagnosticsComposable(activity : UsageAndDiagnosticsActivity) {
                                     textDecoration = TextDecoration.Underline
                                 )
                             ) {
-                                append(stringResource(R.string.learn_more))
+                                append(stringResource(id = R.string.learn_more))
                             }
                             val endIndex : Int = length
 
@@ -92,19 +92,19 @@ fun UsageAndDiagnosticsComposable(activity : UsageAndDiagnosticsActivity) {
                             )
                         }
                         Text(text = annotatedString , modifier = Modifier
-                                .bounceClick()
-                                .clickable {
-                                    annotatedString
-                                            .getStringAnnotations(
-                                                tag = "URL" ,
-                                                start = 0 ,
-                                                end = annotatedString.length
-                                            )
-                                            .firstOrNull()
-                                            ?.let { annotation ->
-                                                IntentUtils.openUrl(context , annotation.item)
-                                            }
-                                })
+                            .bounceClick()
+                            .clickable {
+                                annotatedString
+                                    .getStringAnnotations(
+                                        tag = "URL",
+                                        start = 0,
+                                        end = annotatedString.length
+                                    )
+                                    .firstOrNull()
+                                    ?.let { annotation ->
+                                        IntentUtils.openUrl(context, annotation.item)
+                                    }
+                            })
                     }
                 }
             }

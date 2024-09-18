@@ -55,18 +55,18 @@ fun StartupComposable(activity : StartupActivity) {
     }
 
     TopAppBarScaffold(
-        title = stringResource(R.string.welcome) ,
+        title = stringResource(id = R.string.welcome),
         onBackClicked = { activity.finish() }) { paddingValues ->
         Box(
             modifier = Modifier
-                    .fillMaxSize()
-                    .padding(24.dp)
-                    .safeDrawingPadding()
+                .fillMaxSize()
+                .padding(24.dp)
+                .safeDrawingPadding()
         ) {
             LazyColumn(
                 modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues) ,
+                    .fillMaxSize()
+                    .padding(paddingValues) ,
             ) {
                 item {
                     Image(
@@ -79,7 +79,7 @@ fun StartupComposable(activity : StartupActivity) {
                 }
                 item {
                     Text(
-                        text = stringResource(R.string.summary_browse_terms_of_service_and_privacy_policy) ,
+                        text = stringResource(id = R.string.summary_browse_terms_of_service_and_privacy_policy),
                         modifier = Modifier.padding(top = 24.dp , bottom = 24.dp)
                     )
                     val annotatedString : AnnotatedString = buildAnnotatedString {
@@ -90,7 +90,7 @@ fun StartupComposable(activity : StartupActivity) {
                                 textDecoration = TextDecoration.Underline
                             )
                         ) {
-                            append(stringResource(R.string.learn_more))
+                            append(stringResource(id = R.string.learn_more))
                         }
                         val endIndex : Int = length
 
@@ -102,17 +102,17 @@ fun StartupComposable(activity : StartupActivity) {
                         )
                     }
                     Text(text = annotatedString , modifier = Modifier
-                            .bounceClick()
-                            .clickable {
-                                annotatedString
-                                        .getStringAnnotations(
-                                            tag = "URL" , start = 0 , end = annotatedString.length
-                                        )
-                                        .firstOrNull()
-                                        ?.let { annotation ->
-                                            IntentUtils.openUrl(context , annotation.item)
-                                        }
-                            })
+                        .bounceClick()
+                        .clickable {
+                            annotatedString
+                                .getStringAnnotations(
+                                    tag = "URL", start = 0, end = annotatedString.length
+                                )
+                                .firstOrNull()
+                                ?.let { annotation ->
+                                    IntentUtils.openUrl(context, annotation.item)
+                                }
+                        })
                 }
             }
             ExtendedFloatingActionButton(modifier = Modifier
@@ -124,7 +124,7 @@ fun StartupComposable(activity : StartupActivity) {
                                          else {
                                              Gray
                                          } ,
-                                         text = { Text(stringResource(R.string.agree)) } ,
+                text = { Text(stringResource(id = R.string.agree)) },
                                          onClick = {
                                              IntentUtils.openActivity(
                                                  context , MainActivity::class.java

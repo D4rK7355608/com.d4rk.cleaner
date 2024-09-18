@@ -48,11 +48,11 @@ fun FileSizeScreen(viewModel: ImageOptimizerViewModel) {
                         viewModel.setFileSize(newValue.toIntOrNull() ?: 0)
                     }
                 },
-                label = { Text(stringResource(R.string.file_size)) },
+                label = { Text(stringResource(id = R.string.file_size)) },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 supportingText = {
-                    Text(text = stringResource(R.string.enter_a_value))
+                    Text(text = stringResource(id = R.string.enter_a_value))
                 },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 isError = fileSizeText.isNotEmpty() && fileSizeText.toFloatOrNull() == null,

@@ -38,7 +38,7 @@ fun VersionInfoContent() {
     val context: Context = LocalContext.current
     val appName: String = context.getString(R.string.app_full_name)
     val versionName: String = BuildConfig.VERSION_NAME
-    val versionString: String = stringResource(R.string.version, versionName)
+    val versionString: String = stringResource(id = R.string.version, versionName)
     val copyright: String = context.getString(R.string.copyright)
 
     val appIcon: Drawable = context.packageManager.getApplicationIcon(context.packageName)

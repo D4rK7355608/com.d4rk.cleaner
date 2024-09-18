@@ -48,17 +48,17 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
     val dataStore : DataStore = DataStore.getInstance(context)
     val billingClient : BillingClient = rememberBillingClient(context , viewModel)
     TopAppBarScaffold(
-        title = stringResource(R.string.support_us) ,
+        title = stringResource(id = R.string.support_us),
         onBackClicked = { activity.finish() }) { paddingValues ->
         Box(
             modifier = Modifier
-                    .padding(paddingValues)
-                    .fillMaxHeight()
+                .padding(paddingValues)
+                .fillMaxHeight()
         ) {
             LazyColumn {
                 item {
                     Text(
-                        text = stringResource(R.string.paid_support) ,
+                        text = stringResource(id = R.string.paid_support),
                         modifier = Modifier.padding(start = 16.dp , top = 16.dp) ,
                         style = MaterialTheme.typography.titleLarge ,
                     )
@@ -66,25 +66,25 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                 item {
                     OutlinedCard(
                         modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(16.dp)
+                            .fillMaxWidth()
+                            .padding(16.dp)
                     ) {
                         Column {
                             Text(
-                                text = stringResource(R.string.summary_donations) ,
+                                text = stringResource(id = R.string.summary_donations),
                                 modifier = Modifier.padding(16.dp)
                             )
                             LazyRow(
                                 modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(horizontal = 16.dp) ,
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 16.dp) ,
                                 horizontalArrangement = Arrangement.SpaceEvenly
                             ) {
                                 item {
                                     FilledTonalButton(
                                         modifier = Modifier
-                                                .fillMaxWidth()
-                                                .bounceClick() ,
+                                            .fillMaxWidth()
+                                            .bounceClick() ,
                                         onClick = {
                                             view.playSoundEffect(SoundEffectConstants.CLICK)
                                             activity.initiatePurchase(
@@ -108,8 +108,8 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                                 item {
                                     FilledTonalButton(
                                         modifier = Modifier
-                                                .fillMaxWidth()
-                                                .bounceClick() ,
+                                            .fillMaxWidth()
+                                            .bounceClick() ,
                                         onClick = {
                                             view.playSoundEffect(SoundEffectConstants.CLICK)
                                             activity.initiatePurchase(
@@ -134,15 +134,15 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                             }
                             LazyRow(
                                 modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(16.dp) ,
+                                    .fillMaxWidth()
+                                    .padding(16.dp) ,
                                 horizontalArrangement = Arrangement.SpaceEvenly
                             ) {
                                 item {
                                     FilledTonalButton(
                                         modifier = Modifier
-                                                .fillMaxWidth()
-                                                .bounceClick() ,
+                                            .fillMaxWidth()
+                                            .bounceClick() ,
                                         onClick = {
                                             view.playSoundEffect(SoundEffectConstants.CLICK)
                                             activity.initiatePurchase(
@@ -168,8 +168,8 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                                     FilledTonalButton(
 
                                         modifier = Modifier
-                                                .fillMaxWidth()
-                                                .bounceClick() ,
+                                            .fillMaxWidth()
+                                            .bounceClick() ,
                                         onClick = {
                                             view.playSoundEffect(SoundEffectConstants.CLICK)
                                             activity.initiatePurchase(
@@ -197,7 +197,7 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                 }
                 item {
                     Text(
-                        text = stringResource(R.string.non_paid_support) ,
+                        text = stringResource(id = R.string.non_paid_support),
                         modifier = Modifier.padding(start = 16.dp) ,
                         style = MaterialTheme.typography.titleLarge ,
                     )
@@ -211,9 +211,9 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                             )
                         } ,
                         modifier = Modifier
-                                .fillMaxWidth()
-                                .bounceClick()
-                                .padding(16.dp) ,
+                            .fillMaxWidth()
+                            .bounceClick()
+                            .padding(16.dp) ,
                     ) {
                         Icon(
                             Icons.Outlined.Paid ,
@@ -221,7 +221,7 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                             modifier = Modifier.size(ButtonDefaults.IconSize)
                         )
                         Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-                        Text(text = stringResource(R.string.web_ad))
+                        Text(text = stringResource(id = R.string.web_ad))
                     }
                 }
                 item {

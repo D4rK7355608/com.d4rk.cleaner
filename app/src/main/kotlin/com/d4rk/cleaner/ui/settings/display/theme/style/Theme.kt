@@ -152,8 +152,8 @@ fun AppTheme(
 
     val isSystemDarkTheme: Boolean = isSystemInDarkTheme()
     val isDarkTheme: Boolean = when (themeMode) {
-        stringResource(R.string.dark_mode) -> true
-        stringResource(R.string.light_mode) -> false
+        stringResource(id = R.string.dark_mode) -> true
+        stringResource(id = R.string.light_mode) -> false
         else -> isSystemDarkTheme
     }
 
