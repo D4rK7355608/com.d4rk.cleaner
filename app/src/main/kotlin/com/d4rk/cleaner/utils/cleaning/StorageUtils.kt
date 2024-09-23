@@ -4,10 +4,6 @@ import android.app.usage.StorageStatsManager
 import android.content.Context
 import android.os.storage.StorageManager
 import android.os.storage.StorageVolume
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.util.Locale
 import java.util.UUID
 import kotlin.math.log10
@@ -35,29 +31,24 @@ object StorageUtils {
         context: Context,
         callback: (used: String, total: String, usageProgress: Float) -> Unit
     ) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val storageManager: StorageManager =
+        val storageManager: StorageManager =
                 context.getSystemService(Context.STORAGE_SERVICE) as StorageManager
-            val storageStatsManager: StorageStatsManager =
+        val storageStatsManager: StorageStatsManager =
                 context.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
-            val storageVolume: StorageVolume = storageManager.primaryStorageVolume
-            val totalSize: Long
-            val usedSize: Long
-            val uuidStr: String? = storageVolume.uuid
-            val uuid: UUID =
+        val storageVolume: StorageVolume = storageManager.primaryStorageVolume
+        val totalSize: Long
+        val usedSize: Long
+        val uuidStr: String? = storageVolume.uuid
+        val uuid: UUID =
                 if (uuidStr == null) StorageManager.UUID_DEFAULT else UUID.fromString(uuidStr)
-            totalSize = storageStatsManager.getTotalBytes(uuid)
-            usedSize = totalSize - storageStatsManager.getFreeBytes(uuid)
-            val usedFormatted: String =
+        totalSize = storageStatsManager.getTotalBytes(uuid)
+        usedSize = totalSize - storageStatsManager.getFreeBytes(uuid)
+        val usedFormatted: String =
                 (usedSize / (1024.0 * 1024.0 * 1024.0)).roundToInt().toString()
-            val totalFormatted: String =
+        val totalFormatted: String =
                 (totalSize / (1024.0 * 1024.0 * 1024.0)).roundToInt().toString()
-            val usageProgress: Float = usedSize.toFloat() / totalSize.toFloat()
-
-            withContext(Dispatchers.Main) {
-                callback(usedFormatted, totalFormatted, usageProgress)
-            }
-        }
+        val usageProgress: Float = usedSize.toFloat() / totalSize.toFloat()
+        callback(usedFormatted, totalFormatted, usageProgress)
     }
 
     /**

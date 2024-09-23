@@ -34,7 +34,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import com.d4rk.cleaner.MainActivity
+import com.d4rk.cleaner.ui.main.MainActivity
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.utils.PermissionsUtils

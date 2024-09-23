@@ -56,7 +56,7 @@
         <activity android:name=".ui.startup.StartupActivity" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true"
             android:theme="@style/SplashScreenTheme">
             <intent-filter>
@@ -72,13 +72,13 @@
 
         <activity
             android:name=".ui.support.SupportActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity" />
 
         <activity
             android:name=".ui.imageoptimizer.imageoptimizer.ImageOptimizerActivity"
             android:exported="true"
             android:label="@string/image_optimizer"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity" />
 
         <activity
             android:name=".ui.imageoptimizer.imagepicker.ImagePickerActivity"
@@ -90,7 +90,7 @@
             android:name=".ui.settings.SettingsActivity"
             android:exported="true"
             android:label="@string/settings"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
             </intent-filter>
@@ -151,7 +151,7 @@
 
         <activity
             android:name=".ui.help.HelpActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

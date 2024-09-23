@@ -29,7 +29,7 @@ abstract class HomeRepositoryImplementation(val application: Application) {
 
     fun analyzeFiles(): List<File> {
         // Add your file analysis logic here
-        return emptyList() // Replace with actual implementation
+        return emptyList()
     }
 
     fun deleteFiles(filesToDelete: Set<File>) {

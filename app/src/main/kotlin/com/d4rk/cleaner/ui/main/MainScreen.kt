@@ -1,4 +1,4 @@
-package com.d4rk.cleaner
+package com.d4rk.cleaner.ui.main
 
 import android.content.Context
 import android.view.SoundEffectConstants
@@ -51,6 +51,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ads.FullBannerAdsComposable
 import com.d4rk.cleaner.constants.ui.bottombar.BottomBarRoutes
 import com.d4rk.cleaner.data.datastore.DataStore

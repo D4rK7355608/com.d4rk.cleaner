@@ -10,21 +10,20 @@ import kotlinx.coroutines.withContext
 import java.io.File
 
 class HomeRepository(
-    dataStore: DataStore,
-    application: Application
+    dataStore : DataStore , application : Application
 ) : HomeRepositoryImplementation(application) {
-    private val fileScanner = FileScanner(dataStore, application.resources)
+    private val fileScanner = FileScanner(dataStore , application.resources)
 
-    suspend fun getStorageInfo(onSuccess: (UiHomeModel) -> Unit) {
+    suspend fun getStorageInfo(onSuccess : (UiHomeModel) -> Unit) {
         withContext(Dispatchers.IO) {
-            val storageInfo: UiHomeModel = getStorageInfo()
+            val storageInfo : UiHomeModel = getStorageInfo()
             withContext(Dispatchers.Main) {
                 onSuccess(storageInfo)
             }
         }
     }
 
-    suspend fun analyzeFiles(onSuccess: (List<File>) -> Unit) {
+    suspend fun analyzeFiles(onSuccess : (List<File>) -> Unit) {
         withContext(Dispatchers.IO) {
             // Add await
             fileScanner.startScanning()
@@ -35,27 +34,27 @@ class HomeRepository(
         }
     }
 
-    suspend fun deleteFiles(filesToDelete: Set<File>, onSuccess: () -> Unit) {
+    suspend fun deleteFiles(filesToDelete : Set<File> , onSuccess : () -> Unit) {
         withContext(Dispatchers.IO) {
-            deleteFiles(filesToDelete) // Call the implementation function
+            deleteFiles(filesToDelete)
             withContext(Dispatchers.Main) {
                 onSuccess()
             }
         }
     }
 
-    suspend fun saveBitmapToFile(bitmap: Bitmap, file: File, onSuccess: (Boolean) -> Unit) {
+    suspend fun saveBitmapToFile(bitmap : Bitmap , file : File , onSuccess : (Boolean) -> Unit) {
         withContext(Dispatchers.IO) {
-            val success : Boolean = saveBitmapToFile(bitmap, file) // Call the implementation function
+            val success : Boolean = saveBitmapToFile(bitmap , file)
             withContext(Dispatchers.Main) {
                 onSuccess(success)
             }
         }
     }
 
-    suspend fun getVideoThumbnail(filePath: String, onSuccess: (Bitmap?) -> Unit) {
+    suspend fun getVideoThumbnail(filePath : String , onSuccess : (Bitmap?) -> Unit) {
         withContext(Dispatchers.IO) {
-            val thumbnail = getVideoThumbnail(filePath) // Call the implementation function
+            val thumbnail : Bitmap? = getVideoThumbnail(filePath)
             withContext(Dispatchers.Main) {
                 onSuccess(thumbnail)
             }

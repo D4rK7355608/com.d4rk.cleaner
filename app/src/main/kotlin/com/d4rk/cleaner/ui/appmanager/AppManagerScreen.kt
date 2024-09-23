@@ -337,11 +337,11 @@ fun ApkItemComposable(apkPath : String , viewModel : AppManagerViewModel) {
     val iconDrawable : Drawable? = remember(apkPath) {
         packageInfo?.applicationInfo?.loadIcon(context.packageManager)
     }
+    val model = iconDrawable?.toBitmapDrawable(context.resources)
+        ?: ImageBitmap.imageResource(id = R.mipmap.ic_launcher)
 
     OutlinedCard(modifier = Modifier.padding(start = 8.dp , end = 8.dp , top = 8.dp)) {
-        val model = iconDrawable?.toBitmapDrawable(context.resources)
-            ?: ImageBitmap.imageResource(id = R.mipmap.ic_launcher)
-        Log.d("ApkItemComposable1" , "Model type: ${model::class.java.name}")
+
 
         Row(
             modifier = Modifier
