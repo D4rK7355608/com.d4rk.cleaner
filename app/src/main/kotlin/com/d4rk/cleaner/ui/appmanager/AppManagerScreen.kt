@@ -50,11 +50,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
-import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -66,7 +64,6 @@ import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.screens.UiAppManagerModel
 import com.d4rk.cleaner.ui.dialogs.ErrorAlertDialog
 import com.d4rk.cleaner.utils.PermissionsUtils
-import com.d4rk.cleaner.utils.cleaning.toBitmapDrawable
 import com.d4rk.cleaner.utils.compose.bounceClick
 import com.d4rk.cleaner.utils.compose.hapticPagerSwipe
 import kotlinx.coroutines.CoroutineScope
@@ -328,11 +325,9 @@ fun ApkItemComposable(apkPath: String, viewModel: AppManagerViewModel) {
 
     var showMenu: Boolean by remember { mutableStateOf(value = false) }
 
-    val iconDrawable: Drawable? = remember(apkPath) {
+    val model = remember(apkPath) {
         packageInfo?.applicationInfo?.loadIcon(context.packageManager)
     }
-    val model = iconDrawable?.toBitmapDrawable(context.resources)
-        ?: ImageBitmap.imageResource(id = R.mipmap.ic_launcher)
 
     OutlinedCard(modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)) {
 

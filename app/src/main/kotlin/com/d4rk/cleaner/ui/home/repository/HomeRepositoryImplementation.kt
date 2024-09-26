@@ -12,7 +12,7 @@ import kotlin.coroutines.suspendCoroutine
 
 abstract class HomeRepositoryImplementation(val application: Application) {
 
-    suspend fun getStorageInfo() : UiHomeModel {
+    suspend fun getStorageInfo(): UiHomeModel {
         return suspendCoroutine { continuation ->
             StorageUtils.getStorageInfo(application) { used, total, usageProgress ->
                 continuation.resume(
@@ -26,12 +26,6 @@ abstract class HomeRepositoryImplementation(val application: Application) {
         }
     }
 
-
-    fun analyzeFiles(): List<File> {
-        // Add your file analysis logic here
-        return emptyList()
-    }
-
     fun deleteFiles(filesToDelete: Set<File>) {
         filesToDelete.forEach { file ->
             if (file.exists()) {
@@ -40,7 +34,7 @@ abstract class HomeRepositoryImplementation(val application: Application) {
         }
     }
 
-    fun saveBitmapToFile(bitmap: Bitmap , file: File): Boolean {
+    fun saveBitmapToFile(bitmap: Bitmap, file: File): Boolean {
         return try {
             val outputStream = FileOutputStream(file)
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)

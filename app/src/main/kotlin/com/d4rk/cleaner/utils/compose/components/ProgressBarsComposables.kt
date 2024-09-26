@@ -8,8 +8,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -18,11 +21,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
+import com.d4rk.cleaner.utils.compose.bounceClick
 
 /**
  * Composable function representing a circular determinate progress indicator with storage information.
@@ -37,7 +39,9 @@ import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
  */
 @Composable
 fun CircularDeterminateIndicator(
-    progress: Float, storageUsed: String, storageTotal: String, modifier: Modifier = Modifier
+    progress: Float,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
 ) {
     val animatedProgress: Float by animateFloatAsState(
         targetValue = progress,
@@ -63,12 +67,31 @@ fun CircularDeterminateIndicator(
             strokeWidth = 8.dp,
             strokeCap = StrokeCap.Round,
         )
-        Text(
-            modifier = Modifier.animateContentSize(),
-            text = stringResource(id = R.string.storage_used, storageUsed, storageTotal),
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.titleLarge
-        )
+
+        FilledTonalButton(
+            modifier = Modifier
+                .animateContentSize()
+                .fillMaxSize()
+                .padding(16.dp)
+                .bounceClick(),
+            onClick = {
+                onClick()
+            },
+            colors = ButtonDefaults.filledTonalButtonColors()
+        ) {
+            Text(
+                text = "Click here to clean",
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.titleLarge
+            )
+        }
+
+        /*        Text(
+                    modifier = Modifier.animateContentSize(),
+                    text = stringResource(id = R.string.storage_used, storageUsed, storageTotal),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.titleLarge
+                )*/
     }
 }
 

@@ -7,6 +7,7 @@ import android.graphics.Canvas
 import android.graphics.drawable.AdaptiveIconDrawable
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.os.Build
 import com.d4rk.cleaner.R
 
 fun getFileIcon(extension: String, context: Context): Int {
@@ -23,17 +24,28 @@ fun getFileIcon(extension: String, context: Context): Int {
 }
 
 fun Drawable.toBitmapDrawable(resources: Resources = Resources.getSystem()): BitmapDrawable {
-    return when (this) {
-        is BitmapDrawable -> this
-        is AdaptiveIconDrawable -> {
-            val bitmap: Bitmap =
-                Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
-            val canvas = Canvas(bitmap)
-            setBounds(0, 0, canvas.width, canvas.height)
-            draw(canvas)
-            BitmapDrawable(resources, bitmap)
-        }
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        when (this) {
+            is BitmapDrawable -> this
+            is AdaptiveIconDrawable -> {
+                val bitmap =
+                    Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
+                val canvas = Canvas(bitmap)
+                setBounds(0, 0, canvas.width, canvas.height)
+                draw(canvas)
+                val bitmapDrawable = BitmapDrawable(resources, bitmap)
+                return bitmapDrawable
+            }
 
-        else -> throw IllegalArgumentException("Unsupported drawable type: ${this::class.java.name}")
+            else -> {
+                BitmapDrawable(resources, Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888))
+            }
+        }
+    } else {
+        val bitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        setBounds(0, 0, canvas.width, canvas.height)
+        draw(canvas)
+        BitmapDrawable(resources, bitmap)
     }
 }
