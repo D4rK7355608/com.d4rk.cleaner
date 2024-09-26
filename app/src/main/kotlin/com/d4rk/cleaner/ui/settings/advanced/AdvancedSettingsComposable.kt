@@ -12,12 +12,12 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.utils.compose.components.PreferenceCategoryItem
 import com.d4rk.cleaner.utils.compose.components.PreferenceItem
-import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffold
+import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffoldWithBackButton
 
 @Composable
 fun AdvancedSettingsComposable(activity: AdvancedSettingsActivity) {
     val context: Context = LocalContext.current
-    TopAppBarScaffold(
+    TopAppBarScaffoldWithBackButton(
         title = stringResource(id = R.string.advanced),
         onBackClicked = { activity.finish() }) { paddingValues ->
         LazyColumn(

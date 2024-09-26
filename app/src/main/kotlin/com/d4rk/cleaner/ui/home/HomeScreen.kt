@@ -21,6 +21,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Card
@@ -30,6 +34,10 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
+import androidx.compose.material3.TabRowDefaults
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -37,6 +45,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -62,7 +71,10 @@ import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.cleaning.getFileIcon
 import com.d4rk.cleaner.utils.compose.bounceClick
 import com.d4rk.cleaner.utils.compose.components.CircularDeterminateIndicator
+import com.d4rk.cleaner.utils.compose.hapticPagerSwipe
 import com.google.common.io.Files.getFileExtension
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import java.io.File
 
 @Composable
@@ -131,6 +143,20 @@ fun HomeScreen() {
 fun AnalyzeComposable(imageLoader: ImageLoader) {
     val viewModel: HomeViewModel = viewModel()
     val uiState: UiHomeModel by viewModel.uiState.collectAsState()
+    val context = LocalContext.current
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
+
+    // TODO: Add string resources
+    val groupedFiles = uiState.scannedFiles.groupBy { file ->
+        when (file.extension.lowercase()) {
+            in context.resources.getStringArray(R.array.apk_extensions) -> "APKs"
+            in context.resources.getStringArray(R.array.image_extensions) -> "Images"
+            in context.resources.getStringArray(R.array.video_extensions) -> "Videos"
+            in context.resources.getStringArray(R.array.audio_extensions) -> "Audios"
+            in context.resources.getStringArray(R.array.archive_extensions) -> "Archives"
+            else -> "Others"
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -149,16 +175,57 @@ fun AnalyzeComposable(imageLoader: ImageLoader) {
                     CircularProgressIndicator()
                 }
             } else {
-                LazyVerticalGrid(
-                    columns = GridCells.Fixed(count = 3),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.padding(8.dp),
+                val tabs = groupedFiles.keys.toList()
+
+                val pagerState: PagerState = rememberPagerState(pageCount = { tabs.size })
+
+                TabRow(
+                    selectedTabIndex = pagerState.currentPage,
+                    indicator = { tabPositions ->
+                        TabRowDefaults.PrimaryIndicator(
+                            modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
+                            shape = RoundedCornerShape(
+                                topStart = 3.dp,
+                                topEnd = 3.dp,
+                                bottomEnd = 0.dp,
+                                bottomStart = 0.dp,
+                            ),
+                        )
+                    },
                 ) {
-                    items(
-                        items = uiState.scannedFiles,
-                        key = { file -> file.absolutePath }) { file ->
-                        FileCard(file = file, viewModel = viewModel, imageLoader = imageLoader)
+                    tabs.forEachIndexed { index, title ->
+                        Tab(
+                            modifier = Modifier.bounceClick(),
+                            selected = pagerState.currentPage == index,
+                            onClick = {
+                                coroutineScope.launch {
+                                    pagerState.animateScrollToPage(index)
+                                }
+                            },
+                            text = { Text(text = title) }
+                        )
+                    }
+                }
+
+                HorizontalPager(
+                    modifier = Modifier.hapticPagerSwipe(pagerState),
+                    state = pagerState,
+                ) { page ->
+                    val filesForCurrentPage = groupedFiles[tabs[page]] ?: emptyList()
+
+                    LazyVerticalGrid(
+                        columns = GridCells.Fixed(count = 3),
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .fillMaxSize(),
+                    ) {
+                        items(
+                            items = filesForCurrentPage,
+                            key = { file -> file.absolutePath }) { file ->
+                            FileCard(file = file, viewModel = viewModel, imageLoader = imageLoader)
+                        }
                     }
                 }
             }

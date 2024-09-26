@@ -14,39 +14,39 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.compose.components.PreferenceCategoryItem
 import com.d4rk.cleaner.utils.compose.components.SwitchPreferenceItem
-import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffold
+import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffoldWithBackButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
-    val context : Context = LocalContext.current
-    val dataStore : DataStore = DataStore.getInstance(context)
-    val genericFilter : Boolean by dataStore.genericFilter.collectAsState(initial = true)
-    val deleteEmptyFolders : Boolean by dataStore.deleteEmptyFolders.collectAsState(initial = true)
-    val deleteArchives : Boolean by dataStore.deleteArchives.collectAsState(initial = false)
-    val deleteInvalidMedia : Boolean by dataStore.deleteInvalidMedia.collectAsState(initial = false)
-    val deleteCorpseFiles : Boolean by dataStore.deleteCorpseFiles.collectAsState(initial = false)
-    val deleteApkFiles : Boolean by dataStore.deleteApkFiles.collectAsState(initial = true)
-    val deleteAudioFiles : Boolean by dataStore.deleteAudioFiles.collectAsState(initial = false)
-    val deleteVideoFiles : Boolean by dataStore.deleteVideoFiles.collectAsState(initial = false)
-    val deleteImageFiles : Boolean by dataStore.deleteImageFiles.collectAsState(initial = false)
-    val clipboardClean : Boolean by dataStore.clipboardClean.collectAsState(initial = false)
-    TopAppBarScaffold(
+fun CleaningSettingsComposable(activity: CleaningSettingsActivity) {
+    val context: Context = LocalContext.current
+    val dataStore: DataStore = DataStore.getInstance(context)
+    val genericFilter: Boolean by dataStore.genericFilter.collectAsState(initial = true)
+    val deleteEmptyFolders: Boolean by dataStore.deleteEmptyFolders.collectAsState(initial = true)
+    val deleteArchives: Boolean by dataStore.deleteArchives.collectAsState(initial = false)
+    val deleteInvalidMedia: Boolean by dataStore.deleteInvalidMedia.collectAsState(initial = false)
+    val deleteCorpseFiles: Boolean by dataStore.deleteCorpseFiles.collectAsState(initial = false)
+    val deleteApkFiles: Boolean by dataStore.deleteApkFiles.collectAsState(initial = true)
+    val deleteAudioFiles: Boolean by dataStore.deleteAudioFiles.collectAsState(initial = false)
+    val deleteVideoFiles: Boolean by dataStore.deleteVideoFiles.collectAsState(initial = false)
+    val deleteImageFiles: Boolean by dataStore.deleteImageFiles.collectAsState(initial = false)
+    val clipboardClean: Boolean by dataStore.clipboardClean.collectAsState(initial = false)
+    TopAppBarScaffoldWithBackButton(
         title = stringResource(id = R.string.cleaning),
         onBackClicked = { activity.finish() }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxHeight()
-                .padding(paddingValues) ,
+                .padding(paddingValues),
         ) {
             item {
                 PreferenceCategoryItem(title = stringResource(id = R.string.filters))
                 SwitchPreferenceItem(
                     title = stringResource(id = R.string.generic_filter),
                     summary = stringResource(id = R.string.summary_preference_settings_generic_filter),
-                    checked = genericFilter ,
+                    checked = genericFilter,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveGenericFilter(isChecked)
@@ -54,7 +54,7 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                 }
                 SwitchPreferenceItem(
                     title = stringResource(id = R.string.delete_empty_folders),
-                    checked = deleteEmptyFolders ,
+                    checked = deleteEmptyFolders,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveDeleteEmptyFolders(isChecked)
@@ -63,7 +63,7 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                 SwitchPreferenceItem(
                     title = stringResource(id = R.string.delete_archives),
                     summary = stringResource(id = R.string.summary_preference_settings_archive_filter),
-                    checked = deleteArchives ,
+                    checked = deleteArchives,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveDeleteArchives(isChecked)
@@ -72,7 +72,7 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                 SwitchPreferenceItem(
                     title = stringResource(id = R.string.delete_corpse_files),
                     summary = stringResource(id = R.string.summary_preference_settings_delete_corpse_files),
-                    checked = deleteCorpseFiles ,
+                    checked = deleteCorpseFiles,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveDeleteCorpseFiles(isChecked)
@@ -81,7 +81,7 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                 SwitchPreferenceItem(
                     title = stringResource(id = R.string.delete_apk_files),
                     summary = stringResource(id = R.string.summary_preference_settings_delete_apk_files),
-                    checked = deleteApkFiles ,
+                    checked = deleteApkFiles,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveDeleteApkFiles(isChecked)
@@ -94,7 +94,7 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                 SwitchPreferenceItem(
                     title = stringResource(id = R.string.delete_audio),
                     summary = stringResource(id = R.string.summary_preference_settings_delete_audio),
-                    checked = deleteAudioFiles ,
+                    checked = deleteAudioFiles,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveDeleteAudioFiles(isChecked)
@@ -103,7 +103,7 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                 SwitchPreferenceItem(
                     title = stringResource(id = R.string.delete_video),
                     summary = stringResource(id = R.string.summary_preference_settings_delete_video),
-                    checked = deleteVideoFiles ,
+                    checked = deleteVideoFiles,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveDeleteVideoFiles(isChecked)
@@ -112,7 +112,7 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                 SwitchPreferenceItem(
                     title = stringResource(id = R.string.delete_images),
                     summary = stringResource(id = R.string.summary_preference_settings_delete_images),
-                    checked = deleteImageFiles ,
+                    checked = deleteImageFiles,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveDeleteImageFiles(isChecked)
@@ -121,7 +121,7 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                 SwitchPreferenceItem(
                     title = stringResource(id = R.string.delete_invalid_media),
                     summary = stringResource(id = R.string.summary_preference_settings_delete_invalid_media),
-                    checked = deleteInvalidMedia ,
+                    checked = deleteInvalidMedia,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveDeleteInvalidMedia(isChecked)
@@ -133,7 +133,7 @@ fun CleaningSettingsComposable(activity : CleaningSettingsActivity) {
                 PreferenceCategoryItem(title = stringResource(id = R.string.scanner))
                 SwitchPreferenceItem(
                     title = stringResource(id = R.string.clipboard_clean),
-                    checked = clipboardClean ,
+                    checked = clipboardClean,
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveClipboardClean(isChecked)

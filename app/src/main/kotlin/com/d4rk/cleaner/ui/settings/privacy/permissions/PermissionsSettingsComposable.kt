@@ -9,17 +9,17 @@ import androidx.compose.ui.res.stringResource
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.utils.compose.components.PreferenceCategoryItem
 import com.d4rk.cleaner.utils.compose.components.PreferenceItem
-import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffold
+import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffoldWithBackButton
 
 @Composable
-fun PermissionsSettingsComposable(activity : PermissionsSettingsActivity) {
-    TopAppBarScaffold(
+fun PermissionsSettingsComposable(activity: PermissionsSettingsActivity) {
+    TopAppBarScaffoldWithBackButton(
         title = stringResource(id = R.string.permissions),
         onBackClicked = { activity.finish() }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxHeight()
-                .padding(paddingValues) ,
+                .padding(paddingValues),
         ) {
             item {
                 PreferenceCategoryItem(title = stringResource(id = R.string.normal))

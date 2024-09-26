@@ -29,32 +29,32 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.compose.bounceClick
 import com.d4rk.cleaner.utils.compose.components.SwitchCardComposable
-import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffold
+import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffoldWithBackButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun ThemeSettingsComposable(activity : ThemeSettingsActivity) {
-    val context : Context = LocalContext.current
-    val dataStore : DataStore = DataStore.getInstance(context)
-    val scope : CoroutineScope = rememberCoroutineScope()
-    val themeMode : String = dataStore.themeMode.collectAsState(initial = "follow_system").value
-    val isAmoledMode : State<Boolean> = dataStore.amoledMode.collectAsState(initial = false)
+fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
+    val context: Context = LocalContext.current
+    val dataStore: DataStore = DataStore.getInstance(context)
+    val scope: CoroutineScope = rememberCoroutineScope()
+    val themeMode: String = dataStore.themeMode.collectAsState(initial = "follow_system").value
+    val isAmoledMode: State<Boolean> = dataStore.amoledMode.collectAsState(initial = false)
 
-    val themeOptions : List<String> = listOf(
+    val themeOptions: List<String> = listOf(
         stringResource(id = R.string.follow_system),
         stringResource(id = R.string.dark_mode),
         stringResource(id = R.string.light_mode),
     )
-    TopAppBarScaffold(
+    TopAppBarScaffoldWithBackButton(
         title = stringResource(id = R.string.dark_theme),
         onBackClicked = { activity.finish() }) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(paddingValues) ,
+                    .padding(paddingValues),
             ) {
                 item {
                     SwitchCardComposable(
@@ -74,12 +74,12 @@ fun ThemeSettingsComposable(activity : ThemeSettingsActivity) {
                     ) {
                         themeOptions.forEach { text ->
                             Row(
-                                Modifier.fillMaxWidth() ,
+                                Modifier.fillMaxWidth(),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 RadioButton(
-                                    modifier = Modifier.bounceClick() ,
-                                    selected = (text == themeMode) ,
+                                    modifier = Modifier.bounceClick(),
+                                    selected = (text == themeMode),
                                     onClick = {
                                         scope.launch(Dispatchers.IO) {
                                             dataStore.saveThemeMode(text)
@@ -87,8 +87,8 @@ fun ThemeSettingsComposable(activity : ThemeSettingsActivity) {
                                         }
                                     })
                                 Text(
-                                    text = text ,
-                                    style = MaterialTheme.typography.bodyMedium.merge() ,
+                                    text = text,
+                                    style = MaterialTheme.typography.bodyMedium.merge(),
                                     modifier = Modifier.padding(start = 16.dp)
                                 )
                             }
@@ -101,7 +101,7 @@ fun ThemeSettingsComposable(activity : ThemeSettingsActivity) {
                             .fillMaxWidth()
                             .padding(24.dp)
                     ) {
-                        Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
+                        Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(stringResource(id = R.string.summary_dark_theme))
                     }

@@ -29,19 +29,19 @@ import com.d4rk.cleaner.ui.settings.display.DisplaySettingsActivity
 import com.d4rk.cleaner.ui.settings.privacy.PrivacySettingsActivity
 import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.utils.compose.components.SettingsPreferenceItem
-import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffold
+import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffoldWithBackButton
 
 @Composable
-fun SettingsComposable(activity : SettingsActivity) {
-    val context : Context = LocalContext.current
+fun SettingsComposable(activity: SettingsActivity) {
+    val context: Context = LocalContext.current
 
-    TopAppBarScaffold(
+    TopAppBarScaffoldWithBackButton(
         title = stringResource(id = R.string.settings),
-                      onBackClicked = { activity.finish() }) { paddingValues ->
+        onBackClicked = { activity.finish() }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxHeight()
-                .padding(paddingValues) ,
+                .padding(paddingValues),
         ) {
             item {
                 Spacer(modifier = Modifier.height(24.dp))
@@ -50,21 +50,21 @@ fun SettingsComposable(activity : SettingsActivity) {
                         .padding(start = 16.dp, end = 16.dp)
                         .clip(RoundedCornerShape(24.dp))
                 ) {
-                    SettingsPreferenceItem(Icons.Outlined.Notifications ,
+                    SettingsPreferenceItem(Icons.Outlined.Notifications,
                         title = stringResource(id = R.string.notifications),
                         summary = stringResource(id = R.string.summary_preference_settings_notifications),
-                                           onClick = {
-                                               IntentUtils.openAppNotificationSettings(context)
-                                           })
+                        onClick = {
+                            IntentUtils.openAppNotificationSettings(context)
+                        })
                     Spacer(modifier = Modifier.height(2.dp))
-                    SettingsPreferenceItem(Icons.Outlined.Palette ,
+                    SettingsPreferenceItem(Icons.Outlined.Palette,
                         title = stringResource(id = R.string.display),
                         summary = stringResource(id = R.string.summary_preference_settings_display),
-                                           onClick = {
-                                               IntentUtils.openActivity(
-                                                   context , DisplaySettingsActivity::class.java
-                                               )
-                                           })
+                        onClick = {
+                            IntentUtils.openActivity(
+                                context, DisplaySettingsActivity::class.java
+                            )
+                        })
                 }
                 Spacer(modifier = Modifier.height(24.dp))
             }
@@ -74,14 +74,14 @@ fun SettingsComposable(activity : SettingsActivity) {
                         .padding(start = 16.dp, end = 16.dp)
                         .clip(RoundedCornerShape(24.dp))
                 ) {
-                    SettingsPreferenceItem(Icons.Outlined.CleaningServices ,
+                    SettingsPreferenceItem(Icons.Outlined.CleaningServices,
                         title = stringResource(id = R.string.cleaning),
                         summary = stringResource(id = R.string.summary_preference_settings_cleaning),
-                                           onClick = {
-                                               IntentUtils.openActivity(
-                                                   context , CleaningSettingsActivity::class.java
-                                               )
-                                           })
+                        onClick = {
+                            IntentUtils.openActivity(
+                                context, CleaningSettingsActivity::class.java
+                            )
+                        })
                 }
                 Spacer(modifier = Modifier.height(24.dp))
             }
@@ -91,32 +91,32 @@ fun SettingsComposable(activity : SettingsActivity) {
                         .padding(start = 16.dp, end = 16.dp)
                         .clip(RoundedCornerShape(24.dp))
                 ) {
-                    SettingsPreferenceItem(Icons.Outlined.SafetyCheck ,
+                    SettingsPreferenceItem(Icons.Outlined.SafetyCheck,
                         title = stringResource(id = R.string.security_and_privacy),
                         summary = stringResource(id = R.string.summary_preference_settings_privacy_and_security),
-                                           onClick = {
-                                               IntentUtils.openActivity(
-                                                   context , PrivacySettingsActivity::class.java
-                                               )
-                                           })
+                        onClick = {
+                            IntentUtils.openActivity(
+                                context, PrivacySettingsActivity::class.java
+                            )
+                        })
                     Spacer(modifier = Modifier.height(2.dp))
-                    SettingsPreferenceItem(Icons.Outlined.Build ,
+                    SettingsPreferenceItem(Icons.Outlined.Build,
                         title = stringResource(id = R.string.advanced),
                         summary = stringResource(id = R.string.summary_preference_settings_advanced),
-                                           onClick = {
-                                               IntentUtils.openActivity(
-                                                   context , AdvancedSettingsActivity::class.java
-                                               )
-                                           })
+                        onClick = {
+                            IntentUtils.openActivity(
+                                context, AdvancedSettingsActivity::class.java
+                            )
+                        })
                     Spacer(modifier = Modifier.height(2.dp))
-                    SettingsPreferenceItem(Icons.Outlined.Info ,
+                    SettingsPreferenceItem(Icons.Outlined.Info,
                         title = stringResource(id = R.string.about),
                         summary = stringResource(id = R.string.summary_preference_settings_about),
-                                           onClick = {
-                                               IntentUtils.openActivity(
-                                                   context , AboutSettingsActivity::class.java
-                                               )
-                                           })
+                        onClick = {
+                            IntentUtils.openActivity(
+                                context, AboutSettingsActivity::class.java
+                            )
+                        })
                 }
             }
         }

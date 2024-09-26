@@ -36,14 +36,14 @@ import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.ui.imageoptimizer.imageoptimizer.ImageOptimizerActivity
 import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.compose.bounceClick
-import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffold
+import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffoldWithBackButton
 
 @Composable
 fun ImagePickerComposable(
     activity: ImagePickerActivity, viewModel: ImagePickerViewModel
 ) {
     val context: Context = LocalContext.current
-    val view : View = LocalView.current
+    val view: View = LocalView.current
     val dataStore: DataStore = DataStore.getInstance(context)
     val adsState: State<Boolean> = dataStore.ads.collectAsState(initial = true)
 
@@ -63,7 +63,7 @@ fun ImagePickerComposable(
     }
 
 
-    TopAppBarScaffold(
+    TopAppBarScaffoldWithBackButton(
         title = stringResource(id = R.string.image_optimizer),
         onBackClicked = { activity.finish() }) { paddingValues ->
         ConstraintLayout(

@@ -34,7 +34,7 @@ import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.utils.compose.bounceClick
 import com.d4rk.cleaner.utils.compose.components.PreferenceItem
 import com.d4rk.cleaner.utils.compose.components.SwitchCardComposable
-import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffold
+import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffoldWithBackButton
 import com.google.android.ump.ConsentInformation
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
@@ -48,7 +48,7 @@ fun AdsSettingsComposable(activity: AdsSettingsActivity) {
     val dataStore: DataStore = DataStore.getInstance(context)
     val switchState: State<Boolean> = dataStore.ads.collectAsState(initial = true)
     val scope: CoroutineScope = rememberCoroutineScope()
-    TopAppBarScaffold(
+    TopAppBarScaffoldWithBackButton(
         title = stringResource(id = R.string.ads),
         onBackClicked = { activity.finish() }) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize()) {

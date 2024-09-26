@@ -26,7 +26,7 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.utils.compose.components.PreferenceCategoryItem
 import com.d4rk.cleaner.utils.compose.components.PreferenceItem
-import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffold
+import com.d4rk.cleaner.utils.compose.components.TopAppBarScaffoldWithBackButton
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 
 @Composable
@@ -47,7 +47,7 @@ fun AboutSettingsComposable(activity: AboutSettingsActivity) {
         }
     }
 
-    TopAppBarScaffold(
+    TopAppBarScaffoldWithBackButton(
         title = stringResource(id = R.string.about),
         onBackClicked = { activity.finish() }) { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {

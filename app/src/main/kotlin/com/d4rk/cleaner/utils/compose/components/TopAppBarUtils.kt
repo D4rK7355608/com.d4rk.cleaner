@@ -22,25 +22,42 @@ import com.d4rk.cleaner.utils.compose.bounceClick
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopAppBarScaffold(
-    title : String , onBackClicked : () -> Unit , content : @Composable (PaddingValues) -> Unit
+fun TopAppBarScaffoldWithBackButton(
+    title: String, onBackClicked: () -> Unit, content: @Composable (PaddingValues) -> Unit
 ) {
-    val scrollBehaviorState : TopAppBarScrollBehavior =
-            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    val view : View = LocalView.current
+    val scrollBehaviorState: TopAppBarScrollBehavior =
+        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val view: View = LocalView.current
 
-    Scaffold(modifier = Modifier.nestedScroll(scrollBehaviorState.nestedScrollConnection) ,
-             topBar = {
-                 LargeTopAppBar(title = { Text(title) } , navigationIcon = {
-                     IconButton(modifier = Modifier.bounceClick() , onClick = {
-                         onBackClicked()
-                         view.playSoundEffect(SoundEffectConstants.CLICK)
-                     }) {
-                         Icon(Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null)
-                     }
-                 } , scrollBehavior = scrollBehaviorState
-                 )
-             }) { paddingValues ->
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehaviorState.nestedScrollConnection),
+        topBar = {
+            LargeTopAppBar(title = { Text(title) }, navigationIcon = {
+                IconButton(modifier = Modifier.bounceClick(), onClick = {
+                    onBackClicked()
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
+                }) {
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+                }
+            }, scrollBehavior = scrollBehaviorState
+            )
+        }) { paddingValues ->
+        content(paddingValues)
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopAppBarScaffold(
+    title: String, content: @Composable (PaddingValues) -> Unit
+) {
+    val scrollBehaviorState: TopAppBarScrollBehavior =
+        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+
+    Scaffold(modifier = Modifier.nestedScroll(scrollBehaviorState.nestedScrollConnection),
+        topBar = {
+            LargeTopAppBar(title = { Text(title) }, scrollBehavior = scrollBehaviorState
+            )
+        }) { paddingValues ->
         content(paddingValues)
     }
 }
