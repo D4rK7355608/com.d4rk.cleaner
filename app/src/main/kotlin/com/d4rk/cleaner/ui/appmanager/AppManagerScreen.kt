@@ -6,7 +6,6 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.SoundEffectConstants
 import android.view.View
 import androidx.compose.animation.core.Transition
@@ -79,71 +78,70 @@ import java.io.File
  */
 @Composable
 fun AppManagerScreen() {
-    val viewModel : AppManagerViewModel = viewModel()
-    val context : Context = LocalContext.current
-    val view : View = LocalView.current
-    val tabs : List<String> = listOf(
-        stringResource(id = R.string.installed_apps) ,
-        stringResource(id = R.string.system_apps) ,
-        stringResource(id = R.string.app_install_files) ,
+    val viewModel: AppManagerViewModel = viewModel()
+    val context: Context = LocalContext.current
+    val view: View = LocalView.current
+    val tabs: List<String> = listOf(
+        stringResource(id = R.string.installed_apps),
+        stringResource(id = R.string.system_apps),
+        stringResource(id = R.string.app_install_files),
     )
-    val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
-    val coroutineScope : CoroutineScope = rememberCoroutineScope()
-    val isLoading : Boolean by viewModel.isLoading.collectAsState()
-    val transition : Transition<Boolean> =
-            updateTransition(targetState = ! isLoading , label = "LoadingTransition")
-    val contentAlpha : Float by transition.animateFloat(label = "Content Alpha") {
+    val pagerState: PagerState = rememberPagerState(pageCount = { tabs.size })
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
+    val isLoading: Boolean by viewModel.isLoading.collectAsState()
+    val transition: Transition<Boolean> =
+        updateTransition(targetState = !isLoading, label = "LoadingTransition")
+    val contentAlpha: Float by transition.animateFloat(label = "Content Alpha") {
         if (it) 1f else 0f
     }
 
-    val uiState : UiAppManagerModel by viewModel.uiState.collectAsState()
-    val uiErrorModel : UiErrorModel by viewModel.uiErrorModel.collectAsState()
+    val uiState: UiAppManagerModel by viewModel.uiState.collectAsState()
+    val uiErrorModel: UiErrorModel by viewModel.uiErrorModel.collectAsState()
 
     LaunchedEffect(context) {
-        if (! PermissionsUtils.hasUsageAccessPermissions(context)) {
+        if (!PermissionsUtils.hasUsageAccessPermissions(context)) {
             PermissionsUtils.requestUsageAccess(context as Activity)
         }
     }
 
     if (uiErrorModel.showErrorDialog) {
-        ErrorAlertDialog(errorMessage = uiErrorModel.errorMessage ,
-                         onDismiss = { viewModel.dismissErrorDialog() })
+        ErrorAlertDialog(errorMessage = uiErrorModel.errorMessage,
+            onDismiss = { viewModel.dismissErrorDialog() })
     }
 
     if (isLoading) {
         Box(
-            modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center
+            modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
         ) {
             CircularProgressIndicator()
         }
-    }
-    else {
+    } else {
         Column(
-            modifier = Modifier.alpha(contentAlpha) ,
+            modifier = Modifier.alpha(contentAlpha),
         ) {
             TabRow(
-                selectedTabIndex = pagerState.currentPage ,
+                selectedTabIndex = pagerState.currentPage,
                 indicator = { tabPositions ->
                     TabRowDefaults.PrimaryIndicator(
-                        modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]) ,
+                        modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
                         shape = RoundedCornerShape(
-                            topStart = 3.dp ,
-                            topEnd = 3.dp ,
-                            bottomEnd = 0.dp ,
-                            bottomStart = 0.dp ,
-                        ) ,
+                            topStart = 3.dp,
+                            topEnd = 3.dp,
+                            bottomEnd = 0.dp,
+                            bottomStart = 0.dp,
+                        ),
                     )
-                } ,
+                },
             ) {
-                tabs.forEachIndexed { index , title ->
-                    Tab(modifier = Modifier.bounceClick() , text = {
+                tabs.forEachIndexed { index, title ->
+                    Tab(modifier = Modifier.bounceClick(), text = {
                         Text(
-                            text = title ,
-                            maxLines = 1 ,
-                            overflow = TextOverflow.Ellipsis ,
+                            text = title,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
                             color = MaterialTheme.colorScheme.onSurface
                         )
-                    } , selected = pagerState.currentPage == index , onClick = {
+                    }, selected = pagerState.currentPage == index, onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         coroutineScope.launch {
                             pagerState.animateScrollToPage(index)
@@ -153,20 +151,20 @@ fun AppManagerScreen() {
             }
 
             HorizontalPager(
-                modifier = Modifier.hapticPagerSwipe(pagerState) ,
-                state = pagerState ,
+                modifier = Modifier.hapticPagerSwipe(pagerState),
+                state = pagerState,
             ) { page ->
                 when (page) {
-                    0 -> AppsComposable(apps = uiState.installedApps.filter { app : ApplicationInfo ->
+                    0 -> AppsComposable(apps = uiState.installedApps.filter { app: ApplicationInfo ->
                         app.flags and ApplicationInfo.FLAG_SYSTEM == 0
-                    } , isLoading , viewModel = viewModel)
+                    }, isLoading, viewModel = viewModel)
 
-                    1 -> AppsComposable(apps = uiState.installedApps.filter { app : ApplicationInfo ->
+                    1 -> AppsComposable(apps = uiState.installedApps.filter { app: ApplicationInfo ->
                         app.flags and ApplicationInfo.FLAG_SYSTEM != 0
-                    } , isLoading , viewModel = viewModel)
+                    }, isLoading, viewModel = viewModel)
 
                     2 -> ApksComposable(
-                        apkFiles = uiState.apkFiles , isLoading , viewModel = viewModel
+                        apkFiles = uiState.apkFiles, isLoading, viewModel = viewModel
                     )
                 }
             }
@@ -181,22 +179,20 @@ fun AppManagerScreen() {
  */
 @Composable
 fun AppsComposable(
-    apps : List<ApplicationInfo> , isLoading : Boolean , viewModel : AppManagerViewModel
+    apps: List<ApplicationInfo>, isLoading: Boolean, viewModel: AppManagerViewModel
 ) {
     if (isLoading) {
-        Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             CircularProgressIndicator()
         }
-    }
-    else if (apps.isEmpty()) {
-        Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
+    } else if (apps.isEmpty()) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text(text = stringResource(id = R.string.no_app_installed))
         }
-    }
-    else {
+    } else {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(items = apps , key = { app -> app.packageName }) { app ->
-                AppItemComposable(app , viewModel = viewModel)
+            items(items = apps, key = { app -> app.packageName }) { app ->
+                AppItemComposable(app, viewModel = viewModel)
             }
         }
     }
@@ -209,26 +205,26 @@ fun AppsComposable(
  */
 @Composable
 fun AppItemComposable(
-    app : ApplicationInfo , viewModel : AppManagerViewModel
+    app: ApplicationInfo, viewModel: AppManagerViewModel
 ) {
-    val context : Context = LocalContext.current
-    val view : View = LocalView.current
-    val packageManager : PackageManager = context.packageManager
-    val appName : String = app.loadLabel(packageManager).toString()
-    val apkPath : String = app.publicSourceDir
+    val context: Context = LocalContext.current
+    val view: View = LocalView.current
+    val packageManager: PackageManager = context.packageManager
+    val appName: String = app.loadLabel(packageManager).toString()
+    val apkPath: String = app.publicSourceDir
     val apkFile = File(apkPath)
-    val sizeInBytes : Long = apkFile.length()
-    val sizeInKB : Long = sizeInBytes / 1024
-    val sizeInMB : Long = sizeInKB / 1024
-    val appSize : String = "%.2f MB".format(sizeInMB.toFloat())
-    var showMenu : Boolean by remember { mutableStateOf(value = false) }
-    val model : Drawable = app.loadIcon(packageManager)
-    OutlinedCard(modifier = Modifier.padding(start = 8.dp , end = 8.dp , top = 8.dp)) {
+    val sizeInBytes: Long = apkFile.length()
+    val sizeInKB: Long = sizeInBytes / 1024
+    val sizeInMB: Long = sizeInKB / 1024
+    val appSize: String = "%.2f MB".format(sizeInMB.toFloat())
+    var showMenu: Boolean by remember { mutableStateOf(value = false) }
+    val model: Drawable = app.loadIcon(packageManager)
+    OutlinedCard(modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)) {
         Row(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-                    .clip(RoundedCornerShape(16.dp)) ,
+                .fillMaxWidth()
+                .padding(16.dp)
+                .clip(RoundedCornerShape(16.dp)),
             verticalAlignment = Alignment.CenterVertically
         ) {
             AsyncImage(
@@ -239,45 +235,45 @@ fun AppItemComposable(
             )
             Column(
                 modifier = Modifier
-                        .padding(16.dp)
-                        .weight(1f)
+                    .padding(16.dp)
+                    .weight(1f)
             ) {
                 Text(
-                    text = appName ,
-                    style = MaterialTheme.typography.titleMedium ,
+                    text = appName,
+                    style = MaterialTheme.typography.titleMedium,
                 )
                 Text(
-                    text = appSize , style = MaterialTheme.typography.bodyMedium
+                    text = appSize, style = MaterialTheme.typography.bodyMedium
                 )
             }
 
             Box {
-                IconButton(modifier = Modifier.bounceClick() , onClick = {
+                IconButton(modifier = Modifier.bounceClick(), onClick = {
                     view.playSoundEffect(SoundEffectConstants.CLICK)
                     showMenu = true
                 }) {
-                    Icon(Icons.Outlined.MoreVert , contentDescription = null)
+                    Icon(Icons.Outlined.MoreVert, contentDescription = null)
                 }
 
-                DropdownMenu(expanded = showMenu , onDismissRequest = {
+                DropdownMenu(expanded = showMenu, onDismissRequest = {
                     showMenu = false
                 }) {
-                    DropdownMenuItem(modifier = Modifier.bounceClick() , text = {
+                    DropdownMenuItem(modifier = Modifier.bounceClick(), text = {
                         Text(stringResource(id = R.string.uninstall))
-                    } , onClick = {
+                    }, onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         viewModel.uninstallApp(app.packageName)
                     })
                     DropdownMenuItem(
-                        modifier = Modifier.bounceClick() ,
-                        text = { Text(stringResource(id = R.string.share)) } ,
+                        modifier = Modifier.bounceClick(),
+                        text = { Text(stringResource(id = R.string.share)) },
                         onClick = {
                             view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.shareApp(app.packageName)
                         })
                     DropdownMenuItem(
-                        modifier = Modifier.bounceClick() ,
-                        text = { Text(stringResource(id = R.string.app_info)) } ,
+                        modifier = Modifier.bounceClick(),
+                        text = { Text(stringResource(id = R.string.app_info)) },
                         onClick = {
                             view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.openAppInfo(app.packageName)
@@ -293,22 +289,20 @@ fun AppItemComposable(
  */
 @Composable
 fun ApksComposable(
-    apkFiles : List<ApkInfo> , isLoading : Boolean , viewModel : AppManagerViewModel
+    apkFiles: List<ApkInfo>, isLoading: Boolean, viewModel: AppManagerViewModel
 ) {
     if (isLoading) {
-        Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             CircularProgressIndicator()
         }
-    }
-    else if (apkFiles.isEmpty()) {
-        Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
+    } else if (apkFiles.isEmpty()) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text(text = stringResource(id = R.string.no_apk_found))
         }
-    }
-    else {
+    } else {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(items = apkFiles , key = { apkInfo -> apkInfo.id }) { apkInfo ->
-                ApkItemComposable(apkPath = apkInfo.path , viewModel = viewModel)
+            items(items = apkFiles, key = { apkInfo -> apkInfo.id }) { apkInfo ->
+                ApkItemComposable(apkPath = apkInfo.path, viewModel = viewModel)
             }
         }
     }
@@ -320,34 +314,33 @@ fun ApksComposable(
  * @param apkPath Path to the APK file.
  */
 @Composable
-fun ApkItemComposable(apkPath : String , viewModel : AppManagerViewModel) {
-    val context : Context = LocalContext.current
-    val view : View = LocalView.current
+fun ApkItemComposable(apkPath: String, viewModel: AppManagerViewModel) {
+    val context: Context = LocalContext.current
+    val view: View = LocalView.current
     val apkFile = File(apkPath)
-    val sizeInBytes : Long = apkFile.length()
-    val sizeInKB : Long = sizeInBytes / 1024
-    val sizeInMB : Long = sizeInKB / 1024
-    val apkSize : String = "%.2f MB".format(sizeInMB.toFloat())
-    val apkName : String = apkFile.name
+    val sizeInBytes: Long = apkFile.length()
+    val sizeInKB: Long = sizeInBytes / 1024
+    val sizeInMB: Long = sizeInKB / 1024
+    val apkSize: String = "%.2f MB".format(sizeInMB.toFloat())
+    val apkName: String = apkFile.name
 
-    val packageInfo : PackageInfo? = context.packageManager.getPackageArchiveInfo(apkPath , 0)
+    val packageInfo: PackageInfo? = context.packageManager.getPackageArchiveInfo(apkPath, 0)
 
-    var showMenu : Boolean by remember { mutableStateOf(value = false) }
+    var showMenu: Boolean by remember { mutableStateOf(value = false) }
 
-    val iconDrawable : Drawable? = remember(apkPath) {
+    val iconDrawable: Drawable? = remember(apkPath) {
         packageInfo?.applicationInfo?.loadIcon(context.packageManager)
     }
     val model = iconDrawable?.toBitmapDrawable(context.resources)
         ?: ImageBitmap.imageResource(id = R.mipmap.ic_launcher)
 
-    OutlinedCard(modifier = Modifier.padding(start = 8.dp , end = 8.dp , top = 8.dp)) {
-
+    OutlinedCard(modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)) {
 
         Row(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-                    .clip(RoundedCornerShape(16.dp)) ,
+                .fillMaxWidth()
+                .padding(16.dp)
+                .clip(RoundedCornerShape(16.dp)),
             verticalAlignment = Alignment.CenterVertically
         ) {
             AsyncImage(
@@ -358,40 +351,40 @@ fun ApkItemComposable(apkPath : String , viewModel : AppManagerViewModel) {
             )
             Column(
                 modifier = Modifier
-                        .padding(16.dp)
-                        .weight(1f)
+                    .padding(16.dp)
+                    .weight(1f)
             ) {
                 Text(
-                    text = apkName ,
-                    style = MaterialTheme.typography.titleMedium ,
+                    text = apkName,
+                    style = MaterialTheme.typography.titleMedium,
                 )
                 Text(
-                    text = apkSize , style = MaterialTheme.typography.bodyMedium
+                    text = apkSize, style = MaterialTheme.typography.bodyMedium
                 )
             }
 
             Box {
-                IconButton(modifier = Modifier.bounceClick() , onClick = {
+                IconButton(modifier = Modifier.bounceClick(), onClick = {
                     view.playSoundEffect(SoundEffectConstants.CLICK)
                     showMenu = true
                 }) {
-                    Icon(Icons.Outlined.MoreVert , contentDescription = null)
+                    Icon(Icons.Outlined.MoreVert, contentDescription = null)
                 }
 
-                DropdownMenu(expanded = showMenu , onDismissRequest = {
+                DropdownMenu(expanded = showMenu, onDismissRequest = {
                     showMenu = false
                 }) {
                     DropdownMenuItem(
-                        modifier = Modifier.bounceClick() ,
-                        text = { Text(stringResource(id = R.string.share)) } ,
+                        modifier = Modifier.bounceClick(),
+                        text = { Text(stringResource(id = R.string.share)) },
                         onClick = {
                             view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.shareApk(apkPath)
                         })
 
                     DropdownMenuItem(
-                        modifier = Modifier.bounceClick() ,
-                        text = { Text(stringResource(id = R.string.install)) } ,
+                        modifier = Modifier.bounceClick(),
+                        text = { Text(stringResource(id = R.string.install)) },
                         onClick = {
                             view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.installApk(apkPath)

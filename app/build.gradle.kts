@@ -12,7 +12,7 @@ android {
     namespace = "com.d4rk.cleaner"
     defaultConfig {
         applicationId = "com.d4rk.cleaner"
-        minSdk = 26
+        minSdk = 23
         targetSdk = 34
         versionCode = 118
         versionName = "2.0.0"

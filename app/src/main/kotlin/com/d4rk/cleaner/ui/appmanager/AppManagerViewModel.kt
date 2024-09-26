@@ -17,29 +17,28 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class AppManagerViewModel(application : Application) : BaseViewModel(application) {
+class AppManagerViewModel(application: Application) : BaseViewModel(application) {
     private val repository = AppManagerRepository(application)
     private val _uiState = MutableStateFlow(UiAppManagerModel())
-    val uiState : StateFlow<UiAppManagerModel> = _uiState.asStateFlow()
+    val uiState: StateFlow<UiAppManagerModel> = _uiState.asStateFlow()
 
     private val packageRemovedReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context : Context? , intent : Intent?) {
+        override fun onReceive(context: Context?, intent: Intent?) {
             if (intent?.action == Intent.ACTION_PACKAGE_REMOVED) {
-                viewModelScope.launch {
-                    loadAppData()
-                }
+                loadAppData()
             }
         }
     }
 
     init {
-        viewModelScope.launch(coroutineExceptionHandler) {
-            loadAppData()
-        }
+        loadAppData()
+        registerPackageRemovedReceiver()
+    }
 
+    private fun registerPackageRemovedReceiver() {
         val filter = IntentFilter(Intent.ACTION_PACKAGE_REMOVED)
         filter.addDataScheme("package")
-        getApplication<Application>().registerReceiver(packageRemovedReceiver , filter)
+        getApplication<Application>().registerReceiver(packageRemovedReceiver, filter)
     }
 
     override fun onCleared() {
@@ -47,9 +46,9 @@ class AppManagerViewModel(application : Application) : BaseViewModel(application
         super.onCleared()
     }
 
-    private suspend fun loadAppData() {
-        showLoading()
+    private fun loadAppData() {
         viewModelScope.launch(coroutineExceptionHandler) {
+            showLoading()
             loadInstalledAppsAndApks()
         }.invokeOnCompletion {
             hideLoading()
@@ -59,46 +58,46 @@ class AppManagerViewModel(application : Application) : BaseViewModel(application
     private suspend fun loadInstalledAppsAndApks() {
         repository.getInstalledApps { installedApps ->
             viewModelScope.launch {
-                val apkFilesDeferred : Deferred<List<ApkInfo>> = async {
-                    var apkFiles : List<ApkInfo> = emptyList()
+                val apkFilesDeferred: Deferred<List<ApkInfo>> = async {
+                    var apkFiles: List<ApkInfo> = emptyList()
                     repository.getApkFilesFromStorage { files ->
                         apkFiles = files
                     }
                     apkFiles
                 }
-                val apkFiles : List<ApkInfo> = apkFilesDeferred.await()
-                _uiState.value = UiAppManagerModel(installedApps , apkFiles)
+                val apkFiles: List<ApkInfo> = apkFilesDeferred.await()
+                _uiState.value = UiAppManagerModel(installedApps, apkFiles)
             }
         }
     }
 
-    fun installApk(apkPath : String) {
+    fun installApk(apkPath: String) {
         viewModelScope.launch(coroutineExceptionHandler) {
-            repository.installApk(apkPath , onSuccess = {})
+            repository.installApk(apkPath, onSuccess = {})
         }
     }
 
-    fun shareApk(apkPath : String) {
+    fun shareApk(apkPath: String) {
         viewModelScope.launch(coroutineExceptionHandler) {
-            repository.shareApk(apkPath , onSuccess = { })
+            repository.shareApk(apkPath, onSuccess = { })
         }
     }
 
-    fun shareApp(packageName : String) {
+    fun shareApp(packageName: String) {
         viewModelScope.launch(coroutineExceptionHandler) {
-            repository.shareApp(packageName , onSuccess = { })
+            repository.shareApp(packageName, onSuccess = { })
         }
     }
 
-    fun openAppInfo(packageName : String) {
+    fun openAppInfo(packageName: String) {
         viewModelScope.launch(coroutineExceptionHandler) {
-            repository.openAppInfo(packageName , onSuccess = {})
+            repository.openAppInfo(packageName, onSuccess = {})
         }
     }
 
-    fun uninstallApp(packageName : String) {
+    fun uninstallApp(packageName: String) {
         viewModelScope.launch(coroutineExceptionHandler) {
-            repository.uninstallApp(packageName , onSuccess = { })
+            repository.uninstallApp(packageName, onSuccess = { })
         }
     }
 }

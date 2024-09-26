@@ -45,6 +45,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -73,193 +74,199 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainComposable() {
-    val bottomBarItems : List<BottomNavigationScreen> = listOf(
-        BottomNavigationScreen.Home ,
-        BottomNavigationScreen.AppManager ,
+
+    val viewModel: MainViewModel = viewModel()
+
+    val bottomBarItems: List<BottomNavigationScreen> = listOf(
+        BottomNavigationScreen.Home,
+        BottomNavigationScreen.AppManager,
         BottomNavigationScreen.MemoryManager
     )
-    val drawerItems : List<NavigationDrawerItem> = listOf(
+    val drawerItems: List<NavigationDrawerItem> = listOf(
 
         NavigationDrawerItem(
-            title = R.string.image_optimizer , selectedIcon = Icons.Outlined.Image
-        ) ,
+            title = R.string.image_optimizer, selectedIcon = Icons.Outlined.Image
+        ),
 
         NavigationDrawerItem(
-            title = R.string.settings ,
-            selectedIcon = Icons.Outlined.Settings ,
-        ) ,
+            title = R.string.settings,
+            selectedIcon = Icons.Outlined.Settings,
+        ),
         NavigationDrawerItem(
-            title = R.string.help_and_feedback ,
-            selectedIcon = Icons.AutoMirrored.Outlined.HelpOutline ,
-        ) ,
+            title = R.string.help_and_feedback,
+            selectedIcon = Icons.AutoMirrored.Outlined.HelpOutline,
+        ),
         NavigationDrawerItem(
-            title = R.string.updates ,
-            selectedIcon = Icons.AutoMirrored.Outlined.EventNote ,
-        ) ,
+            title = R.string.updates,
+            selectedIcon = Icons.AutoMirrored.Outlined.EventNote,
+        ),
         NavigationDrawerItem(
-            title = R.string.share , selectedIcon = Icons.Outlined.Share
-        ) ,
+            title = R.string.share, selectedIcon = Icons.Outlined.Share
+        ),
     )
-    val drawerState : DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val scope : CoroutineScope = rememberCoroutineScope()
-    val navController : NavHostController = rememberNavController()
-    val context : Context = LocalContext.current
-    val view : View = LocalView.current
-    val dataStore : DataStore = DataStore.getInstance(context)
-    val startupPage : String =
-            dataStore.getStartupPage().collectAsState(initial = BottomBarRoutes.HOME).value
-    val showLabels : Boolean =
-            dataStore.getShowBottomBarLabels().collectAsState(initial = true).value
-    val selectedItemIndex : Int by rememberSaveable { mutableIntStateOf(value = - 1) }
+    val drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val scope: CoroutineScope = rememberCoroutineScope()
+    val navController: NavHostController = rememberNavController()
+    val context: Context = LocalContext.current
+    val view: View = LocalView.current
+    val dataStore: DataStore = DataStore.getInstance(context)
+    val startupPage: String =
+        dataStore.getStartupPage().collectAsState(initial = BottomBarRoutes.HOME).value
+    val showLabels: Boolean =
+        dataStore.getShowBottomBarLabels().collectAsState(initial = true).value
+    val selectedItemIndex: Int by rememberSaveable { mutableIntStateOf(value = -1) }
     ModalNavigationDrawer(
         modifier = Modifier.hapticDrawerSwipe(drawerState),
-        drawerState = drawerState , drawerContent = {
-        ModalDrawerSheet {
-            Spacer(modifier = Modifier.height(16.dp))
-            drawerItems.forEachIndexed { index , item ->
-                val title: String = stringResource(id = item.title)
-                NavigationDrawerItem(label = { Text(text = title) } ,
-                                     selected = index == selectedItemIndex ,
-                                     onClick = {
-                                         when (item.title) {
+        drawerState = drawerState, drawerContent = {
+            ModalDrawerSheet {
+                Spacer(modifier = Modifier.height(16.dp))
+                drawerItems.forEachIndexed { index, item ->
+                    val title: String = stringResource(id = item.title)
+                    NavigationDrawerItem(label = { Text(text = title) },
+                        selected = index == selectedItemIndex,
+                        onClick = {
+                            when (item.title) {
 
-                                             R.string.image_optimizer -> {
-                                                 view.playSoundEffect(SoundEffectConstants.CLICK)
-                                                 IntentUtils.openActivity(
-                                                     context , ImagePickerActivity::class.java
-                                                 )
-                                             }
+                                R.string.image_optimizer -> {
+                                    view.playSoundEffect(SoundEffectConstants.CLICK)
+                                    IntentUtils.openActivity(
+                                        context, ImagePickerActivity::class.java
+                                    )
+                                }
 
-                                             R.string.settings -> {
-                                                 view.playSoundEffect(SoundEffectConstants.CLICK)
-                                                 IntentUtils.openActivity(
-                                                     context , SettingsActivity::class.java
-                                                 )
-                                             }
+                                R.string.settings -> {
+                                    view.playSoundEffect(SoundEffectConstants.CLICK)
+                                    IntentUtils.openActivity(
+                                        context, SettingsActivity::class.java
+                                    )
+                                }
 
-                                             R.string.help_and_feedback -> {
-                                                 view.playSoundEffect(SoundEffectConstants.CLICK)
-                                                 IntentUtils.openActivity(
-                                                     context , HelpActivity::class.java
-                                                 )
-                                             }
+                                R.string.help_and_feedback -> {
+                                    view.playSoundEffect(SoundEffectConstants.CLICK)
+                                    IntentUtils.openActivity(
+                                        context, HelpActivity::class.java
+                                    )
+                                }
 
-                                             R.string.updates -> {
-                                                 view.playSoundEffect(SoundEffectConstants.CLICK)
-                                                 IntentUtils.openUrl(
-                                                     context ,
-                                                     url = "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md"
-                                                 )
-                                             }
+                                R.string.updates -> {
+                                    view.playSoundEffect(SoundEffectConstants.CLICK)
+                                    IntentUtils.openUrl(
+                                        context,
+                                        url = "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md"
+                                    )
+                                }
 
-                                             R.string.share -> {
-                                                 view.playSoundEffect(SoundEffectConstants.CLICK)
-                                                 IntentUtils.shareApp(context)
-                                             }
-                                         }
-                                         scope.launch {
-                                             drawerState.close()
-                                         }
-                                     } ,
-                                     icon = {
-                                         Icon(
-                                             item.selectedIcon , contentDescription = title
-                                         )
-                                     } ,
-                                     badge = {
-                                         item.badgeCount?.let {
-                                             Text(text = item.badgeCount.toString())
-                                         }
-                                     } ,
-                                     modifier = Modifier
-                                         .padding(NavigationDrawerItemDefaults.ItemPadding)
-                                         .bounceClick()
-                )
-                if (item.title == R.string.image_optimizer) {
-                    HorizontalDivider(modifier = Modifier.padding(8.dp))
+                                R.string.share -> {
+                                    view.playSoundEffect(SoundEffectConstants.CLICK)
+                                    IntentUtils.shareApp(context)
+                                }
+                            }
+                            scope.launch {
+                                drawerState.close()
+                            }
+                        },
+                        icon = {
+                            Icon(
+                                item.selectedIcon, contentDescription = title
+                            )
+                        },
+                        badge = {
+                            item.badgeCount?.let {
+                                Text(text = item.badgeCount.toString())
+                            }
+                        },
+                        modifier = Modifier
+                            .padding(NavigationDrawerItemDefaults.ItemPadding)
+                            .bounceClick()
+                    )
+                    if (item.title == R.string.image_optimizer) {
+                        HorizontalDivider(modifier = Modifier.padding(8.dp))
+                    }
                 }
             }
-        }
 
-    } , content = {
-        Scaffold(topBar = {
-            TopAppBar(title = {
-                Text(text = stringResource(id = R.string.app_name))
-            } , navigationIcon = {
-                IconButton(modifier = Modifier.bounceClick() , onClick = {
-                    view.playSoundEffect(SoundEffectConstants.CLICK)
-                    scope.launch {
-                        drawerState.apply {
-                            if (isClosed) open() else close()
+        }, content = {
+            Scaffold(topBar = {
+                TopAppBar(title = {
+                    Text(text = stringResource(id = R.string.app_name))
+                }, navigationIcon = {
+                    IconButton(modifier = Modifier.bounceClick(), onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
+                        scope.launch {
+                            drawerState.apply {
+                                if (isClosed) open() else close()
+                            }
+                        }
+                    }) {
+                        Icon(
+                            imageVector = Icons.Default.Menu,
+                            contentDescription = stringResource(id = R.string.navigation_drawer_open)
+                        )
+                    }
+                }, actions = {
+                    IconButton(modifier = Modifier.bounceClick(), onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
+                        IntentUtils.openActivity(context, SupportActivity::class.java)
+                    }) {
+                        Icon(
+                            Icons.Outlined.VolunteerActivism,
+                            contentDescription = stringResource(id = R.string.support_us)
+                        )
+                    }
+                })
+            }, bottomBar = {
+                Column {
+                    FullBannerAdsComposable(
+                        modifier = Modifier.fillMaxWidth(),
+                        dataStore = dataStore
+                    )
+                    NavigationBar {
+                        val navBackStackEntry: NavBackStackEntry? by navController.currentBackStackEntryAsState()
+                        val currentRoute: String? = navBackStackEntry?.destination?.route
+                        bottomBarItems.forEach { screen ->
+                            NavigationBarItem(modifier = Modifier.bounceClick(), icon = {
+                                val iconResource: ImageVector =
+                                    if (currentRoute == screen.route) screen.selectedIcon else screen.icon
+                                Icon(iconResource, contentDescription = null)
+                            },
+
+
+                                label = {
+                                    if (showLabels) Text(
+                                        text = stringResource(
+                                            id = screen.title
+                                        )
+                                    )
+                                },
+                                selected = currentRoute == screen.route,
+                                onClick = {
+                                    view.playSoundEffect(SoundEffectConstants.CLICK)
+                                    navController.navigate(screen.route) {
+                                        popUpTo(navController.graph.startDestinationId)
+                                        launchSingleTop = true
+                                    }
+                                })
                         }
                     }
-                }) {
-                    Icon(
-                        imageVector = Icons.Default.Menu ,
-                        contentDescription = stringResource(id = R.string.navigation_drawer_open)
-                    )
                 }
-            } , actions = {
-                IconButton(modifier = Modifier.bounceClick() , onClick = {
-                    view.playSoundEffect(SoundEffectConstants.CLICK)
-                    IntentUtils.openActivity(context , SupportActivity::class.java)
-                }) {
-                    Icon(
-                        Icons.Outlined.VolunteerActivism ,
-                        contentDescription = stringResource(id = R.string.support_us)
-                    )
-                }
-            })
-        } , bottomBar = {
-            Column {
-                FullBannerAdsComposable(modifier = Modifier.fillMaxWidth() , dataStore = dataStore)
-                NavigationBar {
-                    val navBackStackEntry : NavBackStackEntry? by navController.currentBackStackEntryAsState()
-                    val currentRoute : String? = navBackStackEntry?.destination?.route
-                    bottomBarItems.forEach { screen ->
-                        NavigationBarItem(modifier = Modifier.bounceClick(), icon = {
-                            val iconResource : ImageVector =
-                                    if (currentRoute == screen.route) screen.selectedIcon else screen.icon
-                            Icon(iconResource , contentDescription = null)
-                        } ,
-
-
-                                          label = {
-                                              if (showLabels) Text(
-                                                  text = stringResource(
-                                                      id = screen.title
-                                                  )
-                                              )
-                                          } ,
-                                          selected = currentRoute == screen.route ,
-                                          onClick = {
-                                              view.playSoundEffect(SoundEffectConstants.CLICK)
-                                              navController.navigate(screen.route) {
-                                                  popUpTo(navController.graph.startDestinationId)
-                                                  launchSingleTop = true
-                                              }
-                                          })
+            }) { paddingValues ->
+                NavHost(navController, startDestination = startupPage) {
+                    composable(BottomNavigationScreen.Home.route) {
+                        Box(modifier = Modifier.padding(paddingValues)) {
+                            HomeScreen()
+                        }
+                    }
+                    composable(BottomNavigationScreen.AppManager.route) {
+                        Box(modifier = Modifier.padding(paddingValues)) {
+                            AppManagerScreen()
+                        }
+                    }
+                    composable(BottomNavigationScreen.MemoryManager.route) {
+                        Box(modifier = Modifier.padding(paddingValues)) {
+                            MemoryManagerComposable()
+                        }
                     }
                 }
             }
-        }) { innerPadding ->
-            NavHost(navController , startDestination = startupPage) {
-                composable(BottomNavigationScreen.Home.route) {
-                    Box(modifier = Modifier.padding(innerPadding)) {
-                        HomeScreen()
-                    }
-                }
-                composable(BottomNavigationScreen.AppManager.route) {
-                    Box(modifier = Modifier.padding(innerPadding)) {
-                        AppManagerScreen()
-                    }
-                }
-                composable(BottomNavigationScreen.MemoryManager.route) {
-                    Box(modifier = Modifier.padding(innerPadding)) {
-                        MemoryManagerComposable()
-                    }
-                }
-            }
-        }
-    })
+        })
 }

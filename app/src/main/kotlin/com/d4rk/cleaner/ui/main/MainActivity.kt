@@ -20,10 +20,7 @@ import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.notifications.managers.AppUpdateNotificationsManager
 import com.d4rk.cleaner.notifications.managers.AppUsageNotificationsManager
 import com.d4rk.cleaner.ui.settings.display.theme.style.AppTheme
-import com.d4rk.cleaner.ui.startup.StartupActivity
-import com.d4rk.cleaner.utils.IntentUtils
 import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateInfo
@@ -32,9 +29,6 @@ import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.ActivityResult
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.crashlytics.FirebaseCrashlytics
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
@@ -54,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         dataStore = DataStore.getInstance(this@MainActivity)
         MobileAds.initialize(this@MainActivity)
-        startupScreen()
         setupUpdateNotifications()
         setContent {
             AppTheme {
@@ -65,7 +58,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        setupSettings()
     }
 
     override fun onResume() {
@@ -116,7 +108,7 @@ class MainActivity : AppCompatActivity() {
             when (resultCode) {
                 RESULT_OK -> {
                     val snackbar: Snackbar = Snackbar.make(
-                        findViewById(android.R.id.content) , R.string.snack_app_updated ,
+                        findViewById(android.R.id.content), R.string.snack_app_updated,
                         Snackbar.LENGTH_LONG
                     ).setAction(android.R.string.ok, null)
                     snackbar.show()
@@ -180,20 +172,20 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             } catch (e: Exception) {
-                if (! BuildConfig.DEBUG) {
+                if (!BuildConfig.DEBUG) {
                     when (e) {
                         is NoConnectionError, is TimeoutError -> {
                             Snackbar.make(
-                                findViewById(android.R.id.content) ,
-                                getString(R.string.snack_network_error) ,
+                                findViewById(android.R.id.content),
+                                getString(R.string.snack_network_error),
                                 Snackbar.LENGTH_LONG
                             ).show()
                         }
 
                         else -> {
                             Snackbar.make(
-                                findViewById(android.R.id.content) ,
-                                getString(R.string.snack_general_error) ,
+                                findViewById(android.R.id.content),
+                                getString(R.string.snack_general_error),
                                 Snackbar.LENGTH_LONG
                             ).show()
                         }
@@ -212,7 +204,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun showUpdateFailedSnackbar() {
         val snackbar: Snackbar = Snackbar.make(
-            findViewById(android.R.id.content) , R.string.snack_update_failed , Snackbar.LENGTH_LONG
+            findViewById(android.R.id.content), R.string.snack_update_failed, Snackbar.LENGTH_LONG
         ).setAction(R.string.try_again) {
             checkForFlexibleUpdate()
         }
@@ -222,38 +214,5 @@ class MainActivity : AppCompatActivity() {
     private fun setupUpdateNotifications() {
         appUpdateManager = AppUpdateManagerFactory.create(this)
         appUpdateNotificationsManager = AppUpdateNotificationsManager(this)
-    }
-
-    /**
-     * Configures application settings based on data stored in a DataStore.
-     *
-     * This function uses a lifecycle coroutine scope to asynchronously retrieve the value of `usageAndDiagnostics`
-     * from the DataStore. It then adjusts the Firebase Analytics and Crashlytics collection settings based on the retrieved value.
-     *
-     * If `usageAndDiagnostics` is enabled, both Firebase Analytics and Crashlytics data collection will be enabled. If it's not, data collection will be disabled.
-     *
-     * @see androidx.lifecycle.lifecycleScope
-     * @see androidx.datastore.preferences.core.DataStore
-     * @see com.google.firebase.analytics.FirebaseAnalytics
-     * @see com.google.firebase.crashlytics.FirebaseCrashlytics
-     */
-    private fun setupSettings() {
-        lifecycleScope.launch {
-            val isEnabled : Boolean = dataStore.usageAndDiagnostics.first()
-            FirebaseAnalytics.getInstance(this@MainActivity)
-                .setAnalyticsCollectionEnabled(isEnabled)
-            FirebaseCrashlytics.getInstance().isCrashlyticsCollectionEnabled = isEnabled
-        }
-    }
-
-    private fun startupScreen() {
-        lifecycleScope.launch {
-            if (dataStore.startup.first()) {
-                dataStore.saveStartup(isFirstTime = false)
-                IntentUtils.openActivity(
-                    this@MainActivity , StartupActivity::class.java
-                )
-            }
-        }
     }
 }

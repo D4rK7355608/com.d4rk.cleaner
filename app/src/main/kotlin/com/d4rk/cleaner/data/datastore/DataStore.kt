@@ -29,7 +29,8 @@ class DataStore(context: Context) {
     }
 
     // Last used app notifications
-    private val lastUsedKey = longPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_LAST_USED)
+    private val lastUsedKey =
+        longPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_LAST_USED)
     val lastUsed: Flow<Long> = dataStore.data.map { preferences ->
         preferences[lastUsedKey] ?: 0
     }
@@ -41,7 +42,8 @@ class DataStore(context: Context) {
     }
 
     // Startup
-    private val startupKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_STARTUP)
+    private val startupKey =
+        booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_STARTUP)
     val startup: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[startupKey] ?: true
     }
@@ -54,7 +56,8 @@ class DataStore(context: Context) {
 
     // Display
     val themeModeState = mutableStateOf(value = "follow_system")
-    private val themeModeKey = stringPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_THEME_MODE)
+    private val themeModeKey =
+        stringPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_THEME_MODE)
     val themeMode: Flow<String> = dataStore.data.map { preferences ->
         preferences[themeModeKey] ?: "follow_system"
     }
@@ -65,7 +68,8 @@ class DataStore(context: Context) {
         }
     }
 
-    private val amoledModeKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_AMOLED_MODE)
+    private val amoledModeKey =
+        booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_AMOLED_MODE)
     val amoledMode: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[amoledModeKey] ?: false
     }
@@ -76,7 +80,8 @@ class DataStore(context: Context) {
         }
     }
 
-    private val dynamicColorsKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DYNAMIC_COLORS)
+    private val dynamicColorsKey =
+        booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DYNAMIC_COLORS)
     val dynamicColors: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[dynamicColorsKey] ?: true
     }
@@ -87,7 +92,8 @@ class DataStore(context: Context) {
         }
     }
 
-    private val bouncyButtonsKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_BOUNCY_BUTTONS)
+    private val bouncyButtonsKey =
+        booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_BOUNCY_BUTTONS)
     val bouncyButtons: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[bouncyButtonsKey] ?: true
     }
@@ -100,23 +106,27 @@ class DataStore(context: Context) {
 
     fun getStartupPage(): Flow<String> {
         return dataStore.data.map { preferences ->
-            preferences[stringPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_STARTUP_PAGE)] ?: BottomBarRoutes.HOME
+            preferences[stringPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_STARTUP_PAGE)]
+                ?: BottomBarRoutes.HOME
         }
     }
 
     suspend fun saveStartupPage(startupPage: String) {
         dataStore.edit { preferences ->
-            preferences[stringPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_STARTUP_PAGE)] = startupPage
+            preferences[stringPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_STARTUP_PAGE)] =
+                startupPage
         }
     }
 
     fun getShowBottomBarLabels(): Flow<Boolean> {
         return dataStore.data.map { preferences ->
-            preferences[booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_SHOW_BOTTOM_BAR_LABELS)] ?: true
+            preferences[booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_SHOW_BOTTOM_BAR_LABELS)]
+                ?: true
         }
     }
 
-    private val languageKey = stringPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_LANGUAGE)
+    private val languageKey =
+        stringPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_LANGUAGE)
 
     fun getLanguage(): Flow<String> = dataStore.data.map { preferences ->
         preferences[languageKey] ?: "en"
@@ -129,7 +139,8 @@ class DataStore(context: Context) {
     }
 
     // Cleaning
-    private val genericFilterKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_GENERIC_FILTER)
+    private val genericFilterKey =
+        booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_GENERIC_FILTER)
     val genericFilter: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[genericFilterKey] ?: false
     }
@@ -140,7 +151,8 @@ class DataStore(context: Context) {
         }
     }
 
-    private val deleteEmptyFoldersKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_EMPTY_FOLDERS)
+    private val deleteEmptyFoldersKey =
+        booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_EMPTY_FOLDERS)
     val deleteEmptyFolders: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[deleteEmptyFoldersKey] ?: true
     }
@@ -151,7 +163,8 @@ class DataStore(context: Context) {
         }
     }
 
-    private val deleteArchivesKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_ARCHIVES)
+    private val deleteArchivesKey =
+        booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_ARCHIVES)
     val deleteArchives: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[deleteArchivesKey] ?: false
     }
@@ -162,7 +175,8 @@ class DataStore(context: Context) {
         }
     }
 
-    private val deleteInvalidMediaKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_INVALID_MEDIA)
+    private val deleteInvalidMediaKey =
+        booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_INVALID_MEDIA)
     val deleteInvalidMedia: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[deleteInvalidMediaKey] ?: false
     }
@@ -173,7 +187,8 @@ class DataStore(context: Context) {
         }
     }
 
-    private val deleteCorpseFilesKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_CORPSE_FILES)
+    private val deleteCorpseFilesKey =
+        booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_CORPSE_FILES)
     val deleteCorpseFiles: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[deleteCorpseFilesKey] ?: false
     }
@@ -184,7 +199,8 @@ class DataStore(context: Context) {
         }
     }
 
-    private val deleteApkFilesKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_APK_FILES)
+    private val deleteApkFilesKey =
+        booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_APK_FILES)
     val deleteApkFiles: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[deleteApkFilesKey] ?: true
     }
@@ -195,7 +211,8 @@ class DataStore(context: Context) {
         }
     }
 
-    private val deleteAudioFilesKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_AUDIO_FILES)
+    private val deleteAudioFilesKey =
+        booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_AUDIO_FILES)
     val deleteAudioFiles: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[deleteAudioFilesKey] ?: true
     }
@@ -206,7 +223,8 @@ class DataStore(context: Context) {
         }
     }
 
-    private val deleteVideoFilesKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_VIDEO_FILES)
+    private val deleteVideoFilesKey =
+        booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_VIDEO_FILES)
     val deleteVideoFiles: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[deleteVideoFilesKey] ?: true
     }
@@ -217,7 +235,8 @@ class DataStore(context: Context) {
         }
     }
 
-    private val deleteImageFilesKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_IMAGE_FILES)
+    private val deleteImageFilesKey =
+        booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_DELETE_IMAGE_FILES)
     val deleteImageFiles: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[deleteImageFilesKey] ?: true
     }
@@ -228,7 +247,8 @@ class DataStore(context: Context) {
         }
     }
 
-    private val clipboardCleanKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_CLIPBOARD_CLEAN)
+    private val clipboardCleanKey =
+        booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_CLIPBOARD_CLEAN)
     val clipboardClean: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[clipboardCleanKey] ?: false
     }
@@ -240,7 +260,8 @@ class DataStore(context: Context) {
     }
 
     // Usage and Diagnostics
-    private val usageAndDiagnosticsKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_USAGE_AND_DIAGNOSTICS)
+    private val usageAndDiagnosticsKey =
+        booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_USAGE_AND_DIAGNOSTICS)
     val usageAndDiagnostics: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[usageAndDiagnosticsKey] ?: true
     }
