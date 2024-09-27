@@ -13,7 +13,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.io.File
 
 class HomeViewModel(application: Application) : BaseViewModel(application) {
@@ -34,7 +33,7 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
     }
 
     fun analyze() {
-        viewModelScope.launch(coroutineExceptionHandler) {
+        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             _uiState.value = _uiState.value.copy(isAnalyzing = true)
             repository.analyzeFiles { filteredFiles ->
                 _uiState.value = _uiState.value.copy(
@@ -42,6 +41,23 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
                     isAnalyzing = false,
                     showCleaningComposable = true
                 )
+            }
+        }
+    }
+
+    fun getVideoThumbnail(filePath: String, context: Context, callback: (File?) -> Unit) {
+        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
+            val bitmap = repository.getVideoThumbnail(filePath)
+            if (bitmap != null) {
+                val thumbnailFile = File(context.cacheDir, "thumbnail_${filePath.hashCode()}.png")
+                val savedSuccessfully = repository.saveBitmapToFile(bitmap, thumbnailFile)
+                if (savedSuccessfully) {
+                    callback(thumbnailFile) // Update state only once
+                } else {
+                    callback(null)
+                }
+            } else {
+                callback(null)
             }
         }
     }
@@ -57,7 +73,7 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
     }
 
     fun toggleSelectAllFiles() {
-        viewModelScope.launch(coroutineExceptionHandler) {
+        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             val newState = !_uiState.value.allFilesSelected
             _uiState.value = _uiState.value.copy(
                 allFilesSelected = newState,
@@ -81,7 +97,7 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
             return
         }
 
-        viewModelScope.launch(coroutineExceptionHandler) {
+        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             val filesToDelete = _uiState.value.fileSelectionStates.filter { it.value }.keys
             repository.deleteFiles(filesToDelete)
 
@@ -92,27 +108,6 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
                 fileSelectionStates = emptyMap()
             )
             updateStorageInfo()
-        }
-    }
-
-    fun getVideoThumbnail(filePath: String, context: Context, callback: (File?) -> Unit) {
-        viewModelScope.launch(coroutineExceptionHandler) {
-            val bitmap = repository.getVideoThumbnail(filePath)
-            if (bitmap != null) {
-                val thumbnailFile = File(context.cacheDir, "thumbnail_${filePath.hashCode()}.png")
-                val savedSuccessfully = repository.saveBitmapToFile(bitmap, thumbnailFile)
-                withContext(Dispatchers.Main) {
-                    if (savedSuccessfully) {
-                        callback(thumbnailFile)
-                    } else {
-                        callback(null)
-                    }
-                }
-            } else {
-                withContext(Dispatchers.Main) {
-                    callback(null)
-                }
-            }
         }
     }
 

@@ -6,7 +6,6 @@ import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.cleaning.FileScanner
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import java.io.File
 
@@ -26,9 +25,9 @@ class HomeRepository(
 
     suspend fun analyzeFiles(onSuccess: (List<File>) -> Unit) {
         withContext(Dispatchers.IO) {
-            async { fileScanner.startScanning() }.await()
-            val filteredFiles = async { fileScanner.getFilteredFiles() }.await()
-            withContext(Dispatchers.Main) {
+            fileScanner.startScanning()
+            val filteredFiles = fileScanner.getFilteredFiles()
+            withContext(Dispatchers.Main) { // Switch to Main for callback
                 onSuccess(filteredFiles)
             }
         }
