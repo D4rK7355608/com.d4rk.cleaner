@@ -80,7 +80,7 @@ fun CircularDeterminateIndicator(
             colors = ButtonDefaults.filledTonalButtonColors()
         ) {
             Text(
-                text = "Click here to clean",
+                text = "Quick Scan",
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.titleLarge
             )

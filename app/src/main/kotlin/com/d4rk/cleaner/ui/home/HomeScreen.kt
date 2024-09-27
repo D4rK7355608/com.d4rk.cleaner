@@ -18,9 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
@@ -69,6 +67,7 @@ import com.d4rk.cleaner.ui.dialogs.ErrorAlertDialog
 import com.d4rk.cleaner.ui.dialogs.RescanAlertDialog
 import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.cleaning.getFileIcon
+import com.d4rk.cleaner.utils.compose.NonLazyGrid
 import com.d4rk.cleaner.utils.compose.bounceClick
 import com.d4rk.cleaner.utils.compose.components.CircularDeterminateIndicator
 import com.d4rk.cleaner.utils.compose.hapticPagerSwipe
@@ -76,6 +75,9 @@ import com.google.common.io.Files.getFileExtension
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Composable
 fun HomeScreen() {
@@ -146,15 +148,30 @@ fun AnalyzeComposable(imageLoader: ImageLoader) {
     val context = LocalContext.current
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
 
-    // TODO: Add string resources
-    val groupedFiles = uiState.scannedFiles.groupBy { file ->
-        when (file.extension.lowercase()) {
-            in context.resources.getStringArray(R.array.apk_extensions) -> "APKs"
-            in context.resources.getStringArray(R.array.image_extensions) -> "Images"
-            in context.resources.getStringArray(R.array.video_extensions) -> "Videos"
-            in context.resources.getStringArray(R.array.audio_extensions) -> "Audios"
-            in context.resources.getStringArray(R.array.archive_extensions) -> "Archives"
-            else -> "Others"
+    val apkExtensions = remember { context.resources.getStringArray(R.array.apk_extensions) }
+    val imageExtensions = remember { context.resources.getStringArray(R.array.image_extensions) }
+    val videoExtensions = remember { context.resources.getStringArray(R.array.video_extensions) }
+    val audioExtensions = remember { context.resources.getStringArray(R.array.audio_extensions) }
+    val archiveExtensions =
+        remember { context.resources.getStringArray(R.array.archive_extensions) }
+
+    val groupedFiles = remember(
+        uiState.scannedFiles,
+        apkExtensions,
+        imageExtensions,
+        videoExtensions,
+        audioExtensions,
+        archiveExtensions
+    ) {
+        uiState.scannedFiles.groupBy { file ->
+            when (file.extension.lowercase()) {
+                in apkExtensions -> "APKs"
+                in imageExtensions -> "Images"
+                in videoExtensions -> "Videos"
+                in audioExtensions -> "Audios"
+                in archiveExtensions -> "Archives"
+                else -> "Others"
+            }
         }
     }
 
@@ -213,18 +230,57 @@ fun AnalyzeComposable(imageLoader: ImageLoader) {
                 ) { page ->
                     val filesForCurrentPage = groupedFiles[tabs[page]] ?: emptyList()
 
-                    LazyVerticalGrid(
-                        columns = GridCells.Fixed(count = 3),
-                        verticalArrangement = Arrangement.spacedBy(8.dp),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    val filesByDate = filesForCurrentPage.groupBy { file ->
+                        SimpleDateFormat(
+                            "yyyy-MM-dd",
+                            Locale.getDefault()
+                        ).format(Date(file.lastModified()))
+                    }
+
+                    LazyColumn(
                         modifier = Modifier
-                            .padding(8.dp)
                             .fillMaxSize(),
                     ) {
-                        items(
-                            items = filesForCurrentPage,
-                            key = { file -> file.absolutePath }) { file ->
-                            FileCard(file = file, viewModel = viewModel, imageLoader = imageLoader)
+                        filesByDate.forEach { (date, files) ->
+                            item(key = date) {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 8.dp, vertical = 4.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.SpaceBetween
+                                ) {
+                                    Text(modifier = Modifier.padding(start = 8.dp), text = date)
+                                    val allFilesForDateSelected =
+                                        files.all { uiState.fileSelectionStates[it] == true }
+                                    Checkbox(
+                                        checked = allFilesForDateSelected,
+                                        onCheckedChange = { checked ->
+                                            files.forEach { file ->
+                                                // viewModel.selectFile(file, checked)
+                                            }
+                                        }
+                                    )
+                                }
+                            }
+
+                            item(key = "$date-grid") {
+                                Box(
+                                    modifier = Modifier.fillMaxSize()
+                                ) {
+                                    NonLazyGrid(
+                                        columns = 3,
+                                        itemCount = files.size,
+                                        modifier = Modifier.padding(horizontal = 8.dp)
+                                    ) { index ->
+                                        FileCard(
+                                            file = files[index],
+                                            viewModel = viewModel,
+                                            imageLoader = imageLoader
+                                        )
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -251,10 +307,7 @@ fun AnalyzeComposable(imageLoader: ImageLoader) {
             Text(
                 text = statusText, color = statusColor, modifier = Modifier.animateContentSize()
             )
-            SelectAllComposable(
-                checked = uiState.allFilesSelected,
-                onCheckedChange = { viewModel.selectAllFiles(it) },
-            )
+            SelectAllComposable(viewModel)
         }
     }
 }
@@ -262,7 +315,7 @@ fun AnalyzeComposable(imageLoader: ImageLoader) {
 @Composable
 fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
     val context: Context = LocalContext.current
-    val fileExtension: String = getFileExtension(file.name)
+    val fileExtension: String = remember(file.name) { getFileExtension(file.name) }
 
     var thumbnailFile: File? by remember(file.absolutePath) { mutableStateOf(value = null) }
 
@@ -272,6 +325,11 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
         }
     }
 
+    val imageExtensions =
+        remember { context.resources.getStringArray(R.array.image_extensions).toList() }
+    val videoExtensions =
+        remember { context.resources.getStringArray(R.array.video_extensions).toList() }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -280,7 +338,7 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             when (fileExtension) {
-                in context.resources.getStringArray(R.array.image_extensions).toList() -> {
+                in imageExtensions -> {
                     AsyncImage(
                         model = remember(file) {
                             ImageRequest.Builder(context).data(file).size(64)
@@ -293,7 +351,7 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
                     )
                 }
 
-                in context.resources.getStringArray(R.array.video_extensions).toList() -> {
+                in videoExtensions -> {
                     if (thumbnailFile != null) {
                         AsyncImage(
                             model = thumbnailFile,
@@ -313,8 +371,14 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
                 }
 
                 else -> {
+                    val fileIcon = remember(fileExtension) {
+                        getFileIcon(
+                            fileExtension,
+                            context
+                        )
+                    }
                     Icon(
-                        painter = painterResource(getFileIcon(fileExtension, context)),
+                        painter = painterResource(fileIcon),
                         contentDescription = null,
                         modifier = Modifier
                             .size(24.dp)
@@ -358,8 +422,10 @@ fun FileCard(file: File, viewModel: HomeViewModel, imageLoader: ImageLoader) {
  */
 @Composable
 fun SelectAllComposable(
-    checked: Boolean, onCheckedChange: (Boolean) -> Unit
+    viewModel: HomeViewModel
 ) {
+    val uiState: UiHomeModel by viewModel.uiState.collectAsState()
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -370,14 +436,15 @@ fun SelectAllComposable(
         val interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
         FilterChip(
             modifier = Modifier.bounceClick(),
-            selected = checked,
+            selected = uiState.allFilesSelected,
             onClick = {
-                onCheckedChange(!checked)
+                viewModel.toggleSelectAllFiles()
             },
             label = { Text(stringResource(id = R.string.select_all)) },
             leadingIcon = {
                 AnimatedContent(
-                    targetState = checked, label = "Checkmark Animation"
+                    targetState = uiState.allFilesSelected,
+                    label = "Checkmark Animation"
                 ) { targetChecked ->
                     if (targetChecked) {
                         Icon(

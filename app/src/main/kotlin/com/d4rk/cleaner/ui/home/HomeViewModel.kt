@@ -47,19 +47,30 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
     }
 
     fun onFileSelectionChange(file: File, isChecked: Boolean) {
-        val updatedFileSelectionStates = _uiState.value.fileSelectionStates + (file to isChecked)
-        _uiState.value = _uiState.value.copy(fileSelectionStates = updatedFileSelectionStates,
-            selectedFileCount = updatedFileSelectionStates.count { it.value },
-            allFilesSelected = updatedFileSelectionStates.all { it.value } && updatedFileSelectionStates.isNotEmpty())
+        viewModelScope.launch(coroutineExceptionHandler) {
+            val updatedFileSelectionStates =
+                _uiState.value.fileSelectionStates + (file to isChecked)
+            _uiState.value = _uiState.value.copy(fileSelectionStates = updatedFileSelectionStates,
+                selectedFileCount = updatedFileSelectionStates.count { it.value },
+                allFilesSelected = updatedFileSelectionStates.all { it.value } && updatedFileSelectionStates.isNotEmpty())
+        }
     }
 
-    fun selectAllFiles(selectAll: Boolean) {
+    fun toggleSelectAllFiles() {
         viewModelScope.launch(coroutineExceptionHandler) {
-            val newFileSelectionStates = _uiState.value.scannedFiles.associateWith { selectAll }
+            val newState = !_uiState.value.allFilesSelected
             _uiState.value = _uiState.value.copy(
-                allFilesSelected = selectAll,
-                fileSelectionStates = newFileSelectionStates,
-                selectedFileCount = if (selectAll) newFileSelectionStates.size else 0
+                allFilesSelected = newState,
+                fileSelectionStates = if (newState) {
+                    _uiState.value.scannedFiles.associateWith { true }
+                } else {
+                    emptyMap()
+                },
+                selectedFileCount = if (newState) {
+                    _uiState.value.scannedFiles.size
+                } else {
+                    0
+                }
             )
         }
     }
