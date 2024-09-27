@@ -1,6 +1,7 @@
 package com.d4rk.cleaner.ui.home.repository
 
 import android.app.Application
+import android.content.Context
 import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
@@ -34,19 +35,19 @@ abstract class HomeRepositoryImplementation(val application: Application) {
         }
     }
 
-    fun saveBitmapToFile(bitmap: Bitmap, file: File): Boolean {
-        return try {
-            val outputStream = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-            outputStream.flush()
-            outputStream.close()
-            true
-        } catch (e: Exception) {
-            false
+    fun getVideoThumbnail(filePath: String, context: Context): File? {
+        val bitmap = getVideoThumbnailFromPath(filePath)
+        if (bitmap != null) {
+            val thumbnailFile = File(context.cacheDir, "thumbnail_${filePath.hashCode()}.png")
+            val savedSuccessfully = saveBitmapToFile(bitmap, thumbnailFile)
+            if (savedSuccessfully) {
+                return thumbnailFile
+            }
         }
+        return null
     }
 
-    fun getVideoThumbnail(filePath: String): Bitmap? {
+    private fun getVideoThumbnailFromPath(filePath: String): Bitmap? {
         return try {
             val mediaMetadataRetriever = MediaMetadataRetriever()
             mediaMetadataRetriever.setDataSource(filePath)
@@ -55,6 +56,18 @@ abstract class HomeRepositoryImplementation(val application: Application) {
             frame
         } catch (e: Exception) {
             null
+        }
+    }
+
+    private fun saveBitmapToFile(bitmap: Bitmap , file: File): Boolean {
+        return try {
+            val outputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+            outputStream.flush()
+            outputStream.close()
+            true
+        } catch (e: Exception) {
+            false
         }
     }
 }

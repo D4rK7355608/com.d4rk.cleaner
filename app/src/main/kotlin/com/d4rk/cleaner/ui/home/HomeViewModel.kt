@@ -15,10 +15,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.io.File
 
-class HomeViewModel(application: Application) : BaseViewModel(application) {
-    private val repository = HomeRepository(DataStore(application), application)
+class HomeViewModel(application : Application) : BaseViewModel(application) {
+    private val repository = HomeRepository(DataStore(application) , application)
     private val _uiState = MutableStateFlow(UiHomeModel())
-    val uiState: StateFlow<UiHomeModel> = _uiState
+    val uiState : StateFlow<UiHomeModel> = _uiState
 
     init {
         updateStorageInfo()
@@ -37,62 +37,73 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
             _uiState.value = _uiState.value.copy(isAnalyzing = true)
             repository.analyzeFiles { filteredFiles ->
                 _uiState.value = _uiState.value.copy(
-                    scannedFiles = filteredFiles,
-                    isAnalyzing = false,
+                    scannedFiles = filteredFiles ,
+                    isAnalyzing = false ,
                     showCleaningComposable = true
                 )
             }
         }
     }
 
-    fun getVideoThumbnail(filePath: String, context: Context, callback: (File?) -> Unit) {
+    fun getVideoThumbnail(filePath : String , context : Context , callback : (File?) -> Unit) {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
-            val bitmap = repository.getVideoThumbnail(filePath)
-            if (bitmap != null) {
-                val thumbnailFile = File(context.cacheDir, "thumbnail_${filePath.hashCode()}.png")
-                val savedSuccessfully = repository.saveBitmapToFile(bitmap, thumbnailFile)
-                if (savedSuccessfully) {
-                    callback(thumbnailFile)
-                } else {
-                    callback(null)
-                }
-            } else {
-                callback(null)
+            repository.getVideoThumbnail(filePath , context) { thumbnailFile ->
+                callback(thumbnailFile)
             }
         }
     }
 
-    fun onFileSelectionChange(file: File, isChecked: Boolean) {
+    fun onFileSelectionChange(file : File , isChecked : Boolean) {
         viewModelScope.launch(coroutineExceptionHandler) {
             val updatedFileSelectionStates =
-                _uiState.value.fileSelectionStates + (file to isChecked)
-            _uiState.value = _uiState.value.copy(fileSelectionStates = updatedFileSelectionStates,
-                selectedFileCount = updatedFileSelectionStates.count { it.value },
-                allFilesSelected = updatedFileSelectionStates.all { it.value } && updatedFileSelectionStates.isNotEmpty())
-        }
-    }
+                    _uiState.value.fileSelectionStates + (file to isChecked)
+            val newSelectedCount = updatedFileSelectionStates.count { it.value }
 
-    fun toggleSelectAllFiles() {
-        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
-            val newState = !_uiState.value.allFilesSelected
             _uiState.value = _uiState.value.copy(
-                allFilesSelected = newState,
-                fileSelectionStates = if (newState) {
-                    _uiState.value.scannedFiles.associateWith { true }
-                } else {
-                    emptyMap()
-                },
-                selectedFileCount = if (newState) {
-                    _uiState.value.scannedFiles.size
-                } else {
-                    0
+                fileSelectionStates = updatedFileSelectionStates ,
+                selectedFileCount = newSelectedCount ,
+                allFilesSelected = when {
+                    newSelectedCount == _uiState.value.scannedFiles.size && newSelectedCount > 0 -> {
+                        true
+                    }
+
+                    newSelectedCount == 0 -> {
+                        false
+                    }
+
+                    isChecked -> {
+                        _uiState.value.allFilesSelected
+                    }
+
+                    else -> {
+                        false
+                    }
                 }
             )
         }
     }
 
-    fun clean(activity: Activity) {
-        if (!PermissionsUtils.hasStoragePermissions(getApplication())) {
+    fun toggleSelectAllFiles() {
+        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
+            val newState = ! _uiState.value.allFilesSelected
+            _uiState.value = _uiState.value.copy(allFilesSelected = newState ,
+                                                 fileSelectionStates = if (newState) {
+                                                     _uiState.value.scannedFiles.associateWith { true }
+                                                 }
+                                                 else {
+                                                     emptyMap()
+                                                 } ,
+                                                 selectedFileCount = if (newState) {
+                                                     _uiState.value.scannedFiles.size
+                                                 }
+                                                 else {
+                                                     0
+                                                 })
+        }
+    }
+
+    fun clean(activity : Activity) {
+        if (! PermissionsUtils.hasStoragePermissions(getApplication())) {
             PermissionsUtils.requestStoragePermissions(activity)
             return
         }
@@ -102,9 +113,9 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
             repository.deleteFiles(filesToDelete)
 
             _uiState.value = _uiState.value.copy(
-                scannedFiles = uiState.value.scannedFiles.filterNot { filesToDelete.contains(it) },
-                selectedFileCount = 0,
-                allFilesSelected = false,
+                scannedFiles = uiState.value.scannedFiles.filterNot { filesToDelete.contains(it) } ,
+                selectedFileCount = 0 ,
+                allFilesSelected = false ,
                 fileSelectionStates = emptyMap()
             )
             updateStorageInfo()
@@ -114,7 +125,7 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
     fun rescan() {
         viewModelScope.launch(coroutineExceptionHandler) {
             _uiState.value =
-                _uiState.value.copy(showRescanDialog = false, scannedFiles = emptyList())
+                    _uiState.value.copy(showRescanDialog = false , scannedFiles = emptyList())
             analyze()
         }
     }

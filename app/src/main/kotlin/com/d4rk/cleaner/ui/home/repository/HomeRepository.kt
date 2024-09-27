@@ -1,7 +1,7 @@
 package com.d4rk.cleaner.ui.home.repository
 
 import android.app.Application
-import android.graphics.Bitmap
+import android.content.Context
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.cleaning.FileScanner
@@ -33,29 +33,20 @@ class HomeRepository(
         }
     }
 
+    suspend fun getVideoThumbnail(filePath: String , context: Context , onSuccess: (File?) -> Unit) {
+        withContext(Dispatchers.IO) {
+            val thumbnailFile = getVideoThumbnail(filePath, context)
+            withContext(Dispatchers.Main) {
+                onSuccess(thumbnailFile)
+            }
+        }
+    }
+
     suspend fun deleteFiles(filesToDelete: Set<File>, onSuccess: () -> Unit) {
         withContext(Dispatchers.IO) {
             deleteFiles(filesToDelete)
             withContext(Dispatchers.Main) {
                 onSuccess()
-            }
-        }
-    }
-
-    suspend fun saveBitmapToFile(bitmap: Bitmap, file: File, onSuccess: (Boolean) -> Unit) {
-        withContext(Dispatchers.IO) {
-            val success: Boolean = saveBitmapToFile(bitmap, file)
-            withContext(Dispatchers.Main) {
-                onSuccess(success)
-            }
-        }
-    }
-
-    suspend fun getVideoThumbnail(filePath: String, onSuccess: (Bitmap?) -> Unit) {
-        withContext(Dispatchers.IO) {
-            val thumbnail: Bitmap? = getVideoThumbnail(filePath)
-            withContext(Dispatchers.Main) {
-                onSuccess(thumbnail)
             }
         }
     }
