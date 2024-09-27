@@ -27,7 +27,7 @@ class HomeRepository(
         withContext(Dispatchers.IO) {
             fileScanner.startScanning()
             val filteredFiles = fileScanner.getFilteredFiles()
-            withContext(Dispatchers.Main) { // Switch to Main for callback
+            withContext(Dispatchers.Main) {
                 onSuccess(filteredFiles)
             }
         }

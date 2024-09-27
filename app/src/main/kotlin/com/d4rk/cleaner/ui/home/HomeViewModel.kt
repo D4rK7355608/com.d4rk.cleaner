@@ -52,7 +52,7 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
                 val thumbnailFile = File(context.cacheDir, "thumbnail_${filePath.hashCode()}.png")
                 val savedSuccessfully = repository.saveBitmapToFile(bitmap, thumbnailFile)
                 if (savedSuccessfully) {
-                    callback(thumbnailFile) // Update state only once
+                    callback(thumbnailFile)
                 } else {
                     callback(null)
                 }

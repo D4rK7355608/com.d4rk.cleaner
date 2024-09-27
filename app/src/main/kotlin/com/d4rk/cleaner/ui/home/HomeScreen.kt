@@ -66,6 +66,7 @@ import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.ui.dialogs.ErrorAlertDialog
 import com.d4rk.cleaner.ui.dialogs.RescanAlertDialog
 import com.d4rk.cleaner.utils.PermissionsUtils
+import com.d4rk.cleaner.utils.TimeHelper
 import com.d4rk.cleaner.utils.cleaning.getFileIcon
 import com.d4rk.cleaner.utils.compose.NonLazyGrid
 import com.d4rk.cleaner.utils.compose.bounceClick
@@ -165,12 +166,24 @@ fun AnalyzeComposable(imageLoader: ImageLoader) {
     ) {
         uiState.scannedFiles.groupBy { file ->
             when (file.extension.lowercase()) {
-                in apkExtensions -> "APKs"
-                in imageExtensions -> "Images"
-                in videoExtensions -> "Videos"
-                in audioExtensions -> "Audios"
-                in archiveExtensions -> "Archives"
-                else -> "Others"
+                in apkExtensions -> {
+                    return@groupBy "APKs"
+                }
+                in imageExtensions -> {
+                    return@groupBy "Images"
+                }
+                in videoExtensions -> {
+                    return@groupBy "Videos"
+                }
+                in audioExtensions -> {
+                    return@groupBy "Audios"
+                }
+                in archiveExtensions -> {
+                    return@groupBy "Archives"
+                }
+                else -> {
+                    return@groupBy "Others"
+                }
             }
         }
     }
@@ -239,25 +252,25 @@ fun AnalyzeComposable(imageLoader: ImageLoader) {
 
                     LazyColumn(
                         modifier = Modifier
-                            .fillMaxSize(),
+                                .fillMaxSize(),
                     ) {
                         filesByDate.forEach { (date, files) ->
                             item(key = date) {
                                 Row(
                                     modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(horizontal = 8.dp, vertical = 4.dp),
+                                            .fillMaxWidth()
+                                            .padding(horizontal = 8.dp, vertical = 4.dp),
                                     verticalAlignment = Alignment.CenterVertically,
                                     horizontalArrangement = Arrangement.SpaceBetween
                                 ) {
-                                    Text(modifier = Modifier.padding(start = 8.dp), text = date)
+                                    Text(modifier = Modifier.padding(start = 8.dp), text = TimeHelper.formatDate(Date(files[0].lastModified())))
                                     val allFilesForDateSelected =
-                                        files.all { uiState.fileSelectionStates[it] == true }
+                                            files.all { uiState.fileSelectionStates[it] == true }
                                     Checkbox(
                                         checked = allFilesForDateSelected,
-                                        onCheckedChange = { checked ->
+                                        onCheckedChange = { isChecked ->
                                             files.forEach { file ->
-                                                // viewModel.selectFile(file, checked)
+                                                viewModel.onFileSelectionChange(file, isChecked)
                                             }
                                         }
                                     )
