@@ -20,9 +20,9 @@ class AppCoreManager : MultiDexApplication(), Application.ActivityLifecycleCallb
     LifecycleObserver {
 
     private val dataStoreCoreManager: DataStoreCoreManager =
-        DataStoreCoreManager(this)
+        DataStoreCoreManager(context = this)
     private val adsCoreManager: AdsCoreManager =
-        AdsCoreManager(this)
+        AdsCoreManager(context = this)
 
     private enum class AppInitializationStage {
         DATA_STORE,
@@ -35,7 +35,7 @@ class AppCoreManager : MultiDexApplication(), Application.ActivityLifecycleCallb
     override fun onCreate() {
         super.onCreate()
         registerActivityLifecycleCallbacks(this)
-        ProcessLifecycleOwner.get().lifecycle.addObserver(this)
+        ProcessLifecycleOwner.get().lifecycle.addObserver(observer = this)
 
         CoroutineScope(Dispatchers.Main).launch {
             if (dataStoreCoreManager.initializeDataStore()) {
