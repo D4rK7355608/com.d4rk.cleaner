@@ -22,9 +22,11 @@
     <string name="rescan_title">Rescan?</string>
     <string name="rescan_message">Are you sure you want to scan again?</string>
     <string name="file_not_found">File not found.</string>
+    <string name="no_files_found">No files found</string>
+    <string name="activity_not_found">Activity not found.</string>
     <string name="security_error">A security error occurred. Please try again later.</string>
     <string name="io_error">An input/output error occurred. Please check your network connection or storage and try again.</string>
-    <string name="activity_not_found">Activity not found.</string>
+    <string name="illegal_argument_error">Invalid input or argument provided. Please check the information and try again.</string>
     <string name="unknown_error">An unknown error occurred.</string>
 
     <string name="app_manager">App Manager</string>
@@ -92,6 +94,16 @@
 
     <string name="dynamic_colors">Dynamic colors</string>
     <string name="summary_preference_settings_dynamic_colors">Apply colors from wallpapers to the app theme</string>
+
+    <string name="app_behavior">App behavior</string>
+    <string name="bounce_buttons">Bounce click</string>
+    <string name="summary_preference_settings_bounce_buttons">Applies a subtle bounce animation to all clickable elements when clicked</string>
+
+    <string name="navigation">Navigation</string>
+    <string name="startup_page">Startup page</string>
+    <string name="summary_preference_settings_startup_page">Choose the screen to be displayed when the app starts.</string>
+    <string name="dialog_startup_subtitle">Choose your preferred startup page:</string>
+    <string name="dialog_info_startup">Configures the initial screen presented to users upon launching the appli0cation. This setting influences the user\'s first interaction with the app and can be tailored to specific user segments or product goals.</string>
 
     <string name="language">Language</string>
     <string name="summary_preference_settings_language">Changes the language used in the app</string>
@@ -215,6 +227,7 @@
     <string name="device_model">Device Model:</string>
     <string name="android_version">Android Version:</string>
     <string name="api_level">API Level:</string>
+    <string name="snack_device_info_copied">Device info copied to clipboard</string>
 
     <string name="help_and_feedback">Help &amp; feedback</string>
     <string name="help">Help</string>
@@ -264,26 +277,6 @@
     <string name="summary_close">Are you sure you want to exit?</string>
     <string name="summary_require_restart">To take effect please restart the app!</string>
 
-
-
     <string name="snack_no_image">No image provided</string>
     <string name="snack_validate_file">Please select a valid file size</string>
-
-
-    <!--// home error-->
-    <string name="no_files_found">No files found</string>
-    <string name="illegal_argument_error">Invalid input or argument provided. Please check the information and try again.</string>
-
-    <!--  // settings-->
-    <string name="navigation">Navigation</string>
-    <string name="startup_page">Startup page</string>
-    <string name="summary_preference_settings_startup_page">Choose the screen to be displayed when the app starts.</string>
-    <string name="dialog_startup_subtitle">Choose your preferred startup page:</string>
-    <string name="dialog_info_startup">Configures the initial screen presented to users upon launching the appli0cation. This setting influences the user\'s first interaction with the app and can be tailored to specific user segments or product goals.</string>
-
-    <string name="app_behavior">App behavior</string>
-    <string name="bounce_buttons">Bounce click</string>
-    <string name="summary_preference_settings_bounce_buttons">Applies a subtle bounce animation to all clickable elements when clicked</string>
-
-    <string name="snack_device_info_copied">Device info copied to clipboard</string>
 </resources>
