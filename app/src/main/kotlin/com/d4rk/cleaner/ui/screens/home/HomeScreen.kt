@@ -318,7 +318,12 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
                         LazyColumn(
                             modifier = Modifier.fillMaxSize(),
                         ) {
-                            filesByDate.forEach { (date, files) ->
+
+                            val sortedDates = filesByDate.keys.sortedByDescending { dateString ->
+                                return@sortedByDescending SimpleDateFormat("yyyy-MM-dd" , Locale.getDefault()).parse(dateString)
+                            }
+                            sortedDates.forEach { date ->
+                                val files = filesByDate[date] ?: emptyList()
                                 item(key = date) {
                                     Row(
                                         modifier = Modifier
@@ -403,7 +408,7 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
                 OutlinedButton(
-                    enabled = enabled,
+                    enabled = false, // TODO: Currently false by default because there's no trash
                     onClick = {
                         // TODO: add trash
                     },
