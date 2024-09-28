@@ -271,6 +271,7 @@
 
 
     <!--// home error-->
+    <string name="no_files_found">No files found</string>
     <string name="illegal_argument_error">Invalid input or argument provided. Please check the information and try again.</string>
 
     <!--  // settings-->

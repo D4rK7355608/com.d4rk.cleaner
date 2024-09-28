@@ -12,12 +12,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
@@ -26,6 +29,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.DeleteForever
+import androidx.compose.material.icons.outlined.FolderOff
+import androidx.compose.material.icons.outlined.Refresh
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
@@ -33,6 +42,7 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
@@ -148,6 +158,7 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
     val viewModel : HomeViewModel = viewModel()
     val uiState : UiHomeModel by viewModel.uiState.collectAsState()
     val context = LocalContext.current
+    val activity = LocalContext.current as Activity
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
 
     val apkExtensions = remember { context.resources.getStringArray(R.array.apk_extensions) }
@@ -204,119 +215,152 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
         OutlinedCard(
             modifier = Modifier
                     .weight(1f)
-                    .fillMaxWidth() ,
+                    .fillMaxWidth(),
         ) {
-            if (uiState.isAnalyzing && uiState.scannedFiles.isEmpty()) {
-                Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator()
+            when {
+                uiState.isAnalyzing && uiState.scannedFiles.isEmpty() -> {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator()
+                    }
                 }
-            }
-            else {
-                val tabs = groupedFiles.keys.toList()
-                val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    ScrollableTabRow(
-                        selectedTabIndex = pagerState.currentPage,
-                        modifier = Modifier.weight(1f),
-                        edgePadding = 0.dp,
-                        indicator = { tabPositions ->
-                            TabRowDefaults.PrimaryIndicator(
-                                modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
-                                shape = RoundedCornerShape(
-                                    topStart = 3.dp,
-                                    topEnd = 3.dp,
-                                    bottomEnd = 0.dp,
-                                    bottomStart = 0.dp,
-                                ),
+                uiState.scannedFiles.isEmpty() -> {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Icon(
+                                imageVector = Icons.Outlined.FolderOff,
+                                contentDescription = null,
+                                modifier = Modifier.size(64.dp),
+                                tint = MaterialTheme.colorScheme.onSurface
                             )
-                        },
-                    ) {
-                        tabs.forEachIndexed { index, title ->
-                            Tab(
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Text(
+                                text = stringResource(id = R.string.no_files_found),
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+
+                            OutlinedButton (
                                 modifier = Modifier.bounceClick(),
-                                selected = pagerState.currentPage == index,
                                 onClick = {
-                                    coroutineScope.launch {
-                                        pagerState.animateScrollToPage(index)
-                                    }
-                                },
-                                text = { Text(text = title) }
-                            )
+                                    // TODO: Add close action
+                                }
+                            ) {
+                                Icon(modifier = Modifier.size(ButtonDefaults.IconSize) , imageVector = Icons.Outlined.Refresh , contentDescription = "Close")
+                                Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+                                Text("Try again")
+                            }
                         }
-                    }
-
-                    IconButton(
-                        modifier = Modifier,
-                        onClick = {
-                            // TODO: Add close action
-                        }
-                    ) {
-                        Icon(imageVector = Icons.Outlined.Close, contentDescription = "Close")
                     }
                 }
 
+                else -> {
+                    val tabs = groupedFiles.keys.toList()
+                    val pagerState: PagerState = rememberPagerState(pageCount = { tabs.size })
 
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        ScrollableTabRow(
+                            selectedTabIndex = pagerState.currentPage,
+                            modifier = Modifier.weight(1f),
+                            edgePadding = 0.dp,
+                            indicator = { tabPositions ->
+                                TabRowDefaults.PrimaryIndicator(
+                                    modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
+                                    shape = RoundedCornerShape(
+                                        topStart = 3.dp,
+                                        topEnd = 3.dp,
+                                        bottomEnd = 0.dp,
+                                        bottomStart = 0.dp,
+                                    ),
+                                )
+                            },
+                        ) {
+                            tabs.forEachIndexed { index, title ->
+                                Tab(
+                                    modifier = Modifier.bounceClick(),
+                                    selected = pagerState.currentPage == index,
+                                    onClick = {
+                                        coroutineScope.launch {
+                                            pagerState.animateScrollToPage(index)
+                                        }
+                                    },
+                                    text = { Text(text = title) }
+                                )
+                            }
+                        }
 
-                HorizontalPager(
-                    modifier = Modifier.hapticPagerSwipe(pagerState) ,
-                    state = pagerState ,
-                ) { page ->
-                    val filesForCurrentPage = groupedFiles[tabs[page]] ?: emptyList()
-
-                    val filesByDate = filesForCurrentPage.groupBy { file ->
-                        SimpleDateFormat(
-                            "yyyy-MM-dd" , Locale.getDefault()
-                        ).format(Date(file.lastModified()))
+                        IconButton(
+                            modifier = Modifier.bounceClick(),
+                            onClick = {
+                                // TODO: Add close action
+                            }
+                        ) {
+                            Icon(imageVector = Icons.Outlined.Close, contentDescription = "Close")
+                        }
                     }
 
-                    LazyColumn(
-                        modifier = Modifier.fillMaxSize() ,
-                    ) {
-                        filesByDate.forEach { (date , files) ->
-                            item(key = date) {
-                                Row(
-                                    modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(horizontal = 8.dp , vertical = 4.dp) ,
-                                    verticalAlignment = Alignment.CenterVertically ,
-                                    horizontalArrangement = Arrangement.SpaceBetween
-                                ) {
-                                    Text(
-                                        modifier = Modifier.padding(start = 8.dp) ,
-                                        text = TimeHelper.formatDate(Date(files[0].lastModified()))
-                                    )
-                                    val allFilesForDateSelected =
-                                            files.all { uiState.fileSelectionStates[it] == true }
-                                    Checkbox(checked = allFilesForDateSelected ,
-                                             onCheckedChange = { isChecked ->
-                                                 files.forEach { file ->
-                                                     viewModel.onFileSelectionChange(
-                                                         file ,
-                                                         isChecked
-                                                     )
-                                                 }
-                                             })
-                                }
-                            }
+                    HorizontalPager(
+                        modifier = Modifier.hapticPagerSwipe(pagerState),
+                        state = pagerState,
+                    ) { page ->
+                        val filesForCurrentPage = groupedFiles[tabs[page]] ?: emptyList()
 
-                            item(key = "$date-grid") {
-                                Box(
-                                    modifier = Modifier.fillMaxSize()
-                                ) {
-                                    NonLazyGrid(
-                                        columns = 3 ,
-                                        itemCount = files.size ,
-                                        modifier = Modifier.padding(horizontal = 8.dp)
-                                    ) { index ->
-                                        FileCard(
-                                            file = files[index] ,
-                                            viewModel = viewModel ,
-                                            imageLoader = imageLoader
+                        val filesByDate = filesForCurrentPage.groupBy { file ->
+                            SimpleDateFormat(
+                                "yyyy-MM-dd", Locale.getDefault()
+                            ).format(Date(file.lastModified()))
+                        }
+
+                        LazyColumn(
+                            modifier = Modifier.fillMaxSize(),
+                        ) {
+                            filesByDate.forEach { (date, files) ->
+                                item(key = date) {
+                                    Row(
+                                        modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(horizontal = 8.dp , vertical = 4.dp),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.SpaceBetween
+                                    ) {
+                                        Text(
+                                            modifier = Modifier.padding(start = 8.dp),
+                                            text = TimeHelper.formatDate(Date(files[0].lastModified()))
                                         )
+                                        val allFilesForDateSelected =
+                                                files.all { uiState.fileSelectionStates[it] == true }
+                                        Checkbox(
+                                            modifier = Modifier.bounceClick(),
+                                            checked = allFilesForDateSelected,
+                                            onCheckedChange = { isChecked ->
+                                                files.forEach { file ->
+                                                    viewModel.onFileSelectionChange(
+                                                        file,
+                                                        isChecked
+                                                    )
+                                                }
+                                            })
+                                    }
+                                }
+
+                                item(key = "$date-grid") {
+                                    Box(
+                                        modifier = Modifier.fillMaxSize()
+                                    ) {
+                                        NonLazyGrid(
+                                            columns = 3,
+                                            itemCount = files.size,
+                                            modifier = Modifier.padding(horizontal = 8.dp)
+                                        ) { index ->
+                                            FileCard(
+                                                file = files[index],
+                                                viewModel = viewModel,
+                                                imageLoader = imageLoader
+                                            )
+                                        }
                                     }
                                 }
                             }
@@ -325,30 +369,72 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
                 }
             }
         }
-        Row(
-            modifier = Modifier.fillMaxWidth() ,
-            verticalAlignment = Alignment.CenterVertically ,
-            horizontalArrangement = Arrangement.SpaceBetween ,
-        ) {
-            val statusText : String = if (uiState.selectedFileCount > 0) {
-                stringResource(id = R.string.status_selected_files , uiState.selectedFileCount)
-            }
-            else {
-                stringResource(id = R.string.status_no_files_selected)
-            }
-            val statusColor : Color by animateColorAsState(
-                targetValue = if (uiState.selectedFileCount > 0) {
-                    MaterialTheme.colorScheme.primary
+        if (uiState.scannedFiles.isNotEmpty()) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+            ) {
+                val statusText: String = if (uiState.selectedFileCount > 0) {
+                    stringResource(id = R.string.status_selected_files, uiState.selectedFileCount)
+                } else {
+                    stringResource(id = R.string.status_no_files_selected)
                 }
-                else {
-                    MaterialTheme.colorScheme.secondary
-                } , animationSpec = tween() , label = "Selected Files Status Color Animation"
-            )
+                val statusColor: Color by animateColorAsState(
+                    targetValue = if (uiState.selectedFileCount > 0) {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.secondary
+                    },
+                    animationSpec = tween(),
+                    label = "Selected Files Status Color Animation"
+                )
 
-            Text(
-                text = statusText , color = statusColor , modifier = Modifier.animateContentSize()
-            )
-            SelectAllComposable(viewModel)
+                Text(
+                    text = statusText, color = statusColor, modifier = Modifier.animateContentSize()
+                )
+                SelectAllComposable(viewModel)
+            }
+
+            Row(
+                modifier = Modifier
+                        .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                OutlinedButton(
+                    onClick = {
+                        // TODO: add trash
+                    },
+                    modifier = Modifier.weight(1f).bounceClick(),
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Black)
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.Delete,
+                        contentDescription = "Move to trash",
+                        modifier = Modifier.size(ButtonDefaults.IconSize)
+                    )
+                    Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                    Text("Move to trash")
+                }
+
+                Spacer(Modifier.width(8.dp))
+
+                Button(
+                    onClick = {
+                        viewModel.clean(activity)
+                    },
+                    modifier = Modifier.weight(1f).bounceClick(),
+                    colors = ButtonDefaults.buttonColors(contentColor = Color.White)
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.DeleteForever,
+                        contentDescription = "Delete forever",
+                        modifier = Modifier.size(ButtonDefaults.IconSize)
+                    )
+                    Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                    Text(text = "Delete forever")
+                }
+            }
         }
     }
 }
