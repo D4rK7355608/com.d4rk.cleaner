@@ -33,6 +33,17 @@ class HomeRepository(
         }
     }
 
+    suspend fun rescanFiles(onSuccess: (List<File>) -> Unit) {
+        withContext(Dispatchers.IO) {
+            fileScanner.reset()
+            fileScanner.startScanning()
+            val filteredFiles = fileScanner.getFilteredFiles()
+            withContext(Dispatchers.Main) {
+                onSuccess(filteredFiles)
+            }
+        }
+    }
+
     suspend fun getVideoThumbnail(filePath: String , context: Context , onSuccess: (File?) -> Unit) {
         withContext(Dispatchers.IO) {
             val thumbnailFile = getVideoThumbnail(filePath, context)

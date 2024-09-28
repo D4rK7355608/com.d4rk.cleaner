@@ -137,4 +137,8 @@ class FileScanner(private val dataStore : DataStore , private val resources : Re
     fun getFilteredFiles() : List<File> {
         return filteredFiles
     }
+
+    fun reset() {
+        filteredFiles = emptyList()
+    }
 }

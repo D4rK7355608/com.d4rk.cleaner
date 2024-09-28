@@ -160,7 +160,8 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
     val context = LocalContext.current
     val activity = LocalContext.current as Activity
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
-
+    val isLoading: Boolean by viewModel.isLoading.collectAsState()
+    val enabled = uiState.selectedFileCount > 0
     val apkExtensions = remember { context.resources.getStringArray(R.array.apk_extensions) }
     val imageExtensions = remember { context.resources.getStringArray(R.array.image_extensions) }
     val videoExtensions = remember { context.resources.getStringArray(R.array.video_extensions) }
@@ -218,7 +219,7 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
                     .fillMaxWidth(),
         ) {
             when {
-                uiState.isAnalyzing && uiState.scannedFiles.isEmpty() -> {
+                isLoading && uiState.scannedFiles.isEmpty() -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator()
                     }
@@ -243,7 +244,7 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
                             OutlinedButton (
                                 modifier = Modifier.bounceClick(),
                                 onClick = {
-                                    // TODO: Add close action
+                                   viewModel.rescanFiles()
                                 }
                             ) {
                                 Icon(modifier = Modifier.size(ButtonDefaults.IconSize) , imageVector = Icons.Outlined.Refresh , contentDescription = "Close")
@@ -402,6 +403,7 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
                 OutlinedButton(
+                    enabled = enabled,
                     onClick = {
                         // TODO: add trash
                     },
@@ -414,12 +416,13 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
                         modifier = Modifier.size(ButtonDefaults.IconSize)
                     )
                     Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-                    Text("Move to trash")
+                    Text(text = "Move to trash")
                 }
 
                 Spacer(Modifier.width(8.dp))
 
                 Button(
+                    enabled = enabled,
                     onClick = {
                         viewModel.clean(activity)
                     },

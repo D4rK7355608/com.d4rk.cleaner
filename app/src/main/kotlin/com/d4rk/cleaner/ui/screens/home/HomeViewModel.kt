@@ -34,14 +34,28 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
 
     fun analyze() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
-            _uiState.value = _uiState.value.copy(isAnalyzing = true)
+            showLoading()
             repository.analyzeFiles { filteredFiles ->
                 _uiState.value = _uiState.value.copy(
                     scannedFiles = filteredFiles ,
-                    isAnalyzing = false ,
                     showCleaningComposable = true
                 )
             }
+            hideLoading()
+        }
+    }
+
+    fun rescanFiles() {
+        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
+            showLoading()
+            _uiState.value = _uiState.value.copy(scannedFiles = emptyList())
+            repository.rescanFiles { filteredFiles ->
+                _uiState.value = _uiState.value.copy(
+                    scannedFiles = filteredFiles,
+                    showCleaningComposable = true
+                )
+            }
+            hideLoading()
         }
     }
 
