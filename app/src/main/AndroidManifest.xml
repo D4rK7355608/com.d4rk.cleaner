@@ -53,10 +53,10 @@
         android:theme="@style/AppTheme"
         tools:targetApi="33">
 
-        <activity android:name=".ui.startup.StartupActivity" />
+        <activity android:name=".ui.screens.startup.StartupActivity" />
 
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.screens.main.MainActivity"
             android:exported="true"
             android:theme="@style/SplashScreenTheme">
             <intent-filter>
@@ -71,55 +71,55 @@
         </activity>
 
         <activity
-            android:name=".ui.support.SupportActivity"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:name=".ui.screens.support.SupportActivity"
+            android:parentActivityName=".ui.screens.main.MainActivity" />
 
         <activity
-            android:name=".ui.imageoptimizer.imageoptimizer.ImageOptimizerActivity"
+            android:name=".ui.screens.imageoptimizer.imageoptimizer.ImageOptimizerActivity"
             android:exported="true"
             android:label="@string/image_optimizer"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:parentActivityName=".ui.screens.main.MainActivity" />
 
         <activity
-            android:name=".ui.imageoptimizer.imagepicker.ImagePickerActivity"
+            android:name=".ui.screens.imageoptimizer.imagepicker.ImagePickerActivity"
             android:exported="true"
             android:label="@string/image_optimizer"
-            android:parentActivityName=".ui.imageoptimizer.imageoptimizer.ImageOptimizerActivity" />
+            android:parentActivityName=".ui.screens.imageoptimizer.imageoptimizer.ImageOptimizerActivity" />
 
         <activity
-            android:name=".ui.settings.SettingsActivity"
+            android:name=".ui.screens.settings.SettingsActivity"
             android:exported="true"
             android:label="@string/settings"
-            android:parentActivityName=".ui.main.MainActivity">
+            android:parentActivityName=".ui.screens.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
             </intent-filter>
         </activity>
 
         <activity
-            android:name=".ui.settings.display.DisplaySettingsActivity"
-            android:parentActivityName=".ui.settings.SettingsActivity" />
+            android:name=".ui.screens.settings.display.DisplaySettingsActivity"
+            android:parentActivityName=".ui.screens.settings.SettingsActivity" />
 
         <activity
-            android:name=".ui.settings.display.theme.ThemeSettingsActivity"
-            android:parentActivityName=".ui.settings.display.DisplaySettingsActivity" />
+            android:name=".ui.screens.settings.display.theme.ThemeSettingsActivity"
+            android:parentActivityName=".ui.screens.settings.display.DisplaySettingsActivity" />
 
         <activity
-            android:name=".ui.settings.cleaning.CleaningSettingsActivity"
-            android:parentActivityName=".ui.settings.SettingsActivity" />
+            android:name=".ui.screens.settings.cleaning.CleaningSettingsActivity"
+            android:parentActivityName=".ui.screens.settings.SettingsActivity" />
 
         <activity
-            android:name=".ui.settings.advanced.AdvancedSettingsActivity"
-            android:parentActivityName=".ui.settings.SettingsActivity" />
+            android:name=".ui.screens.settings.advanced.AdvancedSettingsActivity"
+            android:parentActivityName=".ui.screens.settings.SettingsActivity" />
 
         <activity
-            android:name=".ui.settings.privacy.PrivacySettingsActivity"
-            android:parentActivityName=".ui.settings.SettingsActivity" />
+            android:name=".ui.screens.settings.privacy.PrivacySettingsActivity"
+            android:parentActivityName=".ui.screens.settings.SettingsActivity" />
 
         <activity
-            android:name=".ui.settings.privacy.permissions.PermissionsSettingsActivity"
+            android:name=".ui.screens.settings.privacy.permissions.PermissionsSettingsActivity"
             android:exported="true"
-            android:parentActivityName=".ui.settings.privacy.PrivacySettingsActivity"
+            android:parentActivityName=".ui.screens.settings.privacy.PrivacySettingsActivity"
             android:permission="android.permission.START_VIEW_PERMISSION_USAGE">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW_PERMISSION_USAGE" />
@@ -130,16 +130,16 @@
         </activity>
 
         <activity
-            android:name=".ui.settings.privacy.usage.UsageAndDiagnosticsActivity"
-            android:parentActivityName=".ui.settings.privacy.PrivacySettingsActivity" />
+            android:name=".ui.screens.settings.privacy.usage.UsageAndDiagnosticsActivity"
+            android:parentActivityName=".ui.screens.settings.privacy.PrivacySettingsActivity" />
 
         <activity
-            android:name=".ui.settings.privacy.ads.AdsSettingsActivity"
-            android:parentActivityName=".ui.settings.privacy.PrivacySettingsActivity" />
+            android:name=".ui.screens.settings.privacy.ads.AdsSettingsActivity"
+            android:parentActivityName=".ui.screens.settings.privacy.PrivacySettingsActivity" />
 
         <activity
-            android:name=".ui.settings.about.AboutSettingsActivity"
-            android:parentActivityName=".ui.settings.SettingsActivity" />
+            android:name=".ui.screens.settings.about.AboutSettingsActivity"
+            android:parentActivityName=".ui.screens.settings.SettingsActivity" />
 
         <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
@@ -150,8 +150,8 @@
             android:theme="@style/AppThemeActionBar" />
 
         <activity
-            android:name=".ui.help.HelpActivity"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:name=".ui.screens.help.HelpActivity"
+            android:parentActivityName=".ui.screens.main.MainActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
