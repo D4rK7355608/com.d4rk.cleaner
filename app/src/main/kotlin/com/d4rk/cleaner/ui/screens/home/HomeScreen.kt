@@ -296,7 +296,7 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
                         IconButton(
                             modifier = Modifier.bounceClick(),
                             onClick = {
-                                // TODO: Add close action
+                               viewModel.onCloseAnalyzeComposable()
                             }
                         ) {
                             Icon(imageVector = Icons.Outlined.Close, contentDescription = "Close")

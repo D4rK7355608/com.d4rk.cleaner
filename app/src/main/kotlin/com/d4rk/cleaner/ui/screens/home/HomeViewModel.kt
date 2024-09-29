@@ -45,6 +45,12 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
+    fun onCloseAnalyzeComposable() {
+        viewModelScope.launch(coroutineExceptionHandler) {
+            _uiState.value = _uiState.value.copy(showCleaningComposable = false)
+        }
+    }
+
     fun rescanFiles() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             showLoading()
