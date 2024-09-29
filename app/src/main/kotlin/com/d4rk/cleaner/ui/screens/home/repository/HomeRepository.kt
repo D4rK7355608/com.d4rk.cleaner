@@ -1,7 +1,6 @@
 package com.d4rk.cleaner.ui.screens.home.repository
 
 import android.app.Application
-import android.content.Context
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.cleaning.FileScanner
@@ -40,15 +39,6 @@ class HomeRepository(
             val filteredFiles = fileScanner.getFilteredFiles()
             withContext(Dispatchers.Main) {
                 onSuccess(filteredFiles)
-            }
-        }
-    }
-
-    suspend fun getVideoThumbnail(filePath: String , context: Context , onSuccess: (File?) -> Unit) {
-        withContext(Dispatchers.IO) {
-            val thumbnailFile = getVideoThumbnail(filePath, context)
-            withContext(Dispatchers.Main) {
-                onSuccess(thumbnailFile)
             }
         }
     }

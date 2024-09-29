@@ -1,7 +1,6 @@
 package com.d4rk.cleaner.ui.screens.home
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
@@ -36,7 +35,8 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
             repository.analyzeFiles { filteredFiles ->
                 _uiState.value = _uiState.value.copy(
                     scannedFiles = filteredFiles ,
-                    showCleaningComposable = true
+                    showCleaningComposable = true,
+                    noFilesFound = filteredFiles.isEmpty(),
                 )
             }
             hideLoading()
@@ -60,14 +60,6 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                 )
             }
             hideLoading()
-        }
-    }
-
-    fun getVideoThumbnail(filePath : String , context : Context , callback : (File?) -> Unit) {
-        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
-            repository.getVideoThumbnail(filePath , context) { thumbnailFile ->
-                callback(thumbnailFile)
-            }
         }
     }
 

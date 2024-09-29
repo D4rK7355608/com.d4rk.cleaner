@@ -12,4 +12,5 @@ data class UiHomeModel(
     val fileSelectionStates: Map<File, Boolean> = emptyMap(),
     val selectedFileCount: Int = 0,
     val showRescanDialog: Boolean = false,
+    val noFilesFound: Boolean = false,
 )

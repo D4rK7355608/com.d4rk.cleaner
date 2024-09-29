@@ -70,9 +70,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.ImageLoader
 import coil.compose.AsyncImage
+import coil.decode.VideoFrameDecoder
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
 import coil.request.ImageRequest
+import coil.request.videoFramePercent
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
@@ -165,7 +167,6 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
     val uiState : UiHomeModel by viewModel.uiState.collectAsState()
     val context = LocalContext.current
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
-    val isLoading : Boolean by viewModel.isLoading.collectAsState()
     val enabled = uiState.selectedFileCount > 0
     val apkExtensions = remember { context.resources.getStringArray(R.array.apk_extensions) }
     val imageExtensions = remember { context.resources.getStringArray(R.array.image_extensions) }
@@ -224,13 +225,13 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
                     .fillMaxWidth() ,
         ) {
             when {
-                isLoading && uiState.scannedFiles.isEmpty() -> {
+                uiState.scannedFiles.isEmpty() -> {
                     Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
                         CircularProgressIndicator()
                     }
                 }
 
-                uiState.scannedFiles.isEmpty() -> {
+                uiState.noFilesFound -> {
                     Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(
@@ -458,14 +459,6 @@ fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader
     val context : Context = LocalContext.current
     val fileExtension : String = remember(file.name) { getFileExtension(file.name) }
 
-    var thumbnailFile : File? by remember(file.absolutePath) { mutableStateOf(value = null) }
-
-    LaunchedEffect(file.absolutePath) {
-        viewModel.getVideoThumbnail(filePath = file.absolutePath , context = context) { file ->
-            thumbnailFile = file
-        }
-    }
-
     val imageExtensions =
             remember { context.resources.getStringArray(R.array.image_extensions).toList() }
     val videoExtensions =
@@ -493,23 +486,20 @@ fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader
                 }
 
                 in videoExtensions -> {
-                    if (thumbnailFile != null) {
-                        AsyncImage(
-                            model = thumbnailFile ,
-                            contentDescription = file.name ,
-                            contentScale = ContentScale.Crop ,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-                    else {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_video_file) ,
-                            contentDescription = null ,
-                            modifier = Modifier
-                                    .size(24.dp)
-                                    .align(Alignment.Center)
-                        )
-                    }
+                    AsyncImage(
+                        model = remember(file) {
+                            ImageRequest.Builder(context).data(file)
+                                    .decoderFactory { result, options, _ ->
+                                        VideoFrameDecoder(result.source, options)
+                                    }
+                                    .videoFramePercent(framePercent = 0.5)
+                                    .crossfade(enable = true).build()
+                        },
+                        imageLoader = imageLoader,
+                        contentDescription = file.name,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
                 }
 
                 else -> {

@@ -140,6 +140,7 @@ dependencies {
     // Image Compression
     implementation(libs.compressor)
     implementation(libs.coil.compose)
+    implementation("io.coil-kt:coil-video:2.7.0")
 
     // Test
     testImplementation(libs.junit)
