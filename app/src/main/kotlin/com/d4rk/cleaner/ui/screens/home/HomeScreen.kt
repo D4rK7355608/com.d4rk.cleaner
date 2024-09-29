@@ -3,6 +3,7 @@ package com.d4rk.cleaner.ui.screens.home
 import android.app.Activity
 import android.content.Context
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
@@ -139,15 +140,20 @@ fun HomeScreen() {
                     .weight(4f)
                     .fillMaxWidth()
         ) {
-            if (! uiState.showCleaningComposable) {
-                CircularDeterminateIndicator(progress = uiState.progress ,
-                                             modifier = Modifier
-                                                     .align(Alignment.TopCenter)
-                                                     .offset(y = 98.dp) ,
-                                             onClick = { viewModel.analyze() })
-            }
-            else {
-                AnalyzeComposable(imageLoader)
+            CircularDeterminateIndicator(progress = uiState.progress ,
+                                         modifier = Modifier
+                                                 .align(Alignment.TopCenter)
+                                                 .offset(y = 98.dp) ,
+                                         onClick = { viewModel.analyze() })
+
+            Crossfade(
+                targetState = uiState.showCleaningComposable ,
+                animationSpec = tween(durationMillis = 300) ,
+                label = ""
+            ) { showCleaningComposable ->
+                if (showCleaningComposable) {
+                    AnalyzeComposable(imageLoader)
+                }
             }
         }
     }
@@ -158,9 +164,8 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
     val viewModel : HomeViewModel = viewModel()
     val uiState : UiHomeModel by viewModel.uiState.collectAsState()
     val context = LocalContext.current
-    val activity = LocalContext.current as Activity
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
-    val isLoading: Boolean by viewModel.isLoading.collectAsState()
+    val isLoading : Boolean by viewModel.isLoading.collectAsState()
     val enabled = uiState.selectedFileCount > 0
     val apkExtensions = remember { context.resources.getStringArray(R.array.apk_extensions) }
     val imageExtensions = remember { context.resources.getStringArray(R.array.image_extensions) }
@@ -216,38 +221,39 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
         OutlinedCard(
             modifier = Modifier
                     .weight(1f)
-                    .fillMaxWidth(),
+                    .fillMaxWidth() ,
         ) {
             when {
                 isLoading && uiState.scannedFiles.isEmpty() -> {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
                         CircularProgressIndicator()
                     }
                 }
 
                 uiState.scannedFiles.isEmpty() -> {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(
-                                imageVector = Icons.Outlined.FolderOff,
-                                contentDescription = null,
-                                modifier = Modifier.size(64.dp),
+                                imageVector = Icons.Outlined.FolderOff ,
+                                contentDescription = null ,
+                                modifier = Modifier.size(64.dp) ,
                                 tint = MaterialTheme.colorScheme.onSurface
                             )
                             Spacer(modifier = Modifier.height(16.dp))
                             Text(
-                                text = stringResource(id = R.string.no_files_found),
-                                style = MaterialTheme.typography.bodyLarge,
+                                text = stringResource(id = R.string.no_files_found) ,
+                                style = MaterialTheme.typography.bodyLarge ,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
 
-                            OutlinedButton (
-                                modifier = Modifier.bounceClick(),
-                                onClick = {
-                                   viewModel.rescanFiles()
-                                }
-                            ) {
-                                Icon(modifier = Modifier.size(ButtonDefaults.IconSize) , imageVector = Icons.Outlined.Refresh , contentDescription = "Close")
+                            OutlinedButton(modifier = Modifier.bounceClick() , onClick = {
+                                viewModel.rescanFiles()
+                            }) {
+                                Icon(
+                                    modifier = Modifier.size(ButtonDefaults.IconSize) ,
+                                    imageVector = Icons.Outlined.Refresh ,
+                                    contentDescription = "Close"
+                                )
                                 Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
                                 Text("Try again")
                             }
@@ -257,70 +263,68 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
 
                 else -> {
                     val tabs = groupedFiles.keys.toList()
-                    val pagerState: PagerState = rememberPagerState(pageCount = { tabs.size })
+                    val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
 
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth() ,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         ScrollableTabRow(
-                            selectedTabIndex = pagerState.currentPage,
-                            modifier = Modifier.weight(1f),
-                            edgePadding = 0.dp,
+                            selectedTabIndex = pagerState.currentPage ,
+                            modifier = Modifier.weight(1f) ,
+                            edgePadding = 0.dp ,
                             indicator = { tabPositions ->
                                 TabRowDefaults.PrimaryIndicator(
-                                    modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
+                                    modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]) ,
                                     shape = RoundedCornerShape(
-                                        topStart = 3.dp,
-                                        topEnd = 3.dp,
-                                        bottomEnd = 0.dp,
-                                        bottomStart = 0.dp,
-                                    ),
+                                        topStart = 3.dp ,
+                                        topEnd = 3.dp ,
+                                        bottomEnd = 0.dp ,
+                                        bottomStart = 0.dp ,
+                                    ) ,
                                 )
-                            },
+                            } ,
                         ) {
-                            tabs.forEachIndexed { index, title ->
-                                Tab(
-                                    modifier = Modifier.bounceClick(),
-                                    selected = pagerState.currentPage == index,
+                            tabs.forEachIndexed { index , title ->
+                                Tab(modifier = Modifier.bounceClick() ,
+                                    selected = pagerState.currentPage == index ,
                                     onClick = {
                                         coroutineScope.launch {
                                             pagerState.animateScrollToPage(index)
                                         }
-                                    },
-                                    text = { Text(text = title) }
-                                )
+                                    } ,
+                                    text = { Text(text = title) })
                             }
                         }
 
-                        IconButton(
-                            modifier = Modifier.bounceClick(),
-                            onClick = {
-                               viewModel.onCloseAnalyzeComposable()
-                            }
-                        ) {
-                            Icon(imageVector = Icons.Outlined.Close, contentDescription = "Close")
+                        IconButton(modifier = Modifier.bounceClick() , onClick = {
+                            viewModel.onCloseAnalyzeComposable()
+                        }) {
+                            Icon(imageVector = Icons.Outlined.Close , contentDescription = "Close")
                         }
                     }
 
                     HorizontalPager(
-                        modifier = Modifier.hapticPagerSwipe(pagerState),
-                        state = pagerState,
+                        modifier = Modifier.hapticPagerSwipe(pagerState) ,
+                        state = pagerState ,
                     ) { page ->
                         val filesForCurrentPage = groupedFiles[tabs[page]] ?: emptyList()
 
                         val filesByDate = filesForCurrentPage.groupBy { file ->
                             SimpleDateFormat(
-                                "yyyy-MM-dd", Locale.getDefault()
+                                "yyyy-MM-dd" , Locale.getDefault()
                             ).format(Date(file.lastModified()))
                         }
 
                         LazyColumn(
-                            modifier = Modifier.fillMaxSize(),
+                            modifier = Modifier.fillMaxSize() ,
                         ) {
 
                             val sortedDates = filesByDate.keys.sortedByDescending { dateString ->
-                                return@sortedByDescending SimpleDateFormat("yyyy-MM-dd" , Locale.getDefault()).parse(dateString)
+                                return@sortedByDescending SimpleDateFormat(
+                                    "yyyy-MM-dd" ,
+                                    Locale.getDefault()
+                                ).parse(dateString)
                             }
                             sortedDates.forEach { date ->
                                 val files = filesByDate[date] ?: emptyList()
@@ -328,27 +332,25 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
                                     Row(
                                         modifier = Modifier
                                                 .fillMaxWidth()
-                                                .padding(horizontal = 8.dp , vertical = 4.dp),
-                                        verticalAlignment = Alignment.CenterVertically,
+                                                .padding(horizontal = 8.dp , vertical = 4.dp) ,
+                                        verticalAlignment = Alignment.CenterVertically ,
                                         horizontalArrangement = Arrangement.SpaceBetween
                                     ) {
                                         Text(
-                                            modifier = Modifier.padding(start = 8.dp),
+                                            modifier = Modifier.padding(start = 8.dp) ,
                                             text = TimeHelper.formatDate(Date(files[0].lastModified()))
                                         )
                                         val allFilesForDateSelected =
                                                 files.all { uiState.fileSelectionStates[it] == true }
-                                        Checkbox(
-                                            modifier = Modifier.bounceClick(),
-                                            checked = allFilesForDateSelected,
-                                            onCheckedChange = { isChecked ->
-                                                files.forEach { file ->
-                                                    viewModel.onFileSelectionChange(
-                                                        file,
-                                                        isChecked
-                                                    )
-                                                }
-                                            })
+                                        Checkbox(modifier = Modifier.bounceClick() ,
+                                                 checked = allFilesForDateSelected ,
+                                                 onCheckedChange = { isChecked ->
+                                                     files.forEach { file ->
+                                                         viewModel.onFileSelectionChange(
+                                                             file , isChecked
+                                                         )
+                                                     }
+                                                 })
                                     }
                                 }
 
@@ -357,13 +359,13 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
                                         modifier = Modifier.fillMaxSize()
                                     ) {
                                         NonLazyGrid(
-                                            columns = 3,
-                                            itemCount = files.size,
+                                            columns = 3 ,
+                                            itemCount = files.size ,
                                             modifier = Modifier.padding(horizontal = 8.dp)
                                         ) { index ->
                                             FileCard(
-                                                file = files[index],
-                                                viewModel = viewModel,
+                                                file = files[index] ,
+                                                viewModel = viewModel ,
                                                 imageLoader = imageLoader
                                             )
                                         }
@@ -377,47 +379,49 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
         }
         if (uiState.scannedFiles.isNotEmpty()) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth() ,
+                verticalAlignment = Alignment.CenterVertically ,
+                horizontalArrangement = Arrangement.SpaceBetween ,
             ) {
-                val statusText: String = if (uiState.selectedFileCount > 0) {
-                    stringResource(id = R.string.status_selected_files, uiState.selectedFileCount)
-                } else {
+                val statusText : String = if (uiState.selectedFileCount > 0) {
+                    stringResource(id = R.string.status_selected_files , uiState.selectedFileCount)
+                }
+                else {
                     stringResource(id = R.string.status_no_files_selected)
                 }
-                val statusColor: Color by animateColorAsState(
+                val statusColor : Color by animateColorAsState(
                     targetValue = if (uiState.selectedFileCount > 0) {
                         MaterialTheme.colorScheme.primary
-                    } else {
+                    }
+                    else {
                         MaterialTheme.colorScheme.secondary
-                    },
-                    animationSpec = tween(),
-                    label = "Selected Files Status Color Animation"
+                    } , animationSpec = tween() , label = "Selected Files Status Color Animation"
                 )
 
                 Text(
-                    text = statusText, color = statusColor, modifier = Modifier.animateContentSize()
+                    text = statusText ,
+                    color = statusColor ,
+                    modifier = Modifier.animateContentSize()
                 )
                 SelectAllComposable(viewModel)
             }
 
             Row(
-                modifier = Modifier
-                        .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceAround
+                modifier = Modifier.fillMaxWidth() , horizontalArrangement = Arrangement.SpaceAround
             ) {
                 OutlinedButton(
-                    enabled = false, // TODO: Currently false by default because there's no trash
+                    enabled = false , // TODO: Currently false by default because there's no trash
                     onClick = {
                         // TODO: add trash
-                    },
-                    modifier = Modifier.weight(1f).bounceClick(),
+                    } ,
+                    modifier = Modifier
+                            .weight(1f)
+                            .bounceClick() ,
                     colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Black)
                 ) {
                     Icon(
-                        imageVector = Icons.Outlined.Delete,
-                        contentDescription = "Move to trash",
+                        imageVector = Icons.Outlined.Delete ,
+                        contentDescription = "Move to trash" ,
                         modifier = Modifier.size(ButtonDefaults.IconSize)
                     )
                     Spacer(Modifier.size(ButtonDefaults.IconSpacing))
@@ -427,16 +431,18 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
                 Spacer(Modifier.width(8.dp))
 
                 Button(
-                    enabled = enabled,
+                    enabled = enabled ,
                     onClick = {
-                        viewModel.clean(activity)
-                    },
-                    modifier = Modifier.weight(1f).bounceClick(),
+                        viewModel.clean()
+                    } ,
+                    modifier = Modifier
+                            .weight(1f)
+                            .bounceClick() ,
                     colors = ButtonDefaults.buttonColors(contentColor = Color.White)
                 ) {
                     Icon(
-                        imageVector = Icons.Outlined.DeleteForever,
-                        contentDescription = "Delete forever",
+                        imageVector = Icons.Outlined.DeleteForever ,
+                        contentDescription = "Delete forever" ,
                         modifier = Modifier.size(ButtonDefaults.IconSize)
                     )
                     Spacer(Modifier.size(ButtonDefaults.IconSpacing))
@@ -522,13 +528,11 @@ fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader
                 }
             }
 
-            Checkbox(
-                checked = viewModel.uiState.value.fileSelectionStates[file] ?: false ,
-                onCheckedChange = { isChecked ->
-                    viewModel.onFileSelectionChange(file , isChecked)
-                } ,
-                modifier = Modifier.align(Alignment.TopEnd)
-            )
+            Checkbox(checked = viewModel.uiState.value.fileSelectionStates[file] ?: false ,
+                     onCheckedChange = { isChecked ->
+                         viewModel.onFileSelectionChange(file , isChecked)
+                     } ,
+                     modifier = Modifier.align(Alignment.TopEnd))
 
             Text(
                 text = file.name ,

@@ -1,13 +1,11 @@
 package com.d4rk.cleaner.ui.screens.home
 
-import android.app.Activity
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.ui.screens.home.repository.HomeRepository
-import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -122,23 +120,20 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
-    fun clean(activity : Activity) {
-        if (! PermissionsUtils.hasStoragePermissions(getApplication())) {
-            PermissionsUtils.requestStoragePermissions(activity)
-            return
-        }
-
+    fun clean() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             val filesToDelete = _uiState.value.fileSelectionStates.filter { it.value }.keys
-            repository.deleteFiles(filesToDelete)
-
-            _uiState.value = _uiState.value.copy(
-                scannedFiles = uiState.value.scannedFiles.filterNot { filesToDelete.contains(it) } ,
-                selectedFileCount = 0 ,
-                allFilesSelected = false ,
-                fileSelectionStates = emptyMap()
-            )
-            updateStorageInfo()
+            showLoading()
+            repository.deleteFiles(filesToDelete) {
+                _uiState.value = _uiState.value.copy(
+                    scannedFiles = uiState.value.scannedFiles.filterNot { filesToDelete.contains(it) } ,
+                    selectedFileCount = 0 ,
+                    allFilesSelected = false ,
+                    fileSelectionStates = emptyMap()
+                )
+                updateStorageInfo()
+            }
+            hideLoading()
         }
     }
 
