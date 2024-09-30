@@ -3,6 +3,7 @@ package com.d4rk.cleaner.utils
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.provider.Settings
 import com.d4rk.cleaner.R
 
@@ -54,10 +55,17 @@ object IntentUtils {
      * @param context The Android context in which the app's notification settings should be opened.
      */
     fun openAppNotificationSettings(context: Context) {
-        val intent: Intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
-            putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        val intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
+                putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+            }
+        } else {
+            Intent().apply {
+                action = "android.settings.APPLICATION_DETAILS_SETTINGS"
+                data = Uri.fromParts("package", context.packageName, null)
+            }
         }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
     }
 

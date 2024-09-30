@@ -16,20 +16,20 @@ import kotlinx.coroutines.flow.asStateFlow
 import java.io.FileNotFoundException
 import java.io.IOException
 
-open class BaseViewModel(application : Application) : AndroidViewModel(application) {
+open class BaseViewModel(application: Application) : AndroidViewModel(application) {
     private val _isLoading = MutableStateFlow(value = false)
-    val isLoading : StateFlow<Boolean> = _isLoading
+    val isLoading: StateFlow<Boolean> = _isLoading
 
     private val _uiErrorModel = MutableStateFlow(UiErrorModel())
-    val uiErrorModel : StateFlow<UiErrorModel> = _uiErrorModel.asStateFlow()
+    val uiErrorModel: StateFlow<UiErrorModel> = _uiErrorModel.asStateFlow()
 
-    protected val coroutineExceptionHandler = CoroutineExceptionHandler { _ , exception ->
-        Log.e("BaseViewModel" , "Coroutine Exception: " , exception)
+    protected val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+        Log.e("BaseViewModel", "Coroutine Exception: ", exception)
         handleError(exception)
     }
 
-    private fun handleError(exception : Throwable) {
-        val errorType : ErrorType = when (exception) {
+    private fun handleError(exception: Throwable) {
+        val errorType: ErrorType = when (exception) {
             is SecurityException -> ErrorType.SECURITY_EXCEPTION
             is IOException -> ErrorType.IO_EXCEPTION
             is FileNotFoundException -> ErrorType.FILE_NOT_FOUND
@@ -38,10 +38,10 @@ open class BaseViewModel(application : Application) : AndroidViewModel(applicati
             is IllegalArgumentException -> ErrorType.ILLEGAL_ARGUMENT
             else -> ErrorType.UNKNOWN_ERROR
         }
-        handleError(errorType , exception)
+        handleError(errorType, exception)
 
         _uiErrorModel.value = UiErrorModel(
-            showErrorDialog = true , errorMessage = when (errorType) {
+            showErrorDialog = true, errorMessage = when (errorType) {
                 ErrorType.SECURITY_EXCEPTION -> getApplication<Application>().getString(R.string.security_error)
                 ErrorType.IO_EXCEPTION -> getApplication<Application>().getString(R.string.io_error)
                 ErrorType.FILE_NOT_FOUND -> getApplication<Application>().getString(R.string.file_not_found)
@@ -57,8 +57,8 @@ open class BaseViewModel(application : Application) : AndroidViewModel(applicati
         _uiErrorModel.value = UiErrorModel(showErrorDialog = false)
     }
 
-    protected open fun handleError(errorType : ErrorType , exception : Throwable) {
-        ErrorHandler.handleError(getApplication() , errorType)
+    protected open fun handleError(errorType: ErrorType, ignoredException: Throwable) {
+        ErrorHandler.handleError(getApplication(), errorType)
     }
 
     protected fun showLoading() {

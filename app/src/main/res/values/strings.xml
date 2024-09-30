@@ -103,7 +103,7 @@
     <string name="startup_page">Startup page</string>
     <string name="summary_preference_settings_startup_page">Choose the screen to be displayed when the app starts.</string>
     <string name="dialog_startup_subtitle">Choose your preferred startup page:</string>
-    <string name="dialog_info_startup">Configures the initial screen presented to users upon launching the appli0cation. This setting influences the user\'s first interaction with the app and can be tailored to specific user segments or product goals.</string>
+    <string name="dialog_info_startup">Configures the initial screen presented to users upon launching the application. This setting influences the user\'s first interaction with the app and can be tailored to specific user segments or product goals.</string>
 
     <string name="language">Language</string>
     <string name="summary_preference_settings_language">Changes the language used in the app</string>

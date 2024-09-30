@@ -6,7 +6,7 @@
         android:shortcutShortLabel="@string/settings">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.d4rk.cleaner.ui.settings.SettingsActivity"
+            android:targetClass="com.d4rk.cleaner.ui.screens.settings.SettingsActivity"
             android:targetPackage="com.d4rk.cleaner" />
         <categories android:name="android.shortcut.conversation" />
     </shortcut>

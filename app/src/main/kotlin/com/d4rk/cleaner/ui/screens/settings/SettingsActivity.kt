@@ -19,7 +19,7 @@ class SettingsActivity : AppCompatActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    _root_ide_package_.com.d4rk.cleaner.ui.screens.settings.SettingsComposable(
+                    SettingsComposable(
                         activity = this@SettingsActivity
                     )
                 }
