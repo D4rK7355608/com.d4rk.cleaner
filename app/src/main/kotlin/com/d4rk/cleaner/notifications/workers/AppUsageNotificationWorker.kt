@@ -3,6 +3,8 @@ package com.d4rk.cleaner.notifications.workers
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
@@ -36,6 +38,7 @@ class AppUsageNotificationWorker(context: Context, workerParams: WorkerParameter
      *
      * @return The result of the worker operation, indicating success or failure.
      */
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun doWork(): Result {
         val currentTimestamp: Long = System.currentTimeMillis()
         val notificationThreshold: Int = 3 * 24 * 60 * 60 * 1000

@@ -6,6 +6,8 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.d4rk.cleaner.R
 import com.google.android.gms.tasks.Task
@@ -32,6 +34,7 @@ class AppUpdateNotificationsManager(private val context: Context) {
      * This function checks the availability of app updates using the AppUpdateManager and sends
      * a notification with a deep link to the Play Store if a flexible update is available.
      */
+    @RequiresApi(Build.VERSION_CODES.O)
     fun checkAndSendUpdateNotification() {
         val notificationManager: NotificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

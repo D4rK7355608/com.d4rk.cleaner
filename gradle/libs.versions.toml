@@ -4,6 +4,7 @@ appcompat = "1.7.0"
 appUpdateKtx = "2.1.0"
 billing = "7.1.0"
 coilCompose = "2.7.0"
+coilVideo = "2.7.0"
 composeBom = "2024.09.02"
 compressor = "3.0.1"
 constraintlayoutCompose = "1.0.1"
@@ -56,6 +57,7 @@ androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version
 app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "appUpdateKtx" }
 billing = { module = "com.android.billingclient:billing", version.ref = "billing" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
+coil-video = { module = "io.coil-kt:coil-video", version.ref = "coilVideo" }
 compressor = { module = "id.zelory:compressor", version.ref = "compressor" }
 datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastoreCore" }
 firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx" }
