@@ -81,12 +81,13 @@ fun TrashScreen(activity : TrashActivity) {
                         trashFiles = uiState.trashFiles ,
                         imageLoader ,
                         uiState = uiState ,
+                        viewModel = viewModel
                     )
 
                     TwoRowButtons(enabled = enabled , onStartButtonClick = {
                         viewModel.restoreFromTrash()
                     } , onStartButtonIcon = Icons.Outlined.Delete , onEndButtonClick = {
-                        // TODO:
+                        // TODO: for restore
                     } , onEndButtonIcon = Icons.Outlined.DeleteForever)
                 }
             }
@@ -99,6 +100,7 @@ fun TrashItemsList(
     trashFiles : List<File> ,
     imageLoader : ImageLoader ,
     uiState : UiTrashModel ,
+    viewModel : TrashViewModel ,
 ) {
     val filesByDate = remember(trashFiles) {
         trashFiles.groupBy { file ->
@@ -109,6 +111,7 @@ fun TrashItemsList(
     FilesByDateSection(
         filesByDate = filesByDate ,
         fileSelectionStates = uiState.fileSelectionStates ,
-        imageLoader = imageLoader
+        imageLoader = imageLoader ,
+        onFileSelectionChange = viewModel::onFileSelectionChange
     )
 }

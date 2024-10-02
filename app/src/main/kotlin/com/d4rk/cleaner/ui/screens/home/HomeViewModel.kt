@@ -131,15 +131,16 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
 
     fun moveToTrash() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
-            val filesToMove = _uiState.value.fileSelectionStates.filter { it.value }.keys
+            val filesToMove = _uiState.value.fileSelectionStates.filter { it.value }.keys.toList()
             showLoading()
             repository.moveToTrash(filesToMove) {
-                _uiState.value = _uiState.value.copy(
-                    scannedFiles = uiState.value.scannedFiles.filterNot { filesToMove.contains(it) } ,
-                    selectedFileCount = 0 ,
-                    allFilesSelected = false ,
-                    fileSelectionStates = emptyMap()
-                )
+                _uiState.value =
+                        _uiState.value.copy(scannedFiles = uiState.value.scannedFiles.filterNot { existingFile ->
+                            filesToMove.any { movedFile -> existingFile.absolutePath == movedFile.absolutePath }
+                        } ,
+                                            selectedFileCount = 0 ,
+                                            allFilesSelected = false ,
+                                            fileSelectionStates = emptyMap())
                 updateStorageInfo()
             }
             hideLoading()

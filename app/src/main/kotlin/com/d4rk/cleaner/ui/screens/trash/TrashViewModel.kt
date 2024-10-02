@@ -11,10 +11,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.io.File
 
-class TrashViewModel(application: Application) : BaseViewModel(application) {
-    private val repository = HomeRepository(DataStore(application) , application) // Shared repository
+class TrashViewModel(application : Application) : BaseViewModel(application) {
+    private val repository = HomeRepository(DataStore(application) , application)
     private val _uiState = MutableStateFlow(UiTrashModel())
-    val uiState: StateFlow<UiTrashModel> = _uiState
+    val uiState : StateFlow<UiTrashModel> = _uiState
 
     init {
         loadTrashItems()
@@ -30,13 +30,11 @@ class TrashViewModel(application: Application) : BaseViewModel(application) {
     }
 
 
-    fun onFileSelectionChange(file: File , isChecked: Boolean) {
+    fun onFileSelectionChange(file : File , isChecked : Boolean) {
         viewModelScope.launch(coroutineExceptionHandler) {
             val updatedSelections = _uiState.value.fileSelectionStates + (file to isChecked)
-            _uiState.value = _uiState.value.copy(
-                fileSelectionStates = updatedSelections,
-                selectedFileCount = updatedSelections.count { it.value }
-            )
+            _uiState.value = _uiState.value.copy(fileSelectionStates = updatedSelections ,
+                                                 selectedFileCount = updatedSelections.count { it.value })
         }
     }
 

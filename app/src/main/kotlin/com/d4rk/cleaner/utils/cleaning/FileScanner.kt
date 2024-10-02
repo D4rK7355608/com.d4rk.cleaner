@@ -1,6 +1,6 @@
 package com.d4rk.cleaner.utils.cleaning
 
-import android.content.res.Resources
+import android.app.Application
 import android.os.Environment
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.constants.cleaning.ExtensionsConstants
@@ -19,7 +19,7 @@ import java.io.File
  * @property dataStore A DataStore instance used for accessing user preferences.
  * @property resources A Resources instance used for accessing string arrays that define file types.
  */
-class FileScanner(private val dataStore : DataStore , private val resources : Resources) {
+class FileScanner(private val dataStore : DataStore , val application : Application) {
 
     private var preferences : Map<String , Boolean> = emptyMap()
     private var filteredFiles : List<File> = emptyList()
@@ -65,16 +65,21 @@ class FileScanner(private val dataStore : DataStore , private val resources : Re
         val root : File = Environment.getExternalStorageDirectory()
         stack.addFirst(root)
 
+        val trashDir =
+                File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash")
+
         while (stack.isNotEmpty()) {
             val currentFile : File = stack.removeFirst()
+
             if (currentFile.isDirectory) {
-                currentFile.listFiles()?.forEach { stack.addLast(it) }
+                if (! currentFile.absolutePath.startsWith(trashDir.absolutePath)) {
+                    currentFile.listFiles()?.forEach { stack.addLast(it) }
+                }
             }
             else {
                 files.add(currentFile)
             }
         }
-
         return files
     }
 
@@ -88,38 +93,38 @@ class FileScanner(private val dataStore : DataStore , private val resources : Re
                 return@with when (key) {
                     GENERIC_EXTENSIONS -> {
                         val extensions : Array<String> =
-                                resources.getStringArray(R.array.generic_extensions)
+                                application.resources.getStringArray(R.array.generic_extensions)
                         return@with value && extensions.map { it.removePrefix(prefix = ".") }
                                 .contains(file.extension)
                     }
 
                     ARCHIVE_EXTENSIONS -> {
                         val extensions : Array<String> =
-                                resources.getStringArray(R.array.archive_extensions)
+                                application.resources.getStringArray(R.array.archive_extensions)
                         return@with value && extensions.contains(file.extension)
                     }
 
                     APK_EXTENSIONS -> {
                         val extensions : Array<String> =
-                                resources.getStringArray(R.array.apk_extensions)
+                                application.resources.getStringArray(R.array.apk_extensions)
                         return@with value && extensions.contains(file.extension)
                     }
 
                     AUDIO_EXTENSIONS -> {
                         val extensions : Array<String> =
-                                resources.getStringArray(R.array.audio_extensions)
+                                application.resources.getStringArray(R.array.audio_extensions)
                         return@with value && extensions.contains(file.extension)
                     }
 
                     VIDEO_EXTENSIONS -> {
                         val extensions : Array<String> =
-                                resources.getStringArray(R.array.video_extensions)
+                                application.resources.getStringArray(R.array.video_extensions)
                         return@with value && extensions.contains(file.extension)
                     }
 
                     IMAGE_EXTENSIONS -> {
                         val extensions : Array<String> =
-                                resources.getStringArray(R.array.image_extensions)
+                                application.resources.getStringArray(R.array.image_extensions)
                         return@with value && extensions.contains(file.extension)
                     }
 

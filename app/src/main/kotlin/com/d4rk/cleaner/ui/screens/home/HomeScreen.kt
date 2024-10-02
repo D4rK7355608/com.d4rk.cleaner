@@ -306,7 +306,8 @@ fun AnalyzeComposable(imageLoader : ImageLoader , context : Context) {
                         FilesByDateSection(
                             filesByDate = filesByDate ,
                             fileSelectionStates = uiState.fileSelectionStates ,
-                            imageLoader = imageLoader
+                            imageLoader = imageLoader ,
+                            onFileSelectionChange = viewModel::onFileSelectionChange
                         )
                     }
                 }
@@ -355,6 +356,7 @@ fun FilesByDateSection(
     filesByDate : Map<String , List<File>> ,
     fileSelectionStates : Map<File , Boolean> ,
     imageLoader : ImageLoader ,
+    onFileSelectionChange : (File , Boolean) -> Unit ,
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
@@ -365,11 +367,20 @@ fun FilesByDateSection(
         sortedDates.forEach { date ->
             val files = filesByDate[date] ?: emptyList()
             item(key = date) {
-                DateHeader(files = files , fileSelectionStates = fileSelectionStates)
+                DateHeader(
+                    files = files ,
+                    fileSelectionStates = fileSelectionStates ,
+                    onFileSelectionChange = onFileSelectionChange
+                )
             }
 
             item(key = "$date-grid") {
-                FilesGrid(files = files , imageLoader = imageLoader)
+                FilesGrid(
+                    files = files ,
+                    imageLoader = imageLoader ,
+                    fileSelectionStates = fileSelectionStates ,
+                    onFileSelectionChange = onFileSelectionChange
+                )
             }
         }
     }
@@ -379,8 +390,8 @@ fun FilesByDateSection(
 fun DateHeader(
     files : List<File> ,
     fileSelectionStates : Map<File , Boolean> ,
+    onFileSelectionChange : (File , Boolean) -> Unit ,
 ) {
-    val viewModel : HomeViewModel = viewModel()
     Row(
         modifier = Modifier
                 .fillMaxWidth()
@@ -397,7 +408,7 @@ fun DateHeader(
                  checked = allFilesForDateSelected ,
                  onCheckedChange = { isChecked ->
                      files.forEach { file ->
-                         viewModel.onFileSelectionChange(file , isChecked)
+                         onFileSelectionChange(file , isChecked)
                      }
                  })
     }
@@ -407,6 +418,8 @@ fun DateHeader(
 fun FilesGrid(
     files : List<File> ,
     imageLoader : ImageLoader ,
+    fileSelectionStates : Map<File , Boolean> ,
+    onFileSelectionChange : (File , Boolean) -> Unit ,
 ) {
     Box(
         modifier = Modifier.fillMaxSize()
@@ -414,16 +427,20 @@ fun FilesGrid(
         NonLazyGrid(
             columns = 3 , itemCount = files.size , modifier = Modifier.padding(horizontal = 8.dp)
         ) { index ->
-            FileCard(
-                file = files[index] , imageLoader = imageLoader
-            )
+            val file = files[index]
+            FileCard(file = file ,
+                     imageLoader = imageLoader ,
+                     isChecked = fileSelectionStates[file] ?: false ,
+                     onCheckedChange = { isChecked -> onFileSelectionChange(file , isChecked) })
         }
     }
 }
 
 @Composable
-fun FileCard(file : File , imageLoader : ImageLoader) {
-    val viewModel : HomeViewModel = viewModel()
+fun FileCard(
+    file : File , imageLoader : ImageLoader , onCheckedChange : (Boolean) -> Unit ,
+    isChecked : Boolean ,
+) {
 
     val context : Context = LocalContext.current
     val fileExtension : String = remember(file.name) { getFileExtension(file.name) }
@@ -484,11 +501,11 @@ fun FileCard(file : File , imageLoader : ImageLoader) {
                 }
             }
 
-            Checkbox(checked = viewModel.uiState.value.fileSelectionStates[file] ?: false ,
-                     onCheckedChange = { isChecked ->
-                         viewModel.onFileSelectionChange(file , isChecked)
-                     } ,
-                     modifier = Modifier.align(Alignment.TopEnd))
+            Checkbox(
+                checked = isChecked ,
+                onCheckedChange = onCheckedChange ,
+                modifier = Modifier.align(Alignment.TopEnd)
+            )
 
             Text(
                 text = file.name ,

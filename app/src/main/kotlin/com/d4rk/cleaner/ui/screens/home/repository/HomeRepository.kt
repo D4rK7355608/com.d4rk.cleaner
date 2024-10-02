@@ -1,6 +1,7 @@
 package com.d4rk.cleaner.ui.screens.home.repository
 
 import android.app.Application
+import android.os.Environment
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.cleaning.FileScanner
@@ -11,7 +12,7 @@ import java.io.File
 class HomeRepository(
     dataStore : DataStore , application : Application ,
 ) : HomeRepositoryImplementation(application) {
-    private val fileScanner = FileScanner(dataStore , application.resources)
+    private val fileScanner = FileScanner(dataStore , application)
 
     suspend fun getStorageInfo(onSuccess : (UiHomeModel) -> Unit) {
         withContext(Dispatchers.IO) {
@@ -45,8 +46,16 @@ class HomeRepository(
 
     suspend fun getTrashFiles() : List<File> {
         return withContext(Dispatchers.IO) {
-            val trashDir = File(application.filesDir , "trash")
-            if (trashDir.exists()) trashDir.listFiles()?.toList() ?: emptyList() else emptyList()
+            val trashDir = File(
+                application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash"
+            )
+
+            if (trashDir.exists()) {
+                trashDir.listFiles()?.toList() ?: emptyList()
+            }
+            else {
+                return@withContext emptyList()
+            }
         }
     }
 
@@ -59,9 +68,9 @@ class HomeRepository(
         }
     }
 
-    suspend fun moveToTrash(filesToMove : Set<File> , onSuccess : () -> Unit) {
+    suspend fun moveToTrash(filesToMove : List<File> , onSuccess : () -> Unit) {
         withContext(Dispatchers.IO) {
-            moveToTrash(filesToMove)
+            moveToTrash(filesToMove) // Call the updated function below
             withContext(Dispatchers.Main) {
                 onSuccess()
             }
