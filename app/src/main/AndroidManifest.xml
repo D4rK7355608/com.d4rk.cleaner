@@ -86,6 +86,11 @@
             android:label="@string/image_optimizer"
             android:parentActivityName=".ui.screens.imageoptimizer.imageoptimizer.ImageOptimizerActivity" />
 
+        <activity android:name=".ui.screens.trash.TrashActivity"
+            android:exported="false"
+            android:label="@string/trash"
+            android:parentActivityName=".ui.screens.main.MainActivity"/>
+
         <activity
             android:name=".ui.screens.settings.SettingsActivity"
             android:exported="true"

@@ -16,6 +16,12 @@
     <string name="storage_used">%1$s/%2$s GB\nUsed</string>
     <string name="analyze">Analyze</string>
     <string name="clean">Clean</string>
+    <string name="quick_scan">Quick Scan</string>
+    <string name="apks">APKs</string>
+    <string name="archives">Archives</string>
+    <string name="videos">Videos</string>
+    <string name="audios">Audios</string>
+    <string name="other">Other</string>
     <string name="status_selected_files">Status: Selected %1$d files</string>
     <string name="status_no_files_selected">Status: No files selected</string>
     <string name="select_all">Select All</string>
@@ -76,6 +82,9 @@
     <string name="width">Width (px)</string>
     <string name="height">Height (px)</string>
     <string name="quality">Quality</string>
+
+    <string name="trash">Trash</string>
+    <string name="trash_is_empty">Trash is empty</string>
 
     <string name="settings">Settings</string>
 

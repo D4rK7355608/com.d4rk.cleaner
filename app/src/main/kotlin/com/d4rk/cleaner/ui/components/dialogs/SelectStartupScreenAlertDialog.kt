@@ -34,7 +34,7 @@ import com.d4rk.cleaner.data.datastore.DataStore
 import kotlinx.coroutines.flow.firstOrNull
 
 @Composable
-fun BottomBarStartupDialog(
+fun SelectStartupScreenAlertDialog(
     dataStore: DataStore,
     onDismiss: () -> Unit,
     onStartupSelected: (String) -> Unit
@@ -45,7 +45,7 @@ fun BottomBarStartupDialog(
     val startupValues: List<String> =
         stringArrayResource(R.array.preference_startup_values).toList()
     AlertDialog(onDismissRequest = onDismiss, text = {
-        BottomBarStartupDialogContent(
+        SelectStartupScreenAlertDialogContent(
             defaultPage, dataStore, startupEntries, startupValues
         )
     }, icon = {
@@ -65,7 +65,7 @@ fun BottomBarStartupDialog(
 }
 
 @Composable
-fun BottomBarStartupDialogContent(
+fun SelectStartupScreenAlertDialogContent(
     selectedPage: MutableState<String>,
     dataStore: DataStore,
     startupEntries: List<String>,

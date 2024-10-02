@@ -35,8 +35,8 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
             repository.analyzeFiles { filteredFiles ->
                 _uiState.value = _uiState.value.copy(
                     scannedFiles = filteredFiles ,
-                    showCleaningComposable = true,
-                    noFilesFound = filteredFiles.isEmpty(),
+                    showCleaningComposable = true ,
+                    noFilesFound = filteredFiles.isEmpty() ,
                 )
             }
             hideLoading()
@@ -55,8 +55,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
             _uiState.value = _uiState.value.copy(scannedFiles = emptyList())
             repository.rescanFiles { filteredFiles ->
                 _uiState.value = _uiState.value.copy(
-                    scannedFiles = filteredFiles,
-                    showCleaningComposable = true
+                    scannedFiles = filteredFiles , showCleaningComposable = true
                 )
             }
             hideLoading()
@@ -117,8 +116,26 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
             val filesToDelete = _uiState.value.fileSelectionStates.filter { it.value }.keys
             showLoading()
             repository.deleteFiles(filesToDelete) {
+                _uiState.value =
+                        _uiState.value.copy(scannedFiles = uiState.value.scannedFiles.filterNot {
+                            filesToDelete.contains(it)
+                        } ,
+                                            selectedFileCount = 0 ,
+                                            allFilesSelected = false ,
+                                            fileSelectionStates = emptyMap())
+                updateStorageInfo()
+            }
+            hideLoading()
+        }
+    }
+
+    fun moveToTrash() {
+        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
+            val filesToMove = _uiState.value.fileSelectionStates.filter { it.value }.keys
+            showLoading()
+            repository.moveToTrash(filesToMove) {
                 _uiState.value = _uiState.value.copy(
-                    scannedFiles = uiState.value.scannedFiles.filterNot { filesToDelete.contains(it) } ,
+                    scannedFiles = uiState.value.scannedFiles.filterNot { filesToMove.contains(it) } ,
                     selectedFileCount = 0 ,
                     allFilesSelected = false ,
                     fileSelectionStates = emptyMap()
@@ -126,14 +143,6 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                 updateStorageInfo()
             }
             hideLoading()
-        }
-    }
-
-    fun rescan() {
-        viewModelScope.launch(coroutineExceptionHandler) {
-            _uiState.value =
-                    _uiState.value.copy(showRescanDialog = false , scannedFiles = emptyList())
-            analyze()
         }
     }
 }

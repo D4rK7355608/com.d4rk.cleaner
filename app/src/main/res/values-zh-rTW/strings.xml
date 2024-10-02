@@ -16,6 +16,12 @@
     <string name="storage_used">%1$s/%2$s GB\n已使用</string>
     <string name="analyze">分析</string>
     <string name="clean">清理</string>
+    <string name="quick_scan">快速掃描</string>
+    <string name="apks">APK</string>
+    <string name="archives">檔案</string>
+    <string name="videos">影片</string>
+    <string name="audios">音訊</string>
+    <string name="other">其他</string>
     <string name="status_selected_files">狀態：已選取 %1$d 個檔案</string>
     <string name="status_no_files_selected">狀態：未選取任何檔案</string>
     <string name="select_all">選取全部</string>

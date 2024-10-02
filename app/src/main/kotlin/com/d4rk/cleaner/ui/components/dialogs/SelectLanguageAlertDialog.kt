@@ -33,7 +33,7 @@ import com.d4rk.cleaner.data.datastore.DataStore
 import kotlinx.coroutines.flow.firstOrNull
 
 @Composable
-fun LanguageDialog(
+fun SelectLanguageAlertDialog(
     dataStore: DataStore, onDismiss: () -> Unit, onLanguageSelected: (String) -> Unit
 ) {
     val selectedLanguage: MutableState<String> = remember { mutableStateOf(value = "") }
@@ -43,7 +43,7 @@ fun LanguageDialog(
         stringArrayResource(R.array.preference_language_values).toList()
 
     AlertDialog(onDismissRequest = onDismiss, text = {
-        LanguageDialogContent(
+        SelectLanguageAlertDialogContent(
             selectedLanguage, dataStore, languageEntries, languageValues
         )
     }, icon = {
@@ -63,7 +63,7 @@ fun LanguageDialog(
 }
 
 @Composable
-fun LanguageDialogContent(
+fun SelectLanguageAlertDialogContent(
     selectedLanguage: MutableState<String>,
     dataStore: DataStore,
     languageEntries: List<String>,

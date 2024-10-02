@@ -21,8 +21,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
 import com.d4rk.cleaner.ui.components.animations.bounceClick
 
@@ -80,18 +82,11 @@ fun CircularDeterminateIndicator(
             colors = ButtonDefaults.filledTonalButtonColors()
         ) {
             Text(
-                text = "Quick Scan",
-                textAlign = TextAlign.Center,
+                text = stringResource(id = R.string.quick_scan) ,
+                textAlign = TextAlign.Center ,
                 style = MaterialTheme.typography.titleLarge
             )
         }
-
-        /*        Text(
-                    modifier = Modifier.animateContentSize(),
-                    text = stringResource(id = R.string.storage_used, storageUsed, storageTotal),
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.titleLarge
-                )*/
     }
 }
 

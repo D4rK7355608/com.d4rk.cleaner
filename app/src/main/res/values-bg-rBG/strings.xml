@@ -16,6 +16,12 @@
     <string name="storage_used">%1$s/%2$s GB\nИзползвано</string>
     <string name="analyze">Анализиране</string>
     <string name="clean">Почистване</string>
+    <string name="quick_scan">Бързо сканиране</string>
+    <string name="apks">APK файлове</string>
+    <string name="archives">Архиви</string>
+    <string name="videos">Видеоклипове</string>
+    <string name="audios">Аудио файлове</string>
+    <string name="other">Други</string>
     <string name="status_selected_files">Статус: Избрани %1$d файла</string>
     <string name="status_no_files_selected">Статус: Не са избрани файлове</string>
     <string name="select_all">Избиране на всички</string>

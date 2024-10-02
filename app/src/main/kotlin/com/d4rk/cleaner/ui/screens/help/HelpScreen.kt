@@ -53,7 +53,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.components.dialogs.VersionInfoDialog
+import com.d4rk.cleaner.ui.components.dialogs.VersionInfoAlertDialog
 import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.ui.components.animations.bounceClick
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
@@ -151,7 +151,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                     })
             }
             if (showDialog.value) {
-                VersionInfoDialog(onDismiss = { showDialog.value = false })
+                VersionInfoAlertDialog(onDismiss = { showDialog.value = false })
             }
         } , scrollBehavior = scrollBehavior)
     }) { paddingValues ->

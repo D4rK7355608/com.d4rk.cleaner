@@ -33,7 +33,6 @@ playServicesOssLicenses = "17.1.0"
 reviewKtx = "2.0.1"
 workRuntimeKtx = "2.9.1"
 
-
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }

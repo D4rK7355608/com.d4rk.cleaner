@@ -28,4 +28,27 @@ abstract class HomeRepositoryImplementation(val application : Application) {
             }
         }
     }
+
+    fun moveToTrash(filesToMove : Set<File>) {
+        val trashDir = File(application.filesDir , "trash")
+        if (! trashDir.exists()) {
+            trashDir.mkdirs()
+        }
+        filesToMove.forEach { file ->
+            val destination = File(trashDir , file.name)
+            if (file.exists()) {
+                file.renameTo(destination)
+            }
+        }
+    }
+
+    fun restoreFromTrash(filesToRestore : Set<File>) {
+        filesToRestore.forEach { file ->
+            val originalPath = file.absolutePath.replace("/trash/" , "/")
+            val destination = File(originalPath)
+            if (file.exists()) {
+                file.renameTo(destination)
+            }
+        }
+    }
 }

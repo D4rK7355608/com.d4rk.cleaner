@@ -23,45 +23,43 @@ import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
 
 @Composable
-fun VersionInfoDialog(onDismiss: () -> Unit) {
+fun VersionInfoAlertDialog(onDismiss : () -> Unit) {
     AlertDialog(
-        onDismissRequest = onDismiss,
-        text = { VersionInfoContent() },
-        confirmButton = {},
+        onDismissRequest = onDismiss ,
+        text = { VersionInfoAlertDialogContent() } ,
+        confirmButton = {} ,
     )
 }
 
 @Composable
-fun VersionInfoContent() {
-    val context: Context = LocalContext.current
-    val appName: String = context.getString(R.string.app_full_name)
-    val versionName: String = BuildConfig.VERSION_NAME
-    val versionString: String = stringResource(id = R.string.version, versionName)
-    val copyright: String = context.getString(R.string.copyright)
-
-    val appIcon: Drawable = context.packageManager.getApplicationIcon(context.packageName)
+fun VersionInfoAlertDialogContent() {
+    val context : Context = LocalContext.current
+    val copyright : String = context.getString(R.string.copyright)
+    val appIcon : Drawable = context.packageManager.getApplicationIcon(context.packageName)
     val imageLoader = ImageLoader.Builder(context).build()
 
     Row(
         modifier = Modifier.fillMaxWidth()
     ) {
         AsyncImage(
-            model = appIcon,
-            contentDescription = null,
-            modifier = Modifier.size(48.dp),
+            model = appIcon ,
+            contentDescription = null ,
+            modifier = Modifier.size(48.dp) ,
             imageLoader = imageLoader
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column {
             Text(
-                text = appName, style = MaterialTheme.typography.titleLarge
+                text = context.getString(R.string.app_full_name) ,
+                style = MaterialTheme.typography.titleLarge
             )
             Text(
-                text = versionString, style = MaterialTheme.typography.bodyMedium
+                text = stringResource(id = R.string.version , BuildConfig.VERSION_NAME) ,
+                style = MaterialTheme.typography.bodyMedium
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = copyright, style = MaterialTheme.typography.bodyMedium
+                text = copyright , style = MaterialTheme.typography.bodyMedium
             )
         }
     }

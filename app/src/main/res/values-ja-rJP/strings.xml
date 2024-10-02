@@ -16,6 +16,12 @@
     <string name="storage_used">%1$s/%2$s GB\n使用済み</string>
     <string name="analyze">分析する</string>
     <string name="clean">クリーン</string>
+    <string name="quick_scan">クイックスキャン</string>
+    <string name="apks">APK</string>
+    <string name="archives">アーカイブ</string>
+    <string name="videos">ビデオ</string>
+    <string name="audios">オーディオ</string>
+    <string name="other">その他</string>
     <string name="status_selected_files">ステータス: %1$d ファイルを選択済み</string>
     <string name="status_no_files_selected">ステータス: ファイルが選択されていません</string>
     <string name="select_all">すべて選択</string>

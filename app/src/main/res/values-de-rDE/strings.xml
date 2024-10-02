@@ -16,6 +16,12 @@
     <string name="storage_used">%1$s/%2$s GB\nVerwendet</string>
     <string name="analyze">Analysieren</string>
     <string name="clean">Reinigen</string>
+    <string name="quick_scan">Schnellscan</string>
+    <string name="apks">APKs</string>
+    <string name="archives">Archive</string>
+    <string name="videos">Videos</string>
+    <string name="audios">Audios</string>
+    <string name="other">Andere</string>
     <string name="status_selected_files">Status: %1$d Dateien ausgewählt</string>
     <string name="status_no_files_selected">Status: Keine Dateien ausgewählt</string>
     <string name="select_all">Alle auswählen</string>

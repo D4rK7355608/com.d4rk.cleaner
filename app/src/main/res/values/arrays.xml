@@ -1,4 +1,13 @@
 <resources>
+    <string-array name="file_types_titles">
+        <item>@string/images</item>
+        <item>@string/audios</item>
+        <item>@string/videos</item>
+        <item>@string/apks</item>
+        <item>@string/archives</item>
+        <item>@string/other</item>
+    </string-array>
+
     <string-array name="generic_extensions">
         <item>DS_Store</item>
         <item>Spotlight-V100</item>

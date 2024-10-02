@@ -34,7 +34,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil.compose.AsyncImage
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.components.ads.BannerAdsComposable
+import com.d4rk.cleaner.ui.components.ads.AdBanner
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.imageoptimizer.ImageOptimizerState
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.tabs.FileSizeScreen
@@ -127,11 +127,11 @@ fun ImageOptimizerComposable(
                 Text(stringResource(id = R.string.optimize_image))
             }
 
-            BannerAdsComposable(modifier = Modifier.constrainAs(adView) {
+            AdBanner(modifier = Modifier.constrainAs(adView) {
                 bottom.linkTo(parent.bottom)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
-            }, dataStore = dataStore)
+            } , dataStore = dataStore)
         }
     }
 }

@@ -10,6 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.EventNote
 import androidx.compose.material.icons.automirrored.outlined.HelpOutline
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.outlined.DeleteOutline
 import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Share
@@ -44,6 +45,7 @@ import com.d4rk.cleaner.ui.screens.support.SupportActivity
 import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.ui.components.animations.bounceClick
 import com.d4rk.cleaner.ui.components.animations.hapticDrawerSwipe
+import com.d4rk.cleaner.ui.screens.trash.TrashActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -61,6 +63,9 @@ fun NavigationDrawer(
     val drawerItems : List<NavigationDrawerItem> = listOf(
         NavigationDrawerItem(
             title = R.string.image_optimizer , selectedIcon = Icons.Outlined.Image
+        ) ,
+        NavigationDrawerItem(
+            title = R.string.trash , selectedIcon = Icons.Outlined.DeleteOutline
         ) ,
         NavigationDrawerItem(
             title = R.string.settings ,
@@ -99,6 +104,16 @@ fun NavigationDrawer(
                                                                        IntentUtils.openActivity(
                                                                            context ,
                                                                            ImagePickerActivity::class.java
+                                                                       )
+                                                                   }
+
+                                                                   R.string.trash -> {
+                                                                       view.playSoundEffect(
+                                                                           SoundEffectConstants.CLICK
+                                                                       )
+                                                                       IntentUtils.openActivity(
+                                                                           context ,
+                                                                           TrashActivity::class.java
                                                                        )
                                                                    }
 
@@ -155,7 +170,7 @@ fun NavigationDrawer(
                                                                        NavigationDrawerItemDefaults.ItemPadding
                                                                    )
                                                                    .bounceClick())
-                                      if (item.title == R.string.image_optimizer) {
+                                      if (item.title == R.string.trash) {
                                           HorizontalDivider(modifier = Modifier.padding(8.dp))
                                       }
                                   }

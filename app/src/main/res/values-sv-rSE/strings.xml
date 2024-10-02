@@ -16,6 +16,12 @@
     <string name="storage_used">%1$s/%2$s GB\nAnvänt</string>
     <string name="analyze">Analysera</string>
     <string name="clean">Rensa</string>
+    <string name="quick_scan">Snabbsökning</string>
+    <string name="apks">APK:er</string>
+    <string name="archives">Arkiv</string>
+    <string name="videos">Videor</string>
+    <string name="audios">Ljud</string>
+    <string name="other">Annat</string>
     <string name="status_selected_files">Status: %1$d filer valda</string>
     <string name="status_no_files_selected">Status: Inga filer valda</string>
     <string name="select_all">Välj alla</string>

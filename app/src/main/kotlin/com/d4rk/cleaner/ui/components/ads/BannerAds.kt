@@ -13,7 +13,7 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 
 @Composable
-fun BannerAdsComposable(
+fun AdBanner(
     modifier: Modifier = Modifier, dataStore: DataStore
 ) {
     val showAds: Boolean by dataStore.ads.collectAsState(initial = true)
@@ -30,7 +30,7 @@ fun BannerAdsComposable(
 }
 
 @Composable
-fun FullBannerAdsComposable(
+fun AdBannerFull(
     modifier: Modifier = Modifier, dataStore: DataStore
 ) {
     val showAds: Boolean by dataStore.ads.collectAsState(initial = true)

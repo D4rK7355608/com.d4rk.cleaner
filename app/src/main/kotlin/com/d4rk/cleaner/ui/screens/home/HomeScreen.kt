@@ -21,7 +21,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
@@ -34,7 +33,6 @@ import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.DeleteForever
 import androidx.compose.material.icons.outlined.FolderOff
 import androidx.compose.material.icons.outlined.Refresh
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
@@ -54,16 +52,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -80,10 +77,10 @@ import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.ui.components.CircularDeterminateIndicator
 import com.d4rk.cleaner.ui.components.NonLazyGrid
+import com.d4rk.cleaner.ui.components.TwoRowButtons
 import com.d4rk.cleaner.ui.components.animations.bounceClick
 import com.d4rk.cleaner.ui.components.animations.hapticPagerSwipe
 import com.d4rk.cleaner.ui.components.dialogs.ErrorAlertDialog
-import com.d4rk.cleaner.ui.components.dialogs.RescanAlertDialog
 import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.TimeHelper
 import com.d4rk.cleaner.utils.cleaning.getFileIcon
@@ -101,7 +98,6 @@ fun HomeScreen() {
     val viewModel : HomeViewModel = viewModel()
     val uiState : UiHomeModel by viewModel.uiState.collectAsState()
     val uiErrorModel : UiErrorModel by viewModel.uiErrorModel.collectAsState()
-
     val imageLoader : ImageLoader = remember {
         ImageLoader.Builder(context).memoryCache {
             MemoryCache.Builder(context).maxSizePercent(percent = 0.24).build()
@@ -110,25 +106,11 @@ fun HomeScreen() {
                     .maxSizePercent(percent = 0.02).build()
         }.build()
     }
-    var showRescanDialog : Boolean by remember { mutableStateOf(value = false) }
 
     LaunchedEffect(Unit) {
         if (! PermissionsUtils.hasStoragePermissions(context)) {
             PermissionsUtils.requestStoragePermissions(context as Activity)
         }
-    }
-
-    LaunchedEffect(uiState.showRescanDialog) {
-        showRescanDialog = uiState.showRescanDialog
-    }
-
-    if (showRescanDialog) {
-        RescanAlertDialog(onYes = {
-            viewModel.rescan()
-            showRescanDialog = false
-        } , onDismiss = {
-            showRescanDialog = false
-        })
     }
 
     if (uiErrorModel.showErrorDialog) {
@@ -142,11 +124,14 @@ fun HomeScreen() {
                     .weight(4f)
                     .fillMaxWidth()
         ) {
-            CircularDeterminateIndicator(progress = uiState.progress ,
-                                         modifier = Modifier
-                                                 .align(Alignment.TopCenter)
-                                                 .offset(y = 98.dp) ,
-                                         onClick = { viewModel.analyze() })
+
+            if (! uiState.showCleaningComposable) {
+                CircularDeterminateIndicator(progress = uiState.progress ,
+                                             modifier = Modifier
+                                                     .align(Alignment.TopCenter)
+                                                     .offset(y = 98.dp) ,
+                                             onClick = { viewModel.analyze() })
+            }
 
             Crossfade(
                 targetState = uiState.showCleaningComposable ,
@@ -154,7 +139,7 @@ fun HomeScreen() {
                 label = ""
             ) { showCleaningComposable ->
                 if (showCleaningComposable) {
-                    AnalyzeComposable(imageLoader)
+                    AnalyzeComposable(imageLoader = imageLoader , context = context)
                 }
             }
         }
@@ -162,10 +147,9 @@ fun HomeScreen() {
 }
 
 @Composable
-fun AnalyzeComposable(imageLoader : ImageLoader) {
+fun AnalyzeComposable(imageLoader : ImageLoader , context : Context) {
     val viewModel : HomeViewModel = viewModel()
     val uiState : UiHomeModel by viewModel.uiState.collectAsState()
-    val context = LocalContext.current
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     val enabled = uiState.selectedFileCount > 0
     val apkExtensions = remember { context.resources.getStringArray(R.array.apk_extensions) }
@@ -174,6 +158,8 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
     val audioExtensions = remember { context.resources.getStringArray(R.array.audio_extensions) }
     val archiveExtensions =
             remember { context.resources.getStringArray(R.array.archive_extensions) }
+
+    val filesTypesStrings : List<String> = stringArrayResource(R.array.file_types_titles).toList()
 
     val groupedFiles = remember(
         uiState.scannedFiles ,
@@ -185,28 +171,28 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
     ) {
         uiState.scannedFiles.groupBy { file ->
             when (file.extension.lowercase()) {
-                in apkExtensions -> {
-                    return@groupBy "APKs"
+                in imageExtensions -> {
+                    return@groupBy filesTypesStrings[0]
                 }
 
-                in imageExtensions -> {
-                    return@groupBy "Images"
+                in apkExtensions -> {
+                    return@groupBy filesTypesStrings[3]
                 }
 
                 in videoExtensions -> {
-                    return@groupBy "Videos"
+                    return@groupBy filesTypesStrings[2]
                 }
 
                 in audioExtensions -> {
-                    return@groupBy "Audios"
+                    return@groupBy filesTypesStrings[1]
                 }
 
                 in archiveExtensions -> {
-                    return@groupBy "Archives"
+                    return@groupBy filesTypesStrings[4]
                 }
 
                 else -> {
-                    return@groupBy "Others"
+                    return@groupBy filesTypesStrings[5]
                 }
             }
         }
@@ -317,63 +303,11 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
                             ).format(Date(file.lastModified()))
                         }
 
-                        LazyColumn(
-                            modifier = Modifier.fillMaxSize() ,
-                        ) {
-
-                            val sortedDates = filesByDate.keys.sortedByDescending { dateString ->
-                                return@sortedByDescending SimpleDateFormat(
-                                    "yyyy-MM-dd" ,
-                                    Locale.getDefault()
-                                ).parse(dateString)
-                            }
-                            sortedDates.forEach { date ->
-                                val files = filesByDate[date] ?: emptyList()
-                                item(key = date) {
-                                    Row(
-                                        modifier = Modifier
-                                                .fillMaxWidth()
-                                                .padding(horizontal = 8.dp , vertical = 4.dp) ,
-                                        verticalAlignment = Alignment.CenterVertically ,
-                                        horizontalArrangement = Arrangement.SpaceBetween
-                                    ) {
-                                        Text(
-                                            modifier = Modifier.padding(start = 8.dp) ,
-                                            text = TimeHelper.formatDate(Date(files[0].lastModified()))
-                                        )
-                                        val allFilesForDateSelected =
-                                                files.all { uiState.fileSelectionStates[it] == true }
-                                        Checkbox(modifier = Modifier.bounceClick() ,
-                                                 checked = allFilesForDateSelected ,
-                                                 onCheckedChange = { isChecked ->
-                                                     files.forEach { file ->
-                                                         viewModel.onFileSelectionChange(
-                                                             file , isChecked
-                                                         )
-                                                     }
-                                                 })
-                                    }
-                                }
-
-                                item(key = "$date-grid") {
-                                    Box(
-                                        modifier = Modifier.fillMaxSize()
-                                    ) {
-                                        NonLazyGrid(
-                                            columns = 3 ,
-                                            itemCount = files.size ,
-                                            modifier = Modifier.padding(horizontal = 8.dp)
-                                        ) { index ->
-                                            FileCard(
-                                                file = files[index] ,
-                                                viewModel = viewModel ,
-                                                imageLoader = imageLoader
-                                            )
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        FilesByDateSection(
+                            filesByDate = filesByDate ,
+                            fileSelectionStates = uiState.fileSelectionStates ,
+                            imageLoader = imageLoader
+                        )
                     }
                 }
             }
@@ -407,55 +341,90 @@ fun AnalyzeComposable(imageLoader : ImageLoader) {
                 SelectAllComposable(viewModel)
             }
 
-            Row(
-                modifier = Modifier.fillMaxWidth() , horizontalArrangement = Arrangement.SpaceAround
-            ) {
-                OutlinedButton(
-                    enabled = false , // TODO: Currently false by default because there's no trash
-                    onClick = {
-                        // TODO: add trash
-                    } ,
-                    modifier = Modifier
-                            .weight(1f)
-                            .bounceClick() ,
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Black)
-                ) {
-                    Icon(
-                        imageVector = Icons.Outlined.Delete ,
-                        contentDescription = "Move to trash" ,
-                        modifier = Modifier.size(ButtonDefaults.IconSize)
-                    )
-                    Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-                    Text(text = "Move to trash")
-                }
+            TwoRowButtons(enabled = enabled , onStartButtonClick = {
+                viewModel.moveToTrash()
+            } , onStartButtonIcon = Icons.Outlined.Delete , onEndButtonClick = {
+                viewModel.clean()
+            } , onEndButtonIcon = Icons.Outlined.DeleteForever)
+        }
+    }
+}
 
-                Spacer(Modifier.width(8.dp))
+@Composable
+fun FilesByDateSection(
+    filesByDate : Map<String , List<File>> ,
+    fileSelectionStates : Map<File , Boolean> ,
+    imageLoader : ImageLoader ,
+) {
+    LazyColumn(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        val sortedDates = filesByDate.keys.sortedByDescending { dateString ->
+            SimpleDateFormat("yyyy-MM-dd" , Locale.getDefault()).parse(dateString)
+        }
+        sortedDates.forEach { date ->
+            val files = filesByDate[date] ?: emptyList()
+            item(key = date) {
+                DateHeader(files = files , fileSelectionStates = fileSelectionStates)
+            }
 
-                Button(
-                    enabled = enabled ,
-                    onClick = {
-                        viewModel.clean()
-                    } ,
-                    modifier = Modifier
-                            .weight(1f)
-                            .bounceClick() ,
-                    colors = ButtonDefaults.buttonColors(contentColor = Color.White)
-                ) {
-                    Icon(
-                        imageVector = Icons.Outlined.DeleteForever ,
-                        contentDescription = "Delete forever" ,
-                        modifier = Modifier.size(ButtonDefaults.IconSize)
-                    )
-                    Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-                    Text(text = "Delete forever")
-                }
+            item(key = "$date-grid") {
+                FilesGrid(files = files , imageLoader = imageLoader)
             }
         }
     }
 }
 
 @Composable
-fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader) {
+fun DateHeader(
+    files : List<File> ,
+    fileSelectionStates : Map<File , Boolean> ,
+) {
+    val viewModel : HomeViewModel = viewModel()
+    Row(
+        modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp , vertical = 4.dp) ,
+        verticalAlignment = Alignment.CenterVertically ,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            modifier = Modifier.padding(start = 8.dp) ,
+            text = TimeHelper.formatDate(Date(files[0].lastModified()))
+        )
+        val allFilesForDateSelected = files.all { fileSelectionStates[it] == true }
+        Checkbox(modifier = Modifier.bounceClick() ,
+                 checked = allFilesForDateSelected ,
+                 onCheckedChange = { isChecked ->
+                     files.forEach { file ->
+                         viewModel.onFileSelectionChange(file , isChecked)
+                     }
+                 })
+    }
+}
+
+@Composable
+fun FilesGrid(
+    files : List<File> ,
+    imageLoader : ImageLoader ,
+) {
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        NonLazyGrid(
+            columns = 3 , itemCount = files.size , modifier = Modifier.padding(horizontal = 8.dp)
+        ) { index ->
+            FileCard(
+                file = files[index] , imageLoader = imageLoader
+            )
+        }
+    }
+}
+
+@Composable
+fun FileCard(file : File , imageLoader : ImageLoader) {
+    val viewModel : HomeViewModel = viewModel()
+
     val context : Context = LocalContext.current
     val fileExtension : String = remember(file.name) { getFileExtension(file.name) }
 
@@ -486,20 +455,17 @@ fun FileCard(file : File , viewModel : HomeViewModel , imageLoader : ImageLoader
                 }
 
                 in videoExtensions -> {
-                    AsyncImage(
-                        model = remember(file) {
-                            ImageRequest.Builder(context).data(file)
-                                    .decoderFactory { result, options, _ ->
-                                        VideoFrameDecoder(result.source, options)
-                                    }
-                                    .videoFramePercent(framePercent = 0.5)
-                                    .crossfade(enable = true).build()
-                        },
-                        imageLoader = imageLoader,
-                        contentDescription = file.name,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxSize()
-                    )
+                    AsyncImage(model = remember(file) {
+                        ImageRequest.Builder(context).data(file)
+                                .decoderFactory { result , options , _ ->
+                                    VideoFrameDecoder(result.source , options)
+                                }.videoFramePercent(framePercent = 0.5).crossfade(enable = true)
+                                .build()
+                    } ,
+                               imageLoader = imageLoader ,
+                               contentDescription = file.name ,
+                               contentScale = ContentScale.Crop ,
+                               modifier = Modifier.fillMaxSize())
                 }
 
                 else -> {

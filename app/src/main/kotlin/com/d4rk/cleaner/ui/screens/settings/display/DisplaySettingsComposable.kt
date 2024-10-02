@@ -25,8 +25,8 @@ import androidx.core.os.LocaleListCompat
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.ui.components.PreferenceCategoryItem
-import com.d4rk.cleaner.ui.components.dialogs.BottomBarStartupDialog
-import com.d4rk.cleaner.ui.components.dialogs.LanguageDialog
+import com.d4rk.cleaner.ui.components.dialogs.SelectStartupScreenAlertDialog
+import com.d4rk.cleaner.ui.components.dialogs.SelectLanguageAlertDialog
 import com.d4rk.cleaner.utils.IntentUtils
 import com.d4rk.cleaner.ui.components.PreferenceItem
 import com.d4rk.cleaner.ui.components.SwitchPreferenceItem
@@ -126,9 +126,9 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
                     onClick = { showStartupDialog = true })
 
                 if (showStartupDialog) {
-                    BottomBarStartupDialog(dataStore = dataStore,
-                        onDismiss = { showStartupDialog = false },
-                        onStartupSelected = { selectedStartup ->
+                    SelectStartupScreenAlertDialog(dataStore = dataStore ,
+                                                   onDismiss = { showStartupDialog = false } ,
+                                                   onStartupSelected = { selectedStartup ->
                             scope.launch {
                                 dataStore.saveStartupPage(selectedStartup)
                             }
@@ -172,9 +172,9 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
                         }
                     })
                 if (showLanguageDialog) {
-                    LanguageDialog(dataStore = dataStore,
-                        onDismiss = { showLanguageDialog = false },
-                        onLanguageSelected = { newLanguageCode ->
+                    SelectLanguageAlertDialog(dataStore = dataStore ,
+                                              onDismiss = { showLanguageDialog = false } ,
+                                              onLanguageSelected = { newLanguageCode ->
                             AppCompatDelegate.setApplicationLocales(
                                 LocaleListCompat.forLanguageTags(
                                     newLanguageCode

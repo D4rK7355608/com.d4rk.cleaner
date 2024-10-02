@@ -16,6 +16,12 @@
     <string name="storage_used">%1$s/%2$s GB\nUtilizat</string>
     <string name="analyze">Analizează</string>
     <string name="clean">Curăță</string>
+    <string name="quick_scan">Scanare rapidă</string>
+    <string name="apks">APK-uri</string>
+    <string name="archives">Arhive</string>
+    <string name="videos">Videoclipuri</string>
+    <string name="audios">Fișiere audio</string>
+    <string name="other">Altele</string>
     <string name="status_selected_files">Stare: Selectate %1$d fișiere</string>
     <string name="status_no_files_selected">Stare: Niciun fișier selectat</string>
     <string name="select_all">Selectează tot</string>

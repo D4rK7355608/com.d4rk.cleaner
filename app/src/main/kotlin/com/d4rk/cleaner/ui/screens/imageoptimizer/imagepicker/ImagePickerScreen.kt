@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.components.ads.BannerAdsComposable
+import com.d4rk.cleaner.ui.components.ads.AdBanner
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.ImageOptimizerActivity
 import com.d4rk.cleaner.utils.PermissionsUtils
@@ -111,11 +111,11 @@ fun ImagePickerComposable(
                 )
             })
 
-            BannerAdsComposable(modifier = Modifier.constrainAs(adView) {
+            AdBanner(modifier = Modifier.constrainAs(adView) {
                 bottom.linkTo(parent.bottom)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
-            }, dataStore = dataStore)
+            } , dataStore = dataStore)
         }
     }
 }

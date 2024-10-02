@@ -16,6 +16,12 @@
     <string name="storage_used">%1$s/%2$s GB\nDigunakan</string>
     <string name="analyze">Analisis</string>
     <string name="clean">Bersihkan</string>
+    <string name="quick_scan">Pemindaian Cepat</string>
+    <string name="apks">APK</string>
+    <string name="archives">Arsip</string>
+    <string name="videos">Video</string>
+    <string name="audios">Audio</string>
+    <string name="other">Lainnya</string>
     <string name="status_selected_files">Status: %1$d file dipilih</string>
     <string name="status_no_files_selected">Status: Tidak ada file yang dipilih</string>
     <string name="select_all">Pilih Semua</string>

@@ -16,6 +16,12 @@
     <string name="storage_used">%1$s/%2$s GB\nइस्तेमाल हुआ</string>
     <string name="analyze">विश्लेषण करें</string>
     <string name="clean">साफ करें</string>
+    <string name="quick_scan">त्वरित स्कैन</string>
+    <string name="apks">APK</string>
+    <string name="archives">पुरालेख</string>
+    <string name="videos">वीडियो</string>
+    <string name="audios">ऑडियो</string>
+    <string name="other">अन्य</string>
     <string name="status_selected_files">स्थिति: %1$d फ़ाइलें चयनित</string>
     <string name="status_no_files_selected">स्थिति: कोई फ़ाइलें चयनित नहीं हैं</string>
     <string name="select_all">सबका चयन करें</string>

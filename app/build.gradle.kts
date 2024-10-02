@@ -14,27 +14,27 @@ android {
         applicationId = "com.d4rk.cleaner"
         minSdk = 23
         targetSdk = 34
-        versionCode = 129
+        versionCode = 130
         versionName = "2.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations += listOf(
             "en",
-            "de",
-            "es",
-            "fr",
-            "hi",
-            "hu",
-            "in",
-            "it",
-            "ja",
-            "ro",
-            "ru",
-            "tr",
-            "sv",
-            "bg",
-            "pl",
-            "uk",
-            "b+zh+rTW",
+            "bg-rBG",
+            "de-rDE",
+            "es-rGQ",
+            "fr-rFR",
+            "hi-rIN",
+            "hu-rHU",
+            "in-rID",
+            "it-rIT",
+            "ja-rJP",
+            "pl-rPL",
+            "ro-rRO",
+            "ru-rRU",
+            "sv-rSE",
+            "tr-rTR",
+            "uk-rUA",
+            "zh-rTW",
         )
         vectorDrawables {
             useSupportLibrary = true
