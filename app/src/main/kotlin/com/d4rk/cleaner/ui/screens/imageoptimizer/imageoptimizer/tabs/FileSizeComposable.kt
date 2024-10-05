@@ -8,6 +8,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -56,8 +57,7 @@ fun FileSizeScreen(viewModel: ImageOptimizerViewModel) {
                 },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 isError = fileSizeText.isNotEmpty() && fileSizeText.toFloatOrNull() == null,
-                modifier = Modifier
-                    .menuAnchor() // FIXME: 'menuAnchor(): Modifier' is deprecated. Use overload that takes MenuAnchorType and enabled parameters
+                modifier = Modifier.menuAnchor(type = MenuAnchorType.PrimaryNotEditable, enabled = true)
                     .fillMaxWidth()
                     .padding(top = 12.dp)
             )
