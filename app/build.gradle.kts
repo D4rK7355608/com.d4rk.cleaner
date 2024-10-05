@@ -14,8 +14,8 @@ android {
         applicationId = "com.d4rk.cleaner"
         minSdk = 23
         targetSdk = 34
-        versionCode = 131
-        versionName = "2.0.0"
+        versionCode = 132
+        versionName = "3.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations += listOf(
             "en",
