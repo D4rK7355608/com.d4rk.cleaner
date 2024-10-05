@@ -60,6 +60,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -304,6 +305,7 @@ fun AnalyzeComposable(imageLoader : ImageLoader , context : Context) {
                         }
 
                         FilesByDateSection(
+                            modifier = Modifier,
                             filesByDate = filesByDate ,
                             fileSelectionStates = uiState.fileSelectionStates ,
                             imageLoader = imageLoader ,
@@ -319,10 +321,9 @@ fun AnalyzeComposable(imageLoader : ImageLoader , context : Context) {
                 verticalAlignment = Alignment.CenterVertically ,
                 horizontalArrangement = Arrangement.SpaceBetween ,
             ) {
-                val statusText : String = if (uiState.selectedFileCount > 0) {
-                    stringResource(id = R.string.status_selected_files , uiState.selectedFileCount)
-                }
-                else {
+                val statusText: String = if (uiState.selectedFileCount > 0) {
+                    pluralStringResource(id = R.plurals.status_selected_files, count = uiState.selectedFileCount, uiState.selectedFileCount)
+                } else {
                     stringResource(id = R.string.status_no_files_selected)
                 }
                 val statusColor : Color by animateColorAsState(
@@ -342,24 +343,34 @@ fun AnalyzeComposable(imageLoader : ImageLoader , context : Context) {
                 SelectAllComposable(viewModel)
             }
 
-            TwoRowButtons(enabled = enabled , onStartButtonClick = {
-                viewModel.moveToTrash()
-            } , onStartButtonIcon = Icons.Outlined.Delete , onEndButtonClick = {
-                viewModel.clean()
-            } , onEndButtonIcon = Icons.Outlined.DeleteForever)
+            TwoRowButtons(
+                modifier = Modifier,
+                enabled = enabled ,
+                onStartButtonClick = {
+                    viewModel.moveToTrash()
+                } ,
+                onStartButtonIcon = Icons.Outlined.Delete ,
+                onStartButtonText = R.string.move_to_trash ,
+
+                onEndButtonClick = {
+                    viewModel.clean()
+                } ,
+                onEndButtonIcon = Icons.Outlined.DeleteForever ,
+                onEndButtonText = R.string.delete_forever)
         }
     }
 }
 
 @Composable
 fun FilesByDateSection(
+    modifier : Modifier,
     filesByDate : Map<String , List<File>> ,
     fileSelectionStates : Map<File , Boolean> ,
     imageLoader : ImageLoader ,
     onFileSelectionChange : (File , Boolean) -> Unit ,
 ) {
     LazyColumn(
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
         val sortedDates = filesByDate.keys.sortedByDescending { dateString ->
             SimpleDateFormat("yyyy-MM-dd" , Locale.getDefault()).parse(dateString)

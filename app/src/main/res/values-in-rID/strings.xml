@@ -22,7 +22,9 @@
     <string name="videos">Video</string>
     <string name="audios">Audio</string>
     <string name="other">Lainnya</string>
-    <string name="status_selected_files">Status: %1$d file dipilih</string>
+    <plurals name="status_selected_files">
+        <item quantity="other">Status: %1$d berkas dipilih</item>
+    </plurals>
     <string name="status_no_files_selected">Status: Tidak ada file yang dipilih</string>
     <string name="select_all">Pilih Semua</string>
     <string name="rescan_title">Pindai ulang?</string>

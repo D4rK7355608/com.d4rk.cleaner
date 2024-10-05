@@ -22,7 +22,10 @@
     <string name="videos">Videor</string>
     <string name="audios">Ljud</string>
     <string name="other">Annat</string>
-    <string name="status_selected_files">Status: %1$d filer valda</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">Status: %1$d fil vald</item>
+        <item quantity="other">Status: %1$d filer valda</item>
+    </plurals>
     <string name="status_no_files_selected">Status: Inga filer valda</string>
     <string name="select_all">Välj alla</string>
     <string name="rescan_title">Skanna om?</string>

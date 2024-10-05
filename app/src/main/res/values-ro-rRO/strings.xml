@@ -22,7 +22,11 @@
     <string name="videos">Videoclipuri</string>
     <string name="audios">Fișiere audio</string>
     <string name="other">Altele</string>
-    <string name="status_selected_files">Stare: Selectate %1$d fișiere</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">Stare: %1$d fișier selectat</item>
+        <item quantity="few">Stare: %1$d fișiere selectate</item>
+        <item quantity="other">Stare: %1$d fișiere selectate</item>
+    </plurals>
     <string name="status_no_files_selected">Stare: Niciun fișier selectat</string>
     <string name="select_all">Selectează tot</string>
     <string name="rescan_title">Rescanare?</string>

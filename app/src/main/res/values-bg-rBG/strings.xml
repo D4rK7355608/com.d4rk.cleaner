@@ -22,7 +22,10 @@
     <string name="videos">Видеоклипове</string>
     <string name="audios">Аудио файлове</string>
     <string name="other">Други</string>
-    <string name="status_selected_files">Статус: Избрани %1$d файла</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">Състояние: Избран %1$d файл</item>
+        <item quantity="other">Състояние: Избрани %1$d файла</item>
+    </plurals>
     <string name="status_no_files_selected">Статус: Не са избрани файлове</string>
     <string name="select_all">Избиране на всички</string>
     <string name="rescan_title">Сканиране отново?</string>

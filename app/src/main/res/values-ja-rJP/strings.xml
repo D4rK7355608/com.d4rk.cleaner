@@ -22,7 +22,9 @@
     <string name="videos">ビデオ</string>
     <string name="audios">オーディオ</string>
     <string name="other">その他</string>
-    <string name="status_selected_files">ステータス: %1$d ファイルを選択済み</string>
+    <plurals name="status_selected_files">
+        <item quantity="other">ステータス：%1$d ファイル選択済み</item>
+    </plurals>
     <string name="status_no_files_selected">ステータス: ファイルが選択されていません</string>
     <string name="select_all">すべて選択</string>
     <string name="rescan_title">再スキャンしますか？</string>

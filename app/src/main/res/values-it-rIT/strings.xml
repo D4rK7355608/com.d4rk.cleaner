@@ -22,7 +22,11 @@
     <string name="videos">Video</string>
     <string name="audios">Audio</string>
     <string name="other">Altro</string>
-    <string name="status_selected_files">Stato: %1$d file selezionati</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">Stato: %1$d file selezionato</item>
+        <item quantity="other">Stato: %1$d file selezionati</item>
+        <item quantity="many">Stato: %1$d file selezionati</item>
+    </plurals>
     <string name="status_no_files_selected">Stato: Nessun file selezionato</string>
     <string name="select_all">Seleziona tutto</string>
     <string name="rescan_title">Scansionare di nuovo?</string>

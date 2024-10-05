@@ -15,17 +15,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.ui.components.animations.bounceClick
 
 @Composable
-fun TwoRowButtons(enabled : Boolean ,
-                  onStartButtonClick: () -> Unit ,
-                  onStartButtonIcon : ImageVector ,
-                  onEndButtonClick: () -> Unit ,
-                  onEndButtonIcon : ImageVector) {
+fun TwoRowButtons(
+    modifier : Modifier ,
+    enabled : Boolean ,
+    onStartButtonClick : () -> Unit ,
+    onStartButtonIcon : ImageVector ,
+    onStartButtonText : Int ,
+    onEndButtonClick : () -> Unit ,
+    onEndButtonIcon : ImageVector ,
+    onEndButtonText : Int ,
+) {
     Row(
-        modifier = Modifier.fillMaxWidth() , horizontalArrangement = Arrangement.SpaceAround
+        modifier = modifier.fillMaxWidth() , horizontalArrangement = Arrangement.SpaceAround
     ) {
         OutlinedButton(enabled = enabled ,
                        onClick = {
@@ -41,14 +47,14 @@ fun TwoRowButtons(enabled : Boolean ,
                 modifier = Modifier.size(ButtonDefaults.IconSize)
             )
             Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-            Text(text = "Move to trash")
+            Text(text = stringResource(id = onStartButtonText))
         }
 
         Spacer(Modifier.width(8.dp))
 
         Button(enabled = enabled ,
                onClick = {
-                  onEndButtonClick()
+                   onEndButtonClick()
                } ,
                modifier = Modifier
                        .weight(1f)
@@ -60,7 +66,7 @@ fun TwoRowButtons(enabled : Boolean ,
                 modifier = Modifier.size(ButtonDefaults.IconSize)
             )
             Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-            Text(text = "Delete forever")
+            Text(text = stringResource(id = onEndButtonText))
         }
     }
 }

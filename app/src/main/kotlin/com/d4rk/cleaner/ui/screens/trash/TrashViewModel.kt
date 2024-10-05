@@ -6,6 +6,7 @@ import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.screens.UiTrashModel
 import com.d4rk.cleaner.ui.screens.home.repository.HomeRepository
 import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -45,6 +46,15 @@ class TrashViewModel(application : Application) : BaseViewModel(application) {
             repository.restoreFromTrash(filesToRestore) {
                 loadTrashItems()
             }
+            hideLoading()
+        }
+    }
+
+    fun clean() {
+        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
+            val filesToDelete = _uiState.value.fileSelectionStates.filter { it.value }.keys
+            showLoading()
+            repository.deleteFiles(filesToDelete)
             hideLoading()
         }
     }

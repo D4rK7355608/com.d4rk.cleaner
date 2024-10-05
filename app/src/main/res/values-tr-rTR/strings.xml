@@ -22,7 +22,10 @@
     <string name="videos">Videolar</string>
     <string name="audios">Sesler</string>
     <string name="other">Diğer</string>
-    <string name="status_selected_files">Durum: %1$d dosya seçildi</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">Durum: %1$d dosya seçildi</item>
+        <item quantity="other">Durum: %1$d dosya seçildi</item>
+    </plurals>
     <string name="status_no_files_selected">Durum: Dosya seçilmedi</string>
     <string name="select_all">Tümünü Seç</string>
     <string name="rescan_title">Tekrar Tara?</string>

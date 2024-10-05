@@ -22,7 +22,10 @@
     <string name="videos">Videók</string>
     <string name="audios">Hangfájlok</string>
     <string name="other">Egyéb</string>
-    <string name="status_selected_files">Állapot: Kiválasztva %1$d fájl</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">Állapot: %1$d fájl kiválasztva</item>
+        <item quantity="other">Állapot: %1$d fájlok kiválasztva</item>
+    </plurals>
     <string name="status_no_files_selected">Állapot: Nincsenek kiválasztva fájlok</string>
     <string name="select_all">Összes kijelölése</string>
     <string name="rescan_title">Újraellenőrzés?</string>

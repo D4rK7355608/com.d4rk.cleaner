@@ -1,12 +1,11 @@
 package com.d4rk.cleaner.ui.screens.trash
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.DeleteForever
+import androidx.compose.material.icons.outlined.Restore
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,6 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.ImageLoader
 import coil.disk.DiskCache
@@ -72,23 +74,48 @@ fun TrashScreen(activity : TrashActivity) {
                 }
             }
             else {
-                Column(
+                ConstraintLayout(
                     modifier = Modifier
                             .fillMaxSize()
                             .padding(paddingValues)
                 ) {
+                    val (list , buttons) = createRefs()
+
                     TrashItemsList(
+                        modifier = Modifier.constrainAs(list) {
+                                    top.linkTo(parent.top)
+                                    start.linkTo(parent.start)
+                                    end.linkTo(parent.end)
+                                    bottom.linkTo(buttons.top)
+                                    width = Dimension.fillToConstraints
+                                    height = Dimension.fillToConstraints
+                                } ,
                         trashFiles = uiState.trashFiles ,
                         imageLoader ,
                         uiState = uiState ,
                         viewModel = viewModel
                     )
 
-                    TwoRowButtons(enabled = enabled , onStartButtonClick = {
-                        viewModel.restoreFromTrash()
-                    } , onStartButtonIcon = Icons.Outlined.Delete , onEndButtonClick = {
-                        // TODO: for restore
-                    } , onEndButtonIcon = Icons.Outlined.DeleteForever)
+                    TwoRowButtons(modifier = Modifier
+                            .padding(16.dp)
+                            .constrainAs(buttons) {
+                                bottom.linkTo(parent.bottom)
+                                start.linkTo(parent.start)
+                                end.linkTo(parent.end)
+                                width = Dimension.fillToConstraints
+                            } ,
+                                  enabled = enabled ,
+                                  onStartButtonClick = {
+                                      viewModel.restoreFromTrash()
+                                  } ,
+                                  onStartButtonIcon = Icons.Outlined.Restore ,
+                                  onStartButtonText = R.string.restore ,
+
+                                  onEndButtonClick = {
+                                      viewModel.clean()
+                                  } ,
+                                  onEndButtonIcon = Icons.Outlined.DeleteForever ,
+                                  onEndButtonText = R.string.delete_forever)
                 }
             }
         }
@@ -97,6 +124,7 @@ fun TrashScreen(activity : TrashActivity) {
 
 @Composable
 fun TrashItemsList(
+    modifier : Modifier ,
     trashFiles : List<File> ,
     imageLoader : ImageLoader ,
     uiState : UiTrashModel ,
@@ -109,6 +137,7 @@ fun TrashItemsList(
     }
 
     FilesByDateSection(
+        modifier = modifier ,
         filesByDate = filesByDate ,
         fileSelectionStates = uiState.fileSelectionStates ,
         imageLoader = imageLoader ,

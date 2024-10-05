@@ -70,7 +70,7 @@ class HomeRepository(
 
     suspend fun moveToTrash(filesToMove : List<File> , onSuccess : () -> Unit) {
         withContext(Dispatchers.IO) {
-            moveToTrash(filesToMove) // Call the updated function below
+            moveToTrash(filesToMove)
             withContext(Dispatchers.Main) {
                 onSuccess()
             }

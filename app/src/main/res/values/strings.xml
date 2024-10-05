@@ -13,6 +13,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
 
     <string name="home">Home</string>
+    <string name="delete_forever">Delete forever</string>
+    <string name="move_to_trash">Move to trash</string>
     <string name="storage_used">%1$s/%2$s GB\nUsed</string>
     <string name="analyze">Analyze</string>
     <string name="clean">Clean</string>
@@ -22,7 +24,10 @@
     <string name="videos">Videos</string>
     <string name="audios">Audios</string>
     <string name="other">Other</string>
-    <string name="status_selected_files">Status: Selected %1$d files</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">Status: Selected %1$d file</item>
+        <item quantity="other">Status: Selected %1$d files</item>
+    </plurals>
     <string name="status_no_files_selected">Status: No files selected</string>
     <string name="select_all">Select All</string>
     <string name="rescan_title">Rescan?</string>
@@ -85,6 +90,7 @@
 
     <string name="trash">Trash</string>
     <string name="trash_is_empty">Trash is empty</string>
+    <string name="restore">Restore</string>
 
     <string name="settings">Settings</string>
 

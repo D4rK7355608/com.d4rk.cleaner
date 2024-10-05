@@ -22,7 +22,10 @@
     <string name="videos">वीडियो</string>
     <string name="audios">ऑडियो</string>
     <string name="other">अन्य</string>
-    <string name="status_selected_files">स्थिति: %1$d फ़ाइलें चयनित</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">स्थिति: %1$d फ़ाइल चयनित</item>
+        <item quantity="other">स्थिति: %1$d फ़ाइलें चयनित</item>
+    </plurals>
     <string name="status_no_files_selected">स्थिति: कोई फ़ाइलें चयनित नहीं हैं</string>
     <string name="select_all">सबका चयन करें</string>
     <string name="rescan_title">पुनः स्कैन करें?</string>

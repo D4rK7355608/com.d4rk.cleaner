@@ -22,7 +22,12 @@
     <string name="videos">Видео</string>
     <string name="audios">Аудио</string>
     <string name="other">Другое</string>
-    <string name="status_selected_files">Статус: Выбрано %1$d файлов</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">Статус: выбран %1$d файл</item>
+        <item quantity="few">Статус: выбрано %1$d файла</item>
+        <item quantity="many">Статус: выбрано %1$d файлов</item>
+        <item quantity="other">Статус: выбрано %1$d файлов</item>
+    </plurals>
     <string name="status_no_files_selected">Статус: Файлы не выбраны</string>
     <string name="select_all">Выбрать все</string>
     <string name="rescan_title">Повторное сканирование?</string>

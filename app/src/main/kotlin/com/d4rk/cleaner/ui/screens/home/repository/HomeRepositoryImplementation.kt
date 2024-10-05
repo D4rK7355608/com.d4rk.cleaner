@@ -59,12 +59,28 @@ abstract class HomeRepositoryImplementation(val application : Application) {
         }
     }
 
-    fun restoreFromTrash(filesToRestore : Set<File>) {
+    fun restoreFromTrash(filesToRestore: Set<File>) {
         filesToRestore.forEach { file ->
-            val originalPath = file.absolutePath.replace("/trash/" , "/")
-            val destination = File(originalPath)
+            val trashDir = File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "Trash")
+
+            val relativePathInTrash = file.relativeTo(trashDir).path
+            val originalFile = File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), relativePathInTrash)
+
+            val destinationParent = originalFile.parentFile
+
+            if (destinationParent != null && !destinationParent.exists()) {
+                destinationParent.mkdirs()
+            }
+
             if (file.exists()) {
-                file.renameTo(destination)
+                if (file.renameTo(originalFile)) {
+                    MediaScannerConnection.scanFile(
+                        application,
+                        arrayOf(originalFile.absolutePath, file.absolutePath),
+                        null,
+                        null
+                    )
+                }
             }
         }
     }
