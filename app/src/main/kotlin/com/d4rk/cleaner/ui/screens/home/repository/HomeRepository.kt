@@ -11,7 +11,7 @@ import java.io.File
 
 class HomeRepository(
     dataStore : DataStore , application : Application ,
-) : HomeRepositoryImplementation(application) {
+) : HomeRepositoryImplementation(application, dataStore) {
     private val fileScanner = FileScanner(dataStore , application)
 
     suspend fun getStorageInfo(onSuccess : (UiHomeModel) -> Unit) {

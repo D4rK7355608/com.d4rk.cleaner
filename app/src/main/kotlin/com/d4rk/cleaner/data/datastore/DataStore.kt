@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.d4rk.cleaner.constants.datastore.DataStoreNamesConstants
 import com.d4rk.cleaner.constants.ui.bottombar.BottomBarRoutes
@@ -139,6 +140,32 @@ class DataStore(context: Context) {
     }
 
     // Cleaning
+    private val trashFilePathsKey = stringSetPreferencesKey("trash_file_paths")
+
+    val trashFilePaths: Flow<Set<String>> = dataStore.data.map { preferences ->
+        preferences[trashFilePathsKey] ?: emptySet()
+    }
+
+    suspend fun addTrashFilePath(filePath: String) {
+        dataStore.edit { settings ->
+            val currentPaths = settings[trashFilePathsKey] ?: emptySet()
+            settings[trashFilePathsKey] = currentPaths + filePath
+        }
+    }
+
+    suspend fun removeTrashFilePath(filePath: String) {
+        dataStore.edit { settings ->
+            val currentPaths = settings[trashFilePathsKey] ?: emptySet()
+            settings[trashFilePathsKey] = currentPaths - filePath
+        }
+    }
+
+    suspend fun clearTrashFilePaths() {
+        dataStore.edit { settings ->
+            settings.remove(trashFilePathsKey)
+        }
+    }
+
     private val genericFilterKey =
         booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_GENERIC_FILTER)
     val genericFilter: Flow<Boolean> = dataStore.data.map { preferences ->

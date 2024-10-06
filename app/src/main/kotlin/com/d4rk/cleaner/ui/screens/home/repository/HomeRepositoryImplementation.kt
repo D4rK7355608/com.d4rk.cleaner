@@ -1,15 +1,26 @@
 package com.d4rk.cleaner.ui.screens.home.repository
 
 import android.app.Application
+import android.content.Context
 import android.media.MediaScannerConnection
 import android.os.Environment
+import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import java.io.File
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-abstract class HomeRepositoryImplementation(val application : Application) {
+abstract class HomeRepositoryImplementation(
+    val application : Application ,
+    val dataStore : DataStore ,
+) {
+
+    private val trashDir =
+            File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash")
+
+    private val sharedPrefs =
+            application.getSharedPreferences("TrashMetadata" , Context.MODE_PRIVATE)
 
     suspend fun getStorageInfo() : UiHomeModel {
         return suspendCoroutine { continuation ->
@@ -36,21 +47,24 @@ abstract class HomeRepositoryImplementation(val application : Application) {
      *
      * @param filesToMove The list of files to move to the trash.
      */
-    fun moveToTrash(filesToMove : List<File>) {
-        val trashDir = File(
-            application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash"
-        )
+    suspend fun moveToTrash(filesToMove : List<File>) {
         if (! trashDir.exists()) {
             trashDir.mkdirs()
         }
 
         filesToMove.forEach { file ->
-            val destination = File(trashDir , file.name)
             if (file.exists()) {
+                val originalPath = file.absolutePath
+                val destination = File(trashDir , "${file.name}_${file.lastModified()}")
+
                 if (file.renameTo(destination)) {
+                    dataStore.addTrashFilePath(originalPath)
                     MediaScannerConnection.scanFile(
                         application ,
-                        arrayOf(destination.absolutePath , file.absolutePath) ,
+                        arrayOf(
+                            destination.absolutePath ,
+                            file.absolutePath
+                        ) ,
                         null ,
                         null
                     )
@@ -59,27 +73,30 @@ abstract class HomeRepositoryImplementation(val application : Application) {
         }
     }
 
-    fun restoreFromTrash(filesToRestore: Set<File>) {
+    fun restoreFromTrash(filesToRestore : Set<File>) {
         filesToRestore.forEach { file ->
-            val trashDir = File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "Trash")
-
-            val relativePathInTrash = file.relativeTo(trashDir).path
-            val originalFile = File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), relativePathInTrash)
-
-            val destinationParent = originalFile.parentFile
-
-            if (destinationParent != null && !destinationParent.exists()) {
-                destinationParent.mkdirs()
-            }
-
             if (file.exists()) {
-                if (file.renameTo(originalFile)) {
+                val originalPath = sharedPrefs.getString(file.absolutePath , null)
+                    ?: file.absolutePath.replace(Regex("_\\d+$") , "")
+
+                val destinationFile = File(originalPath)
+                val destinationParent = destinationFile.parentFile
+
+                if (destinationParent?.exists() == false) {
+                    destinationParent.mkdirs()
+                }
+
+                if (file.renameTo(destinationFile)) {
                     MediaScannerConnection.scanFile(
-                        application,
-                        arrayOf(originalFile.absolutePath, file.absolutePath),
-                        null,
+                        application ,
+                        arrayOf(
+                            destinationFile.absolutePath ,
+                            file.absolutePath
+                        ) ,
+                        null ,
                         null
                     )
+                    sharedPrefs.edit().remove(file.absolutePath).apply()
                 }
             }
         }
