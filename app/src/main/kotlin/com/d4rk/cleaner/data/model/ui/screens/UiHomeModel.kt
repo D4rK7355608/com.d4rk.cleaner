@@ -8,6 +8,7 @@ data class UiHomeModel(
     val storageTotal: String = "",
     val showCleaningComposable: Boolean = false,
     val scannedFiles: List<File> = emptyList(),
+    val emptyFolders: List<File> = emptyList(),
     val allFilesSelected: Boolean = false,
     val fileSelectionStates: Map<File, Boolean> = emptyMap(),
     val selectedFileCount: Int = 0,

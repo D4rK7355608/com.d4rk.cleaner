@@ -76,7 +76,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
     }
 
     Scaffold(modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection) , topBar = {
-        LargeTopAppBar(title = { Text(stringResource(id = R.string.help)) }, navigationIcon = {
+        LargeTopAppBar(title = { Text(text = stringResource(id = R.string.help)) }, navigationIcon = {
             IconButton(modifier = Modifier.bounceClick() , onClick = {
                 view.playSoundEffect(SoundEffectConstants.CLICK)
                 activity.finish()
@@ -95,7 +95,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
             }) {
                 DropdownMenuItem(
                     modifier = Modifier.bounceClick() ,
-                    text = { Text(stringResource(id = R.string.view_in_google_play_store)) },
+                    text = { Text(text = stringResource(id = R.string.view_in_google_play_store)) },
                     onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         IntentUtils.openUrl(
@@ -105,14 +105,14 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                     })
                 DropdownMenuItem(
                     modifier = Modifier.bounceClick() ,
-                    text = { Text(stringResource(id = R.string.version_info)) },
+                    text = { Text(text = stringResource(id = R.string.version_info)) },
                     onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         showDialog.value = true
                     })
                 DropdownMenuItem(
                     modifier = Modifier.bounceClick() ,
-                    text = { Text(stringResource(id = R.string.beta_program)) },
+                    text = { Text(text = stringResource(id = R.string.beta_program)) },
                     onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         IntentUtils.openUrl(
@@ -122,7 +122,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                     })
                 DropdownMenuItem(
                     modifier = Modifier.bounceClick() ,
-                    text = { Text(stringResource(id = R.string.terms_of_service)) },
+                    text = { Text(text = stringResource(id = R.string.terms_of_service)) },
                     onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         IntentUtils.openUrl(
@@ -132,7 +132,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                     })
                 DropdownMenuItem(
                     modifier = Modifier.bounceClick() ,
-                    text = { Text(stringResource(id = R.string.privacy_policy)) },
+                    text = { Text(text = stringResource(id = R.string.privacy_policy)) },
                     onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         IntentUtils.openUrl(
@@ -142,7 +142,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                     })
                 DropdownMenuItem(
                     modifier = Modifier.bounceClick() ,
-                    text = { Text(stringResource(com.google.android.gms.oss.licenses.R.string.oss_license_title)) } ,
+                    text = { Text(text = stringResource(com.google.android.gms.oss.licenses.R.string.oss_license_title)) } ,
                     onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         IntentUtils.openActivity(
@@ -181,7 +181,7 @@ fun HelpComposable(activity : HelpActivity , viewModel : HelpViewModel) {
                 }
             }
             ExtendedFloatingActionButton(
-                text = { Text(stringResource(id = R.string.feedback)) } ,
+                text = { Text(text = stringResource(id = R.string.feedback)) } ,
                 onClick = {
                     view.playSoundEffect(SoundEffectConstants.CLICK)
                     viewModel.reviewInfo.value?.let { safeReviewInfo ->

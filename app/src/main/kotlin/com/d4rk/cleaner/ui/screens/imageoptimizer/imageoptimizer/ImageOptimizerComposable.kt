@@ -89,7 +89,7 @@ fun ImageOptimizerComposable(
                     end.linkTo(parent.end)
                 }) {
                 tabs.forEachIndexed { index, title ->
-                    Tab(text = { Text(title) },
+                    Tab(text = { Text(text = title) },
                         selected = pagerState.currentPage == index,
                         onClick = {
                             coroutineScope.launch {
@@ -124,7 +124,7 @@ fun ImageOptimizerComposable(
                     }
                 }
                 .padding(12.dp)) {
-                Text(stringResource(id = R.string.optimize_image))
+                Text(text = stringResource(id = R.string.optimize_image))
             }
 
             AdBanner(modifier = Modifier.constrainAs(adView) {

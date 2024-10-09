@@ -71,7 +71,7 @@ fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
                     ) {
                         Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
-                        Text(stringResource(id = R.string.summary_usage_and_diagnostics))
+                        Text(text = stringResource(id = R.string.summary_usage_and_diagnostics))
                         val annotatedString: AnnotatedString = buildAnnotatedString {
                             val startIndex: Int = length
                             withStyle(

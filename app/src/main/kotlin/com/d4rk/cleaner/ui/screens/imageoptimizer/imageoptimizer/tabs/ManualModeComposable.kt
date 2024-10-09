@@ -52,7 +52,7 @@ fun ManualModeScreen(viewModel: ImageOptimizerViewModel) {
                         )
                     }
                 },
-                label = { Text(stringResource(id = R.string.width)) },
+                label = { Text(text = stringResource(id = R.string.width)) },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier

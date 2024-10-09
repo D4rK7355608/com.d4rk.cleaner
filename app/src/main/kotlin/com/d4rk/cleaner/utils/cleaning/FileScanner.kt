@@ -33,7 +33,8 @@ class FileScanner(private val dataStore : DataStore , val application : Applicat
      */
     suspend fun startScanning() {
         loadPreferences()
-        filteredFiles = filterFiles(getAllFiles()).toList()
+        val (files) = getAllFiles()
+        filteredFiles = filterFiles(files).toList()
     }
 
     /**
@@ -49,7 +50,8 @@ class FileScanner(private val dataStore : DataStore , val application : Applicat
                 APK_EXTENSIONS to dataStore.deleteApkFiles.first() ,
                 IMAGE_EXTENSIONS to dataStore.deleteImageFiles.first() ,
                 AUDIO_EXTENSIONS to dataStore.deleteAudioFiles.first() ,
-                VIDEO_EXTENSIONS to dataStore.deleteVideoFiles.first()
+                VIDEO_EXTENSIONS to dataStore.deleteVideoFiles.first(),
+                EMPTY_FOLDERS to dataStore.deleteEmptyFolders.first()
             )
         }
     }
@@ -59,28 +61,37 @@ class FileScanner(private val dataStore : DataStore , val application : Applicat
      *
      * @return A list of all files found in the external storage directory.
      */
-    private fun getAllFiles() : List<File> {
-        val files : MutableList<File> = mutableListOf()
+    fun getAllFiles(): Pair<MutableList<File> , MutableList<File>> {
+        val files = mutableListOf<File>()
+        val emptyFolders = mutableListOf<File>()
         val stack = ArrayDeque<File>()
-        val root : File = Environment.getExternalStorageDirectory()
+        val root: File = Environment.getExternalStorageDirectory()
         stack.addFirst(root)
 
-        val trashDir =
-                File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash")
+        val trashDir = File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "Trash")
 
         while (stack.isNotEmpty()) {
-            val currentFile : File = stack.removeFirst()
+            val currentFile: File = stack.removeFirst()
 
             if (currentFile.isDirectory) {
-                if (! currentFile.absolutePath.startsWith(trashDir.absolutePath)) {
-                    currentFile.listFiles()?.forEach { stack.addLast(it) }
+                if (!currentFile.absolutePath.startsWith(trashDir.absolutePath)) {
+                    val children = currentFile.listFiles()
+                    if (children == null || children.isEmpty()) {
+                        emptyFolders.add(currentFile)
+                    } else {
+                        children.forEach { stack.addLast(it) }
+                    }
                 }
-            }
-            else {
+            } else {
                 files.add(currentFile)
             }
         }
-        return files
+
+        return if (preferences[ExtensionsConstants.EMPTY_FOLDERS] == true) {
+            Pair(files, emptyFolders)
+        } else {
+            Pair(files, mutableListOf())
+        }
     }
 
     private fun filterFiles(allFiles : List<File>) : Flow<File> = flow {

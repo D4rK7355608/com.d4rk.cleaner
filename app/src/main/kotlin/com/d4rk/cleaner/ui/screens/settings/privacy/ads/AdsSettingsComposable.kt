@@ -98,7 +98,7 @@ fun AdsSettingsComposable(activity: AdsSettingsActivity) {
                     ) {
                         Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
-                        Text(stringResource(id = R.string.summary_ads))
+                        Text(text = stringResource(id = R.string.summary_ads))
 
                         val annotatedString: AnnotatedString = buildAnnotatedString {
                             val startIndex: Int = length

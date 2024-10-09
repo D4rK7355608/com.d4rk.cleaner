@@ -32,11 +32,15 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     fun analyze() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             showLoading()
-            repository.analyzeFiles { filteredFiles ->
+            repository.analyzeFiles { result ->
+                val filteredFiles = result.first
+                val emptyFolders = result.second
+
                 _uiState.value = _uiState.value.copy(
                     scannedFiles = filteredFiles ,
+                    emptyFolders = emptyFolders ,
                     showCleaningComposable = true ,
-                    noFilesFound = filteredFiles.isEmpty() ,
+                    noFilesFound = filteredFiles.isEmpty() && emptyFolders.isEmpty() ,
                 )
             }
             hideLoading()

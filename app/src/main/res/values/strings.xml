@@ -24,6 +24,7 @@
     <string name="videos">Videos</string>
     <string name="audios">Audios</string>
     <string name="other">Other</string>
+    <string name="empty_folders">Empty folders</string>
     <plurals name="status_selected_files">
         <item quantity="one">Status: Selected %1$d file</item>
         <item quantity="other">Status: Selected %1$d files</item>

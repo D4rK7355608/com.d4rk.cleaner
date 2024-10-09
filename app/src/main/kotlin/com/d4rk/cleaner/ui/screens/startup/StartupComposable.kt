@@ -123,7 +123,7 @@ fun StartupComposable(activity: StartupActivity) {
                 } else {
                     Gray
                 },
-                text = { Text(stringResource(id = R.string.agree)) },
+                text = { Text(text = stringResource(id = R.string.agree)) },
                 onClick = {
                     IntentUtils.openActivity(
                         context, MainActivity::class.java

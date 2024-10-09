@@ -49,7 +49,7 @@ fun FileSizeScreen(viewModel: ImageOptimizerViewModel) {
                         viewModel.setFileSize(newValue.toIntOrNull() ?: 0)
                     }
                 },
-                label = { Text(stringResource(id = R.string.file_size)) },
+                label = { Text(text = stringResource(id = R.string.file_size)) },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 supportingText = {

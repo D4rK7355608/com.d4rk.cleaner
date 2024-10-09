@@ -256,21 +256,21 @@ fun AppItemComposable(
                     showMenu = false
                 }) {
                     DropdownMenuItem(modifier = Modifier.bounceClick(), text = {
-                        Text(stringResource(id = R.string.uninstall))
+                        Text(text = stringResource(id = R.string.uninstall))
                     }, onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         viewModel.uninstallApp(app.packageName)
                     })
                     DropdownMenuItem(
                         modifier = Modifier.bounceClick(),
-                        text = { Text(stringResource(id = R.string.share)) },
+                        text = { Text(text = stringResource(id = R.string.share)) },
                         onClick = {
                             view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.shareApp(app.packageName)
                         })
                     DropdownMenuItem(
                         modifier = Modifier.bounceClick(),
-                        text = { Text(stringResource(id = R.string.app_info)) },
+                        text = { Text(text = stringResource(id = R.string.app_info)) },
                         onClick = {
                             view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.openAppInfo(app.packageName)

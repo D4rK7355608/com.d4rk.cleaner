@@ -11,7 +11,7 @@ import java.io.File
 
 class HomeRepository(
     dataStore : DataStore , application : Application ,
-) : HomeRepositoryImplementation(application, dataStore) {
+) : HomeRepositoryImplementation(application , dataStore) {
     private val fileScanner = FileScanner(dataStore , application)
 
     suspend fun getStorageInfo(onSuccess : (UiHomeModel) -> Unit) {
@@ -23,12 +23,12 @@ class HomeRepository(
         }
     }
 
-    suspend fun analyzeFiles(onSuccess : (List<File>) -> Unit) {
+    suspend fun analyzeFiles(onSuccess : (Pair<List<File> , List<File>>) -> Unit) {
         withContext(Dispatchers.IO) {
-            fileScanner.startScanning()
-            val filteredFiles = fileScanner.getFilteredFiles()
+            val (filteredFiles , emptyFolders) = fileScanner.getAllFiles()
+
             withContext(Dispatchers.Main) {
-                onSuccess(filteredFiles)
+                onSuccess(Pair(filteredFiles , emptyFolders))
             }
         }
     }

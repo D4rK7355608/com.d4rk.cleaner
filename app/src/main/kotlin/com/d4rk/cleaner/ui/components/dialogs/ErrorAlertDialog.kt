@@ -13,7 +13,7 @@ fun ErrorAlertDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Error") },
+        title = { Text(text = "Error") },
         text = { Text(errorMessage) },
         confirmButton = {
             TextButton(onClick = onDismiss) {

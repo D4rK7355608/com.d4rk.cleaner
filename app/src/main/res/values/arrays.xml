@@ -5,6 +5,7 @@
         <item>@string/videos</item>
         <item>@string/apks</item>
         <item>@string/archives</item>
+        <item>@string/empty_folders</item>
         <item>@string/other</item>
     </string-array>
 

@@ -103,7 +103,7 @@ fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
                     ) {
                         Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
                         Spacer(modifier = Modifier.height(24.dp))
-                        Text(stringResource(id = R.string.summary_dark_theme))
+                        Text(text = stringResource(id = R.string.summary_dark_theme))
                     }
                 }
             }

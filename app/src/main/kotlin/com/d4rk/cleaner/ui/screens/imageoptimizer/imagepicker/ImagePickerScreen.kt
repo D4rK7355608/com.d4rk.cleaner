@@ -102,7 +102,7 @@ fun ImagePickerComposable(
                     } else {
                         bottom.linkTo(parent.bottom)
                     }
-                }, text = { Text(stringResource(id = R.string.choose_image)) }, onClick = {
+                }, text = { Text(text = stringResource(id = R.string.choose_image)) }, onClick = {
                 view.playSoundEffect(SoundEffectConstants.CLICK)
                 activity.selectImage()
             }, icon = {
