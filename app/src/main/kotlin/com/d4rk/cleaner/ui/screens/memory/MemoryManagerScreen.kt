@@ -5,17 +5,11 @@ import android.content.Context
 import android.view.SoundEffectConstants
 import android.view.View
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.Transition
-import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,14 +18,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowLeft
 import androidx.compose.material.icons.outlined.Android
@@ -44,7 +34,6 @@ import androidx.compose.material.icons.outlined.MusicNote
 import androidx.compose.material.icons.outlined.SnippetFolder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
@@ -57,30 +46,25 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.util.lerp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.memorymanager.RamInfo
 import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
 import com.d4rk.cleaner.data.model.ui.screens.UiMemoryManagerModel
+import com.d4rk.cleaner.ui.components.CarouselLayout
 import com.d4rk.cleaner.ui.components.StorageProgressBar
 import com.d4rk.cleaner.ui.components.animations.bounceClick
-import com.d4rk.cleaner.ui.components.animations.hapticPagerSwipe
 import com.d4rk.cleaner.ui.components.dialogs.ErrorAlertDialog
+import com.d4rk.cleaner.ui.screens.loading.LoadingScreen
 import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.utils.cleaning.StorageUtils.formatSize
-import kotlin.math.absoluteValue
 
 @Composable
 fun MemoryManagerComposable() {
@@ -118,15 +102,7 @@ fun MemoryManagerComposable() {
     }
 
     if (isLoading) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .animateContentSize()
-                .alpha(progressAlpha),
-            contentAlignment = Alignment.Center
-        ) {
-            CircularProgressIndicator()
-        }
+        LoadingScreen(progressAlpha)
     } else {
         Column(
             modifier = Modifier
@@ -135,7 +111,7 @@ fun MemoryManagerComposable() {
         ) {
             CarouselLayout(
                 items = listOf(uiState.storageInfo, uiState.ramInfo),
-                peekPreviewWidth = 24.dp,
+                sidePadding = 24.dp,
                 pagerState = pagerState
             ) { item ->
                 when (item) {
@@ -143,15 +119,6 @@ fun MemoryManagerComposable() {
                     is RamInfo -> RamInfoCard(item)
                 }
             }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            DotsIndicator(
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                totalDots = 2,
-                selectedIndex = pagerState.currentPage,
-                dotSize = 6.dp
-            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -185,44 +152,6 @@ fun MemoryManagerComposable() {
             if (uiState.listExpanded) {
                 StorageBreakdownGrid(uiState.storageInfo.storageBreakdown)
             }
-        }
-    }
-}
-
-@Composable
-fun <T> CarouselLayout(
-    items: List<T>,
-    peekPreviewWidth: Dp,
-    pagerState: PagerState,
-    itemContent: @Composable (item: T) -> Unit
-) {
-    HorizontalPager(
-        state = pagerState,
-        modifier = Modifier
-            .fillMaxWidth()
-            .hapticPagerSwipe(pagerState),
-        contentPadding = PaddingValues(horizontal = peekPreviewWidth)
-    ) { page ->
-        val pageOffset: Float = (pagerState.currentPage - page).toFloat().absoluteValue
-
-        val scale: Float by animateFloatAsState(
-            targetValue = lerp(
-                start = 0.95f, stop = 1f, fraction = 1f - pageOffset.coerceIn(0f, 1f)
-            ),
-            animationSpec = tween(durationMillis = 250),
-            label = "Carousel Item Scale Animation"
-        )
-        val alpha: Float =
-            lerp(start = 0.5f, stop = 1f, fraction = 1f - pageOffset.coerceIn(0f, 1f))
-
-        Card(modifier = Modifier
-            .fillMaxWidth()
-            .graphicsLayer {
-                scaleX = scale
-                scaleY = scale
-                this.alpha = alpha
-            }) {
-            itemContent(items[page])
         }
     }
 }
@@ -375,58 +304,4 @@ fun RamInfoCard(ramInfo: RamInfo) {
         )
         StorageInfoText(label = stringResource(id = R.string.total_ram), size = ramInfo.totalRam)
     }
-}
-
-@Composable
-fun DotsIndicator(
-    modifier: Modifier = Modifier,
-    @Suppress("SameParameterValue") totalDots: Int,
-    selectedIndex: Int,
-    selectedColor: Color = MaterialTheme.colorScheme.primary,
-    unSelectedColor: Color = Color.Gray,
-    dotSize: Dp,
-    animationDuration: Int = 300
-) {
-    val transition: Transition<Int> =
-        updateTransition(targetState = selectedIndex, label = "Dot Transition")
-
-    LazyRow(
-        modifier = modifier
-            .wrapContentWidth()
-            .height(dotSize),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        items(count = totalDots, key = { index -> index }) { index ->
-            val animatedDotSize: Dp by transition.animateDp(transitionSpec = {
-                tween(durationMillis = animationDuration, easing = FastOutSlowInEasing)
-            }, label = "Dot Size Animation") {
-                if (it == index) dotSize else dotSize / 1.4f
-            }
-
-            val isSelected: Boolean = index == selectedIndex
-            val size: Dp = if (isSelected) animatedDotSize else animatedDotSize
-
-            IndicatorDot(
-                color = if (isSelected) selectedColor else unSelectedColor, size = size
-            )
-
-            if (index != totalDots - 1) {
-                Spacer(modifier = Modifier.padding(horizontal = 2.dp))
-            }
-        }
-    }
-}
-
-@Composable
-fun IndicatorDot(
-    modifier: Modifier = Modifier,
-    size: Dp,
-    color: Color,
-) {
-    Box(
-        modifier = modifier
-            .size(size)
-            .clip(CircleShape)
-            .background(color)
-    )
 }

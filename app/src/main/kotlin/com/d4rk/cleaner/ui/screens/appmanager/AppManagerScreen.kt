@@ -62,10 +62,11 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
 import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.screens.UiAppManagerModel
-import com.d4rk.cleaner.ui.components.dialogs.ErrorAlertDialog
-import com.d4rk.cleaner.utils.PermissionsUtils
 import com.d4rk.cleaner.ui.components.animations.bounceClick
 import com.d4rk.cleaner.ui.components.animations.hapticPagerSwipe
+import com.d4rk.cleaner.ui.components.dialogs.ErrorAlertDialog
+import com.d4rk.cleaner.ui.screens.loading.LoadingScreen
+import com.d4rk.cleaner.utils.PermissionsUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.io.File
@@ -86,12 +87,16 @@ fun AppManagerScreen() {
     val pagerState: PagerState = rememberPagerState(pageCount = { tabs.size })
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val isLoading: Boolean by viewModel.isLoading.collectAsState()
+
     val transition: Transition<Boolean> =
         updateTransition(targetState = !isLoading, label = "LoadingTransition")
+
+    val progressAlpha: Float by transition.animateFloat(label = "Progress Alpha") {
+        if (it) 0f else 1f
+    }
     val contentAlpha: Float by transition.animateFloat(label = "Content Alpha") {
         if (it) 1f else 0f
     }
-
     val uiState: UiAppManagerModel by viewModel.uiState.collectAsState()
     val uiErrorModel: UiErrorModel by viewModel.uiErrorModel.collectAsState()
 
@@ -107,14 +112,12 @@ fun AppManagerScreen() {
     }
 
     if (isLoading) {
-        Box(
-            modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
-        ) {
-            CircularProgressIndicator()
-        }
+        LoadingScreen(progressAlpha)
     } else {
         Column(
-            modifier = Modifier.alpha(contentAlpha),
+            modifier = Modifier
+                .fillMaxSize()
+                .alpha(contentAlpha)
         ) {
             TabRow(
                 selectedTabIndex = pagerState.currentPage,
