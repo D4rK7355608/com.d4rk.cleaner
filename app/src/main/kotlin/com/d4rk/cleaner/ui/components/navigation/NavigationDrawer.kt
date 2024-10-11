@@ -93,7 +93,8 @@ fun NavigationDrawer(
                 Spacer(modifier = Modifier.height(16.dp))
                 drawerItems.forEachIndexed { index, item ->
                     val title: String = stringResource(id = item.title)
-                    NavigationDrawerItem(label = { Text(text = title) },
+                    NavigationDrawerItem(
+                        label = { Text(text = title) },
                         selected = index == selectedItemIndex,
                         onClick = {
                             when (item.title) {
@@ -169,7 +170,8 @@ fun NavigationDrawer(
                             .padding(
                                 NavigationDrawerItemDefaults.ItemPadding
                             )
-                            .bounceClick())
+                            .bounceClick()
+                    )
                     if (item.title == R.string.trash) {
                         HorizontalDivider(modifier = Modifier.padding(8.dp))
                     }
@@ -215,7 +217,7 @@ fun NavigationDrawer(
                         }
                     })
             }, bottomBar = {
-                BottomNavBar(navHostController, dataStore, view)
+                BottomNavigationBar(navHostController, dataStore, view)
             }) { paddingValues ->
                 NavigationHost(
                     navHostController = navHostController,

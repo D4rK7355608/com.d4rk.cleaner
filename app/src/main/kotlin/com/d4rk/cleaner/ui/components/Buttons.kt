@@ -1,5 +1,7 @@
 package com.d4rk.cleaner.ui.components
 
+import android.view.SoundEffectConstants
+import android.view.View
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -21,29 +23,34 @@ import com.d4rk.cleaner.ui.components.animations.bounceClick
 
 @Composable
 fun TwoRowButtons(
-    modifier : Modifier ,
-    enabled : Boolean ,
-    onStartButtonClick : () -> Unit ,
-    onStartButtonIcon : ImageVector ,
-    onStartButtonText : Int ,
-    onEndButtonClick : () -> Unit ,
-    onEndButtonIcon : ImageVector ,
-    onEndButtonText : Int ,
+    modifier: Modifier,
+    enabled: Boolean,
+    onStartButtonClick: () -> Unit,
+    onStartButtonIcon: ImageVector,
+    onStartButtonText: Int,
+    onEndButtonClick: () -> Unit,
+    onEndButtonIcon: ImageVector,
+    onEndButtonText: Int,
+    view: View
 ) {
+
     Row(
-        modifier = modifier.fillMaxWidth() , horizontalArrangement = Arrangement.SpaceAround
+        modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround
     ) {
-        OutlinedButton(enabled = enabled ,
-                       onClick = {
-                           onStartButtonClick()
-                       } ,
-                       modifier = Modifier
-                               .weight(1f)
-                               .bounceClick() ,
-                       colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Black)) {
+        OutlinedButton(
+            enabled = enabled,
+            onClick = {
+                view.playSoundEffect(SoundEffectConstants.CLICK)
+                onStartButtonClick()
+            },
+            modifier = Modifier
+                .weight(1f)
+                .bounceClick(),
+            colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Black)
+        ) {
             Icon(
-                imageVector = onStartButtonIcon ,
-                contentDescription = "Move to trash" ,
+                imageVector = onStartButtonIcon,
+                contentDescription = "Move to trash",
                 modifier = Modifier.size(ButtonDefaults.IconSize)
             )
             Spacer(Modifier.size(ButtonDefaults.IconSpacing))
@@ -52,17 +59,20 @@ fun TwoRowButtons(
 
         Spacer(Modifier.width(8.dp))
 
-        Button(enabled = enabled ,
-               onClick = {
-                   onEndButtonClick()
-               } ,
-               modifier = Modifier
-                       .weight(1f)
-                       .bounceClick() ,
-               colors = ButtonDefaults.buttonColors(contentColor = Color.White)) {
+        Button(
+            enabled = enabled,
+            onClick = {
+                view.playSoundEffect(SoundEffectConstants.CLICK)
+                onEndButtonClick()
+            },
+            modifier = Modifier
+                .weight(1f)
+                .bounceClick(),
+            colors = ButtonDefaults.buttonColors(contentColor = Color.White)
+        ) {
             Icon(
-                imageVector = onEndButtonIcon ,
-                contentDescription = "Delete forever" ,
+                imageVector = onEndButtonIcon,
+                contentDescription = "Delete forever",
                 modifier = Modifier.size(ButtonDefaults.IconSize)
             )
             Spacer(Modifier.size(ButtonDefaults.IconSpacing))

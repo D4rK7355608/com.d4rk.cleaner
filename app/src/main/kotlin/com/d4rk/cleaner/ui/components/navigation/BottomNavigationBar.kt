@@ -17,15 +17,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.d4rk.cleaner.ui.components.ads.AdBannerFull
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.navigation.BottomNavigationScreen
+import com.d4rk.cleaner.ui.components.ads.AdBannerFull
 import com.d4rk.cleaner.ui.components.animations.bounceClick
 
 @Composable
-fun BottomNavBar(
-    navController: NavController ,
-    dataStore: DataStore ,
+fun BottomNavigationBar(
+    navController: NavController,
+    dataStore: DataStore,
     view: View
 ) {
     val bottomBarItems: List<BottomNavigationScreen> = listOf(
@@ -34,38 +34,38 @@ fun BottomNavBar(
         BottomNavigationScreen.MemoryManager
     )
     val showLabels: Boolean =
-            dataStore.getShowBottomBarLabels().collectAsState(initial = true).value
+        dataStore.getShowBottomBarLabels().collectAsState(initial = true).value
 
     Column {
         AdBannerFull(
-            modifier = Modifier.fillMaxWidth() , dataStore = dataStore
+            modifier = Modifier.fillMaxWidth(), dataStore = dataStore
         )
         NavigationBar {
             val navBackStackEntry: NavBackStackEntry? by navController.currentBackStackEntryAsState()
             val currentRoute: String? = navBackStackEntry?.destination?.route
             bottomBarItems.forEach { screen ->
                 NavigationBarItem(modifier = Modifier.bounceClick(),
-                                  icon = {
-                                      val iconResource: ImageVector =
-                                              if (currentRoute == screen.route) screen.selectedIcon else screen.icon
-                                      Icon(
-                                          iconResource,
-                                          contentDescription = null
-                                      )
-                                  },
-                                  label = {
-                                      if (showLabels) Text(
-                                          text = stringResource(id = screen.title)
-                                      )
-                                  },
-                                  selected = currentRoute == screen.route,
-                                  onClick = {
-                                      view.playSoundEffect(SoundEffectConstants.CLICK)
-                                      navController.navigate(screen.route) {
-                                          popUpTo(navController.graph.startDestinationId)
-                                          launchSingleTop = true
-                                      }
-                                  })
+                    icon = {
+                        val iconResource: ImageVector =
+                            if (currentRoute == screen.route) screen.selectedIcon else screen.icon
+                        Icon(
+                            iconResource,
+                            contentDescription = null
+                        )
+                    },
+                    label = {
+                        if (showLabels) Text(
+                            text = stringResource(id = screen.title)
+                        )
+                    },
+                    selected = currentRoute == screen.route,
+                    onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
+                        navController.navigate(screen.route) {
+                            popUpTo(navController.graph.startDestinationId)
+                            launchSingleTop = true
+                        }
+                    })
             }
         }
     }

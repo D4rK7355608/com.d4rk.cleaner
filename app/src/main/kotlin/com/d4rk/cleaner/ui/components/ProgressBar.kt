@@ -1,5 +1,7 @@
 package com.d4rk.cleaner.ui.components
 
+import android.view.SoundEffectConstants
+import android.view.View
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
@@ -21,6 +23,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -45,6 +48,8 @@ fun CircularDeterminateIndicator(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
+    val view: View = LocalView.current
+
     val animatedProgress: Float by animateFloatAsState(
         targetValue = progress,
         animationSpec = tween(durationMillis = 1000, easing = LinearOutSlowInEasing),
@@ -77,13 +82,14 @@ fun CircularDeterminateIndicator(
                 .padding(16.dp)
                 .bounceClick(),
             onClick = {
+                view.playSoundEffect(SoundEffectConstants.CLICK)
                 onClick()
             },
             colors = ButtonDefaults.filledTonalButtonColors()
         ) {
             Text(
-                text = stringResource(id = R.string.quick_scan) ,
-                textAlign = TextAlign.Center ,
+                text = stringResource(id = R.string.quick_scan),
+                textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.titleLarge
             )
         }

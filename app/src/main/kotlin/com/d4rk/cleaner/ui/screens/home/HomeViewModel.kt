@@ -12,10 +12,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.io.File
 
-class HomeViewModel(application : Application) : BaseViewModel(application) {
-    private val repository = HomeRepository(DataStore(application) , application)
+class HomeViewModel(application: Application) : BaseViewModel(application) {
+    private val repository = HomeRepository(DataStore(application), application)
     private val _uiState = MutableStateFlow(UiHomeModel())
-    val uiState : StateFlow<UiHomeModel> = _uiState
+    val uiState: StateFlow<UiHomeModel> = _uiState
 
     init {
         updateStorageInfo()
@@ -37,10 +37,10 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                 val emptyFolders = result.second
 
                 _uiState.value = _uiState.value.copy(
-                    scannedFiles = filteredFiles ,
-                    emptyFolders = emptyFolders ,
-                    showCleaningComposable = true ,
-                    noFilesFound = filteredFiles.isEmpty() && emptyFolders.isEmpty() ,
+                    scannedFiles = filteredFiles,
+                    emptyFolders = emptyFolders,
+                    showCleaningComposable = true,
+                    noFilesFound = filteredFiles.isEmpty() && emptyFolders.isEmpty(),
                 )
             }
             hideLoading()
@@ -59,22 +59,22 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
             _uiState.value = _uiState.value.copy(scannedFiles = emptyList())
             repository.rescanFiles { filteredFiles ->
                 _uiState.value = _uiState.value.copy(
-                    scannedFiles = filteredFiles , showCleaningComposable = true
+                    scannedFiles = filteredFiles, showCleaningComposable = true
                 )
             }
             hideLoading()
         }
     }
 
-    fun onFileSelectionChange(file : File , isChecked : Boolean) {
+    fun onFileSelectionChange(file: File, isChecked: Boolean) {
         viewModelScope.launch(coroutineExceptionHandler) {
             val updatedFileSelectionStates =
-                    _uiState.value.fileSelectionStates + (file to isChecked)
+                _uiState.value.fileSelectionStates + (file to isChecked)
             val newSelectedCount = updatedFileSelectionStates.count { it.value }
 
             _uiState.value = _uiState.value.copy(
-                fileSelectionStates = updatedFileSelectionStates ,
-                selectedFileCount = newSelectedCount ,
+                fileSelectionStates = updatedFileSelectionStates,
+                selectedFileCount = newSelectedCount,
                 allFilesSelected = when {
                     newSelectedCount == _uiState.value.scannedFiles.size && newSelectedCount > 0 -> {
                         true
@@ -98,20 +98,18 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
 
     fun toggleSelectAllFiles() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
-            val newState = ! _uiState.value.allFilesSelected
-            _uiState.value = _uiState.value.copy(allFilesSelected = newState ,
-                                                 fileSelectionStates = if (newState) {
-                                                     _uiState.value.scannedFiles.associateWith { true }
-                                                 }
-                                                 else {
-                                                     emptyMap()
-                                                 } ,
-                                                 selectedFileCount = if (newState) {
-                                                     _uiState.value.scannedFiles.size
-                                                 }
-                                                 else {
-                                                     0
-                                                 })
+            val newState = !_uiState.value.allFilesSelected
+            _uiState.value = _uiState.value.copy(allFilesSelected = newState,
+                fileSelectionStates = if (newState) {
+                    _uiState.value.scannedFiles.associateWith { true }
+                } else {
+                    emptyMap()
+                },
+                selectedFileCount = if (newState) {
+                    _uiState.value.scannedFiles.size
+                } else {
+                    0
+                })
         }
     }
 
@@ -121,12 +119,12 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
             showLoading()
             repository.deleteFiles(filesToDelete) {
                 _uiState.value =
-                        _uiState.value.copy(scannedFiles = uiState.value.scannedFiles.filterNot {
-                            filesToDelete.contains(it)
-                        } ,
-                                            selectedFileCount = 0 ,
-                                            allFilesSelected = false ,
-                                            fileSelectionStates = emptyMap())
+                    _uiState.value.copy(scannedFiles = uiState.value.scannedFiles.filterNot {
+                        filesToDelete.contains(it)
+                    },
+                        selectedFileCount = 0,
+                        allFilesSelected = false,
+                        fileSelectionStates = emptyMap())
                 updateStorageInfo()
             }
             hideLoading()
@@ -139,12 +137,12 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
             showLoading()
             repository.moveToTrash(filesToMove) {
                 _uiState.value =
-                        _uiState.value.copy(scannedFiles = uiState.value.scannedFiles.filterNot { existingFile ->
-                            filesToMove.any { movedFile -> existingFile.absolutePath == movedFile.absolutePath }
-                        } ,
-                                            selectedFileCount = 0 ,
-                                            allFilesSelected = false ,
-                                            fileSelectionStates = emptyMap())
+                    _uiState.value.copy(scannedFiles = uiState.value.scannedFiles.filterNot { existingFile ->
+                        filesToMove.any { movedFile -> existingFile.absolutePath == movedFile.absolutePath }
+                    },
+                        selectedFileCount = 0,
+                        allFilesSelected = false,
+                        fileSelectionStates = emptyMap())
                 updateStorageInfo()
             }
             hideLoading()

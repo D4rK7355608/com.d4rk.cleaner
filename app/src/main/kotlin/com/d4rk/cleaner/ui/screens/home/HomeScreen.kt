@@ -2,12 +2,16 @@ package com.d4rk.cleaner.ui.screens.home
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.view.SoundEffectConstants
+import android.view.View
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -60,12 +64,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.core.content.FileProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.ImageLoader
 import coil.compose.AsyncImage
@@ -96,52 +102,55 @@ import java.util.Locale
 
 @Composable
 fun HomeScreen() {
-    val context : Context = LocalContext.current
-    val viewModel : HomeViewModel = viewModel()
-    val uiState : UiHomeModel by viewModel.uiState.collectAsState()
-    val uiErrorModel : UiErrorModel by viewModel.uiErrorModel.collectAsState()
-    val imageLoader : ImageLoader = remember {
+    val context: Context = LocalContext.current
+    val view: View = LocalView.current
+    val viewModel: HomeViewModel = viewModel()
+    val uiState: UiHomeModel by viewModel.uiState.collectAsState()
+    val uiErrorModel: UiErrorModel by viewModel.uiErrorModel.collectAsState()
+    val imageLoader: ImageLoader = remember {
         ImageLoader.Builder(context).memoryCache {
             MemoryCache.Builder(context).maxSizePercent(percent = 0.24).build()
         }.diskCache {
             DiskCache.Builder().directory(context.cacheDir.resolve(relative = "image_cache"))
-                    .maxSizePercent(percent = 0.02).build()
+                .maxSizePercent(percent = 0.02).build()
         }.build()
     }
 
     LaunchedEffect(Unit) {
-        if (! PermissionsUtils.hasStoragePermissions(context)) {
+        if (!PermissionsUtils.hasStoragePermissions(context)) {
             PermissionsUtils.requestStoragePermissions(context as Activity)
         }
     }
 
     if (uiErrorModel.showErrorDialog) {
-        ErrorAlertDialog(errorMessage = uiErrorModel.errorMessage ,
-                         onDismiss = { viewModel.dismissErrorDialog() })
+        ErrorAlertDialog(errorMessage = uiErrorModel.errorMessage,
+            onDismiss = { viewModel.dismissErrorDialog() })
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
         Box(
             modifier = Modifier
-                    .weight(4f)
-                    .fillMaxWidth()
+                .weight(4f)
+                .fillMaxWidth()
         ) {
 
-            if (! uiState.showCleaningComposable) {
-                CircularDeterminateIndicator(progress = uiState.progress ,
-                                             modifier = Modifier
-                                                     .align(Alignment.TopCenter)
-                                                     .offset(y = 98.dp) ,
-                                             onClick = { viewModel.analyze() })
+            if (!uiState.showCleaningComposable) {
+                CircularDeterminateIndicator(progress = uiState.progress,
+                    modifier = Modifier
+                        .align(Alignment.TopCenter)
+                        .offset(y = 98.dp),
+                    onClick = {
+                        viewModel.analyze()
+                    })
             }
 
             Crossfade(
-                targetState = uiState.showCleaningComposable ,
-                animationSpec = tween(durationMillis = 300) ,
+                targetState = uiState.showCleaningComposable,
+                animationSpec = tween(durationMillis = 300),
                 label = ""
             ) { showCleaningComposable ->
                 if (showCleaningComposable) {
-                    AnalyzeComposable(imageLoader = imageLoader , context = context)
+                    AnalyzeComposable(imageLoader = imageLoader, context = context, view = view)
                 }
             }
         }
@@ -149,10 +158,10 @@ fun HomeScreen() {
 }
 
 @Composable
-fun AnalyzeComposable(imageLoader : ImageLoader , context : Context) {
-    val viewModel : HomeViewModel = viewModel()
-    val uiState : UiHomeModel by viewModel.uiState.collectAsState()
-    val coroutineScope : CoroutineScope = rememberCoroutineScope()
+fun AnalyzeComposable(imageLoader: ImageLoader, context: Context, view: View) {
+    val viewModel: HomeViewModel = viewModel()
+    val uiState: UiHomeModel by viewModel.uiState.collectAsState()
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val enabled = uiState.selectedFileCount > 0
     val emptyFoldersString = stringResource(R.string.empty_folders)
     val apkExtensions = remember { context.resources.getStringArray(R.array.apk_extensions) }
@@ -160,13 +169,13 @@ fun AnalyzeComposable(imageLoader : ImageLoader , context : Context) {
     val videoExtensions = remember { context.resources.getStringArray(R.array.video_extensions) }
     val audioExtensions = remember { context.resources.getStringArray(R.array.audio_extensions) }
     val archiveExtensions =
-            remember { context.resources.getStringArray(R.array.archive_extensions) }
+        remember { context.resources.getStringArray(R.array.archive_extensions) }
 
-    val filesTypesStrings : List<String> = stringArrayResource(R.array.file_types_titles).toList()
+    val filesTypesStrings: List<String> = stringArrayResource(R.array.file_types_titles).toList()
 
     val groupedFiles = remember(
-        uiState.scannedFiles ,
-        uiState.emptyFolders ,
+        uiState.scannedFiles,
+        uiState.emptyFolders,
     ) {
         val filesMap = uiState.scannedFiles.groupBy { file ->
             when (file.extension.lowercase()) {
@@ -198,53 +207,52 @@ fun AnalyzeComposable(imageLoader : ImageLoader , context : Context) {
 
         if (uiState.emptyFolders.isNotEmpty()) {
             return@remember filesMap + (emptyFoldersString to uiState.emptyFolders)
-        }
-        else {
+        } else {
             return@remember filesMap
         }
     }
 
     Column(
         modifier = Modifier
-                .animateContentSize()
-                .fillMaxWidth()
-                .padding(16.dp) ,
+            .animateContentSize()
+            .fillMaxWidth()
+            .padding(16.dp),
         horizontalAlignment = Alignment.End
     ) {
         OutlinedCard(
             modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth() ,
+                .weight(1f)
+                .fillMaxWidth(),
         ) {
             when {
                 uiState.scannedFiles.isEmpty() -> {
-                    Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator()
                     }
                 }
 
                 uiState.noFilesFound -> {
-                    Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(
-                                imageVector = Icons.Outlined.FolderOff ,
-                                contentDescription = null ,
-                                modifier = Modifier.size(64.dp) ,
+                                imageVector = Icons.Outlined.FolderOff,
+                                contentDescription = null,
+                                modifier = Modifier.size(64.dp),
                                 tint = MaterialTheme.colorScheme.onSurface
                             )
                             Spacer(modifier = Modifier.height(16.dp))
                             Text(
-                                text = stringResource(id = R.string.no_files_found) ,
-                                style = MaterialTheme.typography.bodyLarge ,
+                                text = stringResource(id = R.string.no_files_found),
+                                style = MaterialTheme.typography.bodyLarge,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
 
-                            OutlinedButton(modifier = Modifier.bounceClick() , onClick = {
+                            OutlinedButton(modifier = Modifier.bounceClick(), onClick = {
                                 viewModel.rescanFiles()
                             }) {
                                 Icon(
-                                    modifier = Modifier.size(ButtonDefaults.IconSize) ,
-                                    imageVector = Icons.Outlined.Refresh ,
+                                    modifier = Modifier.size(ButtonDefaults.IconSize),
+                                    imageVector = Icons.Outlined.Refresh,
                                     contentDescription = "Close"
                                 )
                                 Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
@@ -256,65 +264,68 @@ fun AnalyzeComposable(imageLoader : ImageLoader , context : Context) {
 
                 else -> {
                     val tabs = groupedFiles.keys.toList()
-                    val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
+                    val pagerState: PagerState = rememberPagerState(pageCount = { tabs.size })
 
                     Row(
-                        modifier = Modifier.fillMaxWidth() ,
+                        modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         ScrollableTabRow(
-                            selectedTabIndex = pagerState.currentPage ,
-                            modifier = Modifier.weight(1f) ,
-                            edgePadding = 0.dp ,
+                            selectedTabIndex = pagerState.currentPage,
+                            modifier = Modifier.weight(1f),
+                            edgePadding = 0.dp,
                             indicator = { tabPositions ->
                                 TabRowDefaults.PrimaryIndicator(
-                                    modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]) ,
+                                    modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
                                     shape = RoundedCornerShape(
-                                        topStart = 3.dp ,
-                                        topEnd = 3.dp ,
-                                        bottomEnd = 0.dp ,
-                                        bottomStart = 0.dp ,
-                                    ) ,
+                                        topStart = 3.dp,
+                                        topEnd = 3.dp,
+                                        bottomEnd = 0.dp,
+                                        bottomStart = 0.dp,
+                                    ),
                                 )
-                            } ,
+                            },
                         ) {
-                            tabs.forEachIndexed { index , title ->
-                                Tab(modifier = Modifier.bounceClick() ,
-                                    selected = pagerState.currentPage == index ,
+                            tabs.forEachIndexed { index, title ->
+                                Tab(modifier = Modifier.bounceClick(),
+                                    selected = pagerState.currentPage == index,
                                     onClick = {
+                                        view.playSoundEffect(SoundEffectConstants.CLICK)
                                         coroutineScope.launch {
                                             pagerState.animateScrollToPage(index)
                                         }
-                                    } ,
+                                    },
                                     text = { Text(text = title) })
                             }
                         }
 
-                        IconButton(modifier = Modifier.bounceClick() , onClick = {
+                        IconButton(modifier = Modifier.bounceClick(), onClick = {
+                            view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.onCloseAnalyzeComposable()
                         }) {
-                            Icon(imageVector = Icons.Outlined.Close , contentDescription = "Close")
+                            Icon(imageVector = Icons.Outlined.Close, contentDescription = "Close")
                         }
                     }
 
                     HorizontalPager(
-                        modifier = Modifier.hapticPagerSwipe(pagerState) ,
-                        state = pagerState ,
+                        modifier = Modifier.hapticPagerSwipe(pagerState),
+                        state = pagerState,
                     ) { page ->
                         val filesForCurrentPage = groupedFiles[tabs[page]] ?: emptyList()
 
                         val filesByDate = filesForCurrentPage.groupBy { file ->
                             SimpleDateFormat(
-                                "yyyy-MM-dd" , Locale.getDefault()
+                                "yyyy-MM-dd", Locale.getDefault()
                             ).format(Date(file.lastModified()))
                         }
 
                         FilesByDateSection(
-                            modifier = Modifier ,
-                            filesByDate = filesByDate ,
-                            fileSelectionStates = uiState.fileSelectionStates ,
-                            imageLoader = imageLoader ,
-                            onFileSelectionChange = viewModel::onFileSelectionChange
+                            modifier = Modifier,
+                            filesByDate = filesByDate,
+                            fileSelectionStates = uiState.fileSelectionStates,
+                            imageLoader = imageLoader,
+                            onFileSelectionChange = viewModel::onFileSelectionChange,
+                            view = view,
                         )
                     }
                 }
@@ -322,51 +333,50 @@ fun AnalyzeComposable(imageLoader : ImageLoader , context : Context) {
         }
         if (uiState.scannedFiles.isNotEmpty()) {
             Row(
-                modifier = Modifier.fillMaxWidth() ,
-                verticalAlignment = Alignment.CenterVertically ,
-                horizontalArrangement = Arrangement.SpaceBetween ,
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                val statusText : String = if (uiState.selectedFileCount > 0) {
+                val statusText: String = if (uiState.selectedFileCount > 0) {
                     pluralStringResource(
-                        id = R.plurals.status_selected_files ,
-                        count = uiState.selectedFileCount ,
+                        id = R.plurals.status_selected_files,
+                        count = uiState.selectedFileCount,
                         uiState.selectedFileCount
                     )
-                }
-                else {
+                } else {
                     stringResource(id = R.string.status_no_files_selected)
                 }
-                val statusColor : Color by animateColorAsState(
+                val statusColor: Color by animateColorAsState(
                     targetValue = if (uiState.selectedFileCount > 0) {
                         MaterialTheme.colorScheme.primary
-                    }
-                    else {
+                    } else {
                         MaterialTheme.colorScheme.secondary
-                    } , animationSpec = tween() , label = "Selected Files Status Color Animation"
+                    }, animationSpec = tween(), label = "Selected Files Status Color Animation"
                 )
 
                 Text(
-                    text = statusText ,
-                    color = statusColor ,
+                    text = statusText,
+                    color = statusColor,
                     modifier = Modifier.animateContentSize()
                 )
-                SelectAllComposable(viewModel)
+                SelectAllComposable(viewModel = viewModel, view = view)
             }
 
             TwoRowButtons(
-                modifier = Modifier ,
-                enabled = enabled ,
+                modifier = Modifier,
+                enabled = enabled,
                 onStartButtonClick = {
                     viewModel.moveToTrash()
-                } ,
-                onStartButtonIcon = Icons.Outlined.Delete ,
-                onStartButtonText = R.string.move_to_trash ,
+                },
+                onStartButtonIcon = Icons.Outlined.Delete,
+                onStartButtonText = R.string.move_to_trash,
 
                 onEndButtonClick = {
                     viewModel.clean()
-                } ,
-                onEndButtonIcon = Icons.Outlined.DeleteForever ,
-                onEndButtonText = R.string.delete_forever
+                },
+                onEndButtonIcon = Icons.Outlined.DeleteForever,
+                onEndButtonText = R.string.delete_forever,
+                view = view,
             )
         }
     }
@@ -374,34 +384,37 @@ fun AnalyzeComposable(imageLoader : ImageLoader , context : Context) {
 
 @Composable
 fun FilesByDateSection(
-    modifier : Modifier ,
-    filesByDate : Map<String , List<File>> ,
-    fileSelectionStates : Map<File , Boolean> ,
-    imageLoader : ImageLoader ,
-    onFileSelectionChange : (File , Boolean) -> Unit ,
+    modifier: Modifier,
+    filesByDate: Map<String, List<File>>,
+    fileSelectionStates: Map<File, Boolean>,
+    imageLoader: ImageLoader,
+    onFileSelectionChange: (File, Boolean) -> Unit,
+    view: View
 ) {
     LazyColumn(
         modifier = modifier.fillMaxSize()
     ) {
         val sortedDates = filesByDate.keys.sortedByDescending { dateString ->
-            SimpleDateFormat("yyyy-MM-dd" , Locale.getDefault()).parse(dateString)
+            SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(dateString)
         }
         sortedDates.forEach { date ->
             val files = filesByDate[date] ?: emptyList()
             item(key = date) {
                 DateHeader(
-                    files = files ,
-                    fileSelectionStates = fileSelectionStates ,
-                    onFileSelectionChange = onFileSelectionChange
+                    files = files,
+                    fileSelectionStates = fileSelectionStates,
+                    onFileSelectionChange = onFileSelectionChange,
+                    view = view
                 )
             }
 
             item(key = "$date-grid") {
                 FilesGrid(
-                    files = files ,
-                    imageLoader = imageLoader ,
-                    fileSelectionStates = fileSelectionStates ,
-                    onFileSelectionChange = onFileSelectionChange
+                    files = files,
+                    imageLoader = imageLoader,
+                    fileSelectionStates = fileSelectionStates,
+                    onFileSelectionChange = onFileSelectionChange,
+                    view = view
                 )
             }
         }
@@ -410,96 +423,115 @@ fun FilesByDateSection(
 
 @Composable
 fun DateHeader(
-    files : List<File> ,
-    fileSelectionStates : Map<File , Boolean> ,
-    onFileSelectionChange : (File , Boolean) -> Unit ,
+    files: List<File>,
+    fileSelectionStates: Map<File, Boolean>,
+    onFileSelectionChange: (File, Boolean) -> Unit,
+    view: View
 ) {
     Row(
         modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp , vertical = 4.dp) ,
-        verticalAlignment = Alignment.CenterVertically ,
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp, vertical = 4.dp),
+        verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
-            modifier = Modifier.padding(start = 8.dp) ,
+            modifier = Modifier.padding(start = 8.dp),
             text = TimeHelper.formatDate(Date(files[0].lastModified()))
         )
         val allFilesForDateSelected = files.all { fileSelectionStates[it] == true }
-        Checkbox(modifier = Modifier.bounceClick() ,
-                 checked = allFilesForDateSelected ,
-                 onCheckedChange = { isChecked ->
-                     files.forEach { file ->
-                         onFileSelectionChange(file , isChecked)
-                     }
-                 })
+        Checkbox(modifier = Modifier.bounceClick(),
+            checked = allFilesForDateSelected,
+            onCheckedChange = { isChecked ->
+                view.playSoundEffect(SoundEffectConstants.CLICK)
+                files.forEach { file ->
+                    onFileSelectionChange(file, isChecked)
+                }
+            })
     }
 }
 
 @Composable
 fun FilesGrid(
-    files : List<File> ,
-    imageLoader : ImageLoader ,
-    fileSelectionStates : Map<File , Boolean> ,
-    onFileSelectionChange : (File , Boolean) -> Unit ,
+    files: List<File>,
+    imageLoader: ImageLoader,
+    fileSelectionStates: Map<File, Boolean>,
+    onFileSelectionChange: (File, Boolean) -> Unit,
+    view: View
 ) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
         NonLazyGrid(
-            columns = 3 , itemCount = files.size , modifier = Modifier.padding(horizontal = 8.dp)
+            columns = 3, itemCount = files.size, modifier = Modifier.padding(horizontal = 8.dp)
         ) { index ->
             val file = files[index]
-            FileCard(file = file ,
-                     imageLoader = imageLoader ,
-                     isChecked = fileSelectionStates[file] == true ,
-                     onCheckedChange = { isChecked -> onFileSelectionChange(file , isChecked) })
+            FileCard(
+                file = file,
+                imageLoader = imageLoader,
+                isChecked = fileSelectionStates[file] == true,
+                onCheckedChange = { isChecked -> onFileSelectionChange(file, isChecked) },
+                view = view
+            )
         }
     }
 }
 
 @Composable
 fun FileCard(
-    file : File , imageLoader : ImageLoader , onCheckedChange : (Boolean) -> Unit ,
-    isChecked : Boolean ,
+    file: File, imageLoader: ImageLoader, onCheckedChange: (Boolean) -> Unit,
+    isChecked: Boolean,
+    view: View,
 ) {
     val isFolder = file.isDirectory
-    val context : Context = LocalContext.current
-    val fileExtension : String = remember(file.name) { getFileExtension(file.name) }
+    val context: Context = LocalContext.current
+    val fileExtension: String = remember(file.name) { getFileExtension(file.name) }
 
     val imageExtensions =
-            remember { context.resources.getStringArray(R.array.image_extensions).toList() }
+        remember { context.resources.getStringArray(R.array.image_extensions).toList() }
     val videoExtensions =
-            remember { context.resources.getStringArray(R.array.video_extensions).toList() }
+        remember { context.resources.getStringArray(R.array.video_extensions).toList() }
 
     Card(
         modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(ratio = 1f)
-                .bounceClick() ,
+            .fillMaxWidth()
+            .aspectRatio(ratio = 1f)
+            .bounceClick()
+            .clickable {
+                if (!file.isDirectory) {
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    val uri = FileProvider.getUriForFile(
+                        context,
+                        "${context.packageName}.fileprovider",
+                        file
+                    )
+                    intent.setDataAndType(uri, context.contentResolver.getType(uri))
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    context.startActivity(intent)
+                }
+            },
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             if (isFolder) {
                 Icon(
-                    imageVector = Icons.Outlined.Folder ,
-                    contentDescription = "Folder icon" ,
+                    imageVector = Icons.Outlined.Folder,
+                    contentDescription = "Folder icon",
                     modifier = Modifier
-                            .size(24.dp)
-                            .align(Alignment.Center)
+                        .size(24.dp)
+                        .align(Alignment.Center)
                 )
-            }
-            else {
+            } else {
                 when (fileExtension) {
                     in imageExtensions -> {
                         AsyncImage(
                             model = remember(file) {
                                 ImageRequest.Builder(context).data(file).size(64)
-                                        .crossfade(enable = true).build()
-                            } ,
-                            imageLoader = imageLoader ,
-                            contentDescription = file.name ,
-                            contentScale = ContentScale.Crop ,
-                            modifier = Modifier.fillMaxSize() ,
+                                    .crossfade(enable = true).build()
+                            },
+                            imageLoader = imageLoader,
+                            contentDescription = file.name,
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize(),
                         )
                     }
 
@@ -507,14 +539,14 @@ fun FileCard(
                         AsyncImage(
                             model = remember(file) {
                                 ImageRequest.Builder(context).data(file)
-                                        .decoderFactory { result , options , _ ->
-                                            VideoFrameDecoder(result.source , options)
-                                        }.videoFramePercent(framePercent = 0.5)
-                                        .crossfade(enable = true).build()
-                            } ,
-                            imageLoader = imageLoader ,
-                            contentDescription = file.name ,
-                            contentScale = ContentScale.Crop ,
+                                    .decoderFactory { result, options, _ ->
+                                        VideoFrameDecoder(result.source, options)
+                                    }.videoFramePercent(framePercent = 0.5)
+                                    .crossfade(enable = true).build()
+                            },
+                            imageLoader = imageLoader,
+                            contentDescription = file.name,
+                            contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
                     }
@@ -522,37 +554,40 @@ fun FileCard(
                     else -> {
                         val fileIcon = remember(fileExtension) {
                             getFileIcon(
-                                fileExtension , context
+                                fileExtension, context
                             )
                         }
                         Icon(
-                            painter = painterResource(fileIcon) ,
-                            contentDescription = null ,
+                            painter = painterResource(fileIcon),
+                            contentDescription = null,
                             modifier = Modifier
-                                    .size(24.dp)
-                                    .align(Alignment.Center)
+                                .size(24.dp)
+                                .align(Alignment.Center)
                         )
                     }
                 }
             }
 
             Checkbox(
-                checked = isChecked ,
-                onCheckedChange = onCheckedChange ,
+                checked = isChecked,
+                onCheckedChange = { checked ->
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
+                    onCheckedChange(checked)
+                },
                 modifier = Modifier.align(Alignment.TopEnd)
             )
 
             Text(
-                text = file.name ,
-                maxLines = 1 ,
-                overflow = TextOverflow.Ellipsis ,
+                text = file.name,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .background(
-                            color = Color.Black.copy(alpha = 0.4f)
-                        )
-                        .padding(8.dp)
-                        .align(Alignment.BottomCenter)
+                    .fillMaxWidth()
+                    .background(
+                        color = Color.Black.copy(alpha = 0.4f)
+                    )
+                    .padding(8.dp)
+                    .align(Alignment.BottomCenter)
             )
         }
     }
@@ -569,38 +604,40 @@ fun FileCard(
  */
 @Composable
 fun SelectAllComposable(
-    viewModel : HomeViewModel ,
+    viewModel: HomeViewModel,
+    view: View,
 ) {
-    val uiState : UiHomeModel by viewModel.uiState.collectAsState()
+    val uiState: UiHomeModel by viewModel.uiState.collectAsState()
 
     Row(
         modifier = Modifier
-                .fillMaxWidth()
-                .animateContentSize() ,
-        verticalAlignment = Alignment.CenterVertically ,
+            .fillMaxWidth()
+            .animateContentSize(),
+        verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.End
     ) {
-        val interactionSource : MutableInteractionSource = remember { MutableInteractionSource() }
+        val interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
         FilterChip(
-            modifier = Modifier.bounceClick() ,
-            selected = uiState.allFilesSelected ,
+            modifier = Modifier.bounceClick(),
+            selected = uiState.allFilesSelected,
             onClick = {
+                view.playSoundEffect(SoundEffectConstants.CLICK)
                 viewModel.toggleSelectAllFiles()
-            } ,
-            label = { Text(text = stringResource(id = R.string.select_all)) } ,
+            },
+            label = { Text(text = stringResource(id = R.string.select_all)) },
             leadingIcon = {
                 AnimatedContent(
-                    targetState = uiState.allFilesSelected , label = "Checkmark Animation"
+                    targetState = uiState.allFilesSelected, label = "Checkmark Animation"
                 ) { targetChecked ->
                     if (targetChecked) {
                         Icon(
-                            imageVector = Icons.Filled.Check ,
-                            contentDescription = null ,
+                            imageVector = Icons.Filled.Check,
+                            contentDescription = null,
                         )
                     }
                 }
-            } ,
-            interactionSource = interactionSource ,
+            },
+            interactionSource = interactionSource,
         )
     }
 }
