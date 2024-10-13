@@ -4,7 +4,9 @@ import android.app.Application
 import android.content.Context
 import android.media.MediaScannerConnection
 import android.os.Environment
+import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
+import com.d4rk.cleaner.data.model.ui.screens.FileTypesData
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import java.io.File
@@ -27,12 +29,33 @@ abstract class HomeRepositoryImplementation(
             StorageUtils.getStorageInfo(application) { used , total , usageProgress ->
                 continuation.resume(
                     UiHomeModel(
-                        progress = usageProgress , storageUsed = used , storageTotal = total
+                        storageUsageProgress = usageProgress , usedStorageFormatted = used , totalStorageFormatted = total
                     )
                 )
             }
         }
     }
+
+    suspend fun getFileTypesDataFromResources(): FileTypesData {
+        return suspendCoroutine { continuation ->
+            val apkExtensions = application.resources.getStringArray(R.array.apk_extensions).toList()
+            val imageExtensions = application.resources.getStringArray(R.array.image_extensions).toList()
+            val videoExtensions = application.resources.getStringArray(R.array.video_extensions).toList()
+            val audioExtensions = application.resources.getStringArray(R.array.audio_extensions).toList()
+            val archiveExtensions = application.resources.getStringArray(R.array.archive_extensions).toList()
+            val fileTypesTitles = application.resources.getStringArray(R.array.file_types_titles).toList()
+            val fileTypesData = FileTypesData(
+                apkExtensions = apkExtensions ,
+                imageExtensions = imageExtensions ,
+                videoExtensions = videoExtensions ,
+                audioExtensions = audioExtensions , // FIXME: Type mismatch: inferred type is Array<(out) String!> but IntArray was expected
+                archiveExtensions = archiveExtensions ,
+                fileTypesTitles = fileTypesTitles
+            )
+            continuation.resume(fileTypesData)
+        }
+    }
+
 
     fun deleteFiles(filesToDelete : Set<File>) {
         filesToDelete.forEach { file ->

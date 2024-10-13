@@ -3,6 +3,7 @@ package com.d4rk.cleaner.ui.screens.home.repository
 import android.app.Application
 import android.os.Environment
 import com.d4rk.cleaner.data.datastore.DataStore
+import com.d4rk.cleaner.data.model.ui.screens.FileTypesData
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.cleaning.FileScanner
 import kotlinx.coroutines.Dispatchers
@@ -19,6 +20,15 @@ class HomeRepository(
             val storageInfo : UiHomeModel = getStorageInfo()
             withContext(Dispatchers.Main) {
                 onSuccess(storageInfo)
+            }
+        }
+    }
+
+    suspend fun getFileTypesData(onSuccess: (FileTypesData) -> Unit) {
+        withContext(Dispatchers.IO) {
+            val fileTypesData = getFileTypesDataFromResources()
+            withContext(Dispatchers.Main) {
+                onSuccess(fileTypesData)
             }
         }
     }
