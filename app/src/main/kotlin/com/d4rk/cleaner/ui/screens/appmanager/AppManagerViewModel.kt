@@ -15,6 +15,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class AppManagerViewModel(application: Application) : BaseViewModel(application) {
@@ -63,14 +64,16 @@ class AppManagerViewModel(application: Application) : BaseViewModel(application)
                     repository.getApkFilesFromStorage { files ->
                         apkFiles = files
                     }
-                    apkFiles
+                    return@async apkFiles
                 }
                 val apkFiles: List<ApkInfo> = apkFilesDeferred.await()
-                _uiState.value = UiAppManagerModel(installedApps, apkFiles)
+                _uiState.update { it.copy(
+                    installedApps = installedApps,
+                    apkFiles = apkFiles
+                ) }
             }
         }
     }
-
     fun installApk(apkPath: String) {
         viewModelScope.launch(coroutineExceptionHandler) {
             repository.installApk(apkPath, onSuccess = {})

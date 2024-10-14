@@ -36,8 +36,6 @@ fun HomeScreen() {
     val context : Context = LocalContext.current
     val view : View = LocalView.current
     val viewModel : HomeViewModel = viewModel()
-
-
     val uiState : UiHomeModel by viewModel.uiState.collectAsState()
     val uiErrorModel : UiErrorModel by viewModel.uiErrorModel.collectAsState()
     val imageLoader : ImageLoader = remember {
@@ -50,9 +48,6 @@ fun HomeScreen() {
     }
 
     LaunchedEffect(Unit) {
-       // viewModel.populateFileTypesData()
-
-        // Permissions
         if (! PermissionsUtils.hasStoragePermissions(context)) {
             PermissionsUtils.requestStoragePermissions(context as Activity)
         }

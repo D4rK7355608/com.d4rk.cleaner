@@ -9,6 +9,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
@@ -36,7 +37,7 @@ class MemoryManagerViewModel(
         viewModelScope.launch(coroutineExceptionHandler) {
             showLoading()
             repository.getMemoryManagerData { uiMemoryData ->
-                _uiMemoryManagerModel.value = uiMemoryData
+                _uiMemoryManagerModel.update { uiMemoryData }
             }
             hideLoading()
         }
@@ -45,14 +46,16 @@ class MemoryManagerViewModel(
     private fun updateRamMemoryData() {
         viewModelScope.launch(coroutineExceptionHandler) {
             repository.getRamInfo { ramInfo ->
-                _uiMemoryManagerModel.value = _uiMemoryManagerModel.value.copy(ramInfo = ramInfo)
+                _uiMemoryManagerModel.update { it.copy(ramInfo = ramInfo) }
             }
         }
     }
 
     fun toggleListExpanded() {
-        _uiMemoryManagerModel.value = _uiMemoryManagerModel.value.copy(
-            listExpanded = ! _uiMemoryManagerModel.value.listExpanded
-        )
+        _uiMemoryManagerModel.update {
+            it.copy(
+                listExpanded = ! it.listExpanded
+            )
+        }
     }
 }

@@ -77,6 +77,7 @@ import com.d4rk.cleaner.ui.components.NonLazyGrid
 import com.d4rk.cleaner.ui.components.TwoRowButtons
 import com.d4rk.cleaner.ui.components.animations.bounceClick
 import com.d4rk.cleaner.ui.components.animations.hapticPagerSwipe
+import com.d4rk.cleaner.ui.components.dialogs.ConfirmationAlertDialog
 import com.d4rk.cleaner.utils.TimeHelper
 import com.d4rk.cleaner.utils.cleaning.getFileIcon
 import com.google.common.io.Files.getFileExtension
@@ -92,7 +93,7 @@ fun AnalyzeScreen(
     imageLoader : ImageLoader ,
     view : View ,
     viewModel : HomeViewModel ,
-    data : UiHomeModel
+    data : UiHomeModel ,
 ) {
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     val enabled = data.analyzeState.selectedFilesCount > 0
@@ -107,25 +108,30 @@ fun AnalyzeScreen(
     val emptyFoldersString = stringResource(R.string.empty_folders)
 
     val groupedFiles = remember(
-        data.analyzeState,
+        data.analyzeState ,
     ) {
         val filesMap = data.analyzeState.scannedFileList.groupBy { file ->
             when (file.extension.lowercase()) {
                 in imageExtensions -> {
                     return@groupBy filesTypesTitles[0]
                 }
+
                 in audioExtensions -> {
                     return@groupBy filesTypesTitles[1]
                 }
+
                 in videoExtensions -> {
                     return@groupBy filesTypesTitles[2]
                 }
+
                 in apkExtensions -> {
                     return@groupBy filesTypesTitles[3]
                 }
+
                 in archiveExtensions -> {
                     return@groupBy filesTypesTitles[4]
                 }
+
                 else -> {
                     return@groupBy filesTypesTitles[6]
                 }
@@ -299,22 +305,58 @@ fun AnalyzeScreen(
                 SelectAllComposable(viewModel = viewModel , view = view)
             }
 
-            TwoRowButtons(
-                modifier = Modifier ,
-                enabled = enabled ,
-                onStartButtonClick = {
-                    viewModel.moveToTrash()
-                } ,
-                onStartButtonIcon = Icons.Outlined.Delete ,
-                onStartButtonText = R.string.move_to_trash ,
+            TwoRowButtons(modifier = Modifier ,
+                          enabled = enabled ,
+                          onStartButtonClick = {
+                              viewModel.setMoveToTrashConfirmationDialogVisibility(true)
+                          } ,
+                          onStartButtonIcon = Icons.Outlined.Delete ,
+                          onStartButtonText = R.string.move_to_trash ,
 
-                onEndButtonClick = {
-                    viewModel.clean()
-                } ,
-                onEndButtonIcon = Icons.Outlined.DeleteForever ,
-                onEndButtonText = R.string.delete_forever ,
-                view = view ,
-            )
+                          onEndButtonClick = {
+                              viewModel.setDeleteForeverConfirmationDialogVisibility(
+                                  true
+                              )
+                          } ,
+                          onEndButtonIcon = Icons.Outlined.DeleteForever ,
+                          onEndButtonText = R.string.delete_forever ,
+                          view = view)
+
+            if (data.analyzeState.isMoveToTrashConfirmationDialogVisible) {
+                ConfirmationAlertDialog(confirmationTitle = stringResource(R.string.delete_forever_title) ,
+                                        confirmationMessage = stringResource(R.string.delete_forever_message) ,
+                                        confirmationConfirmButtonText = stringResource(android.R.string.ok) ,
+                                        confirmationDismissButtonText = stringResource(android.R.string.cancel) ,
+                                        onConfirm = {
+                                            viewModel.clean()
+                                            viewModel.setDeleteForeverConfirmationDialogVisibility(
+                                                false
+                                            )
+                                        } ,
+                                        onDismiss = {
+                                            viewModel.setDeleteForeverConfirmationDialogVisibility(
+                                                false
+                                            )
+                                        })
+            }
+
+            if (data.analyzeState.isMoveToTrashConfirmationDialogVisible) {
+                ConfirmationAlertDialog(confirmationTitle = stringResource(R.string.move_to_trash_title) ,
+                                        confirmationMessage = stringResource(R.string.move_to_trash_message) ,
+                                        confirmationConfirmButtonText = stringResource(android.R.string.ok) ,
+                                        confirmationDismissButtonText = stringResource(android.R.string.cancel) ,
+                                        onConfirm = {
+                                            viewModel.moveToTrash()
+                                            viewModel.setMoveToTrashConfirmationDialogVisibility(
+                                                false
+                                            )
+                                        } ,
+                                        onDismiss = {
+                                            viewModel.setMoveToTrashConfirmationDialogVisibility(
+                                                false
+                                            )
+                                        })
+            }
         }
     }
 }
@@ -403,13 +445,11 @@ fun FilesGrid(
             columns = 3 , itemCount = files.size , modifier = Modifier.padding(horizontal = 8.dp)
         ) { index ->
             val file = files[index]
-            FileCard(
-                file = file ,
-                imageLoader = imageLoader ,
-                isChecked = fileSelectionStates[file] == true ,
-                onCheckedChange = { isChecked -> onFileSelectionChange(file , isChecked) } ,
-                view = view
-            )
+            FileCard(file = file ,
+                     imageLoader = imageLoader ,
+                     isChecked = fileSelectionStates[file] == true ,
+                     onCheckedChange = { isChecked -> onFileSelectionChange(file , isChecked) } ,
+                     view = view)
         }
     }
 }
@@ -472,19 +512,17 @@ fun FileCard(
                     }
 
                     in videoExtensions -> {
-                        AsyncImage(
-                            model = remember(file) {
-                                ImageRequest.Builder(context).data(file)
-                                        .decoderFactory { result , options , _ ->
-                                            VideoFrameDecoder(result.source , options)
-                                        }.videoFramePercent(framePercent = 0.5)
-                                        .crossfade(enable = true).build()
-                            } ,
-                            imageLoader = imageLoader ,
-                            contentDescription = file.name ,
-                            contentScale = ContentScale.Crop ,
-                            modifier = Modifier.fillMaxSize()
-                        )
+                        AsyncImage(model = remember(file) {
+                            ImageRequest.Builder(context).data(file)
+                                    .decoderFactory { result , options , _ ->
+                                        VideoFrameDecoder(result.source , options)
+                                    }.videoFramePercent(framePercent = 0.5).crossfade(enable = true)
+                                    .build()
+                        } ,
+                                   imageLoader = imageLoader ,
+                                   contentDescription = file.name ,
+                                   contentScale = ContentScale.Crop ,
+                                   modifier = Modifier.fillMaxSize())
                     }
 
                     else -> {
@@ -504,12 +542,10 @@ fun FileCard(
                 }
             }
 
-            Checkbox(
-                checked = isChecked , onCheckedChange = { checked ->
-                    view.playSoundEffect(SoundEffectConstants.CLICK)
-                    onCheckedChange(checked)
-                } , modifier = Modifier.align(Alignment.TopEnd)
-            )
+            Checkbox(checked = isChecked , onCheckedChange = { checked ->
+                view.playSoundEffect(SoundEffectConstants.CLICK)
+                onCheckedChange(checked)
+            } , modifier = Modifier.align(Alignment.TopEnd))
 
             Text(
                 text = file.name ,

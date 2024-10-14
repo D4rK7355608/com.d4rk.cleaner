@@ -61,7 +61,7 @@ class HomeRepository(
             )
 
             if (trashDir.exists()) {
-                trashDir.listFiles()?.toList() ?: emptyList()
+                return@withContext trashDir.listFiles()?.toList() ?: emptyList()
             }
             else {
                 return@withContext emptyList()

@@ -3,29 +3,31 @@ package com.d4rk.cleaner.data.model.ui.screens
 import java.io.File
 
 data class UiHomeModel(
-    val storageUsageProgress : Float = 0f ,
-    val usedStorageFormatted : String = "" ,
-    val totalStorageFormatted : String = "" ,
+    var storageUsageProgress : Float = 0f ,
+    var usedStorageFormatted : String = "" ,
+    var totalStorageFormatted : String = "" ,
     var analyzeState : UiAnalyzeModel = UiAnalyzeModel() ,
-    val isRescanDialogVisible : Boolean = false ,
+    var isRescanDialogVisible : Boolean = false ,
 )
 
 data class UiAnalyzeModel(
-    val isAnalyzeScreenVisible : Boolean = false ,
-    val scannedFileList : List<File> = emptyList() ,
-    val emptyFolderList : List<File> = emptyList() ,
-    val areAllFilesSelected : Boolean = false ,
-    val fileSelectionMap : Map<File , Boolean> = emptyMap() ,
-    val selectedFilesCount : Int = 0 ,
-    val isFileScanEmpty : Boolean = false ,
+    var isAnalyzeScreenVisible : Boolean = false ,
+    var scannedFileList : List<File> = emptyList() ,
+    var emptyFolderList : List<File> = emptyList() ,
+    var areAllFilesSelected : Boolean = false ,
+    var fileSelectionMap : Map<File , Boolean> = emptyMap() ,
+    var selectedFilesCount : Int = 0 ,
+    var isFileScanEmpty : Boolean = false ,
     var fileTypesData : FileTypesData = FileTypesData() ,
+    var isDeleteForeverConfirmationDialogVisible: Boolean = false,
+    var isMoveToTrashConfirmationDialogVisible: Boolean = false,
 )
 
 data class FileTypesData(
-    val apkExtensions : List<String> = emptyList() ,
-    val imageExtensions : List<String> = emptyList() ,
-    val videoExtensions : List<String> = emptyList() ,
-    val audioExtensions : List<String> = emptyList() ,
-    val archiveExtensions : List<String> = emptyList() ,
-    val fileTypesTitles : List<String> = emptyList() ,
+    var apkExtensions : List<String> = emptyList() ,
+    var imageExtensions : List<String> = emptyList() ,
+    var videoExtensions : List<String> = emptyList() ,
+    var audioExtensions : List<String> = emptyList() ,
+    var archiveExtensions : List<String> = emptyList() ,
+    var fileTypesTitles : List<String> = emptyList() ,
 )
