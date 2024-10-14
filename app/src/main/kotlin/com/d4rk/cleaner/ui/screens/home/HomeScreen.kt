@@ -29,6 +29,7 @@ import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.ui.components.CircularDeterminateIndicator
 import com.d4rk.cleaner.ui.components.dialogs.ErrorAlertDialog
+import com.d4rk.cleaner.ui.screens.analyze.AnalyzeScreen
 import com.d4rk.cleaner.utils.PermissionsUtils
 
 @Composable

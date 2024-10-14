@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.ui.screens.home
+package com.d4rk.cleaner.ui.screens.analyze
 
 import android.content.Context
 import android.content.Intent
@@ -15,11 +15,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,9 +31,6 @@ import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.DeleteForever
 import androidx.compose.material.icons.outlined.Folder
-import androidx.compose.material.icons.outlined.FolderOff
-import androidx.compose.material.icons.outlined.Refresh
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
@@ -43,7 +38,6 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
@@ -78,6 +72,8 @@ import com.d4rk.cleaner.ui.components.TwoRowButtons
 import com.d4rk.cleaner.ui.components.animations.bounceClick
 import com.d4rk.cleaner.ui.components.animations.hapticPagerSwipe
 import com.d4rk.cleaner.ui.components.dialogs.ConfirmationAlertDialog
+import com.d4rk.cleaner.ui.screens.home.HomeViewModel
+import com.d4rk.cleaner.ui.screens.nofilesfound.NoFilesFoundScreen
 import com.d4rk.cleaner.utils.TimeHelper
 import com.d4rk.cleaner.utils.cleaning.getFileIcon
 import com.google.common.io.Files.getFileExtension
@@ -173,34 +169,7 @@ fun AnalyzeScreen(
                 }
 
                 groupedFiles.isEmpty() || data.analyzeState.isFileScanEmpty -> {
-                    Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Icon(
-                                imageVector = Icons.Outlined.FolderOff ,
-                                contentDescription = null ,
-                                modifier = Modifier.size(64.dp) ,
-                                tint = MaterialTheme.colorScheme.onSurface
-                            )
-                            Spacer(modifier = Modifier.height(16.dp))
-                            Text(
-                                text = stringResource(id = R.string.no_files_found) ,
-                                style = MaterialTheme.typography.bodyLarge ,
-                                color = MaterialTheme.colorScheme.onSurface
-                            )
-
-                            OutlinedButton(modifier = Modifier.bounceClick() , onClick = {
-                                viewModel.rescanFiles()
-                            }) {
-                                Icon(
-                                    modifier = Modifier.size(ButtonDefaults.IconSize) ,
-                                    imageVector = Icons.Outlined.Refresh ,
-                                    contentDescription = "Close"
-                                )
-                                Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-                                Text(text = "Try again")
-                            }
-                        }
-                    }
+                    NoFilesFoundScreen(viewModel = viewModel)
                 }
 
                 else -> {
