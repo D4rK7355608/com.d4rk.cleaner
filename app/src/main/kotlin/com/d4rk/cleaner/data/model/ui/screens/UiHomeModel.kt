@@ -17,7 +17,6 @@ data class UiAnalyzeModel(
     var areAllFilesSelected : Boolean = false ,
     var fileSelectionMap : Map<File , Boolean> = emptyMap() ,
     var selectedFilesCount : Int = 0 ,
-    var isFileScanEmpty : Boolean = false ,
     var fileTypesData : FileTypesData = FileTypesData() ,
     var isDeleteForeverConfirmationDialogVisible: Boolean = false,
     var isMoveToTrashConfirmationDialogVisible: Boolean = false,

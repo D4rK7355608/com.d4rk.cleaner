@@ -68,7 +68,6 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                             scannedFileList = filteredFiles ,
                             emptyFolderList = emptyFolders ,
                             isAnalyzeScreenVisible = true ,
-                            isFileScanEmpty = filteredFiles.isEmpty() && emptyFolders.isEmpty()
                         )
                     )
                 }

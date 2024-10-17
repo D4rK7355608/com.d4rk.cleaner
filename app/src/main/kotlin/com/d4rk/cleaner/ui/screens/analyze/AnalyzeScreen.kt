@@ -84,6 +84,17 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+/**
+ * Composable function that displays the Analyze screen.
+ * This screen shows the results of a file scan, grouped by file type.
+ * It allows users to select files and perform actions like moving to trash or permanently deleting them.
+ *
+ * @param imageLoader The ImageLoader instance used to load images.
+ * @param view The underlying Android View instance.
+ * @param viewModel The ViewModel that handles the logic of this screen.
+ * @param data The UI data model for the home screen.
+ * @author Mihai-Cristian Condrea
+ */
 @Composable
 fun AnalyzeScreen(
     imageLoader : ImageLoader ,
@@ -91,11 +102,9 @@ fun AnalyzeScreen(
     viewModel : HomeViewModel ,
     data : UiHomeModel ,
 ) {
-    val TAG = "TAG"
-
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     val enabled = data.analyzeState.selectedFilesCount > 0
-    val isLoading: Boolean by viewModel.isLoading.collectAsState()
+    val isLoading : Boolean by viewModel.isLoading.collectAsState()
 
     val filesTypesTitles = data.analyzeState.fileTypesData.fileTypesTitles
     val apkExtensions = data.analyzeState.fileTypesData.apkExtensions
@@ -106,9 +115,7 @@ fun AnalyzeScreen(
 
     val emptyFoldersString = stringResource(R.string.empty_folders)
 
-    val groupedFiles = remember(
-        data.analyzeState ,
-    ) {
+    val groupedFiles = remember(data.analyzeState) {
         val filesMap = data.analyzeState.scannedFileList.groupBy { file ->
             when (file.extension.lowercase()) {
                 in imageExtensions -> {
@@ -143,10 +150,10 @@ fun AnalyzeScreen(
             finalMap[emptyFoldersString] = data.analyzeState.emptyFolderList
         }
 
-        return@remember finalMap
+        finalMap
     }
 
-    println("$TAG - Recomposing AnalyzeScreen")
+    println("Cleaner for Android -> Recomposing AnalyzeScreen")
 
     Column(
         modifier = Modifier
@@ -162,19 +169,21 @@ fun AnalyzeScreen(
         ) {
             when {
                 isLoading -> {
-                    println("$TAG - ScannedFileList is empty, showing CircularProgressIndicator") // Log empty state
-                    Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
+                    println("Cleaner for Android -> ScannedFileList is empty, showing CircularProgressIndicator")
+                    Box(
+                        modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center
+                    ) {
                         CircularProgressIndicator()
                     }
                 }
 
-                groupedFiles.isEmpty() || data.analyzeState.isFileScanEmpty -> {
-                    println("$TAG - GroupedFiles is empty or file scan is empty, showing NoFilesFoundScreen") // Log empty state
+                groupedFiles.isEmpty() -> {
+                    println("Cleaner for Android -> GroupedFiles is empty or file scan is empty, showing NoFilesFoundScreen")
                     NoFilesFoundScreen(viewModel = viewModel)
                 }
 
                 else -> {
-                    println("$TAG - Files found, displaying them in tabs") // Log files found state
+                    println("Cleaner for Android -> Files found, displaying them in tabs")
                     val tabs = groupedFiles.keys.toList()
                     val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
 
@@ -215,7 +224,9 @@ fun AnalyzeScreen(
                             view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.onCloseAnalyzeComposable()
                         }) {
-                            Icon(imageVector = Icons.Outlined.Close , contentDescription = "Close")
+                            Icon(
+                                imageVector = Icons.Outlined.Close , contentDescription = "Close"
+                            )
                         }
                     }
 
@@ -244,7 +255,7 @@ fun AnalyzeScreen(
             }
         }
         if (data.analyzeState.scannedFileList.isNotEmpty()) {
-            println("$TAG - ScannedFileList is not empty, displaying selection controls") // Log selection controls state
+            println("Cleaner for Android -> ScannedFileList is not empty, displaying selection controls")
             Row(
                 modifier = Modifier.fillMaxWidth() ,
                 verticalAlignment = Alignment.CenterVertically ,
@@ -286,9 +297,7 @@ fun AnalyzeScreen(
                           onStartButtonText = R.string.move_to_trash ,
 
                           onEndButtonClick = {
-                              viewModel.setDeleteForeverConfirmationDialogVisibility(
-                                  true
-                              )
+                              viewModel.setDeleteForeverConfirmationDialogVisibility(true)
                           } ,
                           onEndButtonIcon = Icons.Outlined.DeleteForever ,
                           onEndButtonText = R.string.delete_forever ,
