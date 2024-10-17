@@ -91,8 +91,11 @@ fun AnalyzeScreen(
     viewModel : HomeViewModel ,
     data : UiHomeModel ,
 ) {
+    val TAG = "TAG"
+
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     val enabled = data.analyzeState.selectedFilesCount > 0
+    val isLoading: Boolean by viewModel.isLoading.collectAsState()
 
     val filesTypesTitles = data.analyzeState.fileTypesData.fileTypesTitles
     val apkExtensions = data.analyzeState.fileTypesData.apkExtensions
@@ -143,11 +146,7 @@ fun AnalyzeScreen(
         return@remember finalMap
     }
 
-    if (groupedFiles.isEmpty()) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            CircularProgressIndicator()
-        }
-    }
+    println("$TAG - Recomposing AnalyzeScreen")
 
     Column(
         modifier = Modifier
@@ -162,17 +161,20 @@ fun AnalyzeScreen(
                     .fillMaxWidth() ,
         ) {
             when {
-                data.analyzeState.scannedFileList.isEmpty() -> {
+                isLoading -> {
+                    println("$TAG - ScannedFileList is empty, showing CircularProgressIndicator") // Log empty state
                     Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
                         CircularProgressIndicator()
                     }
                 }
 
                 groupedFiles.isEmpty() || data.analyzeState.isFileScanEmpty -> {
+                    println("$TAG - GroupedFiles is empty or file scan is empty, showing NoFilesFoundScreen") // Log empty state
                     NoFilesFoundScreen(viewModel = viewModel)
                 }
 
                 else -> {
+                    println("$TAG - Files found, displaying them in tabs") // Log files found state
                     val tabs = groupedFiles.keys.toList()
                     val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
 
@@ -242,6 +244,7 @@ fun AnalyzeScreen(
             }
         }
         if (data.analyzeState.scannedFileList.isNotEmpty()) {
+            println("$TAG - ScannedFileList is not empty, displaying selection controls") // Log selection controls state
             Row(
                 modifier = Modifier.fillMaxWidth() ,
                 verticalAlignment = Alignment.CenterVertically ,
@@ -291,7 +294,7 @@ fun AnalyzeScreen(
                           onEndButtonText = R.string.delete_forever ,
                           view = view)
 
-            if (data.analyzeState.isMoveToTrashConfirmationDialogVisible) {
+            if (data.analyzeState.isDeleteForeverConfirmationDialogVisible) {
                 ConfirmationAlertDialog(confirmationTitle = stringResource(R.string.delete_forever_title) ,
                                         confirmationMessage = stringResource(R.string.delete_forever_message) ,
                                         confirmationConfirmButtonText = stringResource(android.R.string.ok) ,

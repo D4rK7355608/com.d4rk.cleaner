@@ -13,6 +13,13 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.io.File
 
+/**
+ * ViewModel for the home screen.
+ * Manages the UI state and interacts with the repository to perform file operations.
+ *
+ * @param application The application instance.
+ * @author Mihai-Cristian Condrea
+ */
 class HomeViewModel(application : Application) : BaseViewModel(application) {
     private val repository = HomeRepository(DataStore(application) , application)
     private val _uiState = MutableStateFlow(UiHomeModel())
@@ -22,11 +29,17 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         prepareScreenData()
     }
 
+    /**
+     * Loads initial screen data, including storage info and file types data.
+     */
     private fun prepareScreenData() {
         updateStorageInfo()
         populateFileTypesData()
     }
 
+    /**
+     * Updates the storage information in the UI state.
+     */
     private fun updateStorageInfo() {
         viewModelScope.launch(coroutineExceptionHandler) {
             repository.getStorageInfo { uiHomeModel ->
@@ -41,12 +54,14 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
+    /**
+     * Initiates file analysis and updates the UI state with the results.
+     */
     fun analyze() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             showLoading()
             repository.analyzeFiles { result ->
-                val filteredFiles = result.first
-                val emptyFolders = result.second
+                val (filteredFiles , emptyFolders) = result
                 _uiState.update { currentUiState ->
                     currentUiState.copy(
                         analyzeState = currentUiState.analyzeState.copy(
@@ -62,9 +77,13 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
+    /**
+     * Rescans files and updates the UI state with the new results.
+     */
     fun rescanFiles() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             showLoading()
+            // Clear previous scan results before starting a new scan
             _uiState.update { currentUiState ->
                 currentUiState.copy(
                     analyzeState = currentUiState.analyzeState.copy(
@@ -85,6 +104,9 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
+    /**
+     * Hides the analyze screen.
+     */
     fun onCloseAnalyzeComposable() {
         viewModelScope.launch(coroutineExceptionHandler) {
             _uiState.update { currentUiState ->
@@ -97,6 +119,12 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
+    /**
+     * Updates the file selection state and selected file count.
+     *
+     * @param file The file whose selection state has changed.
+     * @param isChecked True if the file is now selected, false otherwise.
+     */
     fun onFileSelectionChange(file : File , isChecked : Boolean) {
         viewModelScope.launch(coroutineExceptionHandler) {
             val updatedFileSelectionStates =
@@ -111,7 +139,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                         areAllFilesSelected = when {
                             newSelectedCount == currentUiState.analyzeState.scannedFileList.size && newSelectedCount > 0 -> true
                             newSelectedCount == 0 -> false
-                            isChecked -> currentUiState.analyzeState.areAllFilesSelected
+                            isChecked -> currentUiState.analyzeState.areAllFilesSelected // Maintain 'select all' state if an item was checked and all were already checked
                             else -> false
                         }
                     )
@@ -120,6 +148,9 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
+    /**
+     * Toggles the "select all" state for files.
+     */
     fun toggleSelectAllFiles() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             val newState = ! _uiState.value.analyzeState.areAllFilesSelected
@@ -141,6 +172,9 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
+    /**
+     * Deletes selected files and updates the UI state.
+     */
     fun clean() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             val filesToDelete =
@@ -165,6 +199,9 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
+    /**
+     * Moves selected files to the trash and updates the UI state.
+     */
     fun moveToTrash() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             val filesToMove =
@@ -189,6 +226,9 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
+    /**
+     * Populates file types data in the UI state.
+     */
     private fun populateFileTypesData() {
         viewModelScope.launch(coroutineExceptionHandler) {
             repository.getFileTypesData { fileTypesData ->
@@ -203,13 +243,21 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
-    fun setDeleteForeverConfirmationDialogVisibility(isVisible: Boolean) {
+    /**
+     * Sets the visibility of the "delete forever" confirmation dialog.
+     * @param isVisible True to show the dialog, false to hide it.
+     */
+    fun setDeleteForeverConfirmationDialogVisibility(isVisible : Boolean) {
         _uiState.update {
             it.copy(analyzeState = it.analyzeState.copy(isDeleteForeverConfirmationDialogVisible = isVisible))
         }
     }
 
-    fun setMoveToTrashConfirmationDialogVisibility(isVisible: Boolean) {
+    /**
+     * Sets the visibility of the "move to trash" confirmation dialog.
+     * @param isVisible True to show the dialog, false to hide it.
+     */
+    fun setMoveToTrashConfirmationDialogVisibility(isVisible : Boolean) {
         _uiState.update {
             it.copy(analyzeState = it.analyzeState.copy(isMoveToTrashConfirmationDialogVisible = isVisible))
         }
