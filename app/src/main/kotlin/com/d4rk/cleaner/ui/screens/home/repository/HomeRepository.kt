@@ -2,7 +2,6 @@ package com.d4rk.cleaner.ui.screens.home.repository
 
 import android.app.Application
 import android.os.Environment
-import android.util.Log
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.screens.FileTypesData
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel

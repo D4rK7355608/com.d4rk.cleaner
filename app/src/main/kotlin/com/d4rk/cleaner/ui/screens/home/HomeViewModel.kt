@@ -82,7 +82,6 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     fun rescanFiles() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             showLoading()
-            // Clear previous scan results before starting a new scan
             _uiState.update { currentUiState ->
                 currentUiState.copy(
                     analyzeState = currentUiState.analyzeState.copy(
@@ -181,16 +180,15 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
             showLoading()
             repository.deleteFiles(filesToDelete) {
                 _uiState.update { currentUiState ->
-                    currentUiState.copy(
-                        analyzeState = currentUiState.analyzeState.copy(
-                            scannedFileList = currentUiState.analyzeState.scannedFileList.filterNot {
-                                filesToDelete.contains(it)
-                            } ,
-                            selectedFilesCount = 0 ,
-                            areAllFilesSelected = false ,
-                            fileSelectionMap = emptyMap()
-                        )
-                    )
+                    currentUiState.copy(analyzeState = currentUiState.analyzeState.copy(
+                        scannedFileList = currentUiState.analyzeState.scannedFileList.filterNot {
+                            filesToDelete.contains(it)
+                        } ,
+                        selectedFilesCount = 0 ,
+                        areAllFilesSelected = false ,
+                        fileSelectionMap = emptyMap() ,
+                        isAnalyzeScreenVisible = false ,
+                    ))
                 }
                 updateStorageInfo()
             }
@@ -208,16 +206,13 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
             showLoading()
             repository.moveToTrash(filesToMove) {
                 _uiState.update { currentUiState ->
-                    currentUiState.copy(
-                        analyzeState = currentUiState.analyzeState.copy(
-                            scannedFileList = currentUiState.analyzeState.scannedFileList.filterNot { existingFile ->
-                                filesToMove.any { movedFile -> existingFile.absolutePath == movedFile.absolutePath }
-                            } ,
-                            selectedFilesCount = 0 ,
-                            areAllFilesSelected = false ,
-                            fileSelectionMap = emptyMap()
-                        )
-                    )
+                    currentUiState.copy(analyzeState = currentUiState.analyzeState.copy(
+                        scannedFileList = currentUiState.analyzeState.scannedFileList.filterNot { existingFile ->
+                            filesToMove.any { movedFile -> existingFile.absolutePath == movedFile.absolutePath }
+                        } ,
+                        selectedFilesCount = 0 ,
+                        areAllFilesSelected = false ,
+                        fileSelectionMap = emptyMap()))
                 }
                 updateStorageInfo()
             }
