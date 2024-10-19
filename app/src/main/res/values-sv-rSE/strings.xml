@@ -231,7 +231,7 @@
     <string name="app_build_version">Applikationsbyggversion</string>
     <string name="summary_preference_settings_oss">Licensinformation för programvara med öppen källkod</string>
     <string name="device_info">Enhetsinformation</string>
-    <string name="app_build">Appbyggnad: Släpp\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="app_build">Appbyggnad: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Tillverkare:</string>
     <string name="device_model">Enhetsmodell:</string>
     <string name="android_version">Android-version:</string>

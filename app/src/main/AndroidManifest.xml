@@ -170,7 +170,6 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-
         <!--suppress AndroidDomInspection -->
         <service
             android:name="com.google.android.gms.metadata.ModuleDependencies"

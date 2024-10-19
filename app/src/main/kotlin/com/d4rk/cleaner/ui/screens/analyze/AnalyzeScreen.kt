@@ -254,7 +254,7 @@ fun AnalyzeScreen(
                 }
             }
         }
-        if (data.analyzeState.scannedFileList.isNotEmpty()) {
+        if (data.analyzeState.scannedFileList.isNotEmpty() || data.analyzeState.emptyFolderList.isNotEmpty()) {
             println("Cleaner for Android -> ScannedFileList is not empty, displaying selection controls")
             Row(
                 modifier = Modifier.fillMaxWidth() ,

@@ -231,7 +231,7 @@
     <string name="app_build_version">Alkalmazás build verziója</string>
     <string name="summary_preference_settings_oss">Licenc részletei a nyílt forráskódú szoftverekhez</string>
     <string name="device_info">Eszközinformáció</string>
-    <string name="app_build">Alkalmazás build: Kiadás\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="app_build">Alkalmazás build: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Gyártó:</string>
     <string name="device_model">Eszköz modell:</string>
     <string name="android_version">Android verzió:</string>

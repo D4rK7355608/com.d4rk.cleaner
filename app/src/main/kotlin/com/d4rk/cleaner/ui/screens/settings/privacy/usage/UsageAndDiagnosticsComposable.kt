@@ -28,6 +28,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.ui.components.SwitchCardComposable
@@ -42,7 +43,7 @@ import kotlinx.coroutines.launch
 fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
     val context: Context = LocalContext.current
     val dataStore: DataStore = DataStore.getInstance(context)
-    val switchState: State<Boolean> = dataStore.usageAndDiagnostics.collectAsState(initial = true)
+    val switchState: State<Boolean> = dataStore.usageAndDiagnostics.collectAsState(initial = ! BuildConfig.DEBUG)
     val scope: CoroutineScope = rememberCoroutineScope()
     TopAppBarScaffoldWithBackButton(
         title = stringResource(id = R.string.usage_and_diagnostics),

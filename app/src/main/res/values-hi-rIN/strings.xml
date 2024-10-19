@@ -231,7 +231,7 @@
     <string name="app_build_version">ऐप्लिकेशन बिल्ड संस्करण</string>
     <string name="summary_preference_settings_oss">ओपन सोर्स सॉफ्टवेयर के लिए लाइसेंस विवरण</string>
     <string name="device_info">डिवाइस जानकारी</string>
-    <string name="app_build">ऐप बिल्ड: रिलीज़\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="app_build">ऐप बिल्ड: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">निर्माता:</string>
     <string name="device_model">डिवाइस मॉडल:</string>
     <string name="android_version">एंड्रॉइड संस्करण:</string>

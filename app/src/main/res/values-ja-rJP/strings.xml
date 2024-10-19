@@ -230,7 +230,7 @@
     <string name="app_build_version">アプリケーションビルドバージョン</string>
     <string name="summary_preference_settings_oss">オープンソースソフトウェアのライセンスの詳細</string>
     <string name="device_info">デバイス情報</string>
-    <string name="app_build">アプリビルド: リリース\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="app_build">アプリビルド: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">メーカー:</string>
     <string name="device_model">デバイスモデル:</string>
     <string name="android_version">Androidバージョン:</string>

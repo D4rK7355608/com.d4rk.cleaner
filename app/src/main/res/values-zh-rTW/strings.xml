@@ -230,7 +230,7 @@
     <string name="app_build_version">應用程式版本</string>
     <string name="summary_preference_settings_oss">開放源碼軟體的許可證詳情</string>
     <string name="device_info">裝置資訊</string>
-    <string name="app_build">應用程式版本：發佈\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="app_build">應用程式版本：%6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">製造商：</string>
     <string name="device_model">裝置型號：</string>
     <string name="android_version">Android 版本：</string>

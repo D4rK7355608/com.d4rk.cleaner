@@ -232,7 +232,7 @@
     <string name="app_build_version">Versione di build dell\'applicazione</string>
     <string name="summary_preference_settings_oss">Dettagli sulla licenza per il software open source</string>
     <string name="device_info">Informazioni sul dispositivo</string>
-    <string name="app_build">Build dell\'app: Release\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="app_build">Build dell\'app: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Produttore:</string>
     <string name="device_model">Modello del dispositivo:</string>
     <string name="android_version">Versione Android:</string>

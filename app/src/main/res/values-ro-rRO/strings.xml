@@ -232,7 +232,7 @@
     <string name="app_build_version">Versiunea de construire a aplicației</string>
     <string name="summary_preference_settings_oss">Detalii despre licența pentru software-ul cu sursă deschisă</string>
     <string name="device_info">Informații despre dispozitiv</string>
-    <string name="app_build">Construirea aplicației: Eliberare\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="app_build">Construirea aplicației: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Producător:</string>
     <string name="device_model">Modelul dispozitivului:</string>
     <string name="android_version">Versiunea Android:</string>

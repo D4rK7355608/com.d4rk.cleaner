@@ -90,7 +90,8 @@ fun AboutSettingsComposable(activity: AboutSettingsActivity) {
                         "${stringResource(id = R.string.device_model)} ${Build.MODEL}",
                         "${stringResource(id = R.string.android_version)} ${Build.VERSION.RELEASE}",
                         "${stringResource(id = R.string.api_level)} ${Build.VERSION.SDK_INT}",
-                        "${stringResource(id = R.string.arch)} ${Build.SUPPORTED_ABIS.joinToString()}"
+                        "${stringResource(id = R.string.arch)} ${Build.SUPPORTED_ABIS.joinToString()}",
+                        if (BuildConfig.DEBUG) stringResource(id = R.string.debug) else stringResource(id = R.string.release)
                     )
 
                     PreferenceItem(

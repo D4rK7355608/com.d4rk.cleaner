@@ -231,7 +231,7 @@
     <string name="app_build_version">Uygulama derleme sürümü</string>
     <string name="summary_preference_settings_oss">Açık kaynaklı yazılımların lisans ayrıntıları</string>
     <string name="device_info">Cihaz bilgileri</string>
-    <string name="app_build">Uygulama Derlemesi: Sürüm\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="app_build">Uygulama Derlemesi: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Üretici:</string>
     <string name="device_model">Cihaz Modeli:</string>
     <string name="android_version">Android Sürümü:</string>

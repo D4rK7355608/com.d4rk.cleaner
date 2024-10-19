@@ -231,7 +231,7 @@
     <string name="app_build_version">Версия на компилацията на приложението</string>
     <string name="summary_preference_settings_oss">Подробности за лиценза за софтуер с отворен код</string>
     <string name="device_info">Информация за устройството</string>
-    <string name="app_build">Компилация на приложението: Release\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="app_build">Компилация на приложението: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Производител:</string>
     <string name="device_model">Модел на устройството:</string>
     <string name="android_version">Версия на Android:</string>

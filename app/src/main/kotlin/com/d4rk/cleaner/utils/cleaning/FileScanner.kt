@@ -187,6 +187,10 @@ class FileScanner(private val dataStore : DataStore , private val application : 
                 true
             }
 
+            file.isDirectory && file.listFiles()?.isEmpty() == true && preferences[ExtensionsConstants.EMPTY_FOLDERS] == true -> {
+                true
+            }
+
             extension.isEmpty() && preferences.any { it.value } -> {
                 true
             }
@@ -202,7 +206,7 @@ class FileScanner(private val dataStore : DataStore , private val application : 
      * @return The list of filtered files.
      */
     fun getFilteredFiles() : List<File> {
-        println("getFilteredFiles() called")
+        println("Cleaner for Android -> getFilteredFiles() called")
         return filteredFiles
     }
 
@@ -210,7 +214,7 @@ class FileScanner(private val dataStore : DataStore , private val application : 
      * Resets the filtered files list to an empty list.
      */
     fun reset() {
-        println("reset() called")
+        println("Cleaner for Android -> reset() called")
         filteredFiles = emptyList()
     }
 }

@@ -230,7 +230,7 @@
     <string name="app_build_version">Versi build aplikasi</string>
     <string name="summary_preference_settings_oss">Detail lisensi untuk perangkat lunak sumber terbuka</string>
     <string name="device_info">Info Perangkat</string>
-    <string name="app_build">Build Aplikasi: Rilis\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="app_build">Build Aplikasi: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Produsen:</string>
     <string name="device_model">Model Perangkat:</string>
     <string name="android_version">Versi Android:</string>

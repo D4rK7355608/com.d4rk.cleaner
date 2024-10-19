@@ -233,7 +233,7 @@
     <string name="app_build_version">Версия сборки приложения</string>
     <string name="summary_preference_settings_oss">Сведения о лицензии для программного обеспечения с открытым исходным кодом</string>
     <string name="device_info">Информация об устройстве</string>
-    <string name="app_build">Сборка приложения: Выпуск\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="app_build">Сборка приложения: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Производитель:</string>
     <string name="device_model">Модель устройства:</string>
     <string name="android_version">Версия Android:</string>

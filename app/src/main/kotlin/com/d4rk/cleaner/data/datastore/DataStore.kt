@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.constants.datastore.DataStoreNamesConstants
 import com.d4rk.cleaner.constants.ui.bottombar.BottomBarRoutes
 import kotlinx.coroutines.flow.Flow
@@ -159,12 +160,6 @@ class DataStore(context: Context) {
         }
     }
 
-    suspend fun clearTrashFilePaths() {
-        dataStore.edit { settings ->
-            settings.remove(trashFilePathsKey)
-        }
-    }
-
     private val genericFilterKey =
         booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_GENERIC_FILTER)
     val genericFilter: Flow<Boolean> = dataStore.data.map { preferences ->
@@ -289,7 +284,7 @@ class DataStore(context: Context) {
     private val usageAndDiagnosticsKey =
         booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_USAGE_AND_DIAGNOSTICS)
     val usageAndDiagnostics: Flow<Boolean> = dataStore.data.map { preferences ->
-        preferences[usageAndDiagnosticsKey] != false
+        preferences[usageAndDiagnosticsKey] ?: !BuildConfig.DEBUG
     }
 
     suspend fun saveUsageAndDiagnostics(isChecked: Boolean) {
@@ -300,8 +295,8 @@ class DataStore(context: Context) {
 
     // Ads
     private val adsKey = booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_ADS)
-    val ads: Flow<Boolean> = dataStore.data.map { preferences ->
-        preferences[adsKey] != false
+    val ads : Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[adsKey] ?: !BuildConfig.DEBUG
     }
 
     suspend fun saveAds(isChecked: Boolean) {
