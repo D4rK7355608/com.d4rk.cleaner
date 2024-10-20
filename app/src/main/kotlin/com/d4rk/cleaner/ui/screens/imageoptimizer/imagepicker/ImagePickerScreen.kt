@@ -44,7 +44,7 @@ fun ImagePickerComposable(
 ) {
     val context: Context = LocalContext.current
     val view: View = LocalView.current
-    val dataStore: DataStore = DataStore.getInstance(context)
+    val dataStore: DataStore = DataStore.getInstance(context = context)
     val adsState: State<Boolean> = dataStore.ads.collectAsState(initial = true)
 
     LaunchedEffect(key1 = viewModel.selectedImageUri) {

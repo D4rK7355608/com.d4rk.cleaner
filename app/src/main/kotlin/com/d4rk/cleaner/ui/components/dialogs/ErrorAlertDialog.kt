@@ -14,7 +14,7 @@ fun ErrorAlertDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(text = "Error") },
-        text = { Text(errorMessage) },
+        text = { Text(text = errorMessage) },
         confirmButton = {
             TextButton(onClick = onDismiss) {
                 Text(text = stringResource(id = android.R.string.ok))

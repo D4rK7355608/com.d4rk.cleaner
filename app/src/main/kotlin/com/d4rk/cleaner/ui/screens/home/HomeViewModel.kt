@@ -222,9 +222,10 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
      */
     fun moveToTrash() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
+            showLoading()
             val filesToMove =
                     _uiState.value.analyzeState.fileSelectionMap.filter { it.value }.keys.toList()
-            showLoading()
+            val totalTrashSize = filesToMove.sumOf { it.length() }
             repository.moveToTrash(filesToMove) {
                 _uiState.update { currentUiState ->
                     currentUiState.copy(analyzeState = currentUiState.analyzeState.copy(
@@ -237,6 +238,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                 }
                 updateStorageInfo()
             }
+            repository.addTrashSize(totalTrashSize)
             hideLoading()
         }
     }

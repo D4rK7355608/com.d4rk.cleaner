@@ -49,7 +49,7 @@ fun ImageOptimizerComposable(
     activity: ImageOptimizerActivity , viewModel: ImageOptimizerViewModel
 ) {
     val context: Context = LocalContext.current
-    val dataStore: DataStore = DataStore.getInstance(context)
+    val dataStore: DataStore = DataStore.getInstance(context = context)
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val adsState: State<Boolean> = dataStore.ads.collectAsState(initial = true)
     val tabs: List<String> = listOf(

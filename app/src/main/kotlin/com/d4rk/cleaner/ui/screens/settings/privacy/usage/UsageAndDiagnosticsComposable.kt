@@ -42,7 +42,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
     val context: Context = LocalContext.current
-    val dataStore: DataStore = DataStore.getInstance(context)
+    val dataStore: DataStore = DataStore.getInstance(context = context)
     val switchState: State<Boolean> = dataStore.usageAndDiagnostics.collectAsState(initial = ! BuildConfig.DEBUG)
     val scope: CoroutineScope = rememberCoroutineScope()
     TopAppBarScaffoldWithBackButton(

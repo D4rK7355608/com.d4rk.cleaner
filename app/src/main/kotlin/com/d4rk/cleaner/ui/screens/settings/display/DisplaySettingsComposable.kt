@@ -40,7 +40,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
     val context: Context = LocalContext.current
-    val dataStore: DataStore = DataStore.getInstance(context)
+    val dataStore: DataStore = DataStore.getInstance(context = context)
     var showLanguageDialog: Boolean by remember { mutableStateOf(value = false) }
     var showStartupDialog: Boolean by remember { mutableStateOf(value = false) }
     val themeMode: String = dataStore.themeMode.collectAsState(initial = "follow_system").value

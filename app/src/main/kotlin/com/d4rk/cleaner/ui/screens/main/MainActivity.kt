@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,51 +13,39 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.lifecycleScope
-import com.android.volley.NoConnectionError
-import com.android.volley.TimeoutError
-import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.notifications.managers.AppUpdateNotificationsManager
-import com.d4rk.cleaner.notifications.managers.AppUsageNotificationsManager
 import com.d4rk.cleaner.ui.screens.settings.display.theme.style.AppTheme
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.ActivityResult
-import com.google.android.play.core.install.model.AppUpdateType
-import com.google.android.play.core.install.model.UpdateAvailability
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var dataStore: DataStore
-    private lateinit var appUpdateManager: AppUpdateManager
-    private var appUpdateNotificationsManager: AppUpdateNotificationsManager =
-        AppUpdateNotificationsManager(this)
+    private lateinit var dataStore : DataStore
+    private val viewModel : MainViewModel by viewModels()
+    private lateinit var appUpdateManager : AppUpdateManager
+    private lateinit var appUpdateNotificationsManager : AppUpdateNotificationsManager
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen().apply {
             setKeepOnScreenCondition {
-                !(application as AppCoreManager).isAppLoaded()
+                ! (application as AppCoreManager).isAppLoaded()
             }
         }
         enableEdgeToEdge()
-        dataStore = DataStore.getInstance(this@MainActivity)
-        MobileAds.initialize(this@MainActivity)
-        setupUpdateNotifications()
+        initializeActivityComponents()
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    MainComposable()
+                    MainScreen(viewModel = viewModel)
                 }
             }
         }
@@ -65,10 +54,14 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onResume() {
         super.onResume()
-        val appUsageNotificationsManager = AppUsageNotificationsManager(this)
-        appUsageNotificationsManager.scheduleAppUsageCheck()
-        appUpdateNotificationsManager.checkAndSendUpdateNotification()
-        checkForFlexibleUpdate()
+        with(viewModel) {
+            checkAndHandleStartup()
+            configureSettings()
+            loadTrashSize()
+            checkForUpdates(activity = this@MainActivity , appUpdateManager = appUpdateManager)
+            checkAndScheduleUpdateNotifications(appUpdateNotificationsManager)
+            checkAppUsageNotifications()
+        }
     }
 
     /**
@@ -85,10 +78,10 @@ class MainActivity : AppCompatActivity() {
     @Suppress("DEPRECATION")
     override fun onBackPressed() {
         MaterialAlertDialogBuilder(this).setTitle(R.string.close).setMessage(R.string.summary_close)
-            .setPositiveButton(android.R.string.yes) { _, _ ->
-                super.onBackPressed()
-                moveTaskToBack(true)
-            }.setNegativeButton(android.R.string.no, null).apply { show() }
+                .setPositiveButton(android.R.string.yes) { _ , _ ->
+                    super.onBackPressed()
+                    moveTaskToBack(true)
+                }.setNegativeButton(android.R.string.no , null).apply { show() }
     }
 
     /**
@@ -105,16 +98,13 @@ class MainActivity : AppCompatActivity() {
      * @param data An Intent, which can return result data to the caller (various data can be attached to Intent "extras").
      */
     @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+    override fun onActivityResult(requestCode : Int , resultCode : Int , data : Intent?) {
+        super.onActivityResult(requestCode , resultCode , data)
+        println("Cleaner for Android -> Play Update: onActivityResult: requestCode=$requestCode, resultCode=$resultCode")
         if (requestCode == 1) {
             when (resultCode) {
                 RESULT_OK -> {
-                    val snackbar: Snackbar = Snackbar.make(
-                        findViewById(android.R.id.content), R.string.snack_app_updated,
-                        Snackbar.LENGTH_LONG
-                    ).setAction(android.R.string.ok, null)
-                    snackbar.show()
+                    showUpdateSuccessfulSnackbar()
                 }
 
                 ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> {
@@ -124,78 +114,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Checks for the availability of updates and triggers the appropriate update flow if conditions are met.
-     *
-     * This function uses the lifecycle scope to asynchronously check for available updates using the
-     * Google Play Core library. If an update is available and meets certain conditions, it triggers
-     * the update flow. The update can be of two types: IMMEDIATE or FLEXIBLE.
-     *
-     * For an IMMEDIATE update, it checks if the client version is more than 90 days old. If so, it triggers the update.
-     * For a FLEXIBLE update, it checks if the client version is less than 90 days old. If so, it triggers the update.
-     *
-     * The function also ensures that no developer-triggered update is in progress before triggering a new update.
-     *
-     * @param lifecycleScope The lifecycle scope used for launching coroutines, obtained from the hosting activity.
-     */
-    private fun checkForFlexibleUpdate() {
-        lifecycleScope.launch {
-            try {
-                val appUpdateInfo: AppUpdateInfo = appUpdateManager.appUpdateInfo.await()
-                if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && appUpdateInfo.isUpdateTypeAllowed(
-                        AppUpdateType.IMMEDIATE
-                    ) && appUpdateInfo.updateAvailability() != UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
-                ) {
-                    @Suppress("DEPRECATION") appUpdateManager.appUpdateInfo.addOnSuccessListener { info ->
-                        when {
-                            info.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && info.isUpdateTypeAllowed(
-                                AppUpdateType.IMMEDIATE
-                            ) -> {
-                                info.clientVersionStalenessDays()?.let {
-                                    if (it > 90) {
-                                        appUpdateManager.startUpdateFlowForResult(
-                                            info, AppUpdateType.IMMEDIATE, this@MainActivity, 1
-                                        )
-                                    }
-                                }
-                            }
+    private fun initializeActivityComponents() {
+        MobileAds.initialize(this@MainActivity)
+        dataStore = DataStore.getInstance(context = this@MainActivity)
+        appUpdateManager = AppUpdateManagerFactory.create(this@MainActivity)
+        appUpdateNotificationsManager = AppUpdateNotificationsManager(this)
+    }
 
-                            info.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && info.isUpdateTypeAllowed(
-                                AppUpdateType.FLEXIBLE
-                            ) -> {
-                                info.clientVersionStalenessDays()?.let {
-                                    if (it < 90) {
-                                        appUpdateManager.startUpdateFlowForResult(
-                                            info, AppUpdateType.FLEXIBLE, this@MainActivity, 1
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            } catch (e: Exception) {
-                if (!BuildConfig.DEBUG) {
-                    when (e) {
-                        is NoConnectionError, is TimeoutError -> {
-                            Snackbar.make(
-                                findViewById(android.R.id.content),
-                                getString(R.string.snack_network_error),
-                                Snackbar.LENGTH_LONG
-                            ).show()
-                        }
-
-                        else -> {
-                            Snackbar.make(
-                                findViewById(android.R.id.content),
-                                getString(R.string.snack_general_error),
-                                Snackbar.LENGTH_LONG
-                            ).show()
-                        }
-                    }
-                }
-            }
-        }
+    private fun showUpdateSuccessfulSnackbar() {
+        val snackbar : Snackbar = Snackbar.make(
+            findViewById(android.R.id.content) , R.string.snack_app_updated , Snackbar.LENGTH_LONG
+        ).setAction(android.R.string.ok , null)
+        snackbar.show()
     }
 
     /**
@@ -206,16 +136,13 @@ class MainActivity : AppCompatActivity() {
      * to check for updates and initiate the appropriate update flow if conditions are met.
      */
     private fun showUpdateFailedSnackbar() {
-        val snackbar: Snackbar = Snackbar.make(
-            findViewById(android.R.id.content), R.string.snack_update_failed, Snackbar.LENGTH_LONG
+        val snackbar : Snackbar = Snackbar.make(
+            findViewById(android.R.id.content) , R.string.snack_update_failed , Snackbar.LENGTH_LONG
         ).setAction(R.string.try_again) {
-            checkForFlexibleUpdate()
+            viewModel.checkForUpdates(
+                activity = this@MainActivity , appUpdateManager = appUpdateManager
+            )
         }
         snackbar.show()
-    }
-
-    private fun setupUpdateNotifications() {
-        appUpdateManager = AppUpdateManagerFactory.create(this)
-        appUpdateNotificationsManager = AppUpdateNotificationsManager(this)
     }
 }

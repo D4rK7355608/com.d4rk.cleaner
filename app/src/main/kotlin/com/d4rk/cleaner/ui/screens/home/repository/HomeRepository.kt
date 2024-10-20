@@ -140,6 +140,10 @@ class HomeRepository(
         }
     }
 
+    suspend fun addTrashSize(size: Long) {
+        dataStore.addTrashSize(size)
+    }
+
     /**
      * Restores the specified files from the trash directory.
      * @param filesToRestore The set of files to restore from trash.

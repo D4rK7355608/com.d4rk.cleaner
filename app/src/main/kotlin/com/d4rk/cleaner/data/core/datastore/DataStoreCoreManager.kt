@@ -14,7 +14,7 @@ open class DataStoreCoreManager(protected val context: Context) {
     lateinit var dataStore: DataStore
 
     suspend fun initializeDataStore(): Boolean = coroutineScope {
-        dataStore = DataStore.getInstance(context.applicationContext)
+        dataStore = DataStore.getInstance(context = context.applicationContext)
 
         listOf(
             async { dataStore.getStartupPage().firstOrNull() ?: BottomBarRoutes.HOME },

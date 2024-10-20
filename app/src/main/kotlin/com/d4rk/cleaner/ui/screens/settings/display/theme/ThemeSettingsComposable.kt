@@ -37,7 +37,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
     val context: Context = LocalContext.current
-    val dataStore: DataStore = DataStore.getInstance(context)
+    val dataStore: DataStore = DataStore.getInstance(context = context)
     val scope: CoroutineScope = rememberCoroutineScope()
     val themeMode: String = dataStore.themeMode.collectAsState(initial = "follow_system").value
     val isAmoledMode: State<Boolean> = dataStore.amoledMode.collectAsState(initial = false)

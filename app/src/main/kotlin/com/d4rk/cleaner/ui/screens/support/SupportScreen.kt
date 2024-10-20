@@ -45,7 +45,7 @@ import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
 fun SupportComposable(viewModel: SupportViewModel , activity: SupportActivity) {
     val context: Context = LocalContext.current
     val view: View = LocalView.current
-    val dataStore: DataStore = DataStore.getInstance(context)
+    val dataStore: DataStore = DataStore.getInstance(context = context)
     val billingClient: BillingClient = rememberBillingClient(context, viewModel)
     TopAppBarScaffoldWithBackButton(
         title = stringResource(id = R.string.support_us),

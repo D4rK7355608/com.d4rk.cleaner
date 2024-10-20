@@ -46,7 +46,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun AdsSettingsComposable(activity: AdsSettingsActivity) {
     val context: Context = LocalContext.current
-    val dataStore: DataStore = DataStore.getInstance(context)
+    val dataStore: DataStore = DataStore.getInstance(context = context)
     val switchState: State<Boolean> = dataStore.ads.collectAsState(initial = ! BuildConfig.DEBUG)
     val scope: CoroutineScope = rememberCoroutineScope()
     TopAppBarScaffoldWithBackButton(

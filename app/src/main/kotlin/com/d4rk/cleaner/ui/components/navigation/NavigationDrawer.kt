@@ -39,6 +39,7 @@ import androidx.navigation.NavHostController
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.navigation.NavigationDrawerItem
+import com.d4rk.cleaner.data.model.ui.screens.UiMainModel
 import com.d4rk.cleaner.ui.components.animations.bounceClick
 import com.d4rk.cleaner.ui.components.animations.hapticDrawerSwipe
 import com.d4rk.cleaner.ui.screens.help.HelpActivity
@@ -57,15 +58,15 @@ fun NavigationDrawer(
     view: View,
     dataStore: DataStore,
     context: Context,
+    uiState: UiMainModel,
 ) {
     val scope: CoroutineScope = rememberCoroutineScope()
-
     val drawerItems: List<NavigationDrawerItem> = listOf(
         NavigationDrawerItem(
             title = R.string.image_optimizer, selectedIcon = Icons.Outlined.Image
         ),
         NavigationDrawerItem(
-            title = R.string.trash, selectedIcon = Icons.Outlined.DeleteOutline
+            title = R.string.trash, selectedIcon = Icons.Outlined.DeleteOutline, badgeText = uiState.trashSize,
         ),
         NavigationDrawerItem(
             title = R.string.settings,
@@ -164,7 +165,9 @@ fun NavigationDrawer(
                             )
                         },
                         badge = {
-                            item.badgeCount?.let { Text(text = it.toString()) }
+                            item.badgeText.isNotBlank().let {
+                                Text(text = item.badgeText)
+                            }
                         },
                         modifier = Modifier
                             .padding(

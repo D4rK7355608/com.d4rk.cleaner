@@ -1,7 +1,13 @@
 package com.d4rk.cleaner.ui.screens.main.repository
 
+import android.app.Activity
 import android.app.Application
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.d4rk.cleaner.data.datastore.DataStore
+import com.d4rk.cleaner.notifications.managers.AppUpdateNotificationsManager
+import com.d4rk.cleaner.utils.cleaning.StorageUtils
+import com.google.android.play.core.appupdate.AppUpdateManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
@@ -12,8 +18,17 @@ import kotlinx.coroutines.withContext
  * @property dataStore The data store used to persist settings and startup information.
  * @property application The application context.
  */
-class MainRepository(val dataStore: DataStore, application: Application) :
+class MainRepository(val dataStore : DataStore , application : Application) :
     MainRepositoryImplementation(application) {
+
+    suspend fun checkForUpdates(
+        activity : Activity ,
+        appUpdateManager : AppUpdateManager ,
+    ) {
+        withContext(Dispatchers.IO) {
+            checkForUpdatesLogic(activity , appUpdateManager)
+        }
+    }
 
     /**
      * Checks the application startup state and performs actions based on whether it's the first launch.
@@ -23,12 +38,25 @@ class MainRepository(val dataStore: DataStore, application: Application) :
      *
      * @param onSuccess A callback function that receives a boolean indicating if it's the first launch.
      */
-    suspend fun checkAndHandleStartup(onSuccess: (Boolean) -> Unit) {
+    suspend fun checkAndHandleStartup(onSuccess : (Boolean) -> Unit) {
         withContext(Dispatchers.IO) {
-            val isFirstTime: Boolean = checkStartup()
+            val isFirstTime : Boolean = checkStartup()
             withContext(Dispatchers.Main) {
                 onSuccess(isFirstTime)
             }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun checkAndScheduleUpdateNotifications(appUpdateNotificationsManager : AppUpdateNotificationsManager) {
+        withContext(Dispatchers.IO) {
+            checkAndScheduleUpdateNotificationsLogic(appUpdateNotificationsManager)
+        }
+    }
+
+    suspend fun checkAppUsageNotifications() {
+        withContext(Dispatchers.IO) {
+            checkAppUsageNotificationsManager()
         }
     }
 
@@ -40,9 +68,22 @@ class MainRepository(val dataStore: DataStore, application: Application) :
      */
     suspend fun setupSettings() {
         withContext(Dispatchers.IO) {
-            val isEnabled: Boolean = dataStore.usageAndDiagnostics.first()
+            val isEnabled : Boolean = dataStore.usageAndDiagnostics.first()
             withContext(Dispatchers.Main) {
                 setupDiagnosticSettings(isEnabled)
+            }
+        }
+    }
+
+    /**
+     * Retrieves the current trash size from DataStore and formats it.
+     */
+    suspend fun getTrashSize(onSuccess : (String) -> Unit) {
+        withContext(Dispatchers.IO) {
+            val size = dataStore.trashSize.first()
+            val formattedSize = StorageUtils.formatSize(size)
+            withContext(Dispatchers.Main) {
+                onSuccess(formattedSize)
             }
         }
     }

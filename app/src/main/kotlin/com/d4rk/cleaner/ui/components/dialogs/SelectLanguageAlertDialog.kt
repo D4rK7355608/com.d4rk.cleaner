@@ -53,11 +53,11 @@ fun SelectLanguageAlertDialog(
             onLanguageSelected(selectedLanguage.value)
             onDismiss()
         }) {
-            Text(stringResource(id = android.R.string.ok))
+            Text(text = stringResource(id = android.R.string.ok))
         }
     }, dismissButton = {
         TextButton(onClick = onDismiss) {
-            Text(stringResource(id = android.R.string.cancel))
+            Text(text = stringResource(id = android.R.string.cancel))
         }
     })
 }
@@ -74,7 +74,7 @@ fun SelectLanguageAlertDialogContent(
     }
 
     Column {
-        Text(stringResource(id = R.string.dialog_language_subtitle))
+        Text(text = stringResource(id = R.string.dialog_language_subtitle))
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -103,7 +103,7 @@ fun SelectLanguageAlertDialogContent(
         Spacer(modifier = Modifier.height(24.dp))
         Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
         Spacer(modifier = Modifier.height(12.dp))
-        Text(stringResource(id = R.string.dialog_info_language))
+        Text(text = stringResource(id = R.string.dialog_info_language))
     }
 
     LaunchedEffect(selectedLanguage.value) {

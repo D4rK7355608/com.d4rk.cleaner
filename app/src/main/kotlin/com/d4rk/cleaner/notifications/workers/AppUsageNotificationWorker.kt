@@ -25,7 +25,7 @@ import kotlinx.coroutines.runBlocking
  */
 class AppUsageNotificationWorker(context: Context, workerParams: WorkerParameters) :
     Worker(context, workerParams) {
-    private val dataStore = DataStore.getInstance(context)
+    private val dataStore = DataStore.getInstance(context = context)
     private val appUsageChannelId = "app_usage_channel"
     private val appUsageNotificationId = 0
 

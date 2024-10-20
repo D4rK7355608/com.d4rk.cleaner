@@ -182,6 +182,29 @@ class DataStore(context: Context) {
         }
     }
 
+    private val trashSizeKey = longPreferencesKey(name = "trash_size")
+    val trashSize: Flow<Long> = dataStore.data.map { preferences ->
+        preferences[trashSizeKey] ?: 0L
+    }
+
+    suspend fun addTrashSize(size: Long) {
+        dataStore.edit { preferences ->
+            preferences[trashSizeKey] = (preferences[trashSizeKey] ?: 0L) + size
+        }
+    }
+
+    suspend fun subtractTrashSize(size: Long) {
+        dataStore.edit { preferences ->
+            preferences[trashSizeKey] = (preferences[trashSizeKey] ?: 0L) - size
+        }
+    }
+
+    suspend fun clearTrashSize() {
+        dataStore.edit { preferences ->
+            preferences[trashSizeKey] = 0L
+        }
+    }
+
     private val genericFilterKey =
         booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_GENERIC_FILTER)
     val genericFilter: Flow<Boolean> = dataStore.data.map { preferences ->

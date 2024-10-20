@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun CleaningSettingsComposable(activity: CleaningSettingsActivity) {
     val context: Context = LocalContext.current
-    val dataStore: DataStore = DataStore.getInstance(context)
+    val dataStore: DataStore = DataStore.getInstance(context = context)
     val genericFilter: Boolean by dataStore.genericFilter.collectAsState(initial = true)
     val deleteEmptyFolders: Boolean by dataStore.deleteEmptyFolders.collectAsState(initial = true)
     val deleteArchives: Boolean by dataStore.deleteArchives.collectAsState(initial = false)

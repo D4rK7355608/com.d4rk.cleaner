@@ -30,7 +30,7 @@ fun Modifier.bounceClick(
 ) : Modifier = composed {
     var buttonState : ButtonState by remember { mutableStateOf(ButtonState.Idle) }
     val context : Context = LocalContext.current
-    val dataStore : DataStore = DataStore.getInstance(context)
+    val dataStore : DataStore = DataStore.getInstance(context = context)
     val bouncyButtonsEnabled : Boolean by dataStore.bouncyButtons.collectAsState(initial = true)
     val scale : Float by animateFloatAsState(
         if (buttonState == ButtonState.Pressed && animationEnabled && bouncyButtonsEnabled) 0.96f else 1f ,

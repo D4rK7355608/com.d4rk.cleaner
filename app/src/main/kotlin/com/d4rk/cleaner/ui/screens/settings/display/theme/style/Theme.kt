@@ -145,7 +145,7 @@ fun AppTheme(
     content: @Composable () -> Unit
 ) {
     val context: Context = LocalContext.current
-    val dataStore: DataStore = DataStore.getInstance(context)
+    val dataStore: DataStore = DataStore.getInstance(context = context)
     val themeMode: String = dataStore.themeMode.collectAsState(initial = "follow_system").value
     val isDynamicColors: Boolean = dataStore.dynamicColors.collectAsState(initial = true).value
     val isAmoledMode: Boolean = dataStore.amoledMode.collectAsState(initial = false).value
