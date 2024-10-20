@@ -6,6 +6,7 @@ import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.ui.screens.home.repository.HomeRepository
 import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
+import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -35,6 +36,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     private fun prepareScreenData() {
         updateStorageInfo()
         populateFileTypesData()
+        loadCleanedSpaceAndLastScan()
     }
 
     /**
@@ -50,6 +52,18 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                         totalStorageFormatted = uiHomeModel.totalStorageFormatted
                     )
                 }
+            }
+        }
+    }
+
+    private fun loadCleanedSpaceAndLastScan() {
+        viewModelScope.launch(coroutineExceptionHandler) {
+            repository.dataStore.cleanedSpace.collect { cleanedSpace ->
+                _uiState.update { it.copy(cleanedSpace = StorageUtils.formatSize(cleanedSpace)) }
+            }
+
+            repository.getLastScanInfo { daysFromLastScan ->
+                _uiState.update { it.copy(daysFromLastScan = daysFromLastScan) }
             }
         }
     }
@@ -178,6 +192,9 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
             val filesToDelete =
                     _uiState.value.analyzeState.fileSelectionMap.filter { it.value }.keys
             showLoading()
+
+            val totalCleanedSpace = filesToDelete.sumOf { it.length() } // Calculate cleaned space
+
             repository.deleteFiles(filesToDelete) {
                 _uiState.update { currentUiState ->
                     currentUiState.copy(analyzeState = currentUiState.analyzeState.copy(
@@ -191,6 +208,10 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                     ))
                 }
                 updateStorageInfo()
+                viewModelScope.launch(Dispatchers.IO) {
+                    repository.dataStore.addCleanedSpace(totalCleanedSpace)
+                    repository.dataStore.saveLastScanTimestamp(System.currentTimeMillis())
+                }
             }
             hideLoading()
         }

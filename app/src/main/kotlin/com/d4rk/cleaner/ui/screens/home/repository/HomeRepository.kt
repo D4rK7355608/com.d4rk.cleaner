@@ -7,6 +7,7 @@ import com.d4rk.cleaner.data.model.ui.screens.FileTypesData
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.cleaning.FileScanner
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.withContext
 import java.io.File
 
@@ -31,6 +32,17 @@ class HomeRepository(
             val storageInfo : UiHomeModel = getStorageInfo()
             withContext(Dispatchers.Main) {
                 onSuccess(storageInfo)
+            }
+        }
+    }
+
+    suspend fun getLastScanInfo(onSuccess: (Int) -> Unit) {
+        withContext(Dispatchers.IO) {
+            dataStore.lastScanTimestamp.firstOrNull()?.let { timestamp ->
+                val daysFromLastScan = calculateDaysSince(timestamp)
+                withContext(Dispatchers.Main) {
+                    onSuccess(daysFromLastScan)
+                }
             }
         }
     }

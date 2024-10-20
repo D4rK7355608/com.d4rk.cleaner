@@ -2,6 +2,7 @@ package com.d4rk.cleaner.ui.components.navigation
 
 import android.view.SoundEffectConstants
 import android.view.View
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Icon
@@ -14,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -55,7 +57,9 @@ fun BottomNavigationBar(
                     },
                     label = {
                         if (showLabels) Text(
-                            text = stringResource(id = screen.title)
+                            text = stringResource(id = screen.title),
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.basicMarquee()
                         )
                     },
                     selected = currentRoute == screen.route,

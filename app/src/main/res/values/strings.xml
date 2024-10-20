@@ -15,7 +15,9 @@
     <string name="home">Home</string>
     <string name="delete_forever">Delete forever</string>
     <string name="move_to_trash">Move to trash</string>
-
+    <string name="cleaned_space">Cleaned Space:</string>
+    <string name="last_scan">Last Scan:</string>
+    <string name="last_scan_days_ago">%1$d days ago</string>
     <string name="delete_forever_title">Delete Forever</string>
     <string name="delete_forever_message">Are you sure you want to delete these files forever? This action cannot be undone.</string>
     <string name="move_to_trash_title">Move to Trash</string>

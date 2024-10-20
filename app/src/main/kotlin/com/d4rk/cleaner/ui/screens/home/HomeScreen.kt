@@ -5,11 +5,19 @@ import android.content.Context
 import android.view.View
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -18,16 +26,21 @@ import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.ImageLoader
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
+import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.ui.components.CircularDeterminateIndicator
+import com.d4rk.cleaner.ui.components.VerticalDivider
 import com.d4rk.cleaner.ui.components.dialogs.ErrorAlertDialog
 import com.d4rk.cleaner.ui.screens.analyze.AnalyzeScreen
 import com.d4rk.cleaner.utils.PermissionsUtils
@@ -74,6 +87,13 @@ fun HomeScreen() {
                                              onClick = {
                                                  viewModel.analyze()
                                              })
+                LastScanInfo(
+                    modifier = Modifier
+                            .align(Alignment.BottomCenter)
+                            .padding(bottom = 16.dp) ,
+                    cleanedSpace = uiState.cleanedSpace ,
+                    daysFromLastScan = uiState.daysFromLastScan ,
+                )
             }
 
             Crossfade(
@@ -93,5 +113,53 @@ fun HomeScreen() {
                 }
             }
         }
+    }
+}
+
+@Composable
+fun LastScanInfo(
+    modifier : Modifier = Modifier ,
+    cleanedSpace : String ,
+    daysFromLastScan : Int ,
+) {
+    val context = LocalContext.current
+
+    Row(
+        modifier = modifier
+                .fillMaxWidth()
+                .height(IntrinsicSize.Min)
+                .padding(horizontal = 16.dp , vertical = 8.dp) ,
+        horizontalArrangement = Arrangement.SpaceAround ,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        InfoColumn(
+            title = stringResource(id = R.string.cleaned_space) ,
+            value = cleanedSpace ,
+            isRecent = false
+        )
+
+        VerticalDivider()
+
+        InfoColumn(
+            title = stringResource(id = R.string.last_scan) ,
+            value = context.getString(R.string.last_scan_days_ago , daysFromLastScan) ,
+            isRecent = daysFromLastScan <= 2
+        )
+    }
+}
+
+@Composable
+fun InfoColumn(title : String , value : String , isRecent : Boolean) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally , modifier = Modifier.wrapContentSize()
+    ) {
+        Text(text = title , style = MaterialTheme.typography.bodySmall)
+        Text(
+            text = value ,
+            style = MaterialTheme.typography.bodyMedium ,
+            color = if (isRecent) Color.Green else MaterialTheme.colorScheme.onSurface ,
+            maxLines = 2 ,
+            overflow = TextOverflow.Ellipsis
+        )
     }
 }

@@ -7,6 +7,8 @@ data class UiHomeModel(
     var usedStorageFormatted : String = "" ,
     var totalStorageFormatted : String = "" ,
     var analyzeState : UiAnalyzeModel = UiAnalyzeModel() ,
+    var daysFromLastScan : Int = 0,
+    val cleanedSpace: String = "0 KB",
     var isRescanDialogVisible : Boolean = false ,
 )
 

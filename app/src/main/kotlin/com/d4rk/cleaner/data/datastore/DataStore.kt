@@ -140,6 +140,28 @@ class DataStore(context: Context) {
     }
 
     // Cleaning
+    private val cleanedSpaceKey = longPreferencesKey(name = "cleaned_space")
+    val cleanedSpace: Flow<Long> = dataStore.data.map { preferences ->
+        preferences[cleanedSpaceKey] ?: 0L
+    }
+
+    suspend fun addCleanedSpace(space: Long) {
+        dataStore.edit { preferences ->
+            preferences[cleanedSpaceKey] = (preferences[cleanedSpaceKey] ?: 0L) + space
+        }
+    }
+
+    private val lastScanTimestampKey = longPreferencesKey(name = "last_scan_timestamp")
+    val lastScanTimestamp: Flow<Long> = dataStore.data.map { preferences ->
+        preferences[lastScanTimestampKey] ?: 0L
+    }
+
+    suspend fun saveLastScanTimestamp(timestamp: Long) {
+        dataStore.edit { preferences ->
+            preferences[lastScanTimestampKey] = timestamp
+        }
+    }
+
     private val trashFilePathsKey = stringSetPreferencesKey("trash_file_paths")
 
     val trashFilePaths: Flow<Set<String>> = dataStore.data.map { preferences ->

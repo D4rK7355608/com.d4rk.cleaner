@@ -9,6 +9,7 @@ import com.d4rk.cleaner.data.model.ui.screens.FileTypesData
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import java.io.File
+import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -32,6 +33,16 @@ abstract class HomeRepositoryImplementation(
                 )
             }
         }
+    }
+
+    fun calculateDaysSince(timestamp: Long): Int {
+        if (timestamp == 0L) return 0
+
+        val currentTime = System.currentTimeMillis()
+        val differenceInMillis = currentTime - timestamp
+        val days = TimeUnit.MILLISECONDS.toDays(differenceInMillis).toInt()
+
+        return days
     }
 
     suspend fun getFileTypesDataFromResources() : FileTypesData {
@@ -59,7 +70,6 @@ abstract class HomeRepositoryImplementation(
             continuation.resume(fileTypesData)
         }
     }
-
 
     fun deleteFiles(filesToDelete : Set<File>) {
         filesToDelete.forEach { file ->

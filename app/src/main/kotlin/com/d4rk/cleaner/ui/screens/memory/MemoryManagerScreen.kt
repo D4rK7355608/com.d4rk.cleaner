@@ -8,6 +8,7 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.updateTransition
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -267,7 +268,8 @@ fun StorageBreakdownItem(icon: String, size: Long, modifier: Modifier = Modifier
                 Text(
                     text = icon,
                     style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.basicMarquee(),
                 )
                 Text(text = formatSize(size), style = MaterialTheme.typography.bodySmall)
             }
