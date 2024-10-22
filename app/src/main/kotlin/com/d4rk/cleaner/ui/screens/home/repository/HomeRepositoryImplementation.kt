@@ -75,7 +75,12 @@ abstract class HomeRepositoryImplementation(
     fun deleteFiles(filesToDelete : Set<File>) {
         filesToDelete.forEach { file ->
             if (file.exists()) {
+                println("Cleaner for Android -> Deleting file/directory: ${file.absolutePath}")
                 file.deleteRecursively()
+                println("Cleaner for Android -> Deleted file/directory: ${file.absolutePath}")
+
+            } else {
+                println("Cleaner for Android -> File not found: ${file.absolutePath}")
             }
         }
     }

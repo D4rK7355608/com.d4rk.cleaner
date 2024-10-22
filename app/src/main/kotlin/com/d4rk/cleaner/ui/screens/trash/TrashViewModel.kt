@@ -42,9 +42,9 @@ class TrashViewModel(application : Application) : BaseViewModel(application) {
     fun restoreFromTrash() {
         viewModelScope.launch(coroutineExceptionHandler) {
             val filesToRestore = _uiState.value.fileSelectionStates.filter { it.value }.keys
-            println("Cleaner for Android -> restoreFromTrash() called") // Log the function call
+            println("Cleaner for Android -> restoreFromTrash() called")
 
-            println("Cleaner for Android -> Files to restore: $filesToRestore") // Log the files to restore
+            println("Cleaner for Android -> Files to restore: $filesToRestore")
 
             showLoading()
 
@@ -58,9 +58,14 @@ class TrashViewModel(application : Application) : BaseViewModel(application) {
     fun clean() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             val filesToDelete = _uiState.value.fileSelectionStates.filter { it.value }.keys
+            println("Cleaner for Android -> Starting clean. Files to delete: ${filesToDelete.joinToString { it.absolutePath }}") // Log files to be deleted
             showLoading()
-            repository.deleteFiles(filesToDelete)
+            println("Cleaner for Android -> Showing loading indicator")
+            repository.deleteFiles(filesToDelete) {
+                loadTrashItems()
+            }
             hideLoading()
+            println("Cleaner for Android -> Hiding loading indicator")
         }
     }
 }
