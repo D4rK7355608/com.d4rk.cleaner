@@ -8,6 +8,7 @@ import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.screens.FileTypesData
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.cleaning.StorageUtils
+import kotlinx.coroutines.flow.first
 import java.io.File
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
@@ -35,7 +36,7 @@ abstract class HomeRepositoryImplementation(
         }
     }
 
-    fun calculateDaysSince(timestamp: Long): Int {
+    fun calculateDaysSince(timestamp : Long) : Int {
         if (timestamp == 0L) return 0
 
         val currentTime = System.currentTimeMillis()
@@ -79,11 +80,6 @@ abstract class HomeRepositoryImplementation(
         }
     }
 
-    /**
-     * Moves the given files to the trash directory.
-     *
-     * @param filesToMove The list of files to move to the trash.
-     */
     suspend fun moveToTrash(filesToMove : List<File>) {
         if (! trashDir.exists()) {
             trashDir.mkdirs()
@@ -92,10 +88,15 @@ abstract class HomeRepositoryImplementation(
         filesToMove.forEach { file ->
             if (file.exists()) {
                 val originalPath = file.absolutePath
-                val destination = File(trashDir , "${file.name}_${file.lastModified()}")
+                val destination = File(trashDir , file.name)
+
+                println("Cleaner for Android -> Moving file: ${file.absolutePath} to ${destination.absolutePath}")
 
                 if (file.renameTo(destination)) {
-                    dataStore.addTrashFilePath(originalPath)
+                    println("Cleaner for Android -> File moved successfully")
+                    dataStore.addTrashFileOriginalPath(originalPath)
+                    dataStore.addTrashFilePath(originalPath to destination.absolutePath)
+
 
                     MediaScannerConnection.scanFile(
                         application , arrayOf(
@@ -103,34 +104,78 @@ abstract class HomeRepositoryImplementation(
                         ) , null , null
                     )
                 }
+                else {
+                    println("Cleaner for Android -> File move failed")
+                }
+            }
+            else {
+                println("Cleaner for Android -> File does not exist: ${file.absolutePath}")
             }
         }
     }
 
     suspend fun restoreFromTrash(filesToRestore : Set<File>) {
+        println("Cleaner for Android -> impl logic called")
+        val originalPaths = dataStore.trashFileOriginalPaths.first()
+        println("Cleaner for Android -> Original paths from DataStore: $originalPaths")
+        val trashToOriginalMap =
+                dataStore.trashFilePaths.first().associate { it.second to it.first }
+        println("Cleaner for Android -> trashToOriginalMap: $trashToOriginalMap")
+
         filesToRestore.forEach { file ->
+            println("Cleaner for Android -> Attempting to restore: ${file.absolutePath}")
+
             if (file.exists()) {
-                dataStore.trashFilePaths.collect { paths ->
-                    val originalPath =
-                            paths.find { it == file.absolutePath.replace(Regex("_\\d+$") , "") }
-                    if (originalPath != null) {
-                        val destinationFile = File(originalPath)
-                        val destinationParent = destinationFile.parentFile
+                val originalPath = originalPaths.firstOrNull { File(it).name == file.name }
+                println("Cleaner for Android -> Original path found: $originalPath")
 
-                        if (destinationParent?.exists() == false) {
-                            destinationParent.mkdirs()
-                        }
+                if (originalPath != null) {
+                    val destinationFile = File(originalPath)
+                    val destinationParent = destinationFile.parentFile
 
-                        if (file.renameTo(destinationFile)) {
-                            MediaScannerConnection.scanFile(
-                                application , arrayOf(
-                                    destinationFile.absolutePath , file.absolutePath
-                                ) , null , null
-                            )
-                            dataStore.removeTrashFilePath(originalPath)
-                        }
+                    if (destinationParent?.exists() == false) {
+                        destinationParent.mkdirs()
+                    }
+
+                    println("Cleaner for Android -> Restoring to: ${destinationFile.absolutePath}")
+
+                    if (file.renameTo(destinationFile)) {
+                        println("Cleaner for Android -> File restored successfully")
+                        dataStore.removeTrashFileOriginalPath(originalPath)
+                        dataStore.removeTrashFilePath(originalPath)
+                        MediaScannerConnection.scanFile(
+                            application , arrayOf(
+                                destinationFile.absolutePath , file.absolutePath
+                            ) , null , null
+                        )
+                    }
+                    else {
+                        println("Cleaner for Android -> File restore failed. Check if the file already exists or there is a permission issue.") // More informative message
                     }
                 }
+                else {
+                    println("Cleaner for Android -> No original path found for ${file.name}. Restoring to Downloads.")
+                    val downloadsDir =
+                            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                    val destinationFile = File(downloadsDir , file.name)
+
+                    if (file.renameTo(destinationFile)) {
+                        println("Cleaner for Android -> File restored to Downloads successfully")
+
+                        MediaScannerConnection.scanFile(
+                            application ,
+                            arrayOf(destinationFile.absolutePath , file.absolutePath) ,
+                            null ,
+                            null
+                        )
+                    }
+                    else {
+                        println("Cleaner for Android -> File restore to Downloads failed")
+                    }
+                }
+            }
+            else {
+                println("Cleaner for Android -> File does not exist in trash: ${file.absolutePath}")
             }
         }
     }

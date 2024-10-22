@@ -42,7 +42,12 @@ class TrashViewModel(application : Application) : BaseViewModel(application) {
     fun restoreFromTrash() {
         viewModelScope.launch(coroutineExceptionHandler) {
             val filesToRestore = _uiState.value.fileSelectionStates.filter { it.value }.keys
+            println("Cleaner for Android -> restoreFromTrash() called") // Log the function call
+
+            println("Cleaner for Android -> Files to restore: $filesToRestore") // Log the files to restore
+
             showLoading()
+
             repository.restoreFromTrash(filesToRestore) {
                 loadTrashItems()
             }

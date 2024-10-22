@@ -74,17 +74,4 @@ class MainRepository(val dataStore : DataStore , application : Application) :
             }
         }
     }
-
-    /**
-     * Retrieves the current trash size from DataStore and formats it.
-     */
-    suspend fun getTrashSize(onSuccess : (String) -> Unit) {
-        withContext(Dispatchers.IO) {
-            val size = dataStore.trashSize.first()
-            val formattedSize = StorageUtils.formatSize(size)
-            withContext(Dispatchers.Main) {
-                onSuccess(formattedSize)
-            }
-        }
-    }
 }

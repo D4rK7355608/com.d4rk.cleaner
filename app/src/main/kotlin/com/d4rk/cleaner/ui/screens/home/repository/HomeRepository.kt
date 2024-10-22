@@ -150,7 +150,9 @@ class HomeRepository(
      * @param onSuccess Callback function to be invoked after successful restore.
      */
     suspend fun restoreFromTrash(filesToRestore : Set<File> , onSuccess : () -> Unit) {
+        println("Cleaner for Android -> restoreFromTrash - normal repo")
         withContext(Dispatchers.IO) {
+            println("Cleaner for Android -> we are on IO")
             restoreFromTrash(filesToRestore)
             withContext(Dispatchers.Main) {
                 onSuccess()

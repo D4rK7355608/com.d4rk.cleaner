@@ -11,6 +11,7 @@ constraintlayoutCompose = "1.0.1"
 coreSplashscreen = "1.0.1"
 datastoreCore = "1.1.1"
 firebaseBom = "33.4.0"
+kotlinxSerializationJson = "1.7.3"
 lifecycle = "2.8.6"
 volley = "1.2.1"
 kotlin = "2.0.10"
@@ -73,6 +74,7 @@ androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "composeUi" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeUi" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "composeMaterial3" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }

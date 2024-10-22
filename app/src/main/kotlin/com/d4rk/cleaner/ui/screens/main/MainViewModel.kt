@@ -12,6 +12,7 @@ import com.d4rk.cleaner.ui.screens.main.repository.MainRepository
 import com.d4rk.cleaner.ui.screens.startup.StartupActivity
 import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
 import com.d4rk.cleaner.utils.IntentUtils
+import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import com.google.android.play.core.appupdate.AppUpdateManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -25,8 +26,8 @@ class MainViewModel(application : Application) : BaseViewModel(application) {
 
     fun loadTrashSize() {
         viewModelScope.launch(coroutineExceptionHandler) {
-            repository.getTrashSize { trashSize ->
-                _uiState.update { it.copy(trashSize = trashSize) }
+            repository.dataStore.trashSize.collect { trashSize ->
+                _uiState.update { it.copy(trashSize = StorageUtils.formatSize(trashSize)) }
             }
         }
     }
