@@ -36,7 +36,7 @@ class HomeRepository(
         }
     }
 
-    suspend fun getLastScanInfo(onSuccess: (Int) -> Unit) {
+    suspend fun getLastScanInfo(onSuccess : (Int) -> Unit) {
         withContext(Dispatchers.IO) {
             dataStore.lastScanTimestamp.firstOrNull()?.let { timestamp ->
                 val daysFromLastScan = calculateDaysSince(timestamp)
@@ -140,10 +140,6 @@ class HomeRepository(
         }
     }
 
-    suspend fun addTrashSize(size: Long) {
-        dataStore.addTrashSize(size)
-    }
-
     /**
      * Restores the specified files from the trash directory.
      * @param filesToRestore The set of files to restore from trash.
@@ -158,5 +154,13 @@ class HomeRepository(
                 onSuccess()
             }
         }
+    }
+
+    suspend fun addTrashSize(size : Long) {
+        dataStore.addTrashSize(size)
+    }
+
+    suspend fun subtractTrashSize(size : Long) {
+        dataStore.subtractTrashSize(size)
     }
 }

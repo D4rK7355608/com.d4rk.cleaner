@@ -225,6 +225,13 @@ class DataStore(context : Context) {
         }
     }
 
+    suspend fun subtractTrashSize(size: Long) {
+        dataStore.edit { settings ->
+            val currentSize = settings[trashSizeKey] ?: 0L
+            settings[trashSizeKey] = (currentSize - size).coerceAtLeast(0L)
+        }
+    }
+
     private val genericFilterKey =
             booleanPreferencesKey(name = DataStoreNamesConstants.DATA_STORE_GENERIC_FILTER)
     val genericFilter : Flow<Boolean> = dataStore.data.map { preferences ->

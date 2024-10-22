@@ -51,6 +51,7 @@ class TrashViewModel(application : Application) : BaseViewModel(application) {
             repository.restoreFromTrash(filesToRestore) {
                 loadTrashItems()
             }
+            repository.subtractTrashSize(filesToRestore.sumOf { it.length() })
             hideLoading()
         }
     }
@@ -64,6 +65,7 @@ class TrashViewModel(application : Application) : BaseViewModel(application) {
             repository.deleteFiles(filesToDelete) {
                 loadTrashItems()
             }
+            repository.subtractTrashSize(filesToDelete.sumOf { it.length() })
             hideLoading()
             println("Cleaner for Android -> Hiding loading indicator")
         }
