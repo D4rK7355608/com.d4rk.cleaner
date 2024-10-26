@@ -4,23 +4,24 @@
   appealing user interface.
 - **New**: Implemented date-based filtering in the Analyze screen, allowing for easier file
   selection and management.
-- **Patch**:Resolved an issue where APK installation from the App Manager was not functioning
+- **Patch**: Resolved an issue where APK installation from the App Manager was not functioning
   correctly.
-- **Patch**:Improved the "Select All" button behavior in the App Manager to ensure accurate state
+- **Patch**: Improved the "Select All" button behavior in the App Manager to ensure accurate state
   representation.
 - **New**: Introduced loading indicators in the App Manager for a smoother and more informative
   experience.
 - **New**: Added messages to indicate when no apps or APKs are found.
-- **Patch**:Optimized app loading speed in the App Manager through code refactoring and efficiency
+- **Patch**: Optimized app loading speed in the App Manager through code refactoring and efficiency
   improvements.
 - **New**: Enabled real-time RAM usage monitoring in the Memory Manager.
+- **New**: A new Trash screen has been added to provide more granular control over your device's storage.
 - **New**: Added a loading animation to the Memory Manager for visual feedback during data
   retrieval.
 - **New**: Introduced a new setting to customize the app's startup page, providing users with
   greater control over their initial experience.
 - **New**: Added an option to disable the bounce click effect for users who prefer a more
   traditional interaction style.
-- **Patch**:Resolved an issue where language selection was not consistently applied.
+- **Patch**: Resolved an issue where language selection was not consistently applied.
 - **New**: Added a snackbar notification for older Android versions when users copy device
   information from the About section.
 - **New**: Integrated haptic feedback for swipe gestures, enhancing the tactile response and user
@@ -29,7 +30,7 @@
 - **New**: Redesigned the Settings page, aligning it with the modern aesthetics of the Android 15
   design system.
 - **Minor**: Backported the app to support devices running Android 6.0 and above.
-- **Patch**:Fixed visual glitches within the App Manager.
+- **Patch**: Fixed visual glitches within the App Manager.
 - **Major**: Restructured the app's code flow for improved organization and future extensibility.
 - **Major**: Implemented a robust error handling mechanism to gracefully manage unexpected
   situations and provide helpful feedback to users.

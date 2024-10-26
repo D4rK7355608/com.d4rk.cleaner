@@ -13,9 +13,6 @@
     <string name="navigation_drawer_open">Ouvrir le tiroir de navigation</string>
 
     <string name="home">Accueil</string>
-    <string name="storage_used">%1$s/%2$s Go\nUtilisé</string>
-    <string name="analyze">Analyser</string>
-    <string name="clean">Nettoyer</string>
     <string name="quick_scan">Analyse rapide</string>
     <string name="apks">APK</string>
     <string name="archives">Archives</string>
@@ -29,8 +26,6 @@
     </plurals>
     <string name="status_no_files_selected">Statut: Aucun fichier sélectionné</string>
     <string name="select_all">Tout sélectionner</string>
-    <string name="rescan_title">Re-scanner?</string>
-    <string name="rescan_message">Êtes-vous sûr de vouloir re-scanner?</string>
     <string name="file_not_found">Fichier introuvable.</string>
     <string name="no_files_found">Aucun fichier trouvé</string>
     <string name="activity_not_found">Activité introuvable.</string>
@@ -46,7 +41,6 @@
     <string name="uninstall">Désinstaller</string>
     <string name="share">Partager</string>
     <string name="app_info">Informations sur l’application</string>
-    <string name="installed">Installé"</string>
     <string name="install">Installer</string>
     <string name="share_apk">Partager APK</string>
     <string name="no_app_installed">Aucune application installée</string>
@@ -281,7 +275,6 @@
     <string name="learn_more">En savoir plus</string>
 
     <string name="close">Fermer?</string>
-    <string name="require_restart">Un redémarrage est nécessaire!</string>
     <string name="snack_network_error">Une erreur réseau s\'est produite lors de la recherche de mises à jour.</string>
     <string name="snack_general_error">Une erreur s\'est produite lors de la recherche de mises à jour.</string>
     <string name="summary_close">Êtes-vous sûr de vouloir quitter?</string>

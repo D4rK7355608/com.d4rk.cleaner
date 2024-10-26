@@ -13,9 +13,6 @@
     <string name="navigation_drawer_open">Відкрити панель навігації</string>
 
     <string name="home">Головна</string>
-    <string name="storage_used">%1$s/%2$s ГБ\nВикористано</string>
-    <string name="analyze">Аналізувати</string>
-    <string name="clean">Очистити</string>
     <string name="quick_scan">Швидке сканування</string>
     <string name="apks">APK</string>
     <string name="archives">Архіви</string>
@@ -30,8 +27,6 @@
     </plurals>
     <string name="status_no_files_selected">Статус: Не вибрано файлів</string>
     <string name="select_all">Вибрати все</string>
-    <string name="rescan_title">Пересканувати?</string>
-    <string name="rescan_message">Ви впевнені, що хочете сканувати знову?</string>
     <string name="file_not_found">Файл не знайдено.</string>
     <string name="no_files_found">Файли не знайдено</string>
     <string name="activity_not_found">Дія не знайдена.</string>
@@ -47,7 +42,6 @@
     <string name="uninstall">Видалити</string>
     <string name="share">Поділитися</string>
     <string name="app_info">Інформація про програму</string>
-    <string name="installed">Встановлено"</string>
     <string name="install">Встановити</string>
     <string name="share_apk">Поділитися APK</string>
     <string name="no_app_installed">Програми не встановлені</string>
@@ -282,7 +276,6 @@
     <string name="learn_more">Дізнатися більше</string>
 
     <string name="close">Закрити?</string>
-    <string name="require_restart">Потрібне перезавантаження!</string>
     <string name="snack_network_error">Під час перевірки наявності оновлень сталася помилка мережі</string>
     <string name="snack_general_error">Під час перевірки наявності оновлень сталася помилка</string>
     <string name="summary_close">Ви впевнені, що хочете вийти?</string>

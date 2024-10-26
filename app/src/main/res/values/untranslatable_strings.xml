@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Cleaner</string>
     <string name="app_full_name" translatable="false">Cleaner for Android</string>
-    <string name="image_compressor_percentage_format" translatable="false">%d%%</string>
+    <string name="percentage_format" translatable="false">%d%%</string>
     <string name="feedback_for" translatable="false">Feedback for </string>
     <string name="dear_developer" translatable="false">Dear developer, </string>
     <string name="send_email_using" translatable="false">Send mail using:</string>

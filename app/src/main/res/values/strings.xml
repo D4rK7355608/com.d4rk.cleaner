@@ -15,17 +15,13 @@
     <string name="home">Home</string>
     <string name="delete_forever">Delete forever</string>
     <string name="move_to_trash">Move to trash</string>
-    <string name="cleaned_space">Cleaned Space:</string>
-    <string name="last_scan">Last Scan:</string>
-    <string name="last_scan_days_ago">%1$d days ago</string>
+    <string name="cleaned_space">Cleaned Space</string>
+    <string name="free_space">Free Space</string>
     <string name="delete_forever_title">Delete Forever</string>
     <string name="delete_forever_message">Are you sure you want to delete these files forever? This action cannot be undone.</string>
     <string name="move_to_trash_title">Move to Trash</string>
     <string name="move_to_trash_message">Are you sure you want to move these files to the trash?</string>
 
-    <string name="storage_used">%1$s/%2$s GB\nUsed</string>
-    <string name="analyze">Analyze</string>
-    <string name="clean">Clean</string>
     <string name="quick_scan">Quick Scan</string>
     <string name="apks">APKs</string>
     <string name="archives">Archives</string>
@@ -39,8 +35,6 @@
     </plurals>
     <string name="status_no_files_selected">Status: No files selected</string>
     <string name="select_all">Select All</string>
-    <string name="rescan_title">Rescan?</string>
-    <string name="rescan_message">Are you sure you want to scan again?</string>
     <string name="file_not_found">File not found.</string>
     <string name="no_files_found">No files found</string>
     <string name="activity_not_found">Activity not found.</string>
@@ -56,7 +50,6 @@
     <string name="uninstall">Uninstall</string>
     <string name="share">Share</string>
     <string name="app_info">App info</string>
-    <string name="installed">Installed"</string>
     <string name="install">Install"</string>
     <string name="share_apk">Share APK</string>
     <string name="no_app_installed">No apps installed</string>
@@ -297,7 +290,6 @@
     <string name="learn_more">Learn more</string>
 
     <string name="close">Close?</string>
-    <string name="require_restart">Require restart!</string>
     <string name="snack_network_error">Network error occurred while checking for updates</string>
     <string name="snack_general_error">An error occurred while checking for updates</string>
     <string name="summary_close">Are you sure you want to exit?</string>

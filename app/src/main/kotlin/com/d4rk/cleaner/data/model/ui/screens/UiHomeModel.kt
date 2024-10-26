@@ -1,14 +1,12 @@
 package com.d4rk.cleaner.data.model.ui.screens
 
+import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
 import java.io.File
 
 data class UiHomeModel(
-    var storageUsageProgress : Float = 0f ,
-    var usedStorageFormatted : String = "" ,
-    var totalStorageFormatted : String = "" ,
+    val storageInfo: StorageInfo = StorageInfo() ,
     var analyzeState : UiAnalyzeModel = UiAnalyzeModel() ,
-    var daysFromLastScan : Int = 0,
-    val cleanedSpace: String = "0 KB",
+    var daysFromLastScan : Int = 0 ,
     var isRescanDialogVisible : Boolean = false ,
 )
 

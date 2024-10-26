@@ -19,15 +19,15 @@ import kotlin.math.pow
 
 abstract class MemoryManagerRepositoryImplementation(val application : Application) {
 
-    suspend fun getStorageInfo() : StorageInfo {
+    suspend fun getStorageInfo(): StorageInfo {
         return suspendCoroutine { continuation ->
-            StorageUtils.getStorageInfo(application) { used , total , _ ->
+            StorageUtils.getStorageInfo(application) { used , total , _ , _ , _ ->
                 val usedStorageBytes : Double = (used.toDoubleOrNull() ?: 0.0) * 1024.0.pow(n = 3)
                 val totalStorageBytes : Double = (total.toDoubleOrNull() ?: 0.0) * 1024.0.pow(n = 3)
 
                 val storageBreakdown : Map<String , Long> = getStorageBreakdown(application)
                 val storageInfo = StorageInfo(
-                    totalStorage = totalStorageBytes.toLong() ,
+                    storageUsageProgress = totalStorageBytes.toFloat() ,
                     freeStorage = (totalStorageBytes - usedStorageBytes).toLong() ,
                     usedStorage = usedStorageBytes.toLong() ,
                     storageBreakdown = storageBreakdown

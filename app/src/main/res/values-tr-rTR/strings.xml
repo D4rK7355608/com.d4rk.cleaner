@@ -13,9 +13,6 @@
     <string name="navigation_drawer_open">Gezinme çekmecesini aç</string>
 
     <string name="home">Ana Sayfa</string>
-    <string name="storage_used">%1$s/%2$s GB\nKullanılan</string>
-    <string name="analyze">Analiz Et</string>
-    <string name="clean">Temizle</string>
     <string name="quick_scan">Hızlı Tarama</string>
     <string name="apks">APK\'lar</string>
     <string name="archives">Arşivler</string>
@@ -28,8 +25,6 @@
     </plurals>
     <string name="status_no_files_selected">Durum: Dosya seçilmedi</string>
     <string name="select_all">Tümünü Seç</string>
-    <string name="rescan_title">Tekrar Tara?</string>
-    <string name="rescan_message">Tekrar taramak istediğinizden emin misiniz?</string>
     <string name="file_not_found">Dosya bulunamadı.</string>
     <string name="no_files_found">Dosya bulunamadı</string>
     <string name="activity_not_found">Etkinlik bulunamadı.</string>
@@ -45,7 +40,6 @@
     <string name="uninstall">Kaldır</string>
     <string name="share">Paylaş</string>
     <string name="app_info">Uygulama bilgisi</string>
-    <string name="installed">Yüklü"</string>
     <string name="install">Yükle</string>
     <string name="share_apk">APK\'yı Paylaş</string>
     <string name="no_app_installed">Yüklü uygulama yok</string>
@@ -280,7 +274,6 @@
     <string name="learn_more">Daha fazla bilgi edinin</string>
 
     <string name="close">Kapat?</string>
-    <string name="require_restart">Yeniden başlatma gerekiyor!</string>
     <string name="snack_network_error">Güncellemeleri kontrol ederken ağ hatası oluştu</string>
     <string name="snack_general_error">Güncellemeleri kontrol ederken bir hata oluştu</string>
     <string name="summary_close">Çıkmak istediğinizden emin misiniz?</string>

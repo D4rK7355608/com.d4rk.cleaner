@@ -13,9 +13,6 @@
     <string name="navigation_drawer_open">Buka laci navigasi</string>
 
     <string name="home">Beranda</string>
-    <string name="storage_used">%1$s/%2$s GB\nDigunakan</string>
-    <string name="analyze">Analisis</string>
-    <string name="clean">Bersihkan</string>
     <string name="quick_scan">Pemindaian Cepat</string>
     <string name="apks">APK</string>
     <string name="archives">Arsip</string>
@@ -27,8 +24,6 @@
     </plurals>
     <string name="status_no_files_selected">Status: Tidak ada file yang dipilih</string>
     <string name="select_all">Pilih Semua</string>
-    <string name="rescan_title">Pindai ulang?</string>
-    <string name="rescan_message">Anda yakin ingin memindai lagi?</string>
     <string name="file_not_found">File tidak ditemukan.</string>
     <string name="activity_not_found">Aktivitas tidak ditemukan.</string>
     <string name="no_files_found">Tidak ada berkas yang ditemukan</string>
@@ -44,7 +39,6 @@
     <string name="uninstall">Copot pemasangan</string>
     <string name="share">Bagikan</string>
     <string name="app_info">Info aplikasi</string>
-    <string name="installed">Terpasang"</string>
     <string name="install">Pasang</string>
     <string name="share_apk">Bagikan APK</string>
     <string name="no_app_installed">Tidak ada aplikasi yang terinstal</string>
@@ -279,7 +273,6 @@
     <string name="learn_more">Pelajari lebih lanjut</string>
 
     <string name="close">Tutup?</string>
-    <string name="require_restart">Membutuhkan mulai ulang!</string>
     <string name="snack_network_error">Terjadi kesalahan jaringan saat memeriksa pembaruan</string>
     <string name="snack_general_error">Terjadi kesalahan saat memeriksa pembaruan</string>
     <string name="summary_close">Apakah Anda yakin ingin keluar?</string>

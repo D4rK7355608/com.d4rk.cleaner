@@ -160,10 +160,10 @@ fun MemoryManagerComposable() {
 @Composable
 fun StorageInfoCard(storageInfo: StorageInfo) {
 
-    val progress: Float = if (storageInfo.totalStorage == 0L) {
+    val progress: Float = if (storageInfo.storageUsageProgress.toLong() == 0L) {
         0f
     } else {
-        storageInfo.usedStorage.toFloat() / storageInfo.totalStorage.toFloat()
+        storageInfo.usedStorage.toFloat() / storageInfo.storageUsageProgress
     }
 
     Column(
@@ -192,7 +192,7 @@ fun StorageInfoCard(storageInfo: StorageInfo) {
             label = stringResource(id = R.string.free), size = storageInfo.freeStorage
         )
         StorageInfoText(
-            label = stringResource(id = R.string.total), size = storageInfo.totalStorage
+            label = stringResource(id = R.string.total), size = storageInfo.storageUsageProgress.toLong()
         )
     }
 }
@@ -294,7 +294,7 @@ fun RamInfoCard(ramInfo: RamInfo) {
         Spacer(modifier = Modifier.height(8.dp))
         StorageProgressBar(
             StorageInfo(
-                totalStorage = ramInfo.totalRam,
+                storageUsageProgress = ramInfo.totalRam.toFloat(),
                 usedStorage = ramInfo.usedRam,
                 freeStorage = ramInfo.availableRam
             )

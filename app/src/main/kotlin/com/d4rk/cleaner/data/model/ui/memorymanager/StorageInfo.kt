@@ -1,8 +1,12 @@
 package com.d4rk.cleaner.data.model.ui.memorymanager
 
 data class StorageInfo(
-    val totalStorage: Long = 0,
+    val storageUsageProgress: Float = 0f,
     val freeStorage: Long = 0,
     val usedStorage: Long = 0,
-    val storageBreakdown: Map<String, Long> = emptyMap()
+    val freeSpacePercentage: Int = 0,
+    val storageBreakdown: Map<String, Long> = emptyMap(),
+    val usedStorageFormatted: String = "",
+    val totalStorageFormatted: String = "",
+    val cleanedSpace: String = "0 KB" ,
 )

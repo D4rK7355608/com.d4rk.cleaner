@@ -6,7 +6,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.notifications.managers.AppUpdateNotificationsManager
-import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import com.google.android.play.core.appupdate.AppUpdateManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first

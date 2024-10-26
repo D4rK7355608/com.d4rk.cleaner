@@ -13,9 +13,6 @@
     <string name="navigation_drawer_open">Открыть боковое меню навигации</string>
 
     <string name="home">Домой</string>
-    <string name="storage_used">%1$s/%2$s ГБ\nИспользовано</string>
-    <string name="analyze">Анализировать</string>
-    <string name="clean">Очистить</string>
     <string name="quick_scan">Быстрое сканирование</string>
     <string name="apks">APK</string>
     <string name="archives">Архивы</string>
@@ -30,8 +27,6 @@
     </plurals>
     <string name="status_no_files_selected">Статус: Файлы не выбраны</string>
     <string name="select_all">Выбрать все</string>
-    <string name="rescan_title">Повторное сканирование?</string>
-    <string name="rescan_message">Вы уверены, что хотите выполнить сканирование снова?</string>
     <string name="file_not_found">Файл не найден.</string>
     <string name="no_files_found">Файлы не найдены</string>
     <string name="activity_not_found">Действие не найдено.</string>
@@ -47,7 +42,6 @@
     <string name="uninstall">Удалить</string>
     <string name="share">Поделиться</string>
     <string name="app_info">Информация о приложении</string>
-    <string name="installed">Установлено"</string>
     <string name="install">Установить</string>
     <string name="share_apk">Поделиться APK</string>
     <string name="no_app_installed">Приложения не установлены</string>
@@ -282,7 +276,6 @@
     <string name="learn_more">Узнать больше</string>
 
     <string name="close">Закрыть?</string>
-    <string name="require_restart">Требуется перезагрузка!</string>
     <string name="snack_network_error">Ошибка сети при проверке обновлений</string>
     <string name="snack_general_error">Произошла ошибка при проверке обновлений</string>
     <string name="summary_close">Вы уверены, что хотите выйти?</string>

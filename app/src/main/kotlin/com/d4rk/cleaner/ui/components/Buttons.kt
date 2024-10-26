@@ -2,6 +2,7 @@ package com.d4rk.cleaner.ui.components
 
 import android.view.SoundEffectConstants
 import android.view.View
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -52,7 +53,7 @@ fun TwoRowButtons(
                 modifier = Modifier.size(ButtonDefaults.IconSize)
             )
             Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-            Text(text = stringResource(id = onStartButtonText))
+            Text(text = stringResource(id = onStartButtonText), modifier = Modifier.basicMarquee())
         }
 
         Spacer(Modifier.width(8.dp))
@@ -73,7 +74,7 @@ fun TwoRowButtons(
                 modifier = Modifier.size(ButtonDefaults.IconSize)
             )
             Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-            Text(text = stringResource(id = onEndButtonText))
+            Text(text = stringResource(id = onEndButtonText), modifier = Modifier.basicMarquee())
         }
     }
 }

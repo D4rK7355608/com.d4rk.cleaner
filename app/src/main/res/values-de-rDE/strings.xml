@@ -13,9 +13,6 @@
     <string name="navigation_drawer_open">Navigationslade öffnen</string>
 
     <string name="home">Startseite</string>
-    <string name="storage_used">%1$s/%2$s GB\nVerwendet</string>
-    <string name="analyze">Analysieren</string>
-    <string name="clean">Reinigen</string>
     <string name="quick_scan">Schnellscan</string>
     <string name="apks">APKs</string>
     <string name="archives">Archive</string>
@@ -28,8 +25,6 @@
     </plurals>
     <string name="status_no_files_selected">Status: Keine Dateien ausgewählt</string>
     <string name="select_all">Alle auswählen</string>
-    <string name="rescan_title">Neu scannen?</string>
-    <string name="rescan_message">Sind Sie sicher, dass Sie erneut scannen möchten?</string>
     <string name="file_not_found">Datei nicht gefunden.</string>
     <string name="activity_not_found">Aktivität nicht gefunden.</string>
     <string name="no_files_found">Keine Dateien gefunden</string>
@@ -45,7 +40,6 @@
     <string name="uninstall">Deinstallieren</string>
     <string name="share">Teilen</string>
     <string name="app_info">App-Info</string>
-    <string name="installed">Installiert"</string>
     <string name="install">Installieren</string>
     <string name="share_apk">APK teilen</string>
     <string name="no_app_installed">Keine Apps installiert</string>
@@ -280,7 +274,6 @@
     <string name="learn_more">Mehr erfahren</string>
 
     <string name="close">Schließen?</string>
-    <string name="require_restart">Neustart erforderlich!</string>
     <string name="snack_network_error">Beim Überprüfen auf Updates ist ein Netzwerkfehler aufgetreten</string>
     <string name="snack_general_error">Beim Überprüfen auf Updates ist ein Fehler aufgetreten</string>
     <string name="summary_close">Sind Sie sicher, dass Sie beenden möchten?</string>

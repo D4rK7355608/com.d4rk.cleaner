@@ -13,9 +13,6 @@
     <string name="navigation_drawer_open">Otwórz szufladę nawigacji</string>
 
     <string name="home">Strona główna</string>
-    <string name="storage_used">%1$s/%2$s GB\nUżywane</string>
-    <string name="analyze">Analizuj</string>
-    <string name="clean">Wyczyść</string>
     <string name="quick_scan">Szybkie skanowanie</string>
     <string name="apks">APK</string>
     <string name="archives">Archiwa</string>
@@ -30,8 +27,6 @@
     </plurals>
     <string name="status_no_files_selected">Status: Nie wybrano plików</string>
     <string name="select_all">Zaznacz wszystko</string>
-    <string name="rescan_title">Skanować ponownie?</string>
-    <string name="rescan_message">Czy na pewno chcesz skanować ponownie?</string>
     <string name="file_not_found">Plik nie znaleziony.</string>
     <string name="no_files_found">Nie znaleziono plików</string>
     <string name="activity_not_found">Nie znaleziono aktywności.</string>
@@ -47,7 +42,6 @@
     <string name="uninstall">Odinstaluj</string>
     <string name="share">Udostępnij</string>
     <string name="app_info">Informacje o aplikacji</string>
-    <string name="installed">Zainstalowano"</string>
     <string name="install">Zainstaluj</string>
     <string name="share_apk">Udostępnij APK</string>
     <string name="no_app_installed">Brak zainstalowanych aplikacji</string>
@@ -282,7 +276,6 @@
     <string name="learn_more">Dowiedz się więcej</string>
 
     <string name="close">Zamknąć?</string>
-    <string name="require_restart">Wymagane ponowne uruchomienie!</string>
     <string name="snack_network_error">Wystąpił błąd sieci podczas sprawdzania aktualizacji</string>
     <string name="snack_general_error">Wystąpił błąd podczas sprawdzania aktualizacji</string>
     <string name="summary_close">Czy na pewno chcesz wyjść?</string>

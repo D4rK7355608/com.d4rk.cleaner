@@ -12,6 +12,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.io.File
 
+/**
+ * ViewModel for the Trash screen. Manages the display and interaction with trashed files.
+ *
+ * @param application The application instance.
+ * @author Mihai-Cristian Condrea
+ */
 class TrashViewModel(application : Application) : BaseViewModel(application) {
     private val repository = HomeRepository(DataStore(application) , application)
     private val _uiState = MutableStateFlow(UiTrashModel())
@@ -21,16 +27,23 @@ class TrashViewModel(application : Application) : BaseViewModel(application) {
         loadTrashItems()
     }
 
+    /**
+     * Loads the list of trashed files from the repository.
+     */
     private fun loadTrashItems() {
         viewModelScope.launch(coroutineExceptionHandler) {
             showLoading()
-            val trashFiles = repository.getTrashFiles()
-            _uiState.value = _uiState.value.copy(trashFiles = trashFiles)
+            _uiState.value = _uiState.value.copy(trashFiles = repository.getTrashFiles())
             hideLoading()
         }
     }
 
-
+    /**
+     * Handles changes in file selection state.
+     *
+     * @param file The file whose selection state has changed.
+     * @param isChecked True if the file is selected, false otherwise.
+     */
     fun onFileSelectionChange(file : File , isChecked : Boolean) {
         viewModelScope.launch(coroutineExceptionHandler) {
             val updatedSelections = _uiState.value.fileSelectionStates + (file to isChecked)
@@ -39,35 +52,42 @@ class TrashViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
+    /**
+     * Restores selected files from the trash.
+     */
     fun restoreFromTrash() {
         viewModelScope.launch(coroutineExceptionHandler) {
-            val filesToRestore = _uiState.value.fileSelectionStates.filter { it.value }.keys
-            println("Cleaner for Android -> restoreFromTrash() called")
-
-            println("Cleaner for Android -> Files to restore: $filesToRestore")
-
             showLoading()
-
+            val filesToRestore = _uiState.value.fileSelectionStates.filter { it.value }.keys
+            val totalFileSizeToRestore = filesToRestore.sumOf { it.length() }
             repository.restoreFromTrash(filesToRestore) {
                 loadTrashItems()
             }
-            repository.subtractTrashSize(filesToRestore.sumOf { it.length() })
+            repository.subtractTrashSize(totalFileSizeToRestore)
             hideLoading()
         }
     }
 
+    /**
+     * Permanently deletes selected files from the trash.
+     */
     fun clean() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
-            val filesToDelete = _uiState.value.fileSelectionStates.filter { it.value }.keys
-            println("Cleaner for Android -> Starting clean. Files to delete: ${filesToDelete.joinToString { it.absolutePath }}") // Log files to be deleted
             showLoading()
-            println("Cleaner for Android -> Showing loading indicator")
-            repository.deleteFiles(filesToDelete) {
-                loadTrashItems()
+            val filesToDelete = _uiState.value.fileSelectionStates.filter { it.value }.keys
+            val totalFileSizeToDelete = filesToDelete.sumOf { it.length() }
+            with(repository) {
+                deleteFiles(filesToDelete) {
+                    loadTrashItems()
+                }
+
+                with(dataStore) {
+                    subtractTrashSize(totalFileSizeToDelete)
+                    addCleanedSpace(totalFileSizeToDelete)
+                    saveLastScanTimestamp(System.currentTimeMillis())
+                }
             }
-            repository.subtractTrashSize(filesToDelete.sumOf { it.length() })
             hideLoading()
-            println("Cleaner for Android -> Hiding loading indicator")
         }
     }
 }

@@ -5,12 +5,12 @@ import android.media.MediaScannerConnection
 import android.os.Environment
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
+import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
 import com.d4rk.cleaner.data.model.ui.screens.FileTypesData
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import kotlinx.coroutines.flow.first
 import java.io.File
-import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -22,28 +22,19 @@ abstract class HomeRepositoryImplementation(
     private val trashDir =
             File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash")
 
-    suspend fun getStorageInfo() : UiHomeModel {
+    suspend fun getStorageInfo(): UiHomeModel {
         return suspendCoroutine { continuation ->
-            StorageUtils.getStorageInfo(application) { used , total , usageProgress ->
+            StorageUtils.getStorageInfo(application) { _ , _ , _ , usageProgress , freeSpacePercentage ->
                 continuation.resume(
                     UiHomeModel(
-                        storageUsageProgress = usageProgress ,
-                        usedStorageFormatted = used ,
-                        totalStorageFormatted = total ,
+                        storageInfo = StorageInfo(
+                            storageUsageProgress = usageProgress,
+                            freeSpacePercentage = freeSpacePercentage
+                        )
                     )
                 )
             }
         }
-    }
-
-    fun calculateDaysSince(timestamp : Long) : Int {
-        if (timestamp == 0L) return 0
-
-        val currentTime = System.currentTimeMillis()
-        val differenceInMillis = currentTime - timestamp
-        val days = TimeUnit.MILLISECONDS.toDays(differenceInMillis).toInt()
-
-        return days
     }
 
     suspend fun getFileTypesDataFromResources() : FileTypesData {
@@ -75,12 +66,9 @@ abstract class HomeRepositoryImplementation(
     fun deleteFiles(filesToDelete : Set<File>) {
         filesToDelete.forEach { file ->
             if (file.exists()) {
-                println("Cleaner for Android -> Deleting file/directory: ${file.absolutePath}")
                 file.deleteRecursively()
-                println("Cleaner for Android -> Deleted file/directory: ${file.absolutePath}")
-
             } else {
-                println("Cleaner for Android -> File not found: ${file.absolutePath}")
+               // TODO: add a dialog if no file to delete found
             }
         }
     }
@@ -95,10 +83,7 @@ abstract class HomeRepositoryImplementation(
                 val originalPath = file.absolutePath
                 val destination = File(trashDir , file.name)
 
-                println("Cleaner for Android -> Moving file: ${file.absolutePath} to ${destination.absolutePath}")
-
                 if (file.renameTo(destination)) {
-                    println("Cleaner for Android -> File moved successfully")
                     dataStore.addTrashFileOriginalPath(originalPath)
                     dataStore.addTrashFilePath(originalPath to destination.absolutePath)
 
@@ -110,30 +95,20 @@ abstract class HomeRepositoryImplementation(
                     )
                 }
                 else {
-                    println("Cleaner for Android -> File move failed")
+                    // TODO: Add a dialog for failed files at the end for moving to trash
                 }
             }
             else {
-                println("Cleaner for Android -> File does not exist: ${file.absolutePath}")
+                // TODO: Add a dialog if the file does not exist for moving to trash
             }
         }
     }
 
     suspend fun restoreFromTrash(filesToRestore : Set<File>) {
-        println("Cleaner for Android -> impl logic called")
         val originalPaths = dataStore.trashFileOriginalPaths.first()
-        println("Cleaner for Android -> Original paths from DataStore: $originalPaths")
-        val trashToOriginalMap =
-                dataStore.trashFilePaths.first().associate { it.second to it.first }
-        println("Cleaner for Android -> trashToOriginalMap: $trashToOriginalMap")
-
         filesToRestore.forEach { file ->
-            println("Cleaner for Android -> Attempting to restore: ${file.absolutePath}")
-
             if (file.exists()) {
                 val originalPath = originalPaths.firstOrNull { File(it).name == file.name }
-                println("Cleaner for Android -> Original path found: $originalPath")
-
                 if (originalPath != null) {
                     val destinationFile = File(originalPath)
                     val destinationParent = destinationFile.parentFile
@@ -142,10 +117,7 @@ abstract class HomeRepositoryImplementation(
                         destinationParent.mkdirs()
                     }
 
-                    println("Cleaner for Android -> Restoring to: ${destinationFile.absolutePath}")
-
                     if (file.renameTo(destinationFile)) {
-                        println("Cleaner for Android -> File restored successfully")
                         dataStore.removeTrashFileOriginalPath(originalPath)
                         dataStore.removeTrashFilePath(originalPath)
                         MediaScannerConnection.scanFile(
@@ -155,18 +127,15 @@ abstract class HomeRepositoryImplementation(
                         )
                     }
                     else {
-                        println("Cleaner for Android -> File restore failed. Check if the file already exists or there is a permission issue.") // More informative message
+                        // TODO: Add a dialog for failed files at the end
                     }
                 }
                 else {
-                    println("Cleaner for Android -> No original path found for ${file.name}. Restoring to Downloads.")
                     val downloadsDir =
                             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
                     val destinationFile = File(downloadsDir , file.name)
 
                     if (file.renameTo(destinationFile)) {
-                        println("Cleaner for Android -> File restored to Downloads successfully")
-
                         MediaScannerConnection.scanFile(
                             application ,
                             arrayOf(destinationFile.absolutePath , file.absolutePath) ,
@@ -175,12 +144,12 @@ abstract class HomeRepositoryImplementation(
                         )
                     }
                     else {
-                        println("Cleaner for Android -> File restore to Downloads failed")
+                       // TODO: Add a dialog if the move to download has been failed
                     }
                 }
             }
             else {
-                println("Cleaner for Android -> File does not exist in trash: ${file.absolutePath}")
+                // TODO: Add a dialog if the file does not exist
             }
         }
     }

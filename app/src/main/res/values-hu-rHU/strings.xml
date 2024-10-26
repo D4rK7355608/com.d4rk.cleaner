@@ -13,9 +13,6 @@
     <string name="navigation_drawer_open">Navigációs fiók megnyitása</string>
 
     <string name="home">Kezdőlap</string>
-    <string name="storage_used">%1$s/%2$s GB\nHasznált</string>
-    <string name="analyze">Elemzés</string>
-    <string name="clean">Tisztítás</string>
     <string name="quick_scan">Gyorskeresés</string>
     <string name="apks">APK-k</string>
     <string name="archives">Archívumok</string>
@@ -28,8 +25,6 @@
     </plurals>
     <string name="status_no_files_selected">Állapot: Nincsenek kiválasztva fájlok</string>
     <string name="select_all">Összes kijelölése</string>
-    <string name="rescan_title">Újraellenőrzés?</string>
-    <string name="rescan_message">Biztosan újra szeretnéd ellenőrizni?</string>
     <string name="file_not_found">A fájl nem található.</string>
     <string name="no_files_found">Nem található fájl</string>
     <string name="activity_not_found">Tevékenység nem található.</string>
@@ -45,7 +40,6 @@
     <string name="uninstall">Eltávolítás</string>
     <string name="share">Megosztás</string>
     <string name="app_info">Alkalmazásinformációk</string>
-    <string name="installed">Telepítve"</string>
     <string name="install">Telepítés</string>
     <string name="share_apk">APK megosztása</string>
     <string name="no_app_installed">Nincsenek telepített alkalmazások</string>
@@ -280,7 +274,6 @@
     <string name="learn_more">Tudj meg többet</string>
 
     <string name="close">Bezárás?</string>
-    <string name="require_restart">Újraindítás szükséges!</string>
     <string name="snack_network_error">Hálózati hiba történt a frissítések ellenőrzése során</string>
     <string name="snack_general_error">Hiba történt a frissítések ellenőrzése során</string>
     <string name="summary_close">Biztosan ki szeretne lépni?</string>

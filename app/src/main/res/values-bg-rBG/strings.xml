@@ -13,9 +13,6 @@
     <string name="navigation_drawer_open">Отваряне на навигационното чекмедже</string>
 
     <string name="home">Начало</string>
-    <string name="storage_used">%1$s/%2$s GB\nИзползвано</string>
-    <string name="analyze">Анализиране</string>
-    <string name="clean">Почистване</string>
     <string name="quick_scan">Бързо сканиране</string>
     <string name="apks">APK файлове</string>
     <string name="archives">Архиви</string>
@@ -28,8 +25,6 @@
     </plurals>
     <string name="status_no_files_selected">Статус: Не са избрани файлове</string>
     <string name="select_all">Избиране на всички</string>
-    <string name="rescan_title">Сканиране отново?</string>
-    <string name="rescan_message">Сигурни ли сте, че искате да сканирате отново?</string>
     <string name="file_not_found">Файлът не е намерен.</string>
     <string name="no_files_found">Не са намерени файлове</string>
     <string name="activity_not_found">Дейността не е намерена.</string>
@@ -45,7 +40,6 @@
     <string name="uninstall">Деинсталиране</string>
     <string name="share">Споделяне</string>
     <string name="app_info">Информация за приложението</string>
-    <string name="installed">Инсталирано"</string>
     <string name="install">Инсталирай</string>
     <string name="share_apk">Сподели APK</string>
     <string name="no_app_installed">Няма инсталирани приложения</string>
@@ -280,7 +274,6 @@
     <string name="learn_more">Научете повече</string>
 
     <string name="close">Затваряне?</string>
-    <string name="require_restart">Необходимо е рестартиране!</string>
     <string name="snack_network_error">Възникна мрежова грешка при проверка за актуализации</string>
     <string name="snack_general_error">Възникна грешка при проверка за актуализации</string>
     <string name="summary_close">Сигурни ли сте, че искате да излезете?</string>

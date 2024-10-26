@@ -27,49 +27,51 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     val uiState : StateFlow<UiHomeModel> = _uiState
 
     init {
-        prepareScreenData()
-    }
-
-    /**
-     * Loads initial screen data, including storage info and file types data.
-     */
-    private fun prepareScreenData() {
         updateStorageInfo()
         populateFileTypesData()
-        loadCleanedSpaceAndLastScan()
+        loadCleanedSpace()
     }
 
     /**
-     * Updates the storage information in the UI state.
+     * Updates the storage information (used and total storage) in the UI state.
      */
     private fun updateStorageInfo() {
         viewModelScope.launch(coroutineExceptionHandler) {
             repository.getStorageInfo { uiHomeModel ->
                 _uiState.update {
                     it.copy(
-                        storageUsageProgress = uiHomeModel.storageUsageProgress ,
-                        usedStorageFormatted = uiHomeModel.usedStorageFormatted ,
-                        totalStorageFormatted = uiHomeModel.totalStorageFormatted
+                        storageInfo = it.storageInfo.copy(
+                            storageUsageProgress = uiHomeModel.storageInfo.storageUsageProgress ,
+                            freeSpacePercentage = uiHomeModel.storageInfo.freeSpacePercentage
+                        )
                     )
                 }
             }
         }
     }
 
-    private fun loadCleanedSpaceAndLastScan() {
+    /**
+     * Loads the cleaned space and last scan information from DataStore and updates the UI state.
+     */
+    private fun loadCleanedSpace() {
         viewModelScope.launch(coroutineExceptionHandler) {
-            repository.dataStore.cleanedSpace.collect { cleanedSpace ->
-                _uiState.update { it.copy(cleanedSpace = StorageUtils.formatSize(cleanedSpace)) }
-            }
-
-            repository.getLastScanInfo { daysFromLastScan ->
-                _uiState.update { it.copy(daysFromLastScan = daysFromLastScan) }
+            with(repository) {
+                dataStore.cleanedSpace.collect { cleanedSpace ->
+                    _uiState.update {
+                        it.copy(
+                            storageInfo = it.storageInfo.copy(
+                                cleanedSpace = StorageUtils.formatSize(cleanedSpace)
+                            )
+                        )
+                    }
+                }
             }
         }
     }
 
     /**
-     * Initiates file analysis and updates the UI state with the results.
+     * Analyzes files to find duplicates, empty folders, and other relevant information.
+     * Updates the UI state with the analysis results.
      */
     fun analyze() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
@@ -151,7 +153,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                         areAllFilesSelected = when {
                             newSelectedCount == currentUiState.analyzeState.scannedFileList.size && newSelectedCount > 0 -> true
                             newSelectedCount == 0 -> false
-                            isChecked -> currentUiState.analyzeState.areAllFilesSelected // Maintain 'select all' state if an item was checked and all were already checked
+                            isChecked -> currentUiState.analyzeState.areAllFilesSelected
                             else -> false
                         }
                     )
@@ -189,28 +191,28 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
      */
     fun clean() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
+            showLoading()
             val filesToDelete =
                     _uiState.value.analyzeState.fileSelectionMap.filter { it.value }.keys
-            showLoading()
-
-            val totalCleanedSpace = filesToDelete.sumOf { it.length() } // Calculate cleaned space
-
-            repository.deleteFiles(filesToDelete) {
-                _uiState.update { currentUiState ->
-                    currentUiState.copy(analyzeState = currentUiState.analyzeState.copy(
-                        scannedFileList = currentUiState.analyzeState.scannedFileList.filterNot {
-                            filesToDelete.contains(it)
-                        } ,
-                        selectedFilesCount = 0 ,
-                        areAllFilesSelected = false ,
-                        fileSelectionMap = emptyMap() ,
-                        isAnalyzeScreenVisible = false ,
-                    ))
+            val clearedSpaceTotalSize = filesToDelete.sumOf { it.length() }
+            with(repository) {
+                deleteFiles(filesToDelete) {
+                    _uiState.update { currentUiState ->
+                        currentUiState.copy(analyzeState = currentUiState.analyzeState.copy(
+                            scannedFileList = currentUiState.analyzeState.scannedFileList.filterNot {
+                                filesToDelete.contains(it)
+                            } ,
+                            selectedFilesCount = 0 ,
+                            areAllFilesSelected = false ,
+                            fileSelectionMap = emptyMap() ,
+                            isAnalyzeScreenVisible = false ,
+                        ))
+                    }
+                    updateStorageInfo()
                 }
-                updateStorageInfo()
-                viewModelScope.launch(Dispatchers.IO) {
-                    repository.dataStore.addCleanedSpace(totalCleanedSpace)
-                    repository.dataStore.saveLastScanTimestamp(System.currentTimeMillis())
+                with(dataStore) {
+                    addCleanedSpace(clearedSpaceTotalSize)
+                    saveLastScanTimestamp(System.currentTimeMillis())
                 }
             }
             hideLoading()
@@ -225,20 +227,23 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
             showLoading()
             val filesToMove =
                     _uiState.value.analyzeState.fileSelectionMap.filter { it.value }.keys.toList()
-            val totalTrashSize = filesToMove.sumOf { it.length() }
-            repository.moveToTrash(filesToMove) {
-                _uiState.update { currentUiState ->
-                    currentUiState.copy(analyzeState = currentUiState.analyzeState.copy(
-                        scannedFileList = currentUiState.analyzeState.scannedFileList.filterNot { existingFile ->
-                            filesToMove.any { movedFile -> existingFile.absolutePath == movedFile.absolutePath }
-                        } ,
-                        selectedFilesCount = 0 ,
-                        areAllFilesSelected = false ,
-                        fileSelectionMap = emptyMap()))
+            val totalFileSizeToMove = filesToMove.sumOf { it.length() }
+            with(repository) {
+                moveToTrash(filesToMove) {
+                    _uiState.update { currentUiState ->
+                        currentUiState.copy(analyzeState = currentUiState.analyzeState.copy(
+                            scannedFileList = currentUiState.analyzeState.scannedFileList.filterNot { existingFile ->
+                                filesToMove.any { movedFile -> existingFile.absolutePath == movedFile.absolutePath }
+                            } ,
+                            selectedFilesCount = 0 ,
+                            areAllFilesSelected = false ,
+                            isAnalyzeScreenVisible = false ,
+                            fileSelectionMap = emptyMap()))
+                    }
+                    updateStorageInfo()
                 }
-                updateStorageInfo()
+                addTrashSize(totalFileSizeToMove)
             }
-            repository.addTrashSize(totalTrashSize)
             hideLoading()
         }
     }
@@ -265,8 +270,10 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
      * @param isVisible True to show the dialog, false to hide it.
      */
     fun setDeleteForeverConfirmationDialogVisibility(isVisible : Boolean) {
-        _uiState.update {
-            it.copy(analyzeState = it.analyzeState.copy(isDeleteForeverConfirmationDialogVisible = isVisible))
+        viewModelScope.launch(coroutineExceptionHandler) {
+            _uiState.update {
+                it.copy(analyzeState = it.analyzeState.copy(isDeleteForeverConfirmationDialogVisible = isVisible))
+            }
         }
     }
 
@@ -275,8 +282,10 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
      * @param isVisible True to show the dialog, false to hide it.
      */
     fun setMoveToTrashConfirmationDialogVisibility(isVisible : Boolean) {
-        _uiState.update {
-            it.copy(analyzeState = it.analyzeState.copy(isMoveToTrashConfirmationDialogVisible = isVisible))
+        viewModelScope.launch(coroutineExceptionHandler) {
+            _uiState.update {
+                it.copy(analyzeState = it.analyzeState.copy(isMoveToTrashConfirmationDialogVisible = isVisible))
+            }
         }
     }
 }

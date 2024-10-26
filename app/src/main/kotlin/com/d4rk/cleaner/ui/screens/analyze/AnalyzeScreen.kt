@@ -529,19 +529,23 @@ fun FileCard(
                 onCheckedChange(checked)
             } , modifier = Modifier.align(Alignment.TopEnd))
 
-            Text(
-                text = file.name ,
-                maxLines = 1 ,
-                overflow = TextOverflow.Ellipsis ,
+            Box(
                 modifier = Modifier
                         .fillMaxWidth()
-                        .basicMarquee()
                         .background(
                             color = Color.Black.copy(alpha = 0.4f)
                         )
-                        .padding(8.dp)
                         .align(Alignment.BottomCenter)
-            )
+            ) {
+                Text(
+                    text = file.name ,
+                    maxLines = 1 ,
+                    overflow = TextOverflow.Ellipsis ,
+                    modifier = Modifier
+                            .basicMarquee()
+                            .padding(8.dp)
+                )
+            }
         }
     }
 }
@@ -587,6 +591,7 @@ fun SelectAllComposable(
                         Icon(
                             imageVector = Icons.Filled.Check ,
                             contentDescription = null ,
+                            modifier = Modifier.size(18.dp)
                         )
                     }
                 }

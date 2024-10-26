@@ -8,13 +8,13 @@ plugins {
 }
 
 android {
-    compileSdk = 34
+    compileSdk = 35
     namespace = "com.d4rk.cleaner"
     defaultConfig {
         applicationId = "com.d4rk.cleaner"
         minSdk = 23
         targetSdk = 35
-        versionCode = 138
+        versionCode = 139
         versionName = "3.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations += listOf(
@@ -64,6 +64,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = "17"
     }

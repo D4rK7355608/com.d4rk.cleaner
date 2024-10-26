@@ -13,9 +13,6 @@
     <string name="navigation_drawer_open">Deschide sertarul de navigare</string>
 
     <string name="home">Acasă</string>
-    <string name="storage_used">%1$s/%2$s GB\nUtilizat</string>
-    <string name="analyze">Analizează</string>
-    <string name="clean">Curăță</string>
     <string name="quick_scan">Scanare rapidă</string>
     <string name="apks">APK-uri</string>
     <string name="archives">Arhive</string>
@@ -29,8 +26,6 @@
     </plurals>
     <string name="status_no_files_selected">Stare: Niciun fișier selectat</string>
     <string name="select_all">Selectează tot</string>
-    <string name="rescan_title">Rescanare?</string>
-    <string name="rescan_message">Sunteți sigur că doriți să scanați din nou?</string>
     <string name="file_not_found">Fișierul nu a fost găsit.</string>
     <string name="no_files_found">Nu s-au găsit fișiere</string>
     <string name="activity_not_found">Activitatea nu a fost găsită.</string>
@@ -46,7 +41,6 @@
     <string name="uninstall">Dezinstalează</string>
     <string name="share">Partajează</string>
     <string name="app_info">Informații despre aplicație</string>
-    <string name="installed">Instalat"</string>
     <string name="install">Instalează</string>
     <string name="share_apk">Partajează APK</string>
     <string name="no_app_installed">Nicio aplicație instalată</string>
@@ -281,7 +275,6 @@
     <string name="learn_more">Află mai multe</string>
 
     <string name="close">Închide?</string>
-    <string name="require_restart">Este necesară o repornire!</string>
     <string name="snack_network_error">A apărut o eroare de rețea în timp ce se verificau actualizările</string>
     <string name="snack_general_error">A apărut o eroare în timp ce se verificau actualizările</string>
     <string name="summary_close">Sunteți sigur că doriți să ieșiți?</string>

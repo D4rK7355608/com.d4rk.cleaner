@@ -13,9 +13,6 @@
     <string name="navigation_drawer_open">Öppna navigeringslådan</string>
 
     <string name="home">Hem</string>
-    <string name="storage_used">%1$s/%2$s GB\nAnvänt</string>
-    <string name="analyze">Analysera</string>
-    <string name="clean">Rensa</string>
     <string name="quick_scan">Snabbsökning</string>
     <string name="apks">APK:er</string>
     <string name="archives">Arkiv</string>
@@ -28,8 +25,6 @@
     </plurals>
     <string name="status_no_files_selected">Status: Inga filer valda</string>
     <string name="select_all">Välj alla</string>
-    <string name="rescan_title">Skanna om?</string>
-    <string name="rescan_message">Är du säker på att du vill skanna igen?</string>
     <string name="file_not_found">Filen hittades inte.</string>
     <string name="no_files_found">Inga filer hittades</string>
     <string name="activity_not_found">Aktiviteten hittades inte.</string>
@@ -45,7 +40,6 @@
     <string name="uninstall">Avinstallera</string>
     <string name="share">Dela</string>
     <string name="app_info">Appinformation</string>
-    <string name="installed">Installerad"</string>
     <string name="install">Installera</string>
     <string name="share_apk">Dela APK</string>
     <string name="no_app_installed">Inga appar installerade</string>
@@ -280,7 +274,6 @@
     <string name="learn_more">Läs mer</string>
 
     <string name="close">Stäng?</string>
-    <string name="require_restart">Kräver omstart!</string>
     <string name="snack_network_error">Nätverksfel uppstod vid kontroll av uppdateringar</string>
     <string name="snack_general_error">Ett fel uppstod vid kontroll av uppdateringar</string>
     <string name="summary_close">Är du säker på att du vill avsluta?</string>

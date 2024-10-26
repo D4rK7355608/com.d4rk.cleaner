@@ -32,8 +32,8 @@ object StorageUtils {
      */
 
     fun getStorageInfo(
-        context : Context ,
-        callback : (used : String , total : String , usageProgress : Float) -> Unit ,
+        context: Context,
+        callback: (used: String, total: String, totalSpace: Long, usageProgress: Float, freeSize: Int) -> Unit
     ) {
         val storageManager : StorageManager =
                 context.getSystemService(Context.STORAGE_SERVICE) as StorageManager
@@ -58,7 +58,9 @@ object StorageUtils {
         val totalFormatted : String =
                 (totalSize / (1024.0 * 1024.0 * 1024.0)).roundToInt().toString()
         val usageProgress : Float = usedSize.toFloat() / totalSize.toFloat()
-        callback(usedFormatted , totalFormatted , usageProgress)
+        val freeSize = totalSize - usedSize
+        val freeSpacePercentage: Int = ((freeSize.toDouble() / totalSize.toDouble()) * 100).toInt()
+        callback(usedFormatted, totalFormatted, totalSize, usageProgress, freeSpacePercentage)
     }
 
     /**

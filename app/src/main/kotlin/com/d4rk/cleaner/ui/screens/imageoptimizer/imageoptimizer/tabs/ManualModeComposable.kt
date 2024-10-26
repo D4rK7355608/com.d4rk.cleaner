@@ -92,7 +92,7 @@ fun ManualModeScreen(viewModel: ImageOptimizerViewModel) {
         ) {
             Text(
                 text = stringResource(
-                    R.string.image_compressor_percentage_format, qualityValue.toInt()
+                    R.string.percentage_format, qualityValue.toInt()
                 )
             )
             Slider(

@@ -13,9 +13,6 @@
     <string name="navigation_drawer_open">ナビゲーションドロワーを開く</string>
 
     <string name="home">ホーム</string>
-    <string name="storage_used">%1$s/%2$s GB\n使用済み</string>
-    <string name="analyze">分析する</string>
-    <string name="clean">クリーン</string>
     <string name="quick_scan">クイックスキャン</string>
     <string name="apks">APK</string>
     <string name="archives">アーカイブ</string>
@@ -27,8 +24,6 @@
     </plurals>
     <string name="status_no_files_selected">ステータス: ファイルが選択されていません</string>
     <string name="select_all">すべて選択</string>
-    <string name="rescan_title">再スキャンしますか？</string>
-    <string name="rescan_message">再スキャンしてもよろしいですか？</string>
     <string name="file_not_found">ファイルが見つかりません。</string>
     <string name="no_files_found">ファイルが見つかりません</string>
     <string name="activity_not_found">アクティビティが見つかりません。</string>
@@ -44,7 +39,6 @@
     <string name="uninstall">アンインストール</string>
     <string name="share">共有</string>
     <string name="app_info">アプリ情報</string>
-    <string name="installed">インストール済み"</string>
     <string name="install">インストール</string>
     <string name="share_apk">APKを共有</string>
     <string name="no_app_installed">インストールされているアプリはありません</string>
@@ -279,7 +273,6 @@
     <string name="learn_more">もっと詳しく知る</string>
 
     <string name="close">閉じる？</string>
-    <string name="require_restart">再起動が必要です！</string>
     <string name="snack_network_error">更新を確認中にネットワークエラーが発生しました</string>
     <string name="snack_general_error">更新を確認中にエラーが発生しました</string>
     <string name="summary_close">本当に終了しますか？</string>

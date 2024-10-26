@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,7 +25,6 @@ import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
@@ -80,19 +78,19 @@ fun HomeScreen() {
         ) {
 
             if (! uiState.analyzeState.isAnalyzeScreenVisible) {
-                CircularDeterminateIndicator(progress = uiState.storageUsageProgress ,
+                CircularDeterminateIndicator(progress = uiState.storageInfo.storageUsageProgress ,
                                              modifier = Modifier
                                                      .align(Alignment.TopCenter)
                                                      .offset(y = 98.dp) ,
                                              onClick = {
                                                  viewModel.analyze()
                                              })
-                LastScanInfo(
+                ExtraStorageInfo(
                     modifier = Modifier
                             .align(Alignment.BottomCenter)
                             .padding(bottom = 16.dp) ,
-                    cleanedSpace = uiState.cleanedSpace ,
-                    daysFromLastScan = uiState.daysFromLastScan ,
+                    cleanedSpace = uiState.storageInfo.cleanedSpace ,
+                    freeSpace = "${uiState.storageInfo.freeSpacePercentage} %",
                 )
             }
 
@@ -117,12 +115,11 @@ fun HomeScreen() {
 }
 
 @Composable
-fun LastScanInfo(
+fun ExtraStorageInfo(
     modifier : Modifier = Modifier ,
     cleanedSpace : String ,
-    daysFromLastScan : Int ,
+    freeSpace : String ,
 ) {
-    val context = LocalContext.current
 
     Row(
         modifier = modifier
@@ -135,30 +132,34 @@ fun LastScanInfo(
         InfoColumn(
             title = stringResource(id = R.string.cleaned_space) ,
             value = cleanedSpace ,
-            isRecent = false
+            modifier = Modifier.weight(1f)
         )
 
         VerticalDivider()
 
         InfoColumn(
-            title = stringResource(id = R.string.last_scan) ,
-            value = context.getString(R.string.last_scan_days_ago , daysFromLastScan) ,
-            isRecent = daysFromLastScan <= 2
+            title = stringResource(id = R.string.free_space) ,
+            value = freeSpace,
+            modifier = Modifier.weight(1f)
         )
     }
 }
 
 @Composable
-fun InfoColumn(title : String , value : String , isRecent : Boolean) {
+fun InfoColumn(
+    title: String,
+    value: String,
+    modifier: Modifier = Modifier
+) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally , modifier = Modifier.wrapContentSize()
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
     ) {
-        Text(text = title , style = MaterialTheme.typography.bodySmall)
+        Text(text = title, style = MaterialTheme.typography.bodySmall)
         Text(
-            text = value ,
-            style = MaterialTheme.typography.bodyMedium ,
-            color = if (isRecent) Color.Green else MaterialTheme.colorScheme.onSurface ,
-            maxLines = 2 ,
+            text = value,
+            style = MaterialTheme.typography.bodyMedium,
+            maxLines = 2,
             overflow = TextOverflow.Ellipsis
         )
     }

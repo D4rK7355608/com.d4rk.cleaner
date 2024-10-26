@@ -99,7 +99,7 @@ fun CircularDeterminateIndicator(
 @Composable
 fun StorageProgressBar(storageInfo: StorageInfo) {
     val progress: Float =
-        (storageInfo.usedStorage.toFloat() / storageInfo.totalStorage.toFloat()).coerceIn(
+        (storageInfo.usedStorage.toFloat() / storageInfo.storageUsageProgress).coerceIn(
             0f, 1f
         )
     LinearProgressIndicator(

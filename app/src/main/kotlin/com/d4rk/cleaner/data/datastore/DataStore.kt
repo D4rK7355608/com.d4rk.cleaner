@@ -152,13 +152,11 @@ class DataStore(context : Context) {
     }
 
     private val lastScanTimestampKey = longPreferencesKey(name = "last_scan_timestamp")
-    val lastScanTimestamp : Flow<Long> = dataStore.data.map { preferences ->
-        preferences[lastScanTimestampKey] ?: 0L
-    }
 
     suspend fun saveLastScanTimestamp(timestamp : Long) {
         dataStore.edit { preferences ->
             preferences[lastScanTimestampKey] = timestamp
+            println("Cleaner for Android -> Saved timestamp: $timestamp")
         }
     }
 
@@ -183,20 +181,6 @@ class DataStore(context : Context) {
     }
 
     private val trashFilePathsKey = stringSetPreferencesKey("trash_file_paths")
-
-    val trashFilePaths: Flow<Set<Pair<String, String>>> = dataStore.data.map { preferences ->
-        preferences[trashFilePathsKey]?.mapNotNull { entry ->
-            val parts = entry.split("||")
-            if (parts.size == 2) {
-                Pair(parts[0] , parts[1])
-            }
-            else {
-                println("Cleaner for Android -> Invalid entry in trashFilePaths: $entry. It should contain the '||' delimiter.")
-                null
-            }
-        }?.toSet() ?: emptySet()
-
-    }
 
     suspend fun addTrashFilePath(pathPair: Pair<String, String>) {
         dataStore.edit { settings ->

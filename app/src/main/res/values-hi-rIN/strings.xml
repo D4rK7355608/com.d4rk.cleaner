@@ -13,9 +13,6 @@
     <string name="navigation_drawer_open">नेविगेशन ड्रॉअर खोलें</string>
 
     <string name="home">होम</string>
-    <string name="storage_used">%1$s/%2$s GB\nइस्तेमाल हुआ</string>
-    <string name="analyze">विश्लेषण करें</string>
-    <string name="clean">साफ करें</string>
     <string name="quick_scan">त्वरित स्कैन</string>
     <string name="apks">APK</string>
     <string name="archives">पुरालेख</string>
@@ -28,8 +25,6 @@
     </plurals>
     <string name="status_no_files_selected">स्थिति: कोई फ़ाइलें चयनित नहीं हैं</string>
     <string name="select_all">सबका चयन करें</string>
-    <string name="rescan_title">पुनः स्कैन करें?</string>
-    <string name="rescan_message">क्या आप सुनिश्चित हैं कि आप फिर से स्कैन करना चाहते हैं?</string>
     <string name="file_not_found">फ़ाइल नहीं मिली।</string>
     <string name="no_files_found">कोई फ़ाइल नहीं मिली</string>
     <string name="activity_not_found">गतिविधि नहीं मिली।</string>
@@ -45,7 +40,6 @@
     <string name="uninstall">अनइंस्टॉल करें</string>
     <string name="share">साझा करें</string>
     <string name="app_info">ऐप जानकारी</string>
-    <string name="installed">स्थापित"</string>
     <string name="install">इंस्टॉल करें</string>
     <string name="share_apk">APK साझा करें</string>
     <string name="no_app_installed">कोई ऐप इंस्टॉल नहीं हैं</string>
@@ -280,7 +274,6 @@
     <string name="learn_more">और जानें</string>
 
     <string name="close">बंद करें?</string>
-    <string name="require_restart">पुनः प्रारंभ करने की आवश्यकता है!</string>
     <string name="snack_network_error">अपडेट की जाँच करते समय नेटवर्क त्रुटि हुई</string>
     <string name="snack_general_error">अपडेट की जाँच करते समय एक त्रुटि हुई</string>
     <string name="summary_close">क्या आप सुनिश्चित हैं कि आप बाहर निकलना चाहते हैं?</string>

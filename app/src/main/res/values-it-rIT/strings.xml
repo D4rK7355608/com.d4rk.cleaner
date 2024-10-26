@@ -13,9 +13,6 @@
     <string name="navigation_drawer_open">Apri il cassetto di navigazione</string>
 
     <string name="home">Home</string>
-    <string name="storage_used">%1$s/%2$s GB\nUtilizzato</string>
-    <string name="analyze">Analizza</string>
-    <string name="clean">Pulisci</string>
     <string name="quick_scan">Scansione rapida</string>
     <string name="apks">APK</string>
     <string name="archives">Archivi</string>
@@ -29,8 +26,6 @@
     </plurals>
     <string name="status_no_files_selected">Stato: Nessun file selezionato</string>
     <string name="select_all">Seleziona tutto</string>
-    <string name="rescan_title">Scansionare di nuovo?</string>
-    <string name="rescan_message">Sei sicuro di voler scansionare di nuovo?</string>
     <string name="file_not_found">File non trovato.</string>
     <string name="no_files_found">Nessun file trovato</string>
     <string name="activity_not_found">Attività non trovata.</string>
@@ -46,7 +41,6 @@
     <string name="uninstall">Disinstalla</string>
     <string name="share">Condividi</string>
     <string name="app_info">Info app</string>
-    <string name="installed">Installato"</string>
     <string name="install">Installa</string>
     <string name="share_apk">Condividi APK</string>
     <string name="no_app_installed">Nessuna app installata</string>
@@ -281,7 +275,6 @@
     <string name="learn_more">Scopri di più</string>
 
     <string name="close">Chiudere?</string>
-    <string name="require_restart">Richiedi riavvio!</string>
     <string name="snack_network_error">Errore di rete durante la ricerca di aggiornamenti</string>
     <string name="snack_general_error">Si è verificato un errore durante la ricerca di aggiornamenti</string>
     <string name="summary_close">Sei sicuro di voler uscire?</string>
