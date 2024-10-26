@@ -13,6 +13,14 @@
     <string name="navigation_drawer_open">Öppna navigeringslådan</string>
 
     <string name="home">Hem</string>
+    <string name="delete_forever">Radera för alltid</string>
+    <string name="move_to_trash">Flytta till papperskorgen</string>
+    <string name="cleaned_space">Rensat utrymme</string>
+    <string name="free_space">Ledigt utrymme</string>
+    <string name="delete_forever_title">Radera för alltid</string>
+    <string name="delete_forever_message">Är du säker på att du vill radera dessa filer för alltid? Denna åtgärd kan inte ångras.</string>
+    <string name="move_to_trash_title">Flytta till papperskorgen</string>
+    <string name="move_to_trash_message">Är du säker på att du vill flytta dessa filer till papperskorgen?</string>
     <string name="quick_scan">Snabbsökning</string>
     <string name="apks">APK:er</string>
     <string name="archives">Arkiv</string>

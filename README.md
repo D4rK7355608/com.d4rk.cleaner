@@ -43,8 +43,8 @@ free and open-source software!
 <table>
   <tr>
     <td><img src="/app/src/main/play/listings/en-US/graphics/phone-screenshots/1-screenshot_main.png" width="300"></td>
-    <td><img src="/app/src/main/play/listings/en-US/graphics/phone-screenshots/2-screenshot_settings.png" width="300"></td>
-    <td><img src="/app/src/main/play/listings/en-US/graphics/phone-screenshots/3-screenshot_themes.png" width="300"></td>
+    <td><img src="/app/src/main/play/listings/en-US/graphics/phone-screenshots/2-screenshot_main.png" width="300"></td>
+    <td><img src="/app/src/main/play/listings/en-US/graphics/phone-screenshots/4-screenshot_main_app_manager.png" width="300"></td>
   </tr>
 </table>
 

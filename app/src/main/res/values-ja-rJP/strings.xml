@@ -13,6 +13,14 @@
     <string name="navigation_drawer_open">ナビゲーションドロワーを開く</string>
 
     <string name="home">ホーム</string>
+    <string name="delete_forever">完全に削除する</string>
+    <string name="move_to_trash">ごみ箱に移動</string>
+    <string name="cleaned_space">クリーンアップ済みの領域</string>
+    <string name="free_space">空き容量</string>
+    <string name="delete_forever_title">完全に削除する</string>
+    <string name="delete_forever_message">これらのファイルを完全に削除してもよろしいですか？ この操作は元に戻せません。</string>
+    <string name="move_to_trash_title">ごみ箱に移動</string>
+    <string name="move_to_trash_message">これらのファイルをゴミ箱に移動してもよろしいですか？</string>
     <string name="quick_scan">クイックスキャン</string>
     <string name="apks">APK</string>
     <string name="archives">アーカイブ</string>

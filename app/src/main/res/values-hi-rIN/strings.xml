@@ -13,6 +13,14 @@
     <string name="navigation_drawer_open">नेविगेशन ड्रॉअर खोलें</string>
 
     <string name="home">होम</string>
+    <string name="delete_forever">हमेशा के लिए हटाएँ</string>
+    <string name="move_to_trash">ट्रैश में भेजें</string>
+    <string name="cleaned_space">साफ़ किया गया स्थान</string>
+    <string name="free_space">खाली स्थान</string>
+    <string name="delete_forever_title">हमेशा के लिए हटाएँ</string>
+    <string name="delete_forever_message">क्या आप वाकई इन फ़ाइलों को हमेशा के लिए हटाना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।</string>
+    <string name="move_to_trash_title">ट्रैश में भेजें</string>
+    <string name="move_to_trash_message">क्या आप वाकई इन फ़ाइलों को ट्रैश में भेजना चाहते हैं?</string>
     <string name="quick_scan">त्वरित स्कैन</string>
     <string name="apks">APK</string>
     <string name="archives">पुरालेख</string>

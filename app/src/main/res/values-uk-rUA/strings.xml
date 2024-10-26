@@ -13,6 +13,14 @@
     <string name="navigation_drawer_open">Відкрити панель навігації</string>
 
     <string name="home">Головна</string>
+    <string name="delete_forever">Видалити назавжди</string>
+    <string name="move_to_trash">Перемістити в кошик</string>
+    <string name="cleaned_space">Очищений простір</string>
+    <string name="free_space">Вільне місце</string>
+    <string name="delete_forever_title">Видалити назавжди</string>
+    <string name="delete_forever_message">Ви впевнені, що хочете назавжди видалити ці файли? Цю дію не можна скасувати.</string>
+    <string name="move_to_trash_title">Перемістити в кошик</string>
+    <string name="move_to_trash_message">Ви впевнені, що хочете перемістити ці файли в кошик?</string>
     <string name="quick_scan">Швидке сканування</string>
     <string name="apks">APK</string>
     <string name="archives">Архіви</string>

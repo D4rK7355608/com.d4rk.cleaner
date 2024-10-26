@@ -13,6 +13,14 @@
     <string name="navigation_drawer_open">Ouvrir le tiroir de navigation</string>
 
     <string name="home">Accueil</string>
+    <string name="delete_forever">Supprimer définitivement</string>
+    <string name="move_to_trash">Déplacer vers la corbeille</string>
+    <string name="cleaned_space">Espace nettoyé</string>
+    <string name="free_space">Espace libre</string>
+    <string name="delete_forever_title">Supprimer définitivement</string>
+    <string name="delete_forever_message">Êtes-vous sûr de vouloir supprimer ces fichiers définitivement? Cette action est irréversible.</string>
+    <string name="move_to_trash_title">Déplacer vers la corbeille</string>
+    <string name="move_to_trash_message">Êtes-vous sûr de vouloir déplacer ces fichiers vers la corbeille ?</string>
     <string name="quick_scan">Analyse rapide</string>
     <string name="apks">APK</string>
     <string name="archives">Archives</string>

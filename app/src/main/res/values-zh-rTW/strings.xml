@@ -13,6 +13,14 @@
     <string name="navigation_drawer_open">開啟導航抽屜</string>
 
     <string name="home">首頁</string>
+    <string name="delete_forever">永久刪除</string>
+    <string name="move_to_trash">移至垃圾桶</string>
+    <string name="cleaned_space">已清理空間</string>
+    <string name="free_space">可用空間</string>
+    <string name="delete_forever_title">永久刪除</string>
+    <string name="delete_forever_message">確定要永久刪除這些檔案嗎？此操作無法撤銷。</string>
+    <string name="move_to_trash_title">移至垃圾桶</string>
+    <string name="move_to_trash_message">確定要將這些檔案移至垃圾桶嗎？</string>
     <string name="quick_scan">快速掃描</string>
     <string name="apks">APK</string>
     <string name="archives">檔案</string>

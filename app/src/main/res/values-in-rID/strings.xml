@@ -13,6 +13,14 @@
     <string name="navigation_drawer_open">Buka laci navigasi</string>
 
     <string name="home">Beranda</string>
+    <string name="delete_forever">Hapus selamanya</string>
+    <string name="move_to_trash">Pindahkan ke sampah</string>
+    <string name="cleaned_space">Ruang yang dibersihkan</string>
+    <string name="free_space">Ruang kosong</string>
+    <string name="delete_forever_title">Hapus selamanya</string>
+    <string name="delete_forever_message">Apakah Anda yakin ingin menghapus file ini selamanya? Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="move_to_trash_title">Pindahkan ke sampah</string>
+    <string name="move_to_trash_message">Apakah Anda yakin ingin memindahkan file ini ke sampah?</string>
     <string name="quick_scan">Pemindaian Cepat</string>
     <string name="apks">APK</string>
     <string name="archives">Arsip</string>

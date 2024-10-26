@@ -13,6 +13,14 @@
     <string name="navigation_drawer_open">Navigációs fiók megnyitása</string>
 
     <string name="home">Kezdőlap</string>
+    <string name="delete_forever">Végleg törlés</string>
+    <string name="move_to_trash">Kukába helyezés</string>
+    <string name="cleaned_space">Tisztított terület</string>
+    <string name="free_space">Szabad hely</string>
+    <string name="delete_forever_title">Végleg törlés</string>
+    <string name="delete_forever_message">Biztosan végleg törli ezeket a fájlokat? Ez a művelet nem vonható vissza.</string>
+    <string name="move_to_trash_title">Kukába helyezés</string>
+    <string name="move_to_trash_message">Biztosan a kukába helyezi ezeket a fájlokat?</string>
     <string name="quick_scan">Gyorskeresés</string>
     <string name="apks">APK-k</string>
     <string name="archives">Archívumok</string>

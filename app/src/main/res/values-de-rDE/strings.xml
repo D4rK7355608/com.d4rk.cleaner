@@ -13,6 +13,14 @@
     <string name="navigation_drawer_open">Navigationslade öffnen</string>
 
     <string name="home">Startseite</string>
+    <string name="delete_forever">Für immer löschen</string>
+    <string name="move_to_trash">In den Papierkorb verschieben</string>
+    <string name="cleaned_space">Bereinigter Speicherplatz</string>
+    <string name="free_space">Freier Speicherplatz</string>
+    <string name="delete_forever_title">Für immer löschen</string>
+    <string name="delete_forever_message">Sind Sie sicher, dass Sie diese Dateien dauerhaft löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.</string>
+    <string name="move_to_trash_title">In den Papierkorb verschieben</string>
+    <string name="move_to_trash_message">Sind Sie sicher, dass Sie diese Dateien in den Papierkorb verschieben möchten?</string>
     <string name="quick_scan">Schnellscan</string>
     <string name="apks">APKs</string>
     <string name="archives">Archive</string>

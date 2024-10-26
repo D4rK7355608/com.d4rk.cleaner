@@ -13,6 +13,14 @@
     <string name="navigation_drawer_open">Apri il cassetto di navigazione</string>
 
     <string name="home">Home</string>
+    <string name="delete_forever">Elimina per sempre</string>
+    <string name="move_to_trash">Sposta nel cestino</string>
+    <string name="cleaned_space">Spazio pulito</string>
+    <string name="free_space">Spazio libero</string>
+    <string name="delete_forever_title">Elimina per sempre</string>
+    <string name="delete_forever_message">Sei sicuro di voler eliminare definitivamente questi file? Questa azione non può essere annullata.</string>
+    <string name="move_to_trash_title">Sposta nel cestino</string>
+    <string name="move_to_trash_message">Sei sicuro di voler spostare questi file nel cestino?</string>
     <string name="quick_scan">Scansione rapida</string>
     <string name="apks">APK</string>
     <string name="archives">Archivi</string>
