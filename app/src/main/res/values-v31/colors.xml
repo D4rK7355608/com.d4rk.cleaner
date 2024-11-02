@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorIconShortcutBackground">@android:color/system_accent1_100</color>
     <color name="colorIconShortcutForeground">@android:color/system_neutral1_700</color>

@@ -65,9 +65,13 @@ fun BottomNavigationBar(
                     selected = currentRoute == screen.route,
                     onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
-                        navController.navigate(screen.route) {
-                            popUpTo(navController.graph.startDestinationId)
-                            launchSingleTop = true
+                        if (currentRoute != screen.route) {
+                            navController.navigate(screen.route) {
+                                popUpTo(navController.graph.startDestinationId) {
+                                    saveState = true
+                                }
+                                launchSingleTop = true
+                            }
                         }
                     })
             }
