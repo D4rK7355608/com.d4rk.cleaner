@@ -361,9 +361,11 @@
         <item>@string/italian</item>
         <item>@string/japanese</item>
         <item>@string/polish</item>
+        <item>@string/brazilian_portuguese</item>
         <item>@string/romanian</item>
         <item>@string/russian</item>
         <item>@string/spanish</item>
+        <item>@string/thai</item>
         <item>@string/turkish</item>
         <item>@string/ukrainian</item>
         <item>@string/traditional_chinese</item>
@@ -379,12 +381,14 @@
         <item>it</item>
         <item>ja</item>
         <item>pl</item>
+        <item>pt</item>
         <item>ro</item>
         <item>ru</item>
         <item>es</item>
+        <item>th</item>
         <item>tr</item>
         <item>uk</item>
-        <item>zh-rTW</item>
+        <item>zh-Hant</item>
     </string-array>
     <string-array name="file_sizes">
         <item>200</item>

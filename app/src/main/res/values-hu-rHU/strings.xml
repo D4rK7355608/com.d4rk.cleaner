@@ -7,7 +7,6 @@
     <string name="summary_notification_last_time_used"> Szabadítsunk fel egy kis helyet! Örülünk, hogy visszatértél!</string>
 
     <string name="welcome">Üdvözöljük</string>
-    <string name="browse_terms_of_service_and_privacy_policy">Tekintse meg a <i><u>Szolgáltatási feltételeket</u></i> és az <i><u>Adatvédelmi irányelveket</u></i></string>
     <string name="summary_browse_terms_of_service_and_privacy_policy">Olvassa el és fogadja el a Szolgáltatási feltételeket és az Adatvédelmi irányelveket a folytatáshoz</string>
     <string name="agree">Elfogadom</string>
 
