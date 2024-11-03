@@ -192,7 +192,7 @@ fun AppsComposable(
     } else {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(items = apps, key = { app -> app.packageName }) { app ->
-                AppItemComposable(app, viewModel = viewModel)
+                AppItemComposable(app, viewModel = viewModel, modifier = Modifier.animateItem())
             }
         }
     }
@@ -205,7 +205,8 @@ fun AppsComposable(
  */
 @Composable
 fun AppItemComposable(
-    app: ApplicationInfo, viewModel: AppManagerViewModel
+    app: ApplicationInfo, viewModel: AppManagerViewModel,
+    modifier : Modifier
 ) {
     val context: Context = LocalContext.current
     val view: View = LocalView.current
@@ -219,7 +220,7 @@ fun AppItemComposable(
     val appSize: String = "%.2f MB".format(sizeInMB.toFloat())
     var showMenu: Boolean by remember { mutableStateOf(value = false) }
     val model: Drawable = app.loadIcon(packageManager)
-    OutlinedCard(modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)) {
+    OutlinedCard(modifier = modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()

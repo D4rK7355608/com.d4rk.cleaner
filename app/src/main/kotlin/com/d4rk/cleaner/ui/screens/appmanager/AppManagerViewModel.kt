@@ -26,7 +26,13 @@ class AppManagerViewModel(application: Application) : BaseViewModel(application)
     private val packageRemovedReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent?.action == Intent.ACTION_PACKAGE_REMOVED) {
-                loadAppData()
+                val packageName = intent.data?.schemeSpecificPart
+                packageName?.let {
+                    _uiState.update { currentState ->
+                        val updatedInstalledApps = currentState.installedApps.filterNot { it.packageName == packageName }
+                        return@update currentState.copy(installedApps = updatedInstalledApps)
+                    }
+                }
             }
         }
     }
