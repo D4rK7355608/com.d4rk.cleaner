@@ -18,23 +18,25 @@ android {
         versionName = "3.0.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations += listOf(
-            "en",
-            "bg-rBG",
-            "de-rDE",
-            "es-rGQ",
-            "fr-rFR",
-            "hi-rIN",
-            "hu-rHU",
-            "in-rID",
-            "it-rIT",
-            "ja-rJP",
-            "pl-rPL",
-            "ro-rRO",
-            "ru-rRU",
-            "sv-rSE",
-            "tr-rTR",
-            "uk-rUA",
-            "zh-rTW",
+            "en" ,
+            "bg-rBG" ,
+            "de-rDE" ,
+            "es-rGQ" ,
+            "fr-rFR" ,
+            "hi-rIN" ,
+            "hu-rHU" ,
+            "in-rID" ,
+            "it-rIT" ,
+            "ja-rJP" ,
+            "pl-rPL" ,
+            "pt-rBR" ,
+            "ro-rRO" ,
+            "ru-rRU" ,
+            "sv-rSE" ,
+            "th-rTH" ,
+            "tr-rTR" ,
+            "uk-rUA" ,
+            "zh-rTW" ,
         )
         vectorDrawables {
             useSupportLibrary = true
@@ -53,7 +55,7 @@ android {
     }
 
     buildTypes.forEach { buildType ->
-        with (buildType) {
+        with(buildType) {
             multiDexEnabled = true
             proguardFiles(
                 getDefaultProguardFile(name = "proguard-android-optimize.txt") ,

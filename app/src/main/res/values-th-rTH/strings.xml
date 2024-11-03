@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_description">แอป Android Cleaner สุดท้ายที่คุณจะต้องใช้ทุกวัน!</string>
+    <string name="notification_update_title">มีอัปเดตใหม่!</string>
+    <string name="summary_notification_update">มีแอปเวอร์ชันใหม่ คลิกเพื่ออัปเดต!</string>
+    <string name="notification_last_time_used_title">นานมาแล้วนะ!</string>
+    <string name="summary_notification_last_time_used">มาเพิ่มพื้นที่ว่างกันเถอะ! เรายินดีที่คุณกลับมา!</string>
+
+    <string name="welcome">ยินดีต้อนรับ</string>
+    <string name="summary_browse_terms_of_service_and_privacy_policy">อ่านและยอมรับข้อกำหนดในการให้บริการและนโยบายความเป็นส่วนตัวของเราเพื่อดำเนินการต่อ</string>
+    <string name="agree">ยอมรับ</string>
+
+    <string name="navigation_drawer_open">เปิดลิ้นชักการนำทาง</string>
+
+    <string name="home">หน้าหลัก</string>
+    <string name="delete_forever">ลบถาวร</string>
+    <string name="move_to_trash">ย้ายไปที่ถังขยะ</string>
+    <string name="cleaned_space">พื้นที่ที่ทำความสะอาดแล้ว</string>
+    <string name="free_space">พื้นที่ว่าง</string>
+    <string name="delete_forever_title">ลบถาวร</string>
+    <string name="delete_forever_message">คุณแน่ใจหรือไม่ว่าต้องการลบไฟล์เหล่านี้ตลอดไป การดำเนินการนี้ไม่สามารถยกเลิกได้</string>
+    <string name="move_to_trash_title">ย้ายไปที่ถังขยะ</string>
+    <string name="move_to_trash_message">คุณแน่ใจหรือไม่ว่าต้องการย้ายไฟล์เหล่านี้ไปที่ถังขยะ</string>
+    <string name="quick_scan">สแกนอย่างรวดเร็ว</string>
+    <string name="apks">APK</string>
+    <string name="archives">ไฟล์เก็บถาวร</string>
+    <string name="videos">วิดีโอ</string>
+    <string name="audios">ไฟล์เสียง</string>
+    <string name="other">อื่นๆ</string>
+    <string name="empty_folders">โฟลเดอร์ว่าง</string>
+    <plurals name="status_selected_files">
+        <item quantity="other">สถานะ: เลือกไฟล์ %1$d ไฟล์</item>
+    </plurals>
+    <string name="status_no_files_selected">สถานะ: ไม่ได้เลือกไฟล์</string>
+    <string name="select_all">เลือกทั้งหมด</string>
+    <string name="file_not_found">ไม่พบไฟล์</string>
+    <string name="no_files_found">ไม่พบไฟล์</string>
+    <string name="activity_not_found">ไม่พบกิจกรรม</string>
+    <string name="security_error">เกิดข้อผิดพลาดด้านความปลอดภัย โปรดลองอีกครั้งในภายหลัง</string>
+    <string name="io_error">เกิดข้อผิดพลาดในการป้อนข้อมูล/เอาต์พุต โปรดตรวจสอบการเชื่อมต่อเครือข่ายหรือที่เก็บข้อมูลของคุณ แล้วลองอีกครั้ง</string>
+    <string name="illegal_argument_error">มีการระบุอินพุตหรืออาร์กิวเมนต์ที่ไม่ถูกต้อง โปรดตรวจสอบข้อมูลแล้วลองอีกครั้ง</string>
+    <string name="unknown_error">เกิดข้อผิดพลาดที่ไม่รู้จัก</string>
+
+    <string name="app_manager">ตัวจัดการแอป</string>
+    <string name="installed_apps">แอปที่ติดตั้งแล้ว</string>
+    <string name="system_apps">แอประบบ</string>
+    <string name="app_install_files">ไฟล์ติดตั้งแอป (APK)</string>
+    <string name="uninstall">ถอนการติดตั้ง</string>
+    <string name="share">แชร์</string>
+    <string name="app_info">ข้อมูลแอป</string>
+    <string name="install">ติดตั้ง</string>
+    <string name="share_apk">แชร์ APK</string>
+    <string name="no_app_installed">ไม่มีแอปที่ติดตั้ง</string>
+    <string name="no_apk_found">ไม่พบ APK</string>
+    <string name="app_loading_error">เกิดข้อผิดพลาดในการโหลดแอป</string>
+
+    <string name="memory_manager">ตัวจัดการหน่วยความจำ</string>
+    <string name="storage_information">ข้อมูลที่เก็บข้อมูล</string>
+    <string name="used">ใช้งานแล้ว:</string>
+    <string name="free">ว่าง:</string>
+    <string name="total">ทั้งหมด:</string>
+    <string name="ram_information">ข้อมูล RAM</string>
+    <string name="used_ram">RAM ที่ใช้แล้ว:</string>
+    <string name="free_ram">RAM ว่าง:</string>
+    <string name="total_ram">RAM ทั้งหมด:</string>
+    <string name="categories">หมวดหมู่</string>
+    <string name="system">ระบบ</string>
+    <string name="music">เพลง</string>
+    <string name="images">รูปภาพ</string>
+    <string name="documents">เอกสาร</string>
+    <string name="downloads">ดาวน์โหลด</string>
+    <string name="other_files">ไฟล์อื่นๆ</string>
+
+    <string name="image_optimizer">ตัวปรับแต่งรูปภาพ</string>
+    <string name="summary_select_image">เลือกรูปภาพที่คุณต้องการปรับแต่ง</string>
+    <string name="choose_image">เลือกรูปภาพ</string>
+    <string name="optimize_image">ปรับแต่งรูปภาพ</string>
+    <string name="image_saved">บันทึกรูปภาพไปที่: </string>
+    <string name="quick_compress">บีบอัดอย่างรวดเร็ว</string>
+    <string name="select_image">เลือกรูปภาพ</string>
+    <string name="low">ต่ำ</string>
+    <string name="medium">ปานกลาง</string>
+    <string name="high">สูง</string>
+    <string name="file_size">ขนาดไฟล์ (KB)</string>
+    <string name="enter_a_value">ป้อนค่า</string>
+    <string name="manual">กำหนดเอง</string>
+    <string name="width">ความกว้าง (px)</string>
+    <string name="height">ความสูง (px)</string>
+    <string name="quality">คุณภาพ</string>
+
+    <string name="trash">ถังขยะ</string>
+    <string name="trash_is_empty">ถังขยะว่างเปล่า</string>
+    <string name="restore">กู้คืน</string>
+
+    <string name="settings">การตั้งค่า</string>
+
+    <string name="display">จอแสดงผล</string>
+    <string name="summary_preference_settings_display">ปรับแต่งรูปลักษณ์และความรู้สึกของแอปของคุณ</string>
+
+    <string name="appearance">ลักษณะที่ปรากฏ</string>
+    <string name="dark_theme">ธีมสีเข้ม</string>
+    <string name="will_turn_on_automatically_by_system">จะเปิดโดยอัตโนมัติตามระบบ</string>
+    <string name="will_never_turn_on_automatically">จะไม่เปิดโดยอัตโนมัติ</string>
+    <string name="amoled_mode">โหมด AMOLED</string>
+    <string name="follow_system">ทำตามโหมดระบบ</string>
+    <string name="light_mode">โหมดสว่าง</string>
+    <string name="dark_mode">โหมดมืด</string>
+    <string name="summary_dark_theme">ธีมสีเข้มใช้พื้นหลังสีเข้มเพื่อช่วยยืดอายุแบตเตอรี่ของคุณให้นานขึ้น</string>
+
+    <string name="dynamic_colors">สีแบบไดนามิก</string>
+    <string name="summary_preference_settings_dynamic_colors">ใช้สีจากวอลเปเปอร์กับธีมของแอป</string>
+
+    <string name="app_behavior">ลักษณะการทำงานของแอป</string>
+    <string name="bounce_buttons">คลิกแบบเด้ง</string>
+    <string name="summary_preference_settings_bounce_buttons">ใช้ภาพเคลื่อนไหวการเด้งแบบละเอียดกับองค์ประกอบที่คลิกได้ทั้งหมดเมื่อคลิก</string>
+
+    <string name="navigation">การนำทาง</string>
+    <string name="startup_page">หน้าเริ่มต้น</string>
+    <string name="summary_preference_settings_startup_page">เลือกหน้าจอที่จะแสดงเมื่อแอปเริ่มทำงาน</string>
+    <string name="dialog_startup_subtitle">เลือกหน้าเริ่มต้นที่คุณต้องการ:</string>
+    <string name="dialog_info_startup">กำหนดค่าหน้าจอเริ่มต้นที่แสดงแก่ผู้ใช้เมื่อเปิดแอปพลิเคชัน การตั้งค่านี้มีอิทธิพลต่อการโต้ตอบครั้งแรกของผู้ใช้กับแอป และสามารถปรับแต่งให้เหมาะกับกลุ่มผู้ใช้หรือเป้าหมายผลิตภัณฑ์เฉพาะได้</string>
+
+    <string name="language">ภาษา</string>
+    <string name="summary_preference_settings_language">เปลี่ยนภาษาที่ใช้ในแอป</string>
+    <string name="dialog_language_subtitle">เลือกภาษาที่คุณต้องการ</string>
+    <string name="dialog_info_language">ปรับแต่งประสบการณ์ของคุณด้วยภาษาที่คุณต้องการ การเปลี่ยนแปลงภาษาใดๆ ที่คุณทำจะมีผลทันที เพื่อให้มั่นใจถึงประสบการณ์ที่ราบรื่นในภาษาที่คุณเลือก</string>
+
+    <string name="cleaning">การทำความสะอาด</string>
+    <string name="summary_preference_settings_cleaning">กำหนดประสบการณ์การทำความสะอาดของคุณเอง</string>
+    <string name="filters">ตัวกรอง</string>
+    <string name="generic_filter">ตัวกรองทั่วไป</string>
+    <string name="summary_preference_settings_generic_filter">ลบไฟล์และโฟลเดอร์ temp, log, logs และไฟล์ที่ไม่ได้ใช้แล้วอื่นๆ</string>
+    <string name="delete_empty_folders">ลบโฟลเดอร์ว่าง</string>
+    <string name="delete_archives">ลบไฟล์เก็บถาวร</string>
+    <string name="summary_preference_settings_archive_filter">ลบไฟล์เก็บถาวรออกจากอุปกรณ์ของคุณ</string>
+    <string name="delete_corpse_files">ลบไฟล์ที่เสียหาย</string>
+    <string name="summary_preference_settings_delete_corpse_files">ลบไฟล์ที่เหลือจากแอปที่ถอนการติดตั้ง/ลบออกแล้ว</string>
+    <string name="delete_apk_files">ลบไฟล์ APK</string>
+    <string name="summary_preference_settings_delete_apk_files">ลบไฟล์ติดตั้ง (.apk) สำหรับ Android</string>
+    <string name="media">สื่อ</string>
+    <string name="delete_audio">ลบไฟล์เสียง</string>
+    <string name="summary_preference_settings_delete_audio">ลบไฟล์เสียงออกจากอุปกรณ์</string>
+    <string name="delete_video">ลบวิดีโอ</string>
+    <string name="summary_preference_settings_delete_video">ลบไฟล์วิดีโอออกจากอุปกรณ์</string>
+    <string name="delete_images">ลบรูปภาพ</string>
+    <string name="summary_preference_settings_delete_images">ลบไฟล์รูปภาพออกจากอุปกรณ์</string>
+    <string name="delete_invalid_media">ลบสื่อที่ไม่ถูกต้อง</string>
+    <string name="summary_preference_settings_delete_invalid_media">ลบรูปภาพที่เสียหาย</string>
+    <string name="scanner">เครื่องสแกน</string>
+    <string name="clipboard_clean">ทำความสะอาดคลิปบอร์ด</string>
+
+    <string name="notifications">การแจ้งเตือน</string>
+    <string name="summary_preference_settings_notifications">จัดการการแจ้งเตือนของแอป</string>
+
+    <string name="app_usage_notifications">การแจ้งเตือนการใช้งานแอป</string>
+    <string name="update_notifications">การแจ้งเตือนการอัปเดต</string>
+
+    <string name="advanced">ขั้นสูง</string>
+    <string name="summary_preference_settings_advanced">สำรวจการตั้งค่าขั้นสูงเพิ่มเติม</string>
+    <string name="error_reporting">การรายงานข้อผิดพลาด</string>
+    <string name="bug_report">รายงานข้อบกพร่อง</string>
+    <string name="summary_preference_settings_bug_report">ส่งรายงานข้อบกพร่องและคำขอคุณสมบัติไปที่หน้าปัญหาของที่เก็บ GitHub ของแอป</string>
+
+    <string name="security_and_privacy">ความปลอดภัยและความเป็นส่วนตัว</string>
+    <string name="summary_preference_settings_privacy_and_security">จัดการการตั้งค่าความเป็นส่วนตัวของคุณ</string>
+    <string name="privacy">ความเป็นส่วนตัว</string>
+    <string name="privacy_policy">นโยบายความเป็นส่วนตัว</string>
+    <string name="summary_preference_settings_privacy_policy">ดูนโยบายที่ควบคุมวิธีที่เราจัดการข้อมูลของคุณ</string>
+    <string name="terms_of_service">ข้อกำหนดในการให้บริการ</string>
+    <string name="summary_preference_settings_terms_of_service">ตรวจสอบข้อกำหนดที่คุณตกลงเมื่อใช้บริการของเรา</string>
+    <string name="code_of_conduct">หลักปฏิบัติ</string>
+    <string name="summary_preference_settings_code_of_conduct">ทำความเข้าใจกฎและหลักเกณฑ์สำหรับพฤติกรรมภายในบริการของเรา</string>
+
+    <string name="permissions">สิทธิ์</string>
+    <string name="summary_preference_settings_permissions">จัดการสิทธิ์ที่มอบให้กับบริการของเรา</string>
+    <string name="normal">ปกติ</string>
+    <string name="ad_id">รหัสโฆษณา [AD_ID]</string>
+    <string name="summary_preference_permissions_ad_id">อนุญาตให้แอปดึงข้อมูลและใช้รหัสโฆษณาที่เชื่อมโยงกับอุปกรณ์ของผู้ใช้ เพื่อแสดงโฆษณาส่วนบุคคล วัดประสิทธิภาพของโฆษณา และแสดงโฆษณาบนอุปกรณ์ Android 13 หรือใหม่กว่า</string>
+    <string name="internet">อินเทอร์เน็ต [INTERNET]</string>
+    <string name="summary_preference_permissions_internet">อนุญาตให้แอปสร้างการเชื่อมต่ออินเทอร์เน็ตเพื่อส่งรายงานข้อผิดพลาดหรือตรวจสอบการอัปเดต</string>
+    <string name="post_notifications">โพสต์การแจ้งเตือน [POST_NOTIFICATIONS]</string>
+    <string name="summary_preference_permissions_post_notifications">อนุญาตให้แอปแสดงการแจ้งเตือนบนอุปกรณ์ที่ใช้ Android 13 หรือใหม่กว่า</string>
+    <string name="runtime">รันไทม์</string>
+    <string name="access_network_state">เข้าถึงสถานะเครือข่าย [ACCESS_NETWORK_STATE]</string>
+    <string name="summary_preference_permissions_access_network_state">อนุญาตให้แอปตรวจสอบการเชื่อมต่อเครือข่ายและดึงข้อมูลเกี่ยวกับ Wi-Fi รวมถึงสถานะการเปิดใช้งานและชื่ออุปกรณ์ Wi-Fi ที่เชื่อมต่อ</string>
+    <string name="access_notification_policy">เข้านโยบายการแจ้งเตือน [ACCESS_NOTIFICATION_POLICY]</string>
+    <string name="summary_preference_permissions_access_notification_policy">อนุญาตให้แอปเข้าถึงและแก้ไขนโยบายการแจ้งเตือนของอุปกรณ์ ควบคุมวิธีและเวลาที่การแจ้งเตือนจะแสดงต่อผู้ใช้ และให้คุณสมบัติการจัดการการแจ้งเตือนที่กำหนดเอง</string>
+    <string name="billing">การเรียกเก็บเงิน [BILLING]</string>
+    <string name="summary_preference_permissions_billing">อนุญาตให้แอปใช้ Google Play Billing Library เพื่อจัดการการซื้อและการบริจาคในแอป</string>
+    <string name="check_license">ตรวจสอบใบอนุญาต [CHECK_LICENSE]</string>
+    <string name="summary_preference_permissions_check_license">อนุญาตให้แอปตรวจสอบความสอดคล้องกับข้อตกลงใบอนุญาตและบังคับใช้ข้อกำหนดสิทธิ์การใช้งานเพื่อปกป้องทรัพย์สินทางปัญญา</string>
+    <string name="foreground_service">บริการเบื้องหน้า [FOREGROUND_SERVICE]</string>
+    <string name="summary_preference_permissions_foreground_service">อนุญาตให้แอปสร้างและใช้บริการที่ทำงานในเบื้องหน้า ทำให้บริการเหล่านี้มีความสำคัญเหนือกว่ากระบวนการพื้นหลังอื่นๆ และปรับปรุงประสิทธิภาพและความน่าเชื่อถือ</string>
+    <string name="request_delete_packages">ขอการลบแพ็คเกจ [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">อนุญาตให้แอปขอลบแพ็คเกจ ซึ่งสามารถใช้เพื่อถอนการติดตั้งแอปอื่นๆ ออกจากอุปกรณ์</string>
+    <string name="storage">ที่เก็บข้อมูล</string>
+    <string name="access_media_location">เข้าถึงตำแหน่งสื่อ [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">อนุญาตให้แอปเข้าถึงตำแหน่งไฟล์สื่อของอุปกรณ์</string>
+    <string name="action_open_document_tree">การดำเนินการเปิดแผนผังเอกสาร [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">อนุญาตให้แอปเข้าถึงแผนผังเอกสาร รวมถึงความสามารถในการอ่านและเขียนไฟล์ในแผนผัง</string>
+    <string name="manage_external_storage">จัดการที่เก็บข้อมูลภายนอก [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">อนุญาตให้แอปดำเนินการต่างๆ เช่น การลบและการเปลี่ยนชื่อไฟล์บนที่เก็บข้อมูลของอุปกรณ์ รวมถึงที่เก็บข้อมูลภายในและภายนอก</string>
+    <string name="package_usage_stats">สถิติการใช้งานแพ็คเกจ [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">อนุญาตให้แอปเข้าถึงข้อมูลเกี่ยวกับการใช้งานแอปของผู้ใช้ รวมถึงแอปที่ใช้ ระยะเวลาที่ใช้ และความถี่ที่ใช้</string>
+    <string name="query_all_packages">คิวรีแพ็คเกจทั้งหมด [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">อนุญาตให้แอปคิวรีข้อมูลเกี่ยวกับแพ็คเกจทั้งหมดที่ติดตั้งบนอุปกรณ์ แอปใช้ข้อมูลนี้เพื่อกำหนดไฟล์ที่จะเก็บหรือลบ</string>
+    <string name="read_external_storage">อ่านที่เก็บข้อมูลภายนอก [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">อนุญาตให้แอปอ่านไฟล์จากที่เก็บข้อมูลของอุปกรณ์ รวมถึงที่เก็บข้อมูลภายในและภายนอก</string>
+    <string name="read_media_audio">อ่านไฟล์เสียงของสื่อ [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">อนุญาตให้แอปอ่านไฟล์เสียงจากที่เก็บข้อมูลของอุปกรณ์</string>
+    <string name="read_media_images">อ่านรูปภาพของสื่อ [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">อนุญาตให้แอปอ่านไฟล์รูปภาพจากที่เก็บข้อมูลของอุปกรณ์</string>
+    <string name="read_media_video">อ่านวิดีโอของสื่อ [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">อนุญาตให้แอปอ่านไฟล์วิดีโอจากที่เก็บข้อมูลของอุปกรณ์</string>
+    <string name="write_external_storage">เขียนที่เก็บข้อมูลภายนอก [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">อนุญาตให้แอปเขียนไฟล์ไปยังที่เก็บข้อมูลของอุปกรณ์ รวมถึงที่เก็บข้อมูลภายในและภายนอก</string>
+
+    <string name="ads">โฆษณา</string>
+    <string name="summary_preference_settings_ads">ควบคุมวิธีที่เราใช้ข้อมูลของคุณเพื่อแสดงโฆษณาที่เกี่ยวข้องกับคุณ</string>
+    <string name="display_ads">แสดงโฆษณา</string>
+    <string name="personalized_ads">โฆษณาส่วนบุคคล</string>
+    <string name="summary_ads_personalized_ads">เลือกวิธีที่เราปรับแต่งโฆษณาให้เป็นส่วนตัวสำหรับคุณตามความสนใจของคุณ</string>
+    <string name="summary_ads">ดูโฆษณาที่เกี่ยวข้องกับคุณ จัดการข้อมูลที่ใช้แสดงโฆษณาส่วนบุคคลตามกิจกรรมแอปของคุณ คุณสามารถปิดการปรับเปลี่ยนในแบบของคุณได้ที่นี่เสมอ\n</string>
+
+    <string name="usage_and_diagnostics">การใช้งานและการวินิจฉัย</string>
+    <string name="summary_preference_settings_usage_and_diagnostics">แชร์ข้อมูลเพื่อช่วยปรับปรุง Cleaner สำหรับ Android</string>
+    <string name="summary_usage_and_diagnostics">ช่วยปรับปรุงประสบการณ์ของคุณด้วยการส่งข้อมูลการวินิจฉัย อุปกรณ์ และการใช้งานแอปให้เราโดยอัตโนมัติ ซึ่งจะช่วยปรับปรุงประสิทธิภาพของแอป ความเสถียร และการปรับปรุงอื่นๆ ข้อมูลรวมบางส่วนจะช่วยแอปของเราด้วย\n\nนี่คือข้อมูลทั่วไปเกี่ยวกับอุปกรณ์ของคุณและวิธีที่คุณใช้แอปของเรา (เช่น ระดับแบตเตอรี่ กิจกรรมระบบและแอป และข้อผิดพลาด) ข้อมูลจะถูกนำไปใช้เพื่อปรับปรุงแอปของเรา\n\nการปิดคุณสมบัตินี้จะไม่ส่งผลต่อความสามารถของอุปกรณ์ในการส่งข้อมูลที่จำเป็นสำหรับบริการที่จำเป็น เช่น การอัปเดตแอปและความปลอดภัย\n</string>
+
+    <string name="legal">กฎหมาย</string>
+    <string name="legal_notices">ประกาศทางกฎหมาย</string>
+    <string name="summary_preference_settings_legal_notices">ดูข้อมูลทางกฎหมายเกี่ยวกับบริการของเรา</string>
+    <string name="license">ใบอนุญาต</string>
+
+    <string name="about">เกี่ยวกับ</string>
+    <string name="summary_preference_settings_about">เรียนรู้เพิ่มเติมเกี่ยวกับ Cleaner</string>
+
+    <string name="app_build_version">เวอร์ชันบิลด์ของแอปพลิเคชัน</string>
+    <string name="summary_preference_settings_oss">รายละเอียดใบอนุญาตสำหรับซอฟต์แวร์โอเพ่นซอร์ส</string>
+    <string name="device_info">ข้อมูลอุปกรณ์</string>
+    <string name="app_build">บิลด์แอป: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
+    <string name="debug">ดีบัก</string>
+    <string name="release">เผยแพร่</string>
+    <string name="manufacturer">ผู้ผลิต:</string>
+    <string name="device_model">รุ่นอุปกรณ์:</string>
+    <string name="android_version">เวอร์ชัน Android:</string>
+    <string name="api_level">ระดับ API:</string>
+    <string name="snack_device_info_copied">คัดลอกข้อมูลอุปกรณ์ไปยังคลิปบอร์ดแล้ว</string>
+
+    <string name="help_and_feedback">ความช่วยเหลือและความคิดเห็น</string>
+    <string name="help">ความช่วยเหลือ</string>
+    <string name="faq">คำถามที่พบบ่อย</string>
+    <string name="view_in_google_play_store">ดูใน Google Play Store</string>
+    <string name="version_info">ข้อมูลเวอร์ชัน</string>
+    <string name="version">เวอร์ชัน %1$s</string>
+    <string name="beta_program">โปรแกรมเบต้า</string>
+    <string name="question_1">Cleaner คืออะไร</string>
+    <string name="summary_preference_faq_1">Cleaner เป็นแอป Android ฟรีและโอเพ่นซอร์สที่ช่วยคุณเพิ่มประสิทธิภาพการทำงานของอุปกรณ์และเพิ่มพื้นที่จัดเก็บ มันสามารถสแกนอุปกรณ์ของคุณเพื่อหาไฟล์ที่ไม่จำเป็นและลบไฟล์เหล่านั้น รวมทั้งล้างแคชของคุณเพื่อปรับปรุงความเร็วของอุปกรณ์</string>
+    <string name="question_2">Cleaner ปลอดภัยต่อการใช้งานหรือไม่</string>
+    <string name="summary_preference_faq_2">ใช่ Cleaner ปลอดภัยต่อการใช้งาน มันจะลบเฉพาะไฟล์ที่ไม่จำเป็นต่อการทำงานของอุปกรณ์หรือแอปของคุณ และจะไม่ลบข้อมูลส่วนบุคคลหรือไฟล์ระบบที่สำคัญใดๆ ของคุณ</string>
+    <string name="question_3">ฉันจะใช้ Cleaner ได้อย่างไร</string>
+    <string name="summary_preference_faq_3">ในการใช้ Cleaner เพียงดาวน์โหลดและติดตั้งแอปจาก Google Play Store หรือร้านแอปของบุคคลที่สามที่มีชื่อเสียง จากนั้นเปิดแอปและทำตามคำแนะนำเพื่อสแกนอุปกรณ์ของคุณและลบไฟล์ที่ไม่จำเป็น คุณยังสามารถเข้าถึงการตั้งค่าของแอปเพื่อกำหนดประเภทของไฟล์ที่ Cleaner ค้นหาและลบได้</string>
+    <string name="question_4">Cleaner สามารถลบแคชของแอปได้หรือไม่</string>
+    <string name="summary_preference_faq_4">ใช่ Cleaner สามารถลบแคชของแอปได้ อย่างไรก็ตาม สิ่งสำคัญคือต้องทราบว่าการลบแคชอาจทำให้แอปใช้เวลาโหลดนานขึ้นหรือทำงานบางอย่างได้นานขึ้นในครั้งต่อไปที่คุณใช้งาน</string>
+    <string name="question_5">Cleaner ต้องการการเข้าถึงรูทหรือไม่</string>
+    <string name="summary_preference_faq_5">ไม่ Cleaner ไม่จำเป็นต้องเข้าถึงรูทเพื่อให้ทำงานได้ คุณสามารถใช้งานบนอุปกรณ์ Android ใดก็ได้โดยไม่ต้องรูทอุปกรณ์ของคุณ</string>
+    <string name="question_6">Cleaner มีให้บริการสำหรับ iOS หรือไม่</string>
+    <string name="summary_preference_faq_6">ไม่ ขณะนี้ Cleaner มีให้บริการสำหรับอุปกรณ์ Android เท่านั้น</string>
+    <string name="question_7">Cleaner ช่วยปรับปรุงอายุการใช้งานแบตเตอรี่หรือไม่</string>
+    <string name="summary_preference_faq_7">การใช้ Cleaner เพื่อล้างแคชของคุณอาจช่วยปรับปรุงอายุการใช้งานแบตเตอรี่ของอุปกรณ์ได้โดยการลดปริมาณพลังงานและทรัพยากรที่ใช้โดยกระบวนการที่ไม่จำเป็น อย่างไรก็ตาม ขอบเขตที่ Cleaner สามารถปรับปรุงอายุการใช้งานแบตเตอรี่ของคุณจะขึ้นอยู่กับปัจจัยต่างๆ เช่น ยี่ห้อและรุ่นของอุปกรณ์ แอปที่คุณใช้ และพฤติกรรมการใช้งานของคุณ</string>
+    <string name="question_8">ฉันควรใช้ Cleaner บ่อยแค่ไหน</string>
+    <string name="summary_preference_faq_8">ไม่มีกฎเกณฑ์ที่กำหนดไว้สำหรับความถี่ที่คุณควรใช้ Cleaner เนื่องจากจะขึ้นอยู่กับการใช้งานอุปกรณ์ของคุณและจำนวนไฟล์ที่ไม่จำเป็นที่สะสมเมื่อเวลาผ่านไป ผู้ใช้บางรายอาจพบว่าการเรียกใช้ Cleaner ทุกสัปดาห์หรือทุกเดือนมีประโยชน์ ในขณะที่ผู้ใช้รายอื่นอาจต้องใช้งานเป็นครั้งคราวเท่านั้น</string>
+    <string name="question_9">Cleaner เข้ากันได้กับอุปกรณ์ Android ทั้งหมดหรือไม่</string>
+    <string name="summary_preference_faq_9">Cleaner ควรเข้ากันได้กับอุปกรณ์ Android ส่วนใหญ่ที่ตรงตามข้อกำหนดขั้นต่ำของระบบของแอป อย่างไรก็ตาม ควรตรวจสอบหน้าแอปใน Google Play Store หรือร้านแอปที่คุณใช้เพื่อยืนยันความเข้ากันได้กับอุปกรณ์เฉพาะของคุณเสมอ หากคุณพบปัญหาใดๆ ขณะใช้ Cleaner คุณสามารถลองแก้ไขปัญหาหรือติดต่อทีมสนับสนุนของแอปเพื่อขอความช่วยเหลือ</string>
+    <string name="feedback">ความคิดเห็น</string>
+
+    <string name="updates">การอัปเดต</string>
+
+    <string name="support_us">สนับสนุนเรา</string>
+    <string name="paid_support">การสนับสนุนแบบชำระเงิน</string>
+    <string name="summary_donations">ไม่ว่าคุณจะบริจาคเท่าไหร่ คุณจะช่วยให้เราสามารถใช้งานแอปของเราต่อไปและปรับปรุงคุณสมบัติของเรา เราขอขอบคุณความเอื้อเฟื้อและความมีน้ำใจของคุณ!</string>
+    <string name="non_paid_support">การสนับสนุนแบบไม่ชำระเงิน</string>
+    <string name="web_ad">โฆษณาบนเว็บ</string>
+
+    <string name="snack_app_updated">อัปเดตแอปเรียบร้อยแล้ว</string>
+    <string name="snack_update_failed">กระบวนการอัปเดตพบปัญหา</string>
+    <string name="try_again">ลองอีกครั้ง</string>
+    <string name="summary_share_message">ลองดูแอปสุดเจ๋งที่ฉันใช้อยู่! มันมีคุณสมบัติเจ๋งๆ มากมายที่คุณอาจสนใจ คุณสามารถดาวน์โหลดได้จาก Play Store ที่: %1$s</string>
+    <string name="learn_more">เรียนรู้เพิ่มเติม</string>
+
+    <string name="close">ปิด?</string>
+    <string name="snack_network_error">เกิดข้อผิดพลาดของเครือข่ายขณะตรวจสอบการอัปเดต</string>
+    <string name="snack_general_error">เกิดข้อผิดพลาดขณะตรวจสอบการอัปเดต</string>
+    <string name="summary_close">คุณแน่ใจหรือไม่ว่าต้องการออก</string>
+    <string name="summary_require_restart">เพื่อให้มีผล โปรดรีสตาร์ทแอป!</string>
+
+    <string name="snack_no_image">ไม่มีรูปภาพ</string>
+    <string name="snack_validate_file">โปรดเลือกขนาดไฟล์ที่ถูกต้อง</string>
+</resources>
