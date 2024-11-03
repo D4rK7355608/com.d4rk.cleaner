@@ -151,10 +151,21 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                         fileSelectionMap = updatedFileSelectionStates ,
                         selectedFilesCount = newSelectedCount ,
                         areAllFilesSelected = when {
-                            newSelectedCount == currentUiState.analyzeState.scannedFileList.size && newSelectedCount > 0 -> true
-                            newSelectedCount == 0 -> false
-                            isChecked -> currentUiState.analyzeState.areAllFilesSelected
-                            else -> false
+                            newSelectedCount == currentUiState.analyzeState.scannedFileList.size && newSelectedCount > 0 -> {
+                                true
+                            }
+
+                            newSelectedCount == 0 -> {
+                                false
+                            }
+
+                            isChecked -> {
+                                currentUiState.analyzeState.areAllFilesSelected
+                            }
+
+                            else -> {
+                                false
+                            }
                         }
                     )
                 )
@@ -170,14 +181,17 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
             val newState = ! _uiState.value.analyzeState.areAllFilesSelected
             _uiState.update { currentUiState ->
                 currentUiState.copy(analyzeState = currentUiState.analyzeState.copy(areAllFilesSelected = newState ,
-                                                                                    fileSelectionMap = if (newState) {
-                                                                                        currentUiState.analyzeState.scannedFileList.associateWith { true }
-                                                                                    }
-                                                                                    else {
-                                                                                        emptyMap()
+                                                                                    fileSelectionMap = when {
+                                                                                        newState -> {
+                                                                                            (currentUiState.analyzeState.scannedFileList + currentUiState.analyzeState.emptyFolderList).associateWith { true }
+                                                                                        }
+
+                                                                                        else -> {
+                                                                                            emptyMap()
+                                                                                        }
                                                                                     } ,
                                                                                     selectedFilesCount = if (newState) {
-                                                                                        currentUiState.analyzeState.scannedFileList.size
+                                                                                        (currentUiState.analyzeState.scannedFileList.size + currentUiState.analyzeState.emptyFolderList.size)
                                                                                     }
                                                                                     else {
                                                                                         0
