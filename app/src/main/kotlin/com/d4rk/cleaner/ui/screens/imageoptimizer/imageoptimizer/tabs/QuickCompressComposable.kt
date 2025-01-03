@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.data.model.ui.imageoptimizer.CompressionLevel
+import com.d4rk.cleaner.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.ImageOptimizerViewModel
 import com.d4rk.cleaner.utils.imageoptimizer.getCompressionLevelFromSliderValue
 import kotlinx.coroutines.CoroutineScope
@@ -57,7 +58,7 @@ fun QuickCompressScreen(viewModel: ImageOptimizerViewModel) {
             }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        LargeVerticalSpacer()
 
         Slider(value = sliderValue, onValueChange = { newValue ->
             coroutineScope.launch {

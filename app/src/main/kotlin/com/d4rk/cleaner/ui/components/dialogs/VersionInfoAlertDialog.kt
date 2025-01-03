@@ -21,6 +21,7 @@ import coil.ImageLoader
 import coil.compose.AsyncImage
 import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.ui.components.spacers.LargeVerticalSpacer
 
 @Composable
 fun VersionInfoAlertDialog(onDismiss : () -> Unit) {
@@ -57,7 +58,7 @@ fun VersionInfoAlertDialogContent() {
                 text = stringResource(id = R.string.version , BuildConfig.VERSION_NAME) ,
                 style = MaterialTheme.typography.bodyMedium
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            LargeVerticalSpacer()
             Text(
                 text = copyright , style = MaterialTheme.typography.bodyMedium
             )

@@ -7,19 +7,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import com.d4rk.cleaner.constants.ads.AdsConstants
-import com.d4rk.cleaner.data.datastore.DataStore
+import com.d4rk.cleaner.data.core.AppCoreManager
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 
 @Composable
 fun AdBanner(
-    modifier: Modifier = Modifier, dataStore: DataStore
+    modifier : Modifier = Modifier
 ) {
-    val showAds: Boolean by dataStore.ads.collectAsState(initial = true)
+    val showAds : Boolean by AppCoreManager.dataStore.ads.collectAsState(initial = true)
 
     if (showAds) {
-        AndroidView(modifier = modifier.fillMaxWidth(), factory = { context ->
+        AndroidView(modifier = modifier.fillMaxWidth() , factory = { context ->
             AdView(context).apply {
                 setAdSize(AdSize.BANNER)
                 adUnitId = AdsConstants.BANNER_AD_UNIT_ID
@@ -31,12 +31,12 @@ fun AdBanner(
 
 @Composable
 fun AdBannerFull(
-    modifier: Modifier = Modifier, dataStore: DataStore
+    modifier : Modifier = Modifier
 ) {
-    val showAds: Boolean by dataStore.ads.collectAsState(initial = true)
+    val showAds : Boolean by AppCoreManager.dataStore.ads.collectAsState(initial = true)
 
     if (showAds) {
-        AndroidView(modifier = modifier.fillMaxWidth(), factory = { context ->
+        AndroidView(modifier = modifier.fillMaxWidth() , factory = { context ->
             AdView(context).apply {
                 setAdSize(AdSize.FULL_BANNER)
                 adUnitId = AdsConstants.BANNER_AD_UNIT_ID
@@ -48,12 +48,12 @@ fun AdBannerFull(
 
 @Composable
 fun LargeBannerAdsComposable(
-    modifier: Modifier = Modifier, dataStore: DataStore
+    modifier : Modifier = Modifier
 ) {
-    val showAds: Boolean by dataStore.ads.collectAsState(initial = true)
+    val showAds : Boolean by AppCoreManager.dataStore.ads.collectAsState(initial = true)
 
     if (showAds) {
-        AndroidView(modifier = modifier.fillMaxWidth(), factory = { context ->
+        AndroidView(modifier = modifier.fillMaxWidth() , factory = { context ->
             AdView(context).apply {
                 setAdSize(AdSize.LARGE_BANNER)
                 adUnitId = AdsConstants.BANNER_AD_UNIT_ID

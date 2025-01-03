@@ -64,6 +64,7 @@ import com.d4rk.cleaner.ui.components.progressbars.StorageProgressBar
 import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.ui.components.dialogs.ErrorAlertDialog
 import com.d4rk.cleaner.ui.components.layouts.LoadingScreen
+import com.d4rk.cleaner.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.cleaner.utils.helpers.PermissionsHelper
 import com.d4rk.cleaner.utils.cleaning.StorageUtils.formatSize
 
@@ -121,7 +122,7 @@ fun MemoryManagerComposable() {
                 }
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            LargeVerticalSpacer()
 
             Row(
                 modifier = Modifier

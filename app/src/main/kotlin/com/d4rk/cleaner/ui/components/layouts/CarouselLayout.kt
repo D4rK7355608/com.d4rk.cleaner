@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.d4rk.cleaner.ui.components.modifiers.hapticPagerSwipe
+import com.d4rk.cleaner.ui.components.spacers.LargeVerticalSpacer
 import kotlin.math.absoluteValue
 
 @Composable
@@ -60,7 +61,7 @@ fun <T> CarouselLayout(
             CarouselItem(items[page], pageOffset, itemContent)
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        LargeVerticalSpacer()
 
         DotsIndicator(
             modifier = Modifier

@@ -42,6 +42,7 @@ import com.d4rk.cleaner.data.model.ui.navigation.NavigationDrawerItem
 import com.d4rk.cleaner.data.model.ui.screens.UiMainModel
 import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.ui.components.modifiers.hapticDrawerSwipe
+import com.d4rk.cleaner.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.cleaner.ui.screens.help.HelpActivity
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imagepicker.ImagePickerActivity
 import com.d4rk.cleaner.ui.screens.support.SupportActivity
@@ -91,7 +92,7 @@ fun NavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet {
-                Spacer(modifier = Modifier.height(16.dp))
+                LargeVerticalSpacer()
                 drawerItems.forEachIndexed { index, item ->
                     val title: String = stringResource(id = item.title)
                     NavigationDrawerItem(

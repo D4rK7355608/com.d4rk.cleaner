@@ -59,7 +59,7 @@ import com.d4rk.cleaner.utils.rememberHtmlData
 @Composable
 fun HelpScreen(activity : HelpActivity , viewModel : HelpViewModel) {
     val scrollBehavior : TopAppBarScrollBehavior =
-            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+            TopAppBarDefaults.enterAlwaysScrollBehavior(state = rememberTopAppBarState())
     val context : Context = LocalContext.current
     val view : View = LocalView.current
     val isFabVisible by viewModel.isFabVisible.collectAsState()

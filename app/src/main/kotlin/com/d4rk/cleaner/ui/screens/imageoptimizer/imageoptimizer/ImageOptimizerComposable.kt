@@ -132,7 +132,7 @@ fun ImageOptimizerComposable(
                 bottom.linkTo(parent.bottom)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
-            } , dataStore = dataStore)
+            })
         }
     }
 }

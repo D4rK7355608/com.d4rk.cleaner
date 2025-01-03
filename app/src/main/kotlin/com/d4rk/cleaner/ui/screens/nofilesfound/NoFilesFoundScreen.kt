@@ -21,6 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ui.components.modifiers.bounceClick
+import com.d4rk.cleaner.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.cleaner.ui.screens.home.HomeViewModel
 
 @Composable
@@ -33,7 +34,7 @@ fun NoFilesFoundScreen(viewModel : HomeViewModel) {
                 modifier = Modifier.size(64.dp) ,
                 tint = MaterialTheme.colorScheme.onSurface
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            LargeVerticalSpacer()
             Text(
                 text = stringResource(id = R.string.no_files_found) ,
                 style = MaterialTheme.typography.bodyLarge ,

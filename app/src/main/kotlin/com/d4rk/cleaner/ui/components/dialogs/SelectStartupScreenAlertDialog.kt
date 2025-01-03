@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.constants.ui.bottombar.BottomBarRoutes
 import com.d4rk.cleaner.data.datastore.DataStore
+import com.d4rk.cleaner.ui.components.spacers.MediumVerticalSpacer
 import kotlinx.coroutines.flow.firstOrNull
 
 @Composable
@@ -103,7 +104,7 @@ fun SelectStartupScreenAlertDialogContent(
         }
         Spacer(modifier = Modifier.height(24.dp))
         Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
-        Spacer(modifier = Modifier.height(12.dp))
+        MediumVerticalSpacer()
         Text(stringResource(id = R.string.dialog_info_startup))
     }
 

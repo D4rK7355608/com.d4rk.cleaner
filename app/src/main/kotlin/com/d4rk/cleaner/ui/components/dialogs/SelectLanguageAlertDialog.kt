@@ -30,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
+import com.d4rk.cleaner.ui.components.spacers.MediumVerticalSpacer
 import kotlinx.coroutines.flow.firstOrNull
 
 @Composable
@@ -102,7 +103,7 @@ fun SelectLanguageAlertDialogContent(
         }
         Spacer(modifier = Modifier.height(24.dp))
         Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
-        Spacer(modifier = Modifier.height(12.dp))
+        MediumVerticalSpacer()
         Text(text = stringResource(id = R.string.dialog_info_language))
     }
 

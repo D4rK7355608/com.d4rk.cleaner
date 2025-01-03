@@ -227,7 +227,7 @@ fun SupportComposable(viewModel: SupportViewModel , activity: SupportActivity) {
                 }
                 item {
                     LargeBannerAdsComposable(
-                        modifier = Modifier.padding(bottom = 12.dp), dataStore = dataStore
+                        modifier = Modifier.padding(bottom = 12.dp)
                     )
                 }
             }
