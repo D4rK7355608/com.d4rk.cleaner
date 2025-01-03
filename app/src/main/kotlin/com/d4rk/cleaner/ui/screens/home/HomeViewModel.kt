@@ -8,7 +8,6 @@ import com.d4rk.cleaner.ui.screens.home.repository.HomeRepository
 import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
 import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -23,26 +22,26 @@ import java.io.File
  * @param application The application instance.
  * @author Mihai-Cristian Condrea
  */
-class HomeViewModel(application : Application) : BaseViewModel(application) {
-    private val repository = HomeRepository(DataStore(application) , application)
-    private val _uiState = MutableStateFlow(UiHomeModel())
+class HomeViewModel(application : Application) : BaseViewModel(application = application) {
+    private val repository : HomeRepository = HomeRepository(DataStore(application) , application)
+    private val _uiState : MutableStateFlow<UiHomeModel> = MutableStateFlow(UiHomeModel())
     val uiState : StateFlow<UiHomeModel> = _uiState
 
     init {
-        updateStorageInfo()
-        populateFileTypesData()
+        getStorageInfo()
+        getFileTypes()
         loadCleanedSpace()
     }
 
     /**
      * Updates the storage information (used and total storage) in the UI state.
      */
-    private fun updateStorageInfo() {
-        viewModelScope.launch(coroutineExceptionHandler) {
-            repository.getStorageInfo { uiHomeModel ->
-                _uiState.update {
-                    it.copy(
-                        storageInfo = it.storageInfo.copy(
+    private fun getStorageInfo() {
+        viewModelScope.launch(context = coroutineExceptionHandler) {
+            repository.getStorageInfoRepository { uiHomeModel ->
+                _uiState.update { state ->
+                    state.copy(
+                        storageInfo = state.storageInfo.copy(
                             storageUsageProgress = uiHomeModel.storageInfo.storageUsageProgress ,
                             freeSpacePercentage = uiHomeModel.storageInfo.freeSpacePercentage
                         )
@@ -52,32 +51,16 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
-    private fun initializeVisibilityStates() {
-        viewModelScope.launch(coroutineExceptionHandler) {
-            val filesSize = uiState.value.analyzeState.scannedFileList.size
-            _visibilityStates.value = List(filesSize) { false }
-
-            uiState.value.analyzeState.scannedFileList.forEachIndexed { index , _ ->
-                delay(timeMillis = index * 8L)
-                _visibilityStates.update { list ->
-                    list.toMutableList().also {
-                        it[index] = true
-                    }
-                }
-            }
-        }
-    }
-
     /**
      * Loads the cleaned space and last scan information from DataStore and updates the UI state.
      */
     private fun loadCleanedSpace() {
-        viewModelScope.launch(coroutineExceptionHandler) {
-            with(repository) {
+        viewModelScope.launch(context = coroutineExceptionHandler) {
+            with(receiver = repository) {
                 dataStore.cleanedSpace.collect { cleanedSpace ->
-                    _uiState.update {
-                        it.copy(
-                            storageInfo = it.storageInfo.copy(
+                    _uiState.update { state ->
+                        state.copy(
+                            storageInfo = state.storageInfo.copy(
                                 cleanedSpace = StorageUtils.formatSize(cleanedSpace)
                             )
                         )
@@ -95,10 +78,10 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             showLoading()
             repository.analyzeFiles { result ->
-                val (filteredFiles , emptyFolders) = result
-                _uiState.update { currentUiState ->
-                    currentUiState.copy(
-                        analyzeState = currentUiState.analyzeState.copy(
+                val (filteredFiles : List<File> , emptyFolders : List<File>) = result
+                _uiState.update { state ->
+                    state.copy(
+                        analyzeState = state.analyzeState.copy(
                             scannedFileList = filteredFiles ,
                             emptyFolderList = emptyFolders ,
                             isAnalyzeScreenVisible = true ,
@@ -107,7 +90,6 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                 }
             }
             hideLoading()
-            initializeVisibilityStates()
         }
     }
 
@@ -117,17 +99,18 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     fun rescanFiles() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             showLoading()
-            _uiState.update { currentUiState ->
-                currentUiState.copy(
-                    analyzeState = currentUiState.analyzeState.copy(
+            _uiState.update { state ->
+                state.copy(
+                    analyzeState = state.analyzeState.copy(
                         scannedFileList = emptyList()
                     )
                 )
             }
+
             repository.rescanFiles { filteredFiles ->
-                _uiState.update { currentUiState ->
-                    currentUiState.copy(
-                        analyzeState = currentUiState.analyzeState.copy(
+                _uiState.update { state ->
+                    state.copy(
+                        analyzeState = state.analyzeState.copy(
                             scannedFileList = filteredFiles , isAnalyzeScreenVisible = true
                         )
                     )
@@ -141,10 +124,10 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
      * Hides the analyze screen.
      */
     fun onCloseAnalyzeComposable() {
-        viewModelScope.launch(coroutineExceptionHandler) {
-            _uiState.update { currentUiState ->
-                currentUiState.copy(
-                    analyzeState = currentUiState.analyzeState.copy(
+        viewModelScope.launch(context = coroutineExceptionHandler) {
+            _uiState.update { state ->
+                state.copy(
+                    analyzeState = state.analyzeState.copy(
                         isAnalyzeScreenVisible = false
                     )
                 )
@@ -159,18 +142,18 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
      * @param isChecked True if the file is now selected, false otherwise.
      */
     fun onFileSelectionChange(file : File , isChecked : Boolean) {
-        viewModelScope.launch(coroutineExceptionHandler) {
-            val updatedFileSelectionStates =
+        viewModelScope.launch(context = coroutineExceptionHandler) {
+            val updatedFileSelectionStates : Map<File , Boolean> =
                     _uiState.value.analyzeState.fileSelectionMap + (file to isChecked)
-            val newSelectedCount = updatedFileSelectionStates.count { it.value }
+            val newSelectedCount : Int = updatedFileSelectionStates.count { it.value }
 
-            _uiState.update { currentUiState ->
-                currentUiState.copy(
-                    analyzeState = currentUiState.analyzeState.copy(
+            _uiState.update { state ->
+                state.copy(
+                    analyzeState = state.analyzeState.copy(
                         fileSelectionMap = updatedFileSelectionStates ,
                         selectedFilesCount = newSelectedCount ,
                         areAllFilesSelected = when {
-                            newSelectedCount == currentUiState.analyzeState.scannedFileList.size && newSelectedCount > 0 -> {
+                            newSelectedCount == state.analyzeState.scannedFileList.size && newSelectedCount > 0 -> {
                                 true
                             }
 
@@ -179,7 +162,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                             }
 
                             isChecked -> {
-                                currentUiState.analyzeState.areAllFilesSelected
+                                state.analyzeState.areAllFilesSelected
                             }
 
                             else -> {
@@ -197,24 +180,24 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
      */
     fun toggleSelectAllFiles() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
-            val newState = ! _uiState.value.analyzeState.areAllFilesSelected
-            _uiState.update { currentUiState ->
-                currentUiState.copy(analyzeState = currentUiState.analyzeState.copy(areAllFilesSelected = newState ,
-                                                                                    fileSelectionMap = when {
-                                                                                        newState -> {
-                                                                                            (currentUiState.analyzeState.scannedFileList + currentUiState.analyzeState.emptyFolderList).associateWith { true }
-                                                                                        }
+            val newState : Boolean = ! _uiState.value.analyzeState.areAllFilesSelected
+            _uiState.update { state ->
+                state.copy(analyzeState = state.analyzeState.copy(areAllFilesSelected = newState ,
+                                                                  fileSelectionMap = when {
+                                                                      newState -> {
+                                                                          (state.analyzeState.scannedFileList + state.analyzeState.emptyFolderList).associateWith { true }
+                                                                      }
 
-                                                                                        else -> {
-                                                                                            emptyMap()
-                                                                                        }
-                                                                                    } ,
-                                                                                    selectedFilesCount = if (newState) {
-                                                                                        (currentUiState.analyzeState.scannedFileList.size + currentUiState.analyzeState.emptyFolderList.size)
-                                                                                    }
-                                                                                    else {
-                                                                                        0
-                                                                                    }))
+                                                                      else -> {
+                                                                          emptyMap()
+                                                                      }
+                                                                  } ,
+                                                                  selectedFilesCount = if (newState) {
+                                                                      (state.analyzeState.scannedFileList.size + state.analyzeState.emptyFolderList.size)
+                                                                  }
+                                                                  else {
+                                                                      0
+                                                                  }))
             }
         }
     }
@@ -225,14 +208,14 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     fun clean() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             showLoading()
-            val filesToDelete =
+            val filesToDelete : Set<File> =
                     _uiState.value.analyzeState.fileSelectionMap.filter { it.value }.keys
-            val clearedSpaceTotalSize = filesToDelete.sumOf { it.length() }
-            with(repository) {
-                deleteFiles(filesToDelete) {
-                    _uiState.update { currentUiState ->
-                        currentUiState.copy(analyzeState = currentUiState.analyzeState.copy(
-                            scannedFileList = currentUiState.analyzeState.scannedFileList.filterNot {
+            val clearedSpaceTotalSize : Long = filesToDelete.sumOf { it.length() }
+            with(receiver = repository) {
+                deleteFilesRepository(filesToDelete = filesToDelete) {
+                    _uiState.update { state ->
+                        state.copy(analyzeState = state.analyzeState.copy(
+                            scannedFileList = state.analyzeState.scannedFileList.filterNot {
                                 filesToDelete.contains(it)
                             } ,
                             selectedFilesCount = 0 ,
@@ -241,11 +224,11 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                             isAnalyzeScreenVisible = false ,
                         ))
                     }
-                    updateStorageInfo()
+                    getStorageInfo()
                 }
-                with(dataStore) {
-                    addCleanedSpace(clearedSpaceTotalSize)
-                    saveLastScanTimestamp(System.currentTimeMillis())
+                with(receiver = dataStore) {
+                    addCleanedSpace(space = clearedSpaceTotalSize)
+                    saveLastScanTimestamp(timestamp = System.currentTimeMillis())
                 }
             }
             hideLoading()
@@ -258,11 +241,11 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     fun moveToTrash() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             showLoading()
-            val filesToMove =
+            val filesToMove : List<File> =
                     _uiState.value.analyzeState.fileSelectionMap.filter { it.value }.keys.toList()
-            val totalFileSizeToMove = filesToMove.sumOf { it.length() }
-            with(repository) {
-                moveToTrash(filesToMove) {
+            val totalFileSizeToMove : Long = filesToMove.sumOf { it.length() }
+            with(receiver = repository) {
+                moveToTrashRepository(filesToMove = filesToMove) {
                     _uiState.update { currentUiState ->
                         currentUiState.copy(analyzeState = currentUiState.analyzeState.copy(
                             scannedFileList = currentUiState.analyzeState.scannedFileList.filterNot { existingFile ->
@@ -273,9 +256,9 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                             isAnalyzeScreenVisible = false ,
                             fileSelectionMap = emptyMap()))
                     }
-                    updateStorageInfo()
+                    getStorageInfo()
                 }
-                addTrashSize(totalFileSizeToMove)
+                addTrashSize(size = totalFileSizeToMove)
             }
             hideLoading()
         }
@@ -284,12 +267,12 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     /**
      * Populates file types data in the UI state.
      */
-    private fun populateFileTypesData() {
-        viewModelScope.launch(coroutineExceptionHandler) {
-            repository.getFileTypesData { fileTypesData ->
-                _uiState.update { currentUiState ->
-                    currentUiState.copy(
-                        analyzeState = currentUiState.analyzeState.copy(
+    private fun getFileTypes() {
+        viewModelScope.launch(context = coroutineExceptionHandler) {
+            repository.getFileTypesRepository { fileTypesData ->
+                _uiState.update { state ->
+                    state.copy(
+                        analyzeState = state.analyzeState.copy(
                             fileTypesData = fileTypesData
                         )
                     )
@@ -303,9 +286,13 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
      * @param isVisible True to show the dialog, false to hide it.
      */
     fun setDeleteForeverConfirmationDialogVisibility(isVisible : Boolean) {
-        viewModelScope.launch(coroutineExceptionHandler) {
-            _uiState.update {
-                it.copy(analyzeState = it.analyzeState.copy(isDeleteForeverConfirmationDialogVisible = isVisible))
+        viewModelScope.launch(context = coroutineExceptionHandler) {
+            _uiState.update { state ->
+                state.copy(
+                    analyzeState = state.analyzeState.copy(
+                        isDeleteForeverConfirmationDialogVisible = isVisible
+                    )
+                )
             }
         }
     }
@@ -315,9 +302,13 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
      * @param isVisible True to show the dialog, false to hide it.
      */
     fun setMoveToTrashConfirmationDialogVisibility(isVisible : Boolean) {
-        viewModelScope.launch(coroutineExceptionHandler) {
-            _uiState.update {
-                it.copy(analyzeState = it.analyzeState.copy(isMoveToTrashConfirmationDialogVisible = isVisible))
+        viewModelScope.launch(context = coroutineExceptionHandler) {
+            _uiState.update { state ->
+                state.copy(
+                    analyzeState = state.analyzeState.copy(
+                        isMoveToTrashConfirmationDialogVisible = isVisible
+                    )
+                )
             }
         }
     }

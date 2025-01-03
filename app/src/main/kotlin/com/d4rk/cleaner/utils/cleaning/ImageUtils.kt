@@ -24,7 +24,7 @@ fun getFileIcon(extension: String, context: Context): Int {
             R.drawable.ic_archive_filter
         }
         else -> {
-            R.drawable.ic_file_present
+            R.drawable.ic_unknown_document
         }
     }
 }

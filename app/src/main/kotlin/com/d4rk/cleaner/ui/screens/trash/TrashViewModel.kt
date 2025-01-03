@@ -60,7 +60,7 @@ class TrashViewModel(application : Application) : BaseViewModel(application) {
             showLoading()
             val filesToRestore = _uiState.value.fileSelectionStates.filter { it.value }.keys
             val totalFileSizeToRestore = filesToRestore.sumOf { it.length() }
-            repository.restoreFromTrash(filesToRestore) {
+            repository.restoreFromTrashRepository(filesToRestore) {
                 loadTrashItems()
             }
             repository.subtractTrashSize(totalFileSizeToRestore)
@@ -77,7 +77,7 @@ class TrashViewModel(application : Application) : BaseViewModel(application) {
             val filesToDelete = _uiState.value.fileSelectionStates.filter { it.value }.keys
             val totalFileSizeToDelete = filesToDelete.sumOf { it.length() }
             with(repository) {
-                deleteFiles(filesToDelete) {
+                deleteFilesRepository(filesToDelete) {
                     loadTrashItems()
                 }
 

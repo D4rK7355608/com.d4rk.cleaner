@@ -3,7 +3,7 @@ package com.d4rk.cleaner.utils.cleaning
 import android.app.Application
 import android.os.Environment
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.constants.cleaning.ExtensionsConstants
+import com.d4rk.cleaner.utils.constants.cleaning.ExtensionsConstants
 import com.d4rk.cleaner.data.datastore.DataStore
 import kotlinx.coroutines.flow.first
 import java.io.File
@@ -163,41 +163,16 @@ class FileScanner(private val dataStore : DataStore , private val application : 
         val extension = file.extension.lowercase()
 
         return when {
-            preferences[ExtensionsConstants.ARCHIVE_EXTENSIONS] == true && extension in archiveExtensions -> {
-                true
-            }
+            preferences[ExtensionsConstants.ARCHIVE_EXTENSIONS] == true && extension in archiveExtensions -> true
+            preferences[ExtensionsConstants.APK_EXTENSIONS] == true && extension in apkExtensions -> true
+            preferences[ExtensionsConstants.IMAGE_EXTENSIONS] == true && extension in imageExtensions -> true
+            preferences[ExtensionsConstants.VIDEO_EXTENSIONS] == true && extension in videoExtensions -> true
+            preferences[ExtensionsConstants.AUDIO_EXTENSIONS] == true && extension in audioExtensions -> true
+            preferences[ExtensionsConstants.GENERIC_EXTENSIONS] == true && extension in genericExtensions -> true
+            file.isDirectory && file.listFiles()?.isEmpty() == true && preferences[ExtensionsConstants.EMPTY_FOLDERS] == true -> true
+            extension.isEmpty() && preferences.any { it.value } -> true
 
-            preferences[ExtensionsConstants.APK_EXTENSIONS] == true && extension in apkExtensions -> {
-                true
-            }
-
-            preferences[ExtensionsConstants.IMAGE_EXTENSIONS] == true && extension in imageExtensions -> {
-                true
-            }
-
-            preferences[ExtensionsConstants.VIDEO_EXTENSIONS] == true && extension in videoExtensions -> {
-                true
-            }
-
-            preferences[ExtensionsConstants.AUDIO_EXTENSIONS] == true && extension in audioExtensions -> {
-                true
-            }
-
-            preferences[ExtensionsConstants.GENERIC_EXTENSIONS] == true && extension in genericExtensions -> {
-                true
-            }
-
-            file.isDirectory && file.listFiles()?.isEmpty() == true && preferences[ExtensionsConstants.EMPTY_FOLDERS] == true -> {
-                true
-            }
-
-            extension.isEmpty() && preferences.any { it.value } -> {
-                true
-            }
-
-            else -> {
-                false
-            }
+            else -> false
         }
     }
 

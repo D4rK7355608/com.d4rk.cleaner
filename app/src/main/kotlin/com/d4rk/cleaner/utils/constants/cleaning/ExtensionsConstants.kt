@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.constants.cleaning
+package com.d4rk.cleaner.utils.constants.cleaning
 
 object ExtensionsConstants {
     const val GENERIC_EXTENSIONS = "generic_extensions"

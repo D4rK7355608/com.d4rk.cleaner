@@ -17,19 +17,18 @@ import java.io.File
  * @param application The application instance for accessing resources and external files directory.
  * @author Mihai-Cristian Condrea
  */
-class HomeRepository(
-    dataStore : DataStore , application : Application ,
-) : HomeRepositoryImplementation(application , dataStore) {
-    private val fileScanner = FileScanner(dataStore , application)
+class HomeRepository(dataStore : DataStore , application : Application) :
+    HomeRepositoryImplementation(application , dataStore) {
+    private val fileScanner : FileScanner = FileScanner(dataStore , application)
 
     /**
      * Retrieves storage information.
      * @param onSuccess Callback function to be invoked with the storage information.
      */
-    suspend fun getStorageInfo(onSuccess : (UiHomeModel) -> Unit) {
-        withContext(Dispatchers.IO) {
-            val storageInfo : UiHomeModel = getStorageInfo()
-            withContext(Dispatchers.Main) {
+    suspend fun getStorageInfoRepository(onSuccess : (UiHomeModel) -> Unit) {
+        withContext(context = Dispatchers.IO) {
+            val storageInfo : UiHomeModel = getStorageInfoImplementation()
+            withContext(context = Dispatchers.Main) {
                 onSuccess(storageInfo)
             }
         }
@@ -39,10 +38,10 @@ class HomeRepository(
      * Retrieves file types data from resources.
      * @param onSuccess Callback function to be invoked with the file types data.
      */
-    suspend fun getFileTypesData(onSuccess : (FileTypesData) -> Unit) {
-        withContext(Dispatchers.IO) {
-            val fileTypesData = getFileTypesDataFromResources()
-            withContext(Dispatchers.Main) {
+    suspend fun getFileTypesRepository(onSuccess : (FileTypesData) -> Unit) {
+        withContext(context = Dispatchers.IO) {
+            val fileTypesData : FileTypesData = getFileTypesImplementation()
+            withContext(context = Dispatchers.Main) {
                 onSuccess(fileTypesData)
             }
         }
@@ -53,14 +52,13 @@ class HomeRepository(
      * @param onSuccess Callback function to be invoked with the filtered files and empty folders.
      */
     suspend fun analyzeFiles(onSuccess : (Pair<List<File> , List<File>>) -> Unit) {
-        withContext(Dispatchers.IO) {
+        withContext(context = Dispatchers.IO) {
             fileScanner.startScanning()
-            val filteredFiles = fileScanner.getFilteredFiles()
-            val emptyFolders = fileScanner.getAllFiles().second.ifEmpty {
+            val filteredFiles : List<File> = fileScanner.getFilteredFiles()
+            val emptyFolders : List<File> = fileScanner.getAllFiles().second.ifEmpty {
                 emptyList()
             }
-            println("Cleaner for Android -> analyzeFiles() received filteredFiles size: ${filteredFiles.size}, emptyFolders size: ${emptyFolders.size}")
-            withContext(Dispatchers.Main) {
+            withContext(context = Dispatchers.Main) {
                 onSuccess(Pair(filteredFiles , emptyFolders))
             }
         }
@@ -71,10 +69,10 @@ class HomeRepository(
      * @param onSuccess Callback to receive the result of filtered files.
      */
     suspend fun rescanFiles(onSuccess : (List<File>) -> Unit) {
-        withContext(Dispatchers.IO) {
+        withContext(context = Dispatchers.IO) {
             fileScanner.reset()
             fileScanner.startScanning()
-            val filteredFiles = fileScanner.getFilteredFiles()
+            val filteredFiles : List<File> = fileScanner.getFilteredFiles()
             withContext(Dispatchers.Main) {
                 onSuccess(filteredFiles)
             }
@@ -86,7 +84,7 @@ class HomeRepository(
      * @return A list of files in the trash directory.
      */
     suspend fun getTrashFiles() : List<File> {
-        return withContext(Dispatchers.IO) {
+        return withContext(context = Dispatchers.IO) {
             val trashDir = File(
                 application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash"
             )
@@ -105,10 +103,10 @@ class HomeRepository(
      * @param filesToDelete The set of files to delete.
      * @param onSuccess Callback function to be invoked after successful deletion.
      */
-    suspend fun deleteFiles(filesToDelete : Set<File> , onSuccess : () -> Unit) {
-        withContext(Dispatchers.IO) {
-            deleteFiles(filesToDelete)
-            withContext(Dispatchers.Main) {
+    suspend fun deleteFilesRepository(filesToDelete : Set<File> , onSuccess : () -> Unit) {
+        withContext(context = Dispatchers.IO) {
+            deleteFilesImplementation(filesToDelete = filesToDelete)
+            withContext(context = Dispatchers.Main) {
                 onSuccess()
             }
         }
@@ -119,10 +117,10 @@ class HomeRepository(
      * @param filesToMove The list of files to move to trash.
      * @param onSuccess Callback function to be invoked after successful move.
      */
-    suspend fun moveToTrash(filesToMove : List<File> , onSuccess : () -> Unit) {
-        withContext(Dispatchers.IO) {
-            moveToTrash(filesToMove)
-            withContext(Dispatchers.Main) {
+    suspend fun moveToTrashRepository(filesToMove : List<File> , onSuccess : () -> Unit) {
+        withContext(context = Dispatchers.IO) {
+            moveToTrashImplementation(filesToMove = filesToMove)
+            withContext(context = Dispatchers.Main) {
                 onSuccess()
             }
         }
@@ -133,22 +131,20 @@ class HomeRepository(
      * @param filesToRestore The set of files to restore from trash.
      * @param onSuccess Callback function to be invoked after successful restore.
      */
-    suspend fun restoreFromTrash(filesToRestore : Set<File> , onSuccess : () -> Unit) {
-        println("Cleaner for Android -> restoreFromTrash - normal repo")
-        withContext(Dispatchers.IO) {
-            println("Cleaner for Android -> we are on IO")
-            restoreFromTrash(filesToRestore)
-            withContext(Dispatchers.Main) {
+    suspend fun restoreFromTrashRepository(filesToRestore : Set<File> , onSuccess : () -> Unit) {
+        withContext(context = Dispatchers.IO) {
+            restoreFromTrashImplementation(filesToRestore = filesToRestore)
+            withContext(context = Dispatchers.Main) {
                 onSuccess()
             }
         }
     }
 
     suspend fun addTrashSize(size : Long) {
-        dataStore.addTrashSize(size)
+        dataStore.addTrashSize(size = size)
     }
 
     suspend fun subtractTrashSize(size : Long) {
-        dataStore.subtractTrashSize(size)
+        dataStore.subtractTrashSize(size = size)
     }
 }

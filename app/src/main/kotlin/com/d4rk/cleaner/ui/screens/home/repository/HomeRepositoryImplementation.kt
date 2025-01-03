@@ -19,16 +19,16 @@ abstract class HomeRepositoryImplementation(
     val dataStore : DataStore ,
 ) {
 
-    private val trashDir =
+    private val trashDir : File =
             File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash")
 
-    suspend fun getStorageInfo(): UiHomeModel {
+    suspend fun getStorageInfoImplementation() : UiHomeModel {
         return suspendCoroutine { continuation ->
-            StorageUtils.getStorageInfo(application) { _ , _ , _ , usageProgress , freeSpacePercentage ->
+            StorageUtils.getStorageInfo(context = application) { _ , _ , _ , usageProgress , freeSpacePercentage ->
                 continuation.resume(
                     UiHomeModel(
                         storageInfo = StorageInfo(
-                            storageUsageProgress = usageProgress,
+                            storageUsageProgress = usageProgress ,
                             freeSpacePercentage = freeSpacePercentage
                         )
                     )
@@ -37,19 +37,19 @@ abstract class HomeRepositoryImplementation(
         }
     }
 
-    suspend fun getFileTypesDataFromResources() : FileTypesData {
+    suspend fun getFileTypesImplementation() : FileTypesData {
         return suspendCoroutine { continuation ->
-            val apkExtensions =
+            val apkExtensions : List<String> =
                     application.resources.getStringArray(R.array.apk_extensions).toList()
-            val imageExtensions =
+            val imageExtensions : List<String> =
                     application.resources.getStringArray(R.array.image_extensions).toList()
-            val videoExtensions =
+            val videoExtensions : List<String> =
                     application.resources.getStringArray(R.array.video_extensions).toList()
-            val audioExtensions =
+            val audioExtensions : List<String> =
                     application.resources.getStringArray(R.array.audio_extensions).toList()
-            val archiveExtensions =
+            val archiveExtensions : List<String> =
                     application.resources.getStringArray(R.array.archive_extensions).toList()
-            val fileTypesTitles =
+            val fileTypesTitles : List<String> =
                     application.resources.getStringArray(R.array.file_types_titles).toList()
             val fileTypesData = FileTypesData(
                 apkExtensions = apkExtensions ,
@@ -59,33 +59,34 @@ abstract class HomeRepositoryImplementation(
                 archiveExtensions = archiveExtensions ,
                 fileTypesTitles = fileTypesTitles
             )
-            continuation.resume(fileTypesData)
+            continuation.resume(value = fileTypesData)
         }
     }
 
-    fun deleteFiles(filesToDelete : Set<File>) {
+    fun deleteFilesImplementation(filesToDelete : Set<File>) {
         filesToDelete.forEach { file ->
             if (file.exists()) {
                 file.deleteRecursively()
-            } else {
-               // TODO: add a dialog if no file to delete found
+            }
+            else {
+                // TODO: add a dialog if no file to delete found
             }
         }
     }
 
-    suspend fun moveToTrash(filesToMove : List<File>) {
+    suspend fun moveToTrashImplementation(filesToMove : List<File>) {
         if (! trashDir.exists()) {
             trashDir.mkdirs()
         }
 
         filesToMove.forEach { file ->
             if (file.exists()) {
-                val originalPath = file.absolutePath
+                val originalPath : String = file.absolutePath
                 val destination = File(trashDir , file.name)
 
                 if (file.renameTo(destination)) {
-                    dataStore.addTrashFileOriginalPath(originalPath)
-                    dataStore.addTrashFilePath(originalPath to destination.absolutePath)
+                    dataStore.addTrashFileOriginalPath(originalPath = originalPath)
+                    dataStore.addTrashFilePath(pathPair = originalPath to destination.absolutePath)
 
 
                     MediaScannerConnection.scanFile(
@@ -104,22 +105,23 @@ abstract class HomeRepositoryImplementation(
         }
     }
 
-    suspend fun restoreFromTrash(filesToRestore : Set<File>) {
-        val originalPaths = dataStore.trashFileOriginalPaths.first()
+    suspend fun restoreFromTrashImplementation(filesToRestore : Set<File>) {
+        val originalPaths : Set<String> = dataStore.trashFileOriginalPaths.first()
         filesToRestore.forEach { file ->
             if (file.exists()) {
-                val originalPath = originalPaths.firstOrNull { File(it).name == file.name }
+                val originalPath : String? =
+                        originalPaths.firstOrNull { File(it).name == file.name }
                 if (originalPath != null) {
                     val destinationFile = File(originalPath)
-                    val destinationParent = destinationFile.parentFile
+                    val destinationParent : File? = destinationFile.parentFile
 
                     if (destinationParent?.exists() == false) {
                         destinationParent.mkdirs()
                     }
 
                     if (file.renameTo(destinationFile)) {
-                        dataStore.removeTrashFileOriginalPath(originalPath)
-                        dataStore.removeTrashFilePath(originalPath)
+                        dataStore.removeTrashFileOriginalPath(originalPath = originalPath)
+                        dataStore.removeTrashFilePath(originalPath = originalPath)
                         MediaScannerConnection.scanFile(
                             application , arrayOf(
                                 destinationFile.absolutePath , file.absolutePath
@@ -131,7 +133,7 @@ abstract class HomeRepositoryImplementation(
                     }
                 }
                 else {
-                    val downloadsDir =
+                    val downloadsDir : File =
                             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
                     val destinationFile = File(downloadsDir , file.name)
 
@@ -144,7 +146,7 @@ abstract class HomeRepositoryImplementation(
                         )
                     }
                     else {
-                       // TODO: Add a dialog if the move to download has been failed
+                        // TODO: Add a dialog if the move to download has been failed
                     }
                 }
             }

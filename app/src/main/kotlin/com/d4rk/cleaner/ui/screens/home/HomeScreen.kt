@@ -59,7 +59,7 @@ fun HomeScreen() {
         }.build()
     }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(key1 = Unit) {
         if (! PermissionsHelper.hasStoragePermissions(context)) {
             PermissionsHelper.requestStoragePermissions(context as Activity)
         }
