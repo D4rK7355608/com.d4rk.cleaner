@@ -40,13 +40,13 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.navigation.NavigationDrawerItem
 import com.d4rk.cleaner.data.model.ui.screens.UiMainModel
-import com.d4rk.cleaner.ui.components.animations.bounceClick
-import com.d4rk.cleaner.ui.components.animations.hapticDrawerSwipe
+import com.d4rk.cleaner.ui.components.modifiers.bounceClick
+import com.d4rk.cleaner.ui.components.modifiers.hapticDrawerSwipe
 import com.d4rk.cleaner.ui.screens.help.HelpActivity
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imagepicker.ImagePickerActivity
 import com.d4rk.cleaner.ui.screens.support.SupportActivity
 import com.d4rk.cleaner.ui.screens.trash.TrashActivity
-import com.d4rk.cleaner.utils.IntentUtils
+import com.d4rk.cleaner.utils.helpers.IntentsHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -103,7 +103,7 @@ fun NavigationDrawer(
                                     view.playSoundEffect(
                                         SoundEffectConstants.CLICK
                                     )
-                                    IntentUtils.openActivity(
+                                    IntentsHelper.openActivity(
                                         context,
                                         ImagePickerActivity::class.java
                                     )
@@ -113,7 +113,7 @@ fun NavigationDrawer(
                                     view.playSoundEffect(
                                         SoundEffectConstants.CLICK
                                     )
-                                    IntentUtils.openActivity(
+                                    IntentsHelper.openActivity(
                                         context,
                                         TrashActivity::class.java
                                     )
@@ -123,7 +123,7 @@ fun NavigationDrawer(
                                     view.playSoundEffect(
                                         SoundEffectConstants.CLICK
                                     )
-                                    IntentUtils.openActivity(
+                                    IntentsHelper.openActivity(
                                         context,
                                         com.d4rk.cleaner.ui.screens.settings.SettingsActivity::class.java
                                     )
@@ -133,7 +133,7 @@ fun NavigationDrawer(
                                     view.playSoundEffect(
                                         SoundEffectConstants.CLICK
                                     )
-                                    IntentUtils.openActivity(
+                                    IntentsHelper.openActivity(
                                         context,
                                         HelpActivity::class.java
                                     )
@@ -143,7 +143,7 @@ fun NavigationDrawer(
                                     view.playSoundEffect(
                                         SoundEffectConstants.CLICK
                                     )
-                                    IntentUtils.openUrl(
+                                    IntentsHelper.openUrl(
                                         context,
                                         url = "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md"
                                     )
@@ -153,7 +153,7 @@ fun NavigationDrawer(
                                     view.playSoundEffect(
                                         SoundEffectConstants.CLICK
                                     )
-                                    IntentUtils.shareApp(context)
+                                    IntentsHelper.shareApp(context)
                                 }
                             }
                             scope.launch { drawerState.close() }
@@ -208,7 +208,7 @@ fun NavigationDrawer(
                                 view.playSoundEffect(
                                     SoundEffectConstants.CLICK
                                 )
-                                IntentUtils.openActivity(
+                                IntentsHelper.openActivity(
                                     context,
                                     SupportActivity::class.java
                                 )

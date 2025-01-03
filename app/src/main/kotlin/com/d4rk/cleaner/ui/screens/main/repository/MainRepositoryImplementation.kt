@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.notifications.managers.AppUpdateNotificationsManager
 import com.d4rk.cleaner.notifications.managers.AppUsageNotificationsManager
@@ -15,7 +16,6 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.tasks.await
-import com.d4rk.cleaner.data.datastore.DataStore.Companion as DataStore1
 
 /**
  * Abstract base class for repository implementations related to main application functionality.
@@ -34,7 +34,7 @@ abstract class MainRepositoryImplementation(val application : Application) {
      * @return `true` if it's the first launch, `false` otherwise.
      */
     suspend fun checkStartup() : Boolean {
-        val dataStore : DataStore = DataStore1.getInstance(application)
+        val dataStore : DataStore = AppCoreManager.dataStore
         val isFirstTime : Boolean = dataStore.startup.first()
         if (isFirstTime) {
             dataStore.saveStartup(isFirstTime = false)

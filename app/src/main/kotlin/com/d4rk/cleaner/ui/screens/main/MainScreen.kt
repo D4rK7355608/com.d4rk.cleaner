@@ -12,6 +12,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.screens.UiMainModel
 import com.d4rk.cleaner.ui.components.navigation.NavigationDrawer
@@ -22,7 +23,7 @@ fun MainScreen(viewModel : MainViewModel) {
     val navController : NavHostController = rememberNavController()
     val context : Context = LocalContext.current
     val view : View = LocalView.current
-    val dataStore : DataStore = DataStore.getInstance(context = context)
+    val dataStore : DataStore = AppCoreManager.dataStore
     val uiState : UiMainModel by viewModel.uiState.collectAsState()
 
     NavigationDrawer(

@@ -34,6 +34,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil.compose.AsyncImage
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.ui.components.ads.AdBanner
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.imageoptimizer.ImageOptimizerState
@@ -49,7 +50,7 @@ fun ImageOptimizerComposable(
     activity: ImageOptimizerActivity , viewModel: ImageOptimizerViewModel
 ) {
     val context: Context = LocalContext.current
-    val dataStore: DataStore = DataStore.getInstance(context = context)
+    val dataStore: DataStore = AppCoreManager.dataStore
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val adsState: State<Boolean> = dataStore.ads.collectAsState(initial = true)
     val tabs: List<String> = listOf(

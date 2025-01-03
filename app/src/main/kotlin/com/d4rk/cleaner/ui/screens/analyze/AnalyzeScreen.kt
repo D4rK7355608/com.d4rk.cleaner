@@ -68,14 +68,14 @@ import coil.request.ImageRequest
 import coil.request.videoFramePercent
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
-import com.d4rk.cleaner.ui.components.NonLazyGrid
-import com.d4rk.cleaner.ui.components.TwoRowButtons
-import com.d4rk.cleaner.ui.components.animations.bounceClick
-import com.d4rk.cleaner.ui.components.animations.hapticPagerSwipe
+import com.d4rk.cleaner.ui.components.layouts.NonLazyGrid
+import com.d4rk.cleaner.ui.components.buttons.TwoRowButtons
+import com.d4rk.cleaner.ui.components.modifiers.bounceClick
+import com.d4rk.cleaner.ui.components.modifiers.hapticPagerSwipe
 import com.d4rk.cleaner.ui.components.dialogs.ConfirmationAlertDialog
 import com.d4rk.cleaner.ui.screens.home.HomeViewModel
 import com.d4rk.cleaner.ui.screens.nofilesfound.NoFilesFoundScreen
-import com.d4rk.cleaner.utils.TimeHelper
+import com.d4rk.cleaner.utils.helpers.TimeHelper
 import com.d4rk.cleaner.utils.cleaning.getFileIcon
 import com.google.common.io.Files.getFileExtension
 import kotlinx.coroutines.CoroutineScope
@@ -106,7 +106,6 @@ fun AnalyzeScreen(
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     val enabled = data.analyzeState.selectedFilesCount > 0
     val isLoading : Boolean by viewModel.isLoading.collectAsState()
-
     val filesTypesTitles = data.analyzeState.fileTypesData.fileTypesTitles
     val apkExtensions = data.analyzeState.fileTypesData.apkExtensions
     val imageExtensions = data.analyzeState.fileTypesData.imageExtensions
@@ -249,7 +248,7 @@ fun AnalyzeScreen(
                             fileSelectionStates = data.analyzeState.fileSelectionMap ,
                             imageLoader = imageLoader ,
                             onFileSelectionChange = viewModel::onFileSelectionChange ,
-                            view = view ,
+                            view = view
                         )
                     }
                 }
@@ -358,6 +357,7 @@ fun FilesByDateSection(
         val sortedDates = filesByDate.keys.sortedByDescending { dateString ->
             SimpleDateFormat("yyyy-MM-dd" , Locale.getDefault()).parse(dateString)
         }
+
         sortedDates.forEach { date ->
             val files = filesByDate[date] ?: emptyList()
             item(key = date) {
@@ -375,7 +375,7 @@ fun FilesByDateSection(
                     imageLoader = imageLoader ,
                     fileSelectionStates = fileSelectionStates ,
                     onFileSelectionChange = onFileSelectionChange ,
-                    view = view
+                    view = view ,
                 )
             }
         }
@@ -431,7 +431,8 @@ fun FilesGrid(
                      imageLoader = imageLoader ,
                      isChecked = fileSelectionStates[file] == true ,
                      onCheckedChange = { isChecked -> onFileSelectionChange(file , isChecked) } ,
-                     view = view)
+                     view = view ,
+                     modifier = Modifier)
         }
     }
 }
@@ -441,6 +442,7 @@ fun FileCard(
     file : File , imageLoader : ImageLoader , onCheckedChange : (Boolean) -> Unit ,
     isChecked : Boolean ,
     view : View ,
+    modifier : Modifier = Modifier ,
 ) {
     val isFolder = file.isDirectory
     val context : Context = LocalContext.current
@@ -452,7 +454,7 @@ fun FileCard(
             remember { context.resources.getStringArray(R.array.video_extensions).toList() }
 
     Card(
-        modifier = Modifier
+        modifier = modifier
                 .fillMaxWidth()
                 .aspectRatio(ratio = 1f)
                 .bounceClick()

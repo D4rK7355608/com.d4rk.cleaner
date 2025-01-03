@@ -30,12 +30,13 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.ui.components.PreferenceItem
-import com.d4rk.cleaner.ui.components.SwitchCardComposable
-import com.d4rk.cleaner.ui.components.animations.bounceClick
+import com.d4rk.cleaner.ui.components.preferences.PreferenceItem
+import com.d4rk.cleaner.ui.components.preferences.SwitchCardComposable
+import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
-import com.d4rk.cleaner.utils.IntentUtils
+import com.d4rk.cleaner.utils.helpers.IntentsHelper
 import com.google.android.ump.ConsentInformation
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
@@ -46,7 +47,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun AdsSettingsComposable(activity: AdsSettingsActivity) {
     val context: Context = LocalContext.current
-    val dataStore: DataStore = DataStore.getInstance(context = context)
+    val dataStore: DataStore = AppCoreManager.dataStore
     val switchState: State<Boolean> = dataStore.ads.collectAsState(initial = ! BuildConfig.DEBUG)
     val scope: CoroutineScope = rememberCoroutineScope()
     TopAppBarScaffoldWithBackButton(
@@ -132,7 +133,7 @@ fun AdsSettingsComposable(activity: AdsSettingsActivity) {
                                     )
                                     .firstOrNull()
                                     ?.let { annotation ->
-                                        IntentUtils.openUrl(context, annotation.item)
+                                        IntentsHelper.openUrl(context , annotation.item)
                                     }
                             })
                     }

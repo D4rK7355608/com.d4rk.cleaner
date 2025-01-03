@@ -35,17 +35,18 @@ import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingResult
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.ui.components.ads.LargeBannerAdsComposable
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.utils.IntentUtils
-import com.d4rk.cleaner.ui.components.animations.bounceClick
+import com.d4rk.cleaner.utils.helpers.IntentsHelper
+import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
 
 @Composable
 fun SupportComposable(viewModel: SupportViewModel , activity: SupportActivity) {
     val context: Context = LocalContext.current
     val view: View = LocalView.current
-    val dataStore: DataStore = DataStore.getInstance(context = context)
+    val dataStore: DataStore = AppCoreManager.dataStore
     val billingClient: BillingClient = rememberBillingClient(context, viewModel)
     TopAppBarScaffoldWithBackButton(
         title = stringResource(id = R.string.support_us),
@@ -206,7 +207,7 @@ fun SupportComposable(viewModel: SupportViewModel , activity: SupportActivity) {
                     FilledTonalButton(
                         onClick = {
                             view.playSoundEffect(SoundEffectConstants.CLICK)
-                            IntentUtils.openUrl(
+                            IntentsHelper.openUrl(
                                 context, url = "https://direct-link.net/548212/agOqI7123501341"
                             )
                         },

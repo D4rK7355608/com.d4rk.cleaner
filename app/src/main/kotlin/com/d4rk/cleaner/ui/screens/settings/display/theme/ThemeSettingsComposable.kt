@@ -26,9 +26,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.ui.components.SwitchCardComposable
-import com.d4rk.cleaner.ui.components.animations.bounceClick
+import com.d4rk.cleaner.ui.components.preferences.SwitchCardComposable
+import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -37,7 +38,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun ThemeSettingsComposable(activity: ThemeSettingsActivity) {
     val context: Context = LocalContext.current
-    val dataStore: DataStore = DataStore.getInstance(context = context)
+    val dataStore: DataStore = AppCoreManager.dataStore
     val scope: CoroutineScope = rememberCoroutineScope()
     val themeMode: String = dataStore.themeMode.collectAsState(initial = "follow_system").value
     val isAmoledMode: State<Boolean> = dataStore.amoledMode.collectAsState(initial = false)

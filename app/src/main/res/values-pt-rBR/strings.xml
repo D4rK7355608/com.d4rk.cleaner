@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_description">O último Limpador Android que você precisará para o uso diário!</string>
+    <string name="app_short_description">O último Limpador Android que você precisará para o uso diário!</string>
     <string name="notification_update_title">Uma nova atualização disponível!</string>
     <string name="summary_notification_update">Uma nova versão do aplicativo está disponível. Clique para atualizar!</string>
     <string name="notification_last_time_used_title">Faz tempo!</string>

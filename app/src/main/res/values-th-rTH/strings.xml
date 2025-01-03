@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_description">แอป Android Cleaner สุดท้ายที่คุณจะต้องใช้ทุกวัน!</string>
+    <string name="app_short_description">แอป Android Cleaner สุดท้ายที่คุณจะต้องใช้ทุกวัน!</string>
     <string name="notification_update_title">มีอัปเดตใหม่!</string>
     <string name="summary_notification_update">มีแอปเวอร์ชันใหม่ คลิกเพื่ออัปเดต!</string>
     <string name="notification_last_time_used_title">นานมาแล้วนะ!</string>

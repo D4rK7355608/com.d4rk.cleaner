@@ -31,11 +31,12 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.ui.components.ads.AdBanner
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.ImageOptimizerActivity
-import com.d4rk.cleaner.utils.PermissionsUtils
-import com.d4rk.cleaner.ui.components.animations.bounceClick
+import com.d4rk.cleaner.utils.helpers.PermissionsHelper
+import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
 
 @Composable
@@ -44,7 +45,7 @@ fun ImagePickerComposable(
 ) {
     val context: Context = LocalContext.current
     val view: View = LocalView.current
-    val dataStore: DataStore = DataStore.getInstance(context = context)
+    val dataStore: DataStore = AppCoreManager.dataStore
     val adsState: State<Boolean> = dataStore.ads.collectAsState(initial = true)
 
     LaunchedEffect(key1 = viewModel.selectedImageUri) {
@@ -57,8 +58,8 @@ fun ImagePickerComposable(
     }
 
     LaunchedEffect(key1 = true) {
-        if (!PermissionsUtils.hasMediaPermissions(context)) {
-            PermissionsUtils.requestMediaPermissions(context as Activity)
+        if (! PermissionsHelper.hasMediaPermissions(context)) {
+            PermissionsHelper.requestMediaPermissions(context as Activity)
         }
     }
 

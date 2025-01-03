@@ -1,11 +1,13 @@
-package com.d4rk.cleaner.utils
+package com.d4rk.cleaner.utils.helpers
 
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
+import com.mikepenz.aboutlibraries.LibsBuilder
 
 /**
  * A utility object for performing common operations such as opening URLs, activities, and app notification settings.
@@ -13,7 +15,7 @@ import com.d4rk.cleaner.R
  * This object provides functions to open a URL in the default browser, open an activity, and open the app's notification settings.
  * All operations are performed in the context of an Android application.
  */
-object IntentUtils {
+object IntentsHelper {
 
     /**
      * Opens a specified URL in the default browser.
@@ -121,5 +123,41 @@ object IntentUtils {
                 emailIntent, context.resources.getText(R.string.send_email_using)
             )
         )
+    }
+
+    fun openLicensesScreen(
+        context : Context ,
+        eulaHtmlString : String? ,
+        changelogHtmlString : String?
+    ) {
+        LibsBuilder().withActivityTitle(
+            activityTitle = context.getString(R.string.oss_license_title)
+        ).withEdgeToEdge(asEdgeToEdge = true).withShowLoadingProgress(showLoadingProgress = true)
+                .withSearchEnabled(searchEnabled = true).withAboutIconShown(aboutShowIcon = true)
+                .withAboutAppName(
+                    aboutAppName = context.getString(R.string.app_name)
+                ).withVersionShown(showVersion = true)
+                .withAboutVersionString(aboutVersionString = "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
+
+                .withLicenseShown(showLicense = true).withAboutVersionShown(aboutShowVersion = true)
+                .withAboutVersionShownName(aboutShowVersion = true)
+                .withAboutVersionShownCode(aboutShowVersion = true)
+
+                .withAboutSpecial1(
+                    aboutAppSpecial1 = context.getString(
+                        R.string.eula_title
+                    )
+                ).withAboutSpecial1Description(
+                    aboutAppSpecial1Description = eulaHtmlString
+                        ?: context.getString(R.string.loading_eula)
+                ).withAboutSpecial2(
+                    aboutAppSpecial2 = context.getString(R.string.changelog)
+                ).withAboutSpecial2Description(
+                    aboutAppSpecial2Description = changelogHtmlString
+                        ?: context.getString(R.string.loading_changelog)
+                )
+
+                .withAboutDescription(context.getString(R.string.app_short_description))
+                .activity(context)
     }
 }

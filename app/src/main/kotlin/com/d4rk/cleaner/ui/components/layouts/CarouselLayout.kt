@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.ui.components
+package com.d4rk.cleaner.ui.components.layouts
 
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.Transition
@@ -33,7 +33,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
-import com.d4rk.cleaner.ui.components.animations.hapticPagerSwipe
+import com.d4rk.cleaner.ui.components.modifiers.hapticPagerSwipe
 import kotlin.math.absoluteValue
 
 @Composable

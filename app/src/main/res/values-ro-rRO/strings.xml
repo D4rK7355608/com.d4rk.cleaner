@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_description">Ultima aplicație de curățare Android de care vei avea nevoie vreodată, pentru utilizare zilnică!</string>
+    <string name="app_short_description">Ultima aplicație de curățare Android de care vei avea nevoie vreodată, pentru utilizare zilnică!</string>
     <string name="notification_update_title">O nouă actualizare este disponibilă!</string>
     <string name="summary_notification_update">O nouă versiune a aplicației este disponibilă. Faceți clic pentru a actualiza!</string>
     <string name="notification_last_time_used_title">A trecut ceva timp!</string>

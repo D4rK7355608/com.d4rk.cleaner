@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.ui.components
+package com.d4rk.cleaner.ui.components.dividers
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

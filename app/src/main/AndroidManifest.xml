@@ -41,7 +41,7 @@
         android:name=".data.core.AppCoreManager"
         android:appCategory="productivity"
         android:banner="@drawable/tv_banner"
-        android:description="@string/app_description"
+        android:description="@string/app_short_description"
         android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -53,7 +53,9 @@
         android:theme="@style/AppTheme"
         tools:targetApi="33">
 
-        <activity android:name=".ui.screens.startup.StartupActivity" />
+        <activity
+            android:name=".ui.screens.startup.StartupActivity"
+            android:noHistory="true" />
 
         <activity
             android:name=".ui.screens.main.MainActivity"
@@ -147,14 +149,6 @@
         <activity
             android:name=".ui.screens.settings.about.AboutSettingsActivity"
             android:parentActivityName=".ui.screens.settings.SettingsActivity" />
-
-        <activity
-            android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
-            android:theme="@style/AppThemeActionBar" />
-
-        <activity
-            android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
-            android:theme="@style/AppThemeActionBar" />
 
         <activity
             android:name=".ui.screens.help.HelpActivity"

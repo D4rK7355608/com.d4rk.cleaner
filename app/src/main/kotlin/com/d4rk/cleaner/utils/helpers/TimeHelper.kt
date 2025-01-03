@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.utils
+package com.d4rk.cleaner.utils.helpers
 
 import java.text.SimpleDateFormat
 import java.util.Calendar

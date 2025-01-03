@@ -1,10 +1,10 @@
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
-    alias(libs.plugins.googlePlayServices)
-    alias(libs.plugins.googleOssServices)
-    alias(libs.plugins.googleFirebase)
-    alias(libs.plugins.compose.compiler)
+    alias(notation= libs.plugins.androidApplication)
+    alias(notation= libs.plugins.jetbrainsKotlinAndroid)
+    alias(notation= libs.plugins.googlePlayServices)
+    alias(notation= libs.plugins.googleFirebase)
+    alias(notation= libs.plugins.compose.compiler)
+    alias(notation= libs.plugins.about.libraries)
 }
 
 android {
@@ -14,8 +14,8 @@ android {
         applicationId = "com.d4rk.cleaner"
         minSdk = 23
         targetSdk = 35
-        versionCode = 143
-        versionName = "3.0.1"
+        versionCode = 145
+        versionName = "3.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations += listOf(
             "en" ,
@@ -131,7 +131,6 @@ dependencies {
     // Google
     implementation(dependencyNotation = libs.play.services.ads)
     implementation(dependencyNotation = libs.billing)
-    implementation(dependencyNotation = libs.play.services.oss.licenses)
     implementation(dependencyNotation = libs.material)
     implementation(dependencyNotation = libs.app.update.ktx)
     implementation(dependencyNotation = libs.review.ktx)
@@ -148,11 +147,7 @@ dependencies {
     implementation(dependencyNotation = libs.coil.compose)
     implementation(dependencyNotation = libs.coil.video)
 
-    // Test
-    testImplementation(dependencyNotation = libs.junit)
-    androidTestImplementation(dependencyNotation = libs.androidx.junit)
-    androidTestImplementation(dependencyNotation = libs.androidx.espresso.core)
-    androidTestImplementation(dependencyNotation = libs.ui.test.junit4)
-    debugImplementation(dependencyNotation = libs.androidx.ui.tooling)
-    debugImplementation(dependencyNotation = libs.androidx.ui.test.manifest)
+    // About
+    implementation(dependencyNotation = libs.aboutlibraries)
+    implementation(dependencyNotation = libs.core)
 }

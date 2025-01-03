@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initializeActivityComponents() {
         MobileAds.initialize(this@MainActivity)
-        dataStore = DataStore.getInstance(context = this@MainActivity)
+        dataStore = AppCoreManager.dataStore
         appUpdateManager = AppUpdateManagerFactory.create(this@MainActivity)
         appUpdateNotificationsManager = AppUpdateNotificationsManager(this)
     }

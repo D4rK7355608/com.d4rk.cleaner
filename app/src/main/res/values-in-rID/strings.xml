@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_description">Pembersih Android terakhir yang Anda perlukan untuk penggunaan sehari-hari!</string>
+    <string name="app_short_description">Pembersih Android terakhir yang Anda perlukan untuk penggunaan sehari-hari!</string>
     <string name="notification_update_title">Pembaruan baru tersedia!</string>
     <string name="summary_notification_update">Versi baru aplikasi tersedia. Klik untuk memperbarui!</string>
     <string name="notification_last_time_used_title">Sudah lama!</string>

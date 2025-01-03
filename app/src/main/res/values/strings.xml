@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_description">The last Android Cleaner you will ever need for every day use!</string>
+    <string name="app_short_description">The last Android Cleaner you will ever need for every day use!</string>
     <string name="notification_update_title">A new update available!</string>
     <string name="summary_notification_update">A new version of the app is available. Click to update!</string>
     <string name="notification_last_time_used_title">It\'s been a while!</string>
@@ -41,6 +41,7 @@
     <string name="io_error">An input/output error occurred. Please check your network connection or storage and try again.</string>
     <string name="illegal_argument_error">Invalid input or argument provided. Please check the information and try again.</string>
     <string name="unknown_error">An unknown error occurred.</string>
+    <string name="initialization_error">Initialization failed. Please try again later.</string>
 
     <string name="app_manager">App Manager</string>
     <string name="installed_apps">Installed apps</string>

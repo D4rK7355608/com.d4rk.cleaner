@@ -8,11 +8,13 @@ import com.d4rk.cleaner.ui.screens.home.repository.HomeRepository
 import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
 import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.io.File
+
 
 /**
  * ViewModel for the home screen.
@@ -45,6 +47,22 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                             freeSpacePercentage = uiHomeModel.storageInfo.freeSpacePercentage
                         )
                     )
+                }
+            }
+        }
+    }
+
+    private fun initializeVisibilityStates() {
+        viewModelScope.launch(coroutineExceptionHandler) {
+            val filesSize = uiState.value.analyzeState.scannedFileList.size
+            _visibilityStates.value = List(filesSize) { false }
+
+            uiState.value.analyzeState.scannedFileList.forEachIndexed { index , _ ->
+                delay(timeMillis = index * 8L)
+                _visibilityStates.update { list ->
+                    list.toMutableList().also {
+                        it[index] = true
+                    }
                 }
             }
         }
@@ -89,6 +107,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
                 }
             }
             hideLoading()
+            initializeVisibilityStates()
         }
     }
 

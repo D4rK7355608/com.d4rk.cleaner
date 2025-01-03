@@ -35,9 +35,9 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ui.screens.main.MainActivity
-import com.d4rk.cleaner.utils.IntentUtils
-import com.d4rk.cleaner.utils.PermissionsUtils
-import com.d4rk.cleaner.ui.components.animations.bounceClick
+import com.d4rk.cleaner.utils.helpers.IntentsHelper
+import com.d4rk.cleaner.utils.helpers.PermissionsHelper
+import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffold
 
 @Composable
@@ -45,8 +45,8 @@ fun StartupComposable(activity: StartupActivity) {
     val context: Context = LocalContext.current
     val fabEnabled: MutableState<Boolean> = remember { mutableStateOf(value = false) }
     LaunchedEffect(context) {
-        if (!PermissionsUtils.hasNotificationPermission(context)) {
-            PermissionsUtils.requestNotificationPermission(context as Activity)
+        if (! PermissionsHelper.hasNotificationPermission(context)) {
+            PermissionsHelper.requestNotificationPermission(context as Activity)
         }
         activity.consentFormShown.collect { shown ->
             fabEnabled.value = shown
@@ -109,7 +109,7 @@ fun StartupComposable(activity: StartupActivity) {
                                 )
                                 .firstOrNull()
                                 ?.let { annotation ->
-                                    IntentUtils.openUrl(context, annotation.item)
+                                    IntentsHelper.openUrl(context , annotation.item)
                                 }
                         })
                 }
@@ -125,7 +125,7 @@ fun StartupComposable(activity: StartupActivity) {
                 },
                 text = { Text(text = stringResource(id = R.string.agree)) },
                 onClick = {
-                    IntentUtils.openActivity(
+                    IntentsHelper.openActivity(
                         context, MainActivity::class.java
                     )
                 },

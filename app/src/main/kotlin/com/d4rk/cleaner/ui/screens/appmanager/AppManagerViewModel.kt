@@ -49,8 +49,10 @@ class AppManagerViewModel(application: Application) : BaseViewModel(application)
     }
 
     override fun onCleared() {
-        getApplication<Application>().unregisterReceiver(packageRemovedReceiver)
-        super.onCleared()
+        viewModelScope.launch(coroutineExceptionHandler) {
+            getApplication<Application>().unregisterReceiver(packageRemovedReceiver)
+            super.onCleared()
+        }
     }
 
     private fun loadAppData() {
@@ -64,7 +66,7 @@ class AppManagerViewModel(application: Application) : BaseViewModel(application)
 
     private suspend fun loadInstalledAppsAndApks() {
         repository.getInstalledApps { installedApps ->
-            viewModelScope.launch {
+            viewModelScope.launch(coroutineExceptionHandler) {
                 val apkFilesDeferred: Deferred<List<ApkInfo>> = async {
                     var apkFiles: List<ApkInfo> = emptyList()
                     repository.getApkFilesFromStorage { files ->

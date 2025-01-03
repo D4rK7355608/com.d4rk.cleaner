@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_description">हर रोज़ इस्तेमाल के लिए यह आखिरी Android क्लीनर है जिसकी आपको कभी आवश्यकता होगी!</string>
+    <string name="app_short_description">हर रोज़ इस्तेमाल के लिए यह आखिरी Android क्लीनर है जिसकी आपको कभी आवश्यकता होगी!</string>
     <string name="notification_update_title">नया अपडेट उपलब्ध है!</string>
     <string name="summary_notification_update">ऐप का एक नया संस्करण उपलब्ध है। अपडेट करने के लिए क्लिक करें!</string>
     <string name="notification_last_time_used_title">कुछ समय हो गया है!</string>

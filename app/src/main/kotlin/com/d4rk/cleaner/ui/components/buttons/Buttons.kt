@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.ui.components
+package com.d4rk.cleaner.ui.components.buttons
 
 import android.view.SoundEffectConstants
 import android.view.View
@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.d4rk.cleaner.ui.components.animations.bounceClick
+import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 
 @Composable
 fun TwoRowButtons(

@@ -30,11 +30,12 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.ui.components.SwitchCardComposable
-import com.d4rk.cleaner.ui.components.animations.bounceClick
+import com.d4rk.cleaner.ui.components.preferences.SwitchCardComposable
+import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
-import com.d4rk.cleaner.utils.IntentUtils
+import com.d4rk.cleaner.utils.helpers.IntentsHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -42,7 +43,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
     val context: Context = LocalContext.current
-    val dataStore: DataStore = DataStore.getInstance(context = context)
+    val dataStore: DataStore = AppCoreManager.dataStore
     val switchState: State<Boolean> = dataStore.usageAndDiagnostics.collectAsState(initial = ! BuildConfig.DEBUG)
     val scope: CoroutineScope = rememberCoroutineScope()
     TopAppBarScaffoldWithBackButton(
@@ -103,7 +104,7 @@ fun UsageAndDiagnosticsComposable(activity: UsageAndDiagnosticsActivity) {
                                     )
                                     .firstOrNull()
                                     ?.let { annotation ->
-                                        IntentUtils.openUrl(context, annotation.item)
+                                        IntentsHelper.openUrl(context , annotation.item)
                                     }
                             })
                     }

@@ -23,14 +23,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.core.os.LocaleListCompat
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.ui.components.PreferenceCategoryItem
+import com.d4rk.cleaner.ui.components.preferences.PreferenceCategoryItem
 import com.d4rk.cleaner.ui.components.dialogs.SelectStartupScreenAlertDialog
 import com.d4rk.cleaner.ui.components.dialogs.SelectLanguageAlertDialog
-import com.d4rk.cleaner.utils.IntentUtils
-import com.d4rk.cleaner.ui.components.PreferenceItem
-import com.d4rk.cleaner.ui.components.SwitchPreferenceItem
-import com.d4rk.cleaner.ui.components.SwitchPreferenceItemWithDivider
+import com.d4rk.cleaner.utils.helpers.IntentsHelper
+import com.d4rk.cleaner.ui.components.preferences.PreferenceItem
+import com.d4rk.cleaner.ui.components.preferences.SwitchPreferenceItem
+import com.d4rk.cleaner.ui.components.preferences.SwitchPreferenceItemWithDivider
 import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
 import com.d4rk.cleaner.ui.screens.settings.display.theme.ThemeSettingsActivity
 import kotlinx.coroutines.CoroutineScope
@@ -40,7 +41,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
     val context: Context = LocalContext.current
-    val dataStore: DataStore = DataStore.getInstance(context = context)
+    val dataStore: DataStore = AppCoreManager.dataStore
     var showLanguageDialog: Boolean by remember { mutableStateOf(value = false) }
     var showStartupDialog: Boolean by remember { mutableStateOf(value = false) }
     val themeMode: String = dataStore.themeMode.collectAsState(initial = "follow_system").value
@@ -89,7 +90,7 @@ fun DisplaySettingsComposable(activity: DisplaySettingsActivity) {
                         }
                     },
                     onClick = {
-                        IntentUtils.openActivity(
+                        IntentsHelper.openActivity(
                             context, ThemeSettingsActivity::class.java
                         )
                     })

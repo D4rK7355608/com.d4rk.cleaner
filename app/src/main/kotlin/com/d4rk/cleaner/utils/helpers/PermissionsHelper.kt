@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.utils
+package com.d4rk.cleaner.utils.helpers
 
 import android.Manifest
 import android.app.Activity
@@ -18,7 +18,7 @@ import com.d4rk.cleaner.constants.permissions.PermissionsConstants
 /**
  * Utility class for handling runtime permissions.
  */
-object PermissionsUtils {
+object PermissionsHelper {
 
     /**
      * Checks if the app has all necessary storage permissions.
@@ -122,7 +122,7 @@ object PermissionsUtils {
 
     fun requestUsageAccess(activity: Activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (!isAccessGranted(activity)) {
+            if (! isAccessGranted(activity)) {
                 val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
                 activity.startActivity(intent)
             }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_description">Последний Android Cleaner, который вам когда-либо понадобится для ежедневного использования!</string>
+    <string name="app_short_description">Последний Android Cleaner, который вам когда-либо понадобится для ежедневного использования!</string>
     <string name="notification_update_title">Доступно новое обновление!</string>
     <string name="summary_notification_update">Доступна новая версия приложения. Нажмите, чтобы обновить!</string>
     <string name="notification_last_time_used_title">Давно не виделись!</string>

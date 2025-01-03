@@ -11,7 +11,7 @@ import com.d4rk.cleaner.notifications.managers.AppUpdateNotificationsManager
 import com.d4rk.cleaner.ui.screens.main.repository.MainRepository
 import com.d4rk.cleaner.ui.screens.startup.StartupActivity
 import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
-import com.d4rk.cleaner.utils.IntentUtils
+import com.d4rk.cleaner.utils.helpers.IntentsHelper
 import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import com.google.android.play.core.appupdate.AppUpdateManager
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -57,7 +57,7 @@ class MainViewModel(application : Application) : BaseViewModel(application) {
         viewModelScope.launch(coroutineExceptionHandler) {
             repository.checkAndHandleStartup { isFirstTime ->
                 if (isFirstTime) {
-                    IntentUtils.openActivity(getApplication() , StartupActivity::class.java)
+                    IntentsHelper.openActivity(getApplication() , StartupActivity::class.java)
                 }
             }
         }

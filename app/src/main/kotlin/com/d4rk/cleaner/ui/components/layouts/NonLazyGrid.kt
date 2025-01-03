@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.ui.components
+package com.d4rk.cleaner.ui.components.layouts
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column

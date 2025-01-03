@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_description">毎日の使用に最適な、これ以上のものはないAndroidクリーナー！</string>
+    <string name="app_short_description">毎日の使用に最適な、これ以上のものはないAndroidクリーナー！</string>
     <string name="notification_update_title">新しいアップデートが利用可能です！</string>
     <string name="summary_notification_update">アプリの新しいバージョンが利用可能です。アップデートするにはクリックしてください！</string>
     <string name="notification_last_time_used_title">しばらく経ちましたね！</string>

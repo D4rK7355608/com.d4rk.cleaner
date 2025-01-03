@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.ui.components
+package com.d4rk.cleaner.ui.components.progressbars
 
 import android.view.SoundEffectConstants
 import android.view.View
@@ -29,7 +29,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
-import com.d4rk.cleaner.ui.components.animations.bounceClick
+import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 
 /**
  * Composable function representing a circular determinate progress indicator with storage information.

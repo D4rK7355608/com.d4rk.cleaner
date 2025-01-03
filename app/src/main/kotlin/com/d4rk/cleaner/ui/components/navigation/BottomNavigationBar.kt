@@ -22,7 +22,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.navigation.BottomNavigationScreen
 import com.d4rk.cleaner.ui.components.ads.AdBannerFull
-import com.d4rk.cleaner.ui.components.animations.bounceClick
+import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 
 @Composable
 fun BottomNavigationBar(

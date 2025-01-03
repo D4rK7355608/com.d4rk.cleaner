@@ -11,16 +11,6 @@
     <style name="AppTheme" parent="Theme.Material3.DynamicColors.DayNight">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppThemeActionBar" parent="Theme.Material3.DynamicColors.DayNight">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">?attr/colorSurface</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="actionBarStyle">@style/ActionBarTheme</item>
-    </style>
-
-    <style name="ActionBarTheme" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="background">@android:color/transparent</item>
     </style>
 </resources>

@@ -9,10 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.components.PreferenceCategoryItem
-import com.d4rk.cleaner.ui.components.PreferenceItem
+import com.d4rk.cleaner.ui.components.preferences.PreferenceCategoryItem
+import com.d4rk.cleaner.ui.components.preferences.PreferenceItem
 import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
-import com.d4rk.cleaner.utils.IntentUtils
+import com.d4rk.cleaner.utils.helpers.IntentsHelper
 
 @Composable
 fun AdvancedSettingsComposable(activity: AdvancedSettingsActivity) {
@@ -33,7 +33,7 @@ fun AdvancedSettingsComposable(activity: AdvancedSettingsActivity) {
                     title = stringResource(id = R.string.bug_report),
                     summary = stringResource(id = R.string.summary_preference_settings_bug_report),
                     onClick = {
-                        IntentUtils.openUrl(
+                        IntentsHelper.openUrl(
                             context,
                             url = "https://github.com/D4rK7355608/${context.packageName}/issues/new"
                         )

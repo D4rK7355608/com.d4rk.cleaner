@@ -27,4 +27,12 @@
     <string name="copyright" translatable="false">Copyright ©2020-2024, D4rK</string>
     <string name="arch" translatable="false">Arch:</string>
     <string name="summary_preference_settings_license" translatable="false">General Public License-3.0</string>
+
+    <string name="oss_license_title">Open source licenses</string>
+    <string name="eula_title" translatable="false">EULA</string>
+    <string name="changelog">CHANGELOG</string>
+    <string name="loading_eula">Loading EULA</string>
+    <string name="error_loading_eula">Error loading EULA</string>
+    <string name="loading_changelog">Loading changelog</string>
+    <string name="error_loading_changelog">Error loading changelog</string>
 </resources>

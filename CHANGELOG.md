@@ -1,27 +1,42 @@
+# Version 3.1.0:
+
+- **New**:Added a refreshed About Libraries screen with an improved design and information.
+- **New**: Added Thai and Brazilian Portuguese language support.
+- **New**: The app list now dynamically updates when uninstalling apps, eliminating the need for a
+  full list reload, resulting in a smoother user experience.
+- **Minor**: Updated project dependencies to improve user experience and streamline the development
+  process.
+- **Minor**: Floating action buttons (FABs) have subtle entry animations for a smoother visual flow.
+- **Minor**: Removed unused project dependencies to reduce build size and potential conflicts.
+- **Minor**: Implemented various under-the-hood optimizations to enhance performance and stability.
+- **Minor**: Removed unused project dependencies to reduce build size and potential conflicts.
+- **Minor**: Removed unused resources to further optimize the application.
+- **Patch**: Corrected the privacy settings title from "Settings" to its proper name.
+- **Patch**: Resolved an issue with the Traditional Chinese language toggle.
+- **Patch**: Fixed a bug where users could repeatedly reload the same screen in the bottom
+  navigation bar.
+- **Patch**:Fixed an issue where the app icon appeared incorrectly shaped on older devices.
+- **Patch**: Prevented users from navigating back to the onboarding screen after accepting the terms
+  and conditions on a fresh install.
+
 # Version 3.0.0:
 
 - **New**: Completely redesigned the Home and Analyze screens for a more intuitive and visually
   appealing user interface.
 - **New**: Implemented date-based filtering in the Analyze screen, allowing for easier file
   selection and management.
-- **Patch**: Resolved an issue where APK installation from the App Manager was not functioning
-  correctly.
-- **Patch**: Improved the "Select All" button behavior in the App Manager to ensure accurate state
-  representation.
 - **New**: Introduced loading indicators in the App Manager for a smoother and more informative
   experience.
 - **New**: Added messages to indicate when no apps or APKs are found.
-- **Patch**: Optimized app loading speed in the App Manager through code refactoring and efficiency
-  improvements.
 - **New**: Enabled real-time RAM usage monitoring in the Memory Manager.
-- **New**: A new Trash screen has been added to provide more granular control over your device's storage.
+- **New**: A new Trash screen has been added to provide more granular control over your device's
+  storage.
 - **New**: Added a loading animation to the Memory Manager for visual feedback during data
   retrieval.
 - **New**: Introduced a new setting to customize the app's startup page, providing users with
   greater control over their initial experience.
 - **New**: Added an option to disable the bounce click effect for users who prefer a more
   traditional interaction style.
-- **Patch**: Resolved an issue where language selection was not consistently applied.
 - **New**: Added a snackbar notification for older Android versions when users copy device
   information from the About section.
 - **New**: Integrated haptic feedback for swipe gestures, enhancing the tactile response and user
@@ -29,11 +44,18 @@
 - **New**: Implemented sound effects on tap interactions for a more engaging experience.
 - **New**: Redesigned the Settings page, aligning it with the modern aesthetics of the Android 15
   design system.
-- **Minor**: Backported the app to support devices running Android 6.0 and above.
-- **Patch**: Fixed visual glitches within the App Manager.
 - **Major**: Restructured the app's code flow for improved organization and future extensibility.
 - **Major**: Implemented a robust error handling mechanism to gracefully manage unexpected
   situations and provide helpful feedback to users.
+- **Minor**: Backported the app to support devices running Android 6.0 and above.
+- **Patch**: Fixed visual glitches within the App Manager.
+- **Patch**: Optimized app loading speed in the App Manager through code refactoring and efficiency
+  improvements.
+- **Patch**: Resolved an issue where APK installation from the App Manager was not functioning
+  correctly.
+- **Patch**: Improved the "Select All" button behavior in the App Manager to ensure accurate state
+  representation.
+- **Patch**: Resolved an issue where language selection was not consistently applied.
 
 # Version 2.0.0:
 

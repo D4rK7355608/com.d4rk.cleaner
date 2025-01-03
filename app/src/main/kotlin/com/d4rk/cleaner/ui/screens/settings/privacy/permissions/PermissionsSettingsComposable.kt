@@ -7,8 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.components.PreferenceCategoryItem
-import com.d4rk.cleaner.ui.components.PreferenceItem
+import com.d4rk.cleaner.ui.components.preferences.PreferenceCategoryItem
+import com.d4rk.cleaner.ui.components.preferences.PreferenceItem
 import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
 
 @Composable

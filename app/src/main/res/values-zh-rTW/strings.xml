@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_description">你每天都需要用到的最後一個 Android 清潔工具！</string>
+    <string name="app_short_description">你每天都需要用到的最後一個 Android 清潔工具！</string>
     <string name="notification_update_title">有新更新可用！</string>
     <string name="summary_notification_update">應用程式的新版本已推出。點擊更新！</string>
     <string name="notification_last_time_used_title">好久不見了！</string>

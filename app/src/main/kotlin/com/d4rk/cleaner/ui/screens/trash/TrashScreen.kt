@@ -27,7 +27,7 @@ import coil.disk.DiskCache
 import coil.memory.MemoryCache
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.screens.UiTrashModel
-import com.d4rk.cleaner.ui.components.TwoRowButtons
+import com.d4rk.cleaner.ui.components.buttons.TwoRowButtons
 import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
 import com.d4rk.cleaner.ui.screens.analyze.FilesByDateSection
 import java.io.File

@@ -59,12 +59,12 @@ import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.memorymanager.RamInfo
 import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
 import com.d4rk.cleaner.data.model.ui.screens.UiMemoryManagerModel
-import com.d4rk.cleaner.ui.components.CarouselLayout
-import com.d4rk.cleaner.ui.components.StorageProgressBar
-import com.d4rk.cleaner.ui.components.animations.bounceClick
+import com.d4rk.cleaner.ui.components.layouts.CarouselLayout
+import com.d4rk.cleaner.ui.components.progressbars.StorageProgressBar
+import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.ui.components.dialogs.ErrorAlertDialog
-import com.d4rk.cleaner.ui.screens.loading.LoadingScreen
-import com.d4rk.cleaner.utils.PermissionsUtils
+import com.d4rk.cleaner.ui.components.layouts.LoadingScreen
+import com.d4rk.cleaner.utils.helpers.PermissionsHelper
 import com.d4rk.cleaner.utils.cleaning.StorageUtils.formatSize
 
 @Composable
@@ -94,11 +94,11 @@ fun MemoryManagerComposable() {
     }
 
     LaunchedEffect(Unit) {
-        if (!PermissionsUtils.hasStoragePermissions(context)) {
-            PermissionsUtils.requestStoragePermissions(context as Activity)
+        if (! PermissionsHelper.hasStoragePermissions(context)) {
+            PermissionsHelper.requestStoragePermissions(context as Activity)
         }
-        if (!PermissionsUtils.hasUsageAccessPermissions(context)) {
-            PermissionsUtils.requestUsageAccess(context as Activity)
+        if (! PermissionsHelper.hasUsageAccessPermissions(context)) {
+            PermissionsHelper.requestUsageAccess(context as Activity)
         }
     }
 

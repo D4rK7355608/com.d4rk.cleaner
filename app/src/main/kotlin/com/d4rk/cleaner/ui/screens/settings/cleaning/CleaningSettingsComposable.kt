@@ -11,9 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.ui.components.PreferenceCategoryItem
-import com.d4rk.cleaner.ui.components.SwitchPreferenceItem
+import com.d4rk.cleaner.ui.components.preferences.PreferenceCategoryItem
+import com.d4rk.cleaner.ui.components.preferences.SwitchPreferenceItem
 import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,8 +22,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun CleaningSettingsComposable(activity: CleaningSettingsActivity) {
-    val context: Context = LocalContext.current
-    val dataStore: DataStore = DataStore.getInstance(context = context)
+    val dataStore: DataStore = AppCoreManager.dataStore
     val genericFilter: Boolean by dataStore.genericFilter.collectAsState(initial = true)
     val deleteEmptyFolders: Boolean by dataStore.deleteEmptyFolders.collectAsState(initial = true)
     val deleteArchives: Boolean by dataStore.deleteArchives.collectAsState(initial = false)

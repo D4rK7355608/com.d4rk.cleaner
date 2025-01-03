@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.ui.components
+package com.d4rk.cleaner.ui.components.preferences
 
 import android.view.SoundEffectConstants
 import android.view.View

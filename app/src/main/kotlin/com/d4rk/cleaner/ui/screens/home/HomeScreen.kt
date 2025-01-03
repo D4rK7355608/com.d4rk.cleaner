@@ -37,11 +37,11 @@ import coil.memory.MemoryCache
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
-import com.d4rk.cleaner.ui.components.CircularDeterminateIndicator
-import com.d4rk.cleaner.ui.components.VerticalDivider
+import com.d4rk.cleaner.ui.components.progressbars.CircularDeterminateIndicator
+import com.d4rk.cleaner.ui.components.dividers.VerticalDivider
 import com.d4rk.cleaner.ui.components.dialogs.ErrorAlertDialog
 import com.d4rk.cleaner.ui.screens.analyze.AnalyzeScreen
-import com.d4rk.cleaner.utils.PermissionsUtils
+import com.d4rk.cleaner.utils.helpers.PermissionsHelper
 
 @Composable
 fun HomeScreen() {
@@ -60,8 +60,8 @@ fun HomeScreen() {
     }
 
     LaunchedEffect(Unit) {
-        if (! PermissionsUtils.hasStoragePermissions(context)) {
-            PermissionsUtils.requestStoragePermissions(context as Activity)
+        if (! PermissionsHelper.hasStoragePermissions(context)) {
+            PermissionsHelper.requestStoragePermissions(context as Activity)
         }
     }
 

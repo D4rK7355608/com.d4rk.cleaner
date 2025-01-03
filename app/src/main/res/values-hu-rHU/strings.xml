@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_description">Az utolsó Android Cleaner, amire valaha szükséged lesz a mindennapi használathoz!</string>
+    <string name="app_short_description">Az utolsó Android Cleaner, amire valaha szükséged lesz a mindennapi használathoz!</string>
     <string name="notification_update_title">Új frissítés érhető el!</string>
     <string name="summary_notification_update">Az alkalmazás új verziója elérhető. Kattints a frissítéshez!</string>
     <string name="notification_last_time_used_title">Eltelt egy kis idő!</string>
