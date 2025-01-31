@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.ui.components.ads.AdBanner

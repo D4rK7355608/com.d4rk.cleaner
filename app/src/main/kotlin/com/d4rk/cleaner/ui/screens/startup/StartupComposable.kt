@@ -32,7 +32,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.ui.screens.main.MainActivity
 import com.d4rk.cleaner.utils.helpers.IntentsHelper

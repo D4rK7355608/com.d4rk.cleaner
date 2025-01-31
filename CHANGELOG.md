@@ -1,3 +1,12 @@
+# Version 3.2.0:
+
+- Many under the hood improvements.
+- Updated all libraries.
+- Added better tablet support
+- Small redesign to help page
+- Improved icon for older devices
+- 
+
 # Version 3.1.0:
 
 - **New**:Added a refreshed About Libraries screen with an improved design and information.

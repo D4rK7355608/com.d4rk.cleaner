@@ -17,7 +17,8 @@ android {
         versionCode = 148
         versionName = "3.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        resourceConfigurations += listOf(
+        @Suppress("UnstableApiUsage")
+        androidResources.localeFilters += listOf(
             "en" ,
             "bg-rBG" ,
             "de-rDE" ,
@@ -93,48 +94,12 @@ android {
 
 dependencies {
 
-    //AndroidX
-    implementation(dependencyNotation = libs.androidx.core.ktx)
-    implementation(dependencyNotation = libs.androidx.appcompat)
-    implementation(dependencyNotation = libs.androidx.core.splashscreen)
-    implementation(dependencyNotation = libs.androidx.multidex)
-    implementation(dependencyNotation = libs.androidx.work.runtime.ktx)
+    // App Core
+    implementation(dependencyNotation = "com.github.D4rK7355608:AppToolkit:0.0.49") {
+        isTransitive = true
+    }
 
-    // Compose
-    implementation(dependencyNotation = platform(libs.androidx.compose.bom))
-    implementation(dependencyNotation = libs.androidx.ui)
-    implementation(dependencyNotation = libs.androidx.activity.compose)
     implementation(dependencyNotation = libs.androidx.constraintlayout.compose)
-    implementation(dependencyNotation = libs.androidx.ui.graphics)
-    implementation(dependencyNotation = libs.androidx.compose.runtime)
-    implementation(dependencyNotation = libs.androidx.runtime.livedata)
-    implementation(dependencyNotation = libs.androidx.runtime.rxjava2)
-    implementation(dependencyNotation = libs.androidx.ui.tooling.preview)
-    implementation(dependencyNotation = libs.androidx.material3)
-    implementation(dependencyNotation = libs.androidx.material.icons.extended)
-    implementation(dependencyNotation = libs.datastore.preferences)
-    implementation(dependencyNotation = libs.androidx.datastore.preferences)
-    implementation(dependencyNotation = libs.androidx.foundation)
-    implementation(dependencyNotation = libs.androidx.navigation.compose)
-
-    // Lifecycle
-    implementation(dependencyNotation = libs.kotlinx.coroutines.android)
-    implementation(dependencyNotation = libs.kotlinx.serialization.json)
-    implementation(dependencyNotation = libs.androidx.lifecycle.runtime.ktx)
-    implementation(dependencyNotation = libs.androidx.lifecycle.common.java8)
-    implementation(dependencyNotation = libs.androidx.lifecycle.livedata.ktx)
-    implementation(dependencyNotation = libs.androidx.lifecycle.process)
-    implementation(dependencyNotation = libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(dependencyNotation = libs.androidx.lifecycle.viewmodel.compose)
-    implementation(dependencyNotation = libs.androidx.lifecycle.runtime.compose)
-
-    // Google
-    implementation(dependencyNotation = libs.play.services.ads)
-    implementation(dependencyNotation = libs.billing)
-    implementation(dependencyNotation = libs.material)
-    implementation(dependencyNotation = libs.app.update.ktx)
-    implementation(dependencyNotation = libs.review.ktx)
-    implementation(dependencyNotation = libs.volley)
 
     // Firebase
     implementation(dependencyNotation = platform(libs.firebase.bom))
@@ -142,12 +107,11 @@ dependencies {
     implementation(dependencyNotation = libs.firebase.crashlytics.ktx)
     implementation(dependencyNotation = libs.firebase.perf)
 
+    // Google
+    implementation(dependencyNotation = libs.billing)
+    implementation(dependencyNotation = libs.review.ktx)
+
     // Image Compression
     implementation(dependencyNotation = libs.compressor)
-    implementation(dependencyNotation = libs.coil.compose)
-    implementation(dependencyNotation = libs.coil.video)
-
-    // About
-    implementation(dependencyNotation = libs.aboutlibraries)
-    implementation(dependencyNotation = libs.core)
+    implementation(dependencyNotation = libs.coil3.coil.video)
 }

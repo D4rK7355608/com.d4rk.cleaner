@@ -61,11 +61,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
-import coil.ImageLoader
-import coil.compose.AsyncImage
-import coil.decode.VideoFrameDecoder
-import coil.request.ImageRequest
-import coil.request.videoFramePercent
+import coil3.ImageLoader
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
+import coil3.video.VideoFrameDecoder
+import coil3.video.videoFramePercent
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.ui.components.layouts.NonLazyGrid
@@ -483,15 +484,16 @@ fun FileCard(
             else {
                 when (fileExtension) {
                     in imageExtensions -> {
+
                         AsyncImage(
                             model = remember(file) {
                                 ImageRequest.Builder(context).data(file).size(64)
                                         .crossfade(enable = true).build()
                             } ,
+                            contentScale = ContentScale.FillWidth ,
+                            contentDescription =file.name ,
+                            modifier = Modifier.fillMaxWidth() ,
                             imageLoader = imageLoader ,
-                            contentDescription = file.name ,
-                            contentScale = ContentScale.Crop ,
-                            modifier = Modifier.fillMaxSize() ,
                         )
                     }
 

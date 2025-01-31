@@ -59,7 +59,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
 import com.d4rk.cleaner.data.model.ui.error.UiErrorModel

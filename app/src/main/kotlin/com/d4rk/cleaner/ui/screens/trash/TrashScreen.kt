@@ -22,9 +22,10 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.lifecycle.viewmodel.compose.viewModel
-import coil.ImageLoader
-import coil.disk.DiskCache
-import coil.memory.MemoryCache
+import coil3.ImageLoader
+import coil3.disk.DiskCache
+import coil3.disk.directory
+import coil3.memory.MemoryCache
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.screens.UiTrashModel
 import com.d4rk.cleaner.ui.components.buttons.TwoRowButtons
@@ -45,7 +46,7 @@ fun TrashScreen(activity: TrashActivity) {
     val enabled = uiState.selectedFileCount > 0
     val imageLoader: ImageLoader = remember {
         ImageLoader.Builder(context).memoryCache {
-            MemoryCache.Builder(context).maxSizePercent(percent = 0.24).build()
+            MemoryCache.Builder().maxSizePercent(context = context, percent = 0.24).build()
         }.diskCache {
             DiskCache.Builder().directory(context.cacheDir.resolve(relative = "image_cache"))
                 .maxSizePercent(percent = 0.02).build()

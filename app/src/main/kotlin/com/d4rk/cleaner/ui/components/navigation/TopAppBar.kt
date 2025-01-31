@@ -32,8 +32,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
+import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.components.dialogs.VersionInfoAlertDialog
 import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.ui.screens.help.HelpActivity
 import com.d4rk.cleaner.ui.screens.support.SupportActivity
@@ -170,7 +170,11 @@ fun TopAppBarScaffoldWithBackButtonAndActions(
                                  })
             }
             if (showDialog.value) {
-                VersionInfoAlertDialog(onDismiss = { showDialog.value = false })
+                com.d4rk.android.libs.apptoolkit.ui.components.dialogs.VersionInfoAlertDialog(onDismiss = { showDialog.value = false } ,
+                                                                                              copyrightString = R.string.copyright ,
+                                                                                              appName = R.string.app_name ,
+                                                                                              versionName = BuildConfig.VERSION_NAME ,
+                                                                                              versionString = com.d4rk.android.libs.apptoolkit.R.string.version)
             }
         } ,
         scrollBehavior = scrollBehavior ,
