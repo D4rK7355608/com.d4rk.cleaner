@@ -27,9 +27,9 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
-import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 
 /**
  * Composable function representing a circular determinate progress indicator with storage information.

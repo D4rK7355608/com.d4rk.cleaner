@@ -11,15 +11,15 @@ import androidx.compose.ui.Modifier
 import com.d4rk.cleaner.ui.screens.settings.display.theme.style.AppTheme
 
 class PermissionsSettingsActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    PermissionsSettingsComposable(activity = this@PermissionsSettingsActivity)
+                    PermissionsSettingsScreen(activity = this@PermissionsSettingsActivity)
                 }
             }
         }

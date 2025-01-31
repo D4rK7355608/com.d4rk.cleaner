@@ -19,62 +19,51 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.d4rk.cleaner.ui.components.modifiers.bounceClick
+import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
+import com.d4rk.android.libs.apptoolkit.ui.components.spacers.ButtonIconSpacer
 
 @Composable
 fun TwoRowButtons(
-    modifier: Modifier,
-    enabled: Boolean,
-    onStartButtonClick: () -> Unit,
-    onStartButtonIcon: ImageVector,
-    onStartButtonText: Int,
-    onEndButtonClick: () -> Unit,
-    onEndButtonIcon: ImageVector,
-    onEndButtonText: Int,
-    view: View
+    modifier : Modifier , enabled : Boolean , onStartButtonClick : () -> Unit , onStartButtonIcon : ImageVector , onStartButtonText : Int , onEndButtonClick : () -> Unit , onEndButtonIcon : ImageVector , onEndButtonText : Int , view : View
 ) {
 
     Row(
-        modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround
+        modifier = modifier.fillMaxWidth() , horizontalArrangement = Arrangement.SpaceAround
     ) {
         OutlinedButton(
-            enabled = enabled,
+            enabled = enabled ,
             onClick = {
                 view.playSoundEffect(SoundEffectConstants.CLICK)
                 onStartButtonClick()
-            },
+            } ,
             modifier = Modifier
-                .weight(1f)
-                .bounceClick(),
+                    .weight(weight = 1f)
+                    .bounceClick() ,
         ) {
             Icon(
-                imageVector = onStartButtonIcon,
-                contentDescription = "Move to trash",
-                modifier = Modifier.size(ButtonDefaults.IconSize)
+                imageVector = onStartButtonIcon , contentDescription = "Move to trash" , modifier = Modifier.size(size = ButtonDefaults.IconSize)
             )
-            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-            Text(text = stringResource(id = onStartButtonText), modifier = Modifier.basicMarquee())
+            ButtonIconSpacer()
+            Text(text = stringResource(id = onStartButtonText) , modifier = Modifier.basicMarquee())
         }
 
-        Spacer(Modifier.width(8.dp))
+        Spacer(Modifier.width(width = 8.dp))
 
         Button(
-            enabled = enabled,
+            enabled = enabled ,
             onClick = {
                 view.playSoundEffect(SoundEffectConstants.CLICK)
                 onEndButtonClick()
-            },
+            } ,
             modifier = Modifier
-                .weight(1f)
-                .bounceClick(),
+                    .weight(1f)
+                    .bounceClick() ,
         ) {
             Icon(
-                imageVector = onEndButtonIcon,
-                contentDescription = "Delete forever",
-                modifier = Modifier.size(ButtonDefaults.IconSize)
+                imageVector = onEndButtonIcon , contentDescription = "Delete forever" , modifier = Modifier.size(size = ButtonDefaults.IconSize)
             )
-            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-            Text(text = stringResource(id = onEndButtonText), modifier = Modifier.basicMarquee())
+            ButtonIconSpacer()
+            Text(text = stringResource(id = onEndButtonText) , modifier = Modifier.basicMarquee())
         }
     }
 }

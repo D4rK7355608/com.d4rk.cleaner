@@ -1,11 +1,11 @@
 package com.d4rk.cleaner.ui.screens.help
 
+import android.app.Activity
 import android.app.Application
 import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.data.model.ui.screens.UiHelpScreen
 import com.d4rk.cleaner.ui.screens.help.repository.HelpRepository
 import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
-import com.d4rk.cleaner.utils.helpers.IntentsHelper
 import com.google.android.play.core.review.ReviewInfo
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -40,17 +40,15 @@ class HelpViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
-    private fun requestReviewFlow() {
+    fun requestReviewFlow() {
         viewModelScope.launch(context = coroutineExceptionHandler) {
             repository.requestReviewFlowRepository(onSuccess = { reviewInfo ->
                 _uiState.value = _uiState.value.copy(reviewInfo = reviewInfo)
-            } , onFailure = {
-                IntentsHelper.sendEmailToDeveloper(context = getApplication())
-            })
+            } , onFailure = {})
         }
     }
 
-    fun launchReviewFlow(activity : HelpActivity , reviewInfo : ReviewInfo) {
+    fun launchReviewFlow(activity : Activity , reviewInfo : ReviewInfo) {
         viewModelScope.launch(context = coroutineExceptionHandler) {
             repository.launchReviewFlowRepository(activity = activity , reviewInfo = reviewInfo)
         }

@@ -5,6 +5,9 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -13,10 +16,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.d4rk.cleaner.R
+import com.d4rk.android.libs.apptoolkit.notifications.managers.AppUpdateNotificationsManager
 import com.d4rk.cleaner.data.core.AppCoreManager
-import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.notifications.managers.AppUpdateNotificationsManager
 import com.d4rk.cleaner.ui.screens.settings.display.theme.style.AppTheme
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -26,10 +27,10 @@ import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.ActivityResult
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var dataStore : DataStore
     private val viewModel : MainViewModel by viewModels()
     private lateinit var appUpdateManager : AppUpdateManager
     private lateinit var appUpdateNotificationsManager : AppUpdateNotificationsManager
+    private lateinit var updateResultLauncher : ActivityResultLauncher<IntentSenderRequest>
 
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,13 +55,15 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onResume() {
         super.onResume()
-        with(viewModel) {
+        with(receiver = viewModel) {
             checkAndHandleStartup()
             configureSettings()
             loadTrashSize()
-            checkForUpdates(activity = this@MainActivity , appUpdateManager = appUpdateManager)
-            checkAndScheduleUpdateNotifications(appUpdateNotificationsManager)
-            checkAppUsageNotifications()
+            viewModel.checkForUpdates(
+                appUpdateManager = appUpdateManager , updateResultLauncher = updateResultLauncher
+            )
+            checkAndScheduleUpdateNotifications(appUpdateNotificationsManager = appUpdateNotificationsManager)
+            checkAppUsageNotifications(context = this@MainActivity)
         }
     }
 
@@ -77,11 +80,10 @@ class MainActivity : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     @Suppress("DEPRECATION")
     override fun onBackPressed() {
-        MaterialAlertDialogBuilder(this).setTitle(R.string.close).setMessage(R.string.summary_close)
-                .setPositiveButton(android.R.string.yes) { _ , _ ->
-                    super.onBackPressed()
-                    moveTaskToBack(true)
-                }.setNegativeButton(android.R.string.no , null).apply { show() }
+        MaterialAlertDialogBuilder(this).setTitle(com.d4rk.android.libs.apptoolkit.R.string.close).setMessage(com.d4rk.android.libs.apptoolkit.R.string.summary_close).setPositiveButton(android.R.string.yes) { _ , _ ->
+            super.onBackPressed()
+            moveTaskToBack(true)
+        }.setNegativeButton(android.R.string.no , null).apply { show() }
     }
 
     /**
@@ -100,7 +102,6 @@ class MainActivity : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode : Int , resultCode : Int , data : Intent?) {
         super.onActivityResult(requestCode , resultCode , data)
-        println("Cleaner for Android -> Play Update: onActivityResult: requestCode=$requestCode, resultCode=$resultCode")
         if (requestCode == 1) {
             when (resultCode) {
                 RESULT_OK -> {
@@ -116,14 +117,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun initializeActivityComponents() {
         MobileAds.initialize(this@MainActivity)
-        dataStore = AppCoreManager.dataStore
+        updateResultLauncher = registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
+            when (result.resultCode) {
+                RESULT_OK -> showUpdateSuccessfulSnackbar()
+                else -> showUpdateFailedSnackbar()
+            }
+        }
         appUpdateManager = AppUpdateManagerFactory.create(this@MainActivity)
-        appUpdateNotificationsManager = AppUpdateNotificationsManager(this)
+        appUpdateNotificationsManager = AppUpdateNotificationsManager(context = this , channelId = "update_channel")
     }
 
     private fun showUpdateSuccessfulSnackbar() {
         val snackbar : Snackbar = Snackbar.make(
-            findViewById(android.R.id.content) , R.string.snack_app_updated , Snackbar.LENGTH_LONG
+            findViewById(android.R.id.content) , com.d4rk.android.libs.apptoolkit.R.string.snack_app_updated , Snackbar.LENGTH_LONG
         ).setAction(android.R.string.ok , null)
         snackbar.show()
     }
@@ -137,10 +143,10 @@ class MainActivity : AppCompatActivity() {
      */
     private fun showUpdateFailedSnackbar() {
         val snackbar : Snackbar = Snackbar.make(
-            findViewById(android.R.id.content) , R.string.snack_update_failed , Snackbar.LENGTH_LONG
-        ).setAction(R.string.try_again) {
+            findViewById(android.R.id.content) , com.d4rk.android.libs.apptoolkit.R.string.snack_update_failed , Snackbar.LENGTH_LONG
+        ).setAction(com.d4rk.android.libs.apptoolkit.R.string.try_again) {
             viewModel.checkForUpdates(
-                activity = this@MainActivity , appUpdateManager = appUpdateManager
+                appUpdateManager = appUpdateManager , updateResultLauncher = updateResultLauncher
             )
         }
         snackbar.show()

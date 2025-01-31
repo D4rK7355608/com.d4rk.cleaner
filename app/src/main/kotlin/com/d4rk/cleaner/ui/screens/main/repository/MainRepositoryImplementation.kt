@@ -2,13 +2,18 @@ package com.d4rk.cleaner.ui.screens.main.repository
 
 import android.app.Activity
 import android.app.Application
+import android.content.Context
 import android.os.Build
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
 import androidx.annotation.RequiresApi
-import com.d4rk.cleaner.data.core.AppCoreManager
+import com.d4rk.android.libs.apptoolkit.notifications.managers.AppUpdateNotificationsManager
+import com.d4rk.android.libs.apptoolkit.notifications.managers.AppUsageNotificationsManager
+import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.notifications.managers.AppUpdateNotificationsManager
-import com.d4rk.cleaner.notifications.managers.AppUsageNotificationsManager
+import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateOptions
 import com.google.android.play.core.install.model.ActivityResult
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
@@ -24,7 +29,7 @@ import kotlinx.coroutines.tasks.await
  *
  * @property application The application context.
  */
-abstract class MainRepositoryImplementation(val application : Application) {
+abstract class MainRepositoryImplementation(val application : Application , val dataStore : DataStore) {
 
     /**
      * Checks if the application is being launched for the first time.
@@ -33,8 +38,7 @@ abstract class MainRepositoryImplementation(val application : Application) {
      *
      * @return `true` if it's the first launch, `false` otherwise.
      */
-    suspend fun checkStartup() : Boolean {
-        val dataStore : DataStore = AppCoreManager.dataStore
+    suspend fun checkStartupImplementation() : Boolean {
         val isFirstTime : Boolean = dataStore.startup.first()
         if (isFirstTime) {
             dataStore.saveStartup(isFirstTime = false)
@@ -50,44 +54,47 @@ abstract class MainRepositoryImplementation(val application : Application) {
      *
      * @param isEnabled `true` to enable data collection, `false` to disable.
      */
-    fun setupDiagnosticSettings(isEnabled : Boolean) {
+    fun setupDiagnosticSettingsImplementation(isEnabled : Boolean) {
         FirebaseAnalytics.getInstance(application).setAnalyticsCollectionEnabled(isEnabled)
         FirebaseCrashlytics.getInstance().isCrashlyticsCollectionEnabled = isEnabled
     }
 
-    suspend fun checkForUpdatesLogic(activity : Activity, appUpdateManager : AppUpdateManager) : Int {
-
-        try {
-            var updateResult = Activity.RESULT_CANCELED
-            val appUpdateInfo = appUpdateManager.appUpdateInfo.await()
-
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && appUpdateInfo.isUpdateTypeAllowed(
+    suspend fun checkForUpdatesImplementation(
+        appUpdateManager : AppUpdateManager , updateResultLauncher : ActivityResultLauncher<IntentSenderRequest>
+    ) : Int {
+        return runCatching {
+            val appUpdateInfo : AppUpdateInfo = appUpdateManager.appUpdateInfo.await()
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
+                val stalenessDays = appUpdateInfo.clientVersionStalenessDays() ?: 0
+                val updateType = if (stalenessDays > 90) {
                     AppUpdateType.IMMEDIATE
-                ) && appUpdateInfo.updateAvailability() != UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
-            ) {
-                appUpdateInfo.clientVersionStalenessDays()?.let { stalenessDays ->
-                    val updateType =
-                            if (stalenessDays > 90) AppUpdateType.IMMEDIATE else AppUpdateType.FLEXIBLE
-                    @Suppress("DEPRECATION") appUpdateManager.startUpdateFlowForResult(
-                        appUpdateInfo , updateType , activity , 1
-                    )
-                    updateResult = Activity.RESULT_OK
                 }
-            }
-            return updateResult
+                else {
+                    AppUpdateType.FLEXIBLE
+                }
 
-        } catch (e : Exception) {
-            return ActivityResult.RESULT_IN_APP_UPDATE_FAILED
+                val appUpdateOptions : AppUpdateOptions = AppUpdateOptions.newBuilder(updateType).build()
+
+                val didStart : Boolean = appUpdateManager.startUpdateFlowForResult(
+                    appUpdateInfo , updateResultLauncher , appUpdateOptions
+                )
+
+                if (didStart) return@runCatching Activity.RESULT_OK
+            }
+            Activity.RESULT_CANCELED
+        }.getOrElse {
+            ActivityResult.RESULT_IN_APP_UPDATE_FAILED
         }
     }
 
+
     @RequiresApi(Build.VERSION_CODES.O)
-    fun checkAndScheduleUpdateNotificationsLogic(appUpdateNotificationsManager : AppUpdateNotificationsManager) {
+    fun checkAndScheduleUpdateNotificationsImplementation(appUpdateNotificationsManager : AppUpdateNotificationsManager) {
         appUpdateNotificationsManager.checkAndSendUpdateNotification()
     }
 
-    fun checkAppUsageNotificationsManager() {
-        val appUsageNotificationsManager = AppUsageNotificationsManager(application)
-        appUsageNotificationsManager.scheduleAppUsageCheck()
+    fun checkAppUsageNotificationsManagerImplementation(context : Context) {
+        val appUsageNotificationsManager = AppUsageNotificationsManager(context = context)
+        appUsageNotificationsManager.scheduleAppUsageCheck(notificationSummary = R.string.summary_notification_last_time_used)
     }
 }

@@ -60,14 +60,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
+import com.d4rk.android.libs.apptoolkit.data.model.ui.error.UiErrorModel
+import com.d4rk.android.libs.apptoolkit.ui.components.dialogs.ErrorAlertDialog
+import com.d4rk.android.libs.apptoolkit.ui.components.layouts.LoadingScreen
+import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
-import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.screens.UiAppManagerModel
-import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.ui.components.modifiers.hapticPagerSwipe
-import com.d4rk.cleaner.ui.components.dialogs.ErrorAlertDialog
-import com.d4rk.cleaner.ui.components.layouts.LoadingScreen
 import com.d4rk.cleaner.utils.helpers.PermissionsHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -115,7 +115,7 @@ fun AppManagerScreen() {
     }
 
     if (isLoading) {
-        LoadingScreen(progressAlpha)
+        LoadingScreen(progressAlpha = progressAlpha)
     }
     else {
         Column(

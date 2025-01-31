@@ -67,11 +67,11 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import coil3.video.VideoFrameDecoder
 import coil3.video.videoFramePercent
+import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.ui.components.layouts.NonLazyGrid
 import com.d4rk.cleaner.ui.components.buttons.TwoRowButtons
-import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.ui.components.modifiers.hapticPagerSwipe
 import com.d4rk.cleaner.ui.components.dialogs.ConfirmationAlertDialog
 import com.d4rk.cleaner.ui.screens.home.HomeViewModel

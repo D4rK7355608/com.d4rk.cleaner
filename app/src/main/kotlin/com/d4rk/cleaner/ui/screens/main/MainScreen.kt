@@ -1,37 +1,101 @@
 package com.d4rk.cleaner.ui.screens.main
 
 import android.content.Context
-import android.view.View
-import androidx.compose.material3.DrawerState
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.MenuOpen
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.d4rk.android.libs.apptoolkit.utils.helpers.ScreenHelper
 import com.d4rk.cleaner.data.core.AppCoreManager
-import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.data.model.ui.screens.UiMainModel
+import com.d4rk.cleaner.data.model.ui.screens.MainScreenState
+import com.d4rk.cleaner.ui.components.navigation.BottomNavigationBar
+import com.d4rk.cleaner.ui.components.navigation.LeftNavigationRail
 import com.d4rk.cleaner.ui.components.navigation.NavigationDrawer
+import com.d4rk.cleaner.ui.components.navigation.NavigationHost
+import com.d4rk.cleaner.ui.components.navigation.TopAppBarMain
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Composable
 fun MainScreen(viewModel : MainViewModel) {
-    val drawerState : DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val navController : NavHostController = rememberNavController()
-    val context : Context = LocalContext.current
-    val view : View = LocalView.current
-    val dataStore : DataStore = AppCoreManager.dataStore
-    val uiState : UiMainModel by viewModel.uiState.collectAsState()
+    val drawerState = rememberDrawerState(DrawerValue.Closed)
+    val navController = rememberNavController()
+    val context = LocalContext.current
+    val view = LocalView.current
+    val dataStore = AppCoreManager.dataStore
 
-    NavigationDrawer(
-        navHostController = navController ,
-        drawerState = drawerState ,
-        view = view ,
-        dataStore = dataStore ,
-        context = context ,
-        uiState = uiState ,
-    )
+    val isTabletOrLandscape : Boolean = ScreenHelper.isLandscapeOrTablet(context = context)
+
+    val mainScreenState = remember {
+        MainScreenState(
+            context = context , view = view , drawerState = drawerState , navHostController = navController , dataStore = dataStore , viewModel = viewModel
+        )
+    }
+
+    if (isTabletOrLandscape) {
+        MainScaffoldTabletContent(mainScreenState = mainScreenState)
+    }
+    else {
+        NavigationDrawer(
+            mainScreenState = mainScreenState
+        )
+    }
+}
+
+@Composable
+fun MainScaffoldContent(
+    mainScreenState : MainScreenState , coroutineScope : CoroutineScope
+) {
+    Scaffold(modifier = Modifier.imePadding() , topBar = {
+
+        TopAppBarMain(view = mainScreenState.view , context = mainScreenState.context , navigationIcon = if (mainScreenState.drawerState.isOpen) Icons.AutoMirrored.Outlined.MenuOpen else Icons.Default.Menu , onNavigationIconClick = {
+            coroutineScope.launch {
+                mainScreenState.drawerState.apply {
+                    if (isClosed) open() else close()
+                }
+            }
+        })
+    } , bottomBar = {
+        BottomNavigationBar(
+            navController = mainScreenState.navHostController , dataStore = mainScreenState.dataStore , view = mainScreenState.view , viewModel = mainScreenState.viewModel
+        )
+    }) { paddingValues ->
+        NavigationHost(
+            navHostController = mainScreenState.navHostController , dataStore = mainScreenState.dataStore , paddingValues = paddingValues
+        )
+    }
+}
+
+@Composable
+fun MainScaffoldTabletContent(mainScreenState : MainScreenState) {
+    var isRailExpanded : Boolean by remember { mutableStateOf(value = false) }
+    val coroutineScope : CoroutineScope = rememberCoroutineScope()
+    val context : Context = LocalContext.current
+
+    Scaffold(modifier = Modifier.fillMaxSize() , topBar = {
+        TopAppBarMain(view = mainScreenState.view , context = context , navigationIcon = if (isRailExpanded) Icons.AutoMirrored.Outlined.MenuOpen else Icons.Default.Menu , onNavigationIconClick = {
+            isRailExpanded = ! isRailExpanded
+        })
+    }) { paddingValues ->
+        LeftNavigationRail(
+            coroutineScope = coroutineScope ,
+            mainScreenState = mainScreenState ,
+            paddingValues = paddingValues ,
+            isRailExpanded = isRailExpanded ,
+        )
+    }
 }

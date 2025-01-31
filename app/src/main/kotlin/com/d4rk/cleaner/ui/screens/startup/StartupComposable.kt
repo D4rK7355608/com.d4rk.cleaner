@@ -33,20 +33,18 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.screens.main.MainActivity
-import com.d4rk.cleaner.utils.helpers.IntentsHelper
-import com.d4rk.cleaner.utils.helpers.PermissionsHelper
-import com.d4rk.cleaner.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffold
+import com.d4rk.cleaner.ui.screens.main.MainActivity
 
 @Composable
-fun StartupComposable(activity: StartupActivity) {
-    val context: Context = LocalContext.current
-    val fabEnabled: MutableState<Boolean> = remember { mutableStateOf(value = false) }
+fun StartupComposable(activity : StartupActivity) {
+    val context : Context = LocalContext.current
+    val fabEnabled : MutableState<Boolean> = remember { mutableStateOf(value = false) }
     LaunchedEffect(context) {
-        if (! PermissionsHelper.hasNotificationPermission(context)) {
-            PermissionsHelper.requestNotificationPermission(context as Activity)
+        if (! com.d4rk.android.libs.apptoolkit.utils.helpers.PermissionsHelper.hasNotificationPermission(context)) {
+            com.d4rk.android.libs.apptoolkit.utils.helpers.PermissionsHelper.requestNotificationPermission(context as Activity)
         }
         activity.consentFormShown.collect { shown ->
             fabEnabled.value = shown
@@ -54,86 +52,91 @@ fun StartupComposable(activity: StartupActivity) {
     }
 
     TopAppBarScaffold(
-        title = stringResource(id = R.string.welcome),
+        title = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.welcome) ,
     ) { paddingValues ->
         Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(24.dp)
-                .safeDrawingPadding()
+                    .fillMaxSize()
+                    .padding(24.dp)
+                    .safeDrawingPadding()
         ) {
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues),
+                        .fillMaxSize()
+                        .padding(paddingValues) ,
             ) {
                 item {
                     AsyncImage(
-                        model = R.drawable.il_startup,
-                        contentDescription = null,
+                        model = R.drawable.il_startup ,
+                        contentDescription = null ,
                     )
                     Icon(
-                        Icons.Outlined.Info, contentDescription = null
+                        Icons.Outlined.Info , contentDescription = null
                     )
                 }
                 item {
                     Text(
-                        text = stringResource(id = R.string.summary_browse_terms_of_service_and_privacy_policy),
-                        modifier = Modifier.padding(top = 24.dp, bottom = 24.dp)
+                        text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.summary_browse_terms_of_service_and_privacy_policy) ,
+                        modifier = Modifier.padding(top = 24.dp , bottom = 24.dp)
                     )
-                    val annotatedString: AnnotatedString = buildAnnotatedString {
-                        val startIndex: Int = length
+                    val annotatedString : AnnotatedString = buildAnnotatedString {
+                        val startIndex : Int = length
                         withStyle(
                             style = SpanStyle(
-                                color = MaterialTheme.colorScheme.primary,
+                                color = MaterialTheme.colorScheme.primary ,
                                 textDecoration = TextDecoration.Underline
                             )
                         ) {
-                            append(stringResource(id = R.string.learn_more))
+                            append(stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.learn_more))
                         }
-                        val endIndex: Int = length
+                        val endIndex : Int = length
 
                         addStringAnnotation(
-                            tag = "URL",
-                            annotation = "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy",
-                            start = startIndex,
+                            tag = "URL" ,
+                            annotation = "https://sites.google.com/view/d4rk7355608/more/apps/privacy-policy" ,
+                            start = startIndex ,
                             end = endIndex
                         )
                     }
-                    Text(text = annotatedString, modifier = Modifier
-                        .bounceClick()
-                        .clickable {
-                            annotatedString
-                                .getStringAnnotations(
-                                    tag = "URL", start = 0, end = annotatedString.length
-                                )
-                                .firstOrNull()
-                                ?.let { annotation ->
-                                    IntentsHelper.openUrl(context , annotation.item)
-                                }
-                        })
+                    Text(text = annotatedString , modifier = Modifier
+                            .bounceClick()
+                            .clickable {
+                                annotatedString
+                                        .getStringAnnotations(
+                                            tag = "URL" , start = 0 , end = annotatedString.length
+                                        )
+                                        .firstOrNull()
+                                        ?.let { annotation ->
+                                            com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper.openUrl(
+                                                context = context ,
+                                                url = annotation.item
+                                            )
+                                        }
+                            })
                 }
             }
 
             ExtendedFloatingActionButton(modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .bounceClick(),
-                containerColor = if (fabEnabled.value) {
-                    FloatingActionButtonDefaults.containerColor
-                } else {
-                    Gray
-                },
-                text = { Text(text = stringResource(id = R.string.agree)) },
-                onClick = {
-                    IntentsHelper.openActivity(
-                        context, MainActivity::class.java
-                    )
-                },
-                icon = {
-                    Icon(
-                        Icons.Outlined.CheckCircle, contentDescription = null
-                    )
-                })
+                    .align(Alignment.BottomEnd)
+                    .bounceClick() ,
+                                         containerColor = if (fabEnabled.value) {
+                                             FloatingActionButtonDefaults.containerColor
+                                         }
+                                         else {
+                                             Gray
+                                         } ,
+                                         text = { Text(text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.agree)) } ,
+                                         onClick = {
+                                             com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper.openActivity(
+                                                 context , MainActivity::class.java
+                                             )
+                                         } ,
+                                         icon = {
+                                             Icon(
+                                                 Icons.Outlined.CheckCircle ,
+                                                 contentDescription = null
+                                             )
+                                         })
         }
     }
 }

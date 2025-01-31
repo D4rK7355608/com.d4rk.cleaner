@@ -36,79 +36,66 @@ import kotlinx.coroutines.flow.firstOrNull
 
 @Composable
 fun SelectStartupScreenAlertDialog(
-    dataStore: DataStore,
-    onDismiss: () -> Unit,
-    onStartupSelected: (String) -> Unit
+    dataStore : DataStore , onDismiss : () -> Unit , onStartupSelected : (String) -> Unit
 ) {
-    val defaultPage: MutableState<String> = remember { mutableStateOf(BottomBarRoutes.HOME) }
-    val startupEntries: List<String> =
-        stringArrayResource(R.array.preference_startup_entries).toList()
-    val startupValues: List<String> =
-        stringArrayResource(R.array.preference_startup_values).toList()
-    AlertDialog(onDismissRequest = onDismiss, text = {
+    val defaultPage : MutableState<String> = remember { mutableStateOf(BottomBarRoutes.HOME) }
+    val startupEntries : List<String> = stringArrayResource(id = R.array.preference_startup_entries).toList()
+    val startupValues : List<String> = stringArrayResource(id = R.array.preference_startup_values).toList()
+    AlertDialog(onDismissRequest = onDismiss , text = {
         SelectStartupScreenAlertDialogContent(
-            defaultPage, dataStore, startupEntries, startupValues
+            defaultPage , dataStore , startupEntries , startupValues
         )
-    }, icon = {
-        Icon(Icons.Outlined.Home, contentDescription = null)
-    }, confirmButton = {
+    } , icon = {
+        Icon(Icons.Outlined.Home , contentDescription = null)
+    } , confirmButton = {
         TextButton(onClick = {
             onStartupSelected(defaultPage.value)
             onDismiss()
         }) {
-            Text(stringResource(android.R.string.ok))
+            Text(text = stringResource(id = android.R.string.ok))
         }
-    }, dismissButton = {
+    } , dismissButton = {
         TextButton(onClick = onDismiss) {
-            Text(stringResource(android.R.string.cancel))
+            Text(text = stringResource(id = android.R.string.cancel))
         }
     })
 }
 
 @Composable
 fun SelectStartupScreenAlertDialogContent(
-    selectedPage: MutableState<String>,
-    dataStore: DataStore,
-    startupEntries: List<String>,
-    startupValues: List<String>
+    selectedPage : MutableState<String> , dataStore : DataStore , startupEntries : List<String> , startupValues : List<String>
 ) {
     LaunchedEffect(Unit) {
         selectedPage.value = dataStore.getStartupPage().firstOrNull() ?: BottomBarRoutes.HOME
     }
 
     Column {
-        Text(stringResource(id = R.string.dialog_startup_subtitle))
+        Text(text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.dialog_startup_subtitle))
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
         ) {
             LazyColumn {
                 items(startupEntries.size) { index ->
                     Row(
-                        Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Start
+                        Modifier.fillMaxWidth() , verticalAlignment = Alignment.CenterVertically , horizontalArrangement = Arrangement.Start
                     ) {
-                        RadioButton(selected = selectedPage.value == startupValues[index],
-                            onClick = {
-                                selectedPage.value = startupValues[index]
-                            })
+                        RadioButton(selected = selectedPage.value == startupValues[index] , onClick = {
+                            selectedPage.value = startupValues[index]
+                        })
                         Text(
-                            modifier = Modifier.padding(start = 8.dp),
-                            text = startupEntries[index],
-                            style = MaterialTheme.typography.bodyMedium.merge()
+                            modifier = Modifier.padding(start = 8.dp) , text = startupEntries[index] , style = MaterialTheme.typography.bodyMedium.merge()
                         )
                     }
                 }
             }
         }
-        Spacer(modifier = Modifier.height(24.dp))
-        Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
+        Spacer(modifier = Modifier.height(height = 24.dp))
+        Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
         MediumVerticalSpacer()
-        Text(stringResource(id = R.string.dialog_info_startup))
+        Text(text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.dialog_info_startup))
     }
 
-    LaunchedEffect(selectedPage.value) {
+    LaunchedEffect(key1 = selectedPage.value) {
         dataStore.saveStartupPage(selectedPage.value)
     }
 }

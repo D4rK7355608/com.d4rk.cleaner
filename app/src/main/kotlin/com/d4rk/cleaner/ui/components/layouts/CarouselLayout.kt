@@ -39,99 +39,79 @@ import kotlin.math.absoluteValue
 
 @Composable
 fun <T> CarouselLayout(
-    items: List<T>,
-    sidePadding: Dp,
-    pagerState: PagerState,
-    itemContent: @Composable (item: T) -> Unit
+    items : List<T> , sidePadding : Dp , pagerState : PagerState , itemContent : @Composable (item : T) -> Unit
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
     ) {
         HorizontalPager(
-            state = pagerState,
-            modifier = Modifier
-                .fillMaxWidth()
-                .hapticPagerSwipe(pagerState),
-            contentPadding = PaddingValues(horizontal = sidePadding),
+            state = pagerState ,
+            modifier = Modifier.fillMaxWidth().hapticPagerSwipe(pagerState) ,
+            contentPadding = PaddingValues(horizontal = sidePadding) ,
         ) { page ->
-            val pageOffset = remember(pagerState.currentPage, page) {
+            val pageOffset = remember(pagerState.currentPage , page) {
                 (pagerState.currentPage - page).absoluteValue.toFloat()
             }
-            CarouselItem(items[page], pageOffset, itemContent)
+            CarouselItem(item = items[page] , pageOffset = pageOffset , itemContent = itemContent)
         }
 
         LargeVerticalSpacer()
 
         DotsIndicator(
             modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(bottom = 8.dp),
-            totalDots = items.size,
-            selectedIndex = pagerState.currentPage,
-            dotSize = 6.dp,
+                    .align(alignment = Alignment.CenterHorizontally)
+                    .padding(bottom = 8.dp) ,
+            totalDots = items.size ,
+            selectedIndex = pagerState.currentPage ,
+            dotSize = 6.dp ,
         )
     }
 }
 
 @Composable
 fun <T> CarouselItem(
-    item: T,
-    pageOffset: Float,
-    itemContent: @Composable (item: T) -> Unit
+    item : T , pageOffset : Float , itemContent : @Composable (item : T) -> Unit
 ) {
     val scale = animateFloatAsState(
-        targetValue = lerp(0.95f, 1f, 1f - pageOffset.coerceIn(0f, 1f)),
-        animationSpec = tween(250),
-        label = "Carousel Item Scale for Page $pageOffset"
+        targetValue = lerp(0.95f , 1f , 1f - pageOffset.coerceIn(0f , 1f)) , animationSpec = tween(250) , label = "Carousel Item Scale for Page $pageOffset"
     ).value
 
-    val alpha = lerp(0.5f, 1f, 1f - pageOffset.coerceIn(0f, 1f))
+    val alpha = lerp(0.5f , 1f , 1f - pageOffset.coerceIn(0f , 1f))
 
-    Card(
-        modifier = Modifier
+    Card(modifier = Modifier
             .fillMaxWidth()
             .graphicsLayer {
                 scaleX = scale
                 scaleY = scale
                 this.alpha = alpha
-            }
-    ) {
+            }) {
         itemContent(item)
     }
 }
 
 @Composable
 fun DotsIndicator(
-    modifier: Modifier = Modifier,
-    totalDots: Int,
-    selectedIndex: Int,
-    selectedColor: Color = MaterialTheme.colorScheme.primary,
-    unSelectedColor: Color = Color.Gray,
-    dotSize: Dp,
-    animationDuration: Int = 300
+    modifier : Modifier = Modifier , totalDots : Int , selectedIndex : Int , selectedColor : Color = MaterialTheme.colorScheme.primary , unSelectedColor : Color = Color.Gray , dotSize : Dp , animationDuration : Int = 300
 ) {
-    val transition: Transition<Int> =
-        updateTransition(targetState = selectedIndex, label = "Dot Transition")
+    val transition : Transition<Int> = updateTransition(targetState = selectedIndex , label = "Dot Transition")
 
     LazyRow(
         modifier = modifier
-            .wrapContentWidth()
-            .height(dotSize),
-        verticalAlignment = Alignment.CenterVertically
+                .wrapContentWidth()
+                .height(dotSize) , verticalAlignment = Alignment.CenterVertically
     ) {
-        items(count = totalDots, key = { index -> index }) { index ->
-            val animatedDotSize: Dp by transition.animateDp(transitionSpec = {
-                tween(durationMillis = animationDuration, easing = FastOutSlowInEasing)
-            }, label = "Dot Size Animation") {
+        items(count = totalDots , key = { index -> index }) { index ->
+            val animatedDotSize : Dp by transition.animateDp(transitionSpec = {
+                tween(durationMillis = animationDuration , easing = FastOutSlowInEasing)
+            } , label = "Dot Size Animation") {
                 if (it == index) dotSize else dotSize / 1.4f
             }
 
-            val isSelected: Boolean = index == selectedIndex
-            val size: Dp = if (isSelected) animatedDotSize else animatedDotSize
+            val isSelected : Boolean = index == selectedIndex
+            val size : Dp = if (isSelected) animatedDotSize else animatedDotSize
 
             IndicatorDot(
-                color = if (isSelected) selectedColor else unSelectedColor, size = size
+                color = if (isSelected) selectedColor else unSelectedColor , size = size
             )
 
             if (index != totalDots - 1) {
@@ -143,14 +123,14 @@ fun DotsIndicator(
 
 @Composable
 fun IndicatorDot(
-    modifier: Modifier = Modifier,
-    size: Dp,
-    color: Color,
+    modifier : Modifier = Modifier ,
+    size : Dp ,
+    color : Color ,
 ) {
     Box(
         modifier = modifier
-            .size(size)
-            .clip(CircleShape)
-            .background(color)
+                .size(size)
+                .clip(CircleShape)
+                .background(color)
     )
 }

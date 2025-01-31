@@ -5,9 +5,9 @@ import android.content.ActivityNotFoundException
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.d4rk.android.libs.apptoolkit.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.constants.error.ErrorType
-import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.utils.error.ErrorHandler
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow

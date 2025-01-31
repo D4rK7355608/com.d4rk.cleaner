@@ -12,29 +12,27 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun NonLazyGrid(
-    columns: Int,
-    itemCount: Int,
-    modifier: Modifier = Modifier,
-    content: @Composable (Int) -> Unit
+    columns : Int , itemCount : Int , modifier : Modifier = Modifier , content : @Composable (Int) -> Unit
 ) {
     Column(modifier = modifier) {
-        val rows = (itemCount + columns - 1) / columns
+        val rows : Int = (itemCount + columns - 1) / columns
 
         (0 until rows).forEach { row ->
             Row {
-                (0 until columns).forEachIndexed { col, _ ->
-                    val index = row * columns + col
+                (0 until columns).forEachIndexed { col , _ ->
+                    val index : Int = row * columns + col
                     if (index < itemCount) {
                         Box(
                             modifier = Modifier
-                                .weight(1f)
-                                .padding(8.dp)
-                                .aspectRatio(ratio = 1f)
+                                    .weight(weight = 1f)
+                                    .padding(all = 8.dp)
+                                    .aspectRatio(ratio = 1f)
                         ) {
                             content(index)
                         }
-                    } else {
-                        Spacer(Modifier.weight(1f))
+                    }
+                    else {
+                        Spacer(modifier = Modifier.weight(weight = 1f))
                     }
                 }
             }

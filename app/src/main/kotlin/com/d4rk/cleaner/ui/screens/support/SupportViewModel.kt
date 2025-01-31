@@ -12,18 +12,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SupportViewModel : ViewModel() {
-    private val _skuDetails = mutableStateMapOf<String, SkuDetails>()
-    val skuDetails: Map<String, SkuDetails> = _skuDetails
+    private val _skuDetails = mutableStateMapOf<String , SkuDetails>()
+    val skuDetails : Map<String , SkuDetails> = _skuDetails
 
-    fun querySkuDetails(billingClient: BillingClient) {
+    fun querySkuDetails(billingClient : BillingClient) {
         viewModelScope.launch(Dispatchers.IO) {
             val skuList : List<String> = listOf(
-                "low_donation", "normal_donation", "high_donation", "extreme_donation"
+                "low_donation" , "normal_donation" , "high_donation" , "extreme_donation"
             )
             val params : SkuDetailsParams = SkuDetailsParams.newBuilder().setSkusList(skuList)
-                .setType(BillingClient.SkuType.INAPP).build()
+                    .setType(BillingClient.SkuType.INAPP).build()
 
-            billingClient.querySkuDetailsAsync(params) { billingResult, skuDetailsList ->
+            billingClient.querySkuDetailsAsync(params) { billingResult , skuDetailsList ->
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && skuDetailsList != null) {
                     skuDetailsList.forEach { skuDetails ->
                         _skuDetails[skuDetails.sku] = skuDetails

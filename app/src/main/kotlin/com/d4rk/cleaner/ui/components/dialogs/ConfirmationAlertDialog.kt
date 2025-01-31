@@ -7,26 +7,15 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun ConfirmationAlertDialog(
-    confirmationTitle: String,
-    confirmationMessage: String,
-    confirmationConfirmButtonText: String,
-    confirmationDismissButtonText: String,
-    onConfirm: () -> Unit,
-    onDismiss: () -> Unit
+    confirmationTitle : String , confirmationMessage : String , confirmationConfirmButtonText : String , confirmationDismissButtonText : String , onConfirm : () -> Unit , onDismiss : () -> Unit
 ) {
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text(text = confirmationTitle) },
-        text = { Text(confirmationMessage) },
-        confirmButton = {
-            TextButton(onClick = onConfirm) {
-                Text(text = confirmationConfirmButtonText)
-            }
-        },
-        dismissButton = {
-            TextButton(onClick = onDismiss) {
-                Text(text = confirmationDismissButtonText)
-            }
+    AlertDialog(onDismissRequest = onDismiss , title = { Text(text = confirmationTitle) } , text = { Text(text = confirmationMessage) } , confirmButton = {
+        TextButton(onClick = onConfirm) {
+            Text(text = confirmationConfirmButtonText)
         }
-    )
+    } , dismissButton = {
+        TextButton(onClick = onDismiss) {
+            Text(text = confirmationDismissButtonText)
+        }
+    })
 }

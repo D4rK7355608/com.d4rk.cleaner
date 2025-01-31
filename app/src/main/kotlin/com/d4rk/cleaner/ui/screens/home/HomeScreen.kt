@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -35,12 +36,11 @@ import coil3.ImageLoader
 import coil3.disk.DiskCache
 import coil3.disk.directory
 import coil3.memory.MemoryCache
+import com.d4rk.android.libs.apptoolkit.data.model.ui.error.UiErrorModel
+import com.d4rk.android.libs.apptoolkit.ui.components.dialogs.ErrorAlertDialog
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.model.ui.error.UiErrorModel
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.ui.components.progressbars.CircularDeterminateIndicator
-import com.d4rk.cleaner.ui.components.dividers.VerticalDivider
-import com.d4rk.cleaner.ui.components.dialogs.ErrorAlertDialog
 import com.d4rk.cleaner.ui.screens.analyze.AnalyzeScreen
 import com.d4rk.cleaner.utils.helpers.PermissionsHelper
 

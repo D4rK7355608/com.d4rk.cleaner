@@ -4,7 +4,6 @@ import android.view.SoundEffectConstants
 import android.view.View
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -19,34 +18,38 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.navigation.BottomNavigationScreen
-import com.d4rk.cleaner.ui.components.ads.AdBannerFull
-import com.d4rk.cleaner.ui.components.modifiers.bounceClick
+import com.d4rk.cleaner.data.model.ui.screens.UiMainScreen
+import com.d4rk.cleaner.ui.components.ads.AdBanner
+import com.d4rk.cleaner.ui.screens.main.MainViewModel
+import com.google.android.gms.ads.AdSize
 
 @Composable
 fun BottomNavigationBar(
-    navController : NavController , dataStore : DataStore , view : View
+    navController : NavController ,
+    viewModel : MainViewModel ,
+    dataStore : DataStore ,
+    view : View ,
 ) {
-    val bottomBarItems : List<BottomNavigationScreen> = listOf(
-        BottomNavigationScreen.Home ,
-        BottomNavigationScreen.AppManager ,
-        BottomNavigationScreen.MemoryManager
-    )
-    val showLabels : Boolean =
-            dataStore.getShowBottomBarLabels().collectAsState(initial = true).value
+    val uiState : UiMainScreen by viewModel.uiState.collectAsState()
+    val bottomBarItems : List<BottomNavigationScreen> = uiState.bottomNavigationItems
+    val showLabels : Boolean = dataStore.getShowBottomBarLabels().collectAsState(initial = true).value
 
     Column {
-        AdBannerFull(modifier = Modifier.fillMaxWidth())
+        AdBanner(adSize = AdSize.FULL_BANNER)
         NavigationBar {
             val navBackStackEntry : NavBackStackEntry? by navController.currentBackStackEntryAsState()
             val currentRoute : String? = navBackStackEntry?.destination?.route
             bottomBarItems.forEach { screen ->
-                NavigationBarItem(modifier = Modifier.bounceClick() , icon = {
+                NavigationBarItem(icon = {
                     val iconResource : ImageVector =
                             if (currentRoute == screen.route) screen.selectedIcon else screen.icon
                     Icon(
-                        iconResource , contentDescription = null
+                        imageVector = iconResource ,
+                        modifier = Modifier.bounceClick() ,
+                        contentDescription = null
                     )
                 } , label = {
                     if (showLabels) Text(
@@ -57,12 +60,13 @@ fun BottomNavigationBar(
                 } , selected = currentRoute == screen.route , onClick = {
                     view.playSoundEffect(SoundEffectConstants.CLICK)
                     if (currentRoute != screen.route) {
-                        navController.navigate(screen.route) {
-                            popUpTo(navController.graph.startDestinationId) {
-                                saveState = true
+                        navController.navigate(route = screen.route) {
+                            popUpTo(id = navController.graph.startDestinationId) {
+                                saveState = false
                             }
                             launchSingleTop = true
                         }
+                        viewModel.updateBottomNavigationScreen(newScreen = screen)
                     }
                 })
             }
