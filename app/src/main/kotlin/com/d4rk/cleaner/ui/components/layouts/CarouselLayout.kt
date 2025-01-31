@@ -33,8 +33,8 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
+import com.d4rk.android.libs.apptoolkit.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.cleaner.ui.components.modifiers.hapticPagerSwipe
-import com.d4rk.cleaner.ui.components.spacers.LargeVerticalSpacer
 import kotlin.math.absoluteValue
 
 @Composable
