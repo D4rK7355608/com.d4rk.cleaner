@@ -21,84 +21,83 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.core.view.WindowCompat
-import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.data.datastore.DataStore
 
 private val lightScheme = lightColorScheme(
-    primary = primaryLight,
-    onPrimary = onPrimaryLight,
-    primaryContainer = primaryContainerLight,
-    onPrimaryContainer = onPrimaryContainerLight,
-    secondary = secondaryLight,
-    onSecondary = onSecondaryLight,
-    secondaryContainer = secondaryContainerLight,
-    onSecondaryContainer = onSecondaryContainerLight,
-    tertiary = tertiaryLight,
-    onTertiary = onTertiaryLight,
-    tertiaryContainer = tertiaryContainerLight,
-    onTertiaryContainer = onTertiaryContainerLight,
-    error = errorLight,
-    onError = onErrorLight,
-    errorContainer = errorContainerLight,
-    onErrorContainer = onErrorContainerLight,
-    background = backgroundLight,
-    onBackground = onBackgroundLight,
-    surface = surfaceLight,
-    onSurface = onSurfaceLight,
-    surfaceVariant = surfaceVariantLight,
-    onSurfaceVariant = onSurfaceVariantLight,
-    outline = outlineLight,
-    outlineVariant = outlineVariantLight,
-    scrim = scrimLight,
-    inverseSurface = inverseSurfaceLight,
-    inverseOnSurface = inverseOnSurfaceLight,
-    inversePrimary = inversePrimaryLight,
-    surfaceDim = surfaceDimLight,
-    surfaceBright = surfaceBrightLight,
-    surfaceContainerLowest = surfaceContainerLowestLight,
-    surfaceContainerLow = surfaceContainerLowLight,
-    surfaceContainer = surfaceContainerLight,
-    surfaceContainerHigh = surfaceContainerHighLight,
-    surfaceContainerHighest = surfaceContainerHighestLight,
+    primary = primaryLight ,
+    onPrimary = onPrimaryLight ,
+    primaryContainer = primaryContainerLight ,
+    onPrimaryContainer = onPrimaryContainerLight ,
+    secondary = secondaryLight ,
+    onSecondary = onSecondaryLight ,
+    secondaryContainer = secondaryContainerLight ,
+    onSecondaryContainer = onSecondaryContainerLight ,
+    tertiary = tertiaryLight ,
+    onTertiary = onTertiaryLight ,
+    tertiaryContainer = tertiaryContainerLight ,
+    onTertiaryContainer = onTertiaryContainerLight ,
+    error = errorLight ,
+    onError = onErrorLight ,
+    errorContainer = errorContainerLight ,
+    onErrorContainer = onErrorContainerLight ,
+    background = backgroundLight ,
+    onBackground = onBackgroundLight ,
+    surface = surfaceLight ,
+    onSurface = onSurfaceLight ,
+    surfaceVariant = surfaceVariantLight ,
+    onSurfaceVariant = onSurfaceVariantLight ,
+    outline = outlineLight ,
+    outlineVariant = outlineVariantLight ,
+    scrim = scrimLight ,
+    inverseSurface = inverseSurfaceLight ,
+    inverseOnSurface = inverseOnSurfaceLight ,
+    inversePrimary = inversePrimaryLight ,
+    surfaceDim = surfaceDimLight ,
+    surfaceBright = surfaceBrightLight ,
+    surfaceContainerLowest = surfaceContainerLowestLight ,
+    surfaceContainerLow = surfaceContainerLowLight ,
+    surfaceContainer = surfaceContainerLight ,
+    surfaceContainerHigh = surfaceContainerHighLight ,
+    surfaceContainerHighest = surfaceContainerHighestLight ,
 )
 
 private val darkScheme = darkColorScheme(
-    primary = primaryDark,
-    onPrimary = onPrimaryDark,
-    primaryContainer = primaryContainerDark,
-    onPrimaryContainer = onPrimaryContainerDark,
-    secondary = secondaryDark,
-    onSecondary = onSecondaryDark,
-    secondaryContainer = secondaryContainerDark,
-    onSecondaryContainer = onSecondaryContainerDark,
-    tertiary = tertiaryDark,
-    onTertiary = onTertiaryDark,
-    tertiaryContainer = tertiaryContainerDark,
-    onTertiaryContainer = onTertiaryContainerDark,
-    error = errorDark,
-    onError = onErrorDark,
-    errorContainer = errorContainerDark,
-    onErrorContainer = onErrorContainerDark,
-    background = backgroundDark,
-    onBackground = onBackgroundDark,
-    surface = surfaceDark,
-    onSurface = onSurfaceDark,
-    surfaceVariant = surfaceVariantDark,
-    onSurfaceVariant = onSurfaceVariantDark,
-    outline = outlineDark,
-    outlineVariant = outlineVariantDark,
-    scrim = scrimDark,
-    inverseSurface = inverseSurfaceDark,
-    inverseOnSurface = inverseOnSurfaceDark,
-    inversePrimary = inversePrimaryDark,
-    surfaceDim = surfaceDimDark,
-    surfaceBright = surfaceBrightDark,
-    surfaceContainerLowest = surfaceContainerLowestDark,
-    surfaceContainerLow = surfaceContainerLowDark,
-    surfaceContainer = surfaceContainerDark,
-    surfaceContainerHigh = surfaceContainerHighDark,
-    surfaceContainerHighest = surfaceContainerHighestDark,
+    primary = primaryDark ,
+    onPrimary = onPrimaryDark ,
+    primaryContainer = primaryContainerDark ,
+    onPrimaryContainer = onPrimaryContainerDark ,
+    secondary = secondaryDark ,
+    onSecondary = onSecondaryDark ,
+    secondaryContainer = secondaryContainerDark ,
+    onSecondaryContainer = onSecondaryContainerDark ,
+    tertiary = tertiaryDark ,
+    onTertiary = onTertiaryDark ,
+    tertiaryContainer = tertiaryContainerDark ,
+    onTertiaryContainer = onTertiaryContainerDark ,
+    error = errorDark ,
+    onError = onErrorDark ,
+    errorContainer = errorContainerDark ,
+    onErrorContainer = onErrorContainerDark ,
+    background = backgroundDark ,
+    onBackground = onBackgroundDark ,
+    surface = surfaceDark ,
+    onSurface = onSurfaceDark ,
+    surfaceVariant = surfaceVariantDark ,
+    onSurfaceVariant = onSurfaceVariantDark ,
+    outline = outlineDark ,
+    outlineVariant = outlineVariantDark ,
+    scrim = scrimDark ,
+    inverseSurface = inverseSurfaceDark ,
+    inverseOnSurface = inverseOnSurfaceDark ,
+    inversePrimary = inversePrimaryDark ,
+    surfaceDim = surfaceDimDark ,
+    surfaceBright = surfaceBrightDark ,
+    surfaceContainerLowest = surfaceContainerLowestDark ,
+    surfaceContainerLow = surfaceContainerLowDark ,
+    surfaceContainer = surfaceContainerDark ,
+    surfaceContainerHigh = surfaceContainerHighDark ,
+    surfaceContainerHighest = surfaceContainerHighestDark ,
 )
 
 /**
@@ -118,22 +117,20 @@ private val darkScheme = darkColorScheme(
  * @return The most suitable color scheme based on the provided parameters.
  */
 private fun getColorScheme(
-    isDarkTheme: Boolean, isAmoledMode: Boolean, isDynamicColors: Boolean, context: Context
-): ColorScheme {
-    val dynamicDark: ColorScheme =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) dynamicDarkColorScheme(context) else darkScheme
-    val dynamicLight: ColorScheme =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) dynamicLightColorScheme(context) else lightScheme
+    isDarkTheme : Boolean , isAmoledMode : Boolean , isDynamicColors : Boolean , context : Context
+) : ColorScheme {
+    val dynamicDark : ColorScheme = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) dynamicDarkColorScheme(context) else darkScheme
+    val dynamicLight : ColorScheme = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) dynamicLightColorScheme(context) else lightScheme
 
     return when {
         isAmoledMode && isDarkTheme && isDynamicColors -> dynamicDark.copy(
-            surface = Color.Black,
-            background = Color.Black,
+            surface = Color.Black ,
+            background = Color.Black ,
         )
 
         isAmoledMode && isDarkTheme -> darkScheme.copy(
-            surface = Color.Black,
-            background = Color.Black,
+            surface = Color.Black ,
+            background = Color.Black ,
         )
 
         isDynamicColors -> if (isDarkTheme) dynamicDark else dynamicLight
@@ -143,35 +140,33 @@ private fun getColorScheme(
 
 @Composable
 fun AppTheme(
-    content: @Composable () -> Unit
+    content : @Composable () -> Unit
 ) {
-    val context: Context = LocalContext.current
-    val dataStore: DataStore = AppCoreManager.dataStore
-    val themeMode: String = dataStore.themeMode.collectAsState(initial = "follow_system").value
-    val isDynamicColors: Boolean = dataStore.dynamicColors.collectAsState(initial = true).value
-    val isAmoledMode: Boolean = dataStore.amoledMode.collectAsState(initial = false).value
+    val context : Context = LocalContext.current
+    val dataStore : DataStore = AppCoreManager.dataStore
+    val themeMode : String = dataStore.themeMode.collectAsState(initial = "follow_system").value
+    val isDynamicColors : Boolean = dataStore.dynamicColors.collectAsState(initial = true).value
+    val isAmoledMode : Boolean = dataStore.amoledMode.collectAsState(initial = false).value
 
-    val isSystemDarkTheme: Boolean = isSystemInDarkTheme()
-    val isDarkTheme: Boolean = when (themeMode) {
-        stringResource(id = R.string.dark_mode) -> true
-        stringResource(id = R.string.light_mode) -> false
+    val isSystemDarkTheme : Boolean = isSystemInDarkTheme()
+    val isDarkTheme : Boolean = when (themeMode) {
+        stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.dark_mode) -> true
+        stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.light_mode) -> false
         else -> isSystemDarkTheme
     }
 
-    val colorScheme: ColorScheme =
-        getColorScheme(isDarkTheme, isAmoledMode, isDynamicColors, context)
+    val colorScheme : ColorScheme = getColorScheme(isDarkTheme , isAmoledMode , isDynamicColors , context)
 
-    val view: View = LocalView.current
-    if (!view.isInEditMode) {
+    val view : View = LocalView.current
+    if (! view.isInEditMode) {
         SideEffect {
-            val window: Window = (view.context as Activity).window
+            val window : Window = (view.context as Activity).window
             window.statusBarColor = Color.Transparent.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars =
-                !isDarkTheme
+            WindowCompat.getInsetsController(window , view).isAppearanceLightStatusBars = ! isDarkTheme
         }
     }
 
     MaterialTheme(
-        colorScheme = colorScheme, content = content
+        colorScheme = colorScheme , content = content
     )
 }

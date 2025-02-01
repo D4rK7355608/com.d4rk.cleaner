@@ -13,7 +13,8 @@ import android.os.Environment
 import android.provider.Settings
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.d4rk.cleaner.constants.permissions.PermissionsConstants
+import com.d4rk.android.libs.apptoolkit.utils.constants.permissions.PermissionsConstants
+import com.d4rk.cleaner.utils.constants.permissions.AppPermissionsConstants
 
 /**
  * Utility class for handling runtime permissions.
@@ -72,7 +73,7 @@ object PermissionsHelper {
         ActivityCompat.requestPermissions(
             activity,
             requiredPermissions.toTypedArray(),
-            PermissionsConstants.REQUEST_CODE_STORAGE_PERMISSIONS
+            AppPermissionsConstants.REQUEST_CODE_STORAGE_PERMISSIONS
         )
     }
 
@@ -104,7 +105,7 @@ object PermissionsHelper {
             ActivityCompat.requestPermissions(
                 activity,
                 requiredPermissions.toTypedArray(),
-                PermissionsConstants.REQUEST_CODE_STORAGE_PERMISSIONS
+                AppPermissionsConstants.REQUEST_CODE_STORAGE_PERMISSIONS
             )
         }
     }

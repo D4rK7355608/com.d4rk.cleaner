@@ -6,9 +6,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.d4rk.android.libs.apptoolkit.data.model.ui.error.UiErrorModel
-import com.d4rk.cleaner.R
-import com.d4rk.cleaner.constants.error.ErrorType
-import com.d4rk.cleaner.utils.error.ErrorHandler
+import com.d4rk.android.libs.apptoolkit.utils.error.ErrorHandler
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -37,13 +35,13 @@ open class BaseViewModel(application : Application) : AndroidViewModel(applicati
 
     private fun handleError(exception : Throwable) {
         viewModelScope.launch(context = coroutineExceptionHandler) {
-            val errorType : ErrorType = when (exception) {
-                is SecurityException -> ErrorType.SECURITY_EXCEPTION
-                is IOException -> ErrorType.IO_EXCEPTION
-                is FileNotFoundException -> ErrorType.FILE_NOT_FOUND
-                is ActivityNotFoundException -> ErrorType.ACTIVITY_NOT_FOUND
-                is IllegalArgumentException -> ErrorType.ILLEGAL_ARGUMENT
-                else -> ErrorType.UNKNOWN_ERROR
+            val errorType : com.d4rk.android.libs.apptoolkit.utils.constants.error.ErrorType = when (exception) {
+                is SecurityException -> com.d4rk.android.libs.apptoolkit.utils.constants.error.ErrorType.SECURITY_EXCEPTION
+                is IOException -> com.d4rk.android.libs.apptoolkit.utils.constants.error.ErrorType.IO_EXCEPTION
+                is ActivityNotFoundException -> com.d4rk.android.libs.apptoolkit.utils.constants.error.ErrorType.ACTIVITY_NOT_FOUND
+                is IllegalArgumentException -> com.d4rk.android.libs.apptoolkit.utils.constants.error.ErrorType.ILLEGAL_ARGUMENT
+                is FileNotFoundException -> com.d4rk.android.libs.apptoolkit.utils.constants.error.ErrorType.FILE_NOT_FOUND
+                else -> com.d4rk.android.libs.apptoolkit.utils.constants.error.ErrorType.UNKNOWN_ERROR
             }
 
             _uiErrorModel.value = UiErrorModel(
@@ -58,15 +56,14 @@ open class BaseViewModel(application : Application) : AndroidViewModel(applicati
         }
     }
 
-    private fun getErrorMessage(errorType : ErrorType) : String {
+    private fun getErrorMessage(errorType : com.d4rk.android.libs.apptoolkit.utils.constants.error.ErrorType) : String {
         return getApplication<Application>().getString(
             when (errorType) {
-                ErrorType.SECURITY_EXCEPTION -> R.string.security_error
-                ErrorType.IO_EXCEPTION -> R.string.io_error
-                ErrorType.FILE_NOT_FOUND -> R.string.file_not_found
-                ErrorType.ACTIVITY_NOT_FOUND -> R.string.activity_not_found
-                ErrorType.ILLEGAL_ARGUMENT -> R.string.illegal_argument_error
-                ErrorType.UNKNOWN_ERROR -> R.string.unknown_error
+                com.d4rk.android.libs.apptoolkit.utils.constants.error.ErrorType.SECURITY_EXCEPTION -> com.d4rk.android.libs.apptoolkit.R.string.security_error
+                com.d4rk.android.libs.apptoolkit.utils.constants.error.ErrorType.IO_EXCEPTION -> com.d4rk.android.libs.apptoolkit.R.string.io_error
+                com.d4rk.android.libs.apptoolkit.utils.constants.error.ErrorType.ACTIVITY_NOT_FOUND -> com.d4rk.android.libs.apptoolkit.R.string.activity_not_found
+                com.d4rk.android.libs.apptoolkit.utils.constants.error.ErrorType.ILLEGAL_ARGUMENT -> com.d4rk.android.libs.apptoolkit.R.string.illegal_argument_error
+                else -> com.d4rk.android.libs.apptoolkit.R.string.unknown_error
             }
         )
     }

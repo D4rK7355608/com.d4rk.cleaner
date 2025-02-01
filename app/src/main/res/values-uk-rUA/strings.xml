@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_short_description">Останній Android Cleaner, який вам коли-небудь знадобиться для щоденного використання!</string>
-    <string name="notification_update_title">Доступне нове оновлення!</string>
-    <string name="summary_notification_update">Доступна нова версія програми. Натисніть, щоб оновити!</string>
-    <string name="notification_last_time_used_title">Минуло вже деякий час!</string>
     <string name="summary_notification_last_time_used"> Давайте звільнимо місце! Ми раді, що ви повернулися!</string>
 
     <string name="welcome">Ласкаво просимо</string>
@@ -95,16 +92,6 @@
     <string name="display">Дисплей</string>
     <string name="summary_preference_settings_display">Персоналізуйте зовнішній вигляд вашої програми</string>
 
-    <string name="appearance">Зовнішній вигляд</string>
-    <string name="dark_theme">Темна тема</string>
-    <string name="will_turn_on_automatically_by_system">Буде вмикатися автоматично системою</string>
-    <string name="will_never_turn_on_automatically">Ніколи не буде вмикатися автоматично</string>
-    <string name="amoled_mode">Режим AMOLED</string>
-    <string name="follow_system">Слідкувати за режимом системи</string>
-    <string name="light_mode">Світлий режим</string>
-    <string name="dark_mode">Темний режим</string>
-    <string name="summary_dark_theme">Темна тема використовує глибокий фон, щоб допомогти зберегти заряд батареї</string>
-
     <string name="dynamic_colors">Динамічні кольори</string>
     <string name="summary_preference_settings_dynamic_colors">Застосувати кольори з шпалер до теми програми</string>
 
@@ -118,8 +105,6 @@
     <string name="dialog_startup_subtitle">Виберіть бажану початкову сторінку:</string>
     <string name="dialog_info_startup">Налаштовує початковий екран, який відображається користувачам під час запуску програми. Цей параметр впливає на першу взаємодію користувача з програмою та може бути налаштований для певних сегментів користувачів або цілей продукту.</string>
 
-    <string name="language">Мова</string>
-    <string name="summary_preference_settings_language">Змінює мову, яка використовується в програмі</string>
     <string name="dialog_language_subtitle">Виберіть бажану мову</string>
     <string name="dialog_info_language">Персоналізуйте свій досвід, вибравши бажану мову. Будь-які зміни мови, які ви вносите, набувають чинності негайно, забезпечуючи безперебійну роботу обраною мовою</string>
 
@@ -150,35 +135,20 @@
     <string name="notifications">Сповіщення</string>
     <string name="summary_preference_settings_notifications">Керування сповіщеннями програми</string>
 
-    <string name="app_usage_notifications">Сповіщення про використання програми</string>
-    <string name="update_notifications">Сповіщення про оновлення</string>
-
     <string name="advanced">Додатково</string>
     <string name="summary_preference_settings_advanced">Дослідіть додаткові налаштування</string>
-    <string name="error_reporting">Звіт про помилки</string>
-    <string name="bug_report">Звіт про помилку</string>
-    <string name="summary_preference_settings_bug_report">Надіслати звіти про помилки та запити на функції на сторінку проблем репозиторію GitHub програми</string>
 
     <string name="security_and_privacy">Безпека та конфіденційність</string>
     <string name="summary_preference_settings_privacy_and_security">Керуйте налаштуваннями конфіденційності</string>
-    <string name="privacy">Конфіденційність</string>
     <string name="privacy_policy">Політика конфіденційності</string>
-    <string name="summary_preference_settings_privacy_policy">Переглянути політику, яка регулює обробку ваших даних</string>
     <string name="terms_of_service">Умови обслуговування</string>
-    <string name="summary_preference_settings_terms_of_service">Переглянути умови, з якими ви погоджуєтесь, використовуючи наш сервіс</string>
-    <string name="code_of_conduct">Правила поведінки</string>
-    <string name="summary_preference_settings_code_of_conduct">Зрозуміти правила та рекомендації щодо поведінки в межах нашого сервісу</string>
-
     <string name="permissions">Дозволи</string>
-    <string name="summary_preference_settings_permissions">Керуйте дозволами, наданими нашому сервісу</string>
-    <string name="normal">Звичайний</string>
     <string name="ad_id">Ідентифікатор реклами [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Дозволяє програмі отримувати та використовувати рекламний ідентифікатор, пов\'язаний з пристроєм користувача, надаючи персоналізовану рекламу, вимірюючи ефективність реклами та показуючи рекламу на пристроях Android 13 або пізнішої версії.</string>
     <string name="internet">Інтернет [INTERNET]</string>
     <string name="summary_preference_permissions_internet">Дозволяє програмі встановлювати інтернет-з\'єднання для надсилання звітів про помилки або перевірки наявності оновлень.</string>
     <string name="post_notifications">Надсилати сповіщення [POST_NOTIFICATIONS]</string>
     <string name="summary_preference_permissions_post_notifications">Дозволяє програмі відображати сповіщення на пристроях з Android 13 або пізнішої версії.</string>
-    <string name="runtime">Runtime</string>
     <string name="access_network_state">Доступ до стану мережі [ACCESS_NETWORK_STATE]</string>
     <string name="summary_preference_permissions_access_network_state">Дозволяє програмі перевіряти підключення до мережі та отримувати інформацію про Wi-Fi, включаючи стан увімкнення та назви підключених пристроїв Wi-Fi.</string>
     <string name="access_notification_policy">Доступ до політики сповіщень [ACCESS_NOTIFICATION_POLICY]</string>

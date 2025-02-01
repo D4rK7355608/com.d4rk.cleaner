@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_short_description">Den enda Android Cleaner du någonsin kommer att behöva för vardagligt bruk!</string>
-    <string name="notification_update_title">En ny uppdatering är tillgänglig!</string>
-    <string name="summary_notification_update">En ny version av appen är tillgänglig. Klicka för att uppdatera!</string>
-    <string name="notification_last_time_used_title">Det var ett tag sedan!</string>
     <string name="summary_notification_last_time_used"> Låt oss frigöra lite utrymme! Vi är glada att du är tillbaka!</string>
 
     <string name="welcome">Välkommen</string>
@@ -93,16 +90,6 @@
     <string name="display">Skärm</string>
     <string name="summary_preference_settings_display">Anpassa appens utseende och känsla</string>
 
-    <string name="appearance">Utseende</string>
-    <string name="dark_theme">Mörkt tema</string>
-    <string name="will_turn_on_automatically_by_system">Aktiveras automatiskt av systemet</string>
-    <string name="will_never_turn_on_automatically">Aktiveras aldrig automatiskt</string>
-    <string name="amoled_mode">AMOLED-läge</string>
-    <string name="follow_system">Följ systemläge</string>
-    <string name="light_mode">Ljust läge</string>
-    <string name="dark_mode">Mörkt läge</string>
-    <string name="summary_dark_theme">Mörkt tema använder en mörk bakgrund för att hjälpa till att förlänga batteriets livslängd</string>
-
     <string name="dynamic_colors">Dynamiska färger</string>
     <string name="summary_preference_settings_dynamic_colors">Använd färger från bakgrundsbilder till appens tema</string>
 
@@ -116,8 +103,6 @@
     <string name="dialog_startup_subtitle">Välj din föredragna startsida:</string>
     <string name="dialog_info_startup">Konfigurerar startskärmen som visas för användare när appen startas. Den här inställningen påverkar användarens första interaktion med appen och kan anpassas till specifika användarsegment eller produktmål.</string>
 
-    <string name="language">Språk</string>
-    <string name="summary_preference_settings_language">Ändrar språket som används i appen</string>
     <string name="dialog_language_subtitle">Välj ditt föredragna språk</string>
     <string name="dialog_info_language">Anpassa din upplevelse med ditt föredragna språk. Alla språkändringar du gör träder i kraft direkt, vilket garanterar en sömlös upplevelse på ditt valda språk</string>
 
@@ -148,35 +133,21 @@
     <string name="notifications">Notifieringar</string>
     <string name="summary_preference_settings_notifications">Hantera appnotifieringar</string>
 
-    <string name="app_usage_notifications">Notifieringar om appanvändning</string>
-    <string name="update_notifications">Uppdateringsnotifieringar</string>
-
     <string name="advanced">Avancerat</string>
     <string name="summary_preference_settings_advanced">Utforska mer avancerade inställningar</string>
-    <string name="error_reporting">Felrapportering</string>
-    <string name="bug_report">Felrapport</string>
-    <string name="summary_preference_settings_bug_report">Skicka felrapporter och funktionsförfrågningar till appens GitHub-förvars sida för problem</string>
 
     <string name="security_and_privacy">Säkerhet och integritet</string>
     <string name="summary_preference_settings_privacy_and_security">Hantera dina integritetsinställningar</string>
-    <string name="privacy">Integritet</string>
     <string name="privacy_policy">Integritetspolicy</string>
-    <string name="summary_preference_settings_privacy_policy">Visa policyn som styr hur vi hanterar dina data</string>
     <string name="terms_of_service">Användarvillkor</string>
-    <string name="summary_preference_settings_terms_of_service">Granska villkoren du godkänner när du använder vår tjänst</string>
-    <string name="code_of_conduct">Uppförandekod</string>
-    <string name="summary_preference_settings_code_of_conduct">Förstå reglerna och riktlinjerna för beteende inom vår tjänst</string>
 
     <string name="permissions">Behörigheter</string>
-    <string name="summary_preference_settings_permissions">Hantera behörigheterna som beviljats vår tjänst</string>
-    <string name="normal">Normal</string>
     <string name="ad_id">Annons-ID [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Tillåter appen att hämta och använda annonseringsidentifieraren som är kopplad till användarens enhet, vilket ger personlig annonsering, mäter annonseffektivitet och visar annonser på Android 13 eller senare enheter.</string>
     <string name="internet">Internet [INTERNET]</string>
     <string name="summary_preference_permissions_internet">Tillåter appen att upprätta en internetanslutning för att skicka felrapporter eller söka efter uppdateringar.</string>
     <string name="post_notifications">Skicka notifieringar [POST_NOTIFICATIONS]</string>
     <string name="summary_preference_permissions_post_notifications">Tillåter appen att visa notifieringar på enheter med Android 13 eller senare.</string>
-    <string name="runtime">Körtid</string>
     <string name="access_network_state">Åtkomst till nätverksstatus [ACCESS_NETWORK_STATE]</string>
     <string name="summary_preference_permissions_access_network_state">Tillåter appen att kontrollera nätverksanslutningen och hämta information om Wi-Fi, inklusive aktiverad status och anslutna Wi-Fi-enheters namn.</string>
     <string name="access_notification_policy">Åtkomst till notifieringspolicy [ACCESS_NOTIFICATION_POLICY]</string>

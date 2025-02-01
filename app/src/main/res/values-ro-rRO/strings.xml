@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_short_description">Ultima aplicație de curățare Android de care vei avea nevoie vreodată, pentru utilizare zilnică!</string>
-    <string name="notification_update_title">O nouă actualizare este disponibilă!</string>
-    <string name="summary_notification_update">O nouă versiune a aplicației este disponibilă. Faceți clic pentru a actualiza!</string>
-    <string name="notification_last_time_used_title">A trecut ceva timp!</string>
     <string name="summary_notification_last_time_used"> Hai să eliberăm spațiu! Ne bucurăm că te-ai întors!</string>
 
     <string name="welcome">Bun venit</string>
@@ -94,16 +91,6 @@
     <string name="display">Afișaj</string>
     <string name="summary_preference_settings_display">Personalizați aspectul și senzația aplicației</string>
 
-    <string name="appearance">Aspect</string>
-    <string name="dark_theme">Temă întunecată</string>
-    <string name="will_turn_on_automatically_by_system">Se va activa automat de sistem</string>
-    <string name="will_never_turn_on_automatically">Nu se va activa niciodată automat</string>
-    <string name="amoled_mode">Mod AMOLED</string>
-    <string name="follow_system">Urmăriți modul sistemului</string>
-    <string name="light_mode">Mod luminos</string>
-    <string name="dark_mode">Mod întunecat</string>
-    <string name="summary_dark_theme">Tema întunecată folosește un fundal profund pentru a vă ajuta să mențineți bateria mai mult timp</string>
-
     <string name="dynamic_colors">Culori dinamice</string>
     <string name="summary_preference_settings_dynamic_colors">Aplicați culorile din tapet la tema aplicației</string>
 
@@ -117,8 +104,6 @@
     <string name="dialog_startup_subtitle">Alegeți pagina de pornire preferată:</string>
     <string name="dialog_info_startup">Configurează ecranul inițial prezentat utilizatorilor la lansarea aplicației. Această setare influențează prima interacțiune a utilizatorului cu aplicația și poate fi adaptată la anumite segmente de utilizatori sau obiective de produs.</string>
 
-    <string name="language">Limbă</string>
-    <string name="summary_preference_settings_language">Modifică limba utilizată în aplicație</string>
     <string name="dialog_language_subtitle">Selectați limba preferată</string>
     <string name="dialog_info_language">Personalizați experiența cu limba preferată. Orice modificare de limbă pe care o faceți are efect imediat, asigurând o experiență fără probleme în limba aleasă</string>
 
@@ -149,35 +134,21 @@
     <string name="notifications">Notificări</string>
     <string name="summary_preference_settings_notifications">Gestionați notificările aplicației</string>
 
-    <string name="app_usage_notifications">Notificări de utilizare a aplicației</string>
-    <string name="update_notifications">Notificări de actualizare</string>
-
     <string name="advanced">Avansat</string>
     <string name="summary_preference_settings_advanced">Explorați mai multe setări avansate</string>
-    <string name="error_reporting">Raportare erori</string>
-    <string name="bug_report">Raport de eroare</string>
-    <string name="summary_preference_settings_bug_report">Trimiteți rapoarte de erori și cereri de caracteristici la pagina de probleme a depozitului GitHub al aplicației</string>
 
     <string name="security_and_privacy">Securitate și confidențialitate</string>
     <string name="summary_preference_settings_privacy_and_security">Gestionați setările de confidențialitate</string>
-    <string name="privacy">Confidențialitate</string>
     <string name="privacy_policy">Politica de confidențialitate</string>
-    <string name="summary_preference_settings_privacy_policy">Vezi politica care guvernează modul în care gestionăm datele tale</string>
     <string name="terms_of_service">Termeni de utilizare</string>
-    <string name="summary_preference_settings_terms_of_service">Revizuiește termenii pe care ești de acord să îi utilizezi atunci când utilizezi serviciul nostru</string>
-    <string name="code_of_conduct">Codul de conduită</string>
-    <string name="summary_preference_settings_code_of_conduct">Înțelegeți regulile și liniile directoare pentru comportamentul în cadrul serviciului nostru</string>
 
     <string name="permissions">Permisiuni</string>
-    <string name="summary_preference_settings_permissions">Gestionați permisiunile acordate serviciului nostru</string>
-    <string name="normal">Normal</string>
     <string name="ad_id">ID anunț [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Permite aplicației să preia și să utilizeze identificatorul de publicitate asociat dispozitivului utilizatorului, oferind anunțuri personalizate, măsurând eficacitatea anunțurilor și afișând anunțuri pe dispozitivele Android 13 sau mai noi.</string>
     <string name="internet">Internet [INTERNET]</string>
     <string name="summary_preference_permissions_internet">Permite aplicației să stabilească o conexiune la internet pentru a trimite rapoarte de erori sau pentru a verifica actualizările.</string>
     <string name="post_notifications">Trimiteți notificări [POST_NOTIFICATIONS]</string>
     <string name="summary_preference_permissions_post_notifications">Permite aplicației să afișeze notificări pe dispozitivele cu Android 13 sau mai noi.</string>
-    <string name="runtime">Rulare</string>
     <string name="access_network_state">Accesează starea rețelei [ACCESS_NETWORK_STATE]</string>
     <string name="summary_preference_permissions_access_network_state">Permite aplicației să verifice conectivitatea la rețea și să preia informații despre Wi-Fi, inclusiv starea activată și numele dispozitivelor Wi-Fi conectate.</string>
     <string name="access_notification_policy">Accesează politica de notificare [ACCESS_NOTIFICATION_POLICY]</string>

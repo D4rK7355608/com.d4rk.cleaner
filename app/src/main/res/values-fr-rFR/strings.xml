@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_short_description">Le meilleur nettoyeur Android dont vous aurez jamais besoin pour une utilisation quotidienne!</string>
-    <string name="notification_update_title">Une nouvelle mise à jour est disponible!</string>
-    <string name="summary_notification_update">Une nouvelle version de l\’application est disponible. Cliquez pour mettre à jour!</string>
-    <string name="notification_last_time_used_title">Ça fait un moment!</string>
     <string name="summary_notification_last_time_used"> Libérons de l’espace! Nous sommes ravis de vous revoir!</string>
 
     <string name="welcome">Bienvenue</string>
@@ -94,16 +91,6 @@
     <string name="display">Affichage</string>
     <string name="summary_preference_settings_display">Personnalisez l’apparence de votre application</string>
 
-    <string name="appearance">Apparence</string>
-    <string name="dark_theme">Thème sombre</string>
-    <string name="will_turn_on_automatically_by_system">S’activera automatiquement par le système</string>
-    <string name="will_never_turn_on_automatically">Ne s’activera jamais automatiquement</string>
-    <string name="amoled_mode">Mode AMOLED</string>
-    <string name="follow_system">Suivre le mode du système</string>
-    <string name="light_mode">Mode clair</string>
-    <string name="dark_mode">Mode sombre</string>
-    <string name="summary_dark_theme">Le thème sombre utilise un arrière-plan foncé pour aider à prolonger la durée de vie de la batterie</string>
-
     <string name="dynamic_colors">Couleurs dynamiques</string>
     <string name="summary_preference_settings_dynamic_colors">Appliquer les couleurs des fonds d’écran au thème de l’application</string>
 
@@ -117,8 +104,6 @@
     <string name="dialog_startup_subtitle">Choisissez votre page de démarrage préférée:</string>
     <string name="dialog_info_startup">Configure l\'écran initial présenté aux utilisateurs lors du lancement de l\'application. Ce paramètre influence la première interaction de l\'utilisateur avec l\'application et peut être adapté à des segments d\'utilisateurs ou à des objectifs de produits spécifiques.</string>
 
-    <string name="language">Langue</string>
-    <string name="summary_preference_settings_language">Modifie la langue utilisée dans l’application</string>
     <string name="dialog_language_subtitle">Sélectionnez votre langue préférée</string>
     <string name="dialog_info_language">Personnalisez votre expérience avec votre langue préférée. Toute modification de langue que vous apportez prend effet immédiatement, ce qui garantit une expérience transparente dans la langue que vous avez choisie</string>
 
@@ -149,35 +134,19 @@
     <string name="notifications">Notifications</string>
     <string name="summary_preference_settings_notifications">Gérer les notifications de l’application</string>
 
-    <string name="app_usage_notifications">Notifications d’utilisation de l’application</string>
-    <string name="update_notifications">Notifications de mise à jour</string>
-
     <string name="advanced">Avancé</string>
     <string name="summary_preference_settings_advanced">Explorer des paramètres plus avancés</string>
-    <string name="error_reporting">Signalement d’erreurs</string>
-    <string name="bug_report">Rapport de bogue</string>
-    <string name="summary_preference_settings_bug_report">Envoyer des rapports de bogues et des demandes de fonctionnalités à la page des problèmes du référentiel GitHub de l’application</string>
-
     <string name="security_and_privacy">Sécurité et confidentialité</string>
     <string name="summary_preference_settings_privacy_and_security">Gérer vos paramètres de confidentialité</string>
-    <string name="privacy">Confidentialité</string>
     <string name="privacy_policy">Politique de confidentialité</string>
-    <string name="summary_preference_settings_privacy_policy">Afficher la politique qui régit la manière dont nous traitons vos données</string>
     <string name="terms_of_service">Conditions d’utilisation</string>
-    <string name="summary_preference_settings_terms_of_service">Revoir les conditions que vous acceptez lorsque vous utilisez notre service</string>
-    <string name="code_of_conduct">Code de conduite</string>
-    <string name="summary_preference_settings_code_of_conduct">Comprendre les règles et les directives relatives au comportement au sein de notre service</string>
-
     <string name="permissions">Autorisations</string>
-    <string name="summary_preference_settings_permissions">Gérer les autorisations accordées à notre service</string>
-    <string name="normal">Normal</string>
     <string name="ad_id">ID d’annonce [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Permet à l\'application de récupérer et d\'utiliser l\'identifiant publicitaire associé à l\'appareil de l\'utilisateur, fournissant des publicités personnalisées, mesurant l\'efficacité des publicités et affichant des publicités sur les appareils Android 13 ou ultérieurs.</string>
     <string name="internet">Internet [INTERNET]</string>
     <string name="summary_preference_permissions_internet">Permet à l\'application d\'établir une connexion Internet pour envoyer des rapports d\'erreurs ou vérifier les mises à jour.</string>
     <string name="post_notifications">Publier des notifications [POST_NOTIFICATIONS]</string>
     <string name="summary_preference_permissions_post_notifications">Permet à l\'application d\'afficher des notifications sur les appareils Android 13 ou ultérieurs.</string>
-    <string name="runtime">Exécution</string>
     <string name="access_network_state">Accéder à l\'état du réseau [ACCESS_NETWORK_STATE]</string>
     <string name="summary_preference_permissions_access_network_state">Permet à l\'application de vérifier la connectivité réseau et de récupérer des informations sur le Wi-Fi, y compris l\'état activé et les noms des appareils Wi-Fi connectés.</string>
     <string name="access_notification_policy">Accéder à la politique de notification [ACCESS_NOTIFICATION_POLICY]</string>

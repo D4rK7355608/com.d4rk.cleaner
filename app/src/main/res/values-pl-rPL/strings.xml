@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_short_description">Ostatni program Android Cleaner, jakiego będziesz potrzebować do codziennego użytku!</string>
-    <string name="notification_update_title">Dostępna jest nowa aktualizacja!</string>
-    <string name="summary_notification_update">Dostępna jest nowa wersja aplikacji. Kliknij, aby zaktualizować!</string>
-    <string name="notification_last_time_used_title">Minęło trochę czasu!</string>
     <string name="summary_notification_last_time_used"> Zwolnijmy trochę miejsca! Cieszymy się, że wróciłeś!</string>
 
     <string name="welcome">Witaj</string>
@@ -95,16 +92,6 @@
     <string name="display">Wyświetlacz</string>
     <string name="summary_preference_settings_display">Spersonalizuj wygląd i działanie aplikacji</string>
 
-    <string name="appearance">Wygląd</string>
-    <string name="dark_theme">Ciemny motyw</string>
-    <string name="will_turn_on_automatically_by_system">Włączy się automatycznie przez system</string>
-    <string name="will_never_turn_on_automatically">Nigdy nie włączy się automatycznie</string>
-    <string name="amoled_mode">Tryb AMOLED</string>
-    <string name="follow_system">Tryb systemowy</string>
-    <string name="light_mode">Jasny motyw</string>
-    <string name="dark_mode">Ciemny motyw</string>
-    <string name="summary_dark_theme">Ciemny motyw używa ciemnego tła, aby pomóc wydłużyć żywotność baterii</string>
-
     <string name="dynamic_colors">Dynamiczne kolory</string>
     <string name="summary_preference_settings_dynamic_colors">Zastosuj kolory z tapet do motywu aplikacji</string>
 
@@ -118,8 +105,6 @@
     <string name="dialog_startup_subtitle">Wybierz preferowaną stronę startową:</string>
     <string name="dialog_info_startup">Konfiguruje ekran początkowy wyświetlany użytkownikom po uruchomieniu aplikacji. To ustawienie wpływa na pierwszą interakcję użytkownika z aplikacją i można je dostosować do określonych segmentów użytkowników lub celów produktu.</string>
 
-    <string name="language">Język</string>
-    <string name="summary_preference_settings_language">Zmienia język używany w aplikacji</string>
     <string name="dialog_language_subtitle">Wybierz preferowany język</string>
     <string name="dialog_info_language">Spersonalizuj swoje wrażenia, wybierając preferowany język. Wszelkie wprowadzone zmiany języka zaczną obowiązywać natychmiast, zapewniając płynne korzystanie z aplikacji w wybranym języku</string>
 
@@ -150,35 +135,21 @@
     <string name="notifications">Powiadomienia</string>
     <string name="summary_preference_settings_notifications">Zarządzaj powiadomieniami aplikacji</string>
 
-    <string name="app_usage_notifications">Powiadomienia o użyciu aplikacji</string>
-    <string name="update_notifications">Powiadomienia o aktualizacjach</string>
-
     <string name="advanced">Zaawansowane</string>
     <string name="summary_preference_settings_advanced">Przeglądaj bardziej zaawansowane ustawienia</string>
-    <string name="error_reporting">Raportowanie błędów</string>
-    <string name="bug_report">Zgłoś błąd</string>
-    <string name="summary_preference_settings_bug_report">Wyślij raporty o błędach i prośby o funkcje na stronę problemów repozytorium GitHub aplikacji</string>
 
     <string name="security_and_privacy">Bezpieczeństwo i prywatność</string>
     <string name="summary_preference_settings_privacy_and_security">Zarządzaj ustawieniami prywatności</string>
-    <string name="privacy">Prywatność</string>
     <string name="privacy_policy">Polityka prywatności</string>
-    <string name="summary_preference_settings_privacy_policy">Zobacz politykę, która reguluje sposób, w jaki przetwarzamy Twoje dane</string>
     <string name="terms_of_service">Warunki korzystania z usługi</string>
-    <string name="summary_preference_settings_terms_of_service">Przejrzyj warunki, na które zgadzasz się podczas korzystania z naszej usługi</string>
-    <string name="code_of_conduct">Kodeks postępowania</string>
-    <string name="summary_preference_settings_code_of_conduct">Zrozum zasady i wytyczne dotyczące zachowania w ramach naszej usługi</string>
 
     <string name="permissions">Uprawnienia</string>
-    <string name="summary_preference_settings_permissions">Zarządzaj uprawnieniami przyznanymi naszej usłudze</string>
-    <string name="normal">Normalne</string>
     <string name="ad_id">Identyfikator reklamy [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Pozwala aplikacji na pobieranie i używanie identyfikatora reklamy powiązanego z urządzeniem użytkownika, zapewniając spersonalizowane reklamy, mierząc skuteczność reklam i wyświetlając reklamy na urządzeniach z systemem Android 13 lub nowszym.</string>
     <string name="internet">Internet [INTERNET]</string>
     <string name="summary_preference_permissions_internet">Pozwala aplikacji na nawiązanie połączenia internetowego w celu wysyłania raportów o błędach lub sprawdzania aktualizacji.</string>
     <string name="post_notifications">Wysyłaj powiadomienia [POST_NOTIFICATIONS]</string>
     <string name="summary_preference_permissions_post_notifications">Pozwala aplikacji na wyświetlanie powiadomień na urządzeniach z systemem Android 13 lub nowszym.</string>
-    <string name="runtime">Runtime</string>
     <string name="access_network_state">Dostęp do stanu sieci [ACCESS_NETWORK_STATE]</string>
     <string name="summary_preference_permissions_access_network_state">Pozwala aplikacji na sprawdzanie łączności sieciowej i pobieranie informacji o Wi-Fi, w tym o stanie włączenia i nazwach podłączonych urządzeń Wi-Fi.</string>
     <string name="access_notification_policy">Dostęp do polityki powiadomień [ACCESS_NOTIFICATION_POLICY]</string>

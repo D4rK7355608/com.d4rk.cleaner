@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_short_description">Последният Android Cleaner, от който ще се нуждаете за ежедневна употреба!</string>
-    <string name="notification_update_title">Достъпна е нова актуализация!</string>
-    <string name="summary_notification_update">Достъпна е нова версия на приложението. Кликнете, за да актуализирате!</string>
-    <string name="notification_last_time_used_title">Отдавна не сте го използвали!</string>
     <string name="summary_notification_last_time_used">Нека освободим място! Радваме се, че сте се върнали!</string>
 
     <string name="welcome">Добре дошли</string>
@@ -93,16 +90,6 @@
     <string name="display">Дисплей</string>
     <string name="summary_preference_settings_display">Персонализирайте външния вид на приложението си</string>
 
-    <string name="appearance">Външен вид</string>
-    <string name="dark_theme">Тъмна тема</string>
-    <string name="will_turn_on_automatically_by_system">Ще се активира автоматично от системата</string>
-    <string name="will_never_turn_on_automatically">Никога няма да се активира автоматично</string>
-    <string name="amoled_mode">AMOLED режим</string>
-    <string name="follow_system">Следвай системния режим</string>
-    <string name="light_mode">Светъл режим</string>
-    <string name="dark_mode">Тъмен режим</string>
-    <string name="summary_dark_theme">Тъмната тема използва тъмен фон, за да ви помогне да спестите батерия</string>
-
     <string name="dynamic_colors">Динамични цветове</string>
     <string name="summary_preference_settings_dynamic_colors">Прилагайте цветове от тапетите към темата на приложението</string>
 
@@ -116,8 +103,6 @@
     <string name="dialog_startup_subtitle">Изберете предпочитаната от вас начална страница:</string>
     <string name="dialog_info_startup">Конфигурира началния екран, представен на потребителите при стартиране на приложението. Тази настройка влияе върху първото взаимодействие на потребителя с приложението и може да бъде съобразена с конкретни потребителски сегменти или цели на продукта.</string>
 
-    <string name="language">Език</string>
-    <string name="summary_preference_settings_language">Променя езика, използван в приложението</string>
     <string name="dialog_language_subtitle">Изберете предпочитания от вас език</string>
     <string name="dialog_info_language">Персонализирайте вашето преживяване с предпочитания от вас език. Всяка промяна на езика, която направите, ще влезе в сила веднага, за да ви осигури безпроблемно преживяване на избрания от вас език</string>
 
@@ -148,35 +133,19 @@
     <string name="notifications">Известия</string>
     <string name="summary_preference_settings_notifications">Управление на известия от приложението</string>
 
-    <string name="app_usage_notifications">Известия за използване на приложението</string>
-    <string name="update_notifications">Известия за актуализация</string>
-
     <string name="advanced">Разширени</string>
     <string name="summary_preference_settings_advanced">Разгледайте още разширени настройки</string>
-    <string name="error_reporting">Докладване на грешки</string>
-    <string name="bug_report">Докладване на грешка</string>
-    <string name="summary_preference_settings_bug_report">Изпращане на доклади за грешки и заявки за функции към страницата за проблеми в GitHub репото на приложението</string>
-
     <string name="security_and_privacy">Сигурност &amp; поверителност</string>
     <string name="summary_preference_settings_privacy_and_security">Управление на настройките за поверителност</string>
-    <string name="privacy">Поверителност</string>
     <string name="privacy_policy">Политика за поверителност</string>
-    <string name="summary_preference_settings_privacy_policy">Преглед на политиката, която урежда как обработваме вашите данни</string>
     <string name="terms_of_service">Условия за ползване</string>
-    <string name="summary_preference_settings_terms_of_service">Преглед на условията, с които се съгласявате, когато използвате нашата услуга</string>
-    <string name="code_of_conduct">Кодекс за поведение</string>
-    <string name="summary_preference_settings_code_of_conduct">Разбиране на правилата и указанията за поведение в рамките на нашата услуга</string>
-
     <string name="permissions">Разрешения</string>
-    <string name="summary_preference_settings_permissions">Управление на разрешенията, предоставени на нашата услуга</string>
-    <string name="normal">Нормално</string>
     <string name="ad_id">Рекламен идентификатор [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Позволява на приложението да извлича и използва рекламен идентификатор, свързан с устройството на потребителя, предоставяйки персонализирани реклами, измерване на ефективността на рекламите и показване на реклами на устройства с Android 13 или по-нови версии.</string>
     <string name="internet">Интернет [INTERNET]</string>
     <string name="summary_preference_permissions_internet">Позволява на приложението да осъществи интернет връзка, за да изпраща доклади за грешки или да проверява за актуализации.</string>
     <string name="post_notifications">Публикуване на известия [POST_NOTIFICATIONS]</string>
     <string name="summary_preference_permissions_post_notifications">Позволява на приложението да показва известия на устройства с Android 13 или по-нови версии.</string>
-    <string name="runtime">Време на изпълнение</string>
     <string name="access_network_state">Достъп до състоянието на мрежата [ACCESS_NETWORK_STATE]</string>
     <string name="summary_preference_permissions_access_network_state">Позволява на приложението да провери мрежовата свързаност и да извлече информация за Wi-Fi, включително активирането на състоянието и имената на свързаните Wi-Fi устройства.</string>
     <string name="access_notification_policy">Достъп до политика за известия [ACCESS_NOTIFICATION_POLICY]</string>

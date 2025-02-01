@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_short_description">Az utolsó Android Cleaner, amire valaha szükséged lesz a mindennapi használathoz!</string>
-    <string name="notification_update_title">Új frissítés érhető el!</string>
-    <string name="summary_notification_update">Az alkalmazás új verziója elérhető. Kattints a frissítéshez!</string>
-    <string name="notification_last_time_used_title">Eltelt egy kis idő!</string>
     <string name="summary_notification_last_time_used"> Szabadítsunk fel egy kis helyet! Örülünk, hogy visszatértél!</string>
 
     <string name="welcome">Üdvözöljük</string>
@@ -93,16 +90,6 @@
     <string name="display">Kijelző</string>
     <string name="summary_preference_settings_display">Személyre szabhatja az alkalmazás megjelenését</string>
 
-    <string name="appearance">Megjelenés</string>
-    <string name="dark_theme">Sötét téma</string>
-    <string name="will_turn_on_automatically_by_system">A rendszer automatikusan bekapcsolja</string>
-    <string name="will_never_turn_on_automatically">Soha nem kapcsol be automatikusan</string>
-    <string name="amoled_mode">AMOLED mód</string>
-    <string name="follow_system">Kövesse a rendszer módot</string>
-    <string name="light_mode">Világos mód</string>
-    <string name="dark_mode">Sötét mód</string>
-    <string name="summary_dark_theme">A sötét téma sötét hátteret használ, hogy segítsen meghosszabbítani az akkumulátor élettartamát</string>
-
     <string name="dynamic_colors">Dinamikus színek</string>
     <string name="summary_preference_settings_dynamic_colors">A háttérképek színeinek alkalmazása az alkalmazás témájára</string>
 
@@ -116,8 +103,6 @@
     <string name="dialog_startup_subtitle">Válassza ki a kívánt indítólapot:</string>
     <string name="dialog_info_startup">Beállítja az alkalmazás indításakor a felhasználóknak megjelenített kezdőképernyőt. Ez a beállítás befolyásolja a felhasználó első interakcióját az alkalmazással, és testreszabható bizonyos felhasználói szegmensekre vagy termékcélokra.</string>
 
-    <string name="language">Nyelv</string>
-    <string name="summary_preference_settings_language">Az alkalmazásban használt nyelv megváltoztatása</string>
     <string name="dialog_language_subtitle">Válassza ki a kívánt nyelvet</string>
     <string name="dialog_info_language">Személyre szabhatja élményeit a kívánt nyelv kiválasztásával. Az Ön által végrehajtott nyelvváltások azonnal érvénybe lépnek, biztosítva a zökkenőmentes élményt a választott nyelven</string>
 
@@ -148,35 +133,21 @@
     <string name="notifications">Értesítések</string>
     <string name="summary_preference_settings_notifications">Alkalmazásértesítések kezelése</string>
 
-    <string name="app_usage_notifications">Alkalmazáshasználati értesítések</string>
-    <string name="update_notifications">Frissítési értesítések</string>
-
     <string name="advanced">Speciális</string>
     <string name="summary_preference_settings_advanced">Fedezze fel a speciálisabb beállításokat</string>
-    <string name="error_reporting">Hibajelentés</string>
-    <string name="bug_report">Hibabejelentés</string>
-    <string name="summary_preference_settings_bug_report">Hibajelentések és funkciókérések küldése az alkalmazás GitHub-tárházának hibajegy oldalára</string>
 
     <string name="security_and_privacy">Biztonság és adatvédelem</string>
     <string name="summary_preference_settings_privacy_and_security">Az adatvédelmi beállítások kezelése</string>
-    <string name="privacy">Adatvédelem</string>
     <string name="privacy_policy">Adatvédelmi irányelvek</string>
-    <string name="summary_preference_settings_privacy_policy">Tekintse meg az adatkezelési irányelveinket</string>
     <string name="terms_of_service">Szolgáltatási feltételek</string>
-    <string name="summary_preference_settings_terms_of_service">Tekintse át a szolgáltatásunk használatakor elfogadott feltételeket</string>
-    <string name="code_of_conduct">Magatartási kódex</string>
-    <string name="summary_preference_settings_code_of_conduct">Értse meg a szolgáltatásunkon belüli viselkedésre vonatkozó szabályokat és irányelveket</string>
 
     <string name="permissions">Engedélyek</string>
-    <string name="summary_preference_settings_permissions">A szolgáltatásunkhoz biztosított engedélyek kezelése</string>
-    <string name="normal">Normál</string>
     <string name="ad_id">Hirdetésazonosító [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Lehetővé teszi az alkalmazás számára, hogy lekérje és felhasználja a felhasználó eszközéhez társított hirdetésazonosítót, személyre szabott hirdetéseket jelenítsen meg, mérje a hirdetések hatékonyságát, és hirdetéseket jelenítsen meg Android 13 vagy újabb eszközökön.</string>
     <string name="internet">Internet [INTERNET]</string>
     <string name="summary_preference_permissions_internet">Lehetővé teszi az alkalmazás számára, hogy internetkapcsolatot létesítsen hibajelentések küldéséhez vagy frissítések ellenőrzéséhez.</string>
     <string name="post_notifications">Értesítések közzététele [POST_NOTIFICATIONS]</string>
     <string name="summary_preference_permissions_post_notifications">Lehetővé teszi az alkalmazás számára, hogy értesítéseket jelenítsen meg az Android 13 vagy újabb eszközökön.</string>
-    <string name="runtime">Runtime</string>
     <string name="access_network_state">Hálózati állapot elérése [ACCESS_NETWORK_STATE]</string>
     <string name="summary_preference_permissions_access_network_state">Lehetővé teszi az alkalmazás számára, hogy ellenőrizze a hálózati kapcsolatot, és információkat szerezzen a Wi-Fi-ről, beleértve az engedélyezett állapotot és a csatlakoztatott Wi-Fi-eszközök nevét.</string>
     <string name="access_notification_policy">Értesítési szabályzat elérése [ACCESS_NOTIFICATION_POLICY]</string>

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_short_description">The last Android Cleaner you will ever need for every day use!</string>
-    <string name="notification_update_title">A new update available!</string>
-    <string name="summary_notification_update">A new version of the app is available. Click to update!</string>
-    <string name="notification_last_time_used_title">It\'s been a while!</string>
     <string name="summary_notification_last_time_used"> Let\'s free up some space! We are happy you are back!</string>
 
     <string name="welcome">Welcome</string>
@@ -41,7 +38,6 @@
     <string name="io_error">An input/output error occurred. Please check your network connection or storage and try again.</string>
     <string name="illegal_argument_error">Invalid input or argument provided. Please check the information and try again.</string>
     <string name="unknown_error">An unknown error occurred.</string>
-    <string name="initialization_error">Initialization failed. Please try again later.</string>
 
     <string name="app_manager">App Manager</string>
     <string name="installed_apps">Installed apps</string>
@@ -99,16 +95,6 @@
     <string name="display">Display</string>
     <string name="summary_preference_settings_display">Personalize your app\'s look and feel</string>
 
-    <string name="appearance">Appearance</string>
-    <string name="dark_theme">Dark theme</string>
-    <string name="will_turn_on_automatically_by_system">Will turn on automatically by the system</string>
-    <string name="will_never_turn_on_automatically">Will never turn on automatically</string>
-    <string name="amoled_mode">AMOLED mode</string>
-    <string name="follow_system">Follow System Mode</string>
-    <string name="light_mode">Light Mode</string>
-    <string name="dark_mode">Dark Mode</string>
-    <string name="summary_dark_theme">Dark theme uses a deep background to help keep your battery alive longer</string>
-
     <string name="dynamic_colors">Dynamic colors</string>
     <string name="summary_preference_settings_dynamic_colors">Apply colors from wallpapers to the app theme</string>
 
@@ -122,8 +108,6 @@
     <string name="dialog_startup_subtitle">Choose your preferred startup page:</string>
     <string name="dialog_info_startup">Configures the initial screen presented to users upon launching the application. This setting influences the user\'s first interaction with the app and can be tailored to specific user segments or product goals.</string>
 
-    <string name="language">Language</string>
-    <string name="summary_preference_settings_language">Changes the language used in the app</string>
     <string name="dialog_language_subtitle">Select your preferred language</string>
     <string name="dialog_info_language">Personalize your experience with your preferred language. Any language changes you make take effect right away, ensuring a seamless experience in your chosen language</string>
 
@@ -154,35 +138,21 @@
     <string name="notifications">Notifications</string>
     <string name="summary_preference_settings_notifications">Manage app notifications</string>
 
-    <string name="app_usage_notifications">App Usage Notifications</string>
-    <string name="update_notifications">Update Notifications</string>
-
     <string name="advanced">Advanced</string>
     <string name="summary_preference_settings_advanced">Explore more advanced settings</string>
-    <string name="error_reporting">Error reporting</string>
-    <string name="bug_report">Bug report</string>
-    <string name="summary_preference_settings_bug_report">Send bug reports and feature requests to the app\'s GitHub repository issues page</string>
 
     <string name="security_and_privacy">Security &amp; privacy</string>
     <string name="summary_preference_settings_privacy_and_security">Manage your privacy settings</string>
-    <string name="privacy">Privacy</string>
     <string name="privacy_policy">Privacy Policy</string>
-    <string name="summary_preference_settings_privacy_policy">View the policy that governs how we handle your data</string>
     <string name="terms_of_service">Terms of Service</string>
-    <string name="summary_preference_settings_terms_of_service">Review the terms you agree to when using our service</string>
-    <string name="code_of_conduct">Code of Conduct</string>
-    <string name="summary_preference_settings_code_of_conduct">Understand the rules and guidelines for behavior within our service</string>
 
     <string name="permissions">Permissions</string>
-    <string name="summary_preference_settings_permissions">Manage the permissions granted to our service</string>
-    <string name="normal">Normal</string>
     <string name="ad_id">Ad id [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Allows the app to retrieve and use the advertising identifier associated with the user\'s device, providing personalized ads, measuring ad effectiveness, and showing ads on Android 13 or later devices.</string>
     <string name="internet">Internet [INTERNET]</string>
     <string name="summary_preference_permissions_internet">Allows the app to establish an internet connection to send error reports or check for updates.</string>
     <string name="post_notifications">Post notifications [POST_NOTIFICATIONS]</string>
     <string name="summary_preference_permissions_post_notifications">Allows the app to display notifications on the devices with Android 13 or later.</string>
-    <string name="runtime">Runtime</string>
     <string name="access_network_state">Access network state [ACCESS_NETWORK_STATE]</string>
     <string name="summary_preference_permissions_access_network_state">Allows the app to check network connectivity and retrieve information about Wi-Fi, including enabled status and connected Wi-Fi device names.</string>
     <string name="access_notification_policy">Access notification policy [ACCESS_NOTIFICATION_POLICY]</string>

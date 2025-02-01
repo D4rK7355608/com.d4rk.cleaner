@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_short_description">Günlük kullanım için ihtiyacınız olacak son Android Temizleyici!</string>
-    <string name="notification_update_title">Yeni bir güncelleme mevcut!</string>
-    <string name="summary_notification_update">Uygulamanın yeni bir sürümü mevcut. Güncellemek için tıklayın!</string>
-    <string name="notification_last_time_used_title">Uzun zaman oldu!</string>
     <string name="summary_notification_last_time_used">Hadi biraz yer açalım! Geri döndüğünüz için mutluyuz!</string>
 
     <string name="welcome">Hoş geldiniz</string>
@@ -93,16 +90,6 @@
     <string name="display">Görüntü</string>
     <string name="summary_preference_settings_display">Uygulamanızın görünümünü ve hissini kişiselleştirin</string>
 
-    <string name="appearance">Görünüm</string>
-    <string name="dark_theme">Karanlık tema</string>
-    <string name="will_turn_on_automatically_by_system">Sistem tarafından otomatik olarak açılacaktır</string>
-    <string name="will_never_turn_on_automatically">Hiçbir zaman otomatik olarak açılmayacaktır</string>
-    <string name="amoled_mode">AMOLED modu</string>
-    <string name="follow_system">Sistem Modunu Takip Et</string>
-    <string name="light_mode">Açık Mod</string>
-    <string name="dark_mode">Karanlık Mod</string>
-    <string name="summary_dark_theme">Karanlık tema, pil ömrünüzü daha uzun süre korumanıza yardımcı olmak için koyu bir arka plan kullanır</string>
-
     <string name="dynamic_colors">Dinamik renkler</string>
     <string name="summary_preference_settings_dynamic_colors">Duvar kağıtlarınızdan renkleri uygulama temasına uygulayın</string>
 
@@ -116,8 +103,6 @@
     <string name="dialog_startup_subtitle">Tercih ettiğiniz başlangıç sayfasını seçin:</string>
     <string name="dialog_info_startup">Uygulama başlatıldığında kullanıcılara sunulan başlangıç ekranını yapılandırır. Bu ayar, kullanıcının uygulamayla ilk etkileşimini etkiler ve belirli kullanıcı segmentlerine veya ürün hedeflerine göre uyarlanabilir.</string>
 
-    <string name="language">Dil</string>
-    <string name="summary_preference_settings_language">Uygulamada kullanılan dili değiştirir</string>
     <string name="dialog_language_subtitle">Tercih ettiğiniz dili seçin</string>
     <string name="dialog_info_language">Tercih ettiğiniz dil ile deneyiminizi kişiselleştirin. Yaptığınız dil değişiklikleri hemen etkili olur ve seçtiğiniz dilde sorunsuz bir deneyim sağlar</string>
 
@@ -148,35 +133,21 @@
     <string name="notifications">Bildirimler</string>
     <string name="summary_preference_settings_notifications">Uygulama bildirimlerini yönetin</string>
 
-    <string name="app_usage_notifications">Uygulama Kullanımı Bildirimleri</string>
-    <string name="update_notifications">Güncelleme Bildirimleri</string>
-
     <string name="advanced">Gelişmiş</string>
     <string name="summary_preference_settings_advanced">Daha gelişmiş ayarları keşfedin</string>
-    <string name="error_reporting">Hata raporlama</string>
-    <string name="bug_report">Hata raporu</string>
-    <string name="summary_preference_settings_bug_report">Uygulamanın GitHub deposu sorunlar sayfasına hata raporları ve özellik istekleri gönderin</string>
 
     <string name="security_and_privacy">Güvenlik ve gizlilik</string>
     <string name="summary_preference_settings_privacy_and_security">Gizlilik ayarlarınızı yönetin</string>
-    <string name="privacy">Gizlilik</string>
     <string name="privacy_policy">Gizlilik Politikası</string>
-    <string name="summary_preference_settings_privacy_policy">Verilerinizi nasıl işlediğimizi düzenleyen politikayı inceleyin</string>
     <string name="terms_of_service">Kullanım Şartları</string>
-    <string name="summary_preference_settings_terms_of_service">Hizmetimizi kullanırken kabul ettiğiniz şartları gözden geçirin</string>
-    <string name="code_of_conduct">Etik Kurallar</string>
-    <string name="summary_preference_settings_code_of_conduct">Hizmetimiz içindeki davranış için kuralları ve yönergeleri anlayın</string>
 
     <string name="permissions">İzinler</string>
-    <string name="summary_preference_settings_permissions">Hizmetimize verilen izinleri yönetin</string>
-    <string name="normal">Normal</string>
     <string name="ad_id">Reklam kimliği [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Uygulamanın kullanıcının cihazıyla ilişkili reklam tanımlayıcısını almasına ve kullanmasına izin verir, kişiselleştirilmiş reklamlar sağlar, reklam etkinliğini ölçer ve Android 13 veya üzeri cihazlarda reklamlar gösterir.</string>
     <string name="internet">İnternet [INTERNET]</string>
     <string name="summary_preference_permissions_internet">Uygulamanın hata raporları göndermek veya güncellemeleri kontrol etmek için internet bağlantısı kurmasına izin verir.</string>
     <string name="post_notifications">Bildirimler gönder [POST_NOTIFICATIONS]</string>
     <string name="summary_preference_permissions_post_notifications">Uygulamanın Android 13 veya üzeri cihazlarda bildirimler göstermesine izin verir.</string>
-    <string name="runtime">Çalışma zamanı</string>
     <string name="access_network_state">Ağ durumuna erişim [ACCESS_NETWORK_STATE]</string>
     <string name="summary_preference_permissions_access_network_state">Uygulamanın ağ bağlantısını kontrol etmesine ve etkin durum ve bağlı Wi-Fi cihaz adları dahil olmak üzere Wi-Fi hakkında bilgi almasına izin verir.</string>
     <string name="access_notification_policy">Bildirim politikasına erişim [ACCESS_NOTIFICATION_POLICY]</string>

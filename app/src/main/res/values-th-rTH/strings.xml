@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_short_description">แอป Android Cleaner สุดท้ายที่คุณจะต้องใช้ทุกวัน!</string>
-    <string name="notification_update_title">มีอัปเดตใหม่!</string>
-    <string name="summary_notification_update">มีแอปเวอร์ชันใหม่ คลิกเพื่ออัปเดต!</string>
-    <string name="notification_last_time_used_title">นานมาแล้วนะ!</string>
     <string name="summary_notification_last_time_used">มาเพิ่มพื้นที่ว่างกันเถอะ! เรายินดีที่คุณกลับมา!</string>
 
     <string name="welcome">ยินดีต้อนรับ</string>
@@ -97,16 +94,6 @@
     <string name="display">จอแสดงผล</string>
     <string name="summary_preference_settings_display">ปรับแต่งรูปลักษณ์และความรู้สึกของแอปของคุณ</string>
 
-    <string name="appearance">ลักษณะที่ปรากฏ</string>
-    <string name="dark_theme">ธีมสีเข้ม</string>
-    <string name="will_turn_on_automatically_by_system">จะเปิดโดยอัตโนมัติตามระบบ</string>
-    <string name="will_never_turn_on_automatically">จะไม่เปิดโดยอัตโนมัติ</string>
-    <string name="amoled_mode">โหมด AMOLED</string>
-    <string name="follow_system">ทำตามโหมดระบบ</string>
-    <string name="light_mode">โหมดสว่าง</string>
-    <string name="dark_mode">โหมดมืด</string>
-    <string name="summary_dark_theme">ธีมสีเข้มใช้พื้นหลังสีเข้มเพื่อช่วยยืดอายุแบตเตอรี่ของคุณให้นานขึ้น</string>
-
     <string name="dynamic_colors">สีแบบไดนามิก</string>
     <string name="summary_preference_settings_dynamic_colors">ใช้สีจากวอลเปเปอร์กับธีมของแอป</string>
 
@@ -120,8 +107,6 @@
     <string name="dialog_startup_subtitle">เลือกหน้าเริ่มต้นที่คุณต้องการ:</string>
     <string name="dialog_info_startup">กำหนดค่าหน้าจอเริ่มต้นที่แสดงแก่ผู้ใช้เมื่อเปิดแอปพลิเคชัน การตั้งค่านี้มีอิทธิพลต่อการโต้ตอบครั้งแรกของผู้ใช้กับแอป และสามารถปรับแต่งให้เหมาะกับกลุ่มผู้ใช้หรือเป้าหมายผลิตภัณฑ์เฉพาะได้</string>
 
-    <string name="language">ภาษา</string>
-    <string name="summary_preference_settings_language">เปลี่ยนภาษาที่ใช้ในแอป</string>
     <string name="dialog_language_subtitle">เลือกภาษาที่คุณต้องการ</string>
     <string name="dialog_info_language">ปรับแต่งประสบการณ์ของคุณด้วยภาษาที่คุณต้องการ การเปลี่ยนแปลงภาษาใดๆ ที่คุณทำจะมีผลทันที เพื่อให้มั่นใจถึงประสบการณ์ที่ราบรื่นในภาษาที่คุณเลือก</string>
 
@@ -152,35 +137,21 @@
     <string name="notifications">การแจ้งเตือน</string>
     <string name="summary_preference_settings_notifications">จัดการการแจ้งเตือนของแอป</string>
 
-    <string name="app_usage_notifications">การแจ้งเตือนการใช้งานแอป</string>
-    <string name="update_notifications">การแจ้งเตือนการอัปเดต</string>
-
     <string name="advanced">ขั้นสูง</string>
     <string name="summary_preference_settings_advanced">สำรวจการตั้งค่าขั้นสูงเพิ่มเติม</string>
-    <string name="error_reporting">การรายงานข้อผิดพลาด</string>
-    <string name="bug_report">รายงานข้อบกพร่อง</string>
-    <string name="summary_preference_settings_bug_report">ส่งรายงานข้อบกพร่องและคำขอคุณสมบัติไปที่หน้าปัญหาของที่เก็บ GitHub ของแอป</string>
 
     <string name="security_and_privacy">ความปลอดภัยและความเป็นส่วนตัว</string>
     <string name="summary_preference_settings_privacy_and_security">จัดการการตั้งค่าความเป็นส่วนตัวของคุณ</string>
-    <string name="privacy">ความเป็นส่วนตัว</string>
     <string name="privacy_policy">นโยบายความเป็นส่วนตัว</string>
-    <string name="summary_preference_settings_privacy_policy">ดูนโยบายที่ควบคุมวิธีที่เราจัดการข้อมูลของคุณ</string>
     <string name="terms_of_service">ข้อกำหนดในการให้บริการ</string>
-    <string name="summary_preference_settings_terms_of_service">ตรวจสอบข้อกำหนดที่คุณตกลงเมื่อใช้บริการของเรา</string>
-    <string name="code_of_conduct">หลักปฏิบัติ</string>
-    <string name="summary_preference_settings_code_of_conduct">ทำความเข้าใจกฎและหลักเกณฑ์สำหรับพฤติกรรมภายในบริการของเรา</string>
 
     <string name="permissions">สิทธิ์</string>
-    <string name="summary_preference_settings_permissions">จัดการสิทธิ์ที่มอบให้กับบริการของเรา</string>
-    <string name="normal">ปกติ</string>
     <string name="ad_id">รหัสโฆษณา [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">อนุญาตให้แอปดึงข้อมูลและใช้รหัสโฆษณาที่เชื่อมโยงกับอุปกรณ์ของผู้ใช้ เพื่อแสดงโฆษณาส่วนบุคคล วัดประสิทธิภาพของโฆษณา และแสดงโฆษณาบนอุปกรณ์ Android 13 หรือใหม่กว่า</string>
     <string name="internet">อินเทอร์เน็ต [INTERNET]</string>
     <string name="summary_preference_permissions_internet">อนุญาตให้แอปสร้างการเชื่อมต่ออินเทอร์เน็ตเพื่อส่งรายงานข้อผิดพลาดหรือตรวจสอบการอัปเดต</string>
     <string name="post_notifications">โพสต์การแจ้งเตือน [POST_NOTIFICATIONS]</string>
     <string name="summary_preference_permissions_post_notifications">อนุญาตให้แอปแสดงการแจ้งเตือนบนอุปกรณ์ที่ใช้ Android 13 หรือใหม่กว่า</string>
-    <string name="runtime">รันไทม์</string>
     <string name="access_network_state">เข้าถึงสถานะเครือข่าย [ACCESS_NETWORK_STATE]</string>
     <string name="summary_preference_permissions_access_network_state">อนุญาตให้แอปตรวจสอบการเชื่อมต่อเครือข่ายและดึงข้อมูลเกี่ยวกับ Wi-Fi รวมถึงสถานะการเปิดใช้งานและชื่ออุปกรณ์ Wi-Fi ที่เชื่อมต่อ</string>
     <string name="access_notification_policy">เข้านโยบายการแจ้งเตือน [ACCESS_NOTIFICATION_POLICY]</string>

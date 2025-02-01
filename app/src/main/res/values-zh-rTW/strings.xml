@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_short_description">你每天都需要用到的最後一個 Android 清潔工具！</string>
-    <string name="notification_update_title">有新更新可用！</string>
-    <string name="summary_notification_update">應用程式的新版本已推出。點擊更新！</string>
-    <string name="notification_last_time_used_title">好久不見了！</string>
     <string name="summary_notification_last_time_used">讓我們釋放一些空間吧！很高興你回來！</string>
 
     <string name="welcome">歡迎</string>
@@ -92,16 +89,6 @@
     <string name="display">顯示</string>
     <string name="summary_preference_settings_display">自訂您的應用程式外觀和風格</string>
 
-    <string name="appearance">外觀</string>
-    <string name="dark_theme">深色主題</string>
-    <string name="will_turn_on_automatically_by_system">系統將自動啟用</string>
-    <string name="will_never_turn_on_automatically">絕不會自動啟用</string>
-    <string name="amoled_mode">AMOLED 模式</string>
-    <string name="follow_system">跟隨系統模式</string>
-    <string name="light_mode">淺色模式</string>
-    <string name="dark_mode">深色模式</string>
-    <string name="summary_dark_theme">深色主題使用深色背景來延長電池壽命</string>
-
     <string name="dynamic_colors">動態色彩</string>
     <string name="summary_preference_settings_dynamic_colors">將壁紙中的顏色應用到應用程式主題</string>
 
@@ -115,8 +102,6 @@
     <string name="dialog_startup_subtitle">選擇您偏好的啟動頁面：</string>
     <string name="dialog_info_startup">設定應用程式啟動時向使用者顯示的初始畫面。此設定會影響使用者與應用程式的第一次互動，並且可以針對特定使用者區隔或產品目標進行調整。</string>
 
-    <string name="language">語言</string>
-    <string name="summary_preference_settings_language">更改應用程式中使用的語言</string>
     <string name="dialog_language_subtitle">選擇您的偏好語言</string>
     <string name="dialog_info_language">使用您偏好的語言自訂您的體驗。您所做的任何語言更改將立即生效，確保您在所選語言中擁有無縫的體驗</string>
 
@@ -147,35 +132,19 @@
     <string name="notifications">通知</string>
     <string name="summary_preference_settings_notifications">管理應用程式通知</string>
 
-    <string name="app_usage_notifications">應用程式使用量通知</string>
-    <string name="update_notifications">更新通知</string>
-
     <string name="advanced">進階</string>
     <string name="summary_preference_settings_advanced">探索更多進階設定</string>
-    <string name="error_reporting">錯誤報告</string>
-    <string name="bug_report">錯誤報告</string>
-    <string name="summary_preference_settings_bug_report">將錯誤報告和功能請求傳送到應用程式的 GitHub 儲存庫問題頁面</string>
-
     <string name="security_and_privacy">安全和隱私</string>
     <string name="summary_preference_settings_privacy_and_security">管理您的隱私設定</string>
-    <string name="privacy">隱私</string>
     <string name="privacy_policy">隱私權政策</string>
-    <string name="summary_preference_settings_privacy_policy">檢視管理我們如何處理您的資料的政策</string>
     <string name="terms_of_service">服務條款</string>
-    <string name="summary_preference_settings_terms_of_service">檢視使用我們的服務時您同意的條款</string>
-    <string name="code_of_conduct">行為準則</string>
-    <string name="summary_preference_settings_code_of_conduct">了解我們服務中行為的規則和指南</string>
-
     <string name="permissions">權限</string>
-    <string name="summary_preference_settings_permissions">管理授予我們服務的權限</string>
-    <string name="normal">正常</string>
     <string name="ad_id">廣告 ID [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">允許應用程式擷取和使用與使用者裝置相關聯的廣告識別碼，提供個人化廣告，衡量廣告效果，並在 Android 13 或更高版本裝置上顯示廣告。</string>
     <string name="internet">網際網路 [INTERNET]</string>
     <string name="summary_preference_permissions_internet">允許應用程式建立網際網路連線以發送錯誤報告或檢查更新。</string>
     <string name="post_notifications">發佈通知 [POST_NOTIFICATIONS]</string>
     <string name="summary_preference_permissions_post_notifications">允許應用程式在具有 Android 13 或更高版本的裝置上顯示通知。</string>
-    <string name="runtime">執行時間</string>
     <string name="access_network_state">存取網路狀態 [ACCESS_NETWORK_STATE]</string>
     <string name="summary_preference_permissions_access_network_state">允許應用程式檢查網路連線並擷取有關 Wi-Fi 的資訊，包括已啟用狀態和已連線的 Wi-Fi 裝置名稱。</string>
     <string name="access_notification_policy">存取通知政策 [ACCESS_NOTIFICATION_POLICY]</string>

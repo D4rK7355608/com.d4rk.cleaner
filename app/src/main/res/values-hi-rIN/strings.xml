@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_short_description">हर रोज़ इस्तेमाल के लिए यह आखिरी Android क्लीनर है जिसकी आपको कभी आवश्यकता होगी!</string>
-    <string name="notification_update_title">नया अपडेट उपलब्ध है!</string>
-    <string name="summary_notification_update">ऐप का एक नया संस्करण उपलब्ध है। अपडेट करने के लिए क्लिक करें!</string>
-    <string name="notification_last_time_used_title">कुछ समय हो गया है!</string>
     <string name="summary_notification_last_time_used">चलिए कुछ जगह खाली करते हैं! हम खुश हैं कि आप वापस आ गए हैं!</string>
 
     <string name="welcome">स्वागत है</string>
@@ -93,16 +90,6 @@
     <string name="display">प्रदर्शन</string>
     <string name="summary_preference_settings_display">अपने ऐप के लुक और फील को वैयक्तिकृत करें</string>
 
-    <string name="appearance">रूप-रंग</string>
-    <string name="dark_theme">डार्क थीम</string>
-    <string name="will_turn_on_automatically_by_system">सिस्टम द्वारा स्वचालित रूप से चालू हो जाएगा</string>
-    <string name="will_never_turn_on_automatically">स्वचालित रूप से कभी चालू नहीं होगा</string>
-    <string name="amoled_mode">AMOLED मोड</string>
-    <string name="follow_system">सिस्टम मोड का पालन करें</string>
-    <string name="light_mode">लाइट मोड</string>
-    <string name="dark_mode">डार्क मोड</string>
-    <string name="summary_dark_theme">डार्क थीम एक गहरी पृष्ठभूमि का उपयोग करता है ताकि आपकी बैटरी को लंबे समय तक जीवित रखने में मदद मिल सके</string>
-
     <string name="dynamic_colors">गतिशील रंग</string>
     <string name="summary_preference_settings_dynamic_colors">वॉलपेपर से रंगों को ऐप थीम पर लागू करें</string>
 
@@ -116,8 +103,6 @@
     <string name="dialog_startup_subtitle">अपना पसंदीदा स्टार्टअप पेज चुनें:</string>
     <string name="dialog_info_startup">एप्लिकेशन लॉन्च करने पर उपयोगकर्ताओं को प्रस्तुत की जाने वाली प्रारंभिक स्क्रीन को कॉन्फ़िगर करता है। यह सेटिंग ऐप के साथ उपयोगकर्ता की पहली बातचीत को प्रभावित करती है और इसे विशिष्ट उपयोगकर्ता खंडों या उत्पाद लक्ष्यों के अनुरूप बनाया जा सकता है।</string>
 
-    <string name="language">भाषा</string>
-    <string name="summary_preference_settings_language">ऐप में उपयोग की जाने वाली भाषा को बदलता है</string>
     <string name="dialog_language_subtitle">अपनी पसंदीदा भाषा चुनें</string>
     <string name="dialog_info_language">अपनी पसंदीदा भाषा के साथ अपने अनुभव को वैयक्तिकृत करें। आपके द्वारा किए गए कोई भी भाषा परिवर्तन तुरंत प्रभावी हो जाते हैं, जिससे आपकी चुनी हुई भाषा में एक सहज अनुभव सुनिश्चित होता है</string>
 
@@ -148,35 +133,19 @@
     <string name="notifications">सूचनाएं</string>
     <string name="summary_preference_settings_notifications">ऐप सूचनाओं का प्रबंधन करें</string>
 
-    <string name="app_usage_notifications">ऐप उपयोग सूचनाएं</string>
-    <string name="update_notifications">अपडेट सूचनाएं</string>
-
     <string name="advanced">उन्नत</string>
     <string name="summary_preference_settings_advanced">अधिक उन्नत सेटिंग्स का अन्वेषण करें</string>
-    <string name="error_reporting">त्रुटि रिपोर्टिंग</string>
-    <string name="bug_report">बग रिपोर्ट</string>
-    <string name="summary_preference_settings_bug_report">ऐप के GitHub रिपॉजिटरी समस्या पृष्ठ पर बग रिपोर्ट और सुविधा अनुरोध भेजें</string>
-
     <string name="security_and_privacy">सुरक्षा और गोपनीयता</string>
     <string name="summary_preference_settings_privacy_and_security">अपनी गोपनीयता सेटिंग्स का प्रबंधन करें</string>
-    <string name="privacy">गोपनीयता</string>
     <string name="privacy_policy">गोपनीयता नीति</string>
-    <string name="summary_preference_settings_privacy_policy">उस नीति को देखें जो आपके डेटा को संभालने के तरीके को नियंत्रित करती है</string>
     <string name="terms_of_service">सेवा की शर्तें</string>
-    <string name="summary_preference_settings_terms_of_service">हमारी सेवा का उपयोग करते समय आप जिन शर्तों से सहमत होते हैं, उनकी समीक्षा करें</string>
-    <string name="code_of_conduct">आचार संहिता</string>
-    <string name="summary_preference_settings_code_of_conduct">हमारी सेवा के भीतर व्यवहार के लिए नियमों और दिशानिर्देशों को समझें</string>
-
     <string name="permissions">अनुमतियाँ</string>
-    <string name="summary_preference_settings_permissions">हमारी सेवा को दी गई अनुमतियों का प्रबंधन करें</string>
-    <string name="normal">सामान्य</string>
     <string name="ad_id">विज्ञापन आईडी [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">ऐप को उपयोगकर्ता के डिवाइस से जुड़ी विज्ञापन पहचानकर्ता को पुनः प्राप्त करने और उपयोग करने की अनुमति देता है, व्यक्तिगत विज्ञापन प्रदान करता है, विज्ञापन प्रभावशीलता को मापता है और Android 13 या बाद के उपकरणों पर विज्ञापन दिखाता है।</string>
     <string name="internet">इंटरनेट [INTERNET]</string>
     <string name="summary_preference_permissions_internet">ऐप को त्रुटि रिपोर्ट भेजने या अपडेट की जांच करने के लिए इंटरनेट कनेक्शन स्थापित करने की अनुमति देता है।</string>
     <string name="post_notifications">सूचनाएं पोस्ट करें [POST_NOTIFICATIONS]</string>
     <string name="summary_preference_permissions_post_notifications">ऐप को Android 13 या बाद के उपकरणों पर सूचनाएं प्रदर्शित करने की अनुमति देता है।</string>
-    <string name="runtime">रनटाइम</string>
     <string name="access_network_state">नेटवर्क स्थिति तक पहुँचें [ACCESS_NETWORK_STATE]</string>
     <string name="summary_preference_permissions_access_network_state">ऐप को नेटवर्क कनेक्टिविटी की जांच करने और वाई-फाई के बारे में जानकारी प्राप्त करने की अनुमति देता है, जिसमें सक्षम स्थिति और कनेक्टेड वाई-फाई डिवाइस नाम शामिल हैं।</string>
     <string name="access_notification_policy">सूचना नीति तक पहुँचें [ACCESS_NOTIFICATION_POLICY]</string>

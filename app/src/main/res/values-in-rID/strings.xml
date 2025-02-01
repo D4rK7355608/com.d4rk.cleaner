@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_short_description">Pembersih Android terakhir yang Anda perlukan untuk penggunaan sehari-hari!</string>
-    <string name="notification_update_title">Pembaruan baru tersedia!</string>
-    <string name="summary_notification_update">Versi baru aplikasi tersedia. Klik untuk memperbarui!</string>
-    <string name="notification_last_time_used_title">Sudah lama!</string>
     <string name="summary_notification_last_time_used"> Mari kita bebaskan ruang! Kami senang Anda kembali!</string>
 
     <string name="welcome">Selamat datang</string>
@@ -92,16 +89,6 @@
     <string name="display">Tampilan</string>
     <string name="summary_preference_settings_display">Personalisasi tampilan dan nuansa aplikasi Anda</string>
 
-    <string name="appearance">Penampilan</string>
-    <string name="dark_theme">Tema gelap</string>
-    <string name="will_turn_on_automatically_by_system">Akan diaktifkan secara otomatis oleh sistem</string>
-    <string name="will_never_turn_on_automatically">Tidak akan pernah diaktifkan secara otomatis</string>
-    <string name="amoled_mode">Mode AMOLED</string>
-    <string name="follow_system">Ikuti Mode Sistem</string>
-    <string name="light_mode">Mode Terang</string>
-    <string name="dark_mode">Mode Gelap</string>
-    <string name="summary_dark_theme">Tema gelap menggunakan latar belakang yang dalam untuk membantu menjaga baterai Anda tetap hidup lebih lama</string>
-
     <string name="dynamic_colors">Warna dinamis</string>
     <string name="summary_preference_settings_dynamic_colors">Terapkan warna dari wallpaper ke tema aplikasi</string>
 
@@ -115,8 +102,6 @@
     <string name="dialog_startup_subtitle">Pilih halaman startup pilihan Anda:</string>
     <string name="dialog_info_startup">Mengonfigurasi layar awal yang ditampilkan kepada pengguna saat meluncurkan aplikasi. Pengaturan ini memengaruhi interaksi pertama pengguna dengan aplikasi dan dapat disesuaikan dengan segmen pengguna atau sasaran produk tertentu.</string>
 
-    <string name="language">Bahasa</string>
-    <string name="summary_preference_settings_language">Mengubah bahasa yang digunakan dalam aplikasi</string>
     <string name="dialog_language_subtitle">Pilih bahasa pilihan Anda</string>
     <string name="dialog_info_language">Personalisasi pengalaman Anda dengan bahasa pilihan Anda. Setiap perubahan bahasa yang Anda buat akan segera berlaku, memastikan pengalaman yang mulus dalam bahasa yang Anda pilih</string>
 
@@ -147,35 +132,21 @@
     <string name="notifications">Notifikasi</string>
     <string name="summary_preference_settings_notifications">Kelola notifikasi aplikasi</string>
 
-    <string name="app_usage_notifications">Notifikasi Penggunaan Aplikasi</string>
-    <string name="update_notifications">Notifikasi Pembaruan</string>
-
     <string name="advanced">Lanjutan</string>
     <string name="summary_preference_settings_advanced">Jelajahi pengaturan yang lebih canggih</string>
-    <string name="error_reporting">Pelaporan kesalahan</string>
-    <string name="bug_report">Laporan bug</string>
-    <string name="summary_preference_settings_bug_report">Kirim laporan bug dan permintaan fitur ke halaman masalah repositori GitHub aplikasi</string>
 
     <string name="security_and_privacy">Keamanan &amp; privasi</string>
     <string name="summary_preference_settings_privacy_and_security">Kelola pengaturan privasi Anda</string>
-    <string name="privacy">Privasi</string>
     <string name="privacy_policy">Kebijakan Privasi</string>
-    <string name="summary_preference_settings_privacy_policy">Lihat kebijakan yang mengatur cara kami menangani data Anda</string>
     <string name="terms_of_service">Ketentuan Layanan</string>
-    <string name="summary_preference_settings_terms_of_service">Tinjau persyaratan yang Anda setujui saat menggunakan layanan kami</string>
-    <string name="code_of_conduct">Kode Etik</string>
-    <string name="summary_preference_settings_code_of_conduct">Pahami aturan dan pedoman perilaku dalam layanan kami</string>
 
     <string name="permissions">Izin</string>
-    <string name="summary_preference_settings_permissions">Kelola izin yang diberikan ke layanan kami</string>
-    <string name="normal">Normal</string>
     <string name="ad_id">ID iklan [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Memungkinkan aplikasi untuk mengambil dan menggunakan pengenal periklanan yang terkait dengan perangkat pengguna, menyediakan iklan yang dipersonalisasi, mengukur efektivitas iklan, dan menampilkan iklan di perangkat Android 13 atau yang lebih baru.</string>
     <string name="internet">Internet [INTERNET]</string>
     <string name="summary_preference_permissions_internet">Memungkinkan aplikasi untuk membuat koneksi internet untuk mengirim laporan kesalahan atau memeriksa pembaruan.</string>
     <string name="post_notifications">Kirim notifikasi [POST_NOTIFICATIONS]</string>
     <string name="summary_preference_permissions_post_notifications">Memungkinkan aplikasi untuk menampilkan notifikasi pada perangkat dengan Android 13 atau yang lebih baru.</string>
-    <string name="runtime">Runtime</string>
     <string name="access_network_state">Akses status jaringan [ACCESS_NETWORK_STATE]</string>
     <string name="summary_preference_permissions_access_network_state">Memungkinkan aplikasi untuk memeriksa konektivitas jaringan dan mengambil informasi tentang Wi-Fi, termasuk status aktif dan nama perangkat Wi-Fi yang terhubung.</string>
     <string name="access_notification_policy">Akses kebijakan notifikasi [ACCESS_NOTIFICATION_POLICY]</string>
