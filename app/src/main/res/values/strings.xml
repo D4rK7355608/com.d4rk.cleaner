@@ -95,16 +95,6 @@
     <string name="display">Display</string>
     <string name="summary_preference_settings_display">Personalize your app\'s look and feel</string>
 
-    <string name="dynamic_colors">Dynamic colors</string>
-    <string name="summary_preference_settings_dynamic_colors">Apply colors from wallpapers to the app theme</string>
-
-    <string name="app_behavior">App behavior</string>
-    <string name="bounce_buttons">Bounce click</string>
-    <string name="summary_preference_settings_bounce_buttons">Applies a subtle bounce animation to all clickable elements when clicked</string>
-
-    <string name="navigation">Navigation</string>
-    <string name="startup_page">Startup page</string>
-    <string name="summary_preference_settings_startup_page">Choose the screen to be displayed when the app starts.</string>
     <string name="dialog_startup_subtitle">Choose your preferred startup page:</string>
     <string name="dialog_info_startup">Configures the initial screen presented to users upon launching the application. This setting influences the user\'s first interaction with the app and can be tailored to specific user segments or product goals.</string>
 
@@ -165,7 +155,6 @@
     <string name="summary_preference_permissions_foreground_service">Allows the app to create and use services that run in the foreground, giving them priority over other background processes and improving performance and reliability.</string>
     <string name="request_delete_packages">Request delete packages [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Allows the app to request the deletion of packages. This can be used to uninstall other apps from the device</string>
-    <string name="storage">Storage</string>
     <string name="access_media_location">Access media location [ACCESS_MEDIA_LOCATION]</string>
     <string name="summary_preference_permissions_access_media_location">Allows the app to access the device\'s media files location</string>
     <string name="action_open_document_tree">Action open document tree [ACTION_OPEN_DOCUMENT_TREE]</string>
@@ -188,27 +177,16 @@
     <string name="summary_preference_permissions_write_external_storage">Allows the app to write files to the device\'s storage, including both internal and external storage</string>
 
     <string name="ads">Ads</string>
-    <string name="summary_preference_settings_ads">Control how we use your information to show you relevant ads</string>
     <string name="display_ads">Display ads</string>
     <string name="personalized_ads">Personalized ads</string>
     <string name="summary_ads_personalized_ads">Choose how we personalize ads for you based on your interests</string>
     <string name="summary_ads">See ads that are relevant to you. Manage the information used to show personalized ads based on your app activity. You can always turn off personalization here.\n</string>
 
     <string name="usage_and_diagnostics">Usage and diagnostics</string>
-    <string name="summary_preference_settings_usage_and_diagnostics">Share data to help improve Cleaner for Android</string>
-    <string name="summary_usage_and_diagnostics">Help improve your experience by automatically sending diagnostic, device, and app usage data to us. This will help improve app performance, stability, and other enhancements. Some aggregate data will also help our apps.\n\nThis is general information about your device and how you use our apps (such as battery level, system and app activity, and errors). The data will be used to improve our apps\n\nTurning off this feature doesn\'t affect your device\'s ability to send the information needed for essential services such as app updates and security.\n</string>
-
-    <string name="legal">Legal</string>
-    <string name="legal_notices">Legal notices</string>
-    <string name="summary_preference_settings_legal_notices">View legal information about our service</string>
-    <string name="license">License</string>
 
     <string name="about">About</string>
     <string name="summary_preference_settings_about">Learn more about Cleaner</string>
 
-    <string name="app_build_version">Application build version</string>
-    <string name="summary_preference_settings_oss">License details for open source software</string>
-    <string name="device_info">Device Info</string>
     <string name="app_build">App Build: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="debug">Debug</string>
     <string name="release">Release</string>
@@ -216,11 +194,9 @@
     <string name="device_model">Device Model:</string>
     <string name="android_version">Android Version:</string>
     <string name="api_level">API Level:</string>
-    <string name="snack_device_info_copied">Device info copied to clipboard</string>
 
     <string name="help_and_feedback">Help &amp; feedback</string>
     <string name="help">Help</string>
-    <string name="faq">FAQ</string>
     <string name="view_in_google_play_store">View in Google Play Store</string>
     <string name="version_info">Version info</string>
     <string name="version">Version %1$s</string>
@@ -260,10 +236,7 @@
     <string name="learn_more">Learn more</string>
 
     <string name="close">Close?</string>
-    <string name="snack_network_error">Network error occurred while checking for updates</string>
-    <string name="snack_general_error">An error occurred while checking for updates</string>
     <string name="summary_close">Are you sure you want to exit?</string>
-    <string name="summary_require_restart">To take effect please restart the app!</string>
 
     <string name="snack_no_image">No image provided</string>
     <string name="snack_validate_file">Please select a valid file size</string>

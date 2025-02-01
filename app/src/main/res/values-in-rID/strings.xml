@@ -89,16 +89,6 @@
     <string name="display">Tampilan</string>
     <string name="summary_preference_settings_display">Personalisasi tampilan dan nuansa aplikasi Anda</string>
 
-    <string name="dynamic_colors">Warna dinamis</string>
-    <string name="summary_preference_settings_dynamic_colors">Terapkan warna dari wallpaper ke tema aplikasi</string>
-
-    <string name="app_behavior">Perilaku aplikasi</string>
-    <string name="bounce_buttons">Klik pantul</string>
-    <string name="summary_preference_settings_bounce_buttons">Menerapkan animasi pantulan halus ke semua elemen yang dapat diklik saat diklik</string>
-
-    <string name="navigation">Navigasi</string>
-    <string name="startup_page">Halaman startup</string>
-    <string name="summary_preference_settings_startup_page">Pilih layar yang akan ditampilkan saat aplikasi dimulai.</string>
     <string name="dialog_startup_subtitle">Pilih halaman startup pilihan Anda:</string>
     <string name="dialog_info_startup">Mengonfigurasi layar awal yang ditampilkan kepada pengguna saat meluncurkan aplikasi. Pengaturan ini memengaruhi interaksi pertama pengguna dengan aplikasi dan dapat disesuaikan dengan segmen pengguna atau sasaran produk tertentu.</string>
 
@@ -159,7 +149,6 @@
     <string name="summary_preference_permissions_foreground_service">Memungkinkan aplikasi untuk membuat dan menggunakan layanan yang berjalan di latar depan, memberi mereka prioritas atas proses latar belakang lainnya, dan meningkatkan kinerja dan keandalan.</string>
     <string name="request_delete_packages">Minta hapus paket [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Memungkinkan aplikasi untuk meminta penghapusan paket. Ini dapat digunakan untuk mencopot pemasangan aplikasi lain dari perangkat</string>
-    <string name="storage">Penyimpanan</string>
     <string name="access_media_location">Akses lokasi media [ACCESS_MEDIA_LOCATION]</string>
     <string name="summary_preference_permissions_access_media_location">Memungkinkan aplikasi untuk mengakses lokasi file media perangkat</string>
     <string name="action_open_document_tree">Tindakan buka pohon dokumen [ACTION_OPEN_DOCUMENT_TREE]</string>
@@ -182,37 +171,23 @@
     <string name="summary_preference_permissions_write_external_storage">Memungkinkan aplikasi untuk menulis file ke penyimpanan perangkat, termasuk penyimpanan internal dan eksternal</string>
 
     <string name="ads">Iklan</string>
-    <string name="summary_preference_settings_ads">Kontrol bagaimana kami menggunakan informasi Anda untuk menampilkan iklan yang relevan</string>
     <string name="display_ads">Tampilkan iklan</string>
     <string name="personalized_ads">Iklan yang dipersonalisasi</string>
     <string name="summary_ads_personalized_ads">Pilih bagaimana kami mempersonalisasi iklan untuk Anda berdasarkan minat Anda</string>
     <string name="summary_ads">Lihat iklan yang relevan untuk Anda. Kelola informasi yang digunakan untuk menampilkan iklan yang dipersonalisasi berdasarkan aktivitas aplikasi Anda. Anda selalu dapat menonaktifkan personalisasi di sini.\n</string>
 
     <string name="usage_and_diagnostics">Penggunaan dan diagnostik</string>
-    <string name="summary_preference_settings_usage_and_diagnostics">Bagikan data untuk membantu meningkatkan Cleaner untuk Android</string>
-    <string name="summary_usage_and_diagnostics">Bantu tingkatkan pengalaman Anda dengan mengirimkan data diagnostik, perangkat, dan penggunaan aplikasi secara otomatis kepada kami. Ini akan membantu meningkatkan kinerja aplikasi, stabilitas, dan peningkatan lainnya. Beberapa data agregat juga akan membantu aplikasi kami.\n\nIni adalah informasi umum tentang perangkat Anda dan bagaimana Anda menggunakan aplikasi kami (seperti tingkat baterai, aktivitas sistem dan aplikasi, dan kesalahan). Data akan digunakan untuk meningkatkan aplikasi kami\n\nMematikan fitur ini tidak memengaruhi kemampuan perangkat Anda untuk mengirim informasi yang diperlukan untuk layanan penting seperti pembaruan aplikasi dan keamanan.\n</string>
-
-    <string name="legal">Hukum</string>
-    <string name="legal_notices">Pemberitahuan hukum</string>
-    <string name="summary_preference_settings_legal_notices">Lihat informasi hukum tentang layanan kami</string>
-    <string name="license">Lisensi</string>
 
     <string name="about">Tentang</string>
     <string name="summary_preference_settings_about">Pelajari lebih lanjut tentang Cleaner</string>
 
-    <string name="app_build_version">Versi build aplikasi</string>
-    <string name="summary_preference_settings_oss">Detail lisensi untuk perangkat lunak sumber terbuka</string>
-    <string name="device_info">Info Perangkat</string>
     <string name="app_build">Build Aplikasi: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Produsen:</string>
     <string name="device_model">Model Perangkat:</string>
     <string name="android_version">Versi Android:</string>
     <string name="api_level">Level API:</string>
-    <string name="snack_device_info_copied">Info perangkat disalin ke papan klip</string>
-
     <string name="help_and_feedback">Bantuan &amp; masukan</string>
     <string name="help">Bantuan</string>
-    <string name="faq">FAQ</string>
     <string name="view_in_google_play_store">Lihat di Google Play Store</string>
     <string name="version_info">Info versi</string>
     <string name="version">Versi %1$s</string>
@@ -252,10 +227,7 @@
     <string name="learn_more">Pelajari lebih lanjut</string>
 
     <string name="close">Tutup?</string>
-    <string name="snack_network_error">Terjadi kesalahan jaringan saat memeriksa pembaruan</string>
-    <string name="snack_general_error">Terjadi kesalahan saat memeriksa pembaruan</string>
     <string name="summary_close">Apakah Anda yakin ingin keluar?</string>
-    <string name="summary_require_restart">Untuk berlaku, silakan mulai ulang aplikasi!</string>
     <string name="snack_no_image">Tidak ada gambar yang disediakan</string>
     <string name="snack_validate_file">Harap pilih ukuran file yang valid</string>
 </resources>

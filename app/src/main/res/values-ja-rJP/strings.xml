@@ -89,16 +89,6 @@
     <string name="display">表示</string>
     <string name="summary_preference_settings_display">アプリの外観をカスタマイズ</string>
 
-    <string name="dynamic_colors">ダイナミックカラー</string>
-    <string name="summary_preference_settings_dynamic_colors">壁紙の色をアプリテーマに適用する</string>
-
-    <string name="app_behavior">アプリの動作</string>
-    <string name="bounce_buttons">バウンスクリック</string>
-    <string name="summary_preference_settings_bounce_buttons">クリック可能なすべての要素をクリックしたときに、微妙なバウンスアニメーションを適用します</string>
-
-    <string name="navigation">ナビゲーション</string>
-    <string name="startup_page">スタートアップページ</string>
-    <string name="summary_preference_settings_startup_page">アプリ起動時に表示する画面を選択します。</string>
     <string name="dialog_startup_subtitle">希望するスタートアップページを選択してください:</string>
     <string name="dialog_info_startup">アプリケーションの起動時にユーザーに表示される初期画面を設定します。この設定は、ユーザーがアプリと初めて対話するときの影響を与え、特定のユーザーセグメントまたは製品目標に合わせて調整できます。</string>
 
@@ -159,7 +149,6 @@
     <string name="summary_preference_permissions_foreground_service">アプリがフォアグラウンドで実行されるサービスを作成して使用できるようにし、他のバックグラウンドプロセスよりも優先順位を高くし、パフォーマンスと信頼性を向上させます。</string>
     <string name="request_delete_packages">パッケージ削除の要求 [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">アプリがパッケージの削除を要求できるようにします。これは、デバイスから他のアプリをアンインストールするために使用できます</string>
-    <string name="storage">ストレージ</string>
     <string name="access_media_location">メディアの場所へのアクセス [ACCESS_MEDIA_LOCATION]</string>
     <string name="summary_preference_permissions_access_media_location">アプリがデバイスのメディアファイルの場所へのアクセスを許可します</string>
     <string name="action_open_document_tree">ドキュメントツリーを開くアクション [ACTION_OPEN_DOCUMENT_TREE]</string>
@@ -182,37 +171,24 @@
     <string name="summary_preference_permissions_write_external_storage">アプリが、内部ストレージと外部ストレージの両方を含む、デバイスのストレージにファイルを書けるようにします</string>
 
     <string name="ads">広告</string>
-    <string name="summary_preference_settings_ads">関連性の高い広告を表示するために、情報をどのように使用するかを管理する</string>
     <string name="display_ads">広告の表示</string>
     <string name="personalized_ads">パーソナライズされた広告</string>
     <string name="summary_ads_personalized_ads">興味に基づいて広告をパーソナライズする方法を選択する</string>
     <string name="summary_ads">あなたにとって関連性の高い広告を表示します。アプリの活動に基づいてパーソナライズされた広告を表示するために使用される情報を管理します。いつでもここでパーソナライズを無効にすることができます。</string>
 
     <string name="usage_and_diagnostics">使用状況と診断</string>
-    <string name="summary_preference_settings_usage_and_diagnostics">Cleaner for Androidの改善に役立つデータを共有する</string>
-    <string name="summary_usage_and_diagnostics">診断、デバイス、アプリの使用状況データを自動的に送信することで、体験を向上させるのに役立ちます。これは、アプリのパフォーマンス、安定性、その他の機能強化を改善するのに役立ちます。いくつかの集計データは、当社のアプリにも役立ちます。\n\nこれは、デバイスと当社のアプリの使用状況に関する一般的な情報です（バッテリーレベル、システムとアプリの活動、エラーなど）。データは、当社のアプリを改善するために使用されます\n\nこの機能をオフにしても、アプリの更新やセキュリティなど、必須サービスに必要な情報をデバイスから送信することは影響を受けません。\n</string>
-
-    <string name="legal">法律</string>
-    <string name="legal_notices">法的通知</string>
-    <string name="summary_preference_settings_legal_notices">サービスに関する法的情報を表示する</string>
-    <string name="license">ライセンス</string>
 
     <string name="about">概要</string>
     <string name="summary_preference_settings_about">Cleanerについて詳しく知る</string>
 
-    <string name="app_build_version">アプリケーションビルドバージョン</string>
-    <string name="summary_preference_settings_oss">オープンソースソフトウェアのライセンスの詳細</string>
-    <string name="device_info">デバイス情報</string>
     <string name="app_build">アプリビルド: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">メーカー:</string>
     <string name="device_model">デバイスモデル:</string>
     <string name="android_version">Androidバージョン:</string>
     <string name="api_level">APIレベル:</string>
-    <string name="snack_device_info_copied">デバイス情報がクリップボードにコピーされました</string>
 
     <string name="help_and_feedback">ヘルプとフィードバック</string>
     <string name="help">ヘルプ</string>
-    <string name="faq">よくある質問</string>
     <string name="view_in_google_play_store">Google Playストアで確認する</string>
     <string name="version_info">バージョン情報</string>
     <string name="version">バージョン %1$s</string>
@@ -252,10 +228,7 @@
     <string name="learn_more">もっと詳しく知る</string>
 
     <string name="close">閉じる？</string>
-    <string name="snack_network_error">更新を確認中にネットワークエラーが発生しました</string>
-    <string name="snack_general_error">更新を確認中にエラーが発生しました</string>
     <string name="summary_close">本当に終了しますか？</string>
-    <string name="summary_require_restart">有効にするには、アプリを再起動してください！</string>
     <string name="snack_no_image">画像が提供されていません</string>
     <string name="snack_validate_file">有効なファイルサイズを選択してください</string>
 </resources>

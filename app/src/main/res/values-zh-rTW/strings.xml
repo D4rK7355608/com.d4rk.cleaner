@@ -89,16 +89,6 @@
     <string name="display">顯示</string>
     <string name="summary_preference_settings_display">自訂您的應用程式外觀和風格</string>
 
-    <string name="dynamic_colors">動態色彩</string>
-    <string name="summary_preference_settings_dynamic_colors">將壁紙中的顏色應用到應用程式主題</string>
-
-    <string name="app_behavior">應用程式行為</string>
-    <string name="bounce_buttons">彈跳點擊</string>
-    <string name="summary_preference_settings_bounce_buttons">點擊所有可點擊的元素時，會套用一個細微的彈跳動畫</string>
-
-    <string name="navigation">導覽</string>
-    <string name="startup_page">啟動頁面</string>
-    <string name="summary_preference_settings_startup_page">選擇應用程式啟動時要顯示的畫面。</string>
     <string name="dialog_startup_subtitle">選擇您偏好的啟動頁面：</string>
     <string name="dialog_info_startup">設定應用程式啟動時向使用者顯示的初始畫面。此設定會影響使用者與應用程式的第一次互動，並且可以針對特定使用者區隔或產品目標進行調整。</string>
 
@@ -157,7 +147,6 @@
     <string name="summary_preference_permissions_foreground_service">允許應用程式建立和使用在前台執行的服務，使這些服務優先於其它背景程序，並提高效能和可靠性。</string>
     <string name="request_delete_packages">要求刪除套件 [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">允許應用程式要求刪除套件。這可用於從裝置中解除安裝其它應用程式</string>
-    <string name="storage">儲存空間</string>
     <string name="access_media_location">存取媒體位置 [ACCESS_MEDIA_LOCATION]</string>
     <string name="summary_preference_permissions_access_media_location">允許應用程式存取裝置的媒體檔案位置</string>
     <string name="action_open_document_tree">動作開啟文件樹 [ACTION_OPEN_DOCUMENT_TREE]</string>
@@ -180,37 +169,24 @@
     <string name="summary_preference_permissions_write_external_storage">允許應用程式將檔案寫入裝置的儲存空間，包括內部和外部儲存空間</string>
 
     <string name="ads">廣告</string>
-    <string name="summary_preference_settings_ads">控制我們如何使用您的資訊向您顯示相關廣告</string>
     <string name="display_ads">顯示廣告</string>
     <string name="personalized_ads">個人化廣告</string>
     <string name="summary_ads_personalized_ads">選擇我們如何根據您的興趣為您個人化廣告</string>
     <string name="summary_ads">查看與您相關的廣告。管理用於根據您的應用程式活動顯示個人化廣告的資訊。您始終可以在這裡關閉個人化設定。\n</string>
 
     <string name="usage_and_diagnostics">使用量和診斷</string>
-    <string name="summary_preference_settings_usage_and_diagnostics">分享資料以幫助改善 Android 用戶的清潔體驗</string>
-    <string name="summary_usage_and_diagnostics">通過自動向我們發送診斷、裝置和應用程式使用量數據，幫助改善您的體驗。這將有助於改善應用程式的性能、穩定性和其它增強功能。一些彙總數據也有助於我們的應用程式。\n\n這是一些關於您的裝置和您如何使用我們的應用程式（例如電池電量、系統和應用程式活動以及錯誤）的通用資訊。這些數據將用於改善我們的應用程式\n\n關閉此功能不會影響您的裝置發送必要的資訊來提供基本服務，例如應用程式更新和安全性。\n</string>
-
-    <string name="legal">法律</string>
-    <string name="legal_notices">法律通知</string>
-    <string name="summary_preference_settings_legal_notices">查看有關我們服務的法律資訊</string>
-    <string name="license">許可</string>
 
     <string name="about">關於</string>
     <string name="summary_preference_settings_about">瞭解有關清潔工具的更多資訊</string>
 
-    <string name="app_build_version">應用程式版本</string>
-    <string name="summary_preference_settings_oss">開放源碼軟體的許可證詳情</string>
-    <string name="device_info">裝置資訊</string>
     <string name="app_build">應用程式版本：%6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">製造商：</string>
     <string name="device_model">裝置型號：</string>
     <string name="android_version">Android 版本：</string>
     <string name="api_level">API 層級：</string>
-    <string name="snack_device_info_copied">裝置資訊已複製到剪貼簿</string>
 
     <string name="help_and_feedback">協助和意見回饋</string>
     <string name="help">協助</string>
-    <string name="faq">常見問題解答</string>
     <string name="view_in_google_play_store">在 Google Play 商店中查看</string>
     <string name="version_info">版本資訊</string>
     <string name="version">版本 %1$s</string>
@@ -250,10 +226,7 @@
     <string name="learn_more">了解更多</string>
 
     <string name="close">關閉？</string>
-    <string name="snack_network_error">檢查更新時發生網路錯誤</string>
-    <string name="snack_general_error">檢查更新時發生錯誤</string>
     <string name="summary_close">您確定要退出嗎？</string>
-    <string name="summary_require_restart">為使更改生效，請重新啟動應用程式！</string>
     <string name="snack_no_image">未提供圖片</string>
     <string name="snack_validate_file">請選擇有效的檔案大小</string>
 </resources>

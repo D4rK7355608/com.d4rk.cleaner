@@ -90,16 +90,6 @@
     <string name="display">Skärm</string>
     <string name="summary_preference_settings_display">Anpassa appens utseende och känsla</string>
 
-    <string name="dynamic_colors">Dynamiska färger</string>
-    <string name="summary_preference_settings_dynamic_colors">Använd färger från bakgrundsbilder till appens tema</string>
-
-    <string name="app_behavior">Appbeteende</string>
-    <string name="bounce_buttons">Studsande klick</string>
-    <string name="summary_preference_settings_bounce_buttons">Tillämpar en subtil studsanimation på alla klickbara element när de klickas på</string>
-
-    <string name="navigation">Navigering</string>
-    <string name="startup_page">Startsida</string>
-    <string name="summary_preference_settings_startup_page">Välj skärmen som ska visas när appen startar.</string>
     <string name="dialog_startup_subtitle">Välj din föredragna startsida:</string>
     <string name="dialog_info_startup">Konfigurerar startskärmen som visas för användare när appen startas. Den här inställningen påverkar användarens första interaktion med appen och kan anpassas till specifika användarsegment eller produktmål.</string>
 
@@ -160,7 +150,6 @@
     <string name="summary_preference_permissions_foreground_service">Tillåter appen att skapa och använda tjänster som körs i förgrunden, vilket ger dem prioritet över andra bakgrundsprocesser och förbättrar prestanda och tillförlitlighet.</string>
     <string name="request_delete_packages">Begär radering av paket [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Tillåter appen att begära radering av paket. Detta kan användas för att avinstallera andra appar från enheten</string>
-    <string name="storage">Lagring</string>
     <string name="access_media_location">Åtkomst till medialokal [ACCESS_MEDIA_LOCATION]</string>
     <string name="summary_preference_permissions_access_media_location">Tillåter appen att komma åt enhetens plats för mediefiler</string>
     <string name="action_open_document_tree">Åtgärd öppna dokumentträd [ACTION_OPEN_DOCUMENT_TREE]</string>
@@ -183,37 +172,24 @@
     <string name="summary_preference_permissions_write_external_storage">Tillåter appen att skriva filer till enhetens lagring, inklusive både intern och extern lagring</string>
 
     <string name="ads">Annonser</string>
-    <string name="summary_preference_settings_ads">Kontrollera hur vi använder din information för att visa dig relevanta annonser</string>
     <string name="display_ads">Visa annonser</string>
     <string name="personalized_ads">Personliga annonser</string>
     <string name="summary_ads_personalized_ads">Välj hur vi personifierar annonser för dig baserat på dina intressen</string>
     <string name="summary_ads">Se annonser som är relevanta för dig. Hantera informationen som används för att visa personliga annonser baserat på din appaktivitet. Du kan alltid stänga av personalisering här.\n</string>
 
     <string name="usage_and_diagnostics">Användning och diagnostik</string>
-    <string name="summary_preference_settings_usage_and_diagnostics">Dela data för att hjälpa till att förbättra Cleaner för Android</string>
-    <string name="summary_usage_and_diagnostics">Hjälp till att förbättra din upplevelse genom att automatiskt skicka diagnostik-, enhets- och appanvändningsdata till oss. Detta kommer att hjälpa till att förbättra appens prestanda, stabilitet och andra förbättringar. Vissa aggregerade data hjälper också våra appar.\n\nDetta är allmän information om din enhet och hur du använder våra appar (t.ex. batterinivå, system- och appaktivitet och fel). Data kommer att användas för att förbättra våra appar\n\nAtt stänga av den här funktionen påverkar inte enhetens förmåga att skicka informationen som behövs för viktiga tjänster som appuppdateringar och säkerhet.\n</string>
-
-    <string name="legal">Juridisk</string>
-    <string name="legal_notices">Juridiska meddelanden</string>
-    <string name="summary_preference_settings_legal_notices">Visa juridisk information om vår tjänst</string>
-    <string name="license">Licens</string>
 
     <string name="about">Om</string>
     <string name="summary_preference_settings_about">Läs mer om Cleaner</string>
 
-    <string name="app_build_version">Applikationsbyggversion</string>
-    <string name="summary_preference_settings_oss">Licensinformation för programvara med öppen källkod</string>
-    <string name="device_info">Enhetsinformation</string>
     <string name="app_build">Appbyggnad: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Tillverkare:</string>
     <string name="device_model">Enhetsmodell:</string>
     <string name="android_version">Android-version:</string>
     <string name="api_level">API-nivå:</string>
-    <string name="snack_device_info_copied">Enhetsinformation kopierad till urklipp</string>
 
     <string name="help_and_feedback">Hjälp och feedback</string>
     <string name="help">Hjälp</string>
-    <string name="faq">Vanliga frågor</string>
     <string name="view_in_google_play_store">Visa i Google Play Butik</string>
     <string name="version_info">Versionsinformation</string>
     <string name="version">Version %1$s</string>
@@ -253,10 +229,7 @@
     <string name="learn_more">Läs mer</string>
 
     <string name="close">Stäng?</string>
-    <string name="snack_network_error">Nätverksfel uppstod vid kontroll av uppdateringar</string>
-    <string name="snack_general_error">Ett fel uppstod vid kontroll av uppdateringar</string>
     <string name="summary_close">Är du säker på att du vill avsluta?</string>
-    <string name="summary_require_restart">För att träda i kraft, starta om appen!</string>
     <string name="snack_no_image">Ingen bild tillhandahållen</string>
     <string name="snack_validate_file">Välj en giltig filstorlek</string>
 </resources>

@@ -91,16 +91,6 @@
     <string name="display">Schermo</string>
     <string name="summary_preference_settings_display">Personalizza l\'aspetto e il comportamento dell\'app</string>
 
-    <string name="dynamic_colors">Colori dinamici</string>
-    <string name="summary_preference_settings_dynamic_colors">Applica i colori degli sfondi al tema dell\'app</string>
-
-    <string name="app_behavior">Comportamento dell\'app</string>
-    <string name="bounce_buttons">Clic con rimbalzo</string>
-    <string name="summary_preference_settings_bounce_buttons">Applica una sottile animazione di rimbalzo a tutti gli elementi cliccabili quando vengono cliccati</string>
-
-    <string name="navigation">Navigazione</string>
-    <string name="startup_page">Pagina iniziale</string>
-    <string name="summary_preference_settings_startup_page">Scegli la schermata da visualizzare all\'avvio dell\'app.</string>
     <string name="dialog_startup_subtitle">Scegli la tua pagina iniziale preferita:</string>
     <string name="dialog_info_startup">Configura la schermata iniziale presentata agli utenti all\'avvio dell\'applicazione. Questa impostazione influenza la prima interazione dell\'utente con l\'app e può essere adattata a specifici segmenti di utenza o obiettivi di prodotto.</string>
 
@@ -161,7 +151,6 @@
     <string name="summary_preference_permissions_foreground_service">Consente all\'app di creare e utilizzare servizi in esecuzione in primo piano, assegnando loro la priorità rispetto ad altri processi in background e migliorando le prestazioni e l\'affidabilità.</string>
     <string name="request_delete_packages">Richiedi l\'eliminazione dei pacchetti [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Consente all\'app di richiedere l\'eliminazione dei pacchetti. Questo può essere utilizzato per disinstallare altre app dal dispositivo</string>
-    <string name="storage">Archiviazione</string>
     <string name="access_media_location">Accedi alla posizione dei file multimediali [ACCESS_MEDIA_LOCATION]</string>
     <string name="summary_preference_permissions_access_media_location">Consente all\'app di accedere alla posizione dei file multimediali del dispositivo</string>
     <string name="action_open_document_tree">Azione apri albero documenti [ACTION_OPEN_DOCUMENT_TREE]</string>
@@ -184,37 +173,24 @@
     <string name="summary_preference_permissions_write_external_storage">Consente all\'app di scrivere file sull\'archiviazione del dispositivo, inclusi sia l\'archiviazione interna che esterna</string>
 
     <string name="ads">Annunci</string>
-    <string name="summary_preference_settings_ads">Controlla come utilizziamo le tue informazioni per mostrarti annunci pertinenti</string>
     <string name="display_ads">Mostra annunci</string>
     <string name="personalized_ads">Annunci personalizzati</string>
     <string name="summary_ads_personalized_ads">Scegli come personalizziamo gli annunci per te in base ai tuoi interessi</string>
     <string name="summary_ads">Visualizza annunci pertinenti per te. Gestisci le informazioni utilizzate per mostrare annunci personalizzati in base all\'attività dell\'app. Puoi sempre disattivare la personalizzazione qui.\n</string>
 
     <string name="usage_and_diagnostics">Utilizzo e diagnostica</string>
-    <string name="summary_preference_settings_usage_and_diagnostics">Condividi i dati per aiutare a migliorare Cleaner per Android</string>
-    <string name="summary_usage_and_diagnostics">Aiuta a migliorare la tua esperienza inviandoci automaticamente dati diagnostici, del dispositivo e sull\'utilizzo delle app. Ciò contribuirà a migliorare le prestazioni dell\'app, la stabilità e altri miglioramenti. Alcuni dati aggregati aiuteranno anche le nostre app.\n\nQueste sono informazioni generali sul tuo dispositivo e su come utilizzi le nostre app (come il livello della batteria, l\'attività del sistema e delle app e gli errori). I dati verranno utilizzati per migliorare le nostre app\n\nLa disattivazione di questa funzione non influisce sulla capacità del tuo dispositivo di inviare le informazioni necessarie per i servizi essenziali come gli aggiornamenti delle app e la sicurezza.\n</string>
-
-    <string name="legal">Note legali</string>
-    <string name="legal_notices">Note legali</string>
-    <string name="summary_preference_settings_legal_notices">Visualizza le informazioni legali sul nostro servizio</string>
-    <string name="license">Licenza</string>
 
     <string name="about">Informazioni</string>
     <string name="summary_preference_settings_about">Scopri di più su Cleaner</string>
 
-    <string name="app_build_version">Versione di build dell\'applicazione</string>
-    <string name="summary_preference_settings_oss">Dettagli sulla licenza per il software open source</string>
-    <string name="device_info">Informazioni sul dispositivo</string>
     <string name="app_build">Build dell\'app: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Produttore:</string>
     <string name="device_model">Modello del dispositivo:</string>
     <string name="android_version">Versione Android:</string>
     <string name="api_level">Livello API:</string>
-    <string name="snack_device_info_copied">Informazioni sul dispositivo copiate negli appunti</string>
 
     <string name="help_and_feedback">Aiuto e feedback</string>
     <string name="help">Aiuto</string>
-    <string name="faq">FAQ</string>
     <string name="view_in_google_play_store">Visualizza su Google Play Store</string>
     <string name="version_info">Informazioni sulla versione</string>
     <string name="version">Versione %1$s</string>
@@ -254,10 +230,7 @@
     <string name="learn_more">Scopri di più</string>
 
     <string name="close">Chiudere?</string>
-    <string name="snack_network_error">Errore di rete durante la ricerca di aggiornamenti</string>
-    <string name="snack_general_error">Si è verificato un errore durante la ricerca di aggiornamenti</string>
     <string name="summary_close">Sei sicuro di voler uscire?</string>
-    <string name="summary_require_restart">Per rendere effettive le modifiche, riavvia l\'app!</string>
     <string name="snack_no_image">Nessuna immagine fornita</string>
     <string name="snack_validate_file">Seleziona una dimensione file valida</string>
 </resources>

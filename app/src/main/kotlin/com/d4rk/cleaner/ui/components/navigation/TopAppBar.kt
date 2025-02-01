@@ -162,7 +162,7 @@ fun TopAppBarScaffoldWithBackButtonAndActions(
                 })
             }
             if (showDialog.value) {
-                VersionInfoAlertDialog(onDismiss = { showDialog.value = false } , copyrightString = R.string.copyright , appName = R.string.app_name , versionName = BuildConfig.VERSION_NAME , versionString = com.d4rk.android.libs.apptoolkit.R.string.version)
+                VersionInfoAlertDialog(onDismiss = { showDialog.value = false } , copyrightString = R.string.copyright , appName = R.string.app_full_name , versionName = BuildConfig.VERSION_NAME , versionString = com.d4rk.android.libs.apptoolkit.R.string.version)
             }
         } ,
         scrollBehavior = scrollBehavior ,

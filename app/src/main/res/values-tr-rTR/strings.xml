@@ -90,16 +90,6 @@
     <string name="display">Görüntü</string>
     <string name="summary_preference_settings_display">Uygulamanızın görünümünü ve hissini kişiselleştirin</string>
 
-    <string name="dynamic_colors">Dinamik renkler</string>
-    <string name="summary_preference_settings_dynamic_colors">Duvar kağıtlarınızdan renkleri uygulama temasına uygulayın</string>
-
-    <string name="app_behavior">Uygulama davranışı</string>
-    <string name="bounce_buttons">Zıplayan tıklama</string>
-    <string name="summary_preference_settings_bounce_buttons">Tıklandığında tüm tıklanabilir öğelere hafif bir zıplama animasyonu uygular</string>
-
-    <string name="navigation">Gezinme</string>
-    <string name="startup_page">Başlangıç sayfası</string>
-    <string name="summary_preference_settings_startup_page">Uygulama başlatıldığında görüntülenecek ekranı seçin.</string>
     <string name="dialog_startup_subtitle">Tercih ettiğiniz başlangıç sayfasını seçin:</string>
     <string name="dialog_info_startup">Uygulama başlatıldığında kullanıcılara sunulan başlangıç ekranını yapılandırır. Bu ayar, kullanıcının uygulamayla ilk etkileşimini etkiler ve belirli kullanıcı segmentlerine veya ürün hedeflerine göre uyarlanabilir.</string>
 
@@ -160,7 +150,6 @@
     <string name="summary_preference_permissions_foreground_service">Uygulamanın ön planda çalışan hizmetler oluşturmasına ve kullanmasına izin verir, bu hizmetlere diğer arka plan işlemlerine göre öncelik verir ve performansı ve güvenilirliği artırır.</string>
     <string name="request_delete_packages">Paket silme isteği [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Uygulamanın paketlerin silinmesini talep etmesine izin verir. Bu, cihazdan diğer uygulamaları kaldırmak için kullanılabilir</string>
-    <string name="storage">Depolama</string>
     <string name="access_media_location">Medya konumuna erişim [ACCESS_MEDIA_LOCATION]</string>
     <string name="summary_preference_permissions_access_media_location">Uygulamanın cihazın medya dosyalarının konumuna erişmesine izin verir</string>
     <string name="action_open_document_tree">Belge ağacını aç eylemi [ACTION_OPEN_DOCUMENT_TREE]</string>
@@ -183,37 +172,24 @@
     <string name="summary_preference_permissions_write_external_storage">Uygulamanın cihazın depolama alanına dosya yazmasına izin verir, hem dahili hem de harici depolama dahil</string>
 
     <string name="ads">Reklamlar</string>
-    <string name="summary_preference_settings_ads">Bilgilerinizi size alakalı reklamlar göstermek için nasıl kullandığımızı kontrol edin</string>
     <string name="display_ads">Reklamlar göster</string>
     <string name="personalized_ads">Kişiselleştirilmiş reklamlar</string>
     <string name="summary_ads_personalized_ads">İlgi alanlarınıza göre reklamları nasıl kişiselleştirdiğimizi seçin</string>
     <string name="summary_ads">Size alakalı reklamlar gösterin. Uygulama etkinliğinize göre kişiselleştirilmiş reklamları göstermek için kullanılan bilgileri yönetin. Kişiselleştirmeyi her zaman burada kapatabilirsiniz.\n</string>
 
     <string name="usage_and_diagnostics">Kullanım ve tanılama</string>
-    <string name="summary_preference_settings_usage_and_diagnostics">Android için Temizleyici\'yi geliştirmeye yardımcı olmak için verileri paylaşın</string>
-    <string name="summary_usage_and_diagnostics">Tanılama, cihaz ve uygulama kullanım verilerini otomatik olarak bize göndererek deneyiminizi geliştirmeye yardımcı olun. Bu, uygulama performansını, kararlılığını ve diğer geliştirmeleri iyileştirmeye yardımcı olacaktır. Bazı toplu veriler de uygulamalarımız için yardımcı olacaktır.\n\nBu, cihazınız hakkında genel bilgiler ve uygulamalarımızı nasıl kullandığınız (pil seviyesi, sistem ve uygulama etkinliği ve hatalar gibi) hakkındadır. Veriler, uygulamalarımızı geliştirmek için kullanılacaktır\n\nBu özelliği kapatmak, cihazınızın uygulama güncellemeleri ve güvenlik gibi temel hizmetler için gereken bilgileri gönderme yeteneğini etkilemez.\n</string>
-
-    <string name="legal">Yasal</string>
-    <string name="legal_notices">Yasal uyarılar</string>
-    <string name="summary_preference_settings_legal_notices">Hizmetimizle ilgili yasal bilgileri inceleyin</string>
-    <string name="license">Lisans</string>
 
     <string name="about">Hakkında</string>
     <string name="summary_preference_settings_about">Temizleyici hakkında daha fazla bilgi edinin</string>
 
-    <string name="app_build_version">Uygulama derleme sürümü</string>
-    <string name="summary_preference_settings_oss">Açık kaynaklı yazılımların lisans ayrıntıları</string>
-    <string name="device_info">Cihaz bilgileri</string>
     <string name="app_build">Uygulama Derlemesi: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Üretici:</string>
     <string name="device_model">Cihaz Modeli:</string>
     <string name="android_version">Android Sürümü:</string>
     <string name="api_level">API Seviyesi:</string>
-    <string name="snack_device_info_copied">Cihaz bilgileri panoya kopyalandı</string>
 
     <string name="help_and_feedback">Yardım ve geri bildirim</string>
     <string name="help">Yardım</string>
-    <string name="faq">SSS</string>
     <string name="view_in_google_play_store">Google Play Store\'da görüntüle</string>
     <string name="version_info">Sürüm bilgisi</string>
     <string name="version">Sürüm %1$s</string>
@@ -253,10 +229,7 @@
     <string name="learn_more">Daha fazla bilgi edinin</string>
 
     <string name="close">Kapat?</string>
-    <string name="snack_network_error">Güncellemeleri kontrol ederken ağ hatası oluştu</string>
-    <string name="snack_general_error">Güncellemeleri kontrol ederken bir hata oluştu</string>
     <string name="summary_close">Çıkmak istediğinizden emin misiniz?</string>
-    <string name="summary_require_restart">Etki etmesi için lütfen uygulamayı yeniden başlatın!</string>
     <string name="snack_no_image">Sağlanan resim yok</string>
     <string name="snack_validate_file">Lütfen geçerli bir dosya boyutu seçin</string>
 </resources>

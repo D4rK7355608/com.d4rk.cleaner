@@ -92,16 +92,6 @@
     <string name="display">Дисплей</string>
     <string name="summary_preference_settings_display">Персоналізуйте зовнішній вигляд вашої програми</string>
 
-    <string name="dynamic_colors">Динамічні кольори</string>
-    <string name="summary_preference_settings_dynamic_colors">Застосувати кольори з шпалер до теми програми</string>
-
-    <string name="app_behavior">Поведінка програми</string>
-    <string name="bounce_buttons">Пружне натискання</string>
-    <string name="summary_preference_settings_bounce_buttons">Застосовує тонку анімацію відскоку до всіх елементів, на які можна натиснути, коли на них натискають</string>
-
-    <string name="navigation">Навігація</string>
-    <string name="startup_page">Початкова сторінка</string>
-    <string name="summary_preference_settings_startup_page">Виберіть екран, який буде відображатися під час запуску програми.</string>
     <string name="dialog_startup_subtitle">Виберіть бажану початкову сторінку:</string>
     <string name="dialog_info_startup">Налаштовує початковий екран, який відображається користувачам під час запуску програми. Цей параметр впливає на першу взаємодію користувача з програмою та може бути налаштований для певних сегментів користувачів або цілей продукту.</string>
 
@@ -161,7 +151,6 @@
     <string name="summary_preference_permissions_foreground_service">Дозволяє програмі створювати та використовувати служби, які працюють на передньому плані, надаючи їм пріоритет над іншими фоновими процесами та покращуючи продуктивність та надійність.</string>
     <string name="request_delete_packages">Запит на видалення пакетів [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Дозволяє програмі запитувати видалення пакетів. Це може використовуватися для видалення інших програм з пристрою.</string>
-    <string name="storage">Сховище</string>
     <string name="access_media_location">Доступ до розташування медіафайлів [ACCESS_MEDIA_LOCATION]</string>
     <string name="summary_preference_permissions_access_media_location">Дозволяє програмі отримувати доступ до розташування медіафайлів на пристрої.</string>
     <string name="action_open_document_tree">Дія відкриття дерева документів [ACTION_OPEN_DOCUMENT_TREE]</string>
@@ -184,37 +173,24 @@
     <string name="summary_preference_permissions_write_external_storage">Дозволяє програмі записувати файли на сховище пристрою, включаючи як внутрішнє, так і зовнішнє сховище.</string>
 
     <string name="ads">Реклама</string>
-    <string name="summary_preference_settings_ads">Контролюйте, як ми використовуємо вашу інформацію, щоб показувати вам релевантну рекламу.</string>
     <string name="display_ads">Відображати рекламу</string>
     <string name="personalized_ads">Персоналізована реклама</string>
     <string name="summary_ads_personalized_ads">Виберіть, як ми персоналізуємо рекламу для вас на основі ваших інтересів.</string>
     <string name="summary_ads">Переглядайте рекламу, яка є релевантною для вас. Керуйте інформацією, яка використовується для показу персоналізованої реклами на основі вашої активності в програмі. Ви завжди можете вимкнути персоналізацію тут.\n</string>
 
     <string name="usage_and_diagnostics">Використання та діагностика</string>
-    <string name="summary_preference_settings_usage_and_diagnostics">Надішліть дані, щоб допомогти покращити Cleaner для Android.</string>
-    <string name="summary_usage_and_diagnostics">Допоможіть покращити ваш досвід, автоматично надсилаючи нам діагностичні дані, дані про пристрій та використання програми. Це допоможе покращити продуктивність програми, стабільність та інші вдосконалення. Деякі зведені дані також допоможуть нашим програмам.\n\nЦе загальна інформація про ваш пристрій та те, як ви використовуєте наші програми (наприклад, рівень заряду батареї, активність системи та програми та помилки). Дані будуть використані для покращення наших програм.\n\nВимкнення цієї функції не впливає на здатність вашого пристрою надсилати інформацію, необхідну для основних служб, таких як оновлення програм та безпека.\n</string>
-
-    <string name="legal">Юридична інформація</string>
-    <string name="legal_notices">Юридичні повідомлення</string>
-    <string name="summary_preference_settings_legal_notices">Переглянути юридичну інформацію про наш сервіс.</string>
-    <string name="license">Ліцензія</string>
 
     <string name="about">Про програму</string>
     <string name="summary_preference_settings_about">Дізнайтеся більше про Cleaner.</string>
 
-    <string name="app_build_version">Версія збірки програми</string>
-    <string name="summary_preference_settings_oss">Відомості про ліцензію для програмного забезпечення з відкритим кодом.</string>
-    <string name="device_info">Інформація про пристрій</string>
     <string name="app_build">Збірка програми: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Виробник:</string>
     <string name="device_model">Модель пристрою:</string>
     <string name="android_version">Версія Android:</string>
     <string name="api_level">Рівень API:</string>
-    <string name="snack_device_info_copied">Інформацію про пристрій скопійовано до буфера обміну</string>
 
     <string name="help_and_feedback">Допомога та відгуки</string>
     <string name="help">Допомога</string>
-    <string name="faq">Часті питання</string>
     <string name="view_in_google_play_store">Переглянути в Google Play Store</string>
     <string name="version_info">Інформація про версію</string>
     <string name="version">Версія %1$s</string>
@@ -254,10 +230,7 @@
     <string name="learn_more">Дізнатися більше</string>
 
     <string name="close">Закрити?</string>
-    <string name="snack_network_error">Під час перевірки наявності оновлень сталася помилка мережі</string>
-    <string name="snack_general_error">Під час перевірки наявності оновлень сталася помилка</string>
     <string name="summary_close">Ви впевнені, що хочете вийти?</string>
-    <string name="summary_require_restart">Щоб зміни набули чинності, перезавантажте програму!</string>
     <string name="snack_no_image">Зображення не надано</string>
     <string name="snack_validate_file">Виберіть допустимий розмір файлу</string>
 </resources>

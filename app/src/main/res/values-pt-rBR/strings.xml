@@ -96,16 +96,6 @@
     <string name="display">Exibição</string>
     <string name="summary_preference_settings_display"> personalize a aparência do seu aplicativo</string>
 
-    <string name="dynamic_colors">Cores dinâmicas</string>
-    <string name="summary_preference_settings_dynamic_colors">Aplicar cores de papéis de parede ao tema do aplicativo</string>
-
-    <string name="app_behavior">Comportamento do aplicativo</string>
-    <string name="bounce_buttons">Botões com efeito de quique</string>
-    <string name="summary_preference_settings_bounce_buttons">Aplica uma animação sutil de quique a todos os elementos clicáveis quando clicados</string>
-
-    <string name="navigation">Navegação</string>
-    <string name="startup_page">Página inicial</string>
-    <string name="summary_preference_settings_startup_page">Escolha a tela a ser exibida quando o aplicativo for iniciado.</string>
     <string name="dialog_startup_subtitle">Escolha sua página inicial preferida:</string>
     <string name="dialog_info_startup">Configura a tela inicial apresentada aos usuários ao iniciar o aplicativo. Esta configuração influencia a primeira interação do usuário com o aplicativo e pode ser personalizada para segmentos de usuários específicos ou metas do produto.</string>
 
@@ -166,7 +156,6 @@
     <string name="summary_preference_permissions_foreground_service">Permite que o aplicativo crie e use serviços que são executados em primeiro plano, dando-lhes prioridade sobre outros processos em segundo plano e melhorando o desempenho e a confiabilidade.</string>
     <string name="request_delete_packages">Solicitar exclusão de pacotes [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Permite que o aplicativo solicite a exclusão de pacotes. Isso pode ser usado para desinstalar outros aplicativos do dispositivo</string>
-    <string name="storage">Armazenamento</string>
     <string name="access_media_location">Acessar local da mídia [ACCESS_MEDIA_LOCATION]</string>
     <string name="summary_preference_permissions_access_media_location">Permite que o aplicativo acesse o local dos arquivos de mídia do dispositivo</string>
     <string name="action_open_document_tree">Ação abrir árvore de documentos [ACTION_OPEN_DOCUMENT_TREE]</string>
@@ -189,27 +178,16 @@
     <string name="summary_preference_permissions_write_external_storage">Permite que o aplicativo grave arquivos no armazenamento do dispositivo, incluindo armazenamento interno e externo</string>
 
     <string name="ads">Anúncios</string>
-    <string name="summary_preference_settings_ads">Controlar como usamos suas informações para mostrar anúncios relevantes</string>
     <string name="display_ads">Exibir anúncios</string>
     <string name="personalized_ads">Anúncios personalizados</string>
     <string name="summary_ads_personalized_ads">Escolha como personalizamos os anúncios para você com base em seus interesses</string>
     <string name="summary_ads">Veja anúncios relevantes para você. Gerencie as informações usadas para mostrar anúncios personalizados com base na atividade do seu aplicativo. Você sempre pode desativar a personalização aqui.\n</string>
 
     <string name="usage_and_diagnostics">Uso e diagnósticos</string>
-    <string name="summary_preference_settings_usage_and_diagnostics">Compartilhe dados para ajudar a melhorar o Limpador para Android</string>
-    <string name="summary_usage_and_diagnostics">Ajude a melhorar sua experiência enviando automaticamente dados de diagnóstico, dispositivo e uso do aplicativo para nós. Isso ajudará a melhorar o desempenho do aplicativo, estabilidade e outros aprimoramentos. Alguns dados agregados também ajudarão nossos aplicativos. \n\nEstas são informações gerais sobre seu dispositivo e como você usa nossos aplicativos (como nível da bateria, atividade do sistema e do aplicativo e erros). Os dados serão usados para melhorar nossos aplicativos. \n\nDesativar este recurso não afeta a capacidade do seu dispositivo de enviar as informações necessárias para serviços essenciais, como atualizações de aplicativos e segurança.\n</string>
-
-    <string name="legal">Legal</string>
-    <string name="legal_notices">Avisos legais</string>
-    <string name="summary_preference_settings_legal_notices">Visualizar informações legais sobre nosso serviço</string>
-    <string name="license">Licença</string>
 
     <string name="about">Sobre</string>
     <string name="summary_preference_settings_about">Saiba mais sobre o Limpador</string>
 
-    <string name="app_build_version">Versão de compilação do aplicativo</string>
-    <string name="summary_preference_settings_oss">Detalhes da licença para software de código aberto</string>
-    <string name="device_info">Informações do dispositivo</string>
     <string name="app_build">Compilação do aplicativo: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="debug">Depurar</string>
     <string name="release">Lançamento</string>
@@ -217,11 +195,9 @@
     <string name="device_model">Modelo do dispositivo:</string>
     <string name="android_version">Versão do Android:</string>
     <string name="api_level">Nível da API:</string>
-    <string name="snack_device_info_copied">Informações do dispositivo copiadas para a área de transferência</string>
 
     <string name="help_and_feedback">Ajuda e feedback</string>
     <string name="help">Ajuda</string>
-    <string name="faq">FAQ</string>
     <string name="view_in_google_play_store">Ver na Google Play Store</string>
     <string name="version_info">Informações da versão</string>
     <string name="version">Versão %1$s</string>
@@ -261,11 +237,7 @@
     <string name="learn_more">Saiba mais</string>
 
     <string name="close">Fechar?</string>
-    <string name="snack_network_error">Ocorreu um erro de rede ao verificar se há atualizações</string>
-    <string name="snack_general_error">Ocorreu um erro ao verificar se há atualizações</string>
     <string name="summary_close">Tem certeza de que deseja sair?</string>
-    <string name="summary_require_restart">Para que as alterações tenham efeito, reinicie o aplicativo!</string>
-
     <string name="snack_no_image">Nenhuma imagem fornecida</string>
     <string name="snack_validate_file">Selecione um tamanho de arquivo válido</string>
 </resources>

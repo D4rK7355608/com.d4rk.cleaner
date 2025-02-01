@@ -90,16 +90,6 @@
     <string name="display">प्रदर्शन</string>
     <string name="summary_preference_settings_display">अपने ऐप के लुक और फील को वैयक्तिकृत करें</string>
 
-    <string name="dynamic_colors">गतिशील रंग</string>
-    <string name="summary_preference_settings_dynamic_colors">वॉलपेपर से रंगों को ऐप थीम पर लागू करें</string>
-
-    <string name="app_behavior">ऐप व्यवहार</string>
-    <string name="bounce_buttons">उछाल क्लिक</string>
-    <string name="summary_preference_settings_bounce_buttons">क्लिक करने पर सभी क्लिक करने योग्य तत्वों पर एक सूक्ष्म उछाल एनीमेशन लागू करता है</string>
-
-    <string name="navigation">नेविगेशन</string>
-    <string name="startup_page">स्टार्टअप पेज</string>
-    <string name="summary_preference_settings_startup_page">ऐप शुरू होने पर प्रदर्शित होने वाली स्क्रीन चुनें.</string>
     <string name="dialog_startup_subtitle">अपना पसंदीदा स्टार्टअप पेज चुनें:</string>
     <string name="dialog_info_startup">एप्लिकेशन लॉन्च करने पर उपयोगकर्ताओं को प्रस्तुत की जाने वाली प्रारंभिक स्क्रीन को कॉन्फ़िगर करता है। यह सेटिंग ऐप के साथ उपयोगकर्ता की पहली बातचीत को प्रभावित करती है और इसे विशिष्ट उपयोगकर्ता खंडों या उत्पाद लक्ष्यों के अनुरूप बनाया जा सकता है।</string>
 
@@ -158,7 +148,6 @@
     <string name="summary_preference_permissions_foreground_service">ऐप को उन सेवाओं को बनाने और उपयोग करने की अनुमति देता है जो अग्रभूमि में चलती हैं, उन्हें अन्य पृष्ठभूमि प्रक्रियाओं पर प्राथमिकता देती हैं और प्रदर्शन और विश्वसनीयता में सुधार करती हैं।</string>
     <string name="request_delete_packages">पैकेज हटाने का अनुरोध करें [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">ऐप को पैकेजों के हटाने का अनुरोध करने की अनुमति देता है। इसका उपयोग डिवाइस से अन्य ऐप्स को अनइंस्टॉल करने के लिए किया जा सकता है</string>
-    <string name="storage">भंडारण</string>
     <string name="access_media_location">मीडिया स्थान तक पहुँचें [ACCESS_MEDIA_LOCATION]</string>
     <string name="summary_preference_permissions_access_media_location">ऐप को डिवाइस की मीडिया फ़ाइलों के स्थान तक पहुँचने की अनुमति देता है</string>
     <string name="action_open_document_tree">डॉक्यूमेंट ट्री खोलें क्रिया [ACTION_OPEN_DOCUMENT_TREE]</string>
@@ -181,37 +170,23 @@
     <string name="summary_preference_permissions_write_external_storage">ऐप को डिवाइस के स्टोरेज में फ़ाइलें लिखने की अनुमति देता है, जिसमें आंतरिक और बाहरी दोनों स्टोरेज शामिल हैं</string>
 
     <string name="ads">विज्ञापन</string>
-    <string name="summary_preference_settings_ads">नियंत्रण करें कि हम आपको प्रासंगिक विज्ञापन दिखाने के लिए आपकी जानकारी का उपयोग कैसे करते हैं</string>
     <string name="display_ads">विज्ञापन प्रदर्शित करें</string>
     <string name="personalized_ads">वैयक्तिकृत विज्ञापन</string>
     <string name="summary_ads_personalized_ads">अपनी रुचियों के आधार पर हम आपके लिए विज्ञापनों को कैसे वैयक्तिकृत करते हैं, इसका चयन करें</string>
     <string name="summary_ads">ऐसे विज्ञापन देखें जो आपके लिए प्रासंगिक हैं। अपने ऐप गतिविधि के आधार पर व्यक्तिगत विज्ञापन दिखाने के लिए उपयोग की जाने वाली जानकारी का प्रबंधन करें। आप हमेशा यहां वैयक्तिकरण बंद कर सकते हैं।\n</string>
 
     <string name="usage_and_diagnostics">उपयोग और निदान</string>
-    <string name="summary_preference_settings_usage_and_diagnostics">Android के लिए क्लीनर को बेहतर बनाने में मदद करने के लिए डेटा साझा करें</string>
-    <string name="summary_usage_and_diagnostics">अपने अनुभव को बेहतर बनाने में मदद करें, स्वचालित रूप से निदान, डिवाइस और ऐप उपयोग डेटा हमें भेजकर। इससे ऐप के प्रदर्शन, स्थिरता और अन्य संवर्द्धन में सुधार होगा। कुछ कुल डेटा हमारे ऐप्स को भी मदद करेंगे।\n\nयह आपके डिवाइस के बारे में सामान्य जानकारी है और आप हमारे ऐप्स का उपयोग कैसे करते हैं (जैसे बैटरी स्तर, सिस्टम और ऐप गतिविधि, और त्रुटियां)। डेटा का उपयोग हमारे ऐप्स को बेहतर बनाने के लिए किया जाएगा\n\nइस सुविधा को बंद करने से आपके डिवाइस की ऐप अपडेट और सुरक्षा जैसी आवश्यक सेवाओं के लिए आवश्यक जानकारी भेजने की क्षमता प्रभावित नहीं होती है।\n</string>
-
-    <string name="legal">कानूनी</string>
-    <string name="legal_notices">कानूनी नोटिस</string>
-    <string name="summary_preference_settings_legal_notices">हमारी सेवा के बारे में कानूनी जानकारी देखें</string>
-    <string name="license">लाइसेंस</string>
 
     <string name="about">के बारे में</string>
     <string name="summary_preference_settings_about">क्लीनर के बारे में और जानें</string>
 
-    <string name="app_build_version">ऐप्लिकेशन बिल्ड संस्करण</string>
-    <string name="summary_preference_settings_oss">ओपन सोर्स सॉफ्टवेयर के लिए लाइसेंस विवरण</string>
-    <string name="device_info">डिवाइस जानकारी</string>
     <string name="app_build">ऐप बिल्ड: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">निर्माता:</string>
     <string name="device_model">डिवाइस मॉडल:</string>
     <string name="android_version">एंड्रॉइड संस्करण:</string>
     <string name="api_level">एपीआई स्तर:</string>
-    <string name="snack_device_info_copied">डिवाइस की जानकारी क्लिपबोर्ड पर कॉपी की गई</string>
-
     <string name="help_and_feedback">मदद और प्रतिक्रिया</string>
     <string name="help">मदद</string>
-    <string name="faq">अक्सर पूछे जाने वाले प्रश्न</string>
     <string name="view_in_google_play_store">Google Play Store में देखें</string>
     <string name="version_info">संस्करण जानकारी</string>
     <string name="version">संस्करण %1$s</string>
@@ -251,10 +226,7 @@
     <string name="learn_more">और जानें</string>
 
     <string name="close">बंद करें?</string>
-    <string name="snack_network_error">अपडेट की जाँच करते समय नेटवर्क त्रुटि हुई</string>
-    <string name="snack_general_error">अपडेट की जाँच करते समय एक त्रुटि हुई</string>
     <string name="summary_close">क्या आप सुनिश्चित हैं कि आप बाहर निकलना चाहते हैं?</string>
-    <string name="summary_require_restart">प्रभावी होने के लिए कृपया ऐप को पुनः प्रारंभ करें!</string>
     <string name="snack_no_image">कोई छवि प्रदान नहीं की गई</string>
     <string name="snack_validate_file">कृपया एक मान्य फ़ाइल आकार चुनें</string>
 </resources>

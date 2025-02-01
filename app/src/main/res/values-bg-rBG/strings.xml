@@ -90,16 +90,6 @@
     <string name="display">Дисплей</string>
     <string name="summary_preference_settings_display">Персонализирайте външния вид на приложението си</string>
 
-    <string name="dynamic_colors">Динамични цветове</string>
-    <string name="summary_preference_settings_dynamic_colors">Прилагайте цветове от тапетите към темата на приложението</string>
-
-    <string name="app_behavior">Поведение на приложението</string>
-    <string name="bounce_buttons">Подскачащо щракване</string>
-    <string name="summary_preference_settings_bounce_buttons">Прилага фина анимация на подскачане към всички елементи, върху които може да се щракне, когато се щракне върху тях</string>
-
-    <string name="navigation">Навигация</string>
-    <string name="startup_page">Начална страница</string>
-    <string name="summary_preference_settings_startup_page">Изберете екрана, който да се показва при стартиране на приложението.</string>
     <string name="dialog_startup_subtitle">Изберете предпочитаната от вас начална страница:</string>
     <string name="dialog_info_startup">Конфигурира началния екран, представен на потребителите при стартиране на приложението. Тази настройка влияе върху първото взаимодействие на потребителя с приложението и може да бъде съобразена с конкретни потребителски сегменти или цели на продукта.</string>
 
@@ -158,7 +148,6 @@
     <string name="summary_preference_permissions_foreground_service">Позволява на приложението да създава и използва услуги, които се изпълняват на преден план, давайки им приоритет пред други фонови процеси и подобрявайки производителността и надеждността.</string>
     <string name="request_delete_packages">Заявка за изтриване на пакети [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Позволява на приложението да поиска изтриване на пакети. Това може да се използва за деинсталиране на други приложения от устройството</string>
-    <string name="storage">Съхранение</string>
     <string name="access_media_location">Достъп до местоположение на медията [ACCESS_MEDIA_LOCATION]</string>
     <string name="summary_preference_permissions_access_media_location">Позволява на приложението да получи достъп до местоположението на медийните файлове на устройството</string>
     <string name="action_open_document_tree">Действие за отваряне на дървото с документи [ACTION_OPEN_DOCUMENT_TREE]</string>
@@ -181,37 +170,23 @@
     <string name="summary_preference_permissions_write_external_storage">Позволява на приложението да записва файлове в съхранението на устройството, включително както вътрешното, така и външното съхранение</string>
 
     <string name="ads">Реклами</string>
-    <string name="summary_preference_settings_ads">Контролирайте как използваме вашата информация, за да ви покажем релевантни реклами</string>
     <string name="display_ads">Показване на реклами</string>
     <string name="personalized_ads">Персонализирани реклами</string>
     <string name="summary_ads_personalized_ads">Изберете как персонализираме рекламите за вас, въз основа на вашите интереси</string>
     <string name="summary_ads">Вижте реклами, които са релевантни за вас. Управлявайте информацията, използвана за показване на персонализирани реклами, въз основа на вашата дейност в приложението. Винаги можете да изключите персонализирането тук.\n</string>
 
     <string name="usage_and_diagnostics">Използване и диагностика</string>
-    <string name="summary_preference_settings_usage_and_diagnostics">Споделяйте данни, за да ни помогнете да подобрим Cleaner за Android</string>
-    <string name="summary_usage_and_diagnostics">Помогнете ни да подобрим вашето преживяване, като автоматично ни изпращате диагностични данни, информация за устройството и данни за използването на приложението. Това ще ни помогне да подобрим производителността, стабилността на приложението и други подобрения. Някои агрегирани данни ще помогнат и на нашите приложения.\n\nТова е обща информация за вашето устройство и как използвате нашите приложения (като ниво на батерията, системна и дейност на приложението и грешки). Данните ще бъдат използвани за подобряване на нашите приложения\n\nИзключването на тази функция не засяга способността на устройството ви да изпраща информацията, необходима за основни услуги, като актуализации на приложения и сигурност.\n</string>
-
-    <string name="legal">Правно</string>
-    <string name="legal_notices">Правни бележки</string>
-    <string name="summary_preference_settings_legal_notices">Преглед на правна информация за нашата услуга</string>
-    <string name="license">Лиценз</string>
 
     <string name="about">За</string>
     <string name="summary_preference_settings_about">Научете повече за Cleaner</string>
 
-    <string name="app_build_version">Версия на компилацията на приложението</string>
-    <string name="summary_preference_settings_oss">Подробности за лиценза за софтуер с отворен код</string>
-    <string name="device_info">Информация за устройството</string>
     <string name="app_build">Компилация на приложението: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Производител:</string>
     <string name="device_model">Модел на устройството:</string>
     <string name="android_version">Версия на Android:</string>
     <string name="api_level">Ниво на API:</string>
-    <string name="snack_device_info_copied">Информация за устройството е копирана в клипборда</string>
-
     <string name="help_and_feedback">Помощ &amp; обратна връзка</string>
     <string name="help">Помощ</string>
-    <string name="faq">ЧЗВ</string>
     <string name="view_in_google_play_store">Преглед в Google Play Store</string>
     <string name="version_info">Информация за версията</string>
     <string name="version">Версия %1$s</string>
@@ -251,10 +226,7 @@
     <string name="learn_more">Научете повече</string>
 
     <string name="close">Затваряне?</string>
-    <string name="snack_network_error">Възникна мрежова грешка при проверка за актуализации</string>
-    <string name="snack_general_error">Възникна грешка при проверка за актуализации</string>
     <string name="summary_close">Сигурни ли сте, че искате да излезете?</string>
-    <string name="summary_require_restart">За да влезе в сила, моля рестартирайте приложението!</string>
     <string name="snack_no_image">Не е предоставено изображение</string>
     <string name="snack_validate_file">Моля, изберете валиден размер на файла</string>
 </resources>

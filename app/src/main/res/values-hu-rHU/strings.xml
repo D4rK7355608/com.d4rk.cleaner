@@ -90,16 +90,6 @@
     <string name="display">Kijelző</string>
     <string name="summary_preference_settings_display">Személyre szabhatja az alkalmazás megjelenését</string>
 
-    <string name="dynamic_colors">Dinamikus színek</string>
-    <string name="summary_preference_settings_dynamic_colors">A háttérképek színeinek alkalmazása az alkalmazás témájára</string>
-
-    <string name="app_behavior">Alkalmazás viselkedése</string>
-    <string name="bounce_buttons">Ugráló kattintás</string>
-    <string name="summary_preference_settings_bounce_buttons">Finom ugráló animációt alkalmaz az összes kattintható elemre kattintáskor</string>
-
-    <string name="navigation">Navigáció</string>
-    <string name="startup_page">Indítólap</string>
-    <string name="summary_preference_settings_startup_page">Válassza ki a képernyőt, amelyet az alkalmazás indításakor meg szeretne jeleníteni.</string>
     <string name="dialog_startup_subtitle">Válassza ki a kívánt indítólapot:</string>
     <string name="dialog_info_startup">Beállítja az alkalmazás indításakor a felhasználóknak megjelenített kezdőképernyőt. Ez a beállítás befolyásolja a felhasználó első interakcióját az alkalmazással, és testreszabható bizonyos felhasználói szegmensekre vagy termékcélokra.</string>
 
@@ -160,7 +150,6 @@
     <string name="summary_preference_permissions_foreground_service">Lehetővé teszi az alkalmazás számára, hogy létrehozzon és használjon olyan szolgáltatásokat, amelyek az előtérben futnak, prioritást biztosítva számukra más háttérfolyamatokkal szemben, és javítva a teljesítményt és a megbízhatóságot.</string>
     <string name="request_delete_packages">Csomagok törlésének kérése [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Lehetővé teszi az alkalmazás számára, hogy csomagok törlését kérje. Ez felhasználható más alkalmazások eltávolítására az eszközről</string>
-    <string name="storage">Tárolás</string>
     <string name="access_media_location">Hozzáférés a médiafájlok helyéhez [ACCESS_MEDIA_LOCATION]</string>
     <string name="summary_preference_permissions_access_media_location">Lehetővé teszi az alkalmazás számára, hogy hozzáférjen az eszköz médiafájljainak helyéhez</string>
     <string name="action_open_document_tree">Dokumentumfa megnyitásának művelete [ACTION_OPEN_DOCUMENT_TREE]</string>
@@ -183,37 +172,24 @@
     <string name="summary_preference_permissions_write_external_storage">Lehetővé teszi az alkalmazás számára, hogy fájlokat írjon az eszköz tárolójára, beleértve a belső és a külső tárhelyet is</string>
 
     <string name="ads">Hirdetések</string>
-    <string name="summary_preference_settings_ads">Irányítsd, hogyan használjuk fel az adataidat a releváns hirdetések megjelenítéséhez</string>
     <string name="display_ads">Hirdetések megjelenítése</string>
     <string name="personalized_ads">Személyre szabott hirdetések</string>
     <string name="summary_ads_personalized_ads">Válaszd ki, hogyan szabjuk személyre a hirdetéseket az érdeklődési köröd alapján</string>
     <string name="summary_ads">Tekints meg olyan hirdetéseket, amelyek relevánsak számodra. Kezeld azokat az információkat, amelyeket a személyre szabott hirdetések megjelenítéséhez használunk az alkalmazástevékenységed alapján. A személyre szabást itt bármikor kikapcsolhatod.\n</string>
 
     <string name="usage_and_diagnostics">Használat és diagnosztika</string>
-    <string name="summary_preference_settings_usage_and_diagnostics">Adatok megosztása a Cleaner for Android fejlesztésének elősegítése érdekében</string>
-    <string name="summary_usage_and_diagnostics">Segíts a felhasználói élmény javításában azáltal, hogy automatikusan elküldi nekünk a diagnosztikai, eszköz- és alkalmazáshasználati adatokat. Ez segít javítani az alkalmazás teljesítményét, stabilitását és egyéb fejlesztéseit. Néhány összesített adat segíti az alkalmazásainkat is.\n\nEz általános információ az eszközödről és az alkalmazásaink használatáról (például az akkumulátor töltöttségi szintje, a rendszer és az alkalmazás aktivitása, valamint a hibák). Az adatokat az alkalmazásaink fejlesztésére fogjuk felhasználni.\n\nA funkció kikapcsolása nem befolyásolja az eszköz azon képességét, hogy elküldje a létfontosságú szolgáltatásokhoz (például az alkalmazásfrissítésekhez és a biztonsághoz) szükséges információkat.\n</string>
-
-    <string name="legal">Jogi</string>
-    <string name="legal_notices">Jogi közlemények</string>
-    <string name="summary_preference_settings_legal_notices">Tekintse meg a szolgáltatásunkkal kapcsolatos jogi információkat</string>
-    <string name="license">Licenc</string>
 
     <string name="about">Névjegy</string>
     <string name="summary_preference_settings_about">Tudjon meg többet a Cleanerről</string>
 
-    <string name="app_build_version">Alkalmazás build verziója</string>
-    <string name="summary_preference_settings_oss">Licenc részletei a nyílt forráskódú szoftverekhez</string>
-    <string name="device_info">Eszközinformáció</string>
     <string name="app_build">Alkalmazás build: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Gyártó:</string>
     <string name="device_model">Eszköz modell:</string>
     <string name="android_version">Android verzió:</string>
     <string name="api_level">API szint:</string>
-    <string name="snack_device_info_copied">Eszközadatok a vágólapra másolva</string>
 
     <string name="help_and_feedback">Súgó és visszajelzés</string>
     <string name="help">Súgó</string>
-    <string name="faq">GYIK</string>
     <string name="view_in_google_play_store">Megtekintés a Google Play Áruházban</string>
     <string name="version_info">Verzióinformációk</string>
     <string name="version">Verzió %1$s</string>
@@ -253,10 +229,7 @@
     <string name="learn_more">Tudj meg többet</string>
 
     <string name="close">Bezárás?</string>
-    <string name="snack_network_error">Hálózati hiba történt a frissítések ellenőrzése során</string>
-    <string name="snack_general_error">Hiba történt a frissítések ellenőrzése során</string>
     <string name="summary_close">Biztosan ki szeretne lépni?</string>
-    <string name="summary_require_restart">A módosítások érvénybe léptetéséhez kérjük, indítsa újra az alkalmazást!</string>
     <string name="snack_no_image">Nincs kép megadva</string>
     <string name="snack_validate_file">Kérjük, válasszon érvényes fájlméretet</string>
 </resources>

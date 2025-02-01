@@ -92,16 +92,6 @@
     <string name="display">Wyświetlacz</string>
     <string name="summary_preference_settings_display">Spersonalizuj wygląd i działanie aplikacji</string>
 
-    <string name="dynamic_colors">Dynamiczne kolory</string>
-    <string name="summary_preference_settings_dynamic_colors">Zastosuj kolory z tapet do motywu aplikacji</string>
-
-    <string name="app_behavior">Zachowanie aplikacji</string>
-    <string name="bounce_buttons">Odbijające kliknięcie</string>
-    <string name="summary_preference_settings_bounce_buttons">Stosuje subtelną animację odbicia do wszystkich klikalnych elementów po kliknięciu</string>
-
-    <string name="navigation">Nawigacja</string>
-    <string name="startup_page">Strona startowa</string>
-    <string name="summary_preference_settings_startup_page">Wybierz ekran, który ma być wyświetlany po uruchomieniu aplikacji.</string>
     <string name="dialog_startup_subtitle">Wybierz preferowaną stronę startową:</string>
     <string name="dialog_info_startup">Konfiguruje ekran początkowy wyświetlany użytkownikom po uruchomieniu aplikacji. To ustawienie wpływa na pierwszą interakcję użytkownika z aplikacją i można je dostosować do określonych segmentów użytkowników lub celów produktu.</string>
 
@@ -162,7 +152,6 @@
     <string name="summary_preference_permissions_foreground_service">Pozwala aplikacji na tworzenie i używanie usług działających na pierwszym planie, nadając im priorytet nad innymi procesami w tle i poprawiając wydajność i niezawodność.</string>
     <string name="request_delete_packages">Żądanie usunięcia pakietów [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Pozwala aplikacji na żądanie usunięcia pakietów. Można to wykorzystać do odinstalowania innych aplikacji z urządzenia</string>
-    <string name="storage">Pamięć masowa</string>
     <string name="access_media_location">Dostęp do lokalizacji multimediów [ACCESS_MEDIA_LOCATION]</string>
     <string name="summary_preference_permissions_access_media_location">Pozwala aplikacji na dostęp do lokalizacji plików multimedialnych urządzenia</string>
     <string name="action_open_document_tree">Akcja otwarcia drzewa dokumentów [ACTION_OPEN_DOCUMENT_TREE]</string>
@@ -185,37 +174,24 @@
     <string name="summary_preference_permissions_write_external_storage">Pozwala aplikacji na zapisywanie plików w pamięci urządzenia, w tym zarówno w pamięci wewnętrznej, jak i zewnętrznej</string>
 
     <string name="ads">Reklamy</string>
-    <string name="summary_preference_settings_ads">Kontroluj, jak wykorzystujemy Twoje informacje, aby wyświetlać Ci odpowiednie reklamy</string>
     <string name="display_ads">Wyświetlaj reklamy</string>
     <string name="personalized_ads">Spersonalizowane reklamy</string>
     <string name="summary_ads_personalized_ads">Wybierz, jak personalizujemy reklamy dla Ciebie na podstawie Twoich zainteresowań</string>
     <string name="summary_ads">Zobacz reklamy, które są dla Ciebie istotne. Zarządzaj informacjami używanymi do wyświetlania spersonalizowanych reklam na podstawie aktywności w aplikacji. Możesz zawsze wyłączyć personalizację tutaj.\n</string>
 
     <string name="usage_and_diagnostics">Użycie i diagnostyka</string>
-    <string name="summary_preference_settings_usage_and_diagnostics">Udostępnij dane, aby pomóc ulepszyć Cleaner dla Androida</string>
-    <string name="summary_usage_and_diagnostics">Pomóż nam ulepszyć Twoje wrażenia, automatycznie wysyłając nam dane diagnostyczne, dane o urządzeniu i dane o korzystaniu z aplikacji. Pomoże to poprawić wydajność aplikacji, stabilność i inne ulepszenia. Niektóre zagregowane dane pomogą również naszym aplikacjom.\n\nSą to ogólne informacje o Twoim urządzeniu i sposobie korzystania z naszych aplikacji (takie jak poziom naładowania baterii, aktywność systemu i aplikacji oraz błędy). Dane zostaną wykorzystane do ulepszenia naszych aplikacji\n\nWyłączenie tej funkcji nie wpływa na zdolność urządzenia do wysyłania informacji potrzebnych do podstawowych usług, takich jak aktualizacje aplikacji i zabezpieczenia.\n</string>
-
-    <string name="legal">Informacje prawne</string>
-    <string name="legal_notices">Informacje prawne</string>
-    <string name="summary_preference_settings_legal_notices">Wyświetl informacje prawne dotyczące naszej usługi</string>
-    <string name="license">Licencja</string>
 
     <string name="about">O aplikacji</string>
     <string name="summary_preference_settings_about">Dowiedz się więcej o Cleaner</string>
 
-    <string name="app_build_version">Wersja kompilacji aplikacji</string>
-    <string name="summary_preference_settings_oss">Szczegóły licencji dla oprogramowania open source</string>
-    <string name="device_info">Informacje o urządzeniu</string>
     <string name="app_build">Kompilacja aplikacji: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="manufacturer">Producent:</string>
     <string name="device_model">Model urządzenia:</string>
     <string name="android_version">Wersja Androida:</string>
     <string name="api_level">Poziom API:</string>
-    <string name="snack_device_info_copied">Informacje o urządzeniu skopiowane do schowka</string>
 
     <string name="help_and_feedback">Pomoc i opinie</string>
     <string name="help">Pomoc</string>
-    <string name="faq">FAQ</string>
     <string name="view_in_google_play_store">Zobacz w Google Play Store</string>
     <string name="version_info">Informacje o wersji</string>
     <string name="version">Wersja %1$s</string>
@@ -255,10 +231,7 @@
     <string name="learn_more">Dowiedz się więcej</string>
 
     <string name="close">Zamknąć?</string>
-    <string name="snack_network_error">Wystąpił błąd sieci podczas sprawdzania aktualizacji</string>
-    <string name="snack_general_error">Wystąpił błąd podczas sprawdzania aktualizacji</string>
     <string name="summary_close">Czy na pewno chcesz wyjść?</string>
-    <string name="summary_require_restart">Aby zmiany odniosły skutek, uruchom ponownie aplikację!</string>
     <string name="snack_no_image">Nie podano obrazu</string>
     <string name="snack_validate_file">Wybierz prawidłowy rozmiar pliku</string>
 </resources>

@@ -94,16 +94,6 @@
     <string name="display">จอแสดงผล</string>
     <string name="summary_preference_settings_display">ปรับแต่งรูปลักษณ์และความรู้สึกของแอปของคุณ</string>
 
-    <string name="dynamic_colors">สีแบบไดนามิก</string>
-    <string name="summary_preference_settings_dynamic_colors">ใช้สีจากวอลเปเปอร์กับธีมของแอป</string>
-
-    <string name="app_behavior">ลักษณะการทำงานของแอป</string>
-    <string name="bounce_buttons">คลิกแบบเด้ง</string>
-    <string name="summary_preference_settings_bounce_buttons">ใช้ภาพเคลื่อนไหวการเด้งแบบละเอียดกับองค์ประกอบที่คลิกได้ทั้งหมดเมื่อคลิก</string>
-
-    <string name="navigation">การนำทาง</string>
-    <string name="startup_page">หน้าเริ่มต้น</string>
-    <string name="summary_preference_settings_startup_page">เลือกหน้าจอที่จะแสดงเมื่อแอปเริ่มทำงาน</string>
     <string name="dialog_startup_subtitle">เลือกหน้าเริ่มต้นที่คุณต้องการ:</string>
     <string name="dialog_info_startup">กำหนดค่าหน้าจอเริ่มต้นที่แสดงแก่ผู้ใช้เมื่อเปิดแอปพลิเคชัน การตั้งค่านี้มีอิทธิพลต่อการโต้ตอบครั้งแรกของผู้ใช้กับแอป และสามารถปรับแต่งให้เหมาะกับกลุ่มผู้ใช้หรือเป้าหมายผลิตภัณฑ์เฉพาะได้</string>
 
@@ -164,7 +154,6 @@
     <string name="summary_preference_permissions_foreground_service">อนุญาตให้แอปสร้างและใช้บริการที่ทำงานในเบื้องหน้า ทำให้บริการเหล่านี้มีความสำคัญเหนือกว่ากระบวนการพื้นหลังอื่นๆ และปรับปรุงประสิทธิภาพและความน่าเชื่อถือ</string>
     <string name="request_delete_packages">ขอการลบแพ็คเกจ [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">อนุญาตให้แอปขอลบแพ็คเกจ ซึ่งสามารถใช้เพื่อถอนการติดตั้งแอปอื่นๆ ออกจากอุปกรณ์</string>
-    <string name="storage">ที่เก็บข้อมูล</string>
     <string name="access_media_location">เข้าถึงตำแหน่งสื่อ [ACCESS_MEDIA_LOCATION]</string>
     <string name="summary_preference_permissions_access_media_location">อนุญาตให้แอปเข้าถึงตำแหน่งไฟล์สื่อของอุปกรณ์</string>
     <string name="action_open_document_tree">การดำเนินการเปิดแผนผังเอกสาร [ACTION_OPEN_DOCUMENT_TREE]</string>
@@ -187,27 +176,16 @@
     <string name="summary_preference_permissions_write_external_storage">อนุญาตให้แอปเขียนไฟล์ไปยังที่เก็บข้อมูลของอุปกรณ์ รวมถึงที่เก็บข้อมูลภายในและภายนอก</string>
 
     <string name="ads">โฆษณา</string>
-    <string name="summary_preference_settings_ads">ควบคุมวิธีที่เราใช้ข้อมูลของคุณเพื่อแสดงโฆษณาที่เกี่ยวข้องกับคุณ</string>
     <string name="display_ads">แสดงโฆษณา</string>
     <string name="personalized_ads">โฆษณาส่วนบุคคล</string>
     <string name="summary_ads_personalized_ads">เลือกวิธีที่เราปรับแต่งโฆษณาให้เป็นส่วนตัวสำหรับคุณตามความสนใจของคุณ</string>
     <string name="summary_ads">ดูโฆษณาที่เกี่ยวข้องกับคุณ จัดการข้อมูลที่ใช้แสดงโฆษณาส่วนบุคคลตามกิจกรรมแอปของคุณ คุณสามารถปิดการปรับเปลี่ยนในแบบของคุณได้ที่นี่เสมอ\n</string>
 
     <string name="usage_and_diagnostics">การใช้งานและการวินิจฉัย</string>
-    <string name="summary_preference_settings_usage_and_diagnostics">แชร์ข้อมูลเพื่อช่วยปรับปรุง Cleaner สำหรับ Android</string>
-    <string name="summary_usage_and_diagnostics">ช่วยปรับปรุงประสบการณ์ของคุณด้วยการส่งข้อมูลการวินิจฉัย อุปกรณ์ และการใช้งานแอปให้เราโดยอัตโนมัติ ซึ่งจะช่วยปรับปรุงประสิทธิภาพของแอป ความเสถียร และการปรับปรุงอื่นๆ ข้อมูลรวมบางส่วนจะช่วยแอปของเราด้วย\n\nนี่คือข้อมูลทั่วไปเกี่ยวกับอุปกรณ์ของคุณและวิธีที่คุณใช้แอปของเรา (เช่น ระดับแบตเตอรี่ กิจกรรมระบบและแอป และข้อผิดพลาด) ข้อมูลจะถูกนำไปใช้เพื่อปรับปรุงแอปของเรา\n\nการปิดคุณสมบัตินี้จะไม่ส่งผลต่อความสามารถของอุปกรณ์ในการส่งข้อมูลที่จำเป็นสำหรับบริการที่จำเป็น เช่น การอัปเดตแอปและความปลอดภัย\n</string>
-
-    <string name="legal">กฎหมาย</string>
-    <string name="legal_notices">ประกาศทางกฎหมาย</string>
-    <string name="summary_preference_settings_legal_notices">ดูข้อมูลทางกฎหมายเกี่ยวกับบริการของเรา</string>
-    <string name="license">ใบอนุญาต</string>
 
     <string name="about">เกี่ยวกับ</string>
     <string name="summary_preference_settings_about">เรียนรู้เพิ่มเติมเกี่ยวกับ Cleaner</string>
 
-    <string name="app_build_version">เวอร์ชันบิลด์ของแอปพลิเคชัน</string>
-    <string name="summary_preference_settings_oss">รายละเอียดใบอนุญาตสำหรับซอฟต์แวร์โอเพ่นซอร์ส</string>
-    <string name="device_info">ข้อมูลอุปกรณ์</string>
     <string name="app_build">บิลด์แอป: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
     <string name="debug">ดีบัก</string>
     <string name="release">เผยแพร่</string>
@@ -215,11 +193,8 @@
     <string name="device_model">รุ่นอุปกรณ์:</string>
     <string name="android_version">เวอร์ชัน Android:</string>
     <string name="api_level">ระดับ API:</string>
-    <string name="snack_device_info_copied">คัดลอกข้อมูลอุปกรณ์ไปยังคลิปบอร์ดแล้ว</string>
-
     <string name="help_and_feedback">ความช่วยเหลือและความคิดเห็น</string>
     <string name="help">ความช่วยเหลือ</string>
-    <string name="faq">คำถามที่พบบ่อย</string>
     <string name="view_in_google_play_store">ดูใน Google Play Store</string>
     <string name="version_info">ข้อมูลเวอร์ชัน</string>
     <string name="version">เวอร์ชัน %1$s</string>
@@ -259,11 +234,7 @@
     <string name="learn_more">เรียนรู้เพิ่มเติม</string>
 
     <string name="close">ปิด?</string>
-    <string name="snack_network_error">เกิดข้อผิดพลาดของเครือข่ายขณะตรวจสอบการอัปเดต</string>
-    <string name="snack_general_error">เกิดข้อผิดพลาดขณะตรวจสอบการอัปเดต</string>
     <string name="summary_close">คุณแน่ใจหรือไม่ว่าต้องการออก</string>
-    <string name="summary_require_restart">เพื่อให้มีผล โปรดรีสตาร์ทแอป!</string>
-
     <string name="snack_no_image">ไม่มีรูปภาพ</string>
     <string name="snack_validate_file">โปรดเลือกขนาดไฟล์ที่ถูกต้อง</string>
 </resources>
