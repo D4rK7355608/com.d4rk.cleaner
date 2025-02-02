@@ -290,7 +290,7 @@ fun AppItemComposable(
                         viewModel.uninstallApp(app.packageName)
                     })
                     DropdownMenuItem(modifier = Modifier.bounceClick() ,
-                                     text = { Text(text = stringResource(id = R.string.share)) } ,
+                                     text = { Text(text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.share)) } ,
                                      onClick = {
                                          view.playSoundEffect(SoundEffectConstants.CLICK)
                                          viewModel.shareApp(app.packageName)
@@ -413,7 +413,7 @@ fun ApkItemComposable(
                     showMenu = false
                 }) {
                     DropdownMenuItem(modifier = Modifier.bounceClick() ,
-                                     text = { Text(stringResource(id = R.string.share)) } ,
+                                     text = { Text(stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.share)) } ,
                                      onClick = {
                                          view.playSoundEffect(SoundEffectConstants.CLICK)
                                          viewModel.shareApk(apkPath)

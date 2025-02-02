@@ -15,7 +15,7 @@ sealed class BottomNavigationScreen(
     val route : String , val icon : ImageVector , val selectedIcon : ImageVector , val title : Int
 ) {
     data object Home : BottomNavigationScreen(
-        BottomBarRoutes.HOME , Icons.Outlined.Home , Icons.Filled.Home , R.string.home
+        BottomBarRoutes.HOME , Icons.Outlined.Home , Icons.Filled.Home , com.d4rk.android.libs.apptoolkit.R.string.home
     )
 
     data object AppManager : BottomNavigationScreen(

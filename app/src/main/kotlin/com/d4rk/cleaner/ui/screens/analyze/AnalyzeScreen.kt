@@ -1,13 +1,9 @@
 package com.d4rk.cleaner.ui.screens.analyze
 
 import android.view.View
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,25 +11,20 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.DeleteForever
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.pluralStringResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil3.ImageLoader
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.ui.components.buttons.TwoRowButtons
 import com.d4rk.cleaner.ui.screens.analyze.components.DeleteOrTrashConfirmation
-import com.d4rk.cleaner.ui.screens.analyze.components.SelectAllComposable
+import com.d4rk.cleaner.ui.screens.analyze.components.StatusRowSelectAll
 import com.d4rk.cleaner.ui.screens.analyze.components.TabsContent
 import com.d4rk.cleaner.ui.screens.home.HomeViewModel
 import com.d4rk.cleaner.ui.screens.nofilesfound.NoFilesFoundScreen
@@ -96,43 +87,19 @@ fun AnalyzeScreen(
         }
 
         if (groupedFiles.isNotEmpty()) {
-            Row(
-                modifier = Modifier.fillMaxWidth() ,
-                verticalAlignment = Alignment.CenterVertically ,
-                horizontalArrangement = Arrangement.SpaceBetween ,
-            ) {
-                val statusText : String = if (data.analyzeState.selectedFilesCount > 0) {
-                    pluralStringResource(
-                        id = R.plurals.status_selected_files , count = data.analyzeState.selectedFilesCount , data.analyzeState.selectedFilesCount
-                    )
-                }
-                else {
-                    stringResource(id = R.string.status_no_files_selected)
-                }
-                val statusColor : Color by animateColorAsState(
-                    targetValue = if (data.analyzeState.selectedFilesCount > 0) {
-                        MaterialTheme.colorScheme.primary
-                    }
-                    else {
-                        MaterialTheme.colorScheme.secondary
-                    } , animationSpec = tween() , label = "Selected Files Status Color Animation"
-                )
+            StatusRowSelectAll(data = data , view = view , onClickSelectAll = {
+                viewModel.toggleSelectAllFiles()
+            })
+        }
 
-                Text(
-                    text = statusText , color = statusColor , modifier = Modifier.animateContentSize()
-                )
-                SelectAllComposable(viewModel = viewModel , view = view)
-            }
+        TwoRowButtons(modifier = Modifier , enabled = hasSelectedFiles , onStartButtonClick = {
+            viewModel.setMoveToTrashConfirmationDialogVisibility(isVisible = true)
+        } , onStartButtonIcon = Icons.Outlined.Delete , onStartButtonText = R.string.move_to_trash , onEndButtonClick = {
+            viewModel.setDeleteForeverConfirmationDialogVisibility(true)
+        } , onEndButtonIcon = Icons.Outlined.DeleteForever , onEndButtonText = R.string.delete_forever , view = view)
 
-            TwoRowButtons(modifier = Modifier , enabled = hasSelectedFiles , onStartButtonClick = {
-                viewModel.setMoveToTrashConfirmationDialogVisibility(isVisible = true)
-            } , onStartButtonIcon = Icons.Outlined.Delete , onStartButtonText = R.string.move_to_trash , onEndButtonClick = {
-                viewModel.setDeleteForeverConfirmationDialogVisibility(true)
-            } , onEndButtonIcon = Icons.Outlined.DeleteForever , onEndButtonText = R.string.delete_forever , view = view)
-
-            if (data.analyzeState.isDeleteForeverConfirmationDialogVisible || data.analyzeState.isMoveToTrashConfirmationDialogVisible) {
-                DeleteOrTrashConfirmation(data = data , viewModel = viewModel)
-            }
+        if (data.analyzeState.isDeleteForeverConfirmationDialogVisible || data.analyzeState.isMoveToTrashConfirmationDialogVisible) {
+            DeleteOrTrashConfirmation(data = data , viewModel = viewModel)
         }
     }
 }

@@ -57,7 +57,7 @@ class AppManagerRepository(application : Application) :
             val shareIntent : Intent = shareApp(packageName)
             withContext(Dispatchers.Main) {
                 val chooserIntent : Intent = Intent.createChooser(
-                    shareIntent , application.getString(R.string.share)
+                    shareIntent , application.getString(com.d4rk.android.libs.apptoolkit.R.string.share)
                 )
                 chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 application.startActivity(chooserIntent)

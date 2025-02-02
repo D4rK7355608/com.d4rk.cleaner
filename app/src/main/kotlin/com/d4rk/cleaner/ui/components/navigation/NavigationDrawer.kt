@@ -3,6 +3,7 @@ package com.d4rk.cleaner.ui.components.navigation
 import android.content.Context
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerState
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
@@ -15,13 +16,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.hapticDrawerSwipe
 import com.d4rk.android.libs.apptoolkit.ui.components.spacers.LargeVerticalSpacer
+import com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper
+import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.screens.MainScreenState
 import com.d4rk.cleaner.ui.screens.help.HelpActivity
+import com.d4rk.cleaner.ui.screens.imageoptimizer.imagepicker.ImagePickerActivity
 import com.d4rk.cleaner.ui.screens.main.MainScaffoldContent
 import com.d4rk.cleaner.ui.screens.settings.SettingsActivity
+import com.d4rk.cleaner.ui.screens.trash.TrashActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -56,26 +62,34 @@ private fun NavigationDrawerItemContent(
     val title = stringResource(id = item.title)
     NavigationDrawerItem(label = { Text(text = title) } , selected = false , onClick = {
         when (item.title) {
+            R.string.image_optimizer -> IntentsHelper.openActivity(
+                context = context , activityClass = ImagePickerActivity::class.java
+            )
+
+            R.string.trash -> IntentsHelper.openActivity(
+                context = context , activityClass = TrashActivity::class.java
+            )
+
             com.d4rk.android.libs.apptoolkit.R.string.settings -> {
-                com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper.openActivity(
+                IntentsHelper.openActivity(
                     context = context , activityClass = SettingsActivity::class.java
                 )
             }
 
             com.d4rk.android.libs.apptoolkit.R.string.help_and_feedback -> {
-                com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper.openActivity(
+                IntentsHelper.openActivity(
                     context = context , activityClass = HelpActivity::class.java
                 )
             }
 
             com.d4rk.android.libs.apptoolkit.R.string.updates -> {
-                com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper.openUrl(
+                IntentsHelper.openUrl(
                     context = context , url = "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md"
                 )
             }
 
             com.d4rk.android.libs.apptoolkit.R.string.share -> {
-                com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper.shareApp(
+                IntentsHelper.shareApp(
                     context = context , shareMessageFormat = com.d4rk.android.libs.apptoolkit.R.string.summary_share_message
                 )
             }
@@ -90,4 +104,8 @@ private fun NavigationDrawerItemContent(
     } , modifier = Modifier
             .padding(paddingValues = NavigationDrawerItemDefaults.ItemPadding)
             .bounceClick())
+
+    if (item.title == R.string.trash) {
+        HorizontalDivider(modifier = Modifier.padding(all = 8.dp))
+    }
 }

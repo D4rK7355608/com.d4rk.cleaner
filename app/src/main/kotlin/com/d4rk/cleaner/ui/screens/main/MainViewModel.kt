@@ -9,11 +9,14 @@ import androidx.annotation.RequiresApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.EventNote
 import androidx.compose.material.icons.automirrored.outlined.HelpOutline
+import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.Photo
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Share
 import androidx.lifecycle.viewModelScope
 import com.d4rk.android.libs.apptoolkit.data.model.ui.navigation.NavigationDrawerItem
 import com.d4rk.android.libs.apptoolkit.notifications.managers.AppUpdateNotificationsManager
+import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.data.model.ui.navigation.BottomNavigationScreen
 import com.d4rk.cleaner.data.model.ui.screens.UiMainScreen
@@ -53,6 +56,14 @@ class MainViewModel(application : Application) : BaseViewModel(application) {
     private fun initializeUiState() : UiMainScreen {
         return UiMainScreen(
             navigationDrawerItems = listOf(
+                NavigationDrawerItem(
+                    title = R.string.image_optimizer ,
+                    selectedIcon = Icons.Outlined.Photo ,
+                ),
+                NavigationDrawerItem(
+                    title = R.string.trash ,
+                    selectedIcon = Icons.Outlined.Delete ,
+                ),
                 NavigationDrawerItem(
                     title = com.d4rk.android.libs.apptoolkit.R.string.settings ,
                     selectedIcon = Icons.Outlined.Settings ,

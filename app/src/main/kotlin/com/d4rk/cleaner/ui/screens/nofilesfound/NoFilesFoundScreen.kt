@@ -30,7 +30,7 @@ fun NoFilesFoundScreen(viewModel : HomeViewModel) {
             Icon(
                 imageVector = Icons.Outlined.FolderOff ,
                 contentDescription = null ,
-                modifier = Modifier.size(64.dp) ,
+                modifier = Modifier.size(size = 64.dp) ,
                 tint = MaterialTheme.colorScheme.onSurface
             )
             LargeVerticalSpacer()
@@ -44,12 +44,12 @@ fun NoFilesFoundScreen(viewModel : HomeViewModel) {
                 viewModel.analyze()
             }) {
                 Icon(
-                    modifier = Modifier.size(ButtonDefaults.IconSize) ,
+                    modifier = Modifier.size(size = ButtonDefaults.IconSize) ,
                     imageVector = Icons.Outlined.Refresh ,
-                    contentDescription = "Close"
+                    contentDescription = null
                 )
                 ButtonIconSpacer()
-                Text(text = stringResource(id = R.string.try_again))
+                Text(text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.try_again))
             }
         }
     }

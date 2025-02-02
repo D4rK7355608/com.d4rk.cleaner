@@ -23,11 +23,14 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.d4rk.android.libs.apptoolkit.data.model.ui.navigation.NavigationDrawerItem
 import com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper
+import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.navigation.BottomNavigationScreen
 import com.d4rk.cleaner.data.model.ui.screens.MainScreenState
 import com.d4rk.cleaner.data.model.ui.screens.UiMainScreen
 import com.d4rk.cleaner.ui.screens.help.HelpActivity
+import com.d4rk.cleaner.ui.screens.imageoptimizer.imagepicker.ImagePickerActivity
 import com.d4rk.cleaner.ui.screens.settings.SettingsActivity
+import com.d4rk.cleaner.ui.screens.trash.TrashActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -77,6 +80,14 @@ fun LeftNavigationRail(
             drawerItems.forEach { item ->
                 NavigationRailItem(selected = false , onClick = {
                     when (item.title) {
+                        R.string.image_optimizer -> IntentsHelper.openActivity(
+                            context = mainScreenState.context , activityClass = ImagePickerActivity::class.java
+                        )
+
+                        R.string.trash -> IntentsHelper.openActivity(
+                            context = mainScreenState.context , activityClass = TrashActivity::class.java
+                        )
+
                         com.d4rk.android.libs.apptoolkit.R.string.settings -> IntentsHelper.openActivity(
                             context = mainScreenState.context , activityClass = SettingsActivity::class.java
                         )
