@@ -5,7 +5,6 @@ import android.os.Environment
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.screens.FileTypesData
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
-import com.d4rk.cleaner.utils.cleaning.FileScanner
 import com.d4rk.cleaner.utils.constants.cleaning.ExtensionsConstants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -13,7 +12,6 @@ import kotlinx.coroutines.withContext
 import java.io.File
 
 class HomeRepository(dataStore : DataStore , application : Application) : HomeRepositoryImplementation(application , dataStore) {
-    private val fileScanner : FileScanner = FileScanner(application = application)
 
     suspend fun getPreferences(): Map<String, Boolean> {
         return withContext(context = Dispatchers.IO) {
@@ -50,7 +48,7 @@ class HomeRepository(dataStore : DataStore , application : Application) : HomeRe
 
     suspend fun analyzeFiles(onSuccess : (Pair<List<File> , List<File>>) -> Unit) {
         withContext(context = Dispatchers.IO) {
-            val result = fileScanner.getAllFiles()
+            val result = getAllFilesImplementation()
             withContext(context = Dispatchers.Main) { onSuccess(result) }
         }
     }
