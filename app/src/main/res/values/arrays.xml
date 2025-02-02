@@ -2,12 +2,15 @@
 <resources>
     <string-array name="file_types_titles">
         <item>@string/images</item>
-        <item>@string/audios</item>
         <item>@string/videos</item>
-        <item>@string/apks</item>
+        <item>@string/audios</item>
+        <item>@string/documents</item>
         <item>@string/archives</item>
+        <item>@string/apks</item>
+        <item>@string/fonts</item>
+        <item>@string/windows</item>
         <item>@string/empty_folders</item>
-        <item>@string/other</item>
+        <item>@string/other_files</item>
     </string-array>
 
     <string-array name="generic_extensions">

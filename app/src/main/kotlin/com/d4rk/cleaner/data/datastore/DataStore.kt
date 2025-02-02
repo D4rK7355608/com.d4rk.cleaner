@@ -208,6 +208,50 @@ class DataStore(context : Context) : CommonDataStore(context) {
         }
     }
 
+    private val deleteOfficeFilesKey = booleanPreferencesKey(name = AppDataStoreConstants.DATA_STORE_DELETE_OFFICE_FILES)
+    val deleteOfficeFiles : Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[deleteOfficeFilesKey] != false
+    }
+
+    suspend fun saveDeleteOfficeFiles(isChecked : Boolean) {
+        dataStore.edit { preferences ->
+            preferences[deleteOfficeFilesKey] = isChecked
+        }
+    }
+
+    private val deleteWindowsFilesKey = booleanPreferencesKey(name = AppDataStoreConstants.DATA_STORE_DELETE_WINDOWS_FILES)
+    val deleteWindowsFiles : Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[deleteWindowsFilesKey] != false
+    }
+
+    suspend fun saveDeleteWindowsFiles(isChecked : Boolean) {
+        dataStore.edit { preferences ->
+            preferences[deleteWindowsFilesKey] = isChecked
+        }
+    }
+
+    private val deleteFontFilesKey = booleanPreferencesKey(name = AppDataStoreConstants.DATA_STORE_DELETE_FONT_FILES)
+    val deleteFontFiles : Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[deleteFontFilesKey] != false
+    }
+
+    suspend fun saveDeleteFontFiles(isChecked : Boolean) {
+        dataStore.edit { preferences ->
+            preferences[deleteFontFilesKey] = isChecked
+        }
+    }
+
+    private val deleteOtherFilesKey = booleanPreferencesKey(name = AppDataStoreConstants.DATA_STORE_OTHER_EXTENSIONS)
+    val deleteOtherFiles : Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[deleteOtherFilesKey] != false
+    }
+
+    suspend fun saveDeleteOtherFiles(isChecked : Boolean) {
+        dataStore.edit { preferences ->
+            preferences[deleteOtherFilesKey] = isChecked
+        }
+    }
+
     private val deleteImageFilesKey = booleanPreferencesKey(name = AppDataStoreConstants.DATA_STORE_DELETE_IMAGE_FILES)
     val deleteImageFiles : Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[deleteImageFilesKey] != false

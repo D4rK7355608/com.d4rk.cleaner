@@ -43,7 +43,7 @@ import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
  * @param modifier The modifier for styling and layout customization.
  */
 @Composable
-fun CircularDeterminateIndicator(
+fun StorageProgressButton(
     progress: Float,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}

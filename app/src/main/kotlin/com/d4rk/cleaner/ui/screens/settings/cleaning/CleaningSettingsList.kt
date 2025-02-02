@@ -29,6 +29,10 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
     val deleteApkFiles : Boolean by dataStore.deleteApkFiles.collectAsState(initial = true)
     val deleteAudioFiles : Boolean by dataStore.deleteAudioFiles.collectAsState(initial = false)
     val deleteVideoFiles : Boolean by dataStore.deleteVideoFiles.collectAsState(initial = false)
+    val windowsExtensions : Boolean by dataStore.deleteWindowsFiles.collectAsState(initial = false)
+    val officeExtensions : Boolean by dataStore.deleteOfficeFiles.collectAsState(initial = false)
+    val fontExtensions : Boolean by dataStore.deleteFontFiles.collectAsState(initial = false)
+    val otherExtensions : Boolean by dataStore.deleteOtherFiles.collectAsState(initial = false)
     val deleteImageFiles : Boolean by dataStore.deleteImageFiles.collectAsState(initial = false)
     val clipboardClean : Boolean by dataStore.clipboardClean.collectAsState(initial = false)
 
@@ -81,6 +85,43 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
             ) { isChecked ->
                 CoroutineScope(Dispatchers.IO).launch {
                     dataStore.saveDeleteApkFiles(isChecked)
+                }
+            }
+
+            SwitchPreferenceItem(
+                title = "Windows Extensions" ,
+                summary = "Detects and delete windows extensions (exe,dll,sys)" ,
+                checked = windowsExtensions ,
+            ) { isChecked ->
+                CoroutineScope(Dispatchers.IO).launch {
+                    dataStore.saveDeleteWindowsFiles(isChecked)
+                }
+            }
+            SwitchPreferenceItem(
+                title = "Office Extensions" ,
+                summary = "Detects and delete office extensions (doc,xls,ppt,docx,xlsx,pptx)" ,
+                checked = officeExtensions ,
+            ) { isChecked ->
+                CoroutineScope(Dispatchers.IO).launch {
+                    dataStore.saveDeleteOfficeFiles(isChecked)
+                }
+            }
+            SwitchPreferenceItem(
+                title = "Font Extensions" ,
+                summary = "Detects and delete font extensions (ttf,otf)" ,
+                checked = fontExtensions ,
+            ) { isChecked ->
+                CoroutineScope(Dispatchers.IO).launch {
+                    dataStore.saveDeleteFontFiles(isChecked)
+                }
+            }
+            SwitchPreferenceItem(
+                title = "Other Extensions" ,
+                summary = "Detects and delete other extensions (tmp,ini,log,bak,old)" ,
+                checked = otherExtensions ,
+            ) { isChecked ->
+                CoroutineScope(Dispatchers.IO).launch {
+                    dataStore.saveDeleteOtherFiles(isChecked)
                 }
             }
         }

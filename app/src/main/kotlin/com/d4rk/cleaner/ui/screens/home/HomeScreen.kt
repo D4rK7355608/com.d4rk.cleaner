@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.View
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,7 +41,7 @@ import com.d4rk.android.libs.apptoolkit.data.model.ui.error.UiErrorModel
 import com.d4rk.android.libs.apptoolkit.ui.components.dialogs.ErrorAlertDialog
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
-import com.d4rk.cleaner.ui.components.progressbars.CircularDeterminateIndicator
+import com.d4rk.cleaner.ui.components.progressbars.StorageProgressButton
 import com.d4rk.cleaner.ui.screens.analyze.AnalyzeScreen
 import com.d4rk.cleaner.utils.helpers.PermissionsHelper
 
@@ -52,16 +53,16 @@ fun HomeScreen() {
     val uiState : UiHomeModel by viewModel.uiState.collectAsState()
     val uiErrorModel : UiErrorModel by viewModel.uiErrorModel.collectAsState()
     val imageLoader : ImageLoader = remember {
-        ImageLoader.Builder(context).memoryCache {
+        ImageLoader.Builder(context = context).memoryCache {
             MemoryCache.Builder().maxSizePercent(context = context , percent = 0.24).build()
         }.diskCache {
-            DiskCache.Builder().directory(context.cacheDir.resolve(relative = "image_cache")).maxSizePercent(percent = 0.02).build()
+            DiskCache.Builder().directory(directory = context.cacheDir.resolve(relative = "image_cache")).maxSizePercent(percent = 0.02).build()
         }.build()
     }
 
     LaunchedEffect(key1 = Unit) {
-        if (! PermissionsHelper.hasStoragePermissions(context)) {
-            PermissionsHelper.requestStoragePermissions(context as Activity)
+        if (! PermissionsHelper.hasStoragePermissions(context = context)) {
+            PermissionsHelper.requestStoragePermissions(activity = context as Activity)
         }
     }
 
@@ -77,11 +78,12 @@ fun HomeScreen() {
         ) {
 
             if (! uiState.analyzeState.isAnalyzeScreenVisible) {
-                CircularDeterminateIndicator(progress = uiState.storageInfo.storageUsageProgress , modifier = Modifier
-                        .align(Alignment.TopCenter)
+                StorageProgressButton(progress = uiState.storageInfo.storageUsageProgress , modifier = Modifier
+                        .align(alignment = Alignment.TopCenter)
                         .offset(y = 98.dp) , onClick = {
                     viewModel.analyze()
                 })
+
                 ExtraStorageInfo(
                     modifier = Modifier
                             .align(Alignment.BottomCenter)
@@ -112,21 +114,20 @@ fun ExtraStorageInfo(
     cleanedSpace : String ,
     freeSpace : String ,
 ) {
-
     Row(
         modifier = modifier
                 .fillMaxWidth()
-                .height(IntrinsicSize.Min)
+                .height(intrinsicSize = IntrinsicSize.Min)
                 .padding(horizontal = 16.dp , vertical = 8.dp) , horizontalArrangement = Arrangement.SpaceAround , verticalAlignment = Alignment.CenterVertically
     ) {
         InfoColumn(
-            title = stringResource(id = R.string.cleaned_space) , value = cleanedSpace , modifier = Modifier.weight(1f)
+            title = stringResource(id = R.string.cleaned_space) , value = cleanedSpace , modifier = Modifier.weight(weight = 1f)
         )
 
         VerticalDivider()
 
         InfoColumn(
-            title = stringResource(id = R.string.free_space) , value = freeSpace , modifier = Modifier.weight(1f)
+            title = stringResource(id = R.string.free_space) , value = freeSpace , modifier = Modifier.weight(weight = 1f)
         )
     }
 }
@@ -138,7 +139,7 @@ fun InfoColumn(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally , modifier = modifier
     ) {
-        Text(text = title , style = MaterialTheme.typography.bodySmall)
+        Text(text = title , style = MaterialTheme.typography.bodySmall , modifier = Modifier.basicMarquee())
         Text(
             text = value , style = MaterialTheme.typography.bodyMedium , maxLines = 2 , overflow = TextOverflow.Ellipsis
         )

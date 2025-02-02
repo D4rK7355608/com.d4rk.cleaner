@@ -30,7 +30,7 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.screens.UiTrashModel
 import com.d4rk.cleaner.ui.components.buttons.TwoRowButtons
 import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
-import com.d4rk.cleaner.ui.screens.analyze.FilesByDateSection
+import com.d4rk.cleaner.ui.screens.analyze.components.FilesByDateSection
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
