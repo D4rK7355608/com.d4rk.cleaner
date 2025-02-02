@@ -16,7 +16,6 @@
     <string name="archives">アーカイブ</string>
     <string name="videos">ビデオ</string>
     <string name="audios">オーディオ</string>
-    <string name="other">その他</string>
     <plurals name="status_selected_files">
         <item quantity="other">ステータス：%1$d ファイル選択済み</item>
     </plurals>

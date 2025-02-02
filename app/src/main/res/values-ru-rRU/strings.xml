@@ -16,7 +16,6 @@
     <string name="archives">Архивы</string>
     <string name="videos">Видео</string>
     <string name="audios">Аудио</string>
-    <string name="other">Другое</string>
     <plurals name="status_selected_files">
         <item quantity="one">Статус: выбран %1$d файл</item>
         <item quantity="few">Статус: выбрано %1$d файла</item>

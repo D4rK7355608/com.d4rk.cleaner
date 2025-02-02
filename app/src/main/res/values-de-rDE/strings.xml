@@ -16,7 +16,6 @@
     <string name="archives">Archive</string>
     <string name="videos">Videos</string>
     <string name="audios">Audios</string>
-    <string name="other">Andere</string>
     <plurals name="status_selected_files">
         <item quantity="one">Status: %1$d Datei ausgewählt</item>
         <item quantity="other">Status: %1$d Dateien ausgewählt</item>

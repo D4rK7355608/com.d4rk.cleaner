@@ -16,7 +16,6 @@
     <string name="archives">Arkiv</string>
     <string name="videos">Videor</string>
     <string name="audios">Ljud</string>
-    <string name="other">Annat</string>
     <plurals name="status_selected_files">
         <item quantity="one">Status: %1$d fil vald</item>
         <item quantity="other">Status: %1$d filer valda</item>

@@ -83,15 +83,15 @@ abstract class HomeRepositoryImplementation(
             val fileTypesTitles : List<String> = application.resources.getStringArray(R.array.file_types_titles).toList()
 
             val knownExtensions = mutableSetOf<String>().apply {
-                addAll(apkExtensions.map { it.lowercase() })
-                addAll(imageExtensions.map { it.lowercase() })
-                addAll(videoExtensions.map { it.lowercase() })
-                addAll(audioExtensions.map { it.lowercase() })
-                addAll(fontExtensions.map { it.lowercase() })
-                addAll(windowsExtensions.map { it.lowercase() })
-                addAll(archiveExtensions.map { it.lowercase() })
-                addAll(officeExtensions.map { it.lowercase() })
-                addAll(genericExtensions.map { it.lowercase() })
+                addAll(elements = apkExtensions.map { it.lowercase() })
+                addAll(elements = imageExtensions.map { it.lowercase() })
+                addAll(elements = videoExtensions.map { it.lowercase() })
+                addAll(elements = audioExtensions.map { it.lowercase() })
+                addAll(elements = fontExtensions.map { it.lowercase() })
+                addAll(elements = windowsExtensions.map { it.lowercase() })
+                addAll(elements = archiveExtensions.map { it.lowercase() })
+                addAll(elements = officeExtensions.map { it.lowercase() })
+                addAll(elements = genericExtensions.map { it.lowercase() })
             }
 
             val allFoundExtensions : MutableSet<String> = mutableSetOf()

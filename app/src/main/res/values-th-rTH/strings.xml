@@ -16,7 +16,6 @@
     <string name="archives">ไฟล์เก็บถาวร</string>
     <string name="videos">วิดีโอ</string>
     <string name="audios">ไฟล์เสียง</string>
-    <string name="other">อื่นๆ</string>
     <string name="empty_folders">โฟลเดอร์ว่าง</string>
     <plurals name="status_selected_files">
         <item quantity="other">สถานะ: เลือกไฟล์ %1$d ไฟล์</item>

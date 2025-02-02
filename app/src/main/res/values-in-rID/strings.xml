@@ -16,7 +16,6 @@
     <string name="archives">Arsip</string>
     <string name="videos">Video</string>
     <string name="audios">Audio</string>
-    <string name="other">Lainnya</string>
     <plurals name="status_selected_files">
         <item quantity="other">Status: %1$d berkas dipilih</item>
     </plurals>

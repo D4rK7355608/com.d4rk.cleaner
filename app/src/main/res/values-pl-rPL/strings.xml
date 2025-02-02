@@ -16,7 +16,6 @@
     <string name="archives">Archiwa</string>
     <string name="videos">Filmy</string>
     <string name="audios">Audio</string>
-    <string name="other">Inne</string>
     <plurals name="status_selected_files">
         <item quantity="one">Status: %1$d plik wybrany</item>
         <item quantity="few">Status: %1$d pliki wybrane</item>

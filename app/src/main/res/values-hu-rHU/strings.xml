@@ -16,7 +16,6 @@
     <string name="archives">Archívumok</string>
     <string name="videos">Videók</string>
     <string name="audios">Hangfájlok</string>
-    <string name="other">Egyéb</string>
     <plurals name="status_selected_files">
         <item quantity="one">Állapot: %1$d fájl kiválasztva</item>
         <item quantity="other">Állapot: %1$d fájlok kiválasztva</item>

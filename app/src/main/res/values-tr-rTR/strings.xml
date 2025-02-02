@@ -16,7 +16,6 @@
     <string name="archives">Arşivler</string>
     <string name="videos">Videolar</string>
     <string name="audios">Sesler</string>
-    <string name="other">Diğer</string>
     <plurals name="status_selected_files">
         <item quantity="one">Durum: %1$d dosya seçildi</item>
         <item quantity="other">Durum: %1$d dosya seçildi</item>

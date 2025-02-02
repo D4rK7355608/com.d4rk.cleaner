@@ -16,7 +16,6 @@
     <string name="archives">檔案</string>
     <string name="videos">影片</string>
     <string name="audios">音訊</string>
-    <string name="other">其他</string>
     <plurals name="status_selected_files">
         <item quantity="other">狀態：已選取 %1$d 個檔案</item>
     </plurals>
