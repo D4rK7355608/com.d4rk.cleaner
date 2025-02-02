@@ -12,11 +12,13 @@ class FileScanner(private val dataStore : DataStore , private val application : 
 
     private var preferences : Map<String , Boolean> = emptyMap()
     private var filteredFiles : List<File> = emptyList()
+    private var emptyFolders : List<File> = emptyList()
 
     suspend fun startScanning() {
         loadPreferences()
-        val (files : List<File> , emptyFolders : List<File>) = getAllFiles() // FIXME: Variable 'emptyFolders' is never used
+        val (files : List<File> , folders : List<File>) = getAllFiles()
         filteredFiles = files
+        emptyFolders = folders
     }
 
     private suspend fun loadPreferences() {
@@ -61,13 +63,12 @@ class FileScanner(private val dataStore : DataStore , private val application : 
 
             if (currentFile.isDirectory) {
                 if (! currentFile.absolutePath.startsWith(trashDir.absolutePath)) {
-                    val children = currentFile.listFiles()
-                    if (children != null) {
+                    currentFile.listFiles()?.let { children ->
                         if (children.isEmpty() && preferences[ExtensionsConstants.EMPTY_FOLDERS] == true) {
                             emptyFolders.add(element = currentFile)
                         }
                         else {
-                            for (child in children) {
+                            children.forEach { child ->
                                 if (shouldKeepFile(
                                         file = child ,
                                         archiveExtensions = archiveExtensions ,
