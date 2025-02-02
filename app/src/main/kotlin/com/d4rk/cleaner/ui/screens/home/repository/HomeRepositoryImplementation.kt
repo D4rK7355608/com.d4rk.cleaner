@@ -14,13 +14,8 @@ import java.io.File
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-abstract class HomeRepositoryImplementation(
-    val application : Application ,
-    val dataStore : DataStore ,
-) {
-    private val trashDir : File = File(
-        application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash"
-    )
+abstract class HomeRepositoryImplementation(val application : Application , val dataStore : DataStore) {
+    private val trashDir : File = File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash")
 
     suspend fun getStorageInfoImplementation() : UiHomeModel {
         return suspendCoroutine { continuation ->
@@ -37,7 +32,7 @@ abstract class HomeRepositoryImplementation(
         val emptyFolders : MutableList<File> = mutableListOf()
         val stack : ArrayDeque<File> = ArrayDeque()
         val root : File = Environment.getExternalStorageDirectory()
-        stack.addFirst(root)
+        stack.addFirst(element = root)
 
         val trashDir = File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash")
 
