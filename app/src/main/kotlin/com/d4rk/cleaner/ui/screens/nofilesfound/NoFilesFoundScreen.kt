@@ -41,7 +41,7 @@ fun NoFilesFoundScreen(viewModel : HomeViewModel) {
             )
 
             OutlinedButton(modifier = Modifier.bounceClick() , onClick = {
-                viewModel.rescanFiles()
+                viewModel.analyze()
             }) {
                 Icon(
                     modifier = Modifier.size(ButtonDefaults.IconSize) ,

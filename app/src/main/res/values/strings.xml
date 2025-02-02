@@ -33,6 +33,13 @@
     </plurals>
     <string name="status_no_files_selected">Status: No files selected</string>
     <string name="select_all">Select All</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="a_year_ago">Last Year</string>
+    <plurals name="years_ago">
+        <item quantity="one">%d year ago</item>
+        <item quantity="other">%d years ago</item>
+    </plurals>
     <string name="file_not_found">File not found.</string>
     <string name="no_files_found">No files found</string>
     <string name="activity_not_found">Activity not found.</string>

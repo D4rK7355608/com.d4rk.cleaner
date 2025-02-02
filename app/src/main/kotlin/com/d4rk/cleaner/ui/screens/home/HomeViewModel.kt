@@ -2,22 +2,22 @@ package com.d4rk.cleaner.ui.screens.home
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
-import com.d4rk.cleaner.data.datastore.DataStore
+import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.data.model.ui.screens.FileTypesData
 import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.ui.screens.home.repository.HomeRepository
 import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
 import com.d4rk.cleaner.utils.cleaning.StorageUtils
+import com.d4rk.cleaner.utils.constants.cleaning.ExtensionsConstants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.io.File
-import java.util.LinkedHashMap
 
 class HomeViewModel(application : Application) : BaseViewModel(application) {
-    private val repository : HomeRepository = HomeRepository(DataStore(application) , application)
+    private val repository : HomeRepository = HomeRepository(dataStore = AppCoreManager.dataStore , application = application)
     private val _uiState : MutableStateFlow<UiHomeModel> = MutableStateFlow(UiHomeModel())
     val uiState : StateFlow<UiHomeModel> = _uiState
 
@@ -31,11 +31,15 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             showLoading()
             repository.analyzeFiles { result ->
-                val (filteredFiles : List<File> , emptyFolders : List<File>) = result
+                val (scannedFiles : List<File> , emptyFolders : List<File>) = result
                 val currentFileTypesData : FileTypesData = _uiState.value.analyzeState.fileTypesData
-                val groupedFiles : Map<String , List<File>> = computeGroupedFiles(filteredFiles , emptyFolders , currentFileTypesData)
-                _uiState.update { state ->
-                    state.copy(analyzeState = state.analyzeState.copy(scannedFileList = filteredFiles , emptyFolderList = emptyFolders , isAnalyzeScreenVisible = true , groupedFiles = groupedFiles))
+
+                viewModelScope.launch(context = Dispatchers.IO) {
+                    val prefs : Map<String , Boolean> = repository.getPreferences()
+                    val groupedFiles : Map<String , List<File>> = computeGroupedFiles(scannedFiles = scannedFiles , emptyFolders = emptyFolders , fileTypesData = currentFileTypesData , preferences = prefs)
+                    _uiState.update { state ->
+                        state.copy(analyzeState = state.analyzeState.copy(scannedFileList = scannedFiles , emptyFolderList = emptyFolders , isAnalyzeScreenVisible = true , groupedFiles = groupedFiles))
+                    }
                 }
             }
             hideLoading()
@@ -43,52 +47,43 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     }
 
     private fun computeGroupedFiles(
-        scannedFiles : List<File> , emptyFolders : List<File> , fileTypesData : FileTypesData
-    ) : Map<String , List<File>> {
-        val filesMap : LinkedHashMap<String , MutableList<File>> = linkedMapOf()
+        scannedFiles: List<File>,
+        emptyFolders: List<File>,
+        fileTypesData: FileTypesData,
+        preferences: Map<String, Boolean>
+    ): Map<String, List<File>> {
+        val knownExtensions: Set<String> = (fileTypesData.imageExtensions +
+                fileTypesData.videoExtensions +
+                fileTypesData.audioExtensions +
+                fileTypesData.officeExtensions +
+                fileTypesData.archiveExtensions +
+                fileTypesData.apkExtensions +
+                fileTypesData.fontExtensions +
+                fileTypesData.windowsExtensions).toSet()
+
+        val filesMap: LinkedHashMap<String, MutableList<File>> = linkedMapOf()
         filesMap.putAll(fileTypesData.fileTypesTitles.associateWith { mutableListOf() })
 
         scannedFiles.forEach { file ->
-            val extension = file.extension.lowercase()
-            val category = when (extension) {
-                in fileTypesData.imageExtensions -> fileTypesData.fileTypesTitles[0]
-                in fileTypesData.videoExtensions -> fileTypesData.fileTypesTitles[1]
-                in fileTypesData.audioExtensions -> fileTypesData.fileTypesTitles[2]
-                in fileTypesData.officeExtensions -> fileTypesData.fileTypesTitles[3]
-                in fileTypesData.archiveExtensions -> fileTypesData.fileTypesTitles[4]
-                in fileTypesData.apkExtensions -> fileTypesData.fileTypesTitles[5]
-                in fileTypesData.fontExtensions -> fileTypesData.fileTypesTitles[6]
-                in fileTypesData.windowsExtensions -> fileTypesData.fileTypesTitles[7]
-                in fileTypesData.otherExtensions -> fileTypesData.fileTypesTitles[9]
-                else -> fileTypesData.fileTypesTitles[9]
+            val category: String? = when (val extension: String = file.extension.lowercase()) {
+                in fileTypesData.imageExtensions -> if (preferences[ExtensionsConstants.IMAGE_EXTENSIONS] == true) fileTypesData.fileTypesTitles[0] else null
+                in fileTypesData.videoExtensions -> if (preferences[ExtensionsConstants.VIDEO_EXTENSIONS] == true) fileTypesData.fileTypesTitles[1] else null
+                in fileTypesData.audioExtensions -> if (preferences[ExtensionsConstants.AUDIO_EXTENSIONS] == true) fileTypesData.fileTypesTitles[2] else null
+                in fileTypesData.officeExtensions -> if (preferences[ExtensionsConstants.OFFICE_EXTENSIONS] == true) fileTypesData.fileTypesTitles[3] else null
+                in fileTypesData.archiveExtensions -> if (preferences[ExtensionsConstants.ARCHIVE_EXTENSIONS] == true) fileTypesData.fileTypesTitles[4] else null
+                in fileTypesData.apkExtensions -> if (preferences[ExtensionsConstants.APK_EXTENSIONS] == true) fileTypesData.fileTypesTitles[5] else null
+                in fileTypesData.fontExtensions -> if (preferences[ExtensionsConstants.FONT_EXTENSIONS] == true) fileTypesData.fileTypesTitles[6] else null
+                in fileTypesData.windowsExtensions -> if (preferences[ExtensionsConstants.WINDOWS_EXTENSIONS] == true) fileTypesData.fileTypesTitles[7] else null
+                else -> if (!knownExtensions.contains(extension) && preferences[ExtensionsConstants.OTHER_EXTENSIONS] == true) fileTypesData.fileTypesTitles[9] else null
             }
-
-            filesMap[category]?.add(file)
+            category?.let { filesMap[it]?.add(file) }
         }
 
-        if (emptyFolders.isNotEmpty()) {
+        if (emptyFolders.isNotEmpty() && preferences[ExtensionsConstants.EMPTY_FOLDERS] == true) {
             filesMap[fileTypesData.fileTypesTitles[8]] = emptyFolders.toMutableList()
         }
 
-        val orderedFilesMap : Map<String , MutableList<File>> = filesMap.filter { it.value.isNotEmpty() }
-
-        return orderedFilesMap
-    }
-
-    fun rescanFiles() {
-        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
-            showLoading()
-            _uiState.update { state ->
-                state.copy(analyzeState = state.analyzeState.copy(scannedFileList = emptyList()))
-            }
-
-            repository.rescanFiles { filteredFiles ->
-                _uiState.update { state ->
-                    state.copy(analyzeState = state.analyzeState.copy(scannedFileList = filteredFiles , isAnalyzeScreenVisible = true))
-                }
-            }
-            hideLoading()
-        }
+        return filesMap.filter { it.value.isNotEmpty() }
     }
 
     fun onCloseAnalyzeComposable() {
@@ -103,7 +98,6 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         viewModelScope.launch(context = coroutineExceptionHandler) {
             val updatedFileSelectionStates : Map<File , Boolean> = _uiState.value.analyzeState.fileSelectionMap + (file to isChecked)
             val newSelectedCount : Int = updatedFileSelectionStates.count { it.value }
-
             _uiState.update { state ->
                 state.copy(
                     analyzeState = state.analyzeState.copy(
@@ -123,15 +117,9 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             val newState : Boolean = ! _uiState.value.analyzeState.areAllFilesSelected
             _uiState.update { state ->
-                state.copy(analyzeState = state.analyzeState.copy(areAllFilesSelected = newState , fileSelectionMap = when {
-                    newState -> (state.analyzeState.scannedFileList + state.analyzeState.emptyFolderList).associateWith { true }
-                    else -> emptyMap()
-                } , selectedFilesCount = if (newState) {
-                    state.analyzeState.scannedFileList.size + state.analyzeState.emptyFolderList.size
-                }
-                else {
-                    0
-                }))
+                state.copy(analyzeState = state.analyzeState.copy(areAllFilesSelected = newState , fileSelectionMap = if (newState) (state.analyzeState.scannedFileList + state.analyzeState.emptyFolderList).associateWith { true }
+                else emptyMap() , selectedFilesCount = if (newState) state.analyzeState.scannedFileList.size + state.analyzeState.emptyFolderList.size
+                else 0))
             }
         }
     }
@@ -144,15 +132,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
             with(repository) {
                 deleteFilesRepository(filesToDelete = filesToDelete) {
                     _uiState.update { state ->
-                        state.copy(analyzeState = state.analyzeState.copy(
-                            scannedFileList = state.analyzeState.scannedFileList.filterNot {
-                                filesToDelete.contains(it)
-                            } ,
-                            selectedFilesCount = 0 ,
-                            areAllFilesSelected = false ,
-                            fileSelectionMap = emptyMap() ,
-                            isAnalyzeScreenVisible = false ,
-                        ))
+                        state.copy(analyzeState = state.analyzeState.copy(scannedFileList = state.analyzeState.scannedFileList.filterNot { filesToDelete.contains(it) } , selectedFilesCount = 0 , areAllFilesSelected = false , fileSelectionMap = emptyMap() , isAnalyzeScreenVisible = false))
                     }
                     getStorageInfo()
                 }

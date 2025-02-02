@@ -87,7 +87,7 @@ fun AnalyzeScreen(
                     NoFilesFoundScreen(viewModel = viewModel)
                 }
 
-                else -> {
+                groupedFiles.isNotEmpty() -> {
                     TabsContent(
                         groupedFiles = groupedFiles , imageLoader = imageLoader , viewModel = viewModel , view = view , coroutineScope = coroutineScope , data = data
                     )
@@ -95,7 +95,7 @@ fun AnalyzeScreen(
             }
         }
 
-        if (data.analyzeState.scannedFileList.isNotEmpty() || data.analyzeState.emptyFolderList.isNotEmpty()) {
+        if (groupedFiles.isNotEmpty()) {
             Row(
                 modifier = Modifier.fillMaxWidth() ,
                 verticalAlignment = Alignment.CenterVertically ,
