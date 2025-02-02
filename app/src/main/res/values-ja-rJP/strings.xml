@@ -3,13 +3,6 @@
     <string name="app_short_description">毎日の使用に最適な、これ以上のものはないAndroidクリーナー！</string>
     <string name="summary_notification_last_time_used"> 少しスペースを解放しましょう！戻ってきてくれて嬉しいです！</string>
 
-    <string name="welcome">ようこそ</string>
-    <string name="summary_browse_terms_of_service_and_privacy_policy">続行するには、利用規約とプライバシーポリシーをお読みいただき、同意してください</string>
-    <string name="agree">同意する</string>
-
-    <string name="navigation_drawer_open">ナビゲーションドロワーを開く</string>
-
-    <string name="home">ホーム</string>
     <string name="delete_forever">完全に削除する</string>
     <string name="move_to_trash">ごみ箱に移動</string>
     <string name="cleaned_space">クリーンアップ済みの領域</string>
@@ -31,18 +24,12 @@
     <string name="select_all">すべて選択</string>
     <string name="file_not_found">ファイルが見つかりません。</string>
     <string name="no_files_found">ファイルが見つかりません</string>
-    <string name="activity_not_found">アクティビティが見つかりません。</string>
-    <string name="security_error">セキュリティエラーが発生しました。後でもう一度お試しください。</string>
-    <string name="io_error">入出力エラーが発生しました。ネットワーク接続やストレージを確認してから、もう一度お試しください。</string>
-    <string name="illegal_argument_error">無効な入力または引数が指定されました。情報を確認して、もう一度やり直してください。</string>
-    <string name="unknown_error">不明なエラーが発生しました。</string>
 
     <string name="app_manager">アプリマネージャー</string>
     <string name="installed_apps">インストール済みアプリ</string>
     <string name="system_apps">システムアプリ</string>
     <string name="app_install_files">アプリインストールファイル（APK）</string>
     <string name="uninstall">アンインストール</string>
-    <string name="share">共有</string>
     <string name="app_info">アプリ情報</string>
     <string name="install">インストール</string>
     <string name="share_apk">APKを共有</string>
@@ -122,15 +109,8 @@
     <string name="notifications">通知</string>
     <string name="summary_preference_settings_notifications">アプリ通知を管理する</string>
 
-    <string name="advanced">詳細</string>
-    <string name="summary_preference_settings_advanced">より詳細な設定を探索する</string>
-
-    <string name="security_and_privacy">セキュリティとプライバシー</string>
     <string name="summary_preference_settings_privacy_and_security">プライバシー設定を管理する</string>
-    <string name="privacy_policy">プライバシーポリシー</string>
-    <string name="terms_of_service">利用規約</string>
 
-    <string name="permissions">パーミッション</string>
     <string name="ad_id">広告ID [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">アプリがユーザーのデバイスに関連付けられている広告識別子を検索して使用できるようにし、パーソナライズされた広告を提供し、広告の効果を測定し、Android 13以降のデバイスで広告を表示します。</string>
     <string name="internet">インターネット [INTERNET]</string>
@@ -170,29 +150,8 @@
     <string name="write_external_storage">外部ストレージの書き込み [WRITE_EXTERNAL_STORAGE]</string>
     <string name="summary_preference_permissions_write_external_storage">アプリが、内部ストレージと外部ストレージの両方を含む、デバイスのストレージにファイルを書けるようにします</string>
 
-    <string name="ads">広告</string>
-    <string name="display_ads">広告の表示</string>
-    <string name="personalized_ads">パーソナライズされた広告</string>
-    <string name="summary_ads_personalized_ads">興味に基づいて広告をパーソナライズする方法を選択する</string>
-    <string name="summary_ads">あなたにとって関連性の高い広告を表示します。アプリの活動に基づいてパーソナライズされた広告を表示するために使用される情報を管理します。いつでもここでパーソナライズを無効にすることができます。</string>
-
-    <string name="usage_and_diagnostics">使用状況と診断</string>
-
-    <string name="about">概要</string>
     <string name="summary_preference_settings_about">Cleanerについて詳しく知る</string>
 
-    <string name="app_build">アプリビルド: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
-    <string name="manufacturer">メーカー:</string>
-    <string name="device_model">デバイスモデル:</string>
-    <string name="android_version">Androidバージョン:</string>
-    <string name="api_level">APIレベル:</string>
-
-    <string name="help_and_feedback">ヘルプとフィードバック</string>
-    <string name="help">ヘルプ</string>
-    <string name="view_in_google_play_store">Google Playストアで確認する</string>
-    <string name="version_info">バージョン情報</string>
-    <string name="version">バージョン %1$s</string>
-    <string name="beta_program">ベータプログラム</string>
     <string name="question_1">Cleanerとは何ですか？</string>
     <string name="summary_preference_faq_1">Cleanerは、デバイスのパフォーマンスを最適化し、ストレージスペースを解放するのに役立つ、無料のオープンソースAndroidアプリです。デバイスをスキャンして不要なファイルを削除したり、キャッシュをクリアしてデバイスの速度を向上させることができます</string>
     <string name="question_2">Cleanerは安全に使用できますか？</string>
@@ -211,24 +170,7 @@
     <string name="summary_preference_faq_8">Cleanerを使用する頻度に関する決まったルールはありません。デバイスの使用状況と、時間の経過とともに蓄積される不要なファイルの量によって異なります。ユーザーによっては、週に1回または月に1回Cleanerを実行すると便利だと思う人もいれば、たまにしか使用しない人もいます</string>
     <string name="question_9">CleanerはすべてのAndroidデバイスと互換性がありますか？</string>
     <string name="summary_preference_faq_9">Cleanerは、アプリの最小システム要件を満たすほとんどのAndroidデバイスと互換性があるはずです。ただし、使用するGoogle Playストアまたはアプリストアでアプリのページを確認して、特定のデバイスとの互換性を確認することをお勧めします。Cleanerを使用中に問題が発生した場合は、問題のトラブルシューティングを試したり、アプリのサポートチームに問い合わせて支援を求めることができます</string>
-    <string name="feedback">フィードバック</string>
 
-    <string name="updates">アップデート</string>
-
-    <string name="support_us">サポート</string>
-    <string name="paid_support">有料サポート</string>
-    <string name="summary_donations">寄付額にかかわらず、アプリの運用を維持し、機能を改善するのに役立ちます。ご厚意とご親切に感謝申し上げます！</string>
-    <string name="non_paid_support">無料サポート</string>
-    <string name="web_ad">ウェブ広告</string>
-
-    <string name="snack_app_updated">アプリは正常に更新されました</string>
-    <string name="snack_update_failed">更新プロセスに問題が発生しました</string>
-    <string name="try_again">再試行</string>
-    <string name="summary_share_message">私が使っているこの素晴らしいアプリをチェックしてください！本当にクールな機能がいくつかあります。興味があるかもしれません。Playストアからダウンロードできます：%1$s</string>
-    <string name="learn_more">もっと詳しく知る</string>
-
-    <string name="close">閉じる？</string>
-    <string name="summary_close">本当に終了しますか？</string>
     <string name="snack_no_image">画像が提供されていません</string>
     <string name="snack_validate_file">有効なファイルサイズを選択してください</string>
 </resources>

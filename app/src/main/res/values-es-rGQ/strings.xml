@@ -3,13 +3,6 @@
     <string name="app_short_description">¡El mejor limpiador de Android que jamás necesitarás para el uso diario!</string>
     <string name="summary_notification_last_time_used"> ¡Liberemos algo de espacio! ¡Nos alegra que estés de vuelta!</string>
 
-    <string name="welcome">Bienvenido</string>
-    <string name="summary_browse_terms_of_service_and_privacy_policy">Lee y acepta nuestros Términos de servicio y Política de privacidad para continuar</string>
-    <string name="agree">Aceptar</string>
-
-    <string name="navigation_drawer_open">Abrir el cajón de navegación</string>
-
-    <string name="home">Inicio</string>
     <string name="delete_forever">Eliminar para siempre</string>
     <string name="move_to_trash">Mover a la papelera</string>
     <string name="cleaned_space">Espacio limpiado</string>
@@ -33,18 +26,12 @@
     <string name="select_all">Seleccionar todo</string>
     <string name="file_not_found">Archivo no encontrado.</string>
     <string name="no_files_found">No se encontraron archivos</string>
-    <string name="activity_not_found">Actividad no encontrada.</string>
-    <string name="security_error">Se ha producido un error de seguridad. Por favor, inténtelo de nuevo más tarde.</string>
-    <string name="io_error">Se ha producido un error de entrada/salida. Por favor, revise su conexión a la red o el almacenamiento e inténtelo de nuevo.</string>
-    <string name="illegal_argument_error">Entrada o argumento no válido. Por favor, compruebe la información e inténtelo de nuevo.</string>
-    <string name="unknown_error">Se ha producido un error desconocido.</string>
 
     <string name="app_manager">Administrador de aplicaciones</string>
     <string name="installed_apps">Aplicaciones instaladas</string>
     <string name="system_apps">Aplicaciones del sistema</string>
     <string name="app_install_files">Archivos de instalación de aplicaciones (APKs)</string>
     <string name="uninstall">Desinstalar</string>
-    <string name="share">Compartir</string>
     <string name="app_info">Información de la aplicación</string>
     <string name="install">Instalar</string>
     <string name="share_apk">Compartir APK</string>
@@ -124,13 +111,7 @@
     <string name="notifications">Notificaciones</string>
     <string name="summary_preference_settings_notifications">Administrar notificaciones de la aplicación</string>
 
-    <string name="advanced">Avanzado</string>
-    <string name="summary_preference_settings_advanced">Explora configuraciones más avanzadas</string>
-    <string name="security_and_privacy">Seguridad y privacidad</string>
     <string name="summary_preference_settings_privacy_and_security">Administra tu configuración de privacidad</string>
-    <string name="privacy_policy">Política de privacidad</string>
-    <string name="terms_of_service">Términos de servicio</string>
-    <string name="permissions">Permisos</string>
     <string name="ad_id">ID de anuncio [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Permite que la aplicación recupere y utilice el identificador de publicidad asociado con el dispositivo del usuario, proporcionando anuncios personalizados, midiendo la efectividad de los anuncios y mostrando anuncios en dispositivos con Android 13 o posterior.</string>
     <string name="internet">Internet [INTERNET]</string>
@@ -170,28 +151,8 @@
     <string name="write_external_storage">Escribir almacenamiento externo [WRITE_EXTERNAL_STORAGE]</string>
     <string name="summary_preference_permissions_write_external_storage">Permite que la aplicación escriba archivos en el almacenamiento del dispositivo, incluido el almacenamiento interno y externo</string>
 
-    <string name="ads">Anuncios</string>
-    <string name="display_ads">Mostrar anuncios</string>
-    <string name="personalized_ads">Anuncios personalizados</string>
-    <string name="summary_ads_personalized_ads">Elige cómo personalizamos los anuncios para ti en función de tus intereses</string>
-    <string name="summary_ads">Ver anuncios que son relevantes para ti. Administra la información que se utiliza para mostrar anuncios personalizados en función de la actividad de tu aplicación. Siempre puedes desactivar la personalización aquí.\n</string>
-
-    <string name="usage_and_diagnostics">Uso y diagnóstico</string>
-
-    <string name="about">Acerca de</string>
     <string name="summary_preference_settings_about">Conoce más sobre Cleaner</string>
 
-    <string name="app_build">Compilación de la aplicación: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
-    <string name="manufacturer">Fabricante:</string>
-    <string name="device_model">Modelo del dispositivo:</string>
-    <string name="android_version">Versión de Android:</string>
-    <string name="api_level">Nivel de API:</string>
-    <string name="help_and_feedback">Ayuda y comentarios</string>
-    <string name="help">Ayuda</string>
-    <string name="view_in_google_play_store">Ver en Google Play Store</string>
-    <string name="version_info">Información de la versión</string>
-    <string name="version">Versión %1$s</string>
-    <string name="beta_program">Programa beta</string>
     <string name="question_1">¿Qué es Cleaner?</string>
     <string name="summary_preference_faq_1">Cleaner es una aplicación gratuita y de código abierto para Android que te ayuda a optimizar el rendimiento de tu dispositivo y liberar espacio de almacenamiento. Puede escanear tu dispositivo en busca de archivos innecesarios y eliminarlos, así como limpiar tu caché para mejorar la velocidad de tu dispositivo</string>
     <string name="question_2">¿Es seguro usar Cleaner?</string>
@@ -210,24 +171,7 @@
     <string name="summary_preference_faq_8">No hay una regla establecida sobre con qué frecuencia debes usar Cleaner, ya que dependerá del uso de tu dispositivo y de la cantidad de archivos innecesarios que se acumulen con el tiempo. Algunos usuarios pueden encontrar útil ejecutar Cleaner semanal o mensualmente, mientras que otros solo necesitan usarlo ocasionalmente</string>
     <string name="question_9">¿Cleaner es compatible con todos los dispositivos Android?</string>
     <string name="summary_preference_faq_9">Cleaner debería ser compatible con la mayoría de los dispositivos Android que cumplan con los requisitos mínimos del sistema de la aplicación. Sin embargo, siempre es una buena idea verificar la página de la aplicación en Google Play Store o la tienda de aplicaciones que estás utilizando para confirmar la compatibilidad con tu dispositivo específico. Si encuentras algún problema mientras usas Cleaner, puedes intentar solucionar el problema o ponerte en contacto con el equipo de soporte de la aplicación para obtener ayuda</string>
-    <string name="feedback">Comentarios</string>
 
-    <string name="updates">Actualizaciones</string>
-
-    <string name="support_us">Soporte</string>
-    <string name="paid_support">Soporte pagado</string>
-    <string name="summary_donations">No importa cuánto dones, nos ayudarás a mantener nuestra aplicación funcionando y a mejorar nuestras funciones. ¡Agradecemos tu generosidad y amabilidad!</string>
-    <string name="non_paid_support">Soporte no pagado</string>
-    <string name="web_ad">Anuncio web</string>
-
-    <string name="snack_app_updated">La aplicación se actualizó correctamente</string>
-    <string name="snack_update_failed">El proceso de actualización encontró un problema</string>
-    <string name="try_again">Inténtalo de nuevo</string>
-    <string name="summary_share_message">¡Mira esta increíble aplicación que estoy usando! Tiene algunas funciones realmente geniales que podrías encontrar interesantes. Puedes descargarla de Play Store en: %1$s</string>
-    <string name="learn_more">Más información</string>
-
-    <string name="close">¿Cerrar?</string>
-    <string name="summary_close">¿Estás seguro de que quieres salir?</string>
     <string name="snack_no_image">No se proporcionó ninguna imagen</string>
     <string name="snack_validate_file">Por favor, selecciona un tamaño de archivo válido</string>
 </resources>

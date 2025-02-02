@@ -3,13 +3,6 @@
     <string name="app_short_description">O último Limpador Android que você precisará para o uso diário!</string>
     <string name="summary_notification_last_time_used">Vamos liberar algum espaço! Ficamos felizes que você tenha voltado!</string>
 
-    <string name="welcome">Bem-vindo</string>
-    <string name="summary_browse_terms_of_service_and_privacy_policy">Leia e concorde com nossos Termos de Serviço e Política de Privacidade para continuar</string>
-    <string name="agree">Concordo</string>
-
-    <string name="navigation_drawer_open">Abrir gaveta de navegação</string>
-
-    <string name="home">Início</string>
     <string name="delete_forever">Excluir permanentemente</string>
     <string name="move_to_trash">Mover para a lixeira</string>
     <string name="cleaned_space">Espaço limpo</string>
@@ -34,18 +27,12 @@
     <string name="select_all">Selecionar tudo</string>
     <string name="file_not_found">Arquivo não encontrado.</string>
     <string name="no_files_found">Nenhum arquivo encontrado</string>
-    <string name="activity_not_found">Atividade não encontrada.</string>
-    <string name="security_error">Ocorreu um erro de segurança. Tente novamente mais tarde.</string>
-    <string name="io_error">Ocorreu um erro de entrada/saída. Verifique sua conexão de rede ou armazenamento e tente novamente.</string>
-    <string name="illegal_argument_error">Entrada ou argumento inválido fornecido. Verifique as informações e tente novamente.</string>
-    <string name="unknown_error">Ocorreu um erro desconhecido.</string>
 
     <string name="app_manager">Gerenciador de aplicativos</string>
     <string name="installed_apps">Aplicativos instalados</string>
     <string name="system_apps">Aplicativos do sistema</string>
     <string name="app_install_files">Arquivos de instalação de aplicativos (APKs)</string>
     <string name="uninstall">Desinstalar</string>
-    <string name="share">Compartilhar</string>
     <string name="app_info">Informações do aplicativo</string>
     <string name="install">Instalar</string>
     <string name="share_apk">Compartilhar APK</string>
@@ -129,15 +116,8 @@
     <string name="notifications">Notificações</string>
     <string name="summary_preference_settings_notifications">Gerenciar notificações do aplicativo</string>
 
-    <string name="advanced">Avançado</string>
-    <string name="summary_preference_settings_advanced">Explore configurações mais avançadas</string>
-
-    <string name="security_and_privacy">Segurança e privacidade</string>
     <string name="summary_preference_settings_privacy_and_security">Gerencie suas configurações de privacidade</string>
-    <string name="privacy_policy">Política de Privacidade</string>
-    <string name="terms_of_service">Termos de Serviço</string>
 
-    <string name="permissions">Permissões</string>
     <string name="ad_id">ID de anúncio [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Permite que o aplicativo recupere e use o identificador de publicidade associado ao dispositivo do usuário, fornecendo anúncios personalizados, medindo a eficácia dos anúncios e exibindo anúncios em dispositivos com Android 13 ou posterior.</string>
     <string name="internet">Internet [INTERNET]</string>
@@ -177,31 +157,8 @@
     <string name="write_external_storage">Gravar armazenamento externo [WRITE_EXTERNAL_STORAGE]</string>
     <string name="summary_preference_permissions_write_external_storage">Permite que o aplicativo grave arquivos no armazenamento do dispositivo, incluindo armazenamento interno e externo</string>
 
-    <string name="ads">Anúncios</string>
-    <string name="display_ads">Exibir anúncios</string>
-    <string name="personalized_ads">Anúncios personalizados</string>
-    <string name="summary_ads_personalized_ads">Escolha como personalizamos os anúncios para você com base em seus interesses</string>
-    <string name="summary_ads">Veja anúncios relevantes para você. Gerencie as informações usadas para mostrar anúncios personalizados com base na atividade do seu aplicativo. Você sempre pode desativar a personalização aqui.\n</string>
-
-    <string name="usage_and_diagnostics">Uso e diagnósticos</string>
-
-    <string name="about">Sobre</string>
     <string name="summary_preference_settings_about">Saiba mais sobre o Limpador</string>
 
-    <string name="app_build">Compilação do aplicativo: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
-    <string name="debug">Depurar</string>
-    <string name="release">Lançamento</string>
-    <string name="manufacturer">Fabricante:</string>
-    <string name="device_model">Modelo do dispositivo:</string>
-    <string name="android_version">Versão do Android:</string>
-    <string name="api_level">Nível da API:</string>
-
-    <string name="help_and_feedback">Ajuda e feedback</string>
-    <string name="help">Ajuda</string>
-    <string name="view_in_google_play_store">Ver na Google Play Store</string>
-    <string name="version_info">Informações da versão</string>
-    <string name="version">Versão %1$s</string>
-    <string name="beta_program">Programa beta</string>
     <string name="question_1">O que é o Limpador?</string>
     <string name="summary_preference_faq_1">O Limpador é um aplicativo Android gratuito e de código aberto que ajuda você a otimizar o desempenho do seu dispositivo e liberar espaço de armazenamento. Ele pode verificar seu dispositivo em busca de arquivos desnecessários e excluí-los, bem como limpar seu cache para melhorar a velocidade do seu dispositivo</string>
     <string name="question_2">O Limpador é seguro de usar?</string>
@@ -220,24 +177,7 @@
     <string name="summary_preference_faq_8">Não há uma regra definida para a frequência com que você deve usar o Limpador, pois isso dependerá do uso do seu dispositivo e da quantidade de arquivos desnecessários que se acumulam ao longo do tempo. Alguns usuários podem achar útil executar o Limpador semanalmente ou mensalmente, enquanto outros podem precisar usá-lo apenas ocasionalmente</string>
     <string name="question_9">O Limpador é compatível com todos os dispositivos Android?</string>
     <string name="summary_preference_faq_9">O Limpador deve ser compatível com a maioria dos dispositivos Android que atendem aos requisitos mínimos de sistema do aplicativo. No entanto, é sempre uma boa ideia verificar a página do aplicativo na Google Play Store ou na loja de aplicativos que você está usando para confirmar a compatibilidade com seu dispositivo específico. Se você encontrar algum problema ao usar o Limpador, pode tentar solucionar o problema ou entrar em contato com a equipe de suporte do aplicativo para obter assistência</string>
-    <string name="feedback">Feedback</string>
 
-    <string name="updates">Atualizações</string>
-
-    <string name="support_us">Nos apoie</string>
-    <string name="paid_support">Suporte pago</string>
-    <string name="summary_donations">Não importa quanto você doe, você nos ajudará a manter nosso aplicativo funcionando e melhorar nossos recursos. Agradecemos sua generosidade e gentileza!</string>
-    <string name="non_paid_support">Suporte não pago</string>
-    <string name="web_ad">Anúncio na web</string>
-
-    <string name="snack_app_updated">O aplicativo foi atualizado com sucesso</string>
-    <string name="snack_update_failed">O processo de atualização encontrou um problema</string>
-    <string name="try_again">Tentar novamente</string>
-    <string name="summary_share_message">Confira este aplicativo incrível que estou usando! Ele tem alguns recursos realmente legais que você pode achar interessantes. Você pode baixá-lo da Play Store em: %1$s</string>
-    <string name="learn_more">Saiba mais</string>
-
-    <string name="close">Fechar?</string>
-    <string name="summary_close">Tem certeza de que deseja sair?</string>
     <string name="snack_no_image">Nenhuma imagem fornecida</string>
     <string name="snack_validate_file">Selecione um tamanho de arquivo válido</string>
 </resources>

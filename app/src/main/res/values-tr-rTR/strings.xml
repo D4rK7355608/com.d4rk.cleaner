@@ -3,13 +3,6 @@
     <string name="app_short_description">Günlük kullanım için ihtiyacınız olacak son Android Temizleyici!</string>
     <string name="summary_notification_last_time_used">Hadi biraz yer açalım! Geri döndüğünüz için mutluyuz!</string>
 
-    <string name="welcome">Hoş geldiniz</string>
-    <string name="summary_browse_terms_of_service_and_privacy_policy">Devam etmek için Kullanım Şartlarımızı ve Gizlilik Politikamızı okuyun ve kabul edin</string>
-    <string name="agree">Kabul ediyorum</string>
-
-    <string name="navigation_drawer_open">Gezinme çekmecesini aç</string>
-
-    <string name="home">Ana Sayfa</string>
     <string name="delete_forever">Kalıcı olarak sil</string>
     <string name="move_to_trash">Çöpe taşı</string>
     <string name="cleaned_space">Temizlenen Alan</string>
@@ -32,18 +25,12 @@
     <string name="select_all">Tümünü Seç</string>
     <string name="file_not_found">Dosya bulunamadı.</string>
     <string name="no_files_found">Dosya bulunamadı</string>
-    <string name="activity_not_found">Etkinlik bulunamadı.</string>
-    <string name="security_error">Bir güvenlik hatası oluştu. Lütfen daha sonra tekrar deneyin.</string>
-    <string name="io_error">Bir giriş/çıkış hatası oluştu. Ağ bağlantınızı veya depolamanızı kontrol edip tekrar deneyin.</string>
-    <string name="illegal_argument_error">Geçersiz giriş veya bağımsız değişken sağlandı. Lütfen bilgileri kontrol edin ve tekrar deneyin.</string>
-    <string name="unknown_error">Bilinmeyen bir hata oluştu.</string>
 
     <string name="app_manager">Uygulama Yöneticisi</string>
     <string name="installed_apps">Yüklü uygulamalar</string>
     <string name="system_apps">Sistem uygulamaları</string>
     <string name="app_install_files">Uygulama yükleme dosyaları (APK\'ler)</string>
     <string name="uninstall">Kaldır</string>
-    <string name="share">Paylaş</string>
     <string name="app_info">Uygulama bilgisi</string>
     <string name="install">Yükle</string>
     <string name="share_apk">APK\'yı Paylaş</string>
@@ -123,15 +110,8 @@
     <string name="notifications">Bildirimler</string>
     <string name="summary_preference_settings_notifications">Uygulama bildirimlerini yönetin</string>
 
-    <string name="advanced">Gelişmiş</string>
-    <string name="summary_preference_settings_advanced">Daha gelişmiş ayarları keşfedin</string>
-
-    <string name="security_and_privacy">Güvenlik ve gizlilik</string>
     <string name="summary_preference_settings_privacy_and_security">Gizlilik ayarlarınızı yönetin</string>
-    <string name="privacy_policy">Gizlilik Politikası</string>
-    <string name="terms_of_service">Kullanım Şartları</string>
 
-    <string name="permissions">İzinler</string>
     <string name="ad_id">Reklam kimliği [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Uygulamanın kullanıcının cihazıyla ilişkili reklam tanımlayıcısını almasına ve kullanmasına izin verir, kişiselleştirilmiş reklamlar sağlar, reklam etkinliğini ölçer ve Android 13 veya üzeri cihazlarda reklamlar gösterir.</string>
     <string name="internet">İnternet [INTERNET]</string>
@@ -171,29 +151,8 @@
     <string name="write_external_storage">Harici depolamaya yaz [WRITE_EXTERNAL_STORAGE]</string>
     <string name="summary_preference_permissions_write_external_storage">Uygulamanın cihazın depolama alanına dosya yazmasına izin verir, hem dahili hem de harici depolama dahil</string>
 
-    <string name="ads">Reklamlar</string>
-    <string name="display_ads">Reklamlar göster</string>
-    <string name="personalized_ads">Kişiselleştirilmiş reklamlar</string>
-    <string name="summary_ads_personalized_ads">İlgi alanlarınıza göre reklamları nasıl kişiselleştirdiğimizi seçin</string>
-    <string name="summary_ads">Size alakalı reklamlar gösterin. Uygulama etkinliğinize göre kişiselleştirilmiş reklamları göstermek için kullanılan bilgileri yönetin. Kişiselleştirmeyi her zaman burada kapatabilirsiniz.\n</string>
-
-    <string name="usage_and_diagnostics">Kullanım ve tanılama</string>
-
-    <string name="about">Hakkında</string>
     <string name="summary_preference_settings_about">Temizleyici hakkında daha fazla bilgi edinin</string>
 
-    <string name="app_build">Uygulama Derlemesi: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
-    <string name="manufacturer">Üretici:</string>
-    <string name="device_model">Cihaz Modeli:</string>
-    <string name="android_version">Android Sürümü:</string>
-    <string name="api_level">API Seviyesi:</string>
-
-    <string name="help_and_feedback">Yardım ve geri bildirim</string>
-    <string name="help">Yardım</string>
-    <string name="view_in_google_play_store">Google Play Store\'da görüntüle</string>
-    <string name="version_info">Sürüm bilgisi</string>
-    <string name="version">Sürüm %1$s</string>
-    <string name="beta_program">Beta programı</string>
     <string name="question_1">Temizleyici nedir?</string>
     <string name="summary_preference_faq_1">Temizleyici, cihazınızın performansını optimize etmenize ve depolama alanını boşaltmanıza yardımcı olan ücretsiz ve açık kaynaklı bir Android uygulamasıdır. Cihazınızı gereksiz dosyalar için tarayabilir ve silebilir, ayrıca cihazınızın hızını artırmak için önbelleğinizi temizleyebilir</string>
     <string name="question_2">Temizleyici kullanımı güvenli mi?</string>
@@ -212,24 +171,7 @@
     <string name="summary_preference_faq_8">Temizleyiciyi ne sıklıkla kullanmanız gerektiğine dair belirli bir kural yoktur, çünkü bu cihazınızın kullanımına ve zamanla biriken gereksiz dosya miktarına bağlı olacaktır. Bazı kullanıcılar Temizleyiciyi haftalık veya aylık olarak çalıştırmayı faydalı bulabilirken, diğerleri yalnızca ara sıra kullanması gerekebilir</string>
     <string name="question_9">Temizleyici tüm Android cihazlarla uyumlu mu?</string>
     <string name="summary_preference_faq_9">Temizleyici, uygulamanın minimum sistem gereksinimlerini karşılayan çoğu Android cihazla uyumlu olmalıdır. Ancak, uyumluluğu belirli cihazınızla doğrulamak için Google Play Store\'da veya kullandığınız uygulama mağazasında uygulamanın sayfasını kontrol etmek her zaman iyi bir fikirdir. Temizleyici\'yi kullanırken herhangi bir sorunla karşılaşırsanız, sorunu gidermeyi deneyebilir veya yardım almak için uygulamanın destek ekibiyle iletişime geçebilirsiniz</string>
-    <string name="feedback">Geri bildirim</string>
 
-    <string name="updates">Güncellemeler</string>
-
-    <string name="support_us">Bizi Destekleyin</string>
-    <string name="paid_support">Ücretli Destek</string>
-    <string name="summary_donations">Ne kadar bağış yaparsanız yapın, uygulamamızı çalışır durumda tutmamıza ve özelliklerimizi geliştirmemize yardımcı olacaksınız. Cömertliğiniz ve iyiliğiniz için teşekkür ederiz!</string>
-    <string name="non_paid_support">Ücretsiz Destek</string>
-    <string name="web_ad">Web Reklamı</string>
-
-    <string name="snack_app_updated">Uygulama başarıyla güncellendi</string>
-    <string name="snack_update_failed">Güncelleme işleminde bir sorun oluştu</string>
-    <string name="try_again">Tekrar dene</string>
-    <string name="summary_share_message">Kullanmakta olduğum bu harika uygulamayı inceleyin! İlginizi çekebilecek gerçekten harika özellikler var. Play Store\'dan şu adresten indirebilirsiniz: %1$s</string>
-    <string name="learn_more">Daha fazla bilgi edinin</string>
-
-    <string name="close">Kapat?</string>
-    <string name="summary_close">Çıkmak istediğinizden emin misiniz?</string>
     <string name="snack_no_image">Sağlanan resim yok</string>
     <string name="snack_validate_file">Lütfen geçerli bir dosya boyutu seçin</string>
 </resources>

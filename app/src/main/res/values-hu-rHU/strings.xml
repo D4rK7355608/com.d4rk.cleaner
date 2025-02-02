@@ -3,13 +3,6 @@
     <string name="app_short_description">Az utolsó Android Cleaner, amire valaha szükséged lesz a mindennapi használathoz!</string>
     <string name="summary_notification_last_time_used"> Szabadítsunk fel egy kis helyet! Örülünk, hogy visszatértél!</string>
 
-    <string name="welcome">Üdvözöljük</string>
-    <string name="summary_browse_terms_of_service_and_privacy_policy">Olvassa el és fogadja el a Szolgáltatási feltételeket és az Adatvédelmi irányelveket a folytatáshoz</string>
-    <string name="agree">Elfogadom</string>
-
-    <string name="navigation_drawer_open">Navigációs fiók megnyitása</string>
-
-    <string name="home">Kezdőlap</string>
     <string name="delete_forever">Végleg törlés</string>
     <string name="move_to_trash">Kukába helyezés</string>
     <string name="cleaned_space">Tisztított terület</string>
@@ -32,18 +25,12 @@
     <string name="select_all">Összes kijelölése</string>
     <string name="file_not_found">A fájl nem található.</string>
     <string name="no_files_found">Nem található fájl</string>
-    <string name="activity_not_found">Tevékenység nem található.</string>
-    <string name="security_error">Biztonsági hiba történt. Kérjük, próbálja meg később újra.</string>
-    <string name="io_error">Bemeneti/kimeneti hiba történt. Ellenőrizze a hálózati kapcsolatot vagy a tárhelyet, és próbálja újra.</string>
-    <string name="illegal_argument_error">Érvénytelen bemenet vagy argumentum. Kérjük, ellenőrizze az információkat, és próbálja újra.</string>
-    <string name="unknown_error">Ismeretlen hiba történt.</string>
 
     <string name="app_manager">Alkalmazáskezelő</string>
     <string name="installed_apps">Telepített alkalmazások</string>
     <string name="system_apps">Rendszeralkalmazások</string>
     <string name="app_install_files">Alkalmazástelepítő fájlok (APK)</string>
     <string name="uninstall">Eltávolítás</string>
-    <string name="share">Megosztás</string>
     <string name="app_info">Alkalmazásinformációk</string>
     <string name="install">Telepítés</string>
     <string name="share_apk">APK megosztása</string>
@@ -123,15 +110,8 @@
     <string name="notifications">Értesítések</string>
     <string name="summary_preference_settings_notifications">Alkalmazásértesítések kezelése</string>
 
-    <string name="advanced">Speciális</string>
-    <string name="summary_preference_settings_advanced">Fedezze fel a speciálisabb beállításokat</string>
-
-    <string name="security_and_privacy">Biztonság és adatvédelem</string>
     <string name="summary_preference_settings_privacy_and_security">Az adatvédelmi beállítások kezelése</string>
-    <string name="privacy_policy">Adatvédelmi irányelvek</string>
-    <string name="terms_of_service">Szolgáltatási feltételek</string>
 
-    <string name="permissions">Engedélyek</string>
     <string name="ad_id">Hirdetésazonosító [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Lehetővé teszi az alkalmazás számára, hogy lekérje és felhasználja a felhasználó eszközéhez társított hirdetésazonosítót, személyre szabott hirdetéseket jelenítsen meg, mérje a hirdetések hatékonyságát, és hirdetéseket jelenítsen meg Android 13 vagy újabb eszközökön.</string>
     <string name="internet">Internet [INTERNET]</string>
@@ -171,29 +151,8 @@
     <string name="write_external_storage">Írás a külső tárhelyre [WRITE_EXTERNAL_STORAGE]</string>
     <string name="summary_preference_permissions_write_external_storage">Lehetővé teszi az alkalmazás számára, hogy fájlokat írjon az eszköz tárolójára, beleértve a belső és a külső tárhelyet is</string>
 
-    <string name="ads">Hirdetések</string>
-    <string name="display_ads">Hirdetések megjelenítése</string>
-    <string name="personalized_ads">Személyre szabott hirdetések</string>
-    <string name="summary_ads_personalized_ads">Válaszd ki, hogyan szabjuk személyre a hirdetéseket az érdeklődési köröd alapján</string>
-    <string name="summary_ads">Tekints meg olyan hirdetéseket, amelyek relevánsak számodra. Kezeld azokat az információkat, amelyeket a személyre szabott hirdetések megjelenítéséhez használunk az alkalmazástevékenységed alapján. A személyre szabást itt bármikor kikapcsolhatod.\n</string>
-
-    <string name="usage_and_diagnostics">Használat és diagnosztika</string>
-
-    <string name="about">Névjegy</string>
     <string name="summary_preference_settings_about">Tudjon meg többet a Cleanerről</string>
 
-    <string name="app_build">Alkalmazás build: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
-    <string name="manufacturer">Gyártó:</string>
-    <string name="device_model">Eszköz modell:</string>
-    <string name="android_version">Android verzió:</string>
-    <string name="api_level">API szint:</string>
-
-    <string name="help_and_feedback">Súgó és visszajelzés</string>
-    <string name="help">Súgó</string>
-    <string name="view_in_google_play_store">Megtekintés a Google Play Áruházban</string>
-    <string name="version_info">Verzióinformációk</string>
-    <string name="version">Verzió %1$s</string>
-    <string name="beta_program">Béta program</string>
     <string name="question_1">Mi az a Cleaner?</string>
     <string name="summary_preference_faq_1">A Cleaner egy ingyenes és nyílt forráskódú Android-alkalmazás, amely segít optimalizálni az eszköz teljesítményét és felszabadítani a tárhelyet. Képes beolvasni az eszközt a felesleges fájlok után, és törölni azokat, valamint kiüríteni a gyorsítótárat az eszköz sebességének javítása érdekében</string>
     <string name="question_2">Biztonságos a Cleaner használata?</string>
@@ -212,24 +171,7 @@
     <string name="summary_preference_faq_8">Nincsenek meghatározott szabályok arra vonatkozóan, hogy milyen gyakran kell használnia a Cleanert, mivel ez az eszköz használatától és az idővel felhalmozódó felesleges fájlok mennyiségétől függ. Egyes felhasználók hasznosnak találhatják a Cleaner heti vagy havi futtatását, míg másoknak csak alkalmanként kell használniuk</string>
     <string name="question_9">Kompatibilis a Cleaner minden Android-eszközzel?</string>
     <string name="summary_preference_faq_9">A Cleanernek kompatibilisnek kell lennie a legtöbb Android-eszközzel, amely megfelel az alkalmazás minimális rendszerkövetelményeinek. Azonban mindig jó ötlet ellenőrizni az alkalmazás oldalát a Google Play Áruházban vagy az Ön által használt alkalmazásboltban, hogy megerősítse a kompatibilitást az adott eszközzel. Ha bármilyen problémába ütközik a Cleaner használata során, megpróbálhatja elhárítani a problémát, vagy felveheti a kapcsolatot az alkalmazás támogatási csapatával segítségért</string>
-    <string name="feedback">Visszajelzés</string>
 
-    <string name="updates">Frissítések</string>
-
-    <string name="support_us">Támogass minket</string>
-    <string name="paid_support">Fizetett támogatás</string>
-    <string name="summary_donations">Nem számít, mennyit adományoz, segít nekünk fenntartani az alkalmazásunkat és javítani a funkcióit. Nagyra értékeljük a nagylelkűségét és a kedvességét!</string>
-    <string name="non_paid_support">Ingyenes támogatás</string>
-    <string name="web_ad">Webes hirdetés</string>
-
-    <string name="snack_app_updated">Az alkalmazás sikeresen frissült</string>
-    <string name="snack_update_failed">Hiba történt a frissítési folyamat során</string>
-    <string name="try_again">Próbáld újra</string>
-    <string name="summary_share_message">Nézd meg ezt a fantasztikus alkalmazást, amit használok! Van benne néhány igazán klassz funkció, ami tetszhet. Letöltheted a Play Áruházból itt: %1$s</string>
-    <string name="learn_more">Tudj meg többet</string>
-
-    <string name="close">Bezárás?</string>
-    <string name="summary_close">Biztosan ki szeretne lépni?</string>
     <string name="snack_no_image">Nincs kép megadva</string>
     <string name="snack_validate_file">Kérjük, válasszon érvényes fájlméretet</string>
 </resources>

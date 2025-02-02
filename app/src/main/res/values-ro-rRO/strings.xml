@@ -3,13 +3,6 @@
     <string name="app_short_description">Ultima aplicație de curățare Android de care vei avea nevoie vreodată, pentru utilizare zilnică!</string>
     <string name="summary_notification_last_time_used"> Hai să eliberăm spațiu! Ne bucurăm că te-ai întors!</string>
 
-    <string name="welcome">Bun venit</string>
-    <string name="summary_browse_terms_of_service_and_privacy_policy">Citiți și acceptați Termenii de utilizare și Politica de confidențialitate pentru a continua</string>
-    <string name="agree">Sunt de acord</string>
-
-    <string name="navigation_drawer_open">Deschide sertarul de navigare</string>
-
-    <string name="home">Acasă</string>
     <string name="delete_forever">Șterge definitiv</string>
     <string name="move_to_trash">Mută în coș</string>
     <string name="cleaned_space">Spațiu curățat</string>
@@ -33,18 +26,12 @@
     <string name="select_all">Selectează tot</string>
     <string name="file_not_found">Fișierul nu a fost găsit.</string>
     <string name="no_files_found">Nu s-au găsit fișiere</string>
-    <string name="activity_not_found">Activitatea nu a fost găsită.</string>
-    <string name="security_error">A apărut o eroare de securitate. Vă rugăm să încercați din nou mai târziu.</string>
-    <string name="io_error">A apărut o eroare de intrare/ieșire. Verificați conexiunea la rețea sau spațiul de stocare și încercați din nou.</string>
-    <string name="illegal_argument_error">Intrare sau argument nevalid. Verificați informațiile și încercați din nou.</string>
-    <string name="unknown_error">A apărut o eroare necunoscută.</string>
 
     <string name="app_manager">Manager de aplicații</string>
     <string name="installed_apps">Aplicații instalate</string>
     <string name="system_apps">Aplicații de sistem</string>
     <string name="app_install_files">Fișiere de instalare a aplicației (APK)</string>
     <string name="uninstall">Dezinstalează</string>
-    <string name="share">Partajează</string>
     <string name="app_info">Informații despre aplicație</string>
     <string name="install">Instalează</string>
     <string name="share_apk">Partajează APK</string>
@@ -124,15 +111,8 @@
     <string name="notifications">Notificări</string>
     <string name="summary_preference_settings_notifications">Gestionați notificările aplicației</string>
 
-    <string name="advanced">Avansat</string>
-    <string name="summary_preference_settings_advanced">Explorați mai multe setări avansate</string>
-
-    <string name="security_and_privacy">Securitate și confidențialitate</string>
     <string name="summary_preference_settings_privacy_and_security">Gestionați setările de confidențialitate</string>
-    <string name="privacy_policy">Politica de confidențialitate</string>
-    <string name="terms_of_service">Termeni de utilizare</string>
 
-    <string name="permissions">Permisiuni</string>
     <string name="ad_id">ID anunț [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Permite aplicației să preia și să utilizeze identificatorul de publicitate asociat dispozitivului utilizatorului, oferind anunțuri personalizate, măsurând eficacitatea anunțurilor și afișând anunțuri pe dispozitivele Android 13 sau mai noi.</string>
     <string name="internet">Internet [INTERNET]</string>
@@ -172,29 +152,8 @@
     <string name="write_external_storage">Scrie în stocarea externă [WRITE_EXTERNAL_STORAGE]</string>
     <string name="summary_preference_permissions_write_external_storage">Permite aplicației să scrie fișiere în spațiul de stocare al dispozitivului, inclusiv stocarea internă și externă</string>
 
-    <string name="ads">Anunțuri</string>
-    <string name="display_ads">Afișează anunțuri</string>
-    <string name="personalized_ads">Anunțuri personalizate</string>
-    <string name="summary_ads_personalized_ads">Alegeți modul în care personalizăm anunțurile pentru dvs. pe baza intereselor dvs.</string>
-    <string name="summary_ads">Vezi anunțuri care sunt relevante pentru tine. Gestionează informațiile utilizate pentru a afișa anunțuri personalizate pe baza activității din aplicație. Poți întotdeauna să dezactivezi personalizarea aici.\n</string>
-
-    <string name="usage_and_diagnostics">Utilizare și diagnosticare</string>
-
-    <string name="about">Despre</string>
     <string name="summary_preference_settings_about">Află mai multe despre Cleaner</string>
 
-    <string name="app_build">Construirea aplicației: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
-    <string name="manufacturer">Producător:</string>
-    <string name="device_model">Modelul dispozitivului:</string>
-    <string name="android_version">Versiunea Android:</string>
-    <string name="api_level">Nivelul API:</string>
-
-    <string name="help_and_feedback">Ajutor și feedback</string>
-    <string name="help">Ajutor</string>
-    <string name="view_in_google_play_store">Vezi în Google Play Store</string>
-    <string name="version_info">Informații despre versiune</string>
-    <string name="version">Versiunea %1$s</string>
-    <string name="beta_program">Program Beta</string>
     <string name="question_1">Ce este Cleaner?</string>
     <string name="summary_preference_faq_1">Cleaner este o aplicație Android gratuită și cu sursă deschisă care vă ajută să optimizați performanța dispozitivului și să eliberați spațiu de stocare. Poate scana dispozitivul pentru fișiere inutile și să le șteargă, precum și să vă curețe memoria cache pentru a îmbunătăți viteza dispozitivului</string>
     <string name="question_2">Este Cleaner sigur de utilizat?</string>
@@ -213,24 +172,7 @@
     <string name="summary_preference_faq_8">Nu există o regulă stabilită cu privire la cât de des ar trebui să utilizați Cleaner, deoarece va depinde de utilizarea dispozitivului dvs. și de cantitatea de fișiere inutile care se acumulează în timp. Unii utilizatori pot găsi util să ruleze Cleaner săptămânal sau lunar, în timp ce alții pot avea nevoie să îl utilizeze doar ocazional</string>
     <string name="question_9">Este Cleaner compatibil cu toate dispozitivele Android?</string>
     <string name="summary_preference_faq_9">Cleaner ar trebui să fie compatibil cu majoritatea dispozitivelor Android care îndeplinesc cerințele minime ale sistemului aplicației. Cu toate acestea, este întotdeauna o idee bună să verificați pagina aplicației din Google Play Store sau din magazinul de aplicații pe care îl utilizați pentru a confirma compatibilitatea cu dispozitivul dvs. specific. Dacă întâmpinați probleme în timp ce utilizați Cleaner, puteți încerca să depanați problema sau să contactați echipa de asistență a aplicației pentru asistență</string>
-    <string name="feedback">Feedback</string>
 
-    <string name="updates">Actualizări</string>
-
-    <string name="support_us">Susțineți-ne</string>
-    <string name="paid_support">Suport plătit</string>
-    <string name="summary_donations">Indiferent de cât donați, ne veți ajuta să menținem aplicația în funcțiune și să ne îmbunătățim caracteristicile. Vă mulțumim pentru generozitate și amabilitate!</string>
-    <string name="non_paid_support">Suport neplătit</string>
-    <string name="web_ad">Anunț web</string>
-
-    <string name="snack_app_updated">Aplicația a fost actualizată cu succes</string>
-    <string name="snack_update_failed">Procesul de actualizare a întâmpinat o problemă</string>
-    <string name="try_again">Încercați din nou</string>
-    <string name="summary_share_message">Verifică această aplicație uimitoare pe care o folosesc! Are câteva caracteristici foarte cool pe care le-ai putea găsi interesante. O poți descărca din Play Store la: %1$s</string>
-    <string name="learn_more">Află mai multe</string>
-
-    <string name="close">Închide?</string>
-    <string name="summary_close">Sunteți sigur că doriți să ieșiți?</string>
     <string name="snack_no_image">Nu a fost furnizată nicio imagine</string>
     <string name="snack_validate_file">Selectați o dimensiune de fișier validă</string>
 </resources>

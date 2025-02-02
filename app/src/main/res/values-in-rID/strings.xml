@@ -3,13 +3,6 @@
     <string name="app_short_description">Pembersih Android terakhir yang Anda perlukan untuk penggunaan sehari-hari!</string>
     <string name="summary_notification_last_time_used"> Mari kita bebaskan ruang! Kami senang Anda kembali!</string>
 
-    <string name="welcome">Selamat datang</string>
-    <string name="summary_browse_terms_of_service_and_privacy_policy">Baca dan setujui Ketentuan Layanan dan Kebijakan Privasi kami untuk melanjutkan</string>
-    <string name="agree">Setuju</string>
-
-    <string name="navigation_drawer_open">Buka laci navigasi</string>
-
-    <string name="home">Beranda</string>
     <string name="delete_forever">Hapus selamanya</string>
     <string name="move_to_trash">Pindahkan ke sampah</string>
     <string name="cleaned_space">Ruang yang dibersihkan</string>
@@ -30,19 +23,12 @@
     <string name="status_no_files_selected">Status: Tidak ada file yang dipilih</string>
     <string name="select_all">Pilih Semua</string>
     <string name="file_not_found">File tidak ditemukan.</string>
-    <string name="activity_not_found">Aktivitas tidak ditemukan.</string>
     <string name="no_files_found">Tidak ada berkas yang ditemukan</string>
-    <string name="security_error">Terjadi kesalahan keamanan. Silakan coba lagi nanti.</string>
-    <string name="io_error">Terjadi kesalahan input/output. Harap periksa koneksi jaringan atau penyimpanan Anda dan coba lagi.</string>
-    <string name="illegal_argument_error">Input atau argumen tidak valid. Harap periksa informasi dan coba lagi.</string>
-    <string name="unknown_error">Terjadi kesalahan yang tidak diketahui.</string>
-
     <string name="app_manager">Manajer Aplikasi</string>
     <string name="installed_apps">Aplikasi terpasang</string>
     <string name="system_apps">Aplikasi sistem</string>
     <string name="app_install_files">File instalasi aplikasi (APK)</string>
     <string name="uninstall">Copot pemasangan</string>
-    <string name="share">Bagikan</string>
     <string name="app_info">Info aplikasi</string>
     <string name="install">Pasang</string>
     <string name="share_apk">Bagikan APK</string>
@@ -122,15 +108,8 @@
     <string name="notifications">Notifikasi</string>
     <string name="summary_preference_settings_notifications">Kelola notifikasi aplikasi</string>
 
-    <string name="advanced">Lanjutan</string>
-    <string name="summary_preference_settings_advanced">Jelajahi pengaturan yang lebih canggih</string>
-
-    <string name="security_and_privacy">Keamanan &amp; privasi</string>
     <string name="summary_preference_settings_privacy_and_security">Kelola pengaturan privasi Anda</string>
-    <string name="privacy_policy">Kebijakan Privasi</string>
-    <string name="terms_of_service">Ketentuan Layanan</string>
 
-    <string name="permissions">Izin</string>
     <string name="ad_id">ID iklan [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Memungkinkan aplikasi untuk mengambil dan menggunakan pengenal periklanan yang terkait dengan perangkat pengguna, menyediakan iklan yang dipersonalisasi, mengukur efektivitas iklan, dan menampilkan iklan di perangkat Android 13 atau yang lebih baru.</string>
     <string name="internet">Internet [INTERNET]</string>
@@ -170,28 +149,8 @@
     <string name="write_external_storage">Tulis ke penyimpanan eksternal [WRITE_EXTERNAL_STORAGE]</string>
     <string name="summary_preference_permissions_write_external_storage">Memungkinkan aplikasi untuk menulis file ke penyimpanan perangkat, termasuk penyimpanan internal dan eksternal</string>
 
-    <string name="ads">Iklan</string>
-    <string name="display_ads">Tampilkan iklan</string>
-    <string name="personalized_ads">Iklan yang dipersonalisasi</string>
-    <string name="summary_ads_personalized_ads">Pilih bagaimana kami mempersonalisasi iklan untuk Anda berdasarkan minat Anda</string>
-    <string name="summary_ads">Lihat iklan yang relevan untuk Anda. Kelola informasi yang digunakan untuk menampilkan iklan yang dipersonalisasi berdasarkan aktivitas aplikasi Anda. Anda selalu dapat menonaktifkan personalisasi di sini.\n</string>
-
-    <string name="usage_and_diagnostics">Penggunaan dan diagnostik</string>
-
-    <string name="about">Tentang</string>
     <string name="summary_preference_settings_about">Pelajari lebih lanjut tentang Cleaner</string>
 
-    <string name="app_build">Build Aplikasi: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
-    <string name="manufacturer">Produsen:</string>
-    <string name="device_model">Model Perangkat:</string>
-    <string name="android_version">Versi Android:</string>
-    <string name="api_level">Level API:</string>
-    <string name="help_and_feedback">Bantuan &amp; masukan</string>
-    <string name="help">Bantuan</string>
-    <string name="view_in_google_play_store">Lihat di Google Play Store</string>
-    <string name="version_info">Info versi</string>
-    <string name="version">Versi %1$s</string>
-    <string name="beta_program">Program beta</string>
     <string name="question_1">Apa itu Cleaner?</string>
     <string name="summary_preference_faq_1">Cleaner adalah aplikasi Android gratis dan open-source yang membantu Anda mengoptimalkan kinerja perangkat dan mengosongkan ruang penyimpanan. Itu dapat memindai perangkat Anda untuk file yang tidak perlu dan menghapusnya, serta membersihkan cache Anda untuk meningkatkan kecepatan perangkat Anda</string>
     <string name="question_2">Apakah Cleaner aman digunakan?</string>
@@ -210,24 +169,6 @@
     <string name="summary_preference_faq_8">Tidak ada aturan yang ditetapkan untuk seberapa sering Anda harus menggunakan Cleaner, karena itu akan bergantung pada penggunaan perangkat Anda dan jumlah file yang tidak perlu yang terakumulasi dari waktu ke waktu. Beberapa pengguna mungkin merasa terbantu untuk menjalankan Cleaner setiap minggu atau setiap bulan, sementara yang lain mungkin hanya perlu menggunakannya sesekali</string>
     <string name="question_9">Apakah Cleaner kompatibel dengan semua perangkat Android?</string>
     <string name="summary_preference_faq_9">Cleaner harus kompatibel dengan sebagian besar perangkat Android yang memenuhi persyaratan sistem minimum aplikasi. Namun, selalu merupakan ide yang baik untuk memeriksa halaman aplikasi di Google Play Store atau toko aplikasi yang Anda gunakan untuk mengonfirmasi kompatibilitas dengan perangkat khusus Anda. Jika Anda mengalami masalah saat menggunakan Cleaner, Anda dapat mencoba memecahkan masalah atau menghubungi tim dukungan aplikasi untuk bantuan</string>
-    <string name="feedback">Masukan</string>
-
-    <string name="updates">Pembaruan</string>
-
-    <string name="support_us">Dukung Kami</string>
-    <string name="paid_support">Dukungan Berbayar</string>
-    <string name="summary_donations">Tidak peduli berapa banyak Anda menyumbang, Anda akan membantu kami menjaga aplikasi kami tetap berjalan dan meningkatkan fitur kami. Kami menghargai kemurahan hati dan kebaikan Anda!</string>
-    <string name="non_paid_support">Dukungan Non-Berbayar</string>
-    <string name="web_ad">Iklan Web</string>
-
-    <string name="snack_app_updated">Aplikasi telah berhasil diperbarui</string>
-    <string name="snack_update_failed">Proses pembaruan mengalami masalah</string>
-    <string name="try_again">Coba lagi</string>
-    <string name="summary_share_message">Lihat aplikasi luar biasa yang saya gunakan ini! Ini memiliki beberapa fitur yang sangat keren yang mungkin Anda anggap menarik. Anda dapat mengunduhnya dari Play Store di: %1$s</string>
-    <string name="learn_more">Pelajari lebih lanjut</string>
-
-    <string name="close">Tutup?</string>
-    <string name="summary_close">Apakah Anda yakin ingin keluar?</string>
     <string name="snack_no_image">Tidak ada gambar yang disediakan</string>
     <string name="snack_validate_file">Harap pilih ukuran file yang valid</string>
 </resources>

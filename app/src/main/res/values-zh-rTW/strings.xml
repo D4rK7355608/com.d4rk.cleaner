@@ -3,13 +3,6 @@
     <string name="app_short_description">你每天都需要用到的最後一個 Android 清潔工具！</string>
     <string name="summary_notification_last_time_used">讓我們釋放一些空間吧！很高興你回來！</string>
 
-    <string name="welcome">歡迎</string>
-    <string name="summary_browse_terms_of_service_and_privacy_policy">請閱讀並同意我們的服務條款和隱私權政策以繼續</string>
-    <string name="agree">同意</string>
-
-    <string name="navigation_drawer_open">開啟導航抽屜</string>
-
-    <string name="home">首頁</string>
     <string name="delete_forever">永久刪除</string>
     <string name="move_to_trash">移至垃圾桶</string>
     <string name="cleaned_space">已清理空間</string>
@@ -31,18 +24,12 @@
     <string name="select_all">選取全部</string>
     <string name="file_not_found">找不到檔案。</string>
     <string name="no_files_found">找不到檔案</string>
-    <string name="activity_not_found">找不到活動。</string>
-    <string name="security_error">發生安全性錯誤。請稍後再試。</string>
-    <string name="io_error">發生輸入/輸出錯誤。請檢查您的網路連線或儲存空間並再試一次。</string>
-    <string name="illegal_argument_error">提供的輸入或引數無效。請檢查資訊，然後再試一次。</string>
-    <string name="unknown_error">發生未知的錯誤。</string>
 
     <string name="app_manager">應用程式管理員</string>
     <string name="installed_apps">已安裝的應用程式</string>
     <string name="system_apps">系統應用程式</string>
     <string name="app_install_files">應用程式安裝檔案 (APK)</string>
     <string name="uninstall">解除安裝</string>
-    <string name="share">分享</string>
     <string name="app_info">應用程式資訊</string>
     <string name="install">安裝</string>
     <string name="share_apk">分享 APK</string>
@@ -122,13 +109,8 @@
     <string name="notifications">通知</string>
     <string name="summary_preference_settings_notifications">管理應用程式通知</string>
 
-    <string name="advanced">進階</string>
-    <string name="summary_preference_settings_advanced">探索更多進階設定</string>
-    <string name="security_and_privacy">安全和隱私</string>
     <string name="summary_preference_settings_privacy_and_security">管理您的隱私設定</string>
-    <string name="privacy_policy">隱私權政策</string>
-    <string name="terms_of_service">服務條款</string>
-    <string name="permissions">權限</string>
+
     <string name="ad_id">廣告 ID [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">允許應用程式擷取和使用與使用者裝置相關聯的廣告識別碼，提供個人化廣告，衡量廣告效果，並在 Android 13 或更高版本裝置上顯示廣告。</string>
     <string name="internet">網際網路 [INTERNET]</string>
@@ -168,29 +150,8 @@
     <string name="write_external_storage">寫入外部儲存空間 [WRITE_EXTERNAL_STORAGE]</string>
     <string name="summary_preference_permissions_write_external_storage">允許應用程式將檔案寫入裝置的儲存空間，包括內部和外部儲存空間</string>
 
-    <string name="ads">廣告</string>
-    <string name="display_ads">顯示廣告</string>
-    <string name="personalized_ads">個人化廣告</string>
-    <string name="summary_ads_personalized_ads">選擇我們如何根據您的興趣為您個人化廣告</string>
-    <string name="summary_ads">查看與您相關的廣告。管理用於根據您的應用程式活動顯示個人化廣告的資訊。您始終可以在這裡關閉個人化設定。\n</string>
-
-    <string name="usage_and_diagnostics">使用量和診斷</string>
-
-    <string name="about">關於</string>
     <string name="summary_preference_settings_about">瞭解有關清潔工具的更多資訊</string>
 
-    <string name="app_build">應用程式版本：%6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
-    <string name="manufacturer">製造商：</string>
-    <string name="device_model">裝置型號：</string>
-    <string name="android_version">Android 版本：</string>
-    <string name="api_level">API 層級：</string>
-
-    <string name="help_and_feedback">協助和意見回饋</string>
-    <string name="help">協助</string>
-    <string name="view_in_google_play_store">在 Google Play 商店中查看</string>
-    <string name="version_info">版本資訊</string>
-    <string name="version">版本 %1$s</string>
-    <string name="beta_program">Beta 程式</string>
     <string name="question_1">什麼是清潔工具？</string>
     <string name="summary_preference_faq_1">清潔工具是一款免費的開放原始碼 Android 應用程式，可協助您優化裝置效能並釋放儲存空間。它可以掃描裝置中的不必要檔案並將其刪除，以及清除快取以提高裝置速度</string>
     <string name="question_2">清潔工具安全嗎？</string>
@@ -209,24 +170,7 @@
     <string name="summary_preference_faq_8">沒有設定使用清潔工具的次數，因為這取決於您裝置的使用情況以及隨著時間推移累積的不必要檔案數量。有些使用者可能會發現每週或每月執行清潔工具很有用，而其他人可能只偶爾需要使用它</string>
     <string name="question_9">清潔工具與所有 Android 裝置相容嗎？</string>
     <string name="summary_preference_faq_9">清潔工具應與符合應用程式最低系統要求的大多數 Android 裝置相容。但是，始終建議您檢查 Google Play 商店或您使用的應用程式商店中的應用程式頁面，以確認它與您的特定裝置相容。如果您在使用清潔工具時遇到任何問題，可以嘗試解決問題或聯繫應用程式的支援團隊以獲取協助</string>
-    <string name="feedback">意見回饋</string>
 
-    <string name="updates">更新</string>
-
-    <string name="support_us">支持我們</string>
-    <string name="paid_support">付費支持</string>
-    <string name="summary_donations">無論您捐贈多少，您都將幫助我們維持應用程式的運作並改善功能。我們感謝您的慷慨和善意！</string>
-    <string name="non_paid_support">非付費支持</string>
-    <string name="web_ad">網路廣告</string>
-
-    <string name="snack_app_updated">應用程式已成功更新</string>
-    <string name="snack_update_failed">更新過程遇到問題</string>
-    <string name="try_again">再試一次</string>
-    <string name="summary_share_message">看看我正在使用的這款很棒的應用程式！它有一些你可能會覺得有趣的非常酷的功能。你可以在 Play 商店的 %1$s 下載它</string>
-    <string name="learn_more">了解更多</string>
-
-    <string name="close">關閉？</string>
-    <string name="summary_close">您確定要退出嗎？</string>
     <string name="snack_no_image">未提供圖片</string>
     <string name="snack_validate_file">請選擇有效的檔案大小</string>
 </resources>

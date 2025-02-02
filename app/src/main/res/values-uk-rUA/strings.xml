@@ -3,13 +3,6 @@
     <string name="app_short_description">Останній Android Cleaner, який вам коли-небудь знадобиться для щоденного використання!</string>
     <string name="summary_notification_last_time_used"> Давайте звільнимо місце! Ми раді, що ви повернулися!</string>
 
-    <string name="welcome">Ласкаво просимо</string>
-    <string name="summary_browse_terms_of_service_and_privacy_policy">Прочитайте та погодьтеся з нашими Умовами обслуговування та Політикою конфіденційності, щоб продовжити</string>
-    <string name="agree">Погоджуюсь</string>
-
-    <string name="navigation_drawer_open">Відкрити панель навігації</string>
-
-    <string name="home">Головна</string>
     <string name="delete_forever">Видалити назавжди</string>
     <string name="move_to_trash">Перемістити в кошик</string>
     <string name="cleaned_space">Очищений простір</string>
@@ -34,18 +27,12 @@
     <string name="select_all">Вибрати все</string>
     <string name="file_not_found">Файл не знайдено.</string>
     <string name="no_files_found">Файли не знайдено</string>
-    <string name="activity_not_found">Дія не знайдена.</string>
-    <string name="security_error">Виникла помилка безпеки. Спробуйте пізніше.</string>
-    <string name="io_error">Сталася помилка введення/виведення. Перевірте мережеве з\'єднання або сховище і спробуйте знову.</string>
-    <string name="illegal_argument_error">Недійсний ввід або аргумент. Перевірте інформацію та спробуйте ще раз.</string>
-    <string name="unknown_error">Сталася невідома помилка.</string>
 
     <string name="app_manager">Менеджер програм</string>
     <string name="installed_apps">Встановлені програми</string>
     <string name="system_apps">Системні програми</string>
     <string name="app_install_files">Файли встановлення програм (APK)</string>
     <string name="uninstall">Видалити</string>
-    <string name="share">Поділитися</string>
     <string name="app_info">Інформація про програму</string>
     <string name="install">Встановити</string>
     <string name="share_apk">Поділитися APK</string>
@@ -125,14 +112,8 @@
     <string name="notifications">Сповіщення</string>
     <string name="summary_preference_settings_notifications">Керування сповіщеннями програми</string>
 
-    <string name="advanced">Додатково</string>
-    <string name="summary_preference_settings_advanced">Дослідіть додаткові налаштування</string>
-
-    <string name="security_and_privacy">Безпека та конфіденційність</string>
     <string name="summary_preference_settings_privacy_and_security">Керуйте налаштуваннями конфіденційності</string>
-    <string name="privacy_policy">Політика конфіденційності</string>
-    <string name="terms_of_service">Умови обслуговування</string>
-    <string name="permissions">Дозволи</string>
+
     <string name="ad_id">Ідентифікатор реклами [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Дозволяє програмі отримувати та використовувати рекламний ідентифікатор, пов\'язаний з пристроєм користувача, надаючи персоналізовану рекламу, вимірюючи ефективність реклами та показуючи рекламу на пристроях Android 13 або пізнішої версії.</string>
     <string name="internet">Інтернет [INTERNET]</string>
@@ -172,29 +153,8 @@
     <string name="write_external_storage">Записувати на зовнішнє сховище [WRITE_EXTERNAL_STORAGE]</string>
     <string name="summary_preference_permissions_write_external_storage">Дозволяє програмі записувати файли на сховище пристрою, включаючи як внутрішнє, так і зовнішнє сховище.</string>
 
-    <string name="ads">Реклама</string>
-    <string name="display_ads">Відображати рекламу</string>
-    <string name="personalized_ads">Персоналізована реклама</string>
-    <string name="summary_ads_personalized_ads">Виберіть, як ми персоналізуємо рекламу для вас на основі ваших інтересів.</string>
-    <string name="summary_ads">Переглядайте рекламу, яка є релевантною для вас. Керуйте інформацією, яка використовується для показу персоналізованої реклами на основі вашої активності в програмі. Ви завжди можете вимкнути персоналізацію тут.\n</string>
-
-    <string name="usage_and_diagnostics">Використання та діагностика</string>
-
-    <string name="about">Про програму</string>
     <string name="summary_preference_settings_about">Дізнайтеся більше про Cleaner.</string>
 
-    <string name="app_build">Збірка програми: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
-    <string name="manufacturer">Виробник:</string>
-    <string name="device_model">Модель пристрою:</string>
-    <string name="android_version">Версія Android:</string>
-    <string name="api_level">Рівень API:</string>
-
-    <string name="help_and_feedback">Допомога та відгуки</string>
-    <string name="help">Допомога</string>
-    <string name="view_in_google_play_store">Переглянути в Google Play Store</string>
-    <string name="version_info">Інформація про версію</string>
-    <string name="version">Версія %1$s</string>
-    <string name="beta_program">Бета-програма</string>
     <string name="question_1">Що таке Cleaner?</string>
     <string name="summary_preference_faq_1">Cleaner - це безкоштовна програма для Android з відкритим кодом, яка допомагає вам оптимізувати продуктивність вашого пристрою та звільнити місце для зберігання. Вона може сканувати ваш пристрій на наявність непотрібних файлів та видаляти їх, а також очищати кеш, щоб покращити швидкість вашого пристрою.</string>
     <string name="question_2">Чи безпечно використовувати Cleaner?</string>
@@ -213,24 +173,7 @@
     <string name="summary_preference_faq_8">Немає встановленого правила щодо того, як часто слід використовувати Cleaner, оскільки це залежатиме від використання вашого пристрою та кількості непотрібних файлів, які накопичуються з часом. Деяким користувачам може бути корисним запускати Cleaner щотижня або щомісяця, тоді як іншим може знадобитися використовувати його лише зрідка.</string>
     <string name="question_9">Чи сумісний Cleaner з усіма пристроями Android?</string>
     <string name="summary_preference_faq_9">Cleaner має бути сумісний з більшістю пристроїв Android, які відповідають мінімальним системним вимогам програми. Однак завжди гарною ідеєю є перевірити сторінку програми в Google Play Store або магазині програм, який ви використовуєте, щоб підтвердити сумісність з вашим конкретним пристроєм. Якщо у вас виникли проблеми під час використання Cleaner, ви можете спробувати усунути неполадки або звернутися до служби підтримки програми за допомогою.</string>
-    <string name="feedback">Відгуки</string>
 
-    <string name="updates">Оновлення</string>
-
-    <string name="support_us">Підтримайте нас</string>
-    <string name="paid_support">Платна підтримка</string>
-    <string name="summary_donations">Незалежно від того, скільки ви пожертвуєте, ви допоможете нам підтримувати роботу нашої програми та покращувати її функції. Ми цінуємо вашу щедрість та доброту!</string>
-    <string name="non_paid_support">Безкоштовна підтримка</string>
-    <string name="web_ad">Веб-реклама</string>
-
-    <string name="snack_app_updated">Програму успішно оновлено</string>
-    <string name="snack_update_failed">Під час оновлення виникла помилка</string>
-    <string name="try_again">Спробуйте ще раз</string>
-    <string name="summary_share_message">Подивіться на цю дивовижну програму, яку я використовую! Вона має деякі дійсно круті функції, які можуть вас зацікавити. Ви можете завантажити її з Play Store за адресою: %1$s</string>
-    <string name="learn_more">Дізнатися більше</string>
-
-    <string name="close">Закрити?</string>
-    <string name="summary_close">Ви впевнені, що хочете вийти?</string>
     <string name="snack_no_image">Зображення не надано</string>
     <string name="snack_validate_file">Виберіть допустимий розмір файлу</string>
 </resources>

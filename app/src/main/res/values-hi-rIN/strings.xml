@@ -3,13 +3,6 @@
     <string name="app_short_description">हर रोज़ इस्तेमाल के लिए यह आखिरी Android क्लीनर है जिसकी आपको कभी आवश्यकता होगी!</string>
     <string name="summary_notification_last_time_used">चलिए कुछ जगह खाली करते हैं! हम खुश हैं कि आप वापस आ गए हैं!</string>
 
-    <string name="welcome">स्वागत है</string>
-    <string name="summary_browse_terms_of_service_and_privacy_policy">जारी रखने के लिए हमारी सेवा की शर्तों और गोपनीयता नीति को पढ़ें और सहमत हों</string>
-    <string name="agree">सहमत</string>
-
-    <string name="navigation_drawer_open">नेविगेशन ड्रॉअर खोलें</string>
-
-    <string name="home">होम</string>
     <string name="delete_forever">हमेशा के लिए हटाएँ</string>
     <string name="move_to_trash">ट्रैश में भेजें</string>
     <string name="cleaned_space">साफ़ किया गया स्थान</string>
@@ -32,18 +25,12 @@
     <string name="select_all">सबका चयन करें</string>
     <string name="file_not_found">फ़ाइल नहीं मिली।</string>
     <string name="no_files_found">कोई फ़ाइल नहीं मिली</string>
-    <string name="activity_not_found">गतिविधि नहीं मिली।</string>
-    <string name="security_error">सुरक्षा त्रुटि हुई है। कृपया बाद में पुनः प्रयास करें।</string>
-    <string name="io_error">इनपुट/आउटपुट त्रुटि हुई है। कृपया अपनी नेटवर्क कनेक्शन या स्टोरेज की जांच करें और पुनः प्रयास करें।</string>
-    <string name="illegal_argument_error">अमान्य इनपुट या तर्क दिया गया है. कृपया जानकारी की जाँच करें और पुनः प्रयास करें.</string>
-    <string name="unknown_error">अज्ञात त्रुटि हुई है।</string>
 
     <string name="app_manager">ऐप मैनेजर</string>
     <string name="installed_apps">स्थापित एप्लिकेशन</string>
     <string name="system_apps">सिस्टम ऐप्स</string>
     <string name="app_install_files">ऐप इंस्टॉल फ़ाइलें (एपीके)</string>
     <string name="uninstall">अनइंस्टॉल करें</string>
-    <string name="share">साझा करें</string>
     <string name="app_info">ऐप जानकारी</string>
     <string name="install">इंस्टॉल करें</string>
     <string name="share_apk">APK साझा करें</string>
@@ -123,13 +110,7 @@
     <string name="notifications">सूचनाएं</string>
     <string name="summary_preference_settings_notifications">ऐप सूचनाओं का प्रबंधन करें</string>
 
-    <string name="advanced">उन्नत</string>
-    <string name="summary_preference_settings_advanced">अधिक उन्नत सेटिंग्स का अन्वेषण करें</string>
-    <string name="security_and_privacy">सुरक्षा और गोपनीयता</string>
     <string name="summary_preference_settings_privacy_and_security">अपनी गोपनीयता सेटिंग्स का प्रबंधन करें</string>
-    <string name="privacy_policy">गोपनीयता नीति</string>
-    <string name="terms_of_service">सेवा की शर्तें</string>
-    <string name="permissions">अनुमतियाँ</string>
     <string name="ad_id">विज्ञापन आईडी [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">ऐप को उपयोगकर्ता के डिवाइस से जुड़ी विज्ञापन पहचानकर्ता को पुनः प्राप्त करने और उपयोग करने की अनुमति देता है, व्यक्तिगत विज्ञापन प्रदान करता है, विज्ञापन प्रभावशीलता को मापता है और Android 13 या बाद के उपकरणों पर विज्ञापन दिखाता है।</string>
     <string name="internet">इंटरनेट [INTERNET]</string>
@@ -169,28 +150,8 @@
     <string name="write_external_storage">बाहरी स्टोरेज लिखें [WRITE_EXTERNAL_STORAGE]</string>
     <string name="summary_preference_permissions_write_external_storage">ऐप को डिवाइस के स्टोरेज में फ़ाइलें लिखने की अनुमति देता है, जिसमें आंतरिक और बाहरी दोनों स्टोरेज शामिल हैं</string>
 
-    <string name="ads">विज्ञापन</string>
-    <string name="display_ads">विज्ञापन प्रदर्शित करें</string>
-    <string name="personalized_ads">वैयक्तिकृत विज्ञापन</string>
-    <string name="summary_ads_personalized_ads">अपनी रुचियों के आधार पर हम आपके लिए विज्ञापनों को कैसे वैयक्तिकृत करते हैं, इसका चयन करें</string>
-    <string name="summary_ads">ऐसे विज्ञापन देखें जो आपके लिए प्रासंगिक हैं। अपने ऐप गतिविधि के आधार पर व्यक्तिगत विज्ञापन दिखाने के लिए उपयोग की जाने वाली जानकारी का प्रबंधन करें। आप हमेशा यहां वैयक्तिकरण बंद कर सकते हैं।\n</string>
-
-    <string name="usage_and_diagnostics">उपयोग और निदान</string>
-
-    <string name="about">के बारे में</string>
     <string name="summary_preference_settings_about">क्लीनर के बारे में और जानें</string>
 
-    <string name="app_build">ऐप बिल्ड: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
-    <string name="manufacturer">निर्माता:</string>
-    <string name="device_model">डिवाइस मॉडल:</string>
-    <string name="android_version">एंड्रॉइड संस्करण:</string>
-    <string name="api_level">एपीआई स्तर:</string>
-    <string name="help_and_feedback">मदद और प्रतिक्रिया</string>
-    <string name="help">मदद</string>
-    <string name="view_in_google_play_store">Google Play Store में देखें</string>
-    <string name="version_info">संस्करण जानकारी</string>
-    <string name="version">संस्करण %1$s</string>
-    <string name="beta_program">बीटा प्रोग्राम</string>
     <string name="question_1">क्लीनर क्या है?</string>
     <string name="summary_preference_faq_1">क्लीनर एक मुफ्त और ओपन-सोर्स एंड्रॉइड ऐप है जो आपको अपने डिवाइस के प्रदर्शन को अनुकूलित करने और स्टोरेज स्पेस खाली करने में मदद करता है। यह आपके डिवाइस को अनावश्यक फ़ाइलों के लिए स्कैन कर सकता है और उन्हें हटा सकता है, साथ ही आपके डिवाइस की गति में सुधार के लिए आपका कैश साफ़ कर सकता है</string>
     <string name="question_2">क्या क्लीनर का उपयोग करना सुरक्षित है?</string>
@@ -209,24 +170,7 @@
     <string name="summary_preference_faq_8">क्लीनर का उपयोग करने के लिए कोई निर्धारित नियम नहीं है, क्योंकि यह आपके डिवाइस के उपयोग और समय के साथ जमा होने वाली अनावश्यक फ़ाइलों की मात्रा पर निर्भर करेगा। कुछ उपयोगकर्ता इसे साप्ताहिक या मासिक चलाना उपयोगी पा सकते हैं, जबकि अन्य को केवल कभी-कभी इसका उपयोग करने की आवश्यकता हो सकती है</string>
     <string name="question_9">क्या क्लीनर सभी एंड्रॉइड उपकरणों के साथ संगत है?</string>
     <string name="summary_preference_faq_9">क्लीनर को अधिकांश एंड्रॉइड उपकरणों के साथ संगत होना चाहिए जो ऐप की न्यूनतम सिस्टम आवश्यकताओं को पूरा करते हैं। हालाँकि, यह हमेशा एक अच्छा विचार है कि अपने विशिष्ट डिवाइस के साथ संगतता की पुष्टि करने के लिए Google Play Store या आपके द्वारा उपयोग किए जा रहे ऐप स्टोर पर ऐप के पृष्ठ की जाँच करें। यदि आपको क्लीनर का उपयोग करते समय कोई समस्या आती है, तो आप समस्या का निवारण करने का प्रयास कर सकते हैं या सहायता के लिए ऐप की सहायता टीम से संपर्क कर सकते हैं</string>
-    <string name="feedback">प्रतिक्रिया</string>
 
-    <string name="updates">अपडेट</string>
-
-    <string name="support_us">हमारा समर्थन करें</string>
-    <string name="paid_support">पेड सपोर्ट</string>
-    <string name="summary_donations">कोई फर्क नहीं पड़ता कि आप कितना दान करते हैं, आप हमें हमारे ऐप को चालू रखने और हमारी सुविधाओं को बेहतर बनाने में मदद करेंगे। हम आपकी उदारता और दयालुता की सराहना करते हैं!</string>
-    <string name="non_paid_support">गैर-भुगतान समर्थन</string>
-    <string name="web_ad">वेब विज्ञापन</string>
-
-    <string name="snack_app_updated">ऐप सफलतापूर्वक अपडेट हो गया है</string>
-    <string name="snack_update_failed">अपडेट प्रक्रिया में एक समस्या आई</string>
-    <string name="try_again">पुनः प्रयास करें</string>
-    <string name="summary_share_message">इस अद्भुत ऐप को देखें जिसका मैं उपयोग कर रहा हूँ! इसमें कुछ बहुत ही शानदार फीचर हैं जो आपको दिलचस्प लग सकते हैं। आप इसे Play Store से डाउनलोड कर सकते हैं: %1$s</string>
-    <string name="learn_more">और जानें</string>
-
-    <string name="close">बंद करें?</string>
-    <string name="summary_close">क्या आप सुनिश्चित हैं कि आप बाहर निकलना चाहते हैं?</string>
     <string name="snack_no_image">कोई छवि प्रदान नहीं की गई</string>
     <string name="snack_validate_file">कृपया एक मान्य फ़ाइल आकार चुनें</string>
 </resources>

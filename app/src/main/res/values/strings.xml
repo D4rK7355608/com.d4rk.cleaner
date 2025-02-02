@@ -3,13 +3,6 @@
     <string name="app_short_description">The last Android Cleaner you will ever need for every day use!</string>
     <string name="summary_notification_last_time_used"> Let\'s free up some space! We are happy you are back!</string>
 
-    <string name="welcome">Welcome</string>
-    <string name="summary_browse_terms_of_service_and_privacy_policy">Read and agree to our Terms of Service and Privacy Policy to continue</string>
-    <string name="agree">Agree</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-
-    <string name="home">Home</string>
     <string name="delete_forever">Delete forever</string>
     <string name="move_to_trash">Move to trash</string>
     <string name="cleaned_space">Cleaned Space</string>
@@ -42,18 +35,12 @@
     </plurals>
     <string name="file_not_found">File not found.</string>
     <string name="no_files_found">No files found</string>
-    <string name="activity_not_found">Activity not found.</string>
-    <string name="security_error">A security error occurred. Please try again later.</string>
-    <string name="io_error">An input/output error occurred. Please check your network connection or storage and try again.</string>
-    <string name="illegal_argument_error">Invalid input or argument provided. Please check the information and try again.</string>
-    <string name="unknown_error">An unknown error occurred.</string>
 
     <string name="app_manager">App Manager</string>
     <string name="installed_apps">Installed apps</string>
     <string name="system_apps">System apps</string>
     <string name="app_install_files">App install files (APKs)</string>
     <string name="uninstall">Uninstall</string>
-    <string name="share">Share</string>
     <string name="app_info">App info</string>
     <string name="install">Install"</string>
     <string name="share_apk">Share APK</string>
@@ -94,6 +81,8 @@
     <string name="width">Width (px)</string>
     <string name="height">Height (px)</string>
     <string name="quality">Quality</string>
+    <string name="snack_no_image">No image provided</string>
+    <string name="snack_validate_file">Please select a valid file size</string>
 
     <string name="trash">Trash</string>
     <string name="trash_is_empty">Trash is empty</string>
@@ -122,6 +111,14 @@
     <string name="summary_preference_settings_delete_corpse_files">Delete files left over from uninstalled/removed apps</string>
     <string name="delete_apk_files">Delete APK files</string>
     <string name="summary_preference_settings_delete_apk_files">Delete installer files (.apk) files for Android</string>
+    <string name="delete_windows_files">Windows Extensions</string>
+    <string name="summary_preference_settings_delete_windows_files">Detects Windows extensions (exe, dll, sys)</string>
+    <string name="delete_office_files">Office Extensions</string>
+    <string name="summary_preference_settings_delete_office_files">Detects Office extensions (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">Font Extensions</string>
+    <string name="summary_preference_settings_delete_font_files">Detects font extensions (ttf, otf)</string>
+    <string name="delete_other_files">Other Extensions</string>
+    <string name="summary_preference_settings_delete_other_files">Detects all other extensions types.</string>
     <string name="media">Media</string>
     <string name="delete_audio">Delete audio</string>
     <string name="summary_preference_settings_delete_audio">Delete the audio files from the device</string>
@@ -137,15 +134,8 @@
     <string name="notifications">Notifications</string>
     <string name="summary_preference_settings_notifications">Manage app notifications</string>
 
-    <string name="advanced">Advanced</string>
-    <string name="summary_preference_settings_advanced">Explore more advanced settings</string>
-
-    <string name="security_and_privacy">Security &amp; privacy</string>
     <string name="summary_preference_settings_privacy_and_security">Manage your privacy settings</string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="terms_of_service">Terms of Service</string>
 
-    <string name="permissions">Permissions</string>
     <string name="ad_id">Ad id [AD_ID]</string>
     <string name="summary_preference_permissions_ad_id">Allows the app to retrieve and use the advertising identifier associated with the user\'s device, providing personalized ads, measuring ad effectiveness, and showing ads on Android 13 or later devices.</string>
     <string name="internet">Internet [INTERNET]</string>
@@ -185,31 +175,8 @@
     <string name="write_external_storage">Write external storage [WRITE_EXTERNAL_STORAGE]</string>
     <string name="summary_preference_permissions_write_external_storage">Allows the app to write files to the device\'s storage, including both internal and external storage</string>
 
-    <string name="ads">Ads</string>
-    <string name="display_ads">Display ads</string>
-    <string name="personalized_ads">Personalized ads</string>
-    <string name="summary_ads_personalized_ads">Choose how we personalize ads for you based on your interests</string>
-    <string name="summary_ads">See ads that are relevant to you. Manage the information used to show personalized ads based on your app activity. You can always turn off personalization here.\n</string>
-
-    <string name="usage_and_diagnostics">Usage and diagnostics</string>
-
-    <string name="about">About</string>
     <string name="summary_preference_settings_about">Learn more about Cleaner</string>
 
-    <string name="app_build">App Build: %6$s\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s</string>
-    <string name="debug">Debug</string>
-    <string name="release">Release</string>
-    <string name="manufacturer">Manufacturer:</string>
-    <string name="device_model">Device Model:</string>
-    <string name="android_version">Android Version:</string>
-    <string name="api_level">API Level:</string>
-
-    <string name="help_and_feedback">Help &amp; feedback</string>
-    <string name="help">Help</string>
-    <string name="view_in_google_play_store">View in Google Play Store</string>
-    <string name="version_info">Version info</string>
-    <string name="version">Version %1$s</string>
-    <string name="beta_program">Beta program</string>
     <string name="question_1">What is Cleaner?</string>
     <string name="summary_preference_faq_1">Cleaner is a free and open-source Android app that helps you optimize your device\'s performance and free up storage space. It can scan your device for unnecessary files and delete them, as well clear your cache to improve your device\'s speed</string>
     <string name="question_2">Is Cleaner safe to use?</string>
@@ -228,25 +195,4 @@
     <string name="summary_preference_faq_8">There is no set rule for how often you should use Cleaner, as it will depend on your device\'s usage and the amount of unnecessary files that accumulate over time. Some users may find it helpful to run Cleaner weekly or monthly, while others may only need to use it occasionally</string>
     <string name="question_9">Is Cleaner compatible with all Android devices?</string>
     <string name="summary_preference_faq_9">Cleaner should be compatible with most Android devices that meet the app\'s minimum system requirements. However, it is always a good idea to check the app\'s page on the Google Play Store or the app store you are using to confirm compatibility with your specific device. If you encounter any issues while using Cleaner, you can try troubleshooting the problem or contacting the app\'s support team for assistance</string>
-    <string name="feedback">Feedback</string>
-
-    <string name="updates">Updates</string>
-
-    <string name="support_us">Support Us</string>
-    <string name="paid_support">Paid Support</string>
-    <string name="summary_donations">No matter how much you donate, you will help us keep our app running and improve our features. We appreciate your generosity and kindness!</string>
-    <string name="non_paid_support">Non-Paid Support</string>
-    <string name="web_ad">Web Ad</string>
-
-    <string name="snack_app_updated">The app has been successfully updated</string>
-    <string name="snack_update_failed">The update process encountered an issue</string>
-    <string name="try_again">Try again</string>
-    <string name="summary_share_message">Check out this amazing app that I\'m using! It has some really cool features that you might find interesting. You can download it from the Play Store at: %1$s</string>
-    <string name="learn_more">Learn more</string>
-
-    <string name="close">Close?</string>
-    <string name="summary_close">Are you sure you want to exit?</string>
-
-    <string name="snack_no_image">No image provided</string>
-    <string name="snack_validate_file">Please select a valid file size</string>
 </resources>

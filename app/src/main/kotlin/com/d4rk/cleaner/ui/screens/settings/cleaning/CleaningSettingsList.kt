@@ -87,10 +87,9 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
                     dataStore.saveDeleteApkFiles(isChecked)
                 }
             }
-
             SwitchPreferenceItem(
-                title = "Windows Extensions" ,
-                summary = "Detects and delete windows extensions (exe,dll,sys)" ,
+                title = stringResource(id = R.string.delete_windows_files) ,
+                summary = stringResource(id = R.string.summary_preference_settings_delete_windows_files) ,
                 checked = windowsExtensions ,
             ) { isChecked ->
                 CoroutineScope(Dispatchers.IO).launch {
@@ -98,8 +97,8 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
                 }
             }
             SwitchPreferenceItem(
-                title = "Office Extensions" ,
-                summary = "Detects and delete office extensions (doc,xls,ppt,docx,xlsx,pptx)" ,
+                title = stringResource(id = R.string.delete_office_files) ,
+                summary = stringResource(id = R.string.summary_preference_settings_delete_office_files) ,
                 checked = officeExtensions ,
             ) { isChecked ->
                 CoroutineScope(Dispatchers.IO).launch {
@@ -107,8 +106,8 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
                 }
             }
             SwitchPreferenceItem(
-                title = "Font Extensions" ,
-                summary = "Detects and delete font extensions (ttf,otf)" ,
+                title = stringResource(id = R.string.delete_font_files) ,
+                summary = stringResource(id = R.string.summary_preference_settings_delete_font_files) ,
                 checked = fontExtensions ,
             ) { isChecked ->
                 CoroutineScope(Dispatchers.IO).launch {
@@ -116,8 +115,8 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
                 }
             }
             SwitchPreferenceItem(
-                title = "Other Extensions" ,
-                summary = "Detects and delete other extensions (tmp,ini,log,bak,old)" ,
+                title = stringResource(id = R.string.delete_other_files) ,
+                summary = stringResource(id = R.string.summary_preference_settings_delete_other_files) ,
                 checked = otherExtensions ,
             ) { isChecked ->
                 CoroutineScope(Dispatchers.IO).launch {
