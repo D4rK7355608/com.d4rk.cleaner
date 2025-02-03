@@ -14,14 +14,24 @@
     <string name="quick_scan">Gyorskeresés</string>
     <string name="apks">APK-k</string>
     <string name="archives">Archívumok</string>
+    <string name="fonts">Betűtípusok</string>
+    <string name="windows_files">Windows-fájlok</string>
     <string name="videos">Videók</string>
     <string name="audios">Hangfájlok</string>
+    <string name="empty_folders">Üres mappák</string>
     <plurals name="status_selected_files">
         <item quantity="one">Állapot: %1$d fájl kiválasztva</item>
         <item quantity="other">Állapot: %1$d fájlok kiválasztva</item>
     </plurals>
     <string name="status_no_files_selected">Állapot: Nincsenek kiválasztva fájlok</string>
     <string name="select_all">Összes kijelölése</string>
+    <string name="today">Ma</string>
+    <string name="yesterday">Tegnap</string>
+    <string name="a_year_ago">Tavaly</string>
+    <plurals name="years_ago">
+        <item quantity="one">%1$d éve</item>
+        <item quantity="other">%1$d évvel ezelőtt</item>
+    </plurals>
     <string name="file_not_found">A fájl nem található.</string>
     <string name="no_files_found">Nem található fájl</string>
 
@@ -70,6 +80,12 @@
     <string name="width">Szélesség (px)</string>
     <string name="height">Magasság (px)</string>
     <string name="quality">Minőség</string>
+    <string name="snack_no_image">Nincs kép megadva</string>
+    <string name="snack_validate_file">Kérjük, válasszon érvényes fájlméretet</string>
+
+    <string name="trash">Kuka</string>
+    <string name="trash_is_empty">A kuka üres</string>
+    <string name="restore">Visszaállítás</string>
 
     <string name="settings">Beállítások</string>
 
@@ -94,6 +110,14 @@
     <string name="summary_preference_settings_delete_corpse_files">Az eltávolított/törölt alkalmazásokból megmaradt fájlok törlése</string>
     <string name="delete_apk_files">APK fájlok törlése</string>
     <string name="summary_preference_settings_delete_apk_files">Android telepítőfájlok (.apk) törlése</string>
+    <string name="delete_windows_files">Windows kiterjesztések</string>
+    <string name="summary_preference_settings_delete_windows_files">Észleli a Windows kiterjesztéseket (exe, dll, sys)</string>
+    <string name="delete_office_files">Office kiterjesztések</string>
+    <string name="summary_preference_settings_delete_office_files">Észleli az Office kiterjesztéseket (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">Betűkészlet kiterjesztések</string>
+    <string name="summary_preference_settings_delete_font_files">Észleli a betűkészlet kiterjesztéseket (ttf, otf)</string>
+    <string name="delete_other_files">Egyéb kiterjesztések</string>
+    <string name="summary_preference_settings_delete_other_files">Észleli az összes egyéb kiterjesztést.</string>
     <string name="media">Média</string>
     <string name="delete_audio">Hangfájlok törlése</string>
     <string name="summary_preference_settings_delete_audio">Az eszközről származó hangfájlok törlése</string>
@@ -170,7 +194,4 @@
     <string name="summary_preference_faq_8">Nincsenek meghatározott szabályok arra vonatkozóan, hogy milyen gyakran kell használnia a Cleanert, mivel ez az eszköz használatától és az idővel felhalmozódó felesleges fájlok mennyiségétől függ. Egyes felhasználók hasznosnak találhatják a Cleaner heti vagy havi futtatását, míg másoknak csak alkalmanként kell használniuk</string>
     <string name="question_9">Kompatibilis a Cleaner minden Android-eszközzel?</string>
     <string name="summary_preference_faq_9">A Cleanernek kompatibilisnek kell lennie a legtöbb Android-eszközzel, amely megfelel az alkalmazás minimális rendszerkövetelményeinek. Azonban mindig jó ötlet ellenőrizni az alkalmazás oldalát a Google Play Áruházban vagy az Ön által használt alkalmazásboltban, hogy megerősítse a kompatibilitást az adott eszközzel. Ha bármilyen problémába ütközik a Cleaner használata során, megpróbálhatja elhárítani a problémát, vagy felveheti a kapcsolatot az alkalmazás támogatási csapatával segítségért</string>
-
-    <string name="snack_no_image">Nincs kép megadva</string>
-    <string name="snack_validate_file">Kérjük, válasszon érvényes fájlméretet</string>
 </resources>

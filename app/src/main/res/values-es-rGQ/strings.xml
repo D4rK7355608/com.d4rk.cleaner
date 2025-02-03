@@ -14,8 +14,11 @@
     <string name="quick_scan">Escaneo rápido</string>
     <string name="apks">APK</string>
     <string name="archives">Archivos</string>
+    <string name="fonts">Fuentes</string>
+    <string name="windows_files">Archivos de Windows</string>
     <string name="videos">Vídeos</string>
     <string name="audios">Audios</string>
+    <string name="empty_folders">Carpetas vacías</string>
     <plurals name="status_selected_files">
         <item quantity="one">Estado: %1$d archivo seleccionado</item>
         <item quantity="other">Estado: %1$d archivos seleccionados</item>
@@ -23,6 +26,14 @@
     </plurals>
     <string name="status_no_files_selected">Estado: No se seleccionaron archivos</string>
     <string name="select_all">Seleccionar todo</string>
+    <string name="today">Hoy</string>
+    <string name="yesterday">Ayer</string>
+    <string name="a_year_ago">El año pasado</string>
+    <plurals name="years_ago">
+        <item quantity="one">Hace %1$d año</item>
+        <item quantity="many">Hace %1$d años</item>
+        <item quantity="other">Hace %1$d años</item>
+    </plurals>
     <string name="file_not_found">Archivo no encontrado.</string>
     <string name="no_files_found">No se encontraron archivos</string>
 
@@ -71,6 +82,12 @@
     <string name="width">Ancho (px)</string>
     <string name="height">Alto (px)</string>
     <string name="quality">Calidad</string>
+    <string name="snack_no_image">No se proporcionó ninguna imagen</string>
+    <string name="snack_validate_file">Por favor, selecciona un tamaño de archivo válido</string>
+
+    <string name="trash">Papelera</string>
+    <string name="trash_is_empty">La papelera está vacía</string>
+    <string name="restore">Restaurar</string>
 
     <string name="settings">Ajustes</string>
 
@@ -95,6 +112,14 @@
     <string name="summary_preference_settings_delete_corpse_files">Eliminar archivos que quedaron de aplicaciones desinstaladas o eliminadas</string>
     <string name="delete_apk_files">Eliminar archivos APK</string>
     <string name="summary_preference_settings_delete_apk_files">Eliminar archivos de instalación (.apk) para Android</string>
+    <string name="delete_windows_files">Extensiones de Windows</string>
+    <string name="summary_preference_settings_delete_windows_files">Detecta extensiones de Windows (exe, dll, sys)</string>
+    <string name="delete_office_files">Extensiones de Office</string>
+    <string name="summary_preference_settings_delete_office_files">Detecta extensiones de Office (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">Extensiones de fuentes</string>
+    <string name="summary_preference_settings_delete_font_files">Detecta extensiones de fuentes (ttf, otf)</string>
+    <string name="delete_other_files">Otras extensiones</string>
+    <string name="summary_preference_settings_delete_other_files">Detecta todos los demás tipos de extensiones.</string>
     <string name="media">Multimedia</string>
     <string name="delete_audio">Eliminar audio</string>
     <string name="summary_preference_settings_delete_audio">Eliminar los archivos de audio del dispositivo</string>
@@ -170,7 +195,4 @@
     <string name="summary_preference_faq_8">No hay una regla establecida sobre con qué frecuencia debes usar Cleaner, ya que dependerá del uso de tu dispositivo y de la cantidad de archivos innecesarios que se acumulen con el tiempo. Algunos usuarios pueden encontrar útil ejecutar Cleaner semanal o mensualmente, mientras que otros solo necesitan usarlo ocasionalmente</string>
     <string name="question_9">¿Cleaner es compatible con todos los dispositivos Android?</string>
     <string name="summary_preference_faq_9">Cleaner debería ser compatible con la mayoría de los dispositivos Android que cumplan con los requisitos mínimos del sistema de la aplicación. Sin embargo, siempre es una buena idea verificar la página de la aplicación en Google Play Store o la tienda de aplicaciones que estás utilizando para confirmar la compatibilidad con tu dispositivo específico. Si encuentras algún problema mientras usas Cleaner, puedes intentar solucionar el problema o ponerte en contacto con el equipo de soporte de la aplicación para obtener ayuda</string>
-
-    <string name="snack_no_image">No se proporcionó ninguna imagen</string>
-    <string name="snack_validate_file">Por favor, selecciona un tamaño de archivo válido</string>
 </resources>

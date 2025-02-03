@@ -14,14 +14,24 @@
     <string name="quick_scan">Бързо сканиране</string>
     <string name="apks">APK файлове</string>
     <string name="archives">Архиви</string>
+    <string name="fonts">Шрифтове</string>
+    <string name="windows_files">Файлове на Windows</string>
     <string name="videos">Видеоклипове</string>
     <string name="audios">Аудио файлове</string>
+    <string name="empty_folders">Празни папки</string>
     <plurals name="status_selected_files">
         <item quantity="one">Състояние: Избран %1$d файл</item>
         <item quantity="other">Състояние: Избрани %1$d файла</item>
     </plurals>
     <string name="status_no_files_selected">Статус: Не са избрани файлове</string>
     <string name="select_all">Избиране на всички</string>
+    <string name="today">Днес</string>
+    <string name="yesterday">Вчера</string>
+    <string name="a_year_ago">Миналата година</string>
+    <plurals name="years_ago">
+        <item quantity="one">Преди %1$d година</item>
+        <item quantity="other">Преди %1$d години</item>
+    </plurals>
     <string name="file_not_found">Файлът не е намерен.</string>
     <string name="no_files_found">Не са намерени файлове</string>
 
@@ -70,6 +80,12 @@
     <string name="width">Ширина (px)</string>
     <string name="height">Височина (px)</string>
     <string name="quality">Качество</string>
+    <string name="snack_no_image">Не е предоставено изображение</string>
+    <string name="snack_validate_file">Моля, изберете валиден размер на файла</string>
+
+    <string name="trash">Кошче</string>
+    <string name="trash_is_empty">Кошчето е празно</string>
+    <string name="restore">Възстанови</string>
 
     <string name="settings">Настройки</string>
 
@@ -94,6 +110,14 @@
     <string name="summary_preference_settings_delete_corpse_files">Изтриване на файлове, останали от деинсталирани/премахнати приложения</string>
     <string name="delete_apk_files">Изтриване на APK файлове</string>
     <string name="summary_preference_settings_delete_apk_files">Изтриване на инсталационни файлове (.apk) за Android</string>
+    <string name="delete_windows_files">Разширения на Windows</string>
+    <string name="summary_preference_settings_delete_windows_files">Открива разширения на Windows (exe, dll, sys)</string>
+    <string name="delete_office_files">Разширения на Office</string>
+    <string name="summary_preference_settings_delete_office_files">Открива разширения на Office (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">Разширения на шрифтове</string>
+    <string name="summary_preference_settings_delete_font_files">Открива разширения на шрифтове (ttf, otf)</string>
+    <string name="delete_other_files">Други разширения</string>
+    <string name="summary_preference_settings_delete_other_files">Открива всички други типове разширения.</string>
     <string name="media">Медия</string>
     <string name="delete_audio">Изтриване на аудио</string>
     <string name="summary_preference_settings_delete_audio">Изтриване на аудио файловете от устройството</string>
@@ -169,7 +193,4 @@
     <string name="summary_preference_faq_8">Няма фиксирано правило за това колко често трябва да използвате Cleaner, тъй като това ще зависи от използването на устройството ви и количеството ненужни файлове, които се натрупват с течение на времето. Някои потребители може да го използват седмично или месечно, докато други може да го използват само от време на време</string>
     <string name="question_9">Съвместим ли е Cleaner с всички Android устройства?</string>
     <string name="summary_preference_faq_9">Cleaner трябва да е съвместим с повечето Android устройства, които отговарят на минималните системни изисквания на приложението. Въпреки това, винаги е добра идея да проверите страницата на приложението в Google Play Store или магазина за приложения, който използвате, за да потвърдите съвместимостта с вашето устройство. Ако срещнете проблеми при използването на Cleaner, можете да опитате да отстраните проблема или да се свържете с екипа за поддръжка на приложението, за да ви помогнат</string>
-
-    <string name="snack_no_image">Не е предоставено изображение</string>
-    <string name="snack_validate_file">Моля, изберете валиден размер на файла</string>
 </resources>

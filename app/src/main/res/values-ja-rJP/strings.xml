@@ -14,13 +14,22 @@
     <string name="quick_scan">クイックスキャン</string>
     <string name="apks">APK</string>
     <string name="archives">アーカイブ</string>
+    <string name="fonts">フォント</string>
+    <string name="windows_files">Windows ファイル</string>
     <string name="videos">ビデオ</string>
     <string name="audios">オーディオ</string>
+    <string name="empty_folders">空のフォルダ</string>
     <plurals name="status_selected_files">
         <item quantity="other">ステータス：%1$d ファイル選択済み</item>
     </plurals>
     <string name="status_no_files_selected">ステータス: ファイルが選択されていません</string>
     <string name="select_all">すべて選択</string>
+    <string name="today">今日</string>
+    <string name="yesterday">昨日</string>
+    <string name="a_year_ago">昨年</string>
+    <plurals name="years_ago">
+        <item quantity="other">%1$d 年前</item>
+    </plurals>
     <string name="file_not_found">ファイルが見つかりません。</string>
     <string name="no_files_found">ファイルが見つかりません</string>
 
@@ -69,6 +78,12 @@
     <string name="width">幅（px）</string>
     <string name="height">高さ（px）</string>
     <string name="quality">品質</string>
+    <string name="snack_no_image">画像が提供されていません</string>
+    <string name="snack_validate_file">有効なファイルサイズを選択してください</string>
+
+    <string name="trash">ごみ箱</string>
+    <string name="trash_is_empty">ごみ箱は空です</string>
+    <string name="restore">復元</string>
 
     <string name="settings">設定</string>
 
@@ -93,6 +108,14 @@
     <string name="summary_preference_settings_delete_corpse_files">アンインストールまたは削除されたアプリが残したファイルを削除する</string>
     <string name="delete_apk_files">APKファイルを削除する</string>
     <string name="summary_preference_settings_delete_apk_files">Androidのインストーラーファイル（.apk）ファイルを削除する</string>
+    <string name="delete_windows_files">Windows 拡張機能</string>
+    <string name="summary_preference_settings_delete_windows_files">Windows の拡張子 (exe、dll、sys) を検出します</string>
+    <string name="delete_office_files">Office 拡張機能</string>
+    <string name="summary_preference_settings_delete_office_files">Office の拡張子 (doc、xls、ppt、docx、xlsx、pptx) を検出します</string>
+    <string name="delete_font_files">フォント拡張機能</string>
+    <string name="summary_preference_settings_delete_font_files">フォントの拡張子 (ttf、otf) を検出します</string>
+    <string name="delete_other_files">その他の拡張機能</string>
+    <string name="summary_preference_settings_delete_other_files">すべてのその他の拡張子を検出します。</string>
     <string name="media">メディア</string>
     <string name="delete_audio">オーディオを削除する</string>
     <string name="summary_preference_settings_delete_audio">デバイスからオーディオファイルを削除する</string>
@@ -169,7 +192,4 @@
     <string name="summary_preference_faq_8">Cleanerを使用する頻度に関する決まったルールはありません。デバイスの使用状況と、時間の経過とともに蓄積される不要なファイルの量によって異なります。ユーザーによっては、週に1回または月に1回Cleanerを実行すると便利だと思う人もいれば、たまにしか使用しない人もいます</string>
     <string name="question_9">CleanerはすべてのAndroidデバイスと互換性がありますか？</string>
     <string name="summary_preference_faq_9">Cleanerは、アプリの最小システム要件を満たすほとんどのAndroidデバイスと互換性があるはずです。ただし、使用するGoogle Playストアまたはアプリストアでアプリのページを確認して、特定のデバイスとの互換性を確認することをお勧めします。Cleanerを使用中に問題が発生した場合は、問題のトラブルシューティングを試したり、アプリのサポートチームに問い合わせて支援を求めることができます</string>
-
-    <string name="snack_no_image">画像が提供されていません</string>
-    <string name="snack_validate_file">有効なファイルサイズを選択してください</string>
 </resources>

@@ -14,8 +14,11 @@
     <string name="quick_scan">Scansione rapida</string>
     <string name="apks">APK</string>
     <string name="archives">Archivi</string>
+    <string name="fonts">Caratteri</string>
+    <string name="windows_files">File di Windows</string>
     <string name="videos">Video</string>
     <string name="audios">Audio</string>
+    <string name="empty_folders">Cartelle vuote</string>
     <plurals name="status_selected_files">
         <item quantity="one">Stato: %1$d file selezionato</item>
         <item quantity="other">Stato: %1$d file selezionati</item>
@@ -23,6 +26,14 @@
     </plurals>
     <string name="status_no_files_selected">Stato: Nessun file selezionato</string>
     <string name="select_all">Seleziona tutto</string>
+    <string name="today">Oggi</string>
+    <string name="yesterday">Ieri</string>
+    <string name="a_year_ago">L\'anno scorso</string>
+    <plurals name="years_ago">
+        <item quantity="one">%1$d anno fa</item>
+        <item quantity="many">%1$d anni fa</item>
+        <item quantity="other">%1$d anni fa</item>
+    </plurals>
     <string name="file_not_found">File non trovato.</string>
     <string name="no_files_found">Nessun file trovato</string>
 
@@ -71,6 +82,12 @@
     <string name="width">Larghezza (px)</string>
     <string name="height">Altezza (px)</string>
     <string name="quality">Qualità</string>
+    <string name="snack_no_image">Nessuna immagine fornita</string>
+    <string name="snack_validate_file">Seleziona una dimensione file valida</string>
+
+    <string name="trash">Cestino</string>
+    <string name="trash_is_empty">Il cestino è vuoto</string>
+    <string name="restore">Ripristina</string>
 
     <string name="settings">Impostazioni</string>
 
@@ -95,6 +112,14 @@
     <string name="summary_preference_settings_delete_corpse_files">Elimina i file rimasti dalle app disinstallate/rimosse</string>
     <string name="delete_apk_files">Elimina file APK</string>
     <string name="summary_preference_settings_delete_apk_files">Elimina i file di installazione (.apk) per Android</string>
+    <string name="delete_windows_files">Estensioni di Windows</string>
+    <string name="summary_preference_settings_delete_windows_files">Rileva le estensioni di Windows (exe, dll, sys)</string>
+    <string name="delete_office_files">Estensioni di Office</string>
+    <string name="summary_preference_settings_delete_office_files">Rileva le estensioni di Office (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">Estensioni dei caratteri</string>
+    <string name="summary_preference_settings_delete_font_files">Rileva le estensioni dei caratteri (ttf, otf)</string>
+    <string name="delete_other_files">Altre estensioni</string>
+    <string name="summary_preference_settings_delete_other_files">Rileva tutti gli altri tipi di estensioni.</string>
     <string name="media">Media</string>
     <string name="delete_audio">Elimina audio</string>
     <string name="summary_preference_settings_delete_audio">Elimina i file audio dal dispositivo</string>
@@ -171,7 +196,4 @@
     <string name="summary_preference_faq_8">Non esiste una regola precisa sulla frequenza con cui utilizzare Cleaner, poiché dipenderà dall\'utilizzo del dispositivo e dalla quantità di file non necessari che si accumulano nel tempo. Alcuni utenti potrebbero trovare utile eseguire Cleaner settimanalmente o mensilmente, mentre altri potrebbero aver bisogno di usarlo solo occasionalmente</string>
     <string name="question_9">Cleaner è compatibile con tutti i dispositivi Android?</string>
     <string name="summary_preference_faq_9">Cleaner dovrebbe essere compatibile con la maggior parte dei dispositivi Android che soddisfano i requisiti minimi di sistema dell\'app. Tuttavia, è sempre una buona idea controllare la pagina dell\'app su Google Play Store o l\'app store che stai utilizzando per confermare la compatibilità con il tuo dispositivo specifico. Se riscontri problemi durante l\'utilizzo di Cleaner, puoi provare a risolvere il problema o contattare il team di supporto dell\'app per assistenza</string>
-
-    <string name="snack_no_image">Nessuna immagine fornita</string>
-    <string name="snack_validate_file">Seleziona una dimensione file valida</string>
 </resources>

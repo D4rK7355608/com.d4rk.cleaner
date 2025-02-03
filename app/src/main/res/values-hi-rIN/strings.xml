@@ -14,14 +14,24 @@
     <string name="quick_scan">त्वरित स्कैन</string>
     <string name="apks">APK</string>
     <string name="archives">पुरालेख</string>
+    <string name="fonts">फ़ॉन्ट्स</string>
+    <string name="windows_files">विंडोज़ फ़ाइलें</string>
     <string name="videos">वीडियो</string>
     <string name="audios">ऑडियो</string>
+    <string name="empty_folders">खाली फ़ोल्डर</string>
     <plurals name="status_selected_files">
         <item quantity="one">स्थिति: %1$d फ़ाइल चयनित</item>
         <item quantity="other">स्थिति: %1$d फ़ाइलें चयनित</item>
     </plurals>
     <string name="status_no_files_selected">स्थिति: कोई फ़ाइलें चयनित नहीं हैं</string>
     <string name="select_all">सबका चयन करें</string>
+    <string name="today">आज</string>
+    <string name="yesterday">कल</string>
+    <string name="a_year_ago">पिछले साल</string>
+    <plurals name="years_ago">
+        <item quantity="one">%1$d वर्ष पहले</item>
+        <item quantity="other">%1$d वर्ष पहले</item>
+    </plurals>
     <string name="file_not_found">फ़ाइल नहीं मिली।</string>
     <string name="no_files_found">कोई फ़ाइल नहीं मिली</string>
 
@@ -70,6 +80,12 @@
     <string name="width">चौड़ाई (px)</string>
     <string name="height">ऊँचाई (px)</string>
     <string name="quality">गुणवत्ता</string>
+    <string name="snack_no_image">कोई छवि प्रदान नहीं की गई</string>
+    <string name="snack_validate_file">कृपया एक मान्य फ़ाइल आकार चुनें</string>
+
+    <string name="trash">कचरा</string>
+    <string name="trash_is_empty">कचरा खाली है</string>
+    <string name="restore">पुनर्स्थापित करें</string>
 
     <string name="settings">सेटिंग्स</string>
 
@@ -94,6 +110,14 @@
     <string name="summary_preference_settings_delete_corpse_files">अनइंस्टॉल/हटाए गए ऐप्स से बची हुई फ़ाइलें हटाएं</string>
     <string name="delete_apk_files">एपीके फ़ाइलें हटाएं</string>
     <string name="summary_preference_settings_delete_apk_files">एंड्रॉइड के लिए इंस्टॉलर फ़ाइलें (.apk) फ़ाइलें हटाएं</string>
+    <string name="delete_windows_files">विंडोज एक्सटेंशन</string>
+    <string name="summary_preference_settings_delete_windows_files">विंडोज एक्सटेंशन (exe, dll, sys) का पता लगाता है</string>
+    <string name="delete_office_files">ऑफिस एक्सटेंशन</string>
+    <string name="summary_preference_settings_delete_office_files">ऑफिस एक्सटेंशन (doc, xls, ppt, docx, xlsx, pptx) का पता लगाता है</string>
+    <string name="delete_font_files">फ़ॉन्ट एक्सटेंशन</string>
+    <string name="summary_preference_settings_delete_font_files">फ़ॉन्ट एक्सटेंशन (ttf, otf) का पता लगाता है</string>
+    <string name="delete_other_files">अन्य एक्सटेंशन</string>
+    <string name="summary_preference_settings_delete_other_files">सभी अन्य एक्सटेंशन प्रकारों का पता लगाता है।</string>
     <string name="media">मीडिया</string>
     <string name="delete_audio">ऑडियो हटाएं</string>
     <string name="summary_preference_settings_delete_audio">डिवाइस से ऑडियो फ़ाइलें हटाएं</string>
@@ -169,7 +193,4 @@
     <string name="summary_preference_faq_8">क्लीनर का उपयोग करने के लिए कोई निर्धारित नियम नहीं है, क्योंकि यह आपके डिवाइस के उपयोग और समय के साथ जमा होने वाली अनावश्यक फ़ाइलों की मात्रा पर निर्भर करेगा। कुछ उपयोगकर्ता इसे साप्ताहिक या मासिक चलाना उपयोगी पा सकते हैं, जबकि अन्य को केवल कभी-कभी इसका उपयोग करने की आवश्यकता हो सकती है</string>
     <string name="question_9">क्या क्लीनर सभी एंड्रॉइड उपकरणों के साथ संगत है?</string>
     <string name="summary_preference_faq_9">क्लीनर को अधिकांश एंड्रॉइड उपकरणों के साथ संगत होना चाहिए जो ऐप की न्यूनतम सिस्टम आवश्यकताओं को पूरा करते हैं। हालाँकि, यह हमेशा एक अच्छा विचार है कि अपने विशिष्ट डिवाइस के साथ संगतता की पुष्टि करने के लिए Google Play Store या आपके द्वारा उपयोग किए जा रहे ऐप स्टोर पर ऐप के पृष्ठ की जाँच करें। यदि आपको क्लीनर का उपयोग करते समय कोई समस्या आती है, तो आप समस्या का निवारण करने का प्रयास कर सकते हैं या सहायता के लिए ऐप की सहायता टीम से संपर्क कर सकते हैं</string>
-
-    <string name="snack_no_image">कोई छवि प्रदान नहीं की गई</string>
-    <string name="snack_validate_file">कृपया एक मान्य फ़ाइल आकार चुनें</string>
 </resources>

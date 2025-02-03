@@ -15,7 +15,7 @@
     <string name="apks">APKs</string>
     <string name="archives">Archives</string>
     <string name="fonts">Fonts</string>
-    <string name="windows">Windows Files</string>
+    <string name="windows_files">Windows Files</string>
     <string name="videos">Videos</string>
     <string name="audios">Audios</string>
     <string name="empty_folders">Empty Folders</string>

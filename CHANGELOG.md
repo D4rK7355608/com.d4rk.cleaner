@@ -1,15 +1,17 @@
 # Version 3.2.0:
 
-- Many under the hood improvements.
-- Updated all libraries.
-- Added better tablet support
-- Small redesign to help page
-- Improved icon for older devices
-- 
+- **New**: Added better support for tablets and large screens.
+- **Major**: Improved file grouping and sorting for better clarity.
+- **Major**: Enhanced file scanning to detect and organize more file types, like fonts and Windows files.
+- **Minor**: Redesigned the help page for improved usability.
+- **Minor**: Updated splash screen animation and app icon.
+- **Patch**: Fixed several bugs and optimized resource handling.
+- **Patch**: Updated all libraries to improve compatibility and performance.
+- **Patch**: Many under-the-hood improvements for better performance and stability.
 
 # Version 3.1.0:
 
-- **New**:Added a refreshed About Libraries screen with an improved design and information.
+- **New**: Added a refreshed About Libraries screen with an improved design and information.
 - **New**: Added Thai and Brazilian Portuguese language support.
 - **New**: The app list now dynamically updates when uninstalling apps, eliminating the need for a
   full list reload, resulting in a smoother user experience.

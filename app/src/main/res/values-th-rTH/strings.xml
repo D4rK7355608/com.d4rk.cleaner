@@ -14,6 +14,8 @@
     <string name="quick_scan">สแกนอย่างรวดเร็ว</string>
     <string name="apks">APK</string>
     <string name="archives">ไฟล์เก็บถาวร</string>
+    <string name="fonts">แบบอักษร</string>
+    <string name="windows_files">ไฟล์ Windows</string>
     <string name="videos">วิดีโอ</string>
     <string name="audios">ไฟล์เสียง</string>
     <string name="empty_folders">โฟลเดอร์ว่าง</string>
@@ -22,6 +24,12 @@
     </plurals>
     <string name="status_no_files_selected">สถานะ: ไม่ได้เลือกไฟล์</string>
     <string name="select_all">เลือกทั้งหมด</string>
+    <string name="today">วันนี้</string>
+    <string name="yesterday">เมื่อวานนี้</string>
+    <string name="a_year_ago">ปีที่แล้ว</string>
+    <plurals name="years_ago">
+        <item quantity="other">%1$d ปีที่แล้ว</item>
+    </plurals>
     <string name="file_not_found">ไม่พบไฟล์</string>
     <string name="no_files_found">ไม่พบไฟล์</string>
 
@@ -70,6 +78,8 @@
     <string name="width">ความกว้าง (px)</string>
     <string name="height">ความสูง (px)</string>
     <string name="quality">คุณภาพ</string>
+    <string name="snack_no_image">ไม่มีรูปภาพ</string>
+    <string name="snack_validate_file">โปรดเลือกขนาดไฟล์ที่ถูกต้อง</string>
 
     <string name="trash">ถังขยะ</string>
     <string name="trash_is_empty">ถังขยะว่างเปล่า</string>
@@ -98,6 +108,14 @@
     <string name="summary_preference_settings_delete_corpse_files">ลบไฟล์ที่เหลือจากแอปที่ถอนการติดตั้ง/ลบออกแล้ว</string>
     <string name="delete_apk_files">ลบไฟล์ APK</string>
     <string name="summary_preference_settings_delete_apk_files">ลบไฟล์ติดตั้ง (.apk) สำหรับ Android</string>
+    <string name="delete_windows_files">ส่วนขยาย Windows</string>
+    <string name="summary_preference_settings_delete_windows_files">ตรวจพบส่วนขยาย Windows (exe, dll, sys)</string>
+    <string name="delete_office_files">ส่วนขยาย Office</string>
+    <string name="summary_preference_settings_delete_office_files">ตรวจพบส่วนขยาย Office (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">ส่วนขยายแบบอักษร</string>
+    <string name="summary_preference_settings_delete_font_files">ตรวจพบส่วนขยายแบบอักษร (ttf, otf)</string>
+    <string name="delete_other_files">ส่วนขยายอื่นๆ</string>
+    <string name="summary_preference_settings_delete_other_files">ตรวจพบส่วนขยายประเภทอื่นทั้งหมด</string>
     <string name="media">สื่อ</string>
     <string name="delete_audio">ลบไฟล์เสียง</string>
     <string name="summary_preference_settings_delete_audio">ลบไฟล์เสียงออกจากอุปกรณ์</string>
@@ -174,7 +192,4 @@
     <string name="summary_preference_faq_8">ไม่มีกฎเกณฑ์ที่กำหนดไว้สำหรับความถี่ที่คุณควรใช้ Cleaner เนื่องจากจะขึ้นอยู่กับการใช้งานอุปกรณ์ของคุณและจำนวนไฟล์ที่ไม่จำเป็นที่สะสมเมื่อเวลาผ่านไป ผู้ใช้บางรายอาจพบว่าการเรียกใช้ Cleaner ทุกสัปดาห์หรือทุกเดือนมีประโยชน์ ในขณะที่ผู้ใช้รายอื่นอาจต้องใช้งานเป็นครั้งคราวเท่านั้น</string>
     <string name="question_9">Cleaner เข้ากันได้กับอุปกรณ์ Android ทั้งหมดหรือไม่</string>
     <string name="summary_preference_faq_9">Cleaner ควรเข้ากันได้กับอุปกรณ์ Android ส่วนใหญ่ที่ตรงตามข้อกำหนดขั้นต่ำของระบบของแอป อย่างไรก็ตาม ควรตรวจสอบหน้าแอปใน Google Play Store หรือร้านแอปที่คุณใช้เพื่อยืนยันความเข้ากันได้กับอุปกรณ์เฉพาะของคุณเสมอ หากคุณพบปัญหาใดๆ ขณะใช้ Cleaner คุณสามารถลองแก้ไขปัญหาหรือติดต่อทีมสนับสนุนของแอปเพื่อขอความช่วยเหลือ</string>
-
-    <string name="snack_no_image">ไม่มีรูปภาพ</string>
-    <string name="snack_validate_file">โปรดเลือกขนาดไฟล์ที่ถูกต้อง</string>
 </resources>

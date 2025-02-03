@@ -14,14 +14,24 @@
     <string name="quick_scan">Schnellscan</string>
     <string name="apks">APKs</string>
     <string name="archives">Archive</string>
+    <string name="fonts">Schriften</string>
+    <string name="windows_files">Windows-Dateien</string>
     <string name="videos">Videos</string>
     <string name="audios">Audios</string>
+    <string name="empty_folders">Leere Ordner</string>
     <plurals name="status_selected_files">
         <item quantity="one">Status: %1$d Datei ausgewählt</item>
         <item quantity="other">Status: %1$d Dateien ausgewählt</item>
     </plurals>
     <string name="status_no_files_selected">Status: Keine Dateien ausgewählt</string>
     <string name="select_all">Alle auswählen</string>
+    <string name="today">Heute</string>
+    <string name="yesterday">Gestern</string>
+    <string name="a_year_ago">Letztes Jahr</string>
+    <plurals name="years_ago">
+        <item quantity="one">Vor %1$d Jahr</item>
+        <item quantity="other">Vor %1$d Jahren</item>
+    </plurals>
     <string name="file_not_found">Datei nicht gefunden.</string>
     <string name="no_files_found">Keine Dateien gefunden</string>
 
@@ -70,6 +80,12 @@
     <string name="width">Breite (px)</string>
     <string name="height">Höhe (px)</string>
     <string name="quality">Qualität</string>
+    <string name="snack_no_image">Kein Bild angegeben</string>
+    <string name="snack_validate_file">Bitte wählen Sie eine gültige Dateigröße aus</string>
+
+    <string name="trash">Papierkorb</string>
+    <string name="trash_is_empty">Der Papierkorb ist leer</string>
+    <string name="restore">Wiederherstellen</string>
 
     <string name="settings">Einstellungen</string>
 
@@ -94,6 +110,14 @@
     <string name="summary_preference_settings_delete_corpse_files">Dateien löschen, die von deinstallierten/entfernten Apps übrig geblieben sind</string>
     <string name="delete_apk_files">APK-Dateien löschen</string>
     <string name="summary_preference_settings_delete_apk_files">Installer-Dateien (.apk) für Android löschen</string>
+    <string name="delete_windows_files">Windows-Erweiterungen</string>
+    <string name="summary_preference_settings_delete_windows_files">Erkennt Windows-Erweiterungen (exe, dll, sys)</string>
+    <string name="delete_office_files">Office-Erweiterungen</string>
+    <string name="summary_preference_settings_delete_office_files">Erkennt Office-Erweiterungen (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">Schrifterweiterungen</string>
+    <string name="summary_preference_settings_delete_font_files">Erkennt Schrifterweiterungen (ttf, otf)</string>
+    <string name="delete_other_files">Andere Erweiterungen</string>
+    <string name="summary_preference_settings_delete_other_files">Erkennt alle anderen Erweiterungstypen.</string>
     <string name="media">Medien</string>
     <string name="delete_audio">Audio löschen</string>
     <string name="summary_preference_settings_delete_audio">Audiodateien vom Gerät löschen</string>
@@ -169,6 +193,4 @@
     <string name="summary_preference_faq_8">Es gibt keine feste Regel dafür, wie oft Sie Cleaner verwenden sollten, da dies von der Nutzung Ihres Geräts und der Menge an unnötigen Dateien abhängt, die sich im Laufe der Zeit ansammeln. Manche Benutzer finden es hilfreich, Cleaner wöchentlich oder monatlich auszuführen, während andere ihn nur gelegentlich verwenden müssen</string>
     <string name="question_9">Ist Cleaner mit allen Android-Geräten kompatibel?</string>
     <string name="summary_preference_faq_9">Cleaner sollte mit den meisten Android-Geräten kompatibel sein, die Mindestsystemanforderungen der App erfüllen. Es ist jedoch immer eine gute Idee, die Seite der App im Google Play Store oder im App Store, den Sie verwenden, zu überprüfen, um die Kompatibilität mit Ihrem spezifischen Gerät zu bestätigen. Wenn Sie Probleme bei der Verwendung von Cleaner haben, können Sie versuchen, das Problem zu beheben oder sich an das Support-Team der App wenden, um Hilfe zu erhalten</string>
-    <string name="snack_no_image">Kein Bild angegeben</string>
-    <string name="snack_validate_file">Bitte wählen Sie eine gültige Dateigröße aus</string>
 </resources>

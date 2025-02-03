@@ -14,13 +14,22 @@
     <string name="quick_scan">快速掃描</string>
     <string name="apks">APK</string>
     <string name="archives">檔案</string>
+    <string name="fonts">字型</string>
+    <string name="windows_files">Windows 檔案</string>
     <string name="videos">影片</string>
     <string name="audios">音訊</string>
+    <string name="empty_folders">空資料夾</string>
     <plurals name="status_selected_files">
         <item quantity="other">狀態：已選取 %1$d 個檔案</item>
     </plurals>
     <string name="status_no_files_selected">狀態：未選取任何檔案</string>
     <string name="select_all">選取全部</string>
+    <string name="today">今天</string>
+    <string name="yesterday">昨天</string>
+    <string name="a_year_ago">去年</string>
+    <plurals name="years_ago">
+        <item quantity="other">%1$d 年前</item>
+    </plurals>
     <string name="file_not_found">找不到檔案。</string>
     <string name="no_files_found">找不到檔案</string>
 
@@ -69,6 +78,12 @@
     <string name="width">寬度 (px)</string>
     <string name="height">高度 (px)</string>
     <string name="quality">品質</string>
+    <string name="snack_no_image">未提供圖片</string>
+    <string name="snack_validate_file">請選擇有效的檔案大小</string>
+
+    <string name="trash">垃圾桶</string>
+    <string name="trash_is_empty">垃圾桶是空的</string>
+    <string name="restore">還原</string>
 
     <string name="settings">設定</string>
 
@@ -93,6 +108,14 @@
     <string name="summary_preference_settings_delete_corpse_files">刪除從已解除安裝/已移除的應用程式中留下的檔案</string>
     <string name="delete_apk_files">刪除 APK 檔案</string>
     <string name="summary_preference_settings_delete_apk_files">刪除 Android 的安裝程式檔案 (.apk) 檔案</string>
+    <string name="delete_windows_files">Windows 擴展</string>
+    <string name="summary_preference_settings_delete_windows_files">檢測 Windows 擴展名 (exe、dll、sys)</string>
+    <string name="delete_office_files">Office 擴展</string>
+    <string name="summary_preference_settings_delete_office_files">檢測 Office 擴展名 (doc、xls、ppt、docx、xlsx、pptx)</string>
+    <string name="delete_font_files">字型擴展</string>
+    <string name="summary_preference_settings_delete_font_files">檢測字型擴展名 (ttf、otf)</string>
+    <string name="delete_other_files">其他擴展</string>
+    <string name="summary_preference_settings_delete_other_files">檢測所有其他類型的擴展名。</string>
     <string name="media">媒體</string>
     <string name="delete_audio">刪除音訊</string>
     <string name="summary_preference_settings_delete_audio">從裝置中刪除音訊檔案</string>
@@ -169,7 +192,4 @@
     <string name="summary_preference_faq_8">沒有設定使用清潔工具的次數，因為這取決於您裝置的使用情況以及隨著時間推移累積的不必要檔案數量。有些使用者可能會發現每週或每月執行清潔工具很有用，而其他人可能只偶爾需要使用它</string>
     <string name="question_9">清潔工具與所有 Android 裝置相容嗎？</string>
     <string name="summary_preference_faq_9">清潔工具應與符合應用程式最低系統要求的大多數 Android 裝置相容。但是，始終建議您檢查 Google Play 商店或您使用的應用程式商店中的應用程式頁面，以確認它與您的特定裝置相容。如果您在使用清潔工具時遇到任何問題，可以嘗試解決問題或聯繫應用程式的支援團隊以獲取協助</string>
-
-    <string name="snack_no_image">未提供圖片</string>
-    <string name="snack_validate_file">請選擇有效的檔案大小</string>
 </resources>

@@ -14,6 +14,8 @@
     <string name="quick_scan">Escaneamento rápido</string>
     <string name="apks">APKs</string>
     <string name="archives">Arquivos</string>
+    <string name="fonts">Fontes</string>
+    <string name="windows_files">Arquivos do Windows</string>
     <string name="videos">Vídeos</string>
     <string name="audios">Áudios</string>
     <string name="empty_folders">Pastas vazias</string>
@@ -24,6 +26,14 @@
     </plurals>
     <string name="status_no_files_selected">Status: Nenhum arquivo selecionado</string>
     <string name="select_all">Selecionar tudo</string>
+    <string name="today">Hoje</string>
+    <string name="yesterday">Ontem</string>
+    <string name="a_year_ago">Ano passado</string>
+    <plurals name="years_ago">
+        <item quantity="one">Há %1$d ano</item>
+        <item quantity="many">Há %1$d anos</item>
+        <item quantity="other">Há %1$d anos</item>
+    </plurals>
     <string name="file_not_found">Arquivo não encontrado.</string>
     <string name="no_files_found">Nenhum arquivo encontrado</string>
 
@@ -72,6 +82,8 @@
     <string name="width">Largura (px)</string>
     <string name="height">Altura (px)</string>
     <string name="quality">Qualidade</string>
+    <string name="snack_no_image">Nenhuma imagem fornecida</string>
+    <string name="snack_validate_file">Selecione um tamanho de arquivo válido</string>
 
     <string name="trash">Lixeira</string>
     <string name="trash_is_empty">A lixeira está vazia</string>
@@ -100,6 +112,14 @@
     <string name="summary_preference_settings_delete_corpse_files">Excluir arquivos restantes de aplicativos desinstalados/removidos</string>
     <string name="delete_apk_files">Excluir arquivos APK</string>
     <string name="summary_preference_settings_delete_apk_files">Excluir arquivos do instalador (.apk) para Android</string>
+    <string name="delete_windows_files">Extensões do Windows</string>
+    <string name="summary_preference_settings_delete_windows_files">Detecta extensões do Windows (exe, dll, sys)</string>
+    <string name="delete_office_files">Extensões do Office</string>
+    <string name="summary_preference_settings_delete_office_files">Detecta extensões do Office (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">Extensões de fontes</string>
+    <string name="summary_preference_settings_delete_font_files">Detecta extensões de fontes (ttf, otf)</string>
+    <string name="delete_other_files">Outras extensões</string>
+    <string name="summary_preference_settings_delete_other_files">Detecta todos os outros tipos de extensões.</string>
     <string name="media">Mídia</string>
     <string name="delete_audio">Excluir áudio</string>
     <string name="summary_preference_settings_delete_audio">Excluir os arquivos de áudio do dispositivo</string>
@@ -176,7 +196,4 @@
     <string name="summary_preference_faq_8">Não há uma regra definida para a frequência com que você deve usar o Limpador, pois isso dependerá do uso do seu dispositivo e da quantidade de arquivos desnecessários que se acumulam ao longo do tempo. Alguns usuários podem achar útil executar o Limpador semanalmente ou mensalmente, enquanto outros podem precisar usá-lo apenas ocasionalmente</string>
     <string name="question_9">O Limpador é compatível com todos os dispositivos Android?</string>
     <string name="summary_preference_faq_9">O Limpador deve ser compatível com a maioria dos dispositivos Android que atendem aos requisitos mínimos de sistema do aplicativo. No entanto, é sempre uma boa ideia verificar a página do aplicativo na Google Play Store ou na loja de aplicativos que você está usando para confirmar a compatibilidade com seu dispositivo específico. Se você encontrar algum problema ao usar o Limpador, pode tentar solucionar o problema ou entrar em contato com a equipe de suporte do aplicativo para obter assistência</string>
-
-    <string name="snack_no_image">Nenhuma imagem fornecida</string>
-    <string name="snack_validate_file">Selecione um tamanho de arquivo válido</string>
 </resources>

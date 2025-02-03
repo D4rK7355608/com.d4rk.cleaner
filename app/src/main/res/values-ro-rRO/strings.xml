@@ -14,8 +14,11 @@
     <string name="quick_scan">Scanare rapidă</string>
     <string name="apks">APK-uri</string>
     <string name="archives">Arhive</string>
+    <string name="fonts">Fonturi</string>
+    <string name="windows_files">Fișiere Windows</string>
     <string name="videos">Videoclipuri</string>
     <string name="audios">Fișiere audio</string>
+    <string name="empty_folders">Foldere goale</string>
     <plurals name="status_selected_files">
         <item quantity="one">Stare: %1$d fișier selectat</item>
         <item quantity="few">Stare: %1$d fișiere selectate</item>
@@ -23,6 +26,14 @@
     </plurals>
     <string name="status_no_files_selected">Stare: Niciun fișier selectat</string>
     <string name="select_all">Selectează tot</string>
+    <string name="today">Astăzi</string>
+    <string name="yesterday">Ieri</string>
+    <string name="a_year_ago">Anul trecut</string>
+    <plurals name="years_ago">
+        <item quantity="one">Acum %1$d an</item>
+        <item quantity="few">Acum %1$d ani</item>
+        <item quantity="other">Acum %1$d de ani</item>
+    </plurals>
     <string name="file_not_found">Fișierul nu a fost găsit.</string>
     <string name="no_files_found">Nu s-au găsit fișiere</string>
 
@@ -71,6 +82,12 @@
     <string name="width">Lățime (px)</string>
     <string name="height">Înălțime (px)</string>
     <string name="quality">Calitate</string>
+    <string name="snack_no_image">Nu a fost furnizată nicio imagine</string>
+    <string name="snack_validate_file">Selectați o dimensiune de fișier validă</string>
+
+    <string name="trash">Coș de gunoi</string>
+    <string name="trash_is_empty">Coșul de gunoi este gol</string>
+    <string name="restore">Restabilește</string>
 
     <string name="settings">Setări</string>
 
@@ -95,6 +112,14 @@
     <string name="summary_preference_settings_delete_corpse_files">Ștergeți fișierele rămase de la aplicațiile dezinstalate/eliminate</string>
     <string name="delete_apk_files">Ștergeți fișierele APK</string>
     <string name="summary_preference_settings_delete_apk_files">Ștergeți fișierele de instalare (.apk) pentru Android</string>
+    <string name="delete_windows_files">Extensii Windows</string>
+    <string name="summary_preference_settings_delete_windows_files">Detectează extensii Windows (exe, dll, sys)</string>
+    <string name="delete_office_files">Extensii Office</string>
+    <string name="summary_preference_settings_delete_office_files">Detectează extensii Office (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">Extensii font</string>
+    <string name="summary_preference_settings_delete_font_files">Detectează extensii font (ttf, otf)</string>
+    <string name="delete_other_files">Alte extensii</string>
+    <string name="summary_preference_settings_delete_other_files">Detectează toate celelalte tipuri de extensii.</string>
     <string name="media">Media</string>
     <string name="delete_audio">Ștergeți audio</string>
     <string name="summary_preference_settings_delete_audio">Ștergeți fișierele audio de pe dispozitiv</string>
@@ -171,7 +196,4 @@
     <string name="summary_preference_faq_8">Nu există o regulă stabilită cu privire la cât de des ar trebui să utilizați Cleaner, deoarece va depinde de utilizarea dispozitivului dvs. și de cantitatea de fișiere inutile care se acumulează în timp. Unii utilizatori pot găsi util să ruleze Cleaner săptămânal sau lunar, în timp ce alții pot avea nevoie să îl utilizeze doar ocazional</string>
     <string name="question_9">Este Cleaner compatibil cu toate dispozitivele Android?</string>
     <string name="summary_preference_faq_9">Cleaner ar trebui să fie compatibil cu majoritatea dispozitivelor Android care îndeplinesc cerințele minime ale sistemului aplicației. Cu toate acestea, este întotdeauna o idee bună să verificați pagina aplicației din Google Play Store sau din magazinul de aplicații pe care îl utilizați pentru a confirma compatibilitatea cu dispozitivul dvs. specific. Dacă întâmpinați probleme în timp ce utilizați Cleaner, puteți încerca să depanați problema sau să contactați echipa de asistență a aplicației pentru asistență</string>
-
-    <string name="snack_no_image">Nu a fost furnizată nicio imagine</string>
-    <string name="snack_validate_file">Selectați o dimensiune de fișier validă</string>
 </resources>

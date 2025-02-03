@@ -14,14 +14,24 @@
     <string name="quick_scan">Hızlı Tarama</string>
     <string name="apks">APK\'lar</string>
     <string name="archives">Arşivler</string>
+    <string name="fonts">Yazı Tipleri</string>
+    <string name="windows_files">Windows Dosyaları</string>
     <string name="videos">Videolar</string>
     <string name="audios">Sesler</string>
+    <string name="empty_folders">Boş Klasörler</string>
     <plurals name="status_selected_files">
         <item quantity="one">Durum: %1$d dosya seçildi</item>
         <item quantity="other">Durum: %1$d dosya seçildi</item>
     </plurals>
     <string name="status_no_files_selected">Durum: Dosya seçilmedi</string>
     <string name="select_all">Tümünü Seç</string>
+    <string name="today">Bugün</string>
+    <string name="yesterday">Dün</string>
+    <string name="a_year_ago">Geçen yıl</string>
+    <plurals name="years_ago">
+        <item quantity="one">%1$d yıl önce</item>
+        <item quantity="other">%1$d yıl önce</item>
+    </plurals>
     <string name="file_not_found">Dosya bulunamadı.</string>
     <string name="no_files_found">Dosya bulunamadı</string>
 
@@ -70,6 +80,12 @@
     <string name="width">Genişlik (px)</string>
     <string name="height">Yükseklik (px)</string>
     <string name="quality">Kalite</string>
+    <string name="snack_no_image">Sağlanan resim yok</string>
+    <string name="snack_validate_file">Lütfen geçerli bir dosya boyutu seçin</string>
+
+    <string name="trash">Çöp Kutusu</string>
+    <string name="trash_is_empty">Çöp kutusu boş</string>
+    <string name="restore">Geri Yükle</string>
 
     <string name="settings">Ayarlar</string>
 
@@ -94,6 +110,14 @@
     <string name="summary_preference_settings_delete_corpse_files">Kaldırılmış/kaldırılmış uygulamalardan kalan dosyaları silin</string>
     <string name="delete_apk_files">APK dosyalarını sil</string>
     <string name="summary_preference_settings_delete_apk_files">Android için yükleyici dosyalarını (.apk) silin</string>
+    <string name="delete_windows_files">Windows Uzantıları</string>
+    <string name="summary_preference_settings_delete_windows_files">Windows uzantılarını algılar (exe, dll, sys)</string>
+    <string name="delete_office_files">Office Uzantıları</string>
+    <string name="summary_preference_settings_delete_office_files">Office uzantılarını algılar (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">Yazı Tipi Uzantıları</string>
+    <string name="summary_preference_settings_delete_font_files">Yazı tipi uzantılarını algılar (ttf, otf)</string>
+    <string name="delete_other_files">Diğer Uzantılar</string>
+    <string name="summary_preference_settings_delete_other_files">Tüm diğer uzantı türlerini algılar.</string>
     <string name="media">Medya</string>
     <string name="delete_audio">Ses dosyalarını sil</string>
     <string name="summary_preference_settings_delete_audio">Cihazdan ses dosyalarını silin</string>
@@ -170,7 +194,4 @@
     <string name="summary_preference_faq_8">Temizleyiciyi ne sıklıkla kullanmanız gerektiğine dair belirli bir kural yoktur, çünkü bu cihazınızın kullanımına ve zamanla biriken gereksiz dosya miktarına bağlı olacaktır. Bazı kullanıcılar Temizleyiciyi haftalık veya aylık olarak çalıştırmayı faydalı bulabilirken, diğerleri yalnızca ara sıra kullanması gerekebilir</string>
     <string name="question_9">Temizleyici tüm Android cihazlarla uyumlu mu?</string>
     <string name="summary_preference_faq_9">Temizleyici, uygulamanın minimum sistem gereksinimlerini karşılayan çoğu Android cihazla uyumlu olmalıdır. Ancak, uyumluluğu belirli cihazınızla doğrulamak için Google Play Store\'da veya kullandığınız uygulama mağazasında uygulamanın sayfasını kontrol etmek her zaman iyi bir fikirdir. Temizleyici\'yi kullanırken herhangi bir sorunla karşılaşırsanız, sorunu gidermeyi deneyebilir veya yardım almak için uygulamanın destek ekibiyle iletişime geçebilirsiniz</string>
-
-    <string name="snack_no_image">Sağlanan resim yok</string>
-    <string name="snack_validate_file">Lütfen geçerli bir dosya boyutu seçin</string>
 </resources>

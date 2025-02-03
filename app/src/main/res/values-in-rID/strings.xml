@@ -14,13 +14,22 @@
     <string name="quick_scan">Pemindaian Cepat</string>
     <string name="apks">APK</string>
     <string name="archives">Arsip</string>
+    <string name="fonts">Font</string>
+    <string name="windows_files">File Windows</string>
     <string name="videos">Video</string>
     <string name="audios">Audio</string>
+    <string name="empty_folders">Folder Kosong</string>
     <plurals name="status_selected_files">
         <item quantity="other">Status: %1$d berkas dipilih</item>
     </plurals>
     <string name="status_no_files_selected">Status: Tidak ada file yang dipilih</string>
     <string name="select_all">Pilih Semua</string>
+    <string name="today">Hari ini</string>
+    <string name="yesterday">Kemarin</string>
+    <string name="a_year_ago">Tahun lalu</string>
+    <plurals name="years_ago">
+        <item quantity="other">%1$d tahun yang lalu</item>
+    </plurals>
     <string name="file_not_found">File tidak ditemukan.</string>
     <string name="no_files_found">Tidak ada berkas yang ditemukan</string>
     <string name="app_manager">Manajer Aplikasi</string>
@@ -68,6 +77,12 @@
     <string name="width">Lebar (px)</string>
     <string name="height">Tinggi (px)</string>
     <string name="quality">Kualitas</string>
+    <string name="snack_no_image">Tidak ada gambar yang disediakan</string>
+    <string name="snack_validate_file">Harap pilih ukuran file yang valid</string>
+
+    <string name="trash">Sampah</string>
+    <string name="trash_is_empty">Sampah kosong</string>
+    <string name="restore">Pulihkan</string>
 
     <string name="settings">Pengaturan</string>
 
@@ -92,6 +107,14 @@
     <string name="summary_preference_settings_delete_corpse_files">Hapus file yang tersisa dari aplikasi yang dicopot/dihapus</string>
     <string name="delete_apk_files">Hapus file APK</string>
     <string name="summary_preference_settings_delete_apk_files">Hapus file penginstal (.apk) untuk Android</string>
+    <string name="delete_windows_files">Ekstensi Windows</string>
+    <string name="summary_preference_settings_delete_windows_files">Mendeteksi ekstensi Windows (exe, dll, sys)</string>
+    <string name="delete_office_files">Ekstensi Office</string>
+    <string name="summary_preference_settings_delete_office_files">Mendeteksi ekstensi Office (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">Ekstensi Font</string>
+    <string name="summary_preference_settings_delete_font_files">Mendeteksi ekstensi font (ttf, otf)</string>
+    <string name="delete_other_files">Ekstensi Lainnya</string>
+    <string name="summary_preference_settings_delete_other_files">Mendeteksi semua jenis ekstensi lainnya.</string>
     <string name="media">Media</string>
     <string name="delete_audio">Hapus audio</string>
     <string name="summary_preference_settings_delete_audio">Hapus file audio dari perangkat</string>
@@ -168,6 +191,4 @@
     <string name="summary_preference_faq_8">Tidak ada aturan yang ditetapkan untuk seberapa sering Anda harus menggunakan Cleaner, karena itu akan bergantung pada penggunaan perangkat Anda dan jumlah file yang tidak perlu yang terakumulasi dari waktu ke waktu. Beberapa pengguna mungkin merasa terbantu untuk menjalankan Cleaner setiap minggu atau setiap bulan, sementara yang lain mungkin hanya perlu menggunakannya sesekali</string>
     <string name="question_9">Apakah Cleaner kompatibel dengan semua perangkat Android?</string>
     <string name="summary_preference_faq_9">Cleaner harus kompatibel dengan sebagian besar perangkat Android yang memenuhi persyaratan sistem minimum aplikasi. Namun, selalu merupakan ide yang baik untuk memeriksa halaman aplikasi di Google Play Store atau toko aplikasi yang Anda gunakan untuk mengonfirmasi kompatibilitas dengan perangkat khusus Anda. Jika Anda mengalami masalah saat menggunakan Cleaner, Anda dapat mencoba memecahkan masalah atau menghubungi tim dukungan aplikasi untuk bantuan</string>
-    <string name="snack_no_image">Tidak ada gambar yang disediakan</string>
-    <string name="snack_validate_file">Harap pilih ukuran file yang valid</string>
 </resources>
