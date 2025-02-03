@@ -1,7 +1,11 @@
 package com.d4rk.cleaner.ui.screens.home.repository
 
 import android.app.Application
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.media.MediaScannerConnection
+import android.os.Build
 import android.os.Environment
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.datastore.DataStore
@@ -123,13 +127,29 @@ abstract class HomeRepositoryImplementation(val application : Application , val 
         }
     }
 
-    fun deleteFilesImplementation(filesToDelete : Set<File>) {
+    suspend fun deleteFilesImplementation(filesToDelete : Set<File>) {
+        val shouldClearClipboard : Boolean = dataStore.clipboardClean.first()
+
         filesToDelete.forEach { file ->
             if (file.exists()) {
                 file.deleteRecursively()
             }
+        }
+
+        if (shouldClearClipboard) {
+            clearClipboardImplementation()
+        }
+    }
+
+    private fun clearClipboardImplementation() {
+        val clipboardManager : ClipboardManager = application.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager ?: return
+
+        runCatching {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                clipboardManager.clearPrimaryClip()
+            }
             else {
-                // TODO: add a dialog if no file to delete is found
+                clipboardManager.setPrimaryClip(ClipData.newPlainText("" , ""))
             }
         }
     }
@@ -151,12 +171,6 @@ abstract class HomeRepositoryImplementation(val application : Application , val 
                         application , arrayOf(destination.absolutePath , file.absolutePath) , null , null
                     )
                 }
-                else {
-                    // TODO: Add a dialog for failed file moves
-                }
-            }
-            else {
-                // TODO: Add a dialog if the file does not exist for moving to trash
             }
         }
     }
@@ -181,9 +195,6 @@ abstract class HomeRepositoryImplementation(val application : Application , val 
                             application , arrayOf(destinationFile.absolutePath , file.absolutePath) , null , null
                         )
                     }
-                    else {
-                        // TODO: Add a dialog for failed restore operations
-                    }
                 }
                 else {
                     val downloadsDir : File = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
@@ -194,13 +205,7 @@ abstract class HomeRepositoryImplementation(val application : Application , val 
                             application , arrayOf(destinationFile.absolutePath , file.absolutePath) , null , null
                         )
                     }
-                    else {
-                        // TODO: Add a dialog if moving to downloads fails
-                    }
                 }
-            }
-            else {
-                // TODO: Add a dialog if the file does not exist
             }
         }
     }
