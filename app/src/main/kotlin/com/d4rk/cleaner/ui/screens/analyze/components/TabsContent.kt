@@ -2,14 +2,18 @@ package com.d4rk.cleaner.ui.screens.analyze.components
 
 import android.view.SoundEffectConstants
 import android.view.View
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ScrollableTabRow
@@ -34,7 +38,9 @@ import java.util.Date
 import java.util.Locale
 
 @Composable
-fun TabsContent(groupedFiles : Map<String , List<File>> , imageLoader : ImageLoader , viewModel : HomeViewModel , view : View , coroutineScope : CoroutineScope , data : UiHomeModel) {
+fun TabsContent(
+    groupedFiles : Map<String , List<File>> , imageLoader : ImageLoader , viewModel : HomeViewModel , view : View , coroutineScope : CoroutineScope , data : UiHomeModel
+) {
     val tabs : List<String> = groupedFiles.keys.toList()
     val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
 
@@ -57,12 +63,27 @@ fun TabsContent(groupedFiles : Map<String , List<File>> , imageLoader : ImageLoa
             } ,
         ) {
             tabs.forEachIndexed { index , title ->
+                val allFilesInCategory : List<File> = groupedFiles[title] ?: emptyList()
+                val isCategoryChecked : Boolean = allFilesInCategory.all { file ->
+                    data.analyzeState.fileSelectionMap[file] == true
+                }
+
                 Tab(modifier = Modifier.bounceClick() , selected = pagerState.currentPage == index , onClick = {
                     view.playSoundEffect(SoundEffectConstants.CLICK)
                     coroutineScope.launch {
                         pagerState.animateScrollToPage(page = index)
                     }
-                } , text = { Text(text = title) })
+                } , text = {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically , horizontalArrangement = Arrangement.Start
+                    ) {
+                        Checkbox(checked = isCategoryChecked , onCheckedChange = {
+                            viewModel.toggleSelectFilesForCategory(category = title)
+                        })
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(text = title)
+                    }
+                })
             }
         }
 

@@ -108,6 +108,30 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
+    fun toggleSelectFilesForCategory(category : String) {
+        viewModelScope.launch {
+            val currentState : UiHomeModel = _uiState.value
+            val filesInCategory : List<File> = currentState.analyzeState.groupedFiles[category] ?: emptyList()
+            val currentSelectionMap : Map<File , Boolean> = currentState.analyzeState.fileSelectionMap
+            val allSelected : Boolean = filesInCategory.all { currentSelectionMap[it] == true }
+            val updatedSelectionMap : MutableMap<File , Boolean> = currentSelectionMap.toMutableMap().apply {
+                filesInCategory.forEach { file ->
+                    this[file] = ! allSelected
+                }
+            }
+
+            val selectedVisibleCount : Int = updatedSelectionMap.filterKeys { it in currentState.analyzeState.groupedFiles.values.flatten() }.count { it.value }
+
+            _uiState.update { state ->
+                state.copy(
+                    analyzeState = state.analyzeState.copy(
+                        fileSelectionMap = updatedSelectionMap , selectedFilesCount = selectedVisibleCount , areAllFilesSelected = selectedVisibleCount == currentState.analyzeState.groupedFiles.values.flatten().size
+                    )
+                )
+            }
+        }
+    }
+
     fun clean() {
         viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             showLoading()

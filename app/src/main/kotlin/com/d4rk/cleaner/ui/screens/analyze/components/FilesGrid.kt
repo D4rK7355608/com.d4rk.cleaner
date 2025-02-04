@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil3.ImageLoader
+import com.d4rk.android.libs.apptoolkit.utils.helpers.ScreenHelper
 import com.d4rk.cleaner.ui.components.layouts.NonLazyGrid
 import java.io.File
 
@@ -19,13 +21,15 @@ fun FilesGrid(
     onFileSelectionChange : (File , Boolean) -> Unit ,
     view : View ,
 ) {
+    val columns : Int = if (ScreenHelper.isTablet(context = LocalContext.current)) 6 else 3
+
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
         NonLazyGrid(
-            columns = 3 , itemCount = files.size , modifier = Modifier.padding(horizontal = 8.dp)
+            columns = columns , itemCount = files.size , modifier = Modifier.padding(horizontal = 8.dp)
         ) { index ->
-            val file = files[index]
+            val file : File = files[index]
             FileCard(file = file , imageLoader = imageLoader , isChecked = fileSelectionStates[file] == true , onCheckedChange = { isChecked -> onFileSelectionChange(file , isChecked) } , view = view , modifier = Modifier)
         }
     }
