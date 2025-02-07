@@ -9,7 +9,7 @@ import androidx.compose.material.icons.sharp.AppRegistration
 import androidx.compose.material.icons.sharp.Storage
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.constants.ui.bottombar.BottomBarRoutes
+import com.d4rk.cleaner.utils.constants.ui.bottombar.BottomBarRoutes
 
 sealed class BottomNavigationScreen(
     val route : String , val icon : ImageVector , val selectedIcon : ImageVector , val title : Int

@@ -20,16 +20,10 @@ import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.hapticDrawerSwipe
 import com.d4rk.android.libs.apptoolkit.ui.components.spacers.LargeVerticalSpacer
-import com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.screens.MainScreenState
-import com.d4rk.cleaner.ui.screens.help.HelpActivity
-import com.d4rk.cleaner.ui.screens.imageoptimizer.imagepicker.ImagePickerActivity
 import com.d4rk.cleaner.ui.screens.main.MainScaffoldContent
-import com.d4rk.cleaner.ui.screens.settings.SettingsActivity
-import com.d4rk.cleaner.ui.screens.trash.TrashActivity
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 @Composable
 fun NavigationDrawer(
@@ -61,40 +55,9 @@ private fun NavigationDrawerItemContent(
 ) {
     val title = stringResource(id = item.title)
     NavigationDrawerItem(label = { Text(text = title) } , selected = false , onClick = {
-        when (item.title) {
-            R.string.image_optimizer -> IntentsHelper.openActivity(
-                context = context , activityClass = ImagePickerActivity::class.java
-            )
-
-            R.string.trash -> IntentsHelper.openActivity(
-                context = context , activityClass = TrashActivity::class.java
-            )
-
-            com.d4rk.android.libs.apptoolkit.R.string.settings -> {
-                IntentsHelper.openActivity(
-                    context = context , activityClass = SettingsActivity::class.java
-                )
-            }
-
-            com.d4rk.android.libs.apptoolkit.R.string.help_and_feedback -> {
-                IntentsHelper.openActivity(
-                    context = context , activityClass = HelpActivity::class.java
-                )
-            }
-
-            com.d4rk.android.libs.apptoolkit.R.string.updates -> {
-                IntentsHelper.openUrl(
-                    context = context , url = "https://github.com/D4rK7355608/${context.packageName}/blob/master/CHANGELOG.md"
-                )
-            }
-
-            com.d4rk.android.libs.apptoolkit.R.string.share -> {
-                IntentsHelper.shareApp(
-                    context = context , shareMessageFormat = com.d4rk.android.libs.apptoolkit.R.string.summary_share_message
-                )
-            }
-        }
-        coroutineScope.launch { drawerState.close() }
+        handleNavigationItemClick(
+            context = context , item = item , drawerState = drawerState , coroutineScope = coroutineScope
+        )
     } , icon = {
         Icon(item.selectedIcon , contentDescription = title)
     } , badge = {

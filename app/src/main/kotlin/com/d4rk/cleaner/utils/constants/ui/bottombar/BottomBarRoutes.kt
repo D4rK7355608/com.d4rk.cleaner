@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.constants.ui.bottombar
+package com.d4rk.cleaner.utils.constants.ui.bottombar
 
 object BottomBarRoutes {
     const val HOME = "home"

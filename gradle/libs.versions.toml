@@ -1,26 +1,17 @@
 [versions]
 agp = "8.8.0"
-billing = "7.1.1"
 coilVideoVersion = "3.0.4"
 compressor = "3.0.1"
 aboutlibraries = "11.3.0"
 constraintlayoutCompose = "1.1.0"
-firebaseBom = "33.8.0"
 kotlin = "2.0.21"
 google-services = "4.4.2"
-google-firebase-crashlytics = "3.0.2"
-reviewKtx = "2.0.2"
+google-firebase-crashlytics = "3.0.3"
 
 [libraries]
 androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
-billing = { module = "com.android.billingclient:billing", version.ref = "billing" }
 coil3-coil-video = { module = "io.coil-kt.coil3:coil-video", version.ref = "coilVideoVersion" }
 compressor = { module = "id.zelory:compressor", version.ref = "compressor" }
-firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx" }
-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
-firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-ktx" }
-firebase-perf = { module = "com.google.firebase:firebase-perf" }
-review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "reviewKtx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

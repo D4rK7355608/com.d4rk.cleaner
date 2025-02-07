@@ -30,7 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.ui.components.spacers.MediumVerticalSpacer
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.constants.ui.bottombar.BottomBarRoutes
+import com.d4rk.cleaner.utils.constants.ui.bottombar.BottomBarRoutes
 import com.d4rk.cleaner.data.datastore.DataStore
 import kotlinx.coroutines.flow.firstOrNull
 

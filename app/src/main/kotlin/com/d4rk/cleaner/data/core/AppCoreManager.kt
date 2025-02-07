@@ -11,7 +11,7 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import com.d4rk.android.libs.apptoolkit.data.core.BaseCoreManager
 import com.d4rk.android.libs.apptoolkit.data.core.ads.AdsCoreManager
 import com.d4rk.android.libs.apptoolkit.utils.error.ErrorHandler
-import com.d4rk.cleaner.constants.ads.AdsConstants
+import com.d4rk.cleaner.utils.constants.ads.AdsConstants
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.utils.error.CrashlyticsErrorReporter
 import kotlinx.coroutines.Deferred

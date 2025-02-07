@@ -1,3 +1,7 @@
+# Version 3.2.1:
+
+- **Minor**: Under-the-hood improvements for better performance and stability.
+
 # Version 3.2.0:
 
 - **New**: Added better support for tablets and large screens.

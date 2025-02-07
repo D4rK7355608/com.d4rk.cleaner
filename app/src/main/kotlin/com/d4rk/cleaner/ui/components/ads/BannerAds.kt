@@ -8,7 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import com.d4rk.cleaner.constants.ads.AdsConstants
+import com.d4rk.cleaner.utils.constants.ads.AdsConstants
 import com.d4rk.cleaner.data.core.AppCoreManager
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
