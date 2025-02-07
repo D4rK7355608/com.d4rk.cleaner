@@ -8,9 +8,9 @@ import android.content.pm.PackageManager
 import android.os.Environment
 import android.os.StatFs
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.model.ui.memorymanager.InternalStorageInfo
-import com.d4rk.cleaner.data.model.ui.memorymanager.RamInfo
-import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
+import com.d4rk.cleaner.core.data.model.ui.memorymanager.InternalStorageInfo
+import com.d4rk.cleaner.core.data.model.ui.memorymanager.RamInfo
+import com.d4rk.cleaner.core.data.model.ui.memorymanager.StorageInfo
 import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import java.io.File
 import kotlin.coroutines.resume
@@ -19,33 +19,28 @@ import kotlin.math.pow
 
 abstract class MemoryManagerRepositoryImplementation(val application : Application) {
 
-    suspend fun getStorageInfo(): StorageInfo {
+    suspend fun getStorageInfo(): com.d4rk.cleaner.core.data.model.ui.memorymanager.StorageInfo {
         return suspendCoroutine { continuation ->
             StorageUtils.getStorageInfo(application) { used , total , _ , _ , _ ->
                 val usedStorageBytes : Double = (used.toDoubleOrNull() ?: 0.0) * 1024.0.pow(n = 3)
                 val totalStorageBytes : Double = (total.toDoubleOrNull() ?: 0.0) * 1024.0.pow(n = 3)
 
                 val storageBreakdown : Map<String , Long> = getStorageBreakdown(application)
-                val storageInfo = StorageInfo(
-                    storageUsageProgress = totalStorageBytes.toFloat() ,
-                    freeStorage = (totalStorageBytes - usedStorageBytes).toLong() ,
-                    usedStorage = usedStorageBytes.toLong() ,
-                    storageBreakdown = storageBreakdown
+                val storageInfo = com.d4rk.cleaner.core.data.model.ui.memorymanager.StorageInfo(
+                    storageUsageProgress = totalStorageBytes.toFloat() , freeStorage = (totalStorageBytes - usedStorageBytes).toLong() , usedStorage = usedStorageBytes.toLong() , storageBreakdown = storageBreakdown
                 )
                 continuation.resume(storageInfo)
             }
         }
     }
 
-    fun getRamInfo() : RamInfo {
+    fun getRamInfo() : com.d4rk.cleaner.core.data.model.ui.memorymanager.RamInfo {
         val activityManager : ActivityManager =
                 application.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val memoryInfo = ActivityManager.MemoryInfo()
         activityManager.getMemoryInfo(memoryInfo)
-        return RamInfo(
-            totalRam = memoryInfo.totalMem ,
-            availableRam = memoryInfo.availMem ,
-            usedRam = memoryInfo.totalMem - memoryInfo.availMem
+        return com.d4rk.cleaner.core.data.model.ui.memorymanager.RamInfo(
+            totalRam = memoryInfo.totalMem , availableRam = memoryInfo.availMem , usedRam = memoryInfo.totalMem - memoryInfo.availMem
         )
     }
 
@@ -154,7 +149,7 @@ abstract class MemoryManagerRepositoryImplementation(val application : Applicati
      *
      * @return An [InternalStorageInfo] object containing details about total, free, and used internal storage.
      */
-    private fun getInternalStorageInfo() : InternalStorageInfo {
+    private fun getInternalStorageInfo() : com.d4rk.cleaner.core.data.model.ui.memorymanager.InternalStorageInfo {
         val statFs = StatFs(Environment.getDataDirectory().path)
         val blockSizeBytes : Long = statFs.blockSizeLong
         val totalBlocks : Long = statFs.blockCountLong
@@ -164,6 +159,6 @@ abstract class MemoryManagerRepositoryImplementation(val application : Applicati
         val freeStorage : Long = availableBlocks * blockSizeBytes
         val usedStorage : Long = totalStorage - freeStorage
 
-        return InternalStorageInfo(totalStorage , freeStorage , usedStorage)
+        return com.d4rk.cleaner.core.data.model.ui.memorymanager.InternalStorageInfo(totalStorage , freeStorage , usedStorage)
     }
 }

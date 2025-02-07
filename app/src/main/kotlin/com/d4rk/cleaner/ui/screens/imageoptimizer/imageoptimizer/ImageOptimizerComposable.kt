@@ -34,14 +34,13 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil3.compose.AsyncImage
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.core.AppCoreManager
-import com.d4rk.cleaner.ui.components.ads.AdBanner
-import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.data.model.ui.imageoptimizer.ImageOptimizerState
+import com.d4rk.cleaner.core.AppCoreManager
+import com.d4rk.cleaner.core.ui.components.ads.AdBanner
+import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.tabs.FileSizeScreen
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.tabs.ManualModeScreen
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.tabs.QuickCompressScreen
-import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
+import com.d4rk.cleaner.core.ui.components.navigation.TopAppBarScaffoldWithBackButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -140,7 +139,7 @@ fun ImageOptimizerComposable(
 
 @Composable
 fun ImageDisplay(viewModel: ImageOptimizerViewModel) {
-    val state: State<ImageOptimizerState> = viewModel.uiState.collectAsState()
+    val state: State<com.d4rk.cleaner.core.data.model.ui.imageoptimizer.ImageOptimizerState> = viewModel.uiState.collectAsState()
     val showCompressedImage: MutableState<Boolean> = remember { mutableStateOf(value = false) }
 
     LaunchedEffect(key1 = state.value.compressedImageUri) {

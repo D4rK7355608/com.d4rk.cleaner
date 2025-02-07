@@ -20,13 +20,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.navigation.compose.rememberNavController
 import com.d4rk.android.libs.apptoolkit.utils.helpers.ScreenHelper
-import com.d4rk.cleaner.data.core.AppCoreManager
-import com.d4rk.cleaner.data.model.ui.screens.MainScreenState
-import com.d4rk.cleaner.ui.components.navigation.BottomNavigationBar
-import com.d4rk.cleaner.ui.components.navigation.LeftNavigationRail
-import com.d4rk.cleaner.ui.components.navigation.NavigationDrawer
-import com.d4rk.cleaner.ui.components.navigation.NavigationHost
-import com.d4rk.cleaner.ui.components.navigation.TopAppBarMain
+import com.d4rk.cleaner.core.AppCoreManager
+import com.d4rk.cleaner.core.ui.components.navigation.BottomNavigationBar
+import com.d4rk.cleaner.core.ui.components.navigation.LeftNavigationRail
+import com.d4rk.cleaner.core.ui.components.navigation.NavigationDrawer
+import com.d4rk.cleaner.core.ui.components.navigation.NavigationHost
+import com.d4rk.cleaner.core.ui.components.navigation.TopAppBarMain
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -41,7 +40,7 @@ fun MainScreen(viewModel : MainViewModel) {
     val isTabletOrLandscape : Boolean = ScreenHelper.isLandscapeOrTablet(context = context)
 
     val mainScreenState = remember {
-        MainScreenState(
+        com.d4rk.cleaner.core.data.model.ui.screens.MainScreenState(
             context = context , view = view , drawerState = drawerState , navHostController = navController , dataStore = dataStore , viewModel = viewModel
         )
     }
@@ -58,7 +57,7 @@ fun MainScreen(viewModel : MainViewModel) {
 
 @Composable
 fun MainScaffoldContent(
-    mainScreenState : MainScreenState , coroutineScope : CoroutineScope
+    mainScreenState : com.d4rk.cleaner.core.data.model.ui.screens.MainScreenState , coroutineScope : CoroutineScope
 ) {
     Scaffold(modifier = Modifier.imePadding() , topBar = {
 
@@ -81,7 +80,7 @@ fun MainScaffoldContent(
 }
 
 @Composable
-fun MainScaffoldTabletContent(mainScreenState : MainScreenState) {
+fun MainScaffoldTabletContent(mainScreenState : com.d4rk.cleaner.core.data.model.ui.screens.MainScreenState) {
     var isRailExpanded : Boolean by remember { mutableStateOf(value = false) }
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     val context : Context = LocalContext.current

@@ -17,7 +17,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.d4rk.android.libs.apptoolkit.notifications.managers.AppUpdateNotificationsManager
-import com.d4rk.cleaner.data.core.AppCoreManager
+import com.d4rk.cleaner.core.AppCoreManager
 import com.d4rk.cleaner.ui.screens.settings.display.theme.style.AppTheme
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

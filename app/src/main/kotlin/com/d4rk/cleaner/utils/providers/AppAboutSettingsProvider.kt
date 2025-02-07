@@ -5,7 +5,7 @@ import com.d4rk.cleaner.R
 import android.os.Build
 import com.d4rk.android.libs.apptoolkit.utils.interfaces.providers.AboutSettingsProvider
 import com.d4rk.cleaner.BuildConfig
-import com.d4rk.cleaner.data.core.AppCoreManager
+import com.d4rk.cleaner.core.AppCoreManager
 
 class AppAboutSettingsProvider : AboutSettingsProvider {
 

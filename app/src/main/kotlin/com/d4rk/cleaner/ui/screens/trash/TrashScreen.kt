@@ -27,9 +27,9 @@ import coil3.disk.DiskCache
 import coil3.disk.directory
 import coil3.memory.MemoryCache
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.model.ui.screens.UiTrashModel
-import com.d4rk.cleaner.ui.components.buttons.TwoRowButtons
-import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
+import com.d4rk.cleaner.core.data.model.ui.screens.UiTrashModel
+import com.d4rk.cleaner.core.ui.components.buttons.TwoRowButtons
+import com.d4rk.cleaner.core.ui.components.navigation.TopAppBarScaffoldWithBackButton
 import com.d4rk.cleaner.ui.screens.analyze.components.FilesByDateSection
 import java.io.File
 import java.text.SimpleDateFormat
@@ -41,7 +41,7 @@ fun TrashScreen(activity: TrashActivity) {
     val viewModel: TrashViewModel = viewModel()
     val view: View = LocalView.current
     val context = LocalContext.current
-    val uiState: UiTrashModel by viewModel.uiState.collectAsState()
+    val uiState: com.d4rk.cleaner.core.data.model.ui.screens.UiTrashModel by viewModel.uiState.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
     val enabled = uiState.selectedFileCount > 0
     val imageLoader: ImageLoader = remember {
@@ -130,12 +130,12 @@ fun TrashScreen(activity: TrashActivity) {
 
 @Composable
 fun TrashItemsList(
-    modifier: Modifier,
-    trashFiles: List<File>,
-    imageLoader: ImageLoader,
-    uiState: UiTrashModel,
-    viewModel: TrashViewModel,
-    view: View,
+    modifier: Modifier ,
+    trashFiles: List<File> ,
+    imageLoader: ImageLoader ,
+    uiState: com.d4rk.cleaner.core.data.model.ui.screens.UiTrashModel ,
+    viewModel: TrashViewModel ,
+    view: View ,
 ) {
     val filesByDate = remember(trashFiles) {
         trashFiles.groupBy { file ->

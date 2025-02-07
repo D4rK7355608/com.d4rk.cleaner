@@ -25,7 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.model.ui.imageoptimizer.ImageOptimizerState
+import com.d4rk.cleaner.core.data.model.ui.imageoptimizer.ImageOptimizerState
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.ImageOptimizerViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -33,7 +33,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FileSizeScreen(viewModel: ImageOptimizerViewModel) {
-    val state: State<ImageOptimizerState> = viewModel.uiState.collectAsState()
+    val state: State<com.d4rk.cleaner.core.data.model.ui.imageoptimizer.ImageOptimizerState> = viewModel.uiState.collectAsState()
     var fileSizeText: String by remember { mutableStateOf(state.value.fileSizeKB.toString()) }
     var expanded: Boolean by remember { mutableStateOf(value = false) }
     val presetSizes: List<String> = stringArrayResource(R.array.file_sizes).toList()

@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper
 import com.d4rk.android.libs.apptoolkit.utils.interfaces.providers.PrivacySettingsProvider
-import com.d4rk.cleaner.data.core.AppCoreManager
+import com.d4rk.cleaner.core.AppCoreManager
 import com.d4rk.cleaner.ui.screens.settings.general.GeneralSettingsActivity
 import com.d4rk.cleaner.ui.screens.settings.general.SettingsContent
 import com.d4rk.cleaner.ui.screens.settings.privacy.ads.AdsSettingsActivity

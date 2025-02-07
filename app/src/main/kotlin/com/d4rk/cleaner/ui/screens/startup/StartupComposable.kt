@@ -34,8 +34,9 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
+import com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffold
+import com.d4rk.cleaner.core.ui.components.navigation.TopAppBarScaffold
 import com.d4rk.cleaner.ui.screens.main.MainActivity
 
 @Composable
@@ -107,7 +108,7 @@ fun StartupComposable(activity : StartupActivity) {
                                         )
                                         .firstOrNull()
                                         ?.let { annotation ->
-                                            com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper.openUrl(
+                                            IntentsHelper.openUrl(
                                                 context = context ,
                                                 url = annotation.item
                                             )
@@ -127,7 +128,7 @@ fun StartupComposable(activity : StartupActivity) {
                                          } ,
                                          text = { Text(text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.agree)) } ,
                                          onClick = {
-                                             com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper.openActivity(
+                                             IntentsHelper.openActivity(
                                                  context , MainActivity::class.java
                                              )
                                          } ,

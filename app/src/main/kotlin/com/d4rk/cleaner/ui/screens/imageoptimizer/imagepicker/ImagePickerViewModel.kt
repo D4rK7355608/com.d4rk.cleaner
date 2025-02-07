@@ -4,7 +4,7 @@ import android.app.Application
 import android.net.Uri
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
+import com.d4rk.cleaner.core.ui.viewmodel.BaseViewModel
 
 class ImagePickerViewModel(application : Application) : BaseViewModel(application = application) {
     private val _selectedImageUri = mutableStateOf<Uri?>(value = null)

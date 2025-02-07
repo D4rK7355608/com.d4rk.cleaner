@@ -9,7 +9,7 @@ import android.net.Uri
 import android.provider.OpenableColumns
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.d4rk.cleaner.data.model.ui.imageoptimizer.ImageOptimizerState
+import com.d4rk.cleaner.core.data.model.ui.imageoptimizer.ImageOptimizerState
 import id.zelory.compressor.Compressor
 import id.zelory.compressor.constraint.format
 import id.zelory.compressor.constraint.quality
@@ -27,7 +27,7 @@ import java.io.InputStream
 
 class ImageOptimizerViewModel(application : Application) : AndroidViewModel(application) {
 
-    private val _uiState = MutableStateFlow(ImageOptimizerState())
+    private val _uiState = MutableStateFlow(com.d4rk.cleaner.core.data.model.ui.imageoptimizer.ImageOptimizerState())
     val uiState = _uiState.asStateFlow()
 
     private fun getAppContext() : Context = getApplication<Application>().applicationContext

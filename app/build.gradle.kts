@@ -14,7 +14,7 @@ android {
         applicationId = "com.d4rk.cleaner"
         minSdk = 23
         targetSdk = 35
-        versionCode = 151
+        versionCode = 152
         versionName = "3.2.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         @Suppress("UnstableApiUsage")
@@ -93,21 +93,15 @@ android {
 dependencies {
 
     // App Core
-    implementation(dependencyNotation = "com.github.D4rK7355608:AppToolkit:0.0.49") {
+    implementation(dependencyNotation = "com.github.D4rK7355608:AppToolkit:0.0.51") {
         isTransitive = true
     }
 
+    // Compose
     implementation(dependencyNotation = libs.androidx.constraintlayout.compose)
 
-    // Firebase
-    implementation(dependencyNotation = platform(libs.firebase.bom))
-    implementation(dependencyNotation = libs.firebase.analytics.ktx)
-    implementation(dependencyNotation = libs.firebase.crashlytics.ktx)
-    implementation(dependencyNotation = libs.firebase.perf)
-
-    // Google
-    implementation(dependencyNotation = libs.billing)
-    implementation(dependencyNotation = libs.review.ktx)
+    // Koin (dependency injection)
+    implementation(dependencyNotation = libs.bundles.koin)
 
     // Image Compression
     implementation(dependencyNotation = libs.compressor)

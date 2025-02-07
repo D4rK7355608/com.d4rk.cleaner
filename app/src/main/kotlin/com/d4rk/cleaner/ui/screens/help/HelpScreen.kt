@@ -62,9 +62,9 @@ import com.d4rk.android.libs.apptoolkit.ui.components.spacers.SmallVerticalSpace
 import com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper
 import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.model.ui.screens.UiHelpQuestion
-import com.d4rk.cleaner.data.model.ui.screens.UiHelpScreen
-import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButtonAndActions
+import com.d4rk.cleaner.core.data.model.ui.screens.UiHelpQuestion
+import com.d4rk.cleaner.core.data.model.ui.screens.UiHelpScreen
+import com.d4rk.cleaner.core.ui.components.navigation.TopAppBarScaffoldWithBackButtonAndActions
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -75,7 +75,7 @@ fun HelpScreen(activity : Activity , viewModel : HelpViewModel) {
     val isFabVisible : Boolean by viewModel.isFabVisible.collectAsState()
     val showDialog : MutableState<Boolean> = remember { mutableStateOf(value = false) }
 
-    val uiState : UiHelpScreen by viewModel.uiState.collectAsState()
+    val uiState : com.d4rk.cleaner.core.data.model.ui.screens.UiHelpScreen by viewModel.uiState.collectAsState()
 
     val htmlData : State<Pair<String? , String?>> = com.d4rk.android.libs.apptoolkit.utils.rememberHtmlData(
         context = context , currentVersionName = BuildConfig.VERSION_NAME , packageName = BuildConfig.APPLICATION_ID
@@ -141,7 +141,7 @@ fun HelpScreen(activity : Activity , viewModel : HelpViewModel) {
 }
 
 @Composable
-fun FAQComposable(questions : List<UiHelpQuestion>) {
+fun FAQComposable(questions : List<com.d4rk.cleaner.core.data.model.ui.screens.UiHelpQuestion>) {
     val expandedStates : SnapshotStateMap<Int , Boolean> = remember { mutableStateMapOf() }
 
     Column {

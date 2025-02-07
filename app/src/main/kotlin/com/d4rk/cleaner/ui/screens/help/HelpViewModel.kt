@@ -3,9 +3,9 @@ package com.d4rk.cleaner.ui.screens.help
 import android.app.Activity
 import android.app.Application
 import androidx.lifecycle.viewModelScope
-import com.d4rk.cleaner.data.model.ui.screens.UiHelpScreen
+import com.d4rk.cleaner.core.data.model.ui.screens.UiHelpScreen
 import com.d4rk.cleaner.ui.screens.help.repository.HelpRepository
-import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
+import com.d4rk.cleaner.core.ui.viewmodel.BaseViewModel
 import com.google.android.play.core.review.ReviewInfo
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,8 +16,8 @@ class HelpViewModel(application : Application) : BaseViewModel(application) {
 
     private val repository : HelpRepository = HelpRepository(application = application)
 
-    private val _uiState : MutableStateFlow<UiHelpScreen> = MutableStateFlow(UiHelpScreen())
-    val uiState : StateFlow<UiHelpScreen> = _uiState
+    private val _uiState : MutableStateFlow<com.d4rk.cleaner.core.data.model.ui.screens.UiHelpScreen> = MutableStateFlow(com.d4rk.cleaner.core.data.model.ui.screens.UiHelpScreen())
+    val uiState : StateFlow<com.d4rk.cleaner.core.data.model.ui.screens.UiHelpScreen> = _uiState
 
     init {
         initializeVisibilityStates()

@@ -42,7 +42,7 @@ import com.d4rk.android.libs.apptoolkit.ui.components.buttons.AnimatedExtendedFl
 import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.components.ads.AdBanner
+import com.d4rk.cleaner.core.ui.components.ads.AdBanner
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.ImageOptimizerActivity
 
 @OptIn(ExperimentalMaterial3Api::class)

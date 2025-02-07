@@ -3,12 +3,12 @@ package com.d4rk.cleaner.ui.screens.analyze.components
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
-import com.d4rk.cleaner.ui.components.dialogs.ConfirmationAlertDialog
+import com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel
+import com.d4rk.cleaner.core.ui.components.dialogs.ConfirmationAlertDialog
 import com.d4rk.cleaner.ui.screens.home.HomeViewModel
 
 @Composable
-fun DeleteOrTrashConfirmation(data : UiHomeModel , viewModel : HomeViewModel) {
+fun DeleteOrTrashConfirmation(data : com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel , viewModel : HomeViewModel) {
     val isDeleteDialog : Boolean = data.analyzeState.isDeleteForeverConfirmationDialogVisible
 
     val titleRes : Int = if (isDeleteDialog) R.string.delete_forever_title else R.string.move_to_trash_title

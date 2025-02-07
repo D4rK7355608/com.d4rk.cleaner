@@ -8,10 +8,10 @@ import android.media.MediaScannerConnection
 import android.os.Build
 import android.os.Environment
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
-import com.d4rk.cleaner.data.model.ui.screens.FileTypesData
-import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
+import com.d4rk.cleaner.core.data.datastore.DataStore
+import com.d4rk.cleaner.core.data.model.ui.memorymanager.StorageInfo
+import com.d4rk.cleaner.core.data.model.ui.screens.FileTypesData
+import com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import kotlinx.coroutines.flow.first
 import java.io.File
@@ -21,11 +21,11 @@ import kotlin.coroutines.suspendCoroutine
 abstract class HomeRepositoryImplementation(val application : Application , val dataStore : DataStore) {
     private val trashDir : File = File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash")
 
-    suspend fun getStorageInfoImplementation() : UiHomeModel {
+    suspend fun getStorageInfoImplementation() : com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel {
         return suspendCoroutine { continuation ->
             StorageUtils.getStorageInfo(context = application) { _ , _ , _ , usageProgress , freeSpacePercentage ->
                 continuation.resume(
-                    UiHomeModel(storageInfo = StorageInfo(storageUsageProgress = usageProgress , freeSpacePercentage = freeSpacePercentage))
+                    com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel(storageInfo = com.d4rk.cleaner.core.data.model.ui.memorymanager.StorageInfo(storageUsageProgress = usageProgress , freeSpacePercentage = freeSpacePercentage))
                 )
             }
         }
@@ -68,7 +68,7 @@ abstract class HomeRepositoryImplementation(val application : Application , val 
         return Pair(files , emptyFolders)
     }
 
-    suspend fun getFileTypesImplementation() : FileTypesData {
+    suspend fun getFileTypesImplementation() : com.d4rk.cleaner.core.data.model.ui.screens.FileTypesData {
         return suspendCoroutine { continuation ->
             val apkExtensions : List<String> = application.resources.getStringArray(R.array.apk_extensions).toList()
             val imageExtensions : List<String> = application.resources.getStringArray(R.array.image_extensions).toList()
@@ -111,7 +111,7 @@ abstract class HomeRepositoryImplementation(val application : Application , val 
 
             val otherExtensions : List<String> = (allFoundExtensions - knownExtensions).toList().sorted()
 
-            val fileTypesData = FileTypesData(
+            val fileTypesData = com.d4rk.cleaner.core.data.model.ui.screens.FileTypesData(
                 apkExtensions = apkExtensions ,
                 imageExtensions = imageExtensions ,
                 videoExtensions = videoExtensions ,

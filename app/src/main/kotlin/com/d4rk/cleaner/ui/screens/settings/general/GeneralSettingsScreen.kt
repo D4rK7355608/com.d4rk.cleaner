@@ -7,7 +7,7 @@ import com.d4rk.android.libs.apptoolkit.ui.screens.settings.display.DisplaySetti
 import com.d4rk.android.libs.apptoolkit.ui.screens.settings.display.theme.ThemeSettingsList
 import com.d4rk.android.libs.apptoolkit.ui.screens.settings.privacy.PrivacySettingsList
 import com.d4rk.android.libs.apptoolkit.ui.screens.settings.privacy.usage.UsageAndDiagnosticsList
-import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
+import com.d4rk.cleaner.core.ui.components.navigation.TopAppBarScaffoldWithBackButton
 import com.d4rk.cleaner.ui.screens.settings.cleaning.CleaningSettingsList
 import com.d4rk.cleaner.utils.providers.AppAboutSettingsProvider
 import com.d4rk.cleaner.utils.providers.AppAdvancedSettingsProvider

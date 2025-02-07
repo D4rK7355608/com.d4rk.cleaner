@@ -27,8 +27,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil3.ImageLoader
 import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
-import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
-import com.d4rk.cleaner.ui.components.modifiers.hapticPagerSwipe
+import com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel
+import com.d4rk.cleaner.core.ui.components.modifiers.hapticPagerSwipe
 import com.d4rk.cleaner.ui.screens.home.HomeViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -39,7 +39,7 @@ import java.util.Locale
 
 @Composable
 fun TabsContent(
-    groupedFiles : Map<String , List<File>> , imageLoader : ImageLoader , viewModel : HomeViewModel , view : View , coroutineScope : CoroutineScope , data : UiHomeModel
+    groupedFiles : Map<String , List<File>> , imageLoader : ImageLoader , viewModel : HomeViewModel , view : View , coroutineScope : CoroutineScope , data : com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel
 ) {
     val tabs : List<String> = groupedFiles.keys.toList()
     val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })

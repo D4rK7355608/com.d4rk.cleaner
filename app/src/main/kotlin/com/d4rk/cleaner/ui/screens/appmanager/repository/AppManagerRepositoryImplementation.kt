@@ -9,7 +9,7 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.provider.Settings
 import androidx.core.content.FileProvider
-import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
+import com.d4rk.cleaner.core.data.model.ui.appmanager.ui.ApkInfo
 import java.io.File
 
 /**
@@ -36,8 +36,8 @@ abstract class AppManagerRepositoryImplementation(val application: Application) 
      *
      * @return A list of [ApkInfo] objects representing the found APK files.
      */
-    fun getApkFilesFromMediaStore(): List<ApkInfo> {
-        val apkFiles: MutableList<ApkInfo> = mutableListOf()
+    fun getApkFilesFromMediaStore(): List<com.d4rk.cleaner.core.data.model.ui.appmanager.ui.ApkInfo> {
+        val apkFiles: MutableList<com.d4rk.cleaner.core.data.model.ui.appmanager.ui.ApkInfo> = mutableListOf()
         val uri: Uri = MediaStore.Files.getContentUri("external")
         val projection: Array<String> = arrayOf(
             MediaStore.Files.FileColumns._ID,
@@ -59,7 +59,7 @@ abstract class AppManagerRepositoryImplementation(val application: Application) 
                 val id: Long = it.getLong(idColumn)
                 val path: String = it.getString(dataColumn)
                 val size: Long = it.getLong(sizeColumn)
-                apkFiles.add(ApkInfo(id, path, size))
+                apkFiles.add(com.d4rk.cleaner.core.data.model.ui.appmanager.ui.ApkInfo(id , path , size))
             }
         }
         return apkFiles

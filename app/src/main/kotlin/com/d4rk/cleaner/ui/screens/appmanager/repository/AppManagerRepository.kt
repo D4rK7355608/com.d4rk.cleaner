@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
+import com.d4rk.cleaner.core.data.model.ui.appmanager.ui.ApkInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -20,9 +20,9 @@ class AppManagerRepository(application : Application) :
         }
     }
 
-    suspend fun getApkFilesFromStorage(onSuccess : (List<ApkInfo>) -> Unit) {
+    suspend fun getApkFilesFromStorage(onSuccess : (List<com.d4rk.cleaner.core.data.model.ui.appmanager.ui.ApkInfo>) -> Unit) {
         withContext(Dispatchers.IO) {
-            val apkFiles : List<ApkInfo> = getApkFilesFromMediaStore()
+            val apkFiles : List<com.d4rk.cleaner.core.data.model.ui.appmanager.ui.ApkInfo> = getApkFilesFromMediaStore()
             withContext(Dispatchers.Main) {
                 onSuccess(apkFiles)
             }

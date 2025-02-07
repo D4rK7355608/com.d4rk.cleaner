@@ -2,11 +2,9 @@ package com.d4rk.cleaner.ui.screens.home
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
-import com.d4rk.cleaner.data.core.AppCoreManager
-import com.d4rk.cleaner.data.model.ui.screens.FileTypesData
-import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
+import com.d4rk.cleaner.core.AppCoreManager
 import com.d4rk.cleaner.ui.screens.home.repository.HomeRepository
-import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
+import com.d4rk.cleaner.core.ui.viewmodel.BaseViewModel
 import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import com.d4rk.cleaner.utils.constants.cleaning.ExtensionsConstants
 import kotlinx.coroutines.Dispatchers
@@ -18,8 +16,8 @@ import java.io.File
 
 class HomeViewModel(application : Application) : BaseViewModel(application) {
     private val repository : HomeRepository = HomeRepository(dataStore = AppCoreManager.dataStore , application = application)
-    private val _uiState : MutableStateFlow<UiHomeModel> = MutableStateFlow(UiHomeModel())
-    val uiState : StateFlow<UiHomeModel> = _uiState
+    private val _uiState : MutableStateFlow<com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel> = MutableStateFlow(com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel())
+    val uiState : StateFlow<com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel> = _uiState
 
     init {
         getStorageInfo()
@@ -32,7 +30,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
             showLoading()
             repository.analyzeFiles { result ->
                 val (scannedFiles : List<File> , emptyFolders : List<File>) = result
-                val currentFileTypesData : FileTypesData = _uiState.value.analyzeState.fileTypesData
+                val currentFileTypesData : com.d4rk.cleaner.core.data.model.ui.screens.FileTypesData = _uiState.value.analyzeState.fileTypesData
 
                 viewModelScope.launch(context = Dispatchers.IO) {
                     val prefs : Map<String , Boolean> = repository.getPreferences()
@@ -47,7 +45,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     }
 
     private fun computeGroupedFiles(
-        scannedFiles : List<File> , emptyFolders : List<File> , fileTypesData : FileTypesData , preferences : Map<String , Boolean>
+        scannedFiles : List<File> , emptyFolders : List<File> , fileTypesData : com.d4rk.cleaner.core.data.model.ui.screens.FileTypesData , preferences : Map<String , Boolean>
     ) : Map<String , List<File>> {
         val knownExtensions : Set<String> =
                 (fileTypesData.imageExtensions + fileTypesData.videoExtensions + fileTypesData.audioExtensions + fileTypesData.officeExtensions + fileTypesData.archiveExtensions + fileTypesData.apkExtensions + fileTypesData.fontExtensions + fileTypesData.windowsExtensions).toSet()
@@ -110,7 +108,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
 
     fun toggleSelectFilesForCategory(category : String) {
         viewModelScope.launch {
-            val currentState : UiHomeModel = _uiState.value
+            val currentState : com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel = _uiState.value
             val filesInCategory : List<File> = currentState.analyzeState.groupedFiles[category] ?: emptyList()
             val currentSelectionMap : Map<File , Boolean> = currentState.analyzeState.fileSelectionMap
             val allSelected : Boolean = filesInCategory.all { currentSelectionMap[it] == true }

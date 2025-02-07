@@ -26,14 +26,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.model.ui.imageoptimizer.ImageOptimizerState
+import com.d4rk.cleaner.core.data.model.ui.imageoptimizer.ImageOptimizerState
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.ImageOptimizerViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
 fun ManualModeScreen(viewModel: ImageOptimizerViewModel) {
-    val state: State<ImageOptimizerState> = viewModel.uiState.collectAsState()
+    val state: State<com.d4rk.cleaner.core.data.model.ui.imageoptimizer.ImageOptimizerState> = viewModel.uiState.collectAsState()
     var widthText: String by remember { mutableStateOf(state.value.manualWidth.toString()) }
     var heightText: String by remember { mutableStateOf(state.value.manualHeight.toString()) }
     var qualityValue: Float by remember { mutableFloatStateOf(state.value.manualQuality.toFloat()) }

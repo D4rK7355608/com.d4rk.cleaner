@@ -3,10 +3,9 @@ package com.d4rk.cleaner.utils.providers
 import android.content.Intent
 import androidx.compose.runtime.Composable
 import com.d4rk.android.libs.apptoolkit.utils.interfaces.providers.DisplaySettingsProvider
-import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.core.AppCoreManager
-import com.d4rk.cleaner.ui.components.dialogs.SelectLanguageAlertDialog
-import com.d4rk.cleaner.ui.components.dialogs.SelectStartupScreenAlertDialog
+import com.d4rk.cleaner.core.AppCoreManager
+import com.d4rk.cleaner.core.ui.components.dialogs.SelectLanguageAlertDialog
+import com.d4rk.cleaner.core.ui.components.dialogs.SelectStartupScreenAlertDialog
 import com.d4rk.cleaner.ui.screens.settings.general.GeneralSettingsActivity
 import com.d4rk.cleaner.ui.screens.settings.general.SettingsContent
 

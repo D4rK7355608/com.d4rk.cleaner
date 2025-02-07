@@ -17,10 +17,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
+import com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel
 
 @Composable
-fun StatusRowSelectAll(data : UiHomeModel , view : View, onClickSelectAll : () -> Unit) {
+fun StatusRowSelectAll(data : com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel , view : View , onClickSelectAll : () -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth() ,
         verticalAlignment = Alignment.CenterVertically ,

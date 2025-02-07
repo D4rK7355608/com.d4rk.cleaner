@@ -33,10 +33,12 @@ import androidx.compose.ui.unit.dp
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingResult
+import com.d4rk.android.libs.apptoolkit.R
 import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.ui.components.spacers.ButtonIconSpacer
-import com.d4rk.cleaner.ui.components.ads.AdBanner
-import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
+import com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper
+import com.d4rk.cleaner.core.ui.components.ads.AdBanner
+import com.d4rk.cleaner.core.ui.components.navigation.TopAppBarScaffoldWithBackButton
 import com.google.android.gms.ads.AdSize
 
 @Composable
@@ -44,7 +46,7 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
     val context : Context = LocalContext.current
     val view : View = LocalView.current
     val billingClient : BillingClient = rememberBillingClient(context , viewModel)
-    TopAppBarScaffoldWithBackButton(title = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.support_us) , onBackClicked = { activity.finish() }) { paddingValues ->
+    TopAppBarScaffoldWithBackButton(title = stringResource(id = R.string.support_us) , onBackClicked = { activity.finish() }) { paddingValues ->
         Box(
             modifier = Modifier
                     .padding(paddingValues)
@@ -53,7 +55,7 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
             LazyColumn {
                 item {
                     Text(
-                        text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.paid_support) ,
+                        text = stringResource(id = R.string.paid_support) ,
                         modifier = Modifier.padding(start = 16.dp , top = 16.dp) ,
                         style = MaterialTheme.typography.titleLarge ,
                     )
@@ -66,7 +68,7 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                     ) {
                         Column {
                             Text(
-                                text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.summary_donations) , modifier = Modifier.padding(16.dp)
+                                text = stringResource(id = R.string.summary_donations) , modifier = Modifier.padding(16.dp)
                             )
                             LazyRow(
                                 modifier = Modifier
@@ -178,7 +180,7 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                 }
                 item {
                     Text(
-                        text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.non_paid_support) ,
+                        text = stringResource(id = R.string.non_paid_support) ,
                         modifier = Modifier.padding(start = 16.dp) ,
                         style = MaterialTheme.typography.titleLarge ,
                     )
@@ -187,7 +189,7 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                     FilledTonalButton(
                         onClick = {
                             view.playSoundEffect(SoundEffectConstants.CLICK)
-                            com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper.openUrl(
+                            IntentsHelper.openUrl(
                                 context = context , url = "https://direct-link.net/548212/agOqI7123501341"
                             )
                         } ,
@@ -200,7 +202,7 @@ fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity)
                             Icons.Outlined.Paid , contentDescription = null , modifier = Modifier.size(ButtonDefaults.IconSize)
                         )
                         ButtonIconSpacer()
-                        Text(text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.web_ad))
+                        Text(text = stringResource(id = R.string.web_ad))
                     }
                 }
                 item {

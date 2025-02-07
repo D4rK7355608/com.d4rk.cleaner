@@ -40,8 +40,8 @@ import coil3.memory.MemoryCache
 import com.d4rk.android.libs.apptoolkit.data.model.ui.error.UiErrorModel
 import com.d4rk.android.libs.apptoolkit.ui.components.dialogs.ErrorAlertDialog
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
-import com.d4rk.cleaner.ui.components.progressbars.StorageProgressButton
+import com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel
+import com.d4rk.cleaner.core.ui.components.progressbars.StorageProgressButton
 import com.d4rk.cleaner.ui.screens.analyze.AnalyzeScreen
 import com.d4rk.cleaner.utils.helpers.PermissionsHelper
 
@@ -50,7 +50,7 @@ fun HomeScreen() {
     val context : Context = LocalContext.current
     val view : View = LocalView.current
     val viewModel : HomeViewModel = viewModel()
-    val uiState : UiHomeModel by viewModel.uiState.collectAsState()
+    val uiState : com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel by viewModel.uiState.collectAsState()
     val uiErrorModel : UiErrorModel by viewModel.uiErrorModel.collectAsState()
     val imageLoader : ImageLoader = remember {
         ImageLoader.Builder(context = context).memoryCache {

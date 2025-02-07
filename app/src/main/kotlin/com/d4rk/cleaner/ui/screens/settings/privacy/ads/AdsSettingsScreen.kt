@@ -28,13 +28,15 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import com.d4rk.android.libs.apptoolkit.R
 import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.ui.components.preferences.PreferenceItem
 import com.d4rk.android.libs.apptoolkit.ui.components.preferences.SwitchCardComposable
+import com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper
 import com.d4rk.cleaner.BuildConfig
-import com.d4rk.cleaner.data.core.AppCoreManager
-import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
+import com.d4rk.cleaner.core.AppCoreManager
+import com.d4rk.cleaner.core.data.datastore.DataStore
+import com.d4rk.cleaner.core.ui.components.navigation.TopAppBarScaffoldWithBackButton
 import com.google.android.ump.ConsentInformation
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
@@ -48,7 +50,7 @@ fun AdsSettingsScreen(activity : AdsSettingsActivity) {
     val switchState : State<Boolean> = dataStore.ads.collectAsState(initial = ! BuildConfig.DEBUG)
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
 
-    TopAppBarScaffoldWithBackButton(title = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.ads) ,
+    TopAppBarScaffoldWithBackButton(title = stringResource(id = R.string.ads) ,
                                     onBackClicked = { activity.finish() }) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
@@ -58,7 +60,7 @@ fun AdsSettingsScreen(activity : AdsSettingsActivity) {
             ) {
                 item(key = "display_ads") {
                     SwitchCardComposable(
-                        title = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.display_ads) ,
+                        title = stringResource(id = R.string.display_ads) ,
                         switchState = switchState
                     ) { isChecked ->
                         coroutineScope.launch {
@@ -68,9 +70,9 @@ fun AdsSettingsScreen(activity : AdsSettingsActivity) {
                 }
                 item {
                     Box(modifier = Modifier.padding(horizontal = 8.dp)) {
-                        PreferenceItem(title = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.personalized_ads) ,
+                        PreferenceItem(title = stringResource(id = R.string.personalized_ads) ,
                                        enabled = switchState.value ,
-                                       summary = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.summary_ads_personalized_ads) ,
+                                       summary = stringResource(id = R.string.summary_ads_personalized_ads) ,
                                        onClick = {
                                            val params : ConsentRequestParameters =
                                                    ConsentRequestParameters.Builder()
@@ -98,7 +100,7 @@ fun AdsSettingsScreen(activity : AdsSettingsActivity) {
                     ) {
                         Icon(imageVector = Icons.Outlined.Info , contentDescription = null)
                         Spacer(modifier = Modifier.height(height = 24.dp))
-                        Text(text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.summary_ads))
+                        Text(text = stringResource(id = R.string.summary_ads))
 
                         val annotatedString : AnnotatedString = buildAnnotatedString {
                             val startIndex : Int = length
@@ -108,7 +110,7 @@ fun AdsSettingsScreen(activity : AdsSettingsActivity) {
                                     textDecoration = TextDecoration.Underline
                                 )
                             ) {
-                                append(stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.learn_more))
+                                append(stringResource(id = R.string.learn_more))
                             }
                             val endIndex : Int = length
 
@@ -131,7 +133,7 @@ fun AdsSettingsScreen(activity : AdsSettingsActivity) {
                                             )
                                             .firstOrNull()
                                             ?.let { annotation ->
-                                                com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper.openUrl(
+                                                IntentsHelper.openUrl(
                                                     context = context , url = annotation.item
                                                 )
                                             }

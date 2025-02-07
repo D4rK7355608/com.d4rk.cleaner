@@ -17,12 +17,10 @@ import androidx.lifecycle.viewModelScope
 import com.d4rk.android.libs.apptoolkit.data.model.ui.navigation.NavigationDrawerItem
 import com.d4rk.android.libs.apptoolkit.notifications.managers.AppUpdateNotificationsManager
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.core.AppCoreManager
-import com.d4rk.cleaner.data.model.ui.navigation.BottomNavigationScreen
-import com.d4rk.cleaner.data.model.ui.screens.UiMainScreen
+import com.d4rk.cleaner.core.AppCoreManager
 import com.d4rk.cleaner.ui.screens.main.repository.MainRepository
 import com.d4rk.cleaner.ui.screens.startup.StartupActivity
-import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
+import com.d4rk.cleaner.core.ui.viewmodel.BaseViewModel
 import com.d4rk.cleaner.utils.cleaning.StorageUtils
 import com.google.android.play.core.appupdate.AppUpdateManager
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -34,8 +32,8 @@ class MainViewModel(application : Application) : BaseViewModel(application) {
     private val repository = MainRepository(
         dataStore = AppCoreManager.dataStore , application = application
     )
-    private val _uiState : MutableStateFlow<UiMainScreen> = MutableStateFlow(initializeUiState())
-    val uiState : StateFlow<UiMainScreen> = _uiState
+    private val _uiState : MutableStateFlow<com.d4rk.cleaner.core.data.model.ui.screens.UiMainScreen> = MutableStateFlow(initializeUiState())
+    val uiState : StateFlow<com.d4rk.cleaner.core.data.model.ui.screens.UiMainScreen> = _uiState
 
     fun loadTrashSize() {
         viewModelScope.launch(coroutineExceptionHandler) {
@@ -53,18 +51,16 @@ class MainViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
-    private fun initializeUiState() : UiMainScreen {
-        return UiMainScreen(
+    private fun initializeUiState() : com.d4rk.cleaner.core.data.model.ui.screens.UiMainScreen {
+        return com.d4rk.cleaner.core.data.model.ui.screens.UiMainScreen(
             navigationDrawerItems = listOf(
                 NavigationDrawerItem(
                     title = R.string.image_optimizer ,
                     selectedIcon = Icons.Outlined.Photo ,
-                ),
-                NavigationDrawerItem(
+                ) , NavigationDrawerItem(
                     title = R.string.trash ,
                     selectedIcon = Icons.Outlined.Delete ,
-                ),
-                NavigationDrawerItem(
+                ) , NavigationDrawerItem(
                     title = com.d4rk.android.libs.apptoolkit.R.string.settings ,
                     selectedIcon = Icons.Outlined.Settings ,
                 ) , NavigationDrawerItem(
@@ -78,8 +74,8 @@ class MainViewModel(application : Application) : BaseViewModel(application) {
                     selectedIcon = Icons.Outlined.Share ,
                 )
             ) , bottomNavigationItems = listOf(
-                BottomNavigationScreen.Home , BottomNavigationScreen.AppManager , BottomNavigationScreen.MemoryManager
-            ) , currentBottomNavigationScreen = BottomNavigationScreen.Home
+                com.d4rk.cleaner.core.data.model.ui.navigation.BottomNavigationScreen.Home , com.d4rk.cleaner.core.data.model.ui.navigation.BottomNavigationScreen.AppManager , com.d4rk.cleaner.core.data.model.ui.navigation.BottomNavigationScreen.MemoryManager
+            ) , currentBottomNavigationScreen = com.d4rk.cleaner.core.data.model.ui.navigation.BottomNavigationScreen.Home
         )
     }
 
@@ -114,7 +110,7 @@ class MainViewModel(application : Application) : BaseViewModel(application) {
         }
     }
 
-    fun updateBottomNavigationScreen(newScreen : BottomNavigationScreen) {
+    fun updateBottomNavigationScreen(newScreen : com.d4rk.cleaner.core.data.model.ui.navigation.BottomNavigationScreen) {
         viewModelScope.launch(context = coroutineExceptionHandler) {
             _uiState.value = _uiState.value.copy(currentBottomNavigationScreen = newScreen)
         }

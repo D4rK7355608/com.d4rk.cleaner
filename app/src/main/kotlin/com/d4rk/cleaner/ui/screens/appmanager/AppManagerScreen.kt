@@ -65,9 +65,9 @@ import com.d4rk.android.libs.apptoolkit.ui.components.dialogs.ErrorAlertDialog
 import com.d4rk.android.libs.apptoolkit.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.model.ui.appmanager.ui.ApkInfo
-import com.d4rk.cleaner.data.model.ui.screens.UiAppManagerModel
-import com.d4rk.cleaner.ui.components.modifiers.hapticPagerSwipe
+import com.d4rk.cleaner.core.data.model.ui.appmanager.ui.ApkInfo
+import com.d4rk.cleaner.core.data.model.ui.screens.UiAppManagerModel
+import com.d4rk.cleaner.core.ui.components.modifiers.hapticPagerSwipe
 import com.d4rk.cleaner.utils.helpers.PermissionsHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -100,7 +100,7 @@ fun AppManagerScreen() {
     val contentAlpha : Float by transition.animateFloat(label = "Content Alpha") {
         if (it) 1f else 0f
     }
-    val uiState : UiAppManagerModel by viewModel.uiState.collectAsState()
+    val uiState : com.d4rk.cleaner.core.data.model.ui.screens.UiAppManagerModel by viewModel.uiState.collectAsState()
     val uiErrorModel : UiErrorModel by viewModel.uiErrorModel.collectAsState()
 
     LaunchedEffect(context) {
@@ -312,7 +312,7 @@ fun AppItemComposable(
  */
 @Composable
 fun ApksComposable(
-    apkFiles : List<ApkInfo> ,
+    apkFiles : List<com.d4rk.cleaner.core.data.model.ui.appmanager.ui.ApkInfo> ,
     isLoading : Boolean ,
     viewModel : AppManagerViewModel ,
 ) {

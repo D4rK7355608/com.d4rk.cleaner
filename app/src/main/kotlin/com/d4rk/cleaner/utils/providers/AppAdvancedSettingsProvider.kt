@@ -1,7 +1,7 @@
 package com.d4rk.cleaner.utils.providers
 
 import com.d4rk.android.libs.apptoolkit.utils.interfaces.providers.AdvancedSettingsProvider
-import com.d4rk.cleaner.data.core.AppCoreManager
+import com.d4rk.cleaner.core.AppCoreManager
 
 class AppAdvancedSettingsProvider : AdvancedSettingsProvider {
     override val bugReportUrl: String

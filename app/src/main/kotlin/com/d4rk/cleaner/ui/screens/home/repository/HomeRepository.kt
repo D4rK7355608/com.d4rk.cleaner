@@ -2,9 +2,9 @@ package com.d4rk.cleaner.ui.screens.home.repository
 
 import android.app.Application
 import android.os.Environment
-import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.data.model.ui.screens.FileTypesData
-import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
+import com.d4rk.cleaner.core.data.datastore.DataStore
+import com.d4rk.cleaner.core.data.model.ui.screens.FileTypesData
+import com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel
 import com.d4rk.cleaner.utils.constants.cleaning.ExtensionsConstants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -32,16 +32,16 @@ class HomeRepository(dataStore : DataStore , application : Application) : HomeRe
         }
     }
 
-    suspend fun getStorageInfoRepository(onSuccess : (UiHomeModel) -> Unit) {
+    suspend fun getStorageInfoRepository(onSuccess : (com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel) -> Unit) {
         withContext(context = Dispatchers.IO) {
-            val storageInfo : UiHomeModel = getStorageInfoImplementation()
+            val storageInfo : com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel = getStorageInfoImplementation()
             withContext(context = Dispatchers.Main) { onSuccess(storageInfo) }
         }
     }
 
-    suspend fun getFileTypesRepository(onSuccess : (FileTypesData) -> Unit) {
+    suspend fun getFileTypesRepository(onSuccess : (com.d4rk.cleaner.core.data.model.ui.screens.FileTypesData) -> Unit) {
         withContext(context = Dispatchers.IO) {
-            val fileTypesData : FileTypesData = getFileTypesImplementation()
+            val fileTypesData : com.d4rk.cleaner.core.data.model.ui.screens.FileTypesData = getFileTypesImplementation()
             withContext(context = Dispatchers.Main) { onSuccess(fileTypesData) }
         }
     }

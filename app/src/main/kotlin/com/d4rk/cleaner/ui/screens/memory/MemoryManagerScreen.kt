@@ -60,11 +60,11 @@ import com.d4rk.android.libs.apptoolkit.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.model.ui.memorymanager.RamInfo
-import com.d4rk.cleaner.data.model.ui.memorymanager.StorageInfo
-import com.d4rk.cleaner.data.model.ui.screens.UiMemoryManagerModel
-import com.d4rk.cleaner.ui.components.layouts.CarouselLayout
-import com.d4rk.cleaner.ui.components.progressbars.StorageProgressBar
+import com.d4rk.cleaner.core.data.model.ui.memorymanager.RamInfo
+import com.d4rk.cleaner.core.data.model.ui.memorymanager.StorageInfo
+import com.d4rk.cleaner.core.data.model.ui.screens.UiMemoryManagerModel
+import com.d4rk.cleaner.core.ui.components.layouts.CarouselLayout
+import com.d4rk.cleaner.core.ui.components.progressbars.StorageProgressBar
 import com.d4rk.cleaner.utils.helpers.PermissionsHelper
 import com.d4rk.cleaner.utils.cleaning.StorageUtils.formatSize
 
@@ -72,7 +72,7 @@ import com.d4rk.cleaner.utils.cleaning.StorageUtils.formatSize
 fun MemoryManagerComposable() {
     val viewModel: MemoryManagerViewModel = viewModel<MemoryManagerViewModel>()
     val uiErrorModel: UiErrorModel by viewModel.uiErrorModel.collectAsState()
-    val uiState: UiMemoryManagerModel by viewModel.uiMemoryManagerModel.collectAsState()
+    val uiState: com.d4rk.cleaner.core.data.model.ui.screens.UiMemoryManagerModel by viewModel.uiMemoryManagerModel.collectAsState()
     val isLoading: Boolean by viewModel.isLoading.collectAsState()
     val context: Context = LocalContext.current
     val view: View = LocalView.current
@@ -159,7 +159,7 @@ fun MemoryManagerComposable() {
 }
 
 @Composable
-fun StorageInfoCard(storageInfo: StorageInfo) {
+fun StorageInfoCard(storageInfo: com.d4rk.cleaner.core.data.model.ui.memorymanager.StorageInfo) {
 
     val progress: Float = if (storageInfo.storageUsageProgress.toLong() == 0L) {
         0f
@@ -285,7 +285,7 @@ fun StorageInfoText(label: String, size: Long) {
 
 
 @Composable
-fun RamInfoCard(ramInfo: RamInfo) {
+fun RamInfoCard(ramInfo: com.d4rk.cleaner.core.data.model.ui.memorymanager.RamInfo) {
     Column(modifier = Modifier.padding(16.dp)) {
         Text(
             text = stringResource(id = R.string.ram_information),
@@ -295,9 +295,7 @@ fun RamInfoCard(ramInfo: RamInfo) {
         Spacer(modifier = Modifier.height(8.dp))
         StorageProgressBar(
             StorageInfo(
-                storageUsageProgress = ramInfo.totalRam.toFloat(),
-                usedStorage = ramInfo.usedRam,
-                freeStorage = ramInfo.availableRam
+                storageUsageProgress = ramInfo.totalRam.toFloat() , usedStorage = ramInfo.usedRam , freeStorage = ramInfo.availableRam
             )
         )
         Spacer(modifier = Modifier.height(8.dp))

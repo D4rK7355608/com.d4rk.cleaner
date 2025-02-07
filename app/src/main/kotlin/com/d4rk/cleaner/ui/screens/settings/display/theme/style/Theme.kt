@@ -21,8 +21,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.core.view.WindowCompat
-import com.d4rk.cleaner.data.core.AppCoreManager
-import com.d4rk.cleaner.data.datastore.DataStore
+import com.d4rk.cleaner.core.AppCoreManager
+import com.d4rk.cleaner.core.data.datastore.DataStore
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight ,

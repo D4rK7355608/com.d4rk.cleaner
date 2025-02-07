@@ -31,7 +31,7 @@
         tools:ignore="QueryAllPackagesPermission" />
 
     <application
-        android:name=".data.core.AppCoreManager"
+        android:name=".core.AppCoreManager"
         android:appCategory="productivity"
         android:banner="@drawable/tv_banner"
         android:description="@string/app_short_description"

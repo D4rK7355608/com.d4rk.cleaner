@@ -21,8 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil3.ImageLoader
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.data.model.ui.screens.UiHomeModel
-import com.d4rk.cleaner.ui.components.buttons.TwoRowButtons
+import com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel
+import com.d4rk.cleaner.core.ui.components.buttons.TwoRowButtons
 import com.d4rk.cleaner.ui.screens.analyze.components.DeleteOrTrashConfirmation
 import com.d4rk.cleaner.ui.screens.analyze.components.StatusRowSelectAll
 import com.d4rk.cleaner.ui.screens.analyze.components.TabsContent
@@ -47,7 +47,7 @@ fun AnalyzeScreen(
     imageLoader : ImageLoader ,
     view : View ,
     viewModel : HomeViewModel ,
-    data : UiHomeModel ,
+    data : com.d4rk.cleaner.core.data.model.ui.screens.UiHomeModel ,
 ) {
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     val hasSelectedFiles : Boolean = data.analyzeState.selectedFilesCount > 0

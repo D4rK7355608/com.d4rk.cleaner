@@ -2,9 +2,9 @@ package com.d4rk.cleaner.ui.screens.memory
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
-import com.d4rk.cleaner.data.model.ui.screens.UiMemoryManagerModel
+import com.d4rk.cleaner.core.data.model.ui.screens.UiMemoryManagerModel
 import com.d4rk.cleaner.ui.screens.memory.repository.MemoryManagerRepository
-import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
+import com.d4rk.cleaner.core.ui.viewmodel.BaseViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,8 +19,8 @@ class MemoryManagerViewModel(
     application : Application ,
 ) : BaseViewModel(application) {
     private val repository = MemoryManagerRepository(application)
-    private val _uiMemoryManagerModel = MutableStateFlow(UiMemoryManagerModel())
-    val uiMemoryManagerModel : StateFlow<UiMemoryManagerModel> = _uiMemoryManagerModel.asStateFlow()
+    private val _uiMemoryManagerModel = MutableStateFlow(com.d4rk.cleaner.core.data.model.ui.screens.UiMemoryManagerModel())
+    val uiMemoryManagerModel : StateFlow<com.d4rk.cleaner.core.data.model.ui.screens.UiMemoryManagerModel> = _uiMemoryManagerModel.asStateFlow()
 
     init {
         loadMemoryData()

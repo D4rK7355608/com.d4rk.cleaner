@@ -59,7 +59,7 @@ import com.d4rk.android.libs.apptoolkit.ui.screens.settings.display.DisplaySetti
 import com.d4rk.android.libs.apptoolkit.ui.screens.settings.privacy.PrivacySettingsList
 import com.d4rk.android.libs.apptoolkit.utils.helpers.ScreenHelper
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
+import com.d4rk.cleaner.core.ui.components.navigation.TopAppBarScaffoldWithBackButton
 import com.d4rk.cleaner.ui.screens.help.HelpActivity
 import com.d4rk.cleaner.ui.screens.settings.cleaning.CleaningSettingsList
 import com.d4rk.cleaner.ui.screens.settings.general.GeneralSettingsActivity

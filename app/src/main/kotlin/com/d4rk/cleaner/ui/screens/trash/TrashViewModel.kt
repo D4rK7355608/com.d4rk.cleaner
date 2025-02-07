@@ -2,10 +2,10 @@ package com.d4rk.cleaner.ui.screens.trash
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
-import com.d4rk.cleaner.data.datastore.DataStore
-import com.d4rk.cleaner.data.model.ui.screens.UiTrashModel
+import com.d4rk.cleaner.core.data.datastore.DataStore
+import com.d4rk.cleaner.core.data.model.ui.screens.UiTrashModel
 import com.d4rk.cleaner.ui.screens.home.repository.HomeRepository
-import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
+import com.d4rk.cleaner.core.ui.viewmodel.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,8 +20,8 @@ import java.io.File
  */
 class TrashViewModel(application : Application) : BaseViewModel(application) {
     private val repository = HomeRepository(DataStore(application) , application)
-    private val _uiState = MutableStateFlow(UiTrashModel())
-    val uiState : StateFlow<UiTrashModel> = _uiState
+    private val _uiState = MutableStateFlow(com.d4rk.cleaner.core.data.model.ui.screens.UiTrashModel())
+    val uiState : StateFlow<com.d4rk.cleaner.core.data.model.ui.screens.UiTrashModel> = _uiState
 
     init {
         loadTrashItems()

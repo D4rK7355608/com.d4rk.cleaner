@@ -22,7 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.ui.components.spacers.LargeVerticalSpacer
-import com.d4rk.cleaner.data.model.ui.imageoptimizer.CompressionLevel
+import com.d4rk.cleaner.core.data.model.ui.imageoptimizer.CompressionLevel
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.ImageOptimizerViewModel
 import com.d4rk.cleaner.utils.imageoptimizer.getCompressionLevelFromSliderValue
 import kotlinx.coroutines.CoroutineScope
@@ -31,11 +31,11 @@ import kotlinx.coroutines.launch
 @Composable
 fun QuickCompressScreen(viewModel: ImageOptimizerViewModel) {
     var sliderValue: Float by remember { mutableFloatStateOf(50f) }
-    val selectedCompression: CompressionLevel = getCompressionLevelFromSliderValue(sliderValue)
+    val selectedCompression: com.d4rk.cleaner.core.data.model.ui.imageoptimizer.CompressionLevel = getCompressionLevelFromSliderValue(sliderValue)
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     Column(modifier = Modifier.padding(16.dp)) {
         Row(modifier = Modifier.fillMaxWidth()) {
-            for (compressionLevel: CompressionLevel in CompressionLevel.entries) {
+            for (compressionLevel: com.d4rk.cleaner.core.data.model.ui.imageoptimizer.CompressionLevel in com.d4rk.cleaner.core.data.model.ui.imageoptimizer.CompressionLevel.entries) {
                 OutlinedButton(
                     onClick = {
                         coroutineScope.launch {
