@@ -254,6 +254,26 @@ class ImageOptimizerViewModel(application : Application) : BaseViewModel(applica
         return File(optimizedDir , fileName)
     }
 
+    suspend fun getOriginalSizeInKB(uri : Uri) : Int {
+        val file : File? = getRealFileFromUri(context = getApplication() , uri = uri)
+        return file?.length()?.div(other = 1024)?.toInt() ?: 0
+    }
+
+    fun generateDynamicPresets(originalSizeKB : Int) : List<String> {
+        val presets : MutableList<String> = mutableListOf()
+        for (p in 90 downTo 10 step 10) {
+            var suggested : Int = (originalSizeKB * p) / 100
+            if (suggested < originalSizeKB) {
+                if (suggested % 2 != 0) {
+                    suggested --
+                }
+                presets.add(element = suggested.toString())
+            }
+        }
+        return presets
+    }
+
+
     fun updateShowSaveSnackbar(show : Boolean) {
         viewModelScope.launch(context = coroutineExceptionHandler) {
             _uiState.emit(value = _uiState.value.copy(showSaveSnackbar = show))

@@ -16,6 +16,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
@@ -34,6 +36,21 @@ import kotlinx.coroutines.launch
 @Composable
 fun FileSizeScreen(viewModel : ImageOptimizerViewModel) {
     val state : State<ImageOptimizerState> = viewModel.uiState.collectAsState()
+    val coroutineScope : CoroutineScope = rememberCoroutineScope()
+    var originalSizeKB : Int by remember { mutableIntStateOf(value = 0) }
+
+    LaunchedEffect(key1 = state.value.selectedImageUri) {
+        state.value.selectedImageUri?.let { uri ->
+            originalSizeKB = viewModel.getOriginalSizeInKB(uri = uri)
+        }
+    }
+
+    val presetSizes : List<String> = if (originalSizeKB > 0) {
+        viewModel.generateDynamicPresets(originalSizeKB)
+    }
+    else {
+        stringArrayResource(id = R.array.file_sizes).toList()
+    }
 
     var fileSizeText : String = if (state.value.fileSizeKB == 0) {
         stringResource(id = R.string.default_value)
@@ -42,12 +59,10 @@ fun FileSizeScreen(viewModel : ImageOptimizerViewModel) {
         state.value.fileSizeKB.toString()
     }
 
-    var expanded : Boolean by remember { mutableStateOf(false) }
-    val presetSizes : List<String> = stringArrayResource(R.array.file_sizes).toList()
+    var expanded : Boolean by remember { mutableStateOf(value = false) }
     var selectedPresetSize : String by remember { mutableStateOf(value = "") }
-    val coroutineScope : CoroutineScope = rememberCoroutineScope()
 
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(modifier = Modifier.padding(all = 16.dp)) {
         ExposedDropdownMenuBox(expanded = expanded , onExpandedChange = { expanded = ! expanded }) {
             OutlinedTextField(value = fileSizeText ,
                               onValueChange = { newValue ->
@@ -72,7 +87,7 @@ fun FileSizeScreen(viewModel : ImageOptimizerViewModel) {
                         selectedPresetSize = size
                         fileSizeText = size
                         coroutineScope.launch {
-                            viewModel.setFileSize(size.toIntOrNull() ?: 0)
+                            viewModel.setFileSize(size = size.toIntOrNull() ?: 0)
                         }
                         expanded = false
                     })
