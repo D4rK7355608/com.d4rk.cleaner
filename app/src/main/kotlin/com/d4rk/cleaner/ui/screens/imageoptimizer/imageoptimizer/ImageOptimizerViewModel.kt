@@ -25,44 +25,54 @@ class ImageOptimizerViewModel(application : Application) : BaseViewModel(applica
 
     fun setCurrentTab(tab : Int) {
         viewModelScope.launch(context = coroutineExceptionHandler) {
-            _uiState.value = _uiState.value.copy(currentTab = tab)
+            _uiState.value = _uiState.value.copy(
+                currentTab = tab , compressedImageUri = _uiState.value.selectedImageUri , fileSizeKB = if (tab == 1) 0 else _uiState.value.fileSizeKB
+            )
         }
     }
 
     fun optimizeImage() {
         viewModelScope.launch(context = coroutineExceptionHandler) {
-            _uiState.emit(_uiState.value.copy(isLoading = true))
+            _uiState.emit(value = _uiState.value.copy(isLoading = true))
             val context : Context = getApplication<Application>().applicationContext
             val originalFile : File? = _uiState.value.selectedImageUri?.let { uri ->
-                getRealFileFromUri(context = context , uri = uri)
+                getRealFileFromUri(context , uri)
             }
             val currentTab : Int = _uiState.value.currentTab
             val quality : Int = when (currentTab) {
                 0 -> _uiState.value.quickCompressValue
-                1 -> _uiState.value.quickCompressValue
+                1 -> 100
                 2 -> _uiState.value.manualQuality
                 else -> 50
             }
 
             val (targetWidth : Int , targetHeight : Int) = when (currentTab) {
-                0 -> originalFile?.let { getImageDimensions(file = it) } ?: Pair(first = 640 , second = 480)
-                2 -> if (_uiState.value.manualWidth > 0 && _uiState.value.manualHeight > 0)
-                    Pair(_uiState.value.manualWidth, _uiState.value.manualHeight)
-                else Pair(640, 480)
-                else -> Pair(640, 480)
-            }
-            val destinationFile = originalFile?.let { orig ->
-                getOptimizedDestinationFile(originalFile = orig)
+                0 , 1 -> originalFile?.let { getImageDimensions(it) } ?: Pair(first = 640 , second = 480)
+                2 -> if (_uiState.value.manualWidth > 0 && _uiState.value.manualHeight > 0) Pair(first = _uiState.value.manualWidth , second = _uiState.value.manualHeight)
+                else Pair(first = 640 , second = 480)
+
+                else -> Pair(first = 640 , second = 480)
             }
 
+            val destinationFile : File? = originalFile?.let { getOptimizedDestinationFile(it) }
             val compressedFile : File? = originalFile?.let { file ->
-                withContext(context = Dispatchers.IO) {
+                withContext(Dispatchers.IO) {
                     try {
-                        val tempFile : File = compressImageUsingNative(context = context , originalFile = file , quality = quality , targetWidth = targetWidth , targetHeight = targetHeight)
-                        destinationFile?.apply {
-                            tempFile.copyTo(target = this , overwrite = true)
+                        if (currentTab == 1 && _uiState.value.fileSizeKB > 0) {
+                            val desiredSizeBytes : Long = _uiState.value.fileSizeKB * 1024L
+                            val tempFile = compressImageToTargetSize(context = context , originalFile = file , targetWidth = targetWidth , targetHeight = targetHeight , desiredSizeBytes = desiredSizeBytes)
+                            destinationFile?.apply {
+                                tempFile.copyTo(this , overwrite = true)
+                            }
+                            destinationFile
                         }
-                        destinationFile
+                        else {
+                            val tempFile : File = compressImageUsingNative(context = context , originalFile = file , quality = quality , targetWidth = targetWidth , targetHeight = targetHeight)
+                            destinationFile?.apply {
+                                tempFile.copyTo(target = this , overwrite = true)
+                            }
+                            destinationFile
+                        }
                     } catch (e : Exception) {
                         e.printStackTrace()
                         null
@@ -74,9 +84,50 @@ class ImageOptimizerViewModel(application : Application) : BaseViewModel(applica
         }
     }
 
-    private fun getImageDimensions(file: File): Pair<Int, Int> {
+    private fun compressImageToTargetSize(
+        context : Context , originalFile : File , targetWidth : Int , targetHeight : Int , desiredSizeBytes : Long , format : Bitmap.CompressFormat = Bitmap.CompressFormat.JPEG
+    ) : File {
+        val originalBitmap : Bitmap = BitmapFactory.decodeFile(originalFile.absolutePath) ?: throw Exception("Nu s-a putut decoda imaginea.")
+
+        if (originalFile.length() <= desiredSizeBytes) {
+            return originalFile
+        }
+
+        val scaledBitmap : Bitmap = Bitmap.createScaledBitmap(originalBitmap , targetWidth , targetHeight , true)
+
+        var minQuality = 10
+        var maxQuality = 100
+        var finalQuality : Int = maxQuality
+        var compressedFile : File
+
+        while (minQuality <= maxQuality) {
+            finalQuality = (minQuality + maxQuality) / 2
+
+            compressedFile = File(context.cacheDir , "temp_compressed.jpg")
+            compressedFile.outputStream().use { out ->
+                scaledBitmap.compress(format , finalQuality , out)
+            }
+            val fileSize : Long = compressedFile.length()
+            if (fileSize in (desiredSizeBytes * 95 / 100)..(desiredSizeBytes * 105 / 100)) {
+                break
+            }
+            if (fileSize > desiredSizeBytes) {
+                maxQuality = finalQuality - 1
+            }
+            else {
+                minQuality = finalQuality + 1
+            }
+        }
+        compressedFile = File(context.cacheDir , "native_compressed_${System.currentTimeMillis()}.jpg")
+        compressedFile.outputStream().use { out ->
+            scaledBitmap.compress(format , finalQuality , out)
+        }
+        return compressedFile
+    }
+
+    private fun getImageDimensions(file : File) : Pair<Int , Int> {
         val options : BitmapFactory.Options = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-        BitmapFactory.decodeFile(file.absolutePath, options)
+        BitmapFactory.decodeFile(file.absolutePath , options)
         return Pair(first = options.outWidth , second = options.outHeight)
     }
 
@@ -138,30 +189,33 @@ class ImageOptimizerViewModel(application : Application) : BaseViewModel(applica
             val currentTab : Int = _uiState.value.currentTab
             val quality : Int = when (currentTab) {
                 0 -> _uiState.value.quickCompressValue
-                1 -> _uiState.value.quickCompressValue
+                1 -> 100
                 2 -> _uiState.value.manualQuality
                 else -> 50
             }
+            val (targetWidth : Int , targetHeight : Int) = when (currentTab) {
+                0 , 1 -> originalFile?.let { getImageDimensions(file = it) } ?: Pair(640 , 480)
+                2 -> if (_uiState.value.manualWidth > 0 && _uiState.value.manualHeight > 0) Pair(_uiState.value.manualWidth , _uiState.value.manualHeight)
+                else Pair(first = 640 , second = 480)
 
-            val (targetWidth, targetHeight) = when (currentTab) {
-                0 -> originalFile?.let { getImageDimensions(it) } ?: Pair(640, 480)
-                2 -> if (_uiState.value.manualWidth > 0 && _uiState.value.manualHeight > 0)
-                    Pair(_uiState.value.manualWidth, _uiState.value.manualHeight)
-                else Pair(640, 480)
-                else -> Pair(640, 480)
+                else -> Pair(first = 640 , second = 480)
             }
-
             val previewFile : File? = originalFile?.let { file ->
                 withContext(Dispatchers.IO) {
                     try {
-                        compressImageUsingNative(context = context , originalFile = file , quality = quality , targetWidth = targetWidth , targetHeight = targetHeight)
+                        if (currentTab == 1 && _uiState.value.fileSizeKB > 0) {
+                            val desiredSizeBytes = _uiState.value.fileSizeKB * 1024L
+                            compressImageToTargetSize(context = context , originalFile = file , targetWidth = targetWidth , targetHeight = targetHeight , desiredSizeBytes = desiredSizeBytes)
+                        }
+                        else {
+                            compressImageUsingNative(context = context , originalFile = file , quality = quality , targetWidth = targetWidth , targetHeight = targetHeight)
+                        }
                     } catch (e : Exception) {
                         e.printStackTrace()
                         null
                     }
                 }
             }
-
             _uiState.emit(value = _uiState.value.copy(isLoading = false , compressedImageUri = previewFile?.let { Uri.fromFile(it) } ?: _uiState.value.selectedImageUri))
         }
     }

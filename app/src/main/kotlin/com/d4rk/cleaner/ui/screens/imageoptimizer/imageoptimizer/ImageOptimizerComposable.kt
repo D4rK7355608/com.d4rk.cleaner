@@ -119,6 +119,11 @@ fun ImageOptimizerComposable(
                 coroutineScope.launch {
                     viewModel.optimizeImage()
                 }
+            } , enabled = if (pagerState.currentPage == 1) {
+                uiState.fileSizeKB != 0
+            }
+            else {
+                true
             } , modifier = Modifier
                     .constrainAs(compressButton) {
                         start.linkTo(parent.start)
