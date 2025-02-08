@@ -8,6 +8,8 @@ data class ImageOptimizerState(
     val isLoading : Boolean = false ,
     val quickCompressValue : Int = 50 ,
     val fileSizeKB : Int = 0 ,
+    val originalWidth : Int = 0 ,
+    val originalHeight : Int = 0 ,
     val manualWidth : Int = 0 ,
     val manualHeight : Int = 0 ,
     val manualQuality : Int = 50 ,
