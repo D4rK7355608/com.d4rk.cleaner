@@ -1,5 +1,8 @@
 # Version 3.2.1:
 
+- **Patch**: Fixed an issue where the Manual mode fields and slider did not reset to their default (original) values when switching from other tabs.
+- **Patch**: Ensured that settings in Quick Compress and File Size remain independent from those in Manual mode.
+- **Minor**: Improved the Manual mode so that the preview updates automatically when the user finishes editing the width and height fields—now it updates after a brief pause (400 ms) or when “Done” is pressed.
 - **Minor**: Under-the-hood improvements for better performance and stability.
 
 # Version 3.2.0:
