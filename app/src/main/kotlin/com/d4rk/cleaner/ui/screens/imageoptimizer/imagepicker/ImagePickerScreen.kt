@@ -50,8 +50,7 @@ import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.ImageOptimizerA
 fun ImagePickerComposable(
     activity : ImagePickerActivity , viewModel : ImagePickerViewModel
 ) {
-    val scrollBehavior : TopAppBarScrollBehavior =
-            TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val scrollBehavior : TopAppBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     val context : Context = LocalContext.current
     val view : View = LocalView.current
     val isFabVisible : Boolean by viewModel.isFabVisible.collectAsState()
@@ -70,51 +69,42 @@ fun ImagePickerComposable(
         }
     }
 
-    val scrollBehaviorState : TopAppBarScrollBehavior =
-            TopAppBarDefaults.enterAlwaysScrollBehavior(state = rememberTopAppBarState())
+    val scrollBehaviorState : TopAppBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(state = rememberTopAppBarState())
 
-    Scaffold(modifier = Modifier.nestedScroll(connection = scrollBehaviorState.nestedScrollConnection) ,
-             topBar = {
-                 LargeTopAppBar(
-                     title = { Text(text = stringResource(id = R.string.image_optimizer)) } ,
-                     navigationIcon = {
-                         IconButton(modifier = Modifier.bounceClick() , onClick = {
-                             activity.finish()
-                             view.playSoundEffect(SoundEffectConstants.CLICK)
-                         }) {
-                             Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null)
-                         }
-                     } ,
-                     scrollBehavior = scrollBehaviorState ,
-                 )
-             } ,
-             floatingActionButton = {
-                 AnimatedExtendedFloatingActionButton(visible = isFabVisible , onClick = {
-                     view.playSoundEffect(SoundEffectConstants.CLICK)
-                     activity.selectImage()
-                 } , text = { Text(text = stringResource(id = R.string.choose_image)) } , icon = {
-                     Icon(
-                         imageVector = Icons.Outlined.AddPhotoAlternate , contentDescription = null
-                     )
-                 } , expanded = isFabExtended.value, modifier = Modifier.bounceClick())
-             } ,
-             bottomBar = {
-                 AdBanner()
-             }) { paddingValues ->
+    Scaffold(modifier = Modifier.nestedScroll(connection = scrollBehaviorState.nestedScrollConnection) , topBar = {
+        LargeTopAppBar(
+            title = { Text(text = stringResource(id = R.string.image_optimizer)) } ,
+            navigationIcon = {
+                IconButton(modifier = Modifier.bounceClick() , onClick = {
+                    activity.finish()
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
+                }) {
+                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack , contentDescription = null)
+                }
+            } ,
+            scrollBehavior = scrollBehaviorState ,
+        )
+    } , floatingActionButton = {
+        AnimatedExtendedFloatingActionButton(visible = isFabVisible , onClick = {
+            view.playSoundEffect(SoundEffectConstants.CLICK)
+            activity.selectImage()
+        } , text = { Text(text = stringResource(id = R.string.choose_image)) } , icon = {
+            Icon(
+                imageVector = Icons.Outlined.AddPhotoAlternate , contentDescription = null
+            )
+        } , expanded = isFabExtended.value , modifier = Modifier.bounceClick())
+    } , bottomBar = {
+        AdBanner()
+    }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
                     .padding(paddingValues = paddingValues)
                     .fillMaxSize()
-                    .safeDrawingPadding() ,
-            state = rememberLazyListState() ,
-            horizontalAlignment = Alignment.CenterHorizontally ,
-            verticalArrangement = Arrangement.Center
+                    .safeDrawingPadding() , state = rememberLazyListState() , horizontalAlignment = Alignment.CenterHorizontally , verticalArrangement = Arrangement.Center
         ) {
             item {
                 Icon(
-                    imageVector = Icons.Outlined.ImageSearch ,
-                    contentDescription = null ,
-                    modifier = Modifier.size(size = 72.dp)
+                    imageVector = Icons.Outlined.ImageSearch , contentDescription = null , modifier = Modifier.size(size = 72.dp)
                 )
                 LargeVerticalSpacer()
                 Text(text = stringResource(id = R.string.summary_select_image))
