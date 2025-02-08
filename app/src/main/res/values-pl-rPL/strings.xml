@@ -79,6 +79,7 @@
     <string name="medium">Średni</string>
     <string name="high">Wysoki</string>
     <string name="file_size">Rozmiar pliku (KB)</string>
+    <string name="default_value">Domyślny</string>
     <string name="enter_a_value">Wprowadź wartość</string>
     <string name="manual">Ręczny</string>
     <string name="width">Szerokość (px)</string>

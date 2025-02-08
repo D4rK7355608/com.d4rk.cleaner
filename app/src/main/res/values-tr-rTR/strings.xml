@@ -75,6 +75,7 @@
     <string name="medium">Orta</string>
     <string name="high">Yüksek</string>
     <string name="file_size">Dosya Boyutu (KB)</string>
+    <string name="default_value">Varsayılan</string>
     <string name="enter_a_value">Bir değer girin</string>
     <string name="manual">Manuel</string>
     <string name="width">Genişlik (px)</string>

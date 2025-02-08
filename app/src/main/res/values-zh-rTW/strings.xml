@@ -73,6 +73,7 @@
     <string name="medium">中</string>
     <string name="high">高</string>
     <string name="file_size">檔案大小 (KB)</string>
+    <string name="default_value">預設</string>
     <string name="enter_a_value">輸入值</string>
     <string name="manual">手動</string>
     <string name="width">寬度 (px)</string>

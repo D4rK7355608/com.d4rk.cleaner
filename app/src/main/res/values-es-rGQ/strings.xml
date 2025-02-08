@@ -77,6 +77,7 @@
     <string name="medium">Medio</string>
     <string name="high">Alto</string>
     <string name="file_size">Tamaño del archivo (KB)</string>
+    <string name="default_value">Predeterminado</string>
     <string name="enter_a_value">Ingresa un valor</string>
     <string name="manual">Manual</string>
     <string name="width">Ancho (px)</string>

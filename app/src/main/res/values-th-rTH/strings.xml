@@ -73,6 +73,7 @@
     <string name="medium">ปานกลาง</string>
     <string name="high">สูง</string>
     <string name="file_size">ขนาดไฟล์ (KB)</string>
+    <string name="default_value">ค่าเริ่มต้น</string>
     <string name="enter_a_value">ป้อนค่า</string>
     <string name="manual">กำหนดเอง</string>
     <string name="width">ความกว้าง (px)</string>

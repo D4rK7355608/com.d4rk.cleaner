@@ -75,6 +75,7 @@
     <string name="medium">Közepes</string>
     <string name="high">Magas</string>
     <string name="file_size">Fájlméret (KB)</string>
+    <string name="default_value">Alapértelmezett</string>
     <string name="enter_a_value">Érték megadása</string>
     <string name="manual">Kézi</string>
     <string name="width">Szélesség (px)</string>

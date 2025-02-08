@@ -77,6 +77,7 @@
     <string name="medium">Mediu</string>
     <string name="high">Înalt</string>
     <string name="file_size">Dimensiune fișier (KB)</string>
+    <string name="default_value">Implicit</string>
     <string name="enter_a_value">Introduceți o valoare</string>
     <string name="manual">Manual</string>
     <string name="width">Lățime (px)</string>

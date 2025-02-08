@@ -72,6 +72,7 @@
     <string name="medium">Sedang</string>
     <string name="high">Tinggi</string>
     <string name="file_size">Ukuran File (KB)</string>
+    <string name="default_value">Bawaan</string>
     <string name="enter_a_value">Masukkan nilai</string>
     <string name="manual">Manual</string>
     <string name="width">Lebar (px)</string>

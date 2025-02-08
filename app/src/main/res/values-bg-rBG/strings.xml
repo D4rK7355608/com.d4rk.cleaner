@@ -75,6 +75,7 @@
     <string name="medium">Средно</string>
     <string name="high">Високо</string>
     <string name="file_size">Размер на файла (KB)</string>
+    <string name="default_value">По подразбиране</string>
     <string name="enter_a_value">Въведете стойност</string>
     <string name="manual">Ръчно</string>
     <string name="width">Ширина (px)</string>

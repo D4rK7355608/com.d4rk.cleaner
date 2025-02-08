@@ -76,6 +76,7 @@
     <string name="medium">Moyen</string>
     <string name="high">Élevé</string>
     <string name="file_size">Taille du fichier (Ko)</string>
+    <string name="default_value">Par défaut</string>
     <string name="enter_a_value">Saisir une valeur</string>
     <string name="manual">Manuel</string>
     <string name="width">Largeur (px)</string>

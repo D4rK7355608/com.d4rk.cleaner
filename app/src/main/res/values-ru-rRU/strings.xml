@@ -79,6 +79,7 @@
     <string name="medium">Среднее</string>
     <string name="high">Высокое</string>
     <string name="file_size">Размер файла (КБ)</string>
+    <string name="default_value">По умолчанию</string>
     <string name="enter_a_value">Введите значение</string>
     <string name="manual">Ручной</string>
     <string name="width">Ширина (px)</string>

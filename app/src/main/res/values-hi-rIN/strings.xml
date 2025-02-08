@@ -75,6 +75,7 @@
     <string name="medium">मध्यम</string>
     <string name="high">उच्च</string>
     <string name="file_size">फ़ाइल का आकार (KB)</string>
+    <string name="default_value">डिफ़ॉल्ट</string>
     <string name="enter_a_value">एक मान दर्ज करें</string>
     <string name="manual">मैन्युअल</string>
     <string name="width">चौड़ाई (px)</string>

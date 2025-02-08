@@ -79,6 +79,7 @@
     <string name="medium">Середній</string>
     <string name="high">Високий</string>
     <string name="file_size">Розмір файлу (КБ)</string>
+    <string name="default_value">За замовчуванням</string>
     <string name="enter_a_value">Введіть значення</string>
     <string name="manual">Вручну</string>
     <string name="width">Ширина (пікселів)</string>
