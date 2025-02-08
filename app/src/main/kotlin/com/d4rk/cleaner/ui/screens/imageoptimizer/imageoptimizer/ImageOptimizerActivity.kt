@@ -15,13 +15,13 @@ import com.d4rk.cleaner.ui.screens.settings.display.theme.style.AppTheme
 import kotlinx.coroutines.launch
 
 class ImageOptimizerActivity : AppCompatActivity() {
-    private val viewModel: ImageOptimizerViewModel by viewModels()
+    private val viewModel : ImageOptimizerViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val selectedImageUriString: String? = intent.getStringExtra("selectedImageUri")
-        if (!selectedImageUriString.isNullOrEmpty()) {
+        val selectedImageUriString : String? = intent.getStringExtra("selectedImageUri")
+        if (! selectedImageUriString.isNullOrEmpty()) {
             lifecycleScope.launch {
                 viewModel.onImageSelected(Uri.parse(selectedImageUriString))
             }
@@ -30,9 +30,9 @@ class ImageOptimizerActivity : AppCompatActivity() {
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    ImageOptimizerComposable(activity = this@ImageOptimizerActivity, viewModel)
+                    ImageOptimizerComposable(activity = this@ImageOptimizerActivity , viewModel)
                 }
             }
         }

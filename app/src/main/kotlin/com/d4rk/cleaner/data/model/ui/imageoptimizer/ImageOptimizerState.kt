@@ -12,4 +12,5 @@ data class ImageOptimizerState(
     val manualHeight : Int = 0 ,
     val manualQuality : Int = 50 ,
     val currentTab : Int = 0 ,
+    val showSaveSnackbar : Boolean = false
 )
