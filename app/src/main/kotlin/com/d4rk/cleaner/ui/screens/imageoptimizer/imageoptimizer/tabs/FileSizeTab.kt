@@ -34,7 +34,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FileSizeScreen(viewModel : ImageOptimizerViewModel) {
+fun FileSizeTab(viewModel : ImageOptimizerViewModel) {
     val state : State<ImageOptimizerState> = viewModel.uiState.collectAsState()
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     var originalSizeKB : Int by remember { mutableIntStateOf(value = 0) }

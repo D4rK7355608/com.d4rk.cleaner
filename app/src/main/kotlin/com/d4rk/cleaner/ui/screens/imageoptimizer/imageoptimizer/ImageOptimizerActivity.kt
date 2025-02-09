@@ -32,7 +32,7 @@ class ImageOptimizerActivity : AppCompatActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
                 ) {
-                    ImageOptimizerComposable(activity = this@ImageOptimizerActivity , viewModel)
+                    ImageOptimizerScreen(activity = this@ImageOptimizerActivity , viewModel)
                 }
             }
         }

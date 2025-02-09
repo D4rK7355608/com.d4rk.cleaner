@@ -13,7 +13,6 @@ import android.os.Environment
 import android.provider.Settings
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.d4rk.android.libs.apptoolkit.utils.constants.permissions.PermissionsConstants
 import com.d4rk.cleaner.utils.constants.permissions.AppPermissionsConstants
 
 /**
@@ -77,39 +76,6 @@ object PermissionsHelper {
         )
     }
 
-    fun hasMediaPermissions(context: Context): Boolean {
-        val hasMediaPermissions: Boolean =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                ContextCompat.checkSelfPermission(
-                    context, Manifest.permission.READ_MEDIA_AUDIO
-                ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                    context, Manifest.permission.READ_MEDIA_IMAGES
-                ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                    context, Manifest.permission.READ_MEDIA_VIDEO
-                ) == PackageManager.PERMISSION_GRANTED
-            } else {
-                true
-            }
-
-        return hasMediaPermissions
-    }
-
-    fun requestMediaPermissions(activity: Activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            val requiredPermissions: List<String> = listOf(
-                Manifest.permission.READ_MEDIA_AUDIO,
-                Manifest.permission.READ_MEDIA_IMAGES,
-                Manifest.permission.READ_MEDIA_VIDEO
-            )
-
-            ActivityCompat.requestPermissions(
-                activity,
-                requiredPermissions.toTypedArray(),
-                AppPermissionsConstants.REQUEST_CODE_STORAGE_PERMISSIONS
-            )
-        }
-    }
-
     fun hasUsageAccessPermissions(context: Context): Boolean {
         val hasUsageStatsPermission: Boolean =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -148,37 +114,5 @@ object PermissionsHelper {
         mode == AppOpsManager.MODE_ALLOWED
     } catch (e: PackageManager.NameNotFoundException) {
         false
-    }
-
-
-    /**
-     * Checks if the app has permission to post notifications.
-     *
-     * @param context The application context.
-     * @return True if the permission is granted, false otherwise.
-     */
-    fun hasNotificationPermission(context: Context): Boolean {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            ContextCompat.checkSelfPermission(
-                context, Manifest.permission.POST_NOTIFICATIONS
-            ) == PackageManager.PERMISSION_GRANTED
-        } else {
-            true
-        }
-    }
-
-    /**
-     * Requests the notification permission.
-     *
-     * @param activity The Activity instance required to request the permission.
-     */
-    fun requestNotificationPermission(activity: Activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            ActivityCompat.requestPermissions(
-                activity,
-                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                PermissionsConstants.REQUEST_CODE_NOTIFICATION_PERMISSION
-            )
-        }
     }
 }

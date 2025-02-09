@@ -37,7 +37,7 @@ import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.ImageOptimizerV
 import kotlinx.coroutines.delay
 
 @Composable
-fun ManualModeScreen(viewModel : ImageOptimizerViewModel) {
+fun ManualModeTab(viewModel : ImageOptimizerViewModel) {
     val state : State<ImageOptimizerState> = viewModel.uiState.collectAsState()
     val focusManager : FocusManager = LocalFocusManager.current
 
@@ -109,8 +109,7 @@ fun ManualModeScreen(viewModel : ImageOptimizerViewModel) {
                 viewModel.setManualCompressSettings(
                     width = widthText.toIntOrNull() ?: defaultWidth , height = heightText.toIntOrNull() ?: defaultHeight , quality = qualityValue.toInt()
                 )
-            } , valueRange = 0f..100f , steps = 99 , modifier = Modifier.weight(1f)
-            )
+            } , valueRange = 0f..100f , steps = 99 , modifier = Modifier.weight(1f))
         }
     }
 }

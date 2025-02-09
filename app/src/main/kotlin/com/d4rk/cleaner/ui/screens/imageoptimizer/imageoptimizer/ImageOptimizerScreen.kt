@@ -39,17 +39,17 @@ import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.imageoptimizer.ImageOptimizerState
 import com.d4rk.cleaner.ui.components.ads.AdBanner
 import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
-import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.tabs.FileSizeScreen
-import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.tabs.ManualModeScreen
-import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.tabs.QuickCompressScreen
+import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.tabs.FileSizeTab
+import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.tabs.ManualModeTab
+import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.tabs.QuickCompressTab
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
-fun ImageOptimizerComposable(
+fun ImageOptimizerScreen(
     activity : ImageOptimizerActivity , viewModel : ImageOptimizerViewModel
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState : ImageOptimizerState by viewModel.uiState.collectAsState()
 
     val dataStore : DataStore = AppCoreManager.dataStore
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
@@ -69,7 +69,7 @@ fun ImageOptimizerComposable(
         ConstraintLayout(
             modifier = Modifier
                     .fillMaxSize()
-                    .padding(paddingValues)
+                    .padding(paddingValues = paddingValues)
         ) {
             val (imageCardView : ConstrainedLayoutReference , tabLayout : ConstrainedLayoutReference , viewPager : ConstrainedLayoutReference , compressButton : ConstrainedLayoutReference , adView : ConstrainedLayoutReference) = createRefs()
 
@@ -77,41 +77,41 @@ fun ImageOptimizerComposable(
                 modifier = Modifier
                         .fillMaxWidth()
                         .constrainAs(imageCardView) {
-                            top.linkTo(parent.top)
-                            start.linkTo(parent.start)
-                            end.linkTo(parent.end)
-                            bottom.linkTo(tabLayout.top)
+                            top.linkTo(anchor = parent.top)
+                            start.linkTo(anchor = parent.start)
+                            end.linkTo(anchor = parent.end)
+                            bottom.linkTo(anchor = tabLayout.top)
                         }
-                        .padding(24.dp) ,
+                        .padding(all = 24.dp) ,
             ) {
                 ImageDisplay(viewModel)
             }
 
-            TabRow(selectedTabIndex = pagerState.currentPage , modifier = Modifier.constrainAs(tabLayout) {
-                top.linkTo(imageCardView.bottom)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
+            TabRow(selectedTabIndex = pagerState.currentPage , modifier = Modifier.constrainAs(ref = tabLayout) {
+                top.linkTo(anchor = imageCardView.bottom)
+                start.linkTo(anchor = parent.start)
+                end.linkTo(anchor = parent.end)
             }) {
                 tabs.forEachIndexed { index , title ->
                     Tab(text = { Text(text = title) } , selected = pagerState.currentPage == index , onClick = {
                         coroutineScope.launch {
-                            pagerState.animateScrollToPage(index)
+                            pagerState.animateScrollToPage(page = index)
                         }
                     })
                 }
             }
 
-            HorizontalPager(state = pagerState , modifier = Modifier.constrainAs(viewPager) {
-                top.linkTo(tabLayout.bottom)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-                bottom.linkTo(compressButton.top)
+            HorizontalPager(state = pagerState , modifier = Modifier.constrainAs(ref = viewPager) {
+                top.linkTo(anchor = tabLayout.bottom)
+                start.linkTo(anchor = parent.start)
+                end.linkTo(anchor = parent.end)
+                bottom.linkTo(anchor = compressButton.top)
                 height = Dimension.fillToConstraints
             }) { page ->
                 when (page) {
-                    0 -> QuickCompressScreen(viewModel)
-                    1 -> FileSizeScreen(viewModel)
-                    2 -> ManualModeScreen(viewModel)
+                    0 -> QuickCompressTab(viewModel = viewModel)
+                    1 -> FileSizeTab(viewModel = viewModel)
+                    2 -> ManualModeTab(viewModel = viewModel)
                 }
             }
 
@@ -125,24 +125,24 @@ fun ImageOptimizerComposable(
             else {
                 true
             } , modifier = Modifier
-                    .constrainAs(compressButton) {
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
+                    .constrainAs(ref = compressButton) {
+                        start.linkTo(anchor = parent.start)
+                        end.linkTo(anchor = parent.end)
                         if (adsState.value) {
-                            bottom.linkTo(adView.top)
+                            bottom.linkTo(anchor = adView.top)
                         }
                         else {
-                            bottom.linkTo(parent.bottom)
+                            bottom.linkTo(anchor = parent.bottom)
                         }
                     }
-                    .padding(12.dp)) {
+                    .padding(all = 12.dp)) {
                 Text(text = stringResource(id = R.string.optimize_image))
             }
 
-            AdBanner(modifier = Modifier.constrainAs(adView) {
-                bottom.linkTo(parent.bottom)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
+            AdBanner(modifier = Modifier.constrainAs(ref = adView) {
+                bottom.linkTo(anchor = parent.bottom)
+                start.linkTo(anchor = parent.start)
+                end.linkTo(anchor = parent.end)
             })
         }
         Snackbar(message = "Imagine salvată în folderul Optimized images" , showSnackbar = uiState.showSaveSnackbar , onDismiss = { coroutineScope.launch { viewModel.updateShowSaveSnackbar(false) } })
