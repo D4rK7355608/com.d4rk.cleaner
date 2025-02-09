@@ -16,46 +16,40 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.lang.String.format
 import java.io.File
+import java.util.Locale
 
 class ImageOptimizerViewModel(application : Application) : BaseViewModel(application) {
 
     private val _uiState : MutableStateFlow<ImageOptimizerState> = MutableStateFlow(value = ImageOptimizerState())
     val uiState : StateFlow<ImageOptimizerState> = _uiState.asStateFlow()
 
-    fun setCurrentTab(tab: Int) {
+    fun setCurrentTab(tab : Int) {
         viewModelScope.launch(context = coroutineExceptionHandler) {
             val currentState = _uiState.value
             val newState = when (tab) {
                 1 -> {
-                    // Pentru File Size, resetăm preview-ul și fileSizeKB
                     currentState.copy(
-                        currentTab = tab,
-                        compressedImageUri = currentState.selectedImageUri,
-                        fileSizeKB = 0
+                        currentTab = tab , compressedImageUri = currentState.selectedImageUri , fileSizeKB = 0
                     )
                 }
+
                 2 -> {
-                    // Pentru Manual, dorim să resetăm valorile la cele originale (dacă imaginea e selectată)
                     val file = currentState.selectedImageUri?.let { uri ->
-                        getRealFileFromUri(getApplication(), uri)
+                        getRealFileFromUri(getApplication() , uri)
                     }
-                    val (w, h) = file?.let { getImageDimensions(it) } ?: Pair(640, 480)
+                    val (w , h) = file?.let { getImageDimensions(it) } ?: Pair(640 , 480)
                     currentState.copy(
-                        currentTab = tab,
-                        compressedImageUri = currentState.selectedImageUri,
-                        // Resetați valorile manuale la dimensiunile originale și o calitate default (ex. 50)
-                        manualWidth = w,
-                        manualHeight = h,
-                        manualQuality = 50
+                        currentTab = tab , compressedImageUri = currentState.selectedImageUri , manualWidth = w , manualHeight = h , manualQuality = 50
                     )
                 }
+
                 else -> currentState.copy(currentTab = tab)
             }
             _uiState.value = newState
         }
     }
-
 
     fun optimizeImage() {
         viewModelScope.launch(context = coroutineExceptionHandler) {
@@ -113,7 +107,7 @@ class ImageOptimizerViewModel(application : Application) : BaseViewModel(applica
     private fun compressImageToTargetSize(
         context : Context , originalFile : File , targetWidth : Int , targetHeight : Int , desiredSizeBytes : Long , format : Bitmap.CompressFormat = Bitmap.CompressFormat.JPEG
     ) : File {
-        val originalBitmap : Bitmap = BitmapFactory.decodeFile(originalFile.absolutePath) ?: throw Exception("Nu s-a putut decoda imaginea.")
+        val originalBitmap : Bitmap = BitmapFactory.decodeFile(originalFile.absolutePath)
 
         if (originalFile.length() <= desiredSizeBytes) {
             return originalFile
@@ -160,7 +154,7 @@ class ImageOptimizerViewModel(application : Application) : BaseViewModel(applica
     private fun compressImageUsingNative(
         context : Context , originalFile : File , quality : Int , targetWidth : Int , targetHeight : Int , format : Bitmap.CompressFormat = Bitmap.CompressFormat.JPEG
     ) : File {
-        val originalBitmap : Bitmap = BitmapFactory.decodeFile(originalFile.absolutePath) ?: throw Exception("Image Optimizer - Nu s-a putut decoda imaginea cu BitmapFactory.decodeFile")
+        val originalBitmap : Bitmap = BitmapFactory.decodeFile(originalFile.absolutePath)
         val scaledBitmap : Bitmap = Bitmap.createScaledBitmap(originalBitmap , targetWidth , targetHeight , true)
         val outputFile = File(context.cacheDir , "native_compressed_${System.currentTimeMillis()}.jpg")
         outputFile.outputStream().use { out ->
@@ -183,30 +177,27 @@ class ImageOptimizerViewModel(application : Application) : BaseViewModel(applica
         }
     }
 
-    fun setManualCompressSettings(width: Int, height: Int, quality: Int) {
+    fun setManualCompressSettings(width : Int , height : Int , quality : Int) {
         viewModelScope.launch(context = coroutineExceptionHandler) {
             _uiState.emit(
                 _uiState.value.copy(
-                    manualWidth = width,
-                    manualHeight = height,
-                    manualQuality = quality
+                    manualWidth = width , manualHeight = height , manualQuality = quality
                 )
             )
             previewCompressImage()
         }
     }
 
-    fun onImageSelected(uri: Uri) {
+    fun onImageSelected(uri : Uri) {
         viewModelScope.launch(context = coroutineExceptionHandler) {
-            val file = getRealFileFromUri(getApplication(), uri)
-            val (w, h) = file?.let { getImageDimensions(it) } ?: Pair(640, 480)
+            val file : File? = getRealFileFromUri(getApplication() , uri)
+            val (w , h) = file?.let { getImageDimensions(it) } ?: Pair(640 , 480)
+            val originalSizeKB : Double = file?.let {
+                String.format(Locale.US , "%.2f" , it.length() / 1024.0).toDouble()
+            } ?: 0.0
             _uiState.emit(
                 _uiState.value.copy(
-                    selectedImageUri = uri,
-                    compressedImageUri = uri,
-                    // Dacă nu s-au setat valorile manual, le setăm cu dimensiunile originale
-                    manualWidth = if (_uiState.value.manualWidth == 0) w else _uiState.value.manualWidth,
-                    manualHeight = if (_uiState.value.manualHeight == 0) h else _uiState.value.manualHeight
+                    selectedImageUri = uri , compressedImageUri = uri , manualWidth = if (_uiState.value.manualWidth == 0) w else _uiState.value.manualWidth , manualHeight = if (_uiState.value.manualHeight == 0) h else _uiState.value.manualHeight , compressedSizeKB = originalSizeKB
                 )
             )
         }
@@ -215,38 +206,43 @@ class ImageOptimizerViewModel(application : Application) : BaseViewModel(applica
     private fun previewCompressImage() {
         viewModelScope.launch(context = coroutineExceptionHandler) {
             _uiState.emit(_uiState.value.copy(isLoading = true))
-            val context = getApplication<Application>().applicationContext
-            val originalFile = _uiState.value.selectedImageUri?.let { uri -> getRealFileFromUri(context, uri) }
-            val currentTab = _uiState.value.currentTab
-            val quality = when (currentTab) {
+            val context : Context = getApplication<Application>().applicationContext
+            val originalFile : File? = _uiState.value.selectedImageUri?.let { uri ->
+                getRealFileFromUri(context , uri)
+            }
+            val currentTab : Int = _uiState.value.currentTab
+            val quality : Int = when (currentTab) {
                 0 -> _uiState.value.quickCompressValue
                 1 -> 100
                 2 -> _uiState.value.manualQuality
                 else -> 50
             }
-            val (targetWidth, targetHeight) = when (currentTab) {
-                0, 1 -> originalFile?.let { getImageDimensions(it) } ?: Pair(640, 480)
-                2 -> if (_uiState.value.manualWidth > 0 && _uiState.value.manualHeight > 0)
-                    Pair(_uiState.value.manualWidth, _uiState.value.manualHeight)
-                else Pair(640, 480)
-                else -> Pair(640, 480)
+            val (targetWidth : Int , targetHeight : Int) = when (currentTab) {
+                0 , 1 -> originalFile?.let { getImageDimensions(it) } ?: Pair(640 , 480)
+                2 -> if (_uiState.value.manualWidth > 0 && _uiState.value.manualHeight > 0) Pair(_uiState.value.manualWidth , _uiState.value.manualHeight)
+                else Pair(640 , 480)
+
+                else -> Pair(640 , 480)
             }
-            val previewFile = originalFile?.let { file ->
+            val previewFile : File? = originalFile?.let { file ->
                 withContext(Dispatchers.IO) {
                     try {
                         if (currentTab == 1 && _uiState.value.fileSizeKB > 0) {
-                            val desiredSizeBytes = _uiState.value.fileSizeKB * 1024L
-                            compressImageToTargetSize(context, file, targetWidth, targetHeight, desiredSizeBytes)
-                        } else {
-                            compressImageUsingNative(context, file, quality, targetWidth, targetHeight)
+                            val desiredSizeBytes : Long = _uiState.value.fileSizeKB * 1024L
+                            compressImageToTargetSize(context , file , targetWidth , targetHeight , desiredSizeBytes)
                         }
-                    } catch (e: Exception) {
+                        else {
+                            compressImageUsingNative(context , file , quality , targetWidth , targetHeight)
+                        }
+                    } catch (e : Exception) {
                         e.printStackTrace()
                         null
                     }
                 }
             }
-            _uiState.emit(_uiState.value.copy(isLoading = false, compressedImageUri = previewFile?.let { Uri.fromFile(it) } ?: _uiState.value.selectedImageUri))
+            val newSizeKB : Double = previewFile?.let { it.length() / 1024.0 } ?: 0.0
+            val roundedSizeKB : Double = format(Locale.US , "%.2f" , newSizeKB).toDouble()
+            _uiState.emit(_uiState.value.copy(isLoading = false , compressedImageUri = previewFile?.let { Uri.fromFile(it) } ?: _uiState.value.selectedImageUri , compressedSizeKB = roundedSizeKB))
         }
     }
 

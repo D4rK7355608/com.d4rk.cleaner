@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.OutlinedButton
@@ -145,14 +147,14 @@ fun ImageOptimizerScreen(
                 end.linkTo(anchor = parent.end)
             })
         }
-        Snackbar(message = "Imagine salvată în folderul Optimized images" , showSnackbar = uiState.showSaveSnackbar , onDismiss = { coroutineScope.launch { viewModel.updateShowSaveSnackbar(false) } })
+        Snackbar(message = stringResource(id = R.string.image_saved) + " " + (uiState.compressedImageUri?.path ?: "") , showSnackbar = uiState.showSaveSnackbar , onDismiss = { coroutineScope.launch { viewModel.updateShowSaveSnackbar(false) } })
     }
 }
 
 @Composable
 fun ImageDisplay(viewModel : ImageOptimizerViewModel) {
     val state : State<ImageOptimizerState> = viewModel.uiState.collectAsState()
-    val showCompressedImage : MutableState<Boolean> = remember { mutableStateOf(value = false) }
+    val showCompressedImage : MutableState<Boolean> = remember { mutableStateOf(false) }
 
     LaunchedEffect(key1 = state.value.compressedImageUri) {
         if (state.value.compressedImageUri != null) {
@@ -163,7 +165,7 @@ fun ImageDisplay(viewModel : ImageOptimizerViewModel) {
     Box(
         modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(ratio = 1f) , contentAlignment = Alignment.Center
+                .aspectRatio(1f) , contentAlignment = Alignment.Center
     ) {
         if (state.value.isLoading) {
             CircularProgressIndicator()
@@ -172,12 +174,22 @@ fun ImageDisplay(viewModel : ImageOptimizerViewModel) {
             if (showCompressedImage.value) {
                 state.value.compressedImageUri?.let { imageUri ->
                     AsyncImage(
-                        model = imageUri ,
-                        contentDescription = "Selected Image" ,
-                        modifier = Modifier.fillMaxSize() ,
-                        contentScale = ContentScale.Crop ,
+                        model = imageUri , contentDescription = "Selected Image" , modifier = Modifier.fillMaxSize() , contentScale = ContentScale.Crop
                     )
                 }
+            }
+        }
+        Box(
+            modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.BottomStart
+        ) {
+            Card(
+                shape = RoundedCornerShape(topEnd = 12.dp) ,
+            ) {
+                Text(
+
+                    text = "${state.value.compressedSizeKB} KB" ,
+                    modifier = Modifier.padding(all = 4.dp).animateContentSize() ,
+                )
             }
         }
     }

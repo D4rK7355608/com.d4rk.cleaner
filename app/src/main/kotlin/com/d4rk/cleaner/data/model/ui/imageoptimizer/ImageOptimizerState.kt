@@ -5,6 +5,7 @@ import android.net.Uri
 data class ImageOptimizerState(
     val selectedImageUri : Uri? = null ,
     val compressedImageUri : Uri? = null ,
+    val compressedSizeKB : Double = 0.0 ,
     val isLoading : Boolean = false ,
     val quickCompressValue : Int = 50 ,
     val fileSizeKB : Int = 0 ,
