@@ -80,9 +80,17 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     }
 
     fun onCloseAnalyzeComposable() {
-        viewModelScope.launch(context = coroutineExceptionHandler) {
+        viewModelScope.launch(coroutineExceptionHandler) {
             _uiState.update { state ->
-                state.copy(analyzeState = state.analyzeState.copy(isAnalyzeScreenVisible = false))
+                state.copy(analyzeState = state.analyzeState.copy(
+                    isAnalyzeScreenVisible = false,
+                    scannedFileList = emptyList(),
+                    emptyFolderList = emptyList(),
+                    groupedFiles = emptyMap(),
+                    fileSelectionMap = emptyMap(),
+                    selectedFilesCount = 0,
+                    areAllFilesSelected = false
+                ))
             }
         }
     }
