@@ -150,35 +150,6 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:289497233341:android:148c48b8ca55d4e92c84d4",
-        "android_client_info": {
-          "package_name": "com.d4rk.aurora"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "289497233341-odrjgj092f59d4sfgvtvnu41834f92sg.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyB4pDjHrxVmwSpSjuYc6Qi2MOxb6IsCtIQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "289497233341-33ic66r4d80qg7f793jgve1gvrlanrkk.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:289497233341:android:b6cda4b7325bf96e2c84d4",
         "android_client_info": {
           "package_name": "com.d4rk.cartcalculator"
