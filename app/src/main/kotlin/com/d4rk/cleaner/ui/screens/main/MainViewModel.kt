@@ -38,7 +38,7 @@ class MainViewModel(application : Application) : BaseViewModel(application) {
     val uiState : StateFlow<UiMainScreen> = _uiState
 
     fun loadTrashSize() {
-        viewModelScope.launch(coroutineExceptionHandler) {
+        viewModelScope.launch(context = coroutineExceptionHandler) {
             repository.dataStore.trashSize.collect { trashSize ->
                 _uiState.update { it.copy(trashSize = StorageUtils.formatSize(trashSize)) }
             }

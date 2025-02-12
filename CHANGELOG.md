@@ -1,3 +1,7 @@
+# Version 3.2.2:
+
+- **Minor**: Under-the-hood improvements for better performance and stability.
+
 # Version 3.2.1:
 
 - **Patch**: Fixed an issue where the Manual mode fields and slider did not reset to their default (original) values when switching from other tabs.

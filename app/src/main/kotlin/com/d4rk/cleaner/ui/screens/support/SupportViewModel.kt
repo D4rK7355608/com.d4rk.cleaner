@@ -16,7 +16,7 @@ class SupportViewModel : ViewModel() {
     val skuDetails : Map<String , SkuDetails> = _skuDetails
 
     fun querySkuDetails(billingClient : BillingClient) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(context = Dispatchers.IO) {
             val skuList : List<String> = listOf(
                 "low_donation" , "normal_donation" , "high_donation" , "extreme_donation"
             )

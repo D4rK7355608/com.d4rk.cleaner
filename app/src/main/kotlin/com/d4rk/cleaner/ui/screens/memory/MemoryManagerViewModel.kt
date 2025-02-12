@@ -25,7 +25,7 @@ class MemoryManagerViewModel(
     init {
         loadMemoryData()
 
-        viewModelScope.launch(coroutineExceptionHandler) {
+        viewModelScope.launch(context = coroutineExceptionHandler) {
             while (true) {
                 delay(timeMillis = 5000)
                 updateRamMemoryData()
@@ -34,7 +34,7 @@ class MemoryManagerViewModel(
     }
 
     private fun loadMemoryData() {
-        viewModelScope.launch(coroutineExceptionHandler) {
+        viewModelScope.launch(context = coroutineExceptionHandler) {
             showLoading()
             repository.getMemoryManagerData { uiMemoryData ->
                 _uiMemoryManagerModel.update { uiMemoryData }
@@ -44,7 +44,7 @@ class MemoryManagerViewModel(
     }
 
     private fun updateRamMemoryData() {
-        viewModelScope.launch(coroutineExceptionHandler) {
+        viewModelScope.launch(context = coroutineExceptionHandler) {
             repository.getRamInfo { ramInfo ->
                 _uiMemoryManagerModel.update { it.copy(ramInfo = ramInfo) }
             }

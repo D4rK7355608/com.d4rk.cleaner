@@ -4,7 +4,7 @@ coilVideoVersion = "3.0.4"
 compressor = "3.0.1"
 aboutlibraries = "11.3.0"
 constraintlayoutCompose = "1.1.0"
-kotlin = "2.0.21"
+kotlin = "2.1.0"
 google-services = "4.4.2"
 google-firebase-crashlytics = "3.0.3"
 

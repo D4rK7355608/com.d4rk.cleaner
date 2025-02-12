@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 
 class HomeViewModel(application : Application) : BaseViewModel(application) {
@@ -28,15 +29,17 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     }
 
     fun analyze() {
-        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
+        viewModelScope.launch(context = coroutineExceptionHandler) {
             showLoading()
             repository.analyzeFiles { result ->
                 val (scannedFiles : List<File> , emptyFolders : List<File>) = result
                 val currentFileTypesData : FileTypesData = _uiState.value.analyzeState.fileTypesData
 
-                viewModelScope.launch(context = Dispatchers.IO) {
+                viewModelScope.launch(context = coroutineExceptionHandler + Dispatchers.IO) {
                     val prefs : Map<String , Boolean> = repository.getPreferences()
-                    val groupedFiles : Map<String , List<File>> = computeGroupedFiles(scannedFiles = scannedFiles , emptyFolders = emptyFolders , fileTypesData = currentFileTypesData , preferences = prefs)
+                    val groupedFiles : Map<String, List<File>> = withContext(Dispatchers.Default) {
+                        computeGroupedFiles(scannedFiles = scannedFiles , emptyFolders = emptyFolders , fileTypesData = currentFileTypesData , preferences = prefs)
+                    }
                     _uiState.update { state ->
                         state.copy(analyzeState = state.analyzeState.copy(scannedFileList = scannedFiles , emptyFolderList = emptyFolders , isAnalyzeScreenVisible = true , groupedFiles = groupedFiles))
                     }
@@ -49,8 +52,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     private fun computeGroupedFiles(
         scannedFiles : List<File> , emptyFolders : List<File> , fileTypesData : FileTypesData , preferences : Map<String , Boolean>
     ) : Map<String , List<File>> {
-        val knownExtensions : Set<String> =
-                (fileTypesData.imageExtensions + fileTypesData.videoExtensions + fileTypesData.audioExtensions + fileTypesData.officeExtensions + fileTypesData.archiveExtensions + fileTypesData.apkExtensions + fileTypesData.fontExtensions + fileTypesData.windowsExtensions).toSet()
+        val knownExtensions : Set<String> = (fileTypesData.imageExtensions + fileTypesData.videoExtensions + fileTypesData.audioExtensions + fileTypesData.officeExtensions + fileTypesData.archiveExtensions + fileTypesData.apkExtensions + fileTypesData.fontExtensions + fileTypesData.windowsExtensions).toSet()
 
         val filesMap : LinkedHashMap<String , MutableList<File>> = linkedMapOf()
         filesMap.putAll(fileTypesData.fileTypesTitles.associateWith { mutableListOf() })
@@ -98,7 +100,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     }
 
     fun toggleSelectAllFiles() {
-        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
+        viewModelScope.launch(context = coroutineExceptionHandler) {
             val newState : Boolean = ! _uiState.value.analyzeState.areAllFilesSelected
             val visibleFiles : List<File> = _uiState.value.analyzeState.groupedFiles.values.flatten()
 
@@ -109,7 +111,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     }
 
     fun toggleSelectFilesForCategory(category : String) {
-        viewModelScope.launch {
+        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
             val currentState : UiHomeModel = _uiState.value
             val filesInCategory : List<File> = currentState.analyzeState.groupedFiles[category] ?: emptyList()
             val currentSelectionMap : Map<File , Boolean> = currentState.analyzeState.fileSelectionMap
@@ -133,7 +135,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     }
 
     fun clean() {
-        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
+        viewModelScope.launch(context = coroutineExceptionHandler) {
             showLoading()
             val filesToDelete : Set<File> = _uiState.value.analyzeState.fileSelectionMap.filter { it.value }.keys
             val clearedSpaceTotalSize : Long = filesToDelete.sumOf { it.length() }
@@ -154,7 +156,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     }
 
     fun moveToTrash() {
-        viewModelScope.launch(context = Dispatchers.Default + coroutineExceptionHandler) {
+        viewModelScope.launch(context = coroutineExceptionHandler) {
             showLoading()
             val filesToMove : List<File> = _uiState.value.analyzeState.fileSelectionMap.filter { it.value }.keys.toList()
             val totalFileSizeToMove : Long = filesToMove.sumOf { it.length() }

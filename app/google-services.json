@@ -2,9 +2,76 @@
   "project_info": {
     "project_number": "289497233341",
     "project_id": "d4rk-apps",
-    "storage_bucket": "d4rk-apps.appspot.com"
+    "storage_bucket": "d4rk-apps.firebasestorage.app"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289497233341:android:1ff5f02afe515f082c84d4",
+        "android_client_info": {
+          "package_name": "com.d4rk.android.apps.doodle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "289497233341-odrjgj092f59d4sfgvtvnu41834f92sg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4pDjHrxVmwSpSjuYc6Qi2MOxb6IsCtIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "289497233341-33ic66r4d80qg7f793jgve1gvrlanrkk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289497233341:android:9bf03f715f3f32962c84d4",
+        "android_client_info": {
+          "package_name": "com.d4rk.android.apps.weddix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "289497233341-ghv2ahfgajpdho0v40ttf81pplkn3omm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.d4rk.android.apps.weddix",
+            "certificate_hash": "7075c6db7f8d071af62759636e040b9feca3cb60"
+          }
+        },
+        {
+          "client_id": "289497233341-odrjgj092f59d4sfgvtvnu41834f92sg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4pDjHrxVmwSpSjuYc6Qi2MOxb6IsCtIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "289497233341-33ic66r4d80qg7f793jgve1gvrlanrkk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-5294151573817700~5131199608"
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:289497233341:android:22b03d8c9ef12bd02c84d4",
@@ -157,6 +224,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "289497233341-kb98k2na83ts8v5o2h91l5tr9lk9eja9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.d4rk.cleaner",
+            "certificate_hash": "f48a35a67ae2034d77c8eb2042c1d80710e78120"
+          }
+        },
+        {
           "client_id": "289497233341-odrjgj092f59d4sfgvtvnu41834f92sg.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -175,7 +250,8 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-5294151573817700~3549716864"
     },
     {
       "client_info": {
@@ -250,7 +326,8 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-5294151573817700~3749243285"
     }
   ],
   "configuration_version": "1"

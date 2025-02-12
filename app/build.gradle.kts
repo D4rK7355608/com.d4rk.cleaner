@@ -14,8 +14,8 @@ android {
         applicationId = "com.d4rk.cleaner"
         minSdk = 23
         targetSdk = 35
-        versionCode = 154
-        versionName = "3.2.1"
+        versionCode = 155
+        versionName = "3.2.2"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         @Suppress("UnstableApiUsage")
         androidResources.localeFilters += listOf(
@@ -93,7 +93,7 @@ android {
 dependencies {
 
     // App Core
-    implementation(dependencyNotation = "com.github.D4rK7355608:AppToolkit:0.0.52") {
+    implementation(dependencyNotation = "com.github.D4rK7355608:AppToolkit:0.0.53") {
         isTransitive = true
     }
 

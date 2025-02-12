@@ -27,7 +27,7 @@ abstract class AppManagerRepositoryImplementation(val application: Application) 
      *
      * @return A list of [ApplicationInfo] objects representing the installed applications.
      */
-    fun getInstalledAppsFromPackageManager(): List<ApplicationInfo> {
+    fun getInstalledAppsImplementation(): List<ApplicationInfo> {
         return application.packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
     }
 
@@ -36,7 +36,7 @@ abstract class AppManagerRepositoryImplementation(val application: Application) 
      *
      * @return A list of [ApkInfo] objects representing the found APK files.
      */
-    fun getApkFilesFromMediaStore(): List<ApkInfo> {
+    fun getApkFilesFromStorageImplementation(): List<ApkInfo> {
         val apkFiles: MutableList<ApkInfo> = mutableListOf()
         val uri: Uri = MediaStore.Files.getContentUri("external")
         val projection: Array<String> = arrayOf(
@@ -70,7 +70,7 @@ abstract class AppManagerRepositoryImplementation(val application: Application) 
      *
      * @param apkPath The file path of the APK to be installed.
      */
-    fun installApk(apkPath: String) {
+    fun installApkImplementation(apkPath: String) {
         val apkFile = File(apkPath)
         val installIntent = Intent(Intent.ACTION_VIEW)
         val contentUri: Uri = FileProvider.getUriForFile(
@@ -108,7 +108,7 @@ abstract class AppManagerRepositoryImplementation(val application: Application) 
      * @param packageName The package name of the application to be shared.
      * @return An [Intent] configured for sharing the app.
      */
-    fun shareApp(packageName: String): Intent {
+    fun shareAppImplementation(packageName: String): Intent {
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.type = "text/plain"
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Check out this app")
@@ -139,7 +139,7 @@ abstract class AppManagerRepositoryImplementation(val application: Application) 
      *
      * @param packageName The package name of the application.
      */
-    fun openAppInfo(packageName: String) {
+    fun openAppInfoImplementation(packageName: String) {
         val appInfoIntent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
         val packageUri: Uri = Uri.fromParts("package", packageName, null)
         appInfoIntent.data = packageUri
@@ -152,7 +152,7 @@ abstract class AppManagerRepositoryImplementation(val application: Application) 
      *
      * @param packageName The package name of the application to be uninstalled.
      */
-    fun uninstallApp(packageName: String) {
+    fun uninstallAppImplementation(packageName: String) {
         val uri: Uri = Uri.fromParts("package", packageName, null)
         val intent = Intent(Intent.ACTION_DELETE, uri)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

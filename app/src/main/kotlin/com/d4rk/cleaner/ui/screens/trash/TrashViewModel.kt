@@ -31,7 +31,7 @@ class TrashViewModel(application : Application) : BaseViewModel(application) {
      * Loads the list of trashed files from the repository.
      */
     private fun loadTrashItems() {
-        viewModelScope.launch(coroutineExceptionHandler) {
+        viewModelScope.launch(context = coroutineExceptionHandler) {
             showLoading()
             _uiState.value = _uiState.value.copy(trashFiles = repository.getTrashFiles())
             hideLoading()
@@ -45,8 +45,8 @@ class TrashViewModel(application : Application) : BaseViewModel(application) {
      * @param isChecked True if the file is selected, false otherwise.
      */
     fun onFileSelectionChange(file : File , isChecked : Boolean) {
-        viewModelScope.launch(coroutineExceptionHandler) {
-            val updatedSelections = _uiState.value.fileSelectionStates + (file to isChecked)
+        viewModelScope.launch(context = coroutineExceptionHandler) {
+            val updatedSelections : Map<File, Boolean> = _uiState.value.fileSelectionStates + (file to isChecked)
             _uiState.value = _uiState.value.copy(fileSelectionStates = updatedSelections ,
                                                  selectedFileCount = updatedSelections.count { it.value })
         }
@@ -56,14 +56,14 @@ class TrashViewModel(application : Application) : BaseViewModel(application) {
      * Restores selected files from the trash.
      */
     fun restoreFromTrash() {
-        viewModelScope.launch(coroutineExceptionHandler) {
+        viewModelScope.launch(context = coroutineExceptionHandler) {
             showLoading()
-            val filesToRestore = _uiState.value.fileSelectionStates.filter { it.value }.keys
-            val totalFileSizeToRestore = filesToRestore.sumOf { it.length() }
-            repository.restoreFromTrashRepository(filesToRestore) {
+            val filesToRestore : Set<File> = _uiState.value.fileSelectionStates.filter { it.value }.keys
+            val totalFileSizeToRestore : Long = filesToRestore.sumOf { it.length() }
+            repository.restoreFromTrashRepository(filesToRestore = filesToRestore) {
                 loadTrashItems()
             }
-            repository.subtractTrashSize(totalFileSizeToRestore)
+            repository.subtractTrashSize(size = totalFileSizeToRestore)
             hideLoading()
         }
     }

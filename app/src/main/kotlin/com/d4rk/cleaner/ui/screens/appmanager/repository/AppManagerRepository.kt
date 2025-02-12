@@ -11,34 +11,34 @@ import kotlinx.coroutines.withContext
 class AppManagerRepository(application : Application) :
     AppManagerRepositoryImplementation(application) {
 
-    suspend fun getInstalledApps(onSuccess : (List<ApplicationInfo>) -> Unit) {
+    suspend fun getInstalledAppsRepository(onSuccess : (List<ApplicationInfo>) -> Unit) {
         withContext(Dispatchers.IO) {
-            val installedApps : List<ApplicationInfo> = getInstalledAppsFromPackageManager()
+            val installedApps : List<ApplicationInfo> = getInstalledAppsImplementation()
             withContext(Dispatchers.Main) {
                 onSuccess(installedApps)
             }
         }
     }
 
-    suspend fun getApkFilesFromStorage(onSuccess : (List<ApkInfo>) -> Unit) {
+    suspend fun getApkFilesFromStorageRepository(onSuccess : (List<ApkInfo>) -> Unit) {
         withContext(Dispatchers.IO) {
-            val apkFiles : List<ApkInfo> = getApkFilesFromMediaStore()
+            val apkFiles : List<ApkInfo> = getApkFilesFromStorageImplementation()
             withContext(Dispatchers.Main) {
                 onSuccess(apkFiles)
             }
         }
     }
 
-    suspend fun installApk(apkPath : String , onSuccess : () -> Unit) {
+    suspend fun installApkRepository(apkPath : String , onSuccess : () -> Unit) {
         withContext(Dispatchers.IO) {
-            installApk(apkPath)
+            installApkImplementation(apkPath)
             withContext(Dispatchers.Main) {
                 onSuccess()
             }
         }
     }
 
-    suspend fun shareApk(apkPath : String , onSuccess : () -> Unit) {
+    suspend fun shareApkRepository(apkPath : String , onSuccess : () -> Unit) {
         withContext(Dispatchers.IO) {
             val shareIntent : Intent = prepareShareIntent(apkPath)
             withContext(Dispatchers.Main) {
@@ -52,9 +52,9 @@ class AppManagerRepository(application : Application) :
         }
     }
 
-    suspend fun shareApp(packageName : String , onSuccess : () -> Unit) {
+    suspend fun shareAppRepository(packageName : String , onSuccess : () -> Unit) {
         withContext(Dispatchers.IO) {
-            val shareIntent : Intent = shareApp(packageName)
+            val shareIntent : Intent = shareAppImplementation(packageName)
             withContext(Dispatchers.Main) {
                 val chooserIntent : Intent = Intent.createChooser(
                     shareIntent , application.getString(com.d4rk.android.libs.apptoolkit.R.string.share)
@@ -66,18 +66,18 @@ class AppManagerRepository(application : Application) :
         }
     }
 
-    suspend fun openAppInfo(packageName : String , onSuccess : () -> Unit) {
+    suspend fun openAppInfoRepository(packageName : String , onSuccess : () -> Unit) {
         withContext(Dispatchers.IO) {
-            openAppInfo(packageName)
+            openAppInfoImplementation(packageName)
             withContext(Dispatchers.Main) {
                 onSuccess()
             }
         }
     }
 
-    suspend fun uninstallApp(packageName : String , onSuccess : () -> Unit) {
+    suspend fun uninstallAppRepository(packageName : String , onSuccess : () -> Unit) {
         withContext(Dispatchers.IO) {
-            uninstallApp(packageName)
+            uninstallAppImplementation(packageName)
             withContext(Dispatchers.Main) {
                 onSuccess()
             }
