@@ -80,7 +80,7 @@ class HomeViewModel(application : Application) : BaseViewModel(application) {
     }
 
     fun onCloseAnalyzeComposable() {
-        viewModelScope.launch(coroutineExceptionHandler) {
+        viewModelScope.launch(context = coroutineExceptionHandler) {
             _uiState.update { state ->
                 state.copy(analyzeState = state.analyzeState.copy(
                     isAnalyzeScreenVisible = false,
