@@ -1,3 +1,7 @@
+# Version 3.2.3:
+
+- **Minor**: Under-the-hood improvements for better performance and stability.
+
 # Version 3.2.2:
 
 - **Minor**: Under-the-hood improvements for better performance and stability.
