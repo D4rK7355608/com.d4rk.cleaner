@@ -78,7 +78,7 @@ fun AnalyzeScreen(
                     NoFilesFoundScreen(viewModel = viewModel)
                 }
 
-                groupedFiles.isNotEmpty() -> {
+                groupedFiles.isNotEmpty() -> { // TODO: Condition 'groupedFiles.isNotEmpty()' is always true
                     TabsContent(
                         groupedFiles = groupedFiles , imageLoader = imageLoader , viewModel = viewModel , view = view , coroutineScope = coroutineScope , data = data
                     )
