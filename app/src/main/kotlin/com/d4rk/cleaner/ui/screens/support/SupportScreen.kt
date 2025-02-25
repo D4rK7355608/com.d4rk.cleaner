@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Paid
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -34,17 +35,18 @@ import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingResult
 import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
+import com.d4rk.android.libs.apptoolkit.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.android.libs.apptoolkit.ui.components.spacers.ButtonIconSpacer
 import com.d4rk.cleaner.ui.components.ads.AdBanner
-import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
 import com.google.android.gms.ads.AdSize
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SupportComposable(viewModel : SupportViewModel , activity : SupportActivity) {
     val context : Context = LocalContext.current
     val view : View = LocalView.current
     val billingClient : BillingClient = rememberBillingClient(context , viewModel)
-    TopAppBarScaffoldWithBackButton(title = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.support_us) , onBackClicked = { activity.finish() }) { paddingValues ->
+    LargeTopAppBarWithScaffold(title = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.support_us) , onBackClicked = { activity.finish() }) { paddingValues ->
         Box(
             modifier = Modifier
                     .padding(paddingValues)

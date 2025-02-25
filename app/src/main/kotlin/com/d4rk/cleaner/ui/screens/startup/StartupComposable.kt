@@ -34,8 +34,8 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
+import com.d4rk.android.libs.apptoolkit.ui.components.navigation.TopAppBarScaffold
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffold
 import com.d4rk.cleaner.ui.screens.main.MainActivity
 
 @Composable

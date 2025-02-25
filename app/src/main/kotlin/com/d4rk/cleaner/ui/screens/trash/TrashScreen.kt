@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DeleteForever
 import androidx.compose.material.icons.outlined.Restore
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -26,16 +27,17 @@ import coil3.ImageLoader
 import coil3.disk.DiskCache
 import coil3.disk.directory
 import coil3.memory.MemoryCache
+import com.d4rk.android.libs.apptoolkit.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.screens.UiTrashModel
 import com.d4rk.cleaner.ui.components.buttons.TwoRowButtons
-import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
 import com.d4rk.cleaner.ui.screens.analyze.components.FilesByDateSection
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TrashScreen(activity: TrashActivity) {
     val viewModel: TrashViewModel = viewModel()
@@ -53,7 +55,7 @@ fun TrashScreen(activity: TrashActivity) {
         }.build()
     }
 
-    TopAppBarScaffoldWithBackButton(
+    LargeTopAppBarWithScaffold(
         title = stringResource(id = R.string.trash),
         onBackClicked = { activity.finish() }) { paddingValues ->
         if (isLoading) {

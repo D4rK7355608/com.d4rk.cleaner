@@ -12,6 +12,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -34,19 +35,20 @@ import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil3.compose.AsyncImage
+import com.d4rk.android.libs.apptoolkit.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.android.libs.apptoolkit.ui.components.snackbar.Snackbar
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.core.AppCoreManager
 import com.d4rk.cleaner.data.datastore.DataStore
 import com.d4rk.cleaner.data.model.ui.imageoptimizer.ImageOptimizerState
 import com.d4rk.cleaner.ui.components.ads.AdBanner
-import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.tabs.FileSizeTab
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.tabs.ManualModeTab
 import com.d4rk.cleaner.ui.screens.imageoptimizer.imageoptimizer.tabs.QuickCompressTab
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ImageOptimizerScreen(
     activity : ImageOptimizerActivity , viewModel : ImageOptimizerViewModel
@@ -67,7 +69,7 @@ fun ImageOptimizerScreen(
         viewModel.setCurrentTab(pagerState.currentPage)
     }
 
-    TopAppBarScaffoldWithBackButton(title = stringResource(id = R.string.image_optimizer) , onBackClicked = { activity.finish() }) { paddingValues ->
+    LargeTopAppBarWithScaffold(title = stringResource(id = R.string.image_optimizer) , onBackClicked = { activity.finish() }) { paddingValues ->
         ConstraintLayout(
             modifier = Modifier
                     .fillMaxSize()

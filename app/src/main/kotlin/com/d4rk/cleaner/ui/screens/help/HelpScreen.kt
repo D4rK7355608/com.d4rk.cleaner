@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -18,7 +19,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -31,7 +31,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
@@ -49,22 +48,23 @@ import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.ui.components.buttons.AnimatedExtendedFloatingActionButton
 import com.d4rk.android.libs.apptoolkit.ui.components.modifiers.bounceClick
+import com.d4rk.android.libs.apptoolkit.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.android.libs.apptoolkit.ui.components.spacers.LargeHorizontalSpacer
 import com.d4rk.android.libs.apptoolkit.ui.components.spacers.MediumVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.ui.components.spacers.SmallVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper
+import com.d4rk.android.libs.apptoolkit.utils.rememberHtmlData
 import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.data.model.ui.screens.UiHelpQuestion
 import com.d4rk.cleaner.data.model.ui.screens.UiHelpScreen
-import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButtonAndActions
+import com.d4rk.cleaner.ui.components.navigation.actions.HelpScreenMenuActions
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -77,9 +77,7 @@ fun HelpScreen(activity : Activity , viewModel : HelpViewModel) {
 
     val uiState : UiHelpScreen by viewModel.uiState.collectAsState()
 
-    val htmlData : State<Pair<String? , String?>> = com.d4rk.android.libs.apptoolkit.utils.rememberHtmlData(
-        context = context , currentVersionName = BuildConfig.VERSION_NAME , packageName = BuildConfig.APPLICATION_ID
-    )
+    val htmlData : State<Pair<String? , String?>> = rememberHtmlData(context = context , currentVersionName = BuildConfig.VERSION_NAME , packageName = BuildConfig.APPLICATION_ID)
 
     val changelogHtmlString : String? = htmlData.value.first
     val eulaHtmlString : String? = htmlData.value.second
@@ -89,13 +87,20 @@ fun HelpScreen(activity : Activity , viewModel : HelpViewModel) {
         isFabExtended.value = scrollBehavior.state.contentOffset >= 0f
     }
 
-    Scaffold(
-        modifier = Modifier.nestedScroll(connection = scrollBehavior.nestedScrollConnection) ,
-        topBar = {
-            TopAppBarScaffoldWithBackButtonAndActions(
-                context = context , activity = activity , showDialog = showDialog , eulaHtmlString = eulaHtmlString , changelogHtmlString = changelogHtmlString , scrollBehavior = scrollBehavior , view = view
+    LargeTopAppBarWithScaffold(
+        title = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.help),
+        onBackClicked = { activity.finish() },
+        actions = {
+            HelpScreenMenuActions(
+                context = context,
+                activity = activity,
+                showDialog = showDialog,
+                eulaHtmlString = eulaHtmlString,
+                changelogHtmlString = changelogHtmlString,
+                view = view
             )
-        } ,
+        },
+        scrollBehavior = scrollBehavior,
         floatingActionButton = {
             AnimatedExtendedFloatingActionButton(visible = isFabVisible , onClick = {
                 view.playSoundEffect(SoundEffectConstants.CLICK)
@@ -110,18 +115,12 @@ fun HelpScreen(activity : Activity , viewModel : HelpViewModel) {
                     Icons.Outlined.RateReview , contentDescription = null
                 )
             } , expanded = isFabExtended.value , modifier = Modifier.bounceClick())
-        } ,
+        }
+
     ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier
-                    .padding(paddingValues = paddingValues)
-                    .fillMaxSize()
-                    .padding(horizontal = 16.dp) , state = rememberLazyListState()
-        ) {
+        LazyColumn(modifier = Modifier.fillMaxSize() , contentPadding = PaddingValues(top = paddingValues.calculateTopPadding() , bottom = paddingValues.calculateBottomPadding() , start = 16.dp , end = 16.dp)) {
             item {
-                Text(
-                    text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.popular_help_resources)
-                )
+                Text(text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.popular_help_resources))
 
                 MediumVerticalSpacer()
 
@@ -134,7 +133,7 @@ fun HelpScreen(activity : Activity , viewModel : HelpViewModel) {
                     view.playSoundEffect(SoundEffectConstants.CLICK)
                     IntentsHelper.sendEmailToDeveloper(context = activity , applicationNameRes = R.string.app_name)
                 })
-                Spacer(modifier = Modifier.height(height = 64.dp))
+                Spacer(modifier = Modifier.height(height = 96.dp))
             }
         }
     }

@@ -2,6 +2,7 @@ package com.d4rk.cleaner.ui.screens.help.repository
 
 import android.app.Activity
 import android.app.Application
+import com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper
 import com.d4rk.cleaner.R
 import com.google.android.gms.tasks.Task
 import com.google.android.play.core.review.ReviewInfo
@@ -40,7 +41,7 @@ abstract class HelpRepositoryImplementation(
                 onFailure()
             }
         }.addOnFailureListener {
-            com.d4rk.android.libs.apptoolkit.utils.helpers.IntentsHelper.openUrl(
+            IntentsHelper.openUrl(
                 context = application , url = "https://play.google.com/store/apps/details?id=$packageName&showAllReviews=true"
             )
         }

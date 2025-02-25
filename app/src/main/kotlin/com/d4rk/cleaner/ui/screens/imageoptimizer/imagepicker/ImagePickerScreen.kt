@@ -71,6 +71,7 @@ fun ImagePickerComposable(
 
     val scrollBehaviorState : TopAppBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(state = rememberTopAppBarState())
 
+    // TODO: use the one from lib
     Scaffold(modifier = Modifier.nestedScroll(connection = scrollBehaviorState.nestedScrollConnection) , topBar = {
         LargeTopAppBar(
             title = { Text(text = stringResource(id = R.string.image_optimizer)) } ,

@@ -61,8 +61,7 @@ fun MainScaffoldContent(
     mainScreenState : MainScreenState , coroutineScope : CoroutineScope
 ) {
     Scaffold(modifier = Modifier.imePadding() , topBar = {
-
-        TopAppBarMain(view = mainScreenState.view , context = mainScreenState.context , navigationIcon = if (mainScreenState.drawerState.isOpen) Icons.AutoMirrored.Outlined.MenuOpen else Icons.Default.Menu , onNavigationIconClick = {
+        TopAppBarMain(context = mainScreenState.context , navigationIcon = if (mainScreenState.drawerState.isOpen) Icons.AutoMirrored.Outlined.MenuOpen else Icons.Default.Menu , onNavigationIconClick = {
             coroutineScope.launch {
                 mainScreenState.drawerState.apply {
                     if (isClosed) open() else close()
@@ -87,7 +86,7 @@ fun MainScaffoldTabletContent(mainScreenState : MainScreenState) {
     val context : Context = LocalContext.current
 
     Scaffold(modifier = Modifier.fillMaxSize() , topBar = {
-        TopAppBarMain(view = mainScreenState.view , context = context , navigationIcon = if (isRailExpanded) Icons.AutoMirrored.Outlined.MenuOpen else Icons.Default.Menu , onNavigationIconClick = {
+        TopAppBarMain(context = context , navigationIcon = if (isRailExpanded) Icons.AutoMirrored.Outlined.MenuOpen else Icons.Default.Menu , onNavigationIconClick = {
             isRailExpanded = ! isRailExpanded
         })
     }) { paddingValues ->

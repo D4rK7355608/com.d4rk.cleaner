@@ -5,17 +5,19 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import com.d4rk.android.libs.apptoolkit.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.android.libs.apptoolkit.ui.components.preferences.PreferenceCategoryItem
 import com.d4rk.android.libs.apptoolkit.ui.components.preferences.PreferenceItem
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.ui.components.navigation.TopAppBarScaffoldWithBackButton
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PermissionsSettingsScreen(activity : AppCompatActivity) {
-    TopAppBarScaffoldWithBackButton(title = activity.getString(com.d4rk.android.libs.apptoolkit.R.string.permissions) , onBackClicked = {
+    LargeTopAppBarWithScaffold(title = activity.getString(com.d4rk.android.libs.apptoolkit.R.string.permissions) , onBackClicked = {
         activity.finish()
     }) { paddingValues ->
         PermissionsSettingsList(paddingValues = paddingValues)
