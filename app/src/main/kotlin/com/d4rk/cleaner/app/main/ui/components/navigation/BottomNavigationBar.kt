@@ -42,8 +42,7 @@ fun BottomNavigationBar(
         Column {
             AdBanner(
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = SizeConstants.MediumSize) , adsConfig = adsConfig
+                        .fillMaxWidth(), adsConfig = adsConfig
             )
             NavigationBar {
                 val navBackStackEntry : NavBackStackEntry? by navController.currentBackStackEntryAsState()
