@@ -4,10 +4,10 @@
     <string name="summary_notification_last_time_used"> Let\'s free up some space! We are happy you are back!</string>
 
 
-    <string name="onboarding_welcome_title">Welcome!</string>
-    <string name="onboarding_welcome_description">We\'re excited to have you on board. Let\'s get you set up.</string>
-    <string name="onboarding_personalization_title">Personalize Your Experience</string>
-    <string name="onboarding_personalization_description">Customize the app to fit your preferences.</string>
+    <string name="onboarding_welcome_title">Welcome to Cleaner!</string>
+    <string name="onboarding_welcome_description">Let\'s walk through a quick setup and start freeing space.</string>
+    <string name="onboarding_personalization_title">Customize Your Cleanup</string>
+    <string name="onboarding_personalization_description">Adjust Cleaner to match your needs.</string>
 
     <string name="delete_forever">Delete forever</string>
     <string name="move_to_trash">Move to trash</string>
