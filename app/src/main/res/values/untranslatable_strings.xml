@@ -2,23 +2,5 @@
 <resources>
     <string name="app_name" translatable="false">Cleaner</string>
     <string name="app_full_name" translatable="false">Smart Cleaner for Android</string>
-    <string name="bulgarian" translatable="false">Български</string>
-    <string name="english" translatable="false">English</string>
-    <string name="french" translatable="false">Français</string>
-    <string name="hungarian" translatable="false">Magyar</string>
-    <string name="german" translatable="false">Deutsch</string>
-    <string name="hindi" translatable="false">हिन्दी</string>
-    <string name="indonesian" translatable="false">Bahasa Indonesia</string>
-    <string name="italian" translatable="false">Italiano</string>
-    <string name="japanese" translatable="false">日本語</string>
-    <string name="polish" translatable="false">Polski</string>
-    <string name="romanian" translatable="false">Română</string>
-    <string name="russian" translatable="false">Русский</string>
-    <string name="spanish" translatable="false">Español</string>
-    <string name="turkish" translatable="false">Türkçe</string>
-    <string name="ukrainian" translatable="false">Українська</string>
-    <string name="traditional_chinese" translatable="false">中文</string>
-    <string name="thai" translatable="false">ไทย</string>
-    <string name="brazilian_portuguese" translatable="false">Português (Brasil)</string>
     <string name="copyright" translatable="false">Copyright ©2020-2025, D4rK</string>
 </resources>

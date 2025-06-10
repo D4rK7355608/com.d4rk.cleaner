@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountCircle
+import androidx.compose.material.icons.outlined.AutoDelete
+import androidx.compose.material.icons.outlined.CleaningServices
 import androidx.compose.material.icons.outlined.Star
 import com.d4rk.cleaner.app.onboarding.utils.constants.OnboardingKeys
 import com.d4rk.android.libs.apptoolkit.app.oboarding.domain.data.model.ui.OnboardingPage
@@ -22,13 +24,13 @@ class AppOnboardingProvider : OnboardingProvider {
                 key = OnboardingKeys.WELCOME,
                 title = context.getString(R.string.onboarding_welcome_title),
                 description = context.getString(R.string.onboarding_welcome_description),
-                imageVector = Icons.Outlined.Star
+                imageVector = Icons.Outlined.CleaningServices
             ),
             OnboardingPage.DefaultPage(
                 key = OnboardingKeys.PERSONALIZATION_OPTIONS,
                 title = context.getString(R.string.onboarding_personalization_title),
                 description = context.getString(R.string.onboarding_personalization_description),
-                imageVector = Icons.Outlined.AccountCircle
+                imageVector = Icons.Outlined.AutoDelete
             ),
             OnboardingPage.CustomPage(
                 key = OnboardingKeys.THEME_OPTIONS,
