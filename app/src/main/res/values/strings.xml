@@ -3,6 +3,12 @@
     <string name="app_short_description">The last Android Cleaner you will ever need for every day use!</string>
     <string name="summary_notification_last_time_used"> Let\'s free up some space! We are happy you are back!</string>
 
+
+    <string name="onboarding_welcome_title">Welcome!</string>
+    <string name="onboarding_welcome_description">We\'re excited to have you on board. Let\'s get you set up.</string>
+    <string name="onboarding_personalization_title">Personalize Your Experience</string>
+    <string name="onboarding_personalization_description">Customize the app to fit your preferences.</string>
+
     <string name="delete_forever">Delete forever</string>
     <string name="move_to_trash">Move to trash</string>
     <string name="cleaned_space">Cleaned Space</string>
@@ -199,16 +205,7 @@
 
 
     <!-- Error messages -->
-    <string name="empty_cart">Your cart is currently empty.</string>
-    <string name="compression_failed">Cart data could not be prepared. Please try again.</string>
-    <string name="failed_to_import_cart">Could not import cart. Please check the file and try again.</string>
     <string name="failed_to_encrypt_cart">Cart could not be secured. Please try again.</string>
-    <string name="database_cart_not_found">Cart not found.</string>
-    <string name="failed_to_load_cart">Failed to load the cart.</string>
-    <string name="google_pay_wallet_not_installed">Google Pay/Wallet is not installed</string>
-    <string name="failed_to_update_cart_item">Failed to update the cart item.</string>
-    <string name="failed_to_delete_cart_item">Failed to delete the cart item.</string>
-    <string name="failed_to_add_cart_item">Failed to add the item to the cart.</string>
     <string name="request_no_internet">No internet connection. Please check your connection and try again.</string>
     <string name="request_timeout">Request timed out. Please try again.</string>
     <string name="request_server_not_found">Server error. Please try again later.</string>

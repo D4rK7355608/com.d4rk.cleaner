@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId = "com.d4rk.cleaner"
         minSdk = 23
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 162
         versionName = "3.3.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -70,7 +70,12 @@ android {
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.getByName("release")
+            val signingFile = rootProject.file("signing.properties")
+            signingConfig = if (signingFile.exists()) {
+                signingConfigs.getByName("release")
+            } else {
+                null
+            }
             isDebuggable = false
         }
         debug {
@@ -117,7 +122,7 @@ android {
 dependencies {
 
     // App Core
-    implementation(dependencyNotation = "com.github.D4rK7355608:AppToolkit:1.0.12") {
+    implementation(dependencyNotation = "com.github.D4rK7355608:AppToolkit:1.0.25") {
         isTransitive = true
     }
 

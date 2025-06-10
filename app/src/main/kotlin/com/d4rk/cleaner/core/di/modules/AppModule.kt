@@ -3,6 +3,7 @@ package com.d4rk.cleaner.core.di.modules
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import com.d4rk.android.libs.apptoolkit.app.main.domain.usecases.PerformInAppUpdateUseCase
+import com.d4rk.android.libs.apptoolkit.app.oboarding.utils.interfaces.providers.OnboardingProvider
 import com.d4rk.android.libs.apptoolkit.data.core.ads.AdsCoreManager
 import com.d4rk.cleaner.app.apps.manager.data.ApkFileManagerImpl
 import com.d4rk.cleaner.app.apps.manager.data.AppPackageManagerImpl
@@ -39,6 +40,7 @@ import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashFilesUseCase
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.RestoreFromTrashUseCase
 import com.d4rk.cleaner.app.clean.trash.ui.TrashViewModel
 import com.d4rk.cleaner.app.main.ui.MainViewModel
+import com.d4rk.cleaner.app.onboarding.utils.interfaces.providers.AppOnboardingProvider
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -51,6 +53,8 @@ val appModule : Module = module {
     single<DataStore> { DataStore(context = get()) }
     single<AdsCoreManager> { AdsCoreManager(context = get() , buildInfoProvider = get()) }
     single<AppUpdateManager> { AppUpdateManagerFactory.create(get()) }
+
+    single<OnboardingProvider> { AppOnboardingProvider() }
 
     factory<PerformInAppUpdateUseCase> { (launcher : ActivityResultLauncher<IntentSenderRequest>) ->
         PerformInAppUpdateUseCase(appUpdateManager = get() , updateResultLauncher = launcher)
