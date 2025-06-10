@@ -31,7 +31,7 @@
         tools:ignore="QueryAllPackagesPermission" />
 
     <application
-        android:name=".data.core.AppCoreManager"
+        android:name=".Cleaner"
         android:appCategory="productivity"
         android:banner="@drawable/tv_banner"
         android:description="@string/app_short_description"
@@ -47,11 +47,7 @@
         tools:targetApi="33">
 
         <activity
-            android:name=".ui.screens.startup.StartupActivity"
-            android:noHistory="true" />
-
-        <activity
-            android:name=".ui.screens.main.MainActivity"
+            android:name=".app.main.ui.MainActivity"
             android:exported="true"
             android:launchMode="singleTask"
             android:theme="@style/SplashScreenTheme">
@@ -67,63 +63,22 @@
         </activity>
 
         <activity
-            android:name=".ui.screens.support.SupportActivity"
-            android:parentActivityName=".ui.screens.main.MainActivity" />
-
-        <activity
-            android:name=".ui.screens.imageoptimizer.imageoptimizer.ImageOptimizerActivity"
+            android:name=".app.images.compressor.ui.ImageOptimizerActivity"
             android:exported="true"
             android:label="@string/image_optimizer"
-            android:parentActivityName=".ui.screens.main.MainActivity" />
+            android:parentActivityName=".app.main.ui.MainActivity" />
 
         <activity
-            android:name=".ui.screens.imageoptimizer.imagepicker.ImagePickerActivity"
+            android:name=".app.images.picker.ui.ImagePickerActivity"
             android:exported="true"
             android:label="@string/image_optimizer"
-            android:parentActivityName=".ui.screens.imageoptimizer.imageoptimizer.ImageOptimizerActivity" />
+            android:parentActivityName=".app.images.compressor.ui.ImageOptimizerActivity" />
 
         <activity
-            android:name=".ui.screens.trash.TrashActivity"
+            android:name=".app.clean.trash.ui.TrashActivity"
             android:exported="false"
             android:label="@string/trash"
-            android:parentActivityName=".ui.screens.main.MainActivity" />
-
-        <activity
-            android:name=".ui.screens.settings.SettingsActivity"
-            android:exported="true"
-            android:label="@string/settings"
-            android:parentActivityName=".ui.screens.main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ui.screens.settings.general.GeneralSettingsActivity"
-            android:parentActivityName=".ui.screens.settings.SettingsActivity"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name=".ui.screens.settings.privacy.permissions.PermissionsSettingsActivity"
-            android:exported="true"
-            android:permission="android.permission.START_VIEW_PERMISSION_USAGE"
-            android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE" />
-                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE_FOR_PERIOD" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ui.screens.settings.privacy.ads.AdsSettingsActivity"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name=".ui.screens.help.HelpActivity"
-            android:parentActivityName=".ui.screens.main.MainActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:parentActivityName=".app.main.ui.MainActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -173,18 +128,5 @@
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true" />
-
-        <meta-data
-            android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
-            android:value="true" />
-
-        <meta-data
-            android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
-            android:value="true" />
-
-        <property
-            android:name="android.adservices.AD_SERVICES_CONFIG"
-            android:resource="@xml/gma_ad_services_config"
-            tools:replace="android:resource" />
     </application>
 </manifest>

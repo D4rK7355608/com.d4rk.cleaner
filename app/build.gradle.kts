@@ -1,3 +1,6 @@
+import java.util.Properties
+import kotlin.toString
+
 plugins {
     alias(notation= libs.plugins.androidApplication)
     alias(notation= libs.plugins.jetbrainsKotlinAndroid)
@@ -14,8 +17,8 @@ android {
         applicationId = "com.d4rk.cleaner"
         minSdk = 23
         targetSdk = 35
-        versionCode = 158
-        versionName = "3.2.4"
+        versionCode = 162
+        versionName = "3.3.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         @Suppress("UnstableApiUsage")
         androidResources.localeFilters += listOf(
@@ -44,8 +47,30 @@ android {
         }
     }
 
+    signingConfigs {
+        create("release")
+
+        val signingProps = Properties()
+        val signingFile = rootProject.file("signing.properties")
+
+        if (signingFile.exists()) {
+            signingProps.load(signingFile.inputStream())
+
+            signingConfigs.getByName("release").apply {
+                storeFile = file(signingProps["STORE_FILE"].toString())
+                storePassword = signingProps["STORE_PASSWORD"].toString()
+                keyAlias = signingProps["KEY_ALIAS"].toString()
+                keyPassword = signingProps["KEY_PASSWORD"].toString()
+            }
+        }
+        else {
+            android.buildTypes.getByName("release").signingConfig = null
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("release")
             isDebuggable = false
         }
         debug {
@@ -54,12 +79,11 @@ android {
     }
 
     buildTypes.forEach { buildType ->
-        with(buildType) {
+        with(receiver = buildType) {
             multiDexEnabled = true
-            proguardFiles(
-                getDefaultProguardFile(name = "proguard-android-optimize.txt") ,
-                "proguard-rules.pro"
-            )
+            isMinifyEnabled = false
+            isShrinkResources = false
+            proguardFiles(getDefaultProguardFile(name = "proguard-android-optimize.txt") , "proguard-rules.pro")
         }
     }
 
@@ -93,7 +117,7 @@ android {
 dependencies {
 
     // App Core
-    implementation(dependencyNotation = "com.github.D4rK7355608:AppToolkit:0.0.70") {
+    implementation(dependencyNotation = "com.github.D4rK7355608:AppToolkit:1.0.12") {
         isTransitive = true
     }
 

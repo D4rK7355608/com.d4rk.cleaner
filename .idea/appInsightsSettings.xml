@@ -24,9 +24,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.d4rk.cleaner" />
-                  <option name="mobileSdkAppId" value="1:289497233341:android:2f1f51f2f7f61cd42c84d4" />
-                  <option name="projectId" value="d4rk-apps" />
-                  <option name="projectNumber" value="289497233341" />
+                  <option name="mobileSdkAppId" value="1:880841349152:android:f94ce221e70a946afd8445" />
+                  <option name="projectId" value="smart-cleaner-for-android" />
+                  <option name="projectNumber" value="880841349152" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

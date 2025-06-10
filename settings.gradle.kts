@@ -20,5 +20,5 @@ pluginManagement {
     }
 }
 
-rootProject.name = "Cleaner for Android"
+rootProject.name = "Smart Cleaner for Android"
 include(":app")

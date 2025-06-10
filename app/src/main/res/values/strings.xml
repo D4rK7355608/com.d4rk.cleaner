@@ -195,4 +195,36 @@
     <string name="summary_preference_faq_8">There is no set rule for how often you should use Cleaner, as it will depend on your device\'s usage and the amount of unnecessary files that accumulate over time. Some users may find it helpful to run Cleaner weekly or monthly, while others may only need to use it occasionally</string>
     <string name="question_9">Is Cleaner compatible with all Android devices?</string>
     <string name="summary_preference_faq_9">Cleaner should be compatible with most Android devices that meet the app\'s minimum system requirements. However, it is always a good idea to check the app\'s page on the Google Play Store or the app store you are using to confirm compatibility with your specific device. If you encounter any issues while using Cleaner, you can try troubleshooting the problem or contacting the app\'s support team for assistance</string>
+
+
+
+    <!-- Error messages -->
+    <string name="empty_cart">Your cart is currently empty.</string>
+    <string name="compression_failed">Cart data could not be prepared. Please try again.</string>
+    <string name="failed_to_import_cart">Could not import cart. Please check the file and try again.</string>
+    <string name="failed_to_encrypt_cart">Cart could not be secured. Please try again.</string>
+    <string name="database_cart_not_found">Cart not found.</string>
+    <string name="failed_to_load_cart">Failed to load the cart.</string>
+    <string name="google_pay_wallet_not_installed">Google Pay/Wallet is not installed</string>
+    <string name="failed_to_update_cart_item">Failed to update the cart item.</string>
+    <string name="failed_to_delete_cart_item">Failed to delete the cart item.</string>
+    <string name="failed_to_add_cart_item">Failed to add the item to the cart.</string>
+    <string name="request_no_internet">No internet connection. Please check your connection and try again.</string>
+    <string name="request_timeout">Request timed out. Please try again.</string>
+    <string name="request_server_not_found">Server error. Please try again later.</string>
+    <string name="request_payload_error">Data error. Please try again.</string>
+    <string name="failed_to_delete_cart">Could not delete cart. Please try again.</string>
+    <string name="failed_to_decrypt_cart">Could not load cart data. The cart may be corrupted.</string>
+    <string name="database_operation_failed">Something went wrong with the local data. Please try again.</string>
+    <string name="cart_not_found">Cart not found.</string>
+    <string name="no_carts_available">No carts available</string>
+    <string name="failed_to_open_app_info">Failed to open app info: %1$s</string>
+    <string name="share_apk_success">APK shared successfully</string>
+    <string name="share_apk_failed">Failed to share APK</string>
+    <string name="share_app_success">App shared successfully</string>
+    <string name="share_app_failed">Failed to share app</string>
+    <string name="apk_installed_successfully">APK installed successfully!</string>
+    <string name="failed_to_install_apk">Failed to install APK: %1$s</string>
+    <string name="failed_to_uninstall_app">Failed to uninstall app: %1$s</string>
+    <string name="app_uninstalled_successfully">App uninstalled successfully</string>
 </resources>
