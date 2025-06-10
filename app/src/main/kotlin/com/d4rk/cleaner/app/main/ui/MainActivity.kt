@@ -15,10 +15,14 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import com.d4rk.android.libs.apptoolkit.app.startup.ui.StartupActivity
 import com.d4rk.android.libs.apptoolkit.app.theme.style.AppTheme
+import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ConsentFormHelper
+import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ConsentManagerHelper
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.IntentsHelper
 import com.d4rk.cleaner.app.main.domain.actions.MainEvent
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.google.android.gms.ads.MobileAds
+import com.google.android.ump.ConsentInformation
+import com.google.android.ump.UserMessagingPlatform
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -44,18 +48,19 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         viewModel.onEvent(event = MainEvent.CheckForUpdates)
+        checkUserConsent()
     }
 
     private fun initializeDependencies() {
         CoroutineScope(context = Dispatchers.IO).launch {
             MobileAds.initialize(this@MainActivity) {}
+            ConsentManagerHelper.applyInitialConsent(dataStore = dataStore)
         }
 
         updateResultLauncher = registerForActivityResult(contract = ActivityResultContracts.StartIntentSenderForResult()) {}
 
         viewModel = getViewModel { parametersOf(updateResultLauncher) }
     }
-
     private fun handleStartup() {
         lifecycleScope.launch {
             val isFirstLaunch : Boolean = dataStore.startup.first()
@@ -84,5 +89,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun checkUserConsent() {
+        val consentInfo: ConsentInformation = UserMessagingPlatform.getConsentInformation(this)
+        ConsentFormHelper.showConsentFormIfRequired(activity = this , consentInfo = consentInfo)
     }
 }
