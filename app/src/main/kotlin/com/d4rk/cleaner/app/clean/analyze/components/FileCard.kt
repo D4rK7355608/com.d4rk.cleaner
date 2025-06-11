@@ -14,8 +14,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.Image
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Folder
+import androidx.compose.material.icons.outlined.PictureAsPdf
+import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
@@ -28,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
@@ -41,6 +45,7 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.home.utils.helpers.getFileIcon
+import com.d4rk.cleaner.app.clean.home.utils.helpers.loadPdfThumbnail
 import com.google.common.io.Files.getFileExtension
 import java.io.File
 
@@ -57,6 +62,7 @@ fun FileCard(
 
     val imageExtensions : List<String> = remember { context.resources.getStringArray(R.array.image_extensions).toList() }
     val videoExtensions : List<String> = remember { context.resources.getStringArray(R.array.video_extensions).toList() }
+    val officeExtensions : List<String> = remember { context.resources.getStringArray(R.array.microsoft_office_extensions).toList() }
 
     Card(
         modifier = modifier
@@ -103,6 +109,34 @@ fun FileCard(
                                 VideoFrameDecoder(source = result.source , options = options)
                             }.videoFramePercent(framePercent = 0.5).crossfade(enable = true).build()
                         } , imageLoader = imageLoader , contentDescription = file.name , contentScale = ContentScale.Crop , modifier = Modifier.fillMaxSize())
+                    }
+
+                    in officeExtensions -> {
+                        if (fileExtension.lowercase() == "pdf") {
+                            val pdfBitmap = remember(file) { loadPdfThumbnail(file) }
+                            if (pdfBitmap != null) {
+                                Image(
+                                    bitmap = pdfBitmap.asImageBitmap() ,
+                                    contentDescription = file.name ,
+                                    contentScale = ContentScale.FillWidth ,
+                                    modifier = Modifier.fillMaxWidth()
+                                )
+                            } else {
+                                Icon(
+                                    imageVector = Icons.Outlined.PictureAsPdf ,
+                                    contentDescription = null , modifier = Modifier
+                                        .size(size = 24.dp)
+                                        .align(alignment = Alignment.Center)
+                                )
+                            }
+                        } else {
+                            Icon(
+                                imageVector = Icons.Outlined.Description ,
+                                contentDescription = null , modifier = Modifier
+                                    .size(size = 24.dp)
+                                    .align(alignment = Alignment.Center)
+                            )
+                        }
                     }
 
                     else -> {
