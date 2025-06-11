@@ -11,7 +11,6 @@ import java.util.Locale
 import java.util.UUID
 import kotlin.math.log10
 import kotlin.math.pow
-import kotlin.math.roundToInt
 
 object StorageUtils {
 
@@ -34,8 +33,16 @@ object StorageUtils {
             totalSize = statFs.blockSizeLong * statFs.blockCountLong
             usedSize = totalSize - (statFs.blockSizeLong * statFs.availableBlocksLong)
         }
-        val usedFormatted : String = (usedSize / (1024.0 * 1024.0 * 1024.0)).roundToInt().toString()
-        val totalFormatted : String = (totalSize / (1024.0 * 1024.0 * 1024.0)).roundToInt().toString()
+        val usedFormatted : String = String.format(
+            Locale.US,
+            "%.2f",
+            usedSize / (1024.0 * 1024.0 * 1024.0)
+        )
+        val totalFormatted : String = String.format(
+            Locale.US,
+            "%.2f",
+            totalSize / (1024.0 * 1024.0 * 1024.0)
+        )
         val usageProgress : Float = usedSize.toFloat() / totalSize.toFloat()
         val freeSize = totalSize - usedSize
         val freeSpacePercentage : Int = ((freeSize.toDouble() / totalSize.toDouble()) * 100).toInt()
@@ -48,17 +55,6 @@ object StorageUtils {
         val digitGroups : Int = (log10(size.toDouble()) / log10(x = 1024.0)).toInt()
         val value : Double = size / 1024.0.pow(digitGroups.toDouble())
 
-        return if (value.compareTo(value.toLong()) == 0) {
-            String.format(Locale.US , format = "%d %s" , value.toLong() , units[digitGroups])
-        }
-        else {
-            val decimalPart : Int = (value * 100).toInt() % 100
-            if (decimalPart == 0) {
-                String.format(Locale.US , format = "%d %s" , value.toLong() , units[digitGroups])
-            }
-            else {
-                String.format(Locale.US , format = "%.2f %s" , value , units[digitGroups])
-            }
-        }
+        return String.format(Locale.US , "%.2f %s" , value , units[digitGroups])
     }
 }
