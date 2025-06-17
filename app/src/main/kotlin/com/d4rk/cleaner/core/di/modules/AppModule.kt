@@ -43,6 +43,11 @@ import com.d4rk.cleaner.app.clean.trash.ui.TrashViewModel
 import com.d4rk.cleaner.app.main.ui.MainViewModel
 import com.d4rk.cleaner.app.onboarding.utils.interfaces.providers.AppOnboardingProvider
 import com.d4rk.cleaner.core.data.datastore.DataStore
+import com.d4rk.cleaner.app.images.compressor.domain.usecases.CompressImageUseCase
+import com.d4rk.cleaner.app.images.compressor.domain.usecases.GetImageDimensionsUseCase
+import com.d4rk.cleaner.app.images.compressor.domain.usecases.GetOptimizedDestinationFileUseCase
+import com.d4rk.cleaner.app.images.compressor.domain.usecases.GetRealFileFromUriUseCase
+import com.d4rk.cleaner.app.images.compressor.ui.ImageOptimizerViewModel
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import org.koin.core.module.Module
@@ -111,5 +116,19 @@ val appModule : Module = module {
     single<RestoreFromTrashUseCase> { RestoreFromTrashUseCase(repository = get()) }
     viewModel<TrashViewModel> {
         TrashViewModel(getTrashFilesUseCase = get() , deleteFilesUseCase = get() , updateTrashSizeUseCase = get() , restoreFromTrashUseCase = get() , dispatchers = get())
+    }
+
+    single<CompressImageUseCase> { CompressImageUseCase(context = get()) }
+    single<GetRealFileFromUriUseCase> { GetRealFileFromUriUseCase(context = get()) }
+    single<GetImageDimensionsUseCase> { GetImageDimensionsUseCase() }
+    single<GetOptimizedDestinationFileUseCase> { GetOptimizedDestinationFileUseCase() }
+    viewModel<ImageOptimizerViewModel> {
+        ImageOptimizerViewModel(
+            application = get(),
+            compressImageUseCase = get(),
+            getRealFileFromUriUseCase = get(),
+            getImageDimensionsUseCase = get(),
+            getDestinationFileUseCase = get()
+        )
     }
 }
