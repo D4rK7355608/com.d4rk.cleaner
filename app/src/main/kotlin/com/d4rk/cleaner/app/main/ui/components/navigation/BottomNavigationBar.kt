@@ -32,7 +32,7 @@ import org.koin.core.qualifier.named
 
 @Composable
 fun BottomNavigationBar(
-    navController : NavController , viewModel : MainViewModel , adsConfig : AdsConfig = koinInject(qualifier = named(name = "banner_full_size"))
+    navController : NavController , viewModel : MainViewModel , adsConfig : AdsConfig = koinInject(qualifier = named(name = "full_banner"))
 ) {
     val view : View = LocalView.current
     val dataStore : DataStore = koinInject()
