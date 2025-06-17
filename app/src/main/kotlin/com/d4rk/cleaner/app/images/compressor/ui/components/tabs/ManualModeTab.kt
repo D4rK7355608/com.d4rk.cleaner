@@ -32,13 +32,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.app.images.compressor.domain.data.model.ImageOptimizerState
+import com.d4rk.cleaner.app.images.compressor.domain.data.model.ui.UiImageOptimizerState
 import com.d4rk.cleaner.app.images.compressor.ui.ImageOptimizerViewModel
 import kotlinx.coroutines.delay
 
 @Composable
 fun ManualModeTab(viewModel : ImageOptimizerViewModel) {
-    val state : State<ImageOptimizerState> = viewModel.uiState.collectAsState()
+    val state : State<UiImageOptimizerState> = viewModel.uiState.collectAsState()
     val focusManager : FocusManager = LocalFocusManager.current
 
     val defaultWidth : Int = if (state.value.manualWidth != 0) state.value.manualWidth else 640

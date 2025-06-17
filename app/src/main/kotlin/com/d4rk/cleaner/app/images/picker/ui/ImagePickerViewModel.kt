@@ -1,30 +1,30 @@
 package com.d4rk.cleaner.app.images.picker.ui
 
-import android.app.Application
-import android.net.Uri
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.d4rk.cleaner.ui.viewmodel.BaseViewModel
-import kotlinx.coroutines.delay
+import com.d4rk.cleaner.app.images.picker.domain.data.model.ui.UiImagePickerModel
+import com.d4rk.cleaner.app.images.picker.domain.usecases.ShowFabUseCase
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import android.net.Uri
 
-class ImagePickerViewModel(application : Application) : BaseViewModel(application = application) {
-    private val _selectedImageUri : MutableState<Uri?> = mutableStateOf(value = null)
-    val selectedImageUri : Uri? get() = _selectedImageUri.value
+class ImagePickerViewModel(
+    private val showFabUseCase: ShowFabUseCase = ShowFabUseCase()
+) : ViewModel() {
+
+    private val _uiState: MutableStateFlow<UiImagePickerModel> = MutableStateFlow(UiImagePickerModel())
+    val uiState: StateFlow<UiImagePickerModel> = _uiState.asStateFlow()
 
     init {
-        initializeVisibilityStates()
-    }
-
-    private fun initializeVisibilityStates() {
-        viewModelScope.launch(context = coroutineExceptionHandler) {
-            delay(timeMillis = 100L)
-            showFab()
+        viewModelScope.launch {
+            showFabUseCase()
+            _uiState.value = _uiState.value.copy(isFabVisible = true)
         }
     }
 
-    fun setSelectedImageUri(uri : Uri?) {
-        _selectedImageUri.value = uri
+    fun setSelectedImageUri(uri: Uri?) {
+        _uiState.value = _uiState.value.copy(selectedImageUri = uri)
     }
 }

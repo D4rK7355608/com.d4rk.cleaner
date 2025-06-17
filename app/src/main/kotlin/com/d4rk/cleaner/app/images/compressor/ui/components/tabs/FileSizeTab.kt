@@ -27,7 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.app.images.compressor.domain.data.model.ImageOptimizerState
+import com.d4rk.cleaner.app.images.compressor.domain.data.model.ui.UiImageOptimizerState
 import com.d4rk.cleaner.app.images.compressor.ui.ImageOptimizerViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -35,7 +35,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FileSizeTab(viewModel : ImageOptimizerViewModel) {
-    val state : State<ImageOptimizerState> = viewModel.uiState.collectAsState()
+    val state : State<UiImageOptimizerState> = viewModel.uiState.collectAsState()
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     var originalSizeKB : Int by remember { mutableIntStateOf(value = 0) }
 
