@@ -11,7 +11,7 @@ plugins {
 }
 
 android {
-    compileSdk = 35
+    compileSdk = 36
     namespace = "com.d4rk.cleaner"
     defaultConfig {
         applicationId = "com.d4rk.cleaner"
@@ -20,31 +20,22 @@ android {
         versionCode = 162
         versionName = "3.3.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        @Suppress("UnstableApiUsage")
-        androidResources.localeFilters += listOf(
-            "en" ,
-            "bg-rBG" ,
-            "de-rDE" ,
-            "es-rGQ" ,
-            "fr-rFR" ,
-            "hi-rIN" ,
-            "hu-rHU" ,
-            "in-rID" ,
-            "it-rIT" ,
-            "ja-rJP" ,
-            "pl-rPL" ,
-            "pt-rBR" ,
-            "ro-rRO" ,
-            "ru-rRU" ,
-            "sv-rSE" ,
-            "th-rTH" ,
-            "tr-rTR" ,
-            "uk-rUA" ,
-            "zh-rTW" ,
+        @Suppress("UnstableApiUsage") androidResources.localeFilters += listOf(
+            "ar-rEG" , "bg-rBG" , "bn-rBD" , "de-rDE" , "en" , "es-rGQ" , "es-rMX" , "fil-rPH" , "fr-rFR" , "hi-rIN" , "hu-rHU" , "in-rID" , "it-rIT" , "ja-rJP" , "ko-rKR" , "pl-rPL" , "pt-rBR" , "ro-rRO" , "ru-rRU" , "sv-rSE" , "th-rTH" , "tr-rTR" , "uk-rUA" , "ur-rPK" , "vi-rVN" , "zh-rTW"
         )
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val githubProps = Properties()
+        val githubFile = rootProject.file("github.properties")
+        val githubToken = if (githubFile.exists()) {
+            githubProps.load(githubFile.inputStream())
+            githubProps["GITHUB_TOKEN"].toString()
+        } else {
+            ""
+        }
+        buildConfigField("String", "GITHUB_TOKEN", "\"$githubToken\"")
     }
 
     signingConfigs {
@@ -122,7 +113,7 @@ android {
 dependencies {
 
     // App Core
-    implementation(dependencyNotation = "com.github.D4rK7355608:AppToolkit:1.0.25") {
+    implementation(dependencyNotation = "com.github.D4rK7355608:AppToolkit:1.0.28") {
         isTransitive = true
     }
 
