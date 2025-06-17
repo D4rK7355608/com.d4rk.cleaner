@@ -34,7 +34,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.carousel.CustomCarousel
-import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
@@ -50,6 +49,7 @@ import com.d4rk.cleaner.app.clean.memory.domain.data.model.ui.UiMemoryManagerScr
 import com.d4rk.cleaner.app.clean.memory.ui.components.RamInfoCard
 import com.d4rk.cleaner.app.clean.memory.ui.components.StorageBreakdownGrid
 import com.d4rk.cleaner.app.clean.memory.ui.components.StorageInfoCard
+import com.d4rk.cleaner.app.clean.memory.ui.components.MemoryManagerShimmer
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -70,7 +70,7 @@ fun MemoryManagerComposable(paddingValues : PaddingValues) {
     }
 
     ScreenStateHandler(screenState = uiState , onLoading = {
-        LoadingScreen()
+        MemoryManagerShimmer(paddingValues = paddingValues)
     } , onEmpty = {
         NoDataScreen(icon = Icons.Outlined.Memory , showRetry = true , onRetry = { viewModel.onEvent(MemoryEvent.LoadMemoryData) })
     } , onSuccess = { screenData ->
