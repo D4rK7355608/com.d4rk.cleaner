@@ -52,15 +52,16 @@ fun ImagePickerComposable(
     val scrollBehavior : TopAppBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     val context : Context = LocalContext.current
     val view : View = LocalView.current
-    val isFabVisible : Boolean by viewModel.isFabVisible.collectAsState()
+    val uiState by viewModel.uiState.collectAsState()
+    val isFabVisible = uiState.isFabVisible
 
     val isFabExtended : MutableState<Boolean> = remember { mutableStateOf(value = true) }
     LaunchedEffect(key1 = scrollBehavior.state.contentOffset) {
         isFabExtended.value = scrollBehavior.state.contentOffset >= 0f
     }
 
-    LaunchedEffect(key1 = viewModel.selectedImageUri) {
-        viewModel.selectedImageUri?.let { uri ->
+    LaunchedEffect(key1 = uiState.selectedImageUri) {
+        uiState.selectedImageUri?.let { uri ->
             val intent = Intent(context , ImageOptimizerActivity::class.java)
             intent.putExtra("selectedImageUri" , uri.toString())
             activity.startActivity(intent)

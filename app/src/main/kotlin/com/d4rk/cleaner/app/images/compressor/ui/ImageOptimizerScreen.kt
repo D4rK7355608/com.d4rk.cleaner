@@ -40,7 +40,7 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.ads.AdBanner
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.app.images.compressor.domain.data.model.ImageOptimizerState
+import com.d4rk.cleaner.app.images.compressor.domain.data.model.ui.UiImageOptimizerState
 import com.d4rk.cleaner.app.images.compressor.ui.components.tabs.FileSizeTab
 import com.d4rk.cleaner.app.images.compressor.ui.components.tabs.ManualModeTab
 import com.d4rk.cleaner.app.images.compressor.ui.components.tabs.QuickCompressTab
@@ -55,7 +55,7 @@ import org.koin.core.qualifier.named
 fun ImageOptimizerScreen(
     activity : ImageOptimizerActivity , viewModel : ImageOptimizerViewModel , adsConfig : AdsConfig = koinInject(qualifier = named(name = "banner"))
 ) {
-    val uiState : ImageOptimizerState by viewModel.uiState.collectAsState()
+    val uiState : UiImageOptimizerState by viewModel.uiState.collectAsState()
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     val dataStore : DataStore = koinInject()
     val adsState : Boolean by remember { dataStore.ads(default = true) }.collectAsState(initial = true)
@@ -158,7 +158,7 @@ fun ImageOptimizerScreen(
 
 @Composable
 fun ImageDisplay(viewModel : ImageOptimizerViewModel) {
-    val state : State<ImageOptimizerState> = viewModel.uiState.collectAsState()
+    val state : State<UiImageOptimizerState> = viewModel.uiState.collectAsState()
     val showCompressedImage : MutableState<Boolean> = remember { mutableStateOf(false) }
 
     LaunchedEffect(key1 = state.value.compressedImageUri) {
