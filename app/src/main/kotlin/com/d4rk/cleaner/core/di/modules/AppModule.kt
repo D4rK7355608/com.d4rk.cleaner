@@ -4,6 +4,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import com.d4rk.android.libs.apptoolkit.app.main.domain.usecases.PerformInAppUpdateUseCase
 import com.d4rk.android.libs.apptoolkit.app.oboarding.utils.interfaces.providers.OnboardingProvider
+import com.d4rk.android.libs.apptoolkit.data.client.KtorClient
 import com.d4rk.android.libs.apptoolkit.data.core.ads.AdsCoreManager
 import com.d4rk.cleaner.app.apps.manager.data.ApkFileManagerImpl
 import com.d4rk.cleaner.app.apps.manager.data.AppPackageManagerImpl
@@ -52,10 +53,11 @@ import org.koin.dsl.module
 val appModule : Module = module {
     single<DataStore> { DataStore(context = get()) }
     single<AdsCoreManager> { AdsCoreManager(context = get() , buildInfoProvider = get()) }
-    single<AppUpdateManager> { AppUpdateManagerFactory.create(get()) }
+    single { KtorClient().createClient() }
 
     single<OnboardingProvider> { AppOnboardingProvider() }
 
+    single<AppUpdateManager> { AppUpdateManagerFactory.create(get()) }
     factory<PerformInAppUpdateUseCase> { (launcher : ActivityResultLauncher<IntentSenderRequest>) ->
         PerformInAppUpdateUseCase(appUpdateManager = get() , updateResultLauncher = launcher)
     }
