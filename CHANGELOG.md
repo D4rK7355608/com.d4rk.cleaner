@@ -1,10 +1,13 @@
 # Version 3.3.0:
 
-- **Minor**: We've refined the user interface and user experience in areas where data might be absent, providing clearer guidance and a more visually appealing presentation.
-- **Minor**: The settings screens have been completely revamped with improved readability and a more modern visual design, making it easier to navigate and customize your preferences.
-- **Minor**: We've incorporated smoother animations throughout the app to create a more fluid and engaging user experience.
-- **Minor**: The applications listed within the App Manager are now sorted alphabetically, making it quicker and easier to find specific apps.
-- **Minor**: Many under-the-hood improvements for better performance and stability.
+- **New**: Added an onboarding flow and improved consent handling.
+- **New**: PDF files now show a thumbnail preview.
+- **Minor**: Shimmer placeholders replace loading screens in info and memory views.
+- **Minor**: Refreshed cleaning settings layout and ads qualifier.
+- **Minor**: Expanded localization and updated dependencies, including compileSdk 36.
+- **Patch**: Storage usage displays two decimals for better precision.
+- **Patch**: User consent is checked whenever the app resumes.
+- **Patch**: Many under-the-hood improvements for better performance and stability.
 
 # Version 3.2.2:
 
