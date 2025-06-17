@@ -1,6 +1,7 @@
 package com.d4rk.cleaner.app.clean.memory.ui.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,18 +15,18 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.toDp
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
 import com.d4rk.android.libs.apptoolkit.core.ui.components.carousel.DotsIndicator
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.hapticPagerSwipe
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.shimmerEffect
@@ -41,14 +42,14 @@ fun MemoryManagerShimmer(paddingValues : PaddingValues) {
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(paddingValues)
+                .fillMaxSize()
+                .padding(paddingValues)
     ) {
         HorizontalPager(
             state = pagerState,
             modifier = Modifier
-                .fillMaxWidth()
-                .hapticPagerSwipe(pagerState = pagerState),
+                    .fillMaxWidth()
+                    .hapticPagerSwipe(pagerState = pagerState),
             userScrollEnabled = false,
             contentPadding = PaddingValues(horizontal = 24.dp)
         ) { _ ->
@@ -59,9 +60,9 @@ fun MemoryManagerShimmer(paddingValues : PaddingValues) {
 
         DotsIndicator(
             modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(bottom = SizeConstants.SmallSize)
-                .shimmerEffect(),
+                    .align(Alignment.CenterHorizontally)
+                    .padding(bottom = SizeConstants.SmallSize)
+                    .shimmerEffect(),
             totalDots = 2,
             selectedIndex = pagerState.currentPage,
             dotSize = SizeConstants.MediumSize / 2,
@@ -74,44 +75,99 @@ fun MemoryManagerShimmer(paddingValues : PaddingValues) {
 }
 
 @Composable
+fun ShimmeringCarousel(sidePadding: Dp) {
+    Column(
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Box(
+            modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = sidePadding) // Apply padding here
+        ) {
+            CarouselShimmerCard()
+        }
+
+        Spacer(modifier = Modifier.height(SizeConstants.MediumSize)) // Adjusted spacer based on your original CustomCarousel
+
+        ShimmerDotsIndicator(
+            modifier = Modifier
+                    .align(alignment = Alignment.CenterHorizontally)
+                    .padding(bottom = SizeConstants.SmallSize),
+            totalDots = 3, // Example: Show 3 shimmer dots
+            dotSize = SizeConstants.MediumSize / 2,
+        )
+    }
+}
+
+@Composable
 private fun CarouselShimmerCard() {
-    val headlineHeight = with(LocalDensity.current) { MaterialTheme.typography.headlineSmall.fontSize.toDp() }
-    val bodyHeight = with(LocalDensity.current) { MaterialTheme.typography.bodyMedium.fontSize.toDp() }
+    val density = LocalDensity.current
+    val titleHeight = with(density) { MaterialTheme.typography.titleLarge.fontSize.toDp() + 4.dp } // Add a bit for line height
+    val bodyHeight = with(density) { MaterialTheme.typography.bodyMedium.fontSize.toDp() + 4.dp } // Add a bit for line height
+    val progressBarHeight = 8.dp // Typical height for a progress bar
+
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(SizeConstants.MediumSize),
-        colors = CardDefaults.cardColors()
     ) {
         Column(modifier = Modifier.padding(SizeConstants.LargeSize)) {
+            // Title Placeholder
             Spacer(
                 modifier = Modifier
-                    .fillMaxWidth(0.6f)
-                    .height(headlineHeight)
-                    .clip(RoundedCornerShape(SizeConstants.SmallSize))
-                    .shimmerEffect()
+                        .fillMaxWidth(0.7f) // Adjust fraction as needed
+                        .height(titleHeight)
+                        .clip(RoundedCornerShape(SizeConstants.SmallSize))
+                        .shimmerEffect()
             )
 
-            SmallVerticalSpacer()
+            Spacer(modifier = Modifier.height(SizeConstants.MediumSize)) // Space between title and progress bar
 
+            // Progress Bar Placeholder
             Spacer(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(SizeConstants.SmallSize)
-                    .clip(RoundedCornerShape(SizeConstants.SmallSize))
-                    .shimmerEffect()
+                        .fillMaxWidth()
+                        .height(progressBarHeight)
+                        .clip(RoundedCornerShape(SizeConstants.SmallSize))
+                        .shimmerEffect()
             )
 
-            SmallVerticalSpacer()
+            Spacer(modifier = Modifier.height(SizeConstants.MediumSize)) // Space between progress bar and text lines
 
+            // Text Lines Placeholder (Used, Free, Total)
             repeat(3) {
                 Spacer(
                     modifier = Modifier
-                        .fillMaxWidth(0.8f)
-                        .height(bodyHeight)
-                        .clip(RoundedCornerShape(SizeConstants.SmallSize))
-                        .shimmerEffect()
+                            .fillMaxWidth(0.5f) // Adjust fraction as needed
+                            .height(bodyHeight)
+                            .clip(RoundedCornerShape(SizeConstants.SmallSize))
+                            .shimmerEffect()
                 )
+                if (it < 2) { // Don't add spacer after the last item
+                    Spacer(modifier = Modifier.height(SizeConstants.SmallSize))
+                }
             }
+        }
+    }
+}
+
+@Composable
+fun ShimmerDotsIndicator(
+    modifier: Modifier = Modifier,
+    totalDots: Int,
+    dotSize: Dp,
+    spacing: Dp = SizeConstants.SmallSize
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(spacing)
+    ) {
+        repeat(totalDots) {
+            Box(
+                modifier = Modifier
+                        .size(dotSize)
+                        .clip(CircleShape)
+                        .shimmerEffect()
+            )
         }
     }
 }
@@ -142,14 +198,14 @@ private fun StorageBreakdownItemShimmer(modifier: Modifier = Modifier) {
     ) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(all = SizeConstants.LargeSize),
+                    .fillMaxWidth()
+                    .padding(all = SizeConstants.LargeSize),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Card(
                 modifier = Modifier
-                    .size(48.dp)
-                    .shimmerEffect(),
+                        .size(48.dp)
+                        .shimmerEffect(),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
             ) {}
 
@@ -158,17 +214,17 @@ private fun StorageBreakdownItemShimmer(modifier: Modifier = Modifier) {
             Column {
                 Spacer(
                     modifier = Modifier
-                        .fillMaxWidth(0.6f)
-                        .height(bodyHeight)
-                        .clip(RoundedCornerShape(SizeConstants.SmallSize))
-                        .shimmerEffect()
+                            .fillMaxWidth(0.6f)
+                            .height(bodyHeight)
+                            .clip(RoundedCornerShape(SizeConstants.SmallSize))
+                            .shimmerEffect()
                 )
                 Spacer(
                     modifier = Modifier
-                        .fillMaxWidth(0.4f)
-                        .height(bodySmallHeight)
-                        .clip(RoundedCornerShape(SizeConstants.SmallSize))
-                        .shimmerEffect()
+                            .fillMaxWidth(0.4f)
+                            .height(bodySmallHeight)
+                            .clip(RoundedCornerShape(SizeConstants.SmallSize))
+                            .shimmerEffect()
                 )
             }
         }
