@@ -24,6 +24,7 @@ out/
 # Release artifacts (uncomment or adjust as needed)
 app/release/*
 release/
+signing.properties
 
 ###############################################################################
 # LOCAL CONFIG / ENV FILES
@@ -98,3 +99,4 @@ lint/tmp/
 # KOTLIN
 ###############################################################################
 .kotlin
+github.properties
