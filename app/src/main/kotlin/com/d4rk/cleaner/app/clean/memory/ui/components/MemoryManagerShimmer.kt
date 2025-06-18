@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
@@ -51,18 +50,20 @@ fun MemoryManagerShimmer(paddingValues: PaddingValues) {
             .padding(paddingValues)
     ) {
         HorizontalPager(
-            state = pagerState,
-            modifier = Modifier
-                .fillMaxWidth()
-                .hapticPagerSwipe(pagerState = pagerState),
-            userScrollEnabled = false,
-            contentPadding = PaddingValues(horizontal = 24.dp)
+                state = pagerState,
+                modifier = Modifier
+                        .fillMaxWidth()
+                        .hapticPagerSwipe(pagerState = pagerState),
+                userScrollEnabled = false,
+                contentPadding = PaddingValues(horizontal = 24.dp)
         ) { page ->
             val pageOffset = remember(pagerState.currentPage, page) {
                 (pagerState.currentPage - page).absoluteValue.toFloat()
             }
             CarouselShimmerCard(pageOffset = pageOffset)
         }
+
+        if (false) HorizontalPager(state = pagerState) {}
 
         LargeVerticalSpacer()
 
@@ -197,14 +198,13 @@ private fun CarouselShimmerCard(pageOffset: Float) {
 
 @Composable
 private fun StorageBreakdownGridShimmer() {
-    LazyColumn(
+    Column(
         modifier = Modifier
             .fillMaxWidth()
             .animateContentSize()
             .padding(horizontal = SizeConstants.MediumSize)
     ) {
-
-        items(count = 3) {
+        repeat(3) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -216,14 +216,11 @@ private fun StorageBreakdownGridShimmer() {
             }
 
         }
-
-        item {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                StorageBreakdownItemShimmer(modifier = Modifier.fillMaxWidth())
-            }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            StorageBreakdownItemShimmer(modifier = Modifier.fillMaxWidth())
         }
     }
 }

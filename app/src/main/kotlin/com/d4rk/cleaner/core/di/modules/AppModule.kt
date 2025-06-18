@@ -40,14 +40,14 @@ import com.d4rk.cleaner.app.clean.memory.ui.MemoryManagerViewModel
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashFilesUseCase
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.RestoreFromTrashUseCase
 import com.d4rk.cleaner.app.clean.trash.ui.TrashViewModel
-import com.d4rk.cleaner.app.main.ui.MainViewModel
-import com.d4rk.cleaner.app.onboarding.utils.interfaces.providers.AppOnboardingProvider
-import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.CompressImageUseCase
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.GetImageDimensionsUseCase
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.GetOptimizedDestinationFileUseCase
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.GetRealFileFromUriUseCase
 import com.d4rk.cleaner.app.images.compressor.ui.ImageOptimizerViewModel
+import com.d4rk.cleaner.app.main.ui.MainViewModel
+import com.d4rk.cleaner.app.onboarding.utils.interfaces.providers.AppOnboardingProvider
+import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import org.koin.core.module.Module

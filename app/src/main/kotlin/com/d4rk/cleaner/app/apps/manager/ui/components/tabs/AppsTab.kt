@@ -9,19 +9,19 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.apps.manager.domain.actions.AppManagerEvent
 import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
 import com.d4rk.cleaner.app.apps.manager.ui.components.AppItemComposable
+import com.d4rk.cleaner.app.apps.manager.ui.components.ShimmerLoadingScreen
 
 @Composable
-fun AppsTab(apps : List<ApplicationInfo> , isLoading : Boolean , viewModel : AppManagerViewModel) {
+fun AppsTab(apps : List<ApplicationInfo> , isLoading : Boolean , viewModel : AppManagerViewModel, paddingValues : PaddingValues = PaddingValues()) {
     when {
         isLoading -> {
-            LoadingScreen()
+            ShimmerLoadingScreen(paddingValues)
         }
 
         apps.isEmpty() -> {

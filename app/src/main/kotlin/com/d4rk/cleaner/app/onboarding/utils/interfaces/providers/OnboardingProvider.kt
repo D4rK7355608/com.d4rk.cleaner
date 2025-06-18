@@ -3,11 +3,8 @@ package com.d4rk.cleaner.app.onboarding.utils.interfaces.providers
 import android.content.Context
 import android.content.Intent
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.AutoDelete
 import androidx.compose.material.icons.outlined.CleaningServices
-import androidx.compose.material.icons.outlined.Star
-import com.d4rk.cleaner.app.onboarding.utils.constants.OnboardingKeys
 import com.d4rk.android.libs.apptoolkit.app.oboarding.domain.data.model.ui.OnboardingPage
 import com.d4rk.android.libs.apptoolkit.app.oboarding.ui.components.pages.CrashlyticsOnboardingPageTab
 import com.d4rk.android.libs.apptoolkit.app.oboarding.ui.components.pages.FinalOnboardingPageTab
@@ -15,6 +12,7 @@ import com.d4rk.android.libs.apptoolkit.app.oboarding.ui.components.pages.ThemeO
 import com.d4rk.android.libs.apptoolkit.app.oboarding.utils.interfaces.providers.OnboardingProvider
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.main.ui.MainActivity
+import com.d4rk.cleaner.app.onboarding.utils.constants.OnboardingKeys
 
 class AppOnboardingProvider : OnboardingProvider {
 

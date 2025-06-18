@@ -132,16 +132,20 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
                     } ,
                     isLoading = screenData.userAppsLoading ,
                     viewModel = viewModel ,
+                    paddingValues = paddingValues
                 )
 
                 1 -> AppsTab(apps = screenData.installedApps.filter { app : ApplicationInfo ->
                     app.flags and ApplicationInfo.FLAG_SYSTEM != 0
-                } , isLoading = screenData.systemAppsLoading , viewModel = viewModel)
+                } , isLoading = screenData.systemAppsLoading , viewModel = viewModel,
+                    paddingValues = paddingValues
+                )
 
                 2 -> ApksTab(
                     apkFiles = screenData.apkFiles ,
                     isLoading = screenData.apkFilesLoading ,
                     viewModel = viewModel ,
+                    paddingValues = paddingValues
                 )
             }
         }

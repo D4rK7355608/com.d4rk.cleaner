@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.app.images.picker.ui
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.d4rk.cleaner.app.images.picker.domain.data.model.ui.UiImagePickerModel
@@ -8,7 +9,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import android.net.Uri
 
 class ImagePickerViewModel(
     private val showFabUseCase: ShowFabUseCase = ShowFabUseCase()

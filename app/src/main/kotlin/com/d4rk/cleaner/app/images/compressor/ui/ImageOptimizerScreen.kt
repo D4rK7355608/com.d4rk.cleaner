@@ -48,12 +48,11 @@ import com.d4rk.cleaner.core.data.datastore.DataStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
-import org.koin.core.qualifier.named
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ImageOptimizerScreen(
-    activity : ImageOptimizerActivity , viewModel : ImageOptimizerViewModel , adsConfig : AdsConfig = koinInject(qualifier = named(name = "banner"))
+    activity : ImageOptimizerActivity , viewModel : ImageOptimizerViewModel , adsConfig : AdsConfig = koinInject()
 ) {
     val uiState : UiImageOptimizerState by viewModel.uiState.collectAsState()
     val coroutineScope : CoroutineScope = rememberCoroutineScope()

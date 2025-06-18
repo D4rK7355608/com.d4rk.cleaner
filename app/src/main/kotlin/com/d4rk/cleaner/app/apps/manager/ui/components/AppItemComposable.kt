@@ -50,71 +50,90 @@ import java.io.File
 
 @Composable
 fun AppItemComposable(
-    app : ApplicationInfo , viewModel : AppManagerViewModel , modifier : Modifier
+    app: ApplicationInfo, viewModel: AppManagerViewModel, modifier: Modifier
 ) {
-    val context : Context = LocalContext.current
+    val context: Context = LocalContext.current
 
-    @OptIn(ExperimentalMaterial3Api::class) val view : View = LocalView.current
-    val packageManager : PackageManager = context.packageManager
-    val appName : String = app.loadLabel(packageManager).toString()
-    val apkPath : String = app.publicSourceDir
+    @OptIn(ExperimentalMaterial3Api::class) val view: View = LocalView.current
+    val packageManager: PackageManager = context.packageManager
+    val appName: String = app.loadLabel(packageManager).toString()
+    val apkPath: String = app.publicSourceDir
     val apkFile = File(apkPath)
-    val sizeInBytes : Long = apkFile.length()
-    val sizeInKB : Long = sizeInBytes / 1024
-    val sizeInMB : Long = sizeInKB / 1024
-    val appSize : String = "%.2f MB".format(sizeInMB.toFloat())
-    var showMenu : Boolean by remember { mutableStateOf(value = false) }
-    val model : Drawable = app.loadIcon(packageManager)
+    val sizeInBytes: Long = apkFile.length()
+    val sizeInKB: Long = sizeInBytes / 1024
+    val sizeInMB: Long = sizeInKB / 1024
+    val appSize: String = "%.2f MB".format(sizeInMB.toFloat())
+    var showMenu: Boolean by remember { mutableStateOf(value = false) }
+    val model: Drawable = app.loadIcon(packageManager)
     OutlinedCard(modifier = modifier) {
         Row(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(SizeConstants.LargeSize)
-                    .clip(RoundedCornerShape(SizeConstants.LargeSize)) , verticalAlignment = Alignment.CenterVertically
+                .fillMaxWidth()
+                .padding(SizeConstants.LargeSize)
+                .clip(RoundedCornerShape(SizeConstants.LargeSize)),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             AsyncImage(
-                model = model , contentDescription = null , modifier = Modifier.size(48.dp) , contentScale = ContentScale.Fit
+                model = model,
+                contentDescription = null,
+                modifier = Modifier.size(48.dp),
+                contentScale = ContentScale.Fit
             )
             Column(
                 modifier = Modifier
-                        .padding(SizeConstants.LargeSize)
-                        .weight(1f)
+                    .padding(SizeConstants.LargeSize)
+                    .weight(1f)
             ) {
                 Text(
-                    text = appName ,
-                    style = MaterialTheme.typography.titleMedium ,
+                    text = appName,
+                    style = MaterialTheme.typography.titleMedium,
                 )
                 Text(
-                    text = appSize , style = MaterialTheme.typography.bodyMedium
+                    text = appSize, style = MaterialTheme.typography.bodyMedium
                 )
             }
 
             Box {
-                IconButton(modifier = Modifier.bounceClick() , onClick = {
+                IconButton(modifier = Modifier.bounceClick(), onClick = {
                     view.playSoundEffect(SoundEffectConstants.CLICK)
                     showMenu = true
                 }) {
-                    Icon(Icons.Outlined.MoreVert , contentDescription = null)
+                    Icon(Icons.Outlined.MoreVert, contentDescription = null)
                 }
 
-                DropdownMenu(expanded = showMenu , onDismissRequest = {
+                DropdownMenu(expanded = showMenu, onDismissRequest = {
                     showMenu = false
                 }) {
-                    DropdownMenuItem(leadingIcon = { Icon(imageVector = Icons.Outlined.DeleteForever , contentDescription = null) } , modifier = Modifier.bounceClick() , text = {
+                    DropdownMenuItem(leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.DeleteForever,
+                            contentDescription = null
+                        )
+                    }, modifier = Modifier.bounceClick(), text = {
                         Text(text = stringResource(id = string.uninstall))
-                    } , onClick = {
+                    }, onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         viewModel.uninstallApp(app.packageName)
                     })
-                    DropdownMenuItem(leadingIcon = { Icon(imageVector = Icons.Outlined.Share , contentDescription = null) } , modifier = Modifier.bounceClick() , text = {
+                    DropdownMenuItem(leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Share,
+                            contentDescription = null
+                        )
+                    }, modifier = Modifier.bounceClick(), text = {
                         Text(text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.share))
-                    } , onClick = {
+                    }, onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         viewModel.onEvent(AppManagerEvent.ShareItem(AppManagerItem.InstalledApp(app.packageName)))
                     })
-                    DropdownMenuItem(leadingIcon = { Icon(imageVector = Icons.Outlined.Info , contentDescription = null) } , modifier = Modifier.bounceClick() , text = {
+                    DropdownMenuItem(leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Info,
+                            contentDescription = null
+                        )
+                    }, modifier = Modifier.bounceClick(), text = {
                         Text(text = stringResource(id = string.app_info))
-                    } , onClick = {
+                    }, onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         viewModel.openAppInfo(app.packageName)
                     })

@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowLeft
 import androidx.compose.material.icons.outlined.ArrowDropDown
@@ -32,7 +34,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.d4rk.android.libs.apptoolkit.core.domain.model.ads.AdsConfig
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
+import com.d4rk.android.libs.apptoolkit.core.ui.components.ads.AdBanner
 import com.d4rk.android.libs.apptoolkit.core.ui.components.carousel.CustomCarousel
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
@@ -46,12 +50,14 @@ import com.d4rk.cleaner.app.clean.memory.domain.actions.MemoryEvent
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.RamInfo
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.ui.UiMemoryManagerScreen
+import com.d4rk.cleaner.app.clean.memory.ui.components.MemoryManagerShimmer
 import com.d4rk.cleaner.app.clean.memory.ui.components.RamInfoCard
 import com.d4rk.cleaner.app.clean.memory.ui.components.StorageBreakdownGrid
 import com.d4rk.cleaner.app.clean.memory.ui.components.StorageInfoCard
-import com.d4rk.cleaner.app.clean.memory.ui.components.MemoryManagerShimmer
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
+import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.qualifier.named
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -79,7 +85,7 @@ fun MemoryManagerComposable(paddingValues : PaddingValues) {
 }
 
 @Composable
-fun MemoryManagerScreenContent(viewModel : MemoryManagerViewModel , screenData : UiMemoryManagerScreen , paddingValues : PaddingValues) {
+fun MemoryManagerScreenContent(viewModel : MemoryManagerViewModel , screenData : UiMemoryManagerScreen , paddingValues : PaddingValues , adsConfig : AdsConfig = koinInject(qualifier = named(name = "large_banner"))) {
     val carouselItems = listOf(screenData.storageInfo , screenData.ramInfo)
     val pagerState : PagerState = rememberPagerState { carouselItems.size }
     val view : View = LocalView.current
@@ -87,6 +93,7 @@ fun MemoryManagerScreenContent(viewModel : MemoryManagerViewModel , screenData :
     Column(
         modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(paddingValues = paddingValues)
     ) {
         CustomCarousel(items = carouselItems , sidePadding = 24.dp , pagerState = pagerState) { item ->
@@ -98,6 +105,8 @@ fun MemoryManagerScreenContent(viewModel : MemoryManagerViewModel , screenData :
         }
 
         LargeVerticalSpacer()
+
+        AdBanner(modifier = Modifier.padding(bottom = SizeConstants.MediumSize) , adsConfig = adsConfig)
 
         Row(
             modifier = Modifier

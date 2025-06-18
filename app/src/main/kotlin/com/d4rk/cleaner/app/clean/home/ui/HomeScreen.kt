@@ -28,9 +28,6 @@ import coil3.disk.DiskCache
 import coil3.disk.directory
 import coil3.memory.MemoryCache
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
-import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
-import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
-import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.app.clean.analyze.ui.AnalyzeScreen
 import com.d4rk.cleaner.app.clean.home.domain.actions.HomeEvent
@@ -41,77 +38,78 @@ import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun HomeScreen(paddingValues : PaddingValues) {
-    val context : Context = LocalContext.current
-    val view : View = LocalView.current
-    val viewModel : HomeViewModel = koinViewModel()
-    val uiState : UiStateScreen<UiHomeModel> by viewModel.uiState.collectAsState()
+fun HomeScreen(paddingValues: PaddingValues) {
+    val context: Context = LocalContext.current
+    val view: View = LocalView.current
+    val viewModel: HomeViewModel = koinViewModel()
+    val uiState: UiStateScreen<UiHomeModel> by viewModel.uiState.collectAsState()
 
-    val imageLoader : ImageLoader = remember {
+    val imageLoader: ImageLoader = remember {
         ImageLoader.Builder(context = context).memoryCache {
-            MemoryCache.Builder().maxSizePercent(context = context , percent = 0.24).build()
+            MemoryCache.Builder().maxSizePercent(context = context, percent = 0.24).build()
         }.diskCache {
-            DiskCache.Builder().directory(directory = context.cacheDir.resolve(relative = "image_cache")).maxSizePercent(percent = 0.02).build()
+            DiskCache.Builder()
+                .directory(directory = context.cacheDir.resolve(relative = "image_cache"))
+                .maxSizePercent(percent = 0.02).build()
         }.build()
     }
 
-    LaunchedEffect(key1 = Unit) {
-        if (! PermissionsHelper.hasStoragePermissions(context = context)) {
-            PermissionsHelper.requestStoragePermissions(activity = context as Activity)
+    LaunchedEffect(Unit) {
+        if (!PermissionsHelper.hasStoragePermissions(context)) {
+            PermissionsHelper.requestStoragePermissions(context as Activity)
         }
     }
 
-    ScreenStateHandler(
-        screenState = uiState ,
-        onLoading = {
-            LoadingScreen()
-        } ,
-        onEmpty = {
-            NoDataScreen()
-        } ,
-        onSuccess = { homeModel ->
-            Column(
-                modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues = paddingValues)
-            ) {
-                Box(
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
+    ) {
+        Box(
+            modifier = Modifier
+                .weight(4f)
+                .fillMaxWidth()
+        ) {
+            if (uiState.data?.analyzeState?.isAnalyzeScreenVisible == false) {
+                StorageProgressButton(
+                    progress = uiState.data?.storageInfo?.storageUsageProgress ?: 0f,
                     modifier = Modifier
-                            .weight(4f)
-                            .fillMaxWidth()
-                ) {
-                    if (! homeModel.analyzeState.isAnalyzeScreenVisible) {
-                        StorageProgressButton(
-                            progress = homeModel.storageInfo.storageUsageProgress , modifier = Modifier
-                                    .align(alignment = Alignment.TopCenter)
-                                    .offset(y = 98.dp) , onClick = {
-                                viewModel.onEvent(HomeEvent.ToggleAnalyzeScreen(true))
-                            })
-
-                        ExtraStorageInfo(
-                            modifier = Modifier
-                                    .align(Alignment.BottomCenter)
-                                    .padding(bottom = SizeConstants.LargeSize) ,
-                            cleanedSpace = homeModel.storageInfo.cleanedSpace ,
-                            freeSpace = "${homeModel.storageInfo.freeSpacePercentage} %" ,
-                            isCleanedSpaceLoading = homeModel.storageInfo.isCleanedSpaceLoading ,
-                            isFreeSpaceLoading = homeModel.storageInfo.isFreeSpaceLoading
-                        )
+                        .align(Alignment.TopCenter)
+                        .offset(y = 98.dp),
+                    onClick = {
+                        viewModel.onEvent(HomeEvent.ToggleAnalyzeScreen(true))
                     }
+                )
 
-                    Crossfade(
-                        targetState = homeModel.analyzeState.isAnalyzeScreenVisible , animationSpec = tween(durationMillis = 300) , label = ""
-                    ) { showCleaningComposable ->
-                        if (showCleaningComposable) {
-                            key(homeModel.analyzeState.fileTypesData) {
-                                AnalyzeScreen(
-                                    imageLoader = imageLoader , view = view , viewModel = viewModel , data = homeModel
-                                )
-                            }
+                ExtraStorageInfo(
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .padding(bottom = SizeConstants.LargeSize),
+                    cleanedSpace = uiState.data?.storageInfo?.cleanedSpace ?: "",
+                    freeSpace = "${uiState.data?.storageInfo?.freeSpacePercentage ?: 0} %",
+                    isCleanedSpaceLoading = uiState.data?.storageInfo?.isCleanedSpaceLoading == true,
+                    isFreeSpaceLoading = uiState.data?.storageInfo?.isFreeSpaceLoading == true
+                )
+            }
+
+            Crossfade(
+                targetState = uiState.data?.analyzeState?.isAnalyzeScreenVisible,
+                animationSpec = tween(durationMillis = 300),
+                label = ""
+            ) { showCleaningComposable ->
+                if (showCleaningComposable == true) {
+                    uiState.data?.let { data ->
+                        key(data.analyzeState.fileTypesData) {
+                            AnalyzeScreen(
+                                imageLoader = imageLoader,
+                                view = view,
+                                viewModel = viewModel,
+                                data = data
+                            )
                         }
                     }
                 }
             }
-        } ,
-    )
+        }
+    }
 }
