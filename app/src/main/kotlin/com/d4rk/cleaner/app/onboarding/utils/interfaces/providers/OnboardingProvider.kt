@@ -9,11 +9,10 @@ import com.d4rk.android.libs.apptoolkit.app.oboarding.domain.data.model.ui.Onboa
 import com.d4rk.android.libs.apptoolkit.app.oboarding.ui.components.pages.CrashlyticsOnboardingPageTab
 import com.d4rk.android.libs.apptoolkit.app.oboarding.ui.components.pages.FinalOnboardingPageTab
 import com.d4rk.android.libs.apptoolkit.app.oboarding.ui.components.pages.ThemeOnboardingPageTab
-import com.d4rk.cleaner.app.onboarding.ui.tabs.NotificationPermissionOnboardingTab
-import com.d4rk.cleaner.app.onboarding.ui.tabs.StoragePermissionOnboardingTab
 import com.d4rk.android.libs.apptoolkit.app.oboarding.utils.interfaces.providers.OnboardingProvider
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.main.ui.MainActivity
+import com.d4rk.cleaner.app.onboarding.ui.tabs.StoragePermissionOnboardingTab
 import com.d4rk.cleaner.app.onboarding.utils.constants.OnboardingKeys
 
 class AppOnboardingProvider : OnboardingProvider {
@@ -48,12 +47,6 @@ class AppOnboardingProvider : OnboardingProvider {
                 key = OnboardingKeys.PERMISSION_STORAGE,
                 content = {
                     StoragePermissionOnboardingTab()
-                }
-            ),
-            OnboardingPage.CustomPage(
-                key = OnboardingKeys.PERMISSION_NOTIFICATIONS,
-                content = {
-                    NotificationPermissionOnboardingTab()
                 }
             ),
             OnboardingPage.CustomPage(

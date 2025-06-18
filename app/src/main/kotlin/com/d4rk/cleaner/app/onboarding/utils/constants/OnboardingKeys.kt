@@ -6,6 +6,5 @@ object OnboardingKeys {
     const val THEME_OPTIONS = "theme_options"
     const val CRASHLYTICS_OPTIONS = "crashlytics_options"
     const val PERMISSION_STORAGE = "permission_storage"
-    const val PERMISSION_NOTIFICATIONS = "permission_notifications"
     const val ONBOARDING_COMPLETE = "onboarding_complete"
 }
