@@ -245,9 +245,7 @@ class HomeViewModel(
                 if (result is DataState.Success) {
                     val clearedSpaceTotalSize : Long = files.sumOf { it.length() }
                     launch {
-                        dataStore.addCleanedSpace(space = clearedSpaceTotalSize)
                         dataStore.saveLastScanTimestamp(timestamp = System.currentTimeMillis())
-
                     }
                     loadInitialData()
                 }
@@ -385,7 +383,6 @@ class HomeViewModel(
                     println(message = "Debugging ---> Clean Files triggered, result is success")
                     val clearedSpaceTotalSize : Long = filesToDelete.sumOf { it.length() }
                     launch {
-                        dataStore.addCleanedSpace(space = clearedSpaceTotalSize)
                         dataStore.saveLastScanTimestamp(timestamp = System.currentTimeMillis())
                     }
                     loadInitialData()

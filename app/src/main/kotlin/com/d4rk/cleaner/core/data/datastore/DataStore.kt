@@ -73,22 +73,6 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         }
     }
 
-    private val trashFilePathsKey = stringSetPreferencesKey("trash_file_paths")
-
-    suspend fun addTrashFilePath(pathPair : Pair<String , String>) {
-        dataStore.edit { settings ->
-            val currentPaths = settings[trashFilePathsKey] ?: emptySet()
-            settings[trashFilePathsKey] = currentPaths + "${pathPair.first}||${pathPair.second}"
-        }
-    }
-
-    suspend fun removeTrashFilePath(originalPath : String) {
-        dataStore.edit { settings ->
-            val currentPaths = settings[trashFilePathsKey] ?: emptySet()
-            val updatedPaths = currentPaths.filterNot { it.startsWith("$originalPath||") }.toSet()
-            settings[trashFilePathsKey] = updatedPaths
-        }
-    }
 
     private val trashSizeKey = longPreferencesKey(name = "trash_size")
     val trashSize : Flow<Long> = dataStore.data.map { preferences ->
@@ -274,16 +258,6 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         }
     }
 
-    private val notificationsPermissionGrantedKey = booleanPreferencesKey("permission_notifications_granted")
-    val notificationsPermissionGranted: Flow<Boolean> = dataStore.data.map { prefs ->
-        prefs[notificationsPermissionGrantedKey] == true
-    }
-
-    suspend fun saveNotificationsPermissionGranted(granted: Boolean) {
-        dataStore.edit { prefs ->
-            prefs[notificationsPermissionGrantedKey] = granted
-        }
-    }
 
     private val usagePermissionGrantedKey = booleanPreferencesKey("permission_usage_stats_granted")
     val usagePermissionGranted: Flow<Boolean> = dataStore.data.map { prefs ->
@@ -301,10 +275,6 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         prefs[documentTreePermissionGrantedKey] == true
     }
 
-    private val documentTreeUriKey = stringPreferencesKey("document_tree_uri")
-    val documentTreeUri: Flow<String?> = dataStore.data.map { prefs ->
-        prefs[documentTreeUriKey]
-    }
 
     suspend fun saveDocumentTreePermissionGranted(granted: Boolean) {
         dataStore.edit { prefs ->
@@ -312,9 +282,4 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         }
     }
 
-    suspend fun saveDocumentTreeUri(uri: String) {
-        dataStore.edit { prefs ->
-            prefs[documentTreeUriKey] = uri
-        }
-    }
 }

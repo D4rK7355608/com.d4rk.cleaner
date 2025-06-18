@@ -15,20 +15,45 @@ import com.d4rk.cleaner.app.clean.trash.domain.actions.TrashEvent
 import com.d4rk.cleaner.app.clean.trash.domain.data.model.ui.UiTrashModel
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashFilesUseCase
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.RestoreFromTrashUseCase
+import com.d4rk.cleaner.core.data.datastore.DataStore
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import java.io.File
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class TrashViewModel(
-    private val getTrashFilesUseCase : GetTrashFilesUseCase , private val deleteFilesUseCase : DeleteFilesUseCase , private val updateTrashSizeUseCase : UpdateTrashSizeUseCase , private val restoreFromTrashUseCase : RestoreFromTrashUseCase , private val dispatchers : DispatcherProvider
+    private val getTrashFilesUseCase : GetTrashFilesUseCase ,
+    private val deleteFilesUseCase : DeleteFilesUseCase ,
+    private val updateTrashSizeUseCase : UpdateTrashSizeUseCase ,
+    private val restoreFromTrashUseCase : RestoreFromTrashUseCase ,
+    private val dispatchers : DispatcherProvider ,
+    private val dataStore: DataStore,
 ) : ScreenViewModel<UiTrashModel , TrashEvent , TrashAction>(
     initialState = UiStateScreen(data = UiTrashModel())
 ) {
 
     init {
         onEvent(TrashEvent.LoadTrashItems)
+        observeTrashInfo()
+    }
+
+    private fun observeTrashInfo() {
+        launch(context = dispatchers.io) {
+            dataStore.trashSize.collect { size ->
+                _uiState.updateData(newState = _uiState.value.screenState) { current ->
+                    current.copy(trashSize = size)
+                }
+            }
+        }
+        launch(context = dispatchers.io) {
+            dataStore.trashFileOriginalPaths.collect { paths ->
+                _uiState.updateData(newState = _uiState.value.screenState) { current ->
+                    current.copy(trashFileOriginalPaths = paths)
+                }
+            }
+        }
     }
 
     override fun onEvent(event : TrashEvent) {

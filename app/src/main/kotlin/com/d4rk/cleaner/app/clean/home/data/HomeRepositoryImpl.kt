@@ -143,10 +143,15 @@ class HomeRepositoryImpl(
     }
 
     override suspend fun deleteFiles(filesToDelete : Set<File>) {
+        var totalSize = 0L
         filesToDelete.forEach { file ->
             if (file.exists()) {
+                totalSize += file.length()
                 file.deleteRecursively()
             }
+        }
+        if (totalSize > 0) {
+            dataStore.addCleanedSpace(space = totalSize)
         }
         clearClipboardImplementation() // TODO: Check if clear clipboard still applies even if the data store is false
     }
@@ -174,7 +179,8 @@ class HomeRepositoryImpl(
                 val destination = File(trashDir , file.name)
 
                 if (file.renameTo(destination)) {
-                    // Add logic to save original path to DataStore
+                    dataStore.addTrashFileOriginalPath(originalPath = file.absolutePath)
+                    dataStore.addTrashSize(size = file.length())
                     MediaScannerConnection.scanFile(
                         application , arrayOf(destination.absolutePath , file.absolutePath) , null , null
                     )
@@ -184,7 +190,7 @@ class HomeRepositoryImpl(
     }
 
     override suspend fun restoreFromTrash(filesToRestore : Set<File>) {
-        val originalPaths : Set<String> = dataStore.trashFileOriginalPaths.first() // Assuming dataStore provides this
+        val originalPaths : Set<String> = dataStore.trashFileOriginalPaths.first()
         filesToRestore.forEach { file ->
             if (file.exists()) {
                 val originalPath : String? = originalPaths.firstOrNull { File(it).name == file.name }
@@ -197,7 +203,8 @@ class HomeRepositoryImpl(
                     }
 
                     if (file.renameTo(destinationFile)) {
-                        // Add logic to remove original path from DataStore
+                        dataStore.removeTrashFileOriginalPath(originalPath)
+                        dataStore.subtractTrashSize(size = file.length())
                         MediaScannerConnection.scanFile(
                             application , arrayOf(destinationFile.absolutePath , file.absolutePath) , null , null
                         )
@@ -208,6 +215,8 @@ class HomeRepositoryImpl(
                     val destinationFile = File(downloadsDir , file.name)
 
                     if (file.renameTo(destinationFile)) {
+                        dataStore.removeTrashFileOriginalPath(file.absolutePath)
+                        dataStore.subtractTrashSize(size = file.length())
                         MediaScannerConnection.scanFile(
                             application , arrayOf(destinationFile.absolutePath , file.absolutePath) , null , null
                         )
@@ -218,12 +227,10 @@ class HomeRepositoryImpl(
     }
 
     override suspend fun addTrashSize(size : Long) {
-        // Implement logic to add trash size to DataStore
-        dataStore.addTrashSize(size = size) // Example
+        dataStore.addTrashSize(size = size)
     }
 
     override suspend fun subtractTrashSize(size : Long) {
-        // Implement logic to subtract trash size from DataStore
-        dataStore.subtractTrashSize(size = size) // Example
+        dataStore.subtractTrashSize(size = size)
     }
 }
