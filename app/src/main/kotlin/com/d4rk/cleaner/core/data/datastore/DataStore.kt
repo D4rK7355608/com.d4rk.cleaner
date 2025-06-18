@@ -59,14 +59,14 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         preferences[trashFileOriginalPathsKey] ?: emptySet()
     }
 
-    suspend fun addTrashFileOriginalPath(originalPath : String) { // FIXME: Function "addTrashFileOriginalPath" is never used
+    suspend fun addTrashFileOriginalPath(originalPath : String) {
         dataStore.edit { settings ->
             val currentPaths = settings[trashFileOriginalPathsKey] ?: emptySet()
             settings[trashFileOriginalPathsKey] = currentPaths + originalPath
         }
     }
 
-    suspend fun removeTrashFileOriginalPath(originalPath : String) { // FIXME: Function "removeTrashFileOriginalPath" is never used
+    suspend fun removeTrashFileOriginalPath(originalPath : String) {
         dataStore.edit { settings ->
             val currentPaths = settings[trashFileOriginalPathsKey] ?: emptySet()
             settings[trashFileOriginalPathsKey] = currentPaths - originalPath
@@ -75,14 +75,14 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
 
     private val trashFilePathsKey = stringSetPreferencesKey("trash_file_paths")
 
-    suspend fun addTrashFilePath(pathPair : Pair<String , String>) { // FIXME: Function "addTrashFilePath" is never used
+    suspend fun addTrashFilePath(pathPair : Pair<String , String>) {
         dataStore.edit { settings ->
             val currentPaths = settings[trashFilePathsKey] ?: emptySet()
             settings[trashFilePathsKey] = currentPaths + "${pathPair.first}||${pathPair.second}"
         }
     }
 
-    suspend fun removeTrashFilePath(originalPath : String) { // FIXME: Function "removeTrashFilePath" is never used
+    suspend fun removeTrashFilePath(originalPath : String) {
         dataStore.edit { settings ->
             val currentPaths = settings[trashFilePathsKey] ?: emptySet()
             val updatedPaths = currentPaths.filterNot { it.startsWith("$originalPath||") }.toSet()
@@ -260,6 +260,61 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
     suspend fun saveClipboardClean(isChecked : Boolean) {
         dataStore.edit { preferences ->
             preferences[clipboardCleanKey] = isChecked
+        }
+    }
+
+    private val storagePermissionGrantedKey = booleanPreferencesKey("permission_storage_granted")
+    val storagePermissionGranted: Flow<Boolean> = dataStore.data.map { prefs ->
+        prefs[storagePermissionGrantedKey] == true
+    }
+
+    suspend fun saveStoragePermissionGranted(granted: Boolean) {
+        dataStore.edit { prefs ->
+            prefs[storagePermissionGrantedKey] = granted
+        }
+    }
+
+    private val notificationsPermissionGrantedKey = booleanPreferencesKey("permission_notifications_granted")
+    val notificationsPermissionGranted: Flow<Boolean> = dataStore.data.map { prefs ->
+        prefs[notificationsPermissionGrantedKey] == true
+    }
+
+    suspend fun saveNotificationsPermissionGranted(granted: Boolean) {
+        dataStore.edit { prefs ->
+            prefs[notificationsPermissionGrantedKey] = granted
+        }
+    }
+
+    private val usagePermissionGrantedKey = booleanPreferencesKey("permission_usage_stats_granted")
+    val usagePermissionGranted: Flow<Boolean> = dataStore.data.map { prefs ->
+        prefs[usagePermissionGrantedKey] == true
+    }
+
+    suspend fun saveUsagePermissionGranted(granted: Boolean) {
+        dataStore.edit { prefs ->
+            prefs[usagePermissionGrantedKey] = granted
+        }
+    }
+
+    private val documentTreePermissionGrantedKey = booleanPreferencesKey("permission_document_tree_granted")
+    val documentTreePermissionGranted: Flow<Boolean> = dataStore.data.map { prefs ->
+        prefs[documentTreePermissionGrantedKey] == true
+    }
+
+    private val documentTreeUriKey = stringPreferencesKey("document_tree_uri")
+    val documentTreeUri: Flow<String?> = dataStore.data.map { prefs ->
+        prefs[documentTreeUriKey]
+    }
+
+    suspend fun saveDocumentTreePermissionGranted(granted: Boolean) {
+        dataStore.edit { prefs ->
+            prefs[documentTreePermissionGrantedKey] = granted
+        }
+    }
+
+    suspend fun saveDocumentTreeUri(uri: String) {
+        dataStore.edit { prefs ->
+            prefs[documentTreeUriKey] = uri
         }
     }
 }
