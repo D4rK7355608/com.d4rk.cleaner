@@ -133,6 +133,12 @@
     <string name="scanner">Scanner</string>
     <string name="clipboard_clean">Limpar área de transferência</string>
 
+    <string name="onboarding_permission_storage_title">Storage Access</string>
+    <string name="onboarding_permission_storage_description">Cleaner requires storage and usage permissions to scan and analyze apps.</string>
+    <string name="onboarding_permission_notifications_title">Notifications</string>
+    <string name="onboarding_permission_notifications_description">Enable notifications to receive cleaning reminders.</string>
+    <string name="button_grant_permission">Grant permission</string>
+
     <string name="notifications">Notificações</string>
     <string name="summary_preference_settings_notifications">Gerenciar notificações do aplicativo</string>
 

@@ -262,4 +262,37 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
             preferences[clipboardCleanKey] = isChecked
         }
     }
+
+    private val storagePermissionGrantedKey = booleanPreferencesKey("permission_storage_granted")
+    val storagePermissionGranted: Flow<Boolean> = dataStore.data.map { prefs ->
+        prefs[storagePermissionGrantedKey] == true
+    }
+
+    suspend fun saveStoragePermissionGranted(granted: Boolean) {
+        dataStore.edit { prefs ->
+            prefs[storagePermissionGrantedKey] = granted
+        }
+    }
+
+    private val notificationsPermissionGrantedKey = booleanPreferencesKey("permission_notifications_granted")
+    val notificationsPermissionGranted: Flow<Boolean> = dataStore.data.map { prefs ->
+        prefs[notificationsPermissionGrantedKey] == true
+    }
+
+    suspend fun saveNotificationsPermissionGranted(granted: Boolean) {
+        dataStore.edit { prefs ->
+            prefs[notificationsPermissionGrantedKey] = granted
+        }
+    }
+
+    private val usagePermissionGrantedKey = booleanPreferencesKey("permission_usage_stats_granted")
+    val usagePermissionGranted: Flow<Boolean> = dataStore.data.map { prefs ->
+        prefs[usagePermissionGrantedKey] == true
+    }
+
+    suspend fun saveUsagePermissionGranted(granted: Boolean) {
+        dataStore.edit { prefs ->
+            prefs[usagePermissionGrantedKey] = granted
+        }
+    }
 }
