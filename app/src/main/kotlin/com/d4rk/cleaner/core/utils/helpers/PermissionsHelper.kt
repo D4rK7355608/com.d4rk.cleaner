@@ -104,15 +104,13 @@ object PermissionsHelper {
      * @param context The application context.
      * @return True if access is granted, false otherwise.
      */
-    private fun isAccessGranted(context : Context) : Boolean = try {
+    private fun isAccessGranted(context : Context) : Boolean = runCatching {
         val packageManager : PackageManager = context.packageManager
         val applicationInfo : ApplicationInfo = packageManager.getApplicationInfo(context.packageName , 0)
         val appOpsManager : AppOpsManager = context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
         @Suppress("DEPRECATION") val mode : Int = appOpsManager.checkOpNoThrow(
             AppOpsManager.OPSTR_GET_USAGE_STATS , applicationInfo.uid , applicationInfo.packageName
         )
-        mode == AppOpsManager.MODE_ALLOWED
-    } catch (e : PackageManager.NameNotFoundException) {
-        false
-    }
+        return mode == AppOpsManager.MODE_ALLOWED
+    }.getOrElse { false }
 }
