@@ -34,13 +34,17 @@
 
     <application
         android:name=".Cleaner"
+        android:allowBackup="true"
         android:appCategory="productivity"
         android:banner="@drawable/tv_banner"
+        android:dataExtractionRules="@xml/data_extraction_rules"
         android:description="@string/app_short_description"
         android:enableOnBackInvokedCallback="true"
+        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:localeConfig="@xml/config_locales"
+        android:logo="@drawable/ic_launcher_foreground"
         android:requestLegacyExternalStorage="true"
         android:resizeableActivity="true"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -143,7 +147,8 @@
             android:name="firebase_performance_logcat_enabled"
             android:value="true" />
 
-        <meta-data android:name="google_analytics_automatic_screen_reporting_enabled"
+        <meta-data
+            android:name="google_analytics_automatic_screen_reporting_enabled"
             android:value="true" />
 
         <meta-data
