@@ -142,6 +142,16 @@
     <string name="onboarding_permission_notifications_description">Enable notifications to receive cleaning reminders.</string>
     <string name="button_grant_permission">Grant permission</string>
 
+    <string name="permission_section_public_title">Public storage access</string>
+    <string name="permission_section_public_description">Allows Cleaner to read and write files on public storage.</string>
+    <string name="permission_section_manage_title">Full file management</string>
+    <string name="permission_section_manage_description">Required to fully manage all files on your device.</string>
+    <string name="permission_section_usage_title">App usage access</string>
+    <string name="permission_section_usage_description">Allows Cleaner to analyze storage based on app usage.</string>
+    <string name="permission_section_saf_title">Document tree access</string>
+    <string name="permission_section_saf_description">Use the system file picker if other storage permissions fail.</string>
+    <string name="permission_granted">Granted</string>
+
     <string name="notifications">Notifications</string>
     <string name="summary_preference_settings_notifications">Manage app notifications</string>
 
