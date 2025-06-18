@@ -351,13 +351,9 @@ class HomeViewModel(
 
         launch(context = dispatchers.io) {
 
-            _uiState.update { state ->
+            _uiState.update { state : UiStateScreen<UiHomeModel> ->
                 val currentData = state.data ?: UiHomeModel()
-                state.copy(
-                    data = currentData.copy(
-                        analyzeState = currentData.analyzeState.copy(state = CleaningState.Cleaning)
-                    )
-                )
+                state.copy(data = currentData.copy(analyzeState = currentData.analyzeState.copy(state = CleaningState.Cleaning)))
             }
 
             val currentScreenData : UiHomeModel = screenData ?: run {
