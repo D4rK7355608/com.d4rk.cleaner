@@ -131,6 +131,12 @@
     <string name="scanner">Скенер</string>
     <string name="clipboard_clean">Почистване на клипборда</string>
 
+    <string name="onboarding_permission_storage_title">Storage Access</string>
+    <string name="onboarding_permission_storage_description">Cleaner requires storage and usage permissions to scan and analyze apps.</string>
+    <string name="onboarding_permission_notifications_title">Notifications</string>
+    <string name="onboarding_permission_notifications_description">Enable notifications to receive cleaning reminders.</string>
+    <string name="button_grant_permission">Grant permission</string>
+
     <string name="notifications">Известия</string>
     <string name="summary_preference_settings_notifications">Управление на известия от приложението</string>
 
