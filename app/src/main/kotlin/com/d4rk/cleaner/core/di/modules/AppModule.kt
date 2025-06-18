@@ -115,7 +115,14 @@ val appModule : Module = module {
     single<GetTrashFilesUseCase> { GetTrashFilesUseCase(repository = get()) }
     single<RestoreFromTrashUseCase> { RestoreFromTrashUseCase(repository = get()) }
     viewModel<TrashViewModel> {
-        TrashViewModel(getTrashFilesUseCase = get() , deleteFilesUseCase = get() , updateTrashSizeUseCase = get() , restoreFromTrashUseCase = get() , dispatchers = get())
+        TrashViewModel(
+            getTrashFilesUseCase = get(),
+            deleteFilesUseCase = get(),
+            updateTrashSizeUseCase = get(),
+            restoreFromTrashUseCase = get(),
+            dispatchers = get(),
+            dataStore = get()
+        )
     }
 
     single<CompressImageUseCase> { CompressImageUseCase(context = get()) }
