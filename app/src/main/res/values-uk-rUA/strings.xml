@@ -140,22 +140,6 @@
 
     <string name="summary_preference_settings_privacy_and_security">Керуйте налаштуваннями конфіденційності</string>
 
-    <string name="ad_id">Ідентифікатор реклами [AD_ID]</string>
-    <string name="summary_preference_permissions_ad_id">Дозволяє програмі отримувати та використовувати рекламний ідентифікатор, пов\'язаний з пристроєм користувача, надаючи персоналізовану рекламу, вимірюючи ефективність реклами та показуючи рекламу на пристроях Android 13 або пізнішої версії.</string>
-    <string name="internet">Інтернет [INTERNET]</string>
-    <string name="summary_preference_permissions_internet">Дозволяє програмі встановлювати інтернет-з\'єднання для надсилання звітів про помилки або перевірки наявності оновлень.</string>
-    <string name="post_notifications">Надсилати сповіщення [POST_NOTIFICATIONS]</string>
-    <string name="summary_preference_permissions_post_notifications">Дозволяє програмі відображати сповіщення на пристроях з Android 13 або пізнішої версії.</string>
-    <string name="access_network_state">Доступ до стану мережі [ACCESS_NETWORK_STATE]</string>
-    <string name="summary_preference_permissions_access_network_state">Дозволяє програмі перевіряти підключення до мережі та отримувати інформацію про Wi-Fi, включаючи стан увімкнення та назви підключених пристроїв Wi-Fi.</string>
-    <string name="access_notification_policy">Доступ до політики сповіщень [ACCESS_NOTIFICATION_POLICY]</string>
-    <string name="summary_preference_permissions_access_notification_policy">Дозволяє програмі отримувати доступ та змінювати політику сповіщень пристрою, контролюючи, як і коли сповіщення відображаються користувачеві, та надаючи функції керування сповіщеннями.</string>
-    <string name="billing">Оплата [BILLING]</string>
-    <string name="summary_preference_permissions_billing">Дозволяє програмі використовувати бібліотеку Google Play Billing для обробки покупок у програмі та пожертвувань.</string>
-    <string name="check_license">Перевірити ліцензію [CHECK_LICENSE]</string>
-    <string name="summary_preference_permissions_check_license">Дозволяє програмі перевіряти свою відповідність ліцензійній угоді та забезпечувати дотримання ліцензійних умов для захисту інтелектуальної власності.</string>
-    <string name="foreground_service">Служба переднього плану [FOREGROUND_SERVICE]</string>
-    <string name="summary_preference_permissions_foreground_service">Дозволяє програмі створювати та використовувати служби, які працюють на передньому плані, надаючи їм пріоритет над іншими фоновими процесами та покращуючи продуктивність та надійність.</string>
     <string name="request_delete_packages">Запит на видалення пакетів [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Дозволяє програмі запитувати видалення пакетів. Це може використовуватися для видалення інших програм з пристрою.</string>
     <string name="access_media_location">Доступ до розташування медіафайлів [ACCESS_MEDIA_LOCATION]</string>

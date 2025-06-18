@@ -135,22 +135,6 @@
     <string name="summary_preference_settings_notifications">Управление на известия от приложението</string>
 
     <string name="summary_preference_settings_privacy_and_security">Управление на настройките за поверителност</string>
-    <string name="ad_id">Рекламен идентификатор [AD_ID]</string>
-    <string name="summary_preference_permissions_ad_id">Позволява на приложението да извлича и използва рекламен идентификатор, свързан с устройството на потребителя, предоставяйки персонализирани реклами, измерване на ефективността на рекламите и показване на реклами на устройства с Android 13 или по-нови версии.</string>
-    <string name="internet">Интернет [INTERNET]</string>
-    <string name="summary_preference_permissions_internet">Позволява на приложението да осъществи интернет връзка, за да изпраща доклади за грешки или да проверява за актуализации.</string>
-    <string name="post_notifications">Публикуване на известия [POST_NOTIFICATIONS]</string>
-    <string name="summary_preference_permissions_post_notifications">Позволява на приложението да показва известия на устройства с Android 13 или по-нови версии.</string>
-    <string name="access_network_state">Достъп до състоянието на мрежата [ACCESS_NETWORK_STATE]</string>
-    <string name="summary_preference_permissions_access_network_state">Позволява на приложението да провери мрежовата свързаност и да извлече информация за Wi-Fi, включително активирането на състоянието и имената на свързаните Wi-Fi устройства.</string>
-    <string name="access_notification_policy">Достъп до политика за известия [ACCESS_NOTIFICATION_POLICY]</string>
-    <string name="summary_preference_permissions_access_notification_policy">Позволява на приложението да получи достъп и да модифицира политиката за известия на устройството, контролирайки как и кога известията се показват на потребителя и предоставяйки функции за персонализирано управление на известията.</string>
-    <string name="billing">Фактуриране [BILLING]</string>
-    <string name="summary_preference_permissions_billing">Позволява на приложението да използва Google Play Billing Library за обработка на покупки в приложението и дарения</string>
-    <string name="check_license">Проверка на лиценза [CHECK_LICENSE]</string>
-    <string name="summary_preference_permissions_check_license">Позволява на приложението да провери съответствието си с лицензионното споразумение и да прилага лицензионни условия, за да защити интелектуалната собственост.</string>
-    <string name="foreground_service">Фонова услуга [FOREGROUND_SERVICE]</string>
-    <string name="summary_preference_permissions_foreground_service">Позволява на приложението да създава и използва услуги, които се изпълняват на преден план, давайки им приоритет пред други фонови процеси и подобрявайки производителността и надеждността.</string>
     <string name="request_delete_packages">Заявка за изтриване на пакети [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Позволява на приложението да поиска изтриване на пакети. Това може да се използва за деинсталиране на други приложения от устройството</string>
     <string name="access_media_location">Достъп до местоположение на медията [ACCESS_MEDIA_LOCATION]</string>

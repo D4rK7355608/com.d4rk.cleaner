@@ -136,22 +136,6 @@
     <string name="summary_preference_settings_notifications">Gérer les notifications de l’application</string>
 
     <string name="summary_preference_settings_privacy_and_security">Gérer vos paramètres de confidentialité</string>
-    <string name="ad_id">ID d’annonce [AD_ID]</string>
-    <string name="summary_preference_permissions_ad_id">Permet à l\'application de récupérer et d\'utiliser l\'identifiant publicitaire associé à l\'appareil de l\'utilisateur, fournissant des publicités personnalisées, mesurant l\'efficacité des publicités et affichant des publicités sur les appareils Android 13 ou ultérieurs.</string>
-    <string name="internet">Internet [INTERNET]</string>
-    <string name="summary_preference_permissions_internet">Permet à l\'application d\'établir une connexion Internet pour envoyer des rapports d\'erreurs ou vérifier les mises à jour.</string>
-    <string name="post_notifications">Publier des notifications [POST_NOTIFICATIONS]</string>
-    <string name="summary_preference_permissions_post_notifications">Permet à l\'application d\'afficher des notifications sur les appareils Android 13 ou ultérieurs.</string>
-    <string name="access_network_state">Accéder à l\'état du réseau [ACCESS_NETWORK_STATE]</string>
-    <string name="summary_preference_permissions_access_network_state">Permet à l\'application de vérifier la connectivité réseau et de récupérer des informations sur le Wi-Fi, y compris l\'état activé et les noms des appareils Wi-Fi connectés.</string>
-    <string name="access_notification_policy">Accéder à la politique de notification [ACCESS_NOTIFICATION_POLICY]</string>
-    <string name="summary_preference_permissions_access_notification_policy">Permet à l\'application d\'accéder et de modifier la politique de notification de l\'appareil, en contrôlant comment et quand les notifications sont affichées à l\'utilisateur et en fournissant des fonctionnalités de gestion de notification personnalisées.</string>
-    <string name="billing">Facturation [BILLING]</string>
-    <string name="summary_preference_permissions_billing">Permet à l\'application d\'utiliser la bibliothèque de facturation Google Play pour gérer les achats intégrés et les dons.</string>
-    <string name="check_license">Vérifier la licence [CHECK_LICENSE]</string>
-    <string name="summary_preference_permissions_check_license">Permet à l\'application de vérifier sa conformité à l\'accord de licence et de faire respecter les conditions de licence pour protéger la propriété intellectuelle.</string>
-    <string name="foreground_service">Service d\'avant-plan [FOREGROUND_SERVICE]</string>
-    <string name="summary_preference_permissions_foreground_service">Permet à l\'application de créer et d\'utiliser des services qui s\'exécutent en avant-plan, leur donnant la priorité sur les autres processus d\'arrière-plan et améliorant les performances et la fiabilité.</string>
     <string name="request_delete_packages">Demander la suppression de packages [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Permet à l\'application de demander la suppression de packages. Cela peut être utilisé pour désinstaller d\'autres applications de l\'appareil.</string>
     <string name="access_media_location">Accéder à l\'emplacement des médias [ACCESS_MEDIA_LOCATION]</string>

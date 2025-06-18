@@ -3,7 +3,6 @@
     <string name="app_short_description">The last Android Cleaner you will ever need for every day use!</string>
     <string name="summary_notification_last_time_used"> Let\'s free up some space! We are happy you are back!</string>
 
-
     <string name="onboarding_welcome_title">Welcome to Cleaner!</string>
     <string name="onboarding_welcome_description">Let\'s walk through a quick setup and start freeing space.</string>
     <string name="onboarding_personalization_title">Customize Your Cleanup</string>
@@ -142,22 +141,6 @@
 
     <string name="summary_preference_settings_privacy_and_security">Manage your privacy settings</string>
 
-    <string name="ad_id">Ad id [AD_ID]</string>
-    <string name="summary_preference_permissions_ad_id">Allows the app to retrieve and use the advertising identifier associated with the user\'s device, providing personalized ads, measuring ad effectiveness, and showing ads on Android 13 or later devices.</string>
-    <string name="internet">Internet [INTERNET]</string>
-    <string name="summary_preference_permissions_internet">Allows the app to establish an internet connection to send error reports or check for updates.</string>
-    <string name="post_notifications">Post notifications [POST_NOTIFICATIONS]</string>
-    <string name="summary_preference_permissions_post_notifications">Allows the app to display notifications on the devices with Android 13 or later.</string>
-    <string name="access_network_state">Access network state [ACCESS_NETWORK_STATE]</string>
-    <string name="summary_preference_permissions_access_network_state">Allows the app to check network connectivity and retrieve information about Wi-Fi, including enabled status and connected Wi-Fi device names.</string>
-    <string name="access_notification_policy">Access notification policy [ACCESS_NOTIFICATION_POLICY]</string>
-    <string name="summary_preference_permissions_access_notification_policy">Allows the app to access and modify the device\'s notification policy, controlling how and when notifications are displayed to the user and providing custom notification management features.</string>
-    <string name="billing">Billing [BILLING]</string>
-    <string name="summary_preference_permissions_billing">Allows the app to use the Google Play Billing Library to handle in-app purchases and donations</string>
-    <string name="check_license">Check license [CHECK_LICENSE]</string>
-    <string name="summary_preference_permissions_check_license">Allows the app to verify its compliance with the license agreement and enforce licensing terms to protect intellectual property.</string>
-    <string name="foreground_service">Foreground service [FOREGROUND_SERVICE]</string>
-    <string name="summary_preference_permissions_foreground_service">Allows the app to create and use services that run in the foreground, giving them priority over other background processes and improving performance and reliability.</string>
     <string name="request_delete_packages">Request delete packages [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Allows the app to request the deletion of packages. This can be used to uninstall other apps from the device</string>
     <string name="access_media_location">Access media location [ACCESS_MEDIA_LOCATION]</string>

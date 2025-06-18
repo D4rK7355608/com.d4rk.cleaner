@@ -135,22 +135,6 @@
     <string name="summary_preference_settings_notifications">ऐप सूचनाओं का प्रबंधन करें</string>
 
     <string name="summary_preference_settings_privacy_and_security">अपनी गोपनीयता सेटिंग्स का प्रबंधन करें</string>
-    <string name="ad_id">विज्ञापन आईडी [AD_ID]</string>
-    <string name="summary_preference_permissions_ad_id">ऐप को उपयोगकर्ता के डिवाइस से जुड़ी विज्ञापन पहचानकर्ता को पुनः प्राप्त करने और उपयोग करने की अनुमति देता है, व्यक्तिगत विज्ञापन प्रदान करता है, विज्ञापन प्रभावशीलता को मापता है और Android 13 या बाद के उपकरणों पर विज्ञापन दिखाता है।</string>
-    <string name="internet">इंटरनेट [INTERNET]</string>
-    <string name="summary_preference_permissions_internet">ऐप को त्रुटि रिपोर्ट भेजने या अपडेट की जांच करने के लिए इंटरनेट कनेक्शन स्थापित करने की अनुमति देता है।</string>
-    <string name="post_notifications">सूचनाएं पोस्ट करें [POST_NOTIFICATIONS]</string>
-    <string name="summary_preference_permissions_post_notifications">ऐप को Android 13 या बाद के उपकरणों पर सूचनाएं प्रदर्शित करने की अनुमति देता है।</string>
-    <string name="access_network_state">नेटवर्क स्थिति तक पहुँचें [ACCESS_NETWORK_STATE]</string>
-    <string name="summary_preference_permissions_access_network_state">ऐप को नेटवर्क कनेक्टिविटी की जांच करने और वाई-फाई के बारे में जानकारी प्राप्त करने की अनुमति देता है, जिसमें सक्षम स्थिति और कनेक्टेड वाई-फाई डिवाइस नाम शामिल हैं।</string>
-    <string name="access_notification_policy">सूचना नीति तक पहुँचें [ACCESS_NOTIFICATION_POLICY]</string>
-    <string name="summary_preference_permissions_access_notification_policy">ऐप को डिवाइस की सूचना नीति तक पहुँचने और उसे संशोधित करने की अनुमति देता है, यह नियंत्रित करता है कि सूचनाएं उपयोगकर्ता को कैसे और कब दिखाई जाती हैं और कस्टम सूचना प्रबंधन सुविधाएँ प्रदान करती हैं।</string>
-    <string name="billing">बिलिंग [BILLING]</string>
-    <string name="summary_preference_permissions_billing">ऐप को इन-ऐप खरीदारी और दान को संभालने के लिए Google Play बिलिंग लाइब्रेरी का उपयोग करने की अनुमति देता है</string>
-    <string name="check_license">लाइसेंस जांचें [CHECK_LICENSE]</string>
-    <string name="summary_preference_permissions_check_license">ऐप को लाइसेंस समझौते के साथ अपने अनुपालन को सत्यापित करने और बौद्धिक संपदा की सुरक्षा के लिए लाइसेंस शर्तों को लागू करने की अनुमति देता है।</string>
-    <string name="foreground_service">फोरग्राउंड सेवा [FOREGROUND_SERVICE]</string>
-    <string name="summary_preference_permissions_foreground_service">ऐप को उन सेवाओं को बनाने और उपयोग करने की अनुमति देता है जो अग्रभूमि में चलती हैं, उन्हें अन्य पृष्ठभूमि प्रक्रियाओं पर प्राथमिकता देती हैं और प्रदर्शन और विश्वसनीयता में सुधार करती हैं।</string>
     <string name="request_delete_packages">पैकेज हटाने का अनुरोध करें [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">ऐप को पैकेजों के हटाने का अनुरोध करने की अनुमति देता है। इसका उपयोग डिवाइस से अन्य ऐप्स को अनइंस्टॉल करने के लिए किया जा सकता है</string>
     <string name="access_media_location">मीडिया स्थान तक पहुँचें [ACCESS_MEDIA_LOCATION]</string>

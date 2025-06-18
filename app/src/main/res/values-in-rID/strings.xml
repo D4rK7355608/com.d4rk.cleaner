@@ -133,22 +133,6 @@
 
     <string name="summary_preference_settings_privacy_and_security">Kelola pengaturan privasi Anda</string>
 
-    <string name="ad_id">ID iklan [AD_ID]</string>
-    <string name="summary_preference_permissions_ad_id">Memungkinkan aplikasi untuk mengambil dan menggunakan pengenal periklanan yang terkait dengan perangkat pengguna, menyediakan iklan yang dipersonalisasi, mengukur efektivitas iklan, dan menampilkan iklan di perangkat Android 13 atau yang lebih baru.</string>
-    <string name="internet">Internet [INTERNET]</string>
-    <string name="summary_preference_permissions_internet">Memungkinkan aplikasi untuk membuat koneksi internet untuk mengirim laporan kesalahan atau memeriksa pembaruan.</string>
-    <string name="post_notifications">Kirim notifikasi [POST_NOTIFICATIONS]</string>
-    <string name="summary_preference_permissions_post_notifications">Memungkinkan aplikasi untuk menampilkan notifikasi pada perangkat dengan Android 13 atau yang lebih baru.</string>
-    <string name="access_network_state">Akses status jaringan [ACCESS_NETWORK_STATE]</string>
-    <string name="summary_preference_permissions_access_network_state">Memungkinkan aplikasi untuk memeriksa konektivitas jaringan dan mengambil informasi tentang Wi-Fi, termasuk status aktif dan nama perangkat Wi-Fi yang terhubung.</string>
-    <string name="access_notification_policy">Akses kebijakan notifikasi [ACCESS_NOTIFICATION_POLICY]</string>
-    <string name="summary_preference_permissions_access_notification_policy">Memungkinkan aplikasi untuk mengakses dan mengubah kebijakan notifikasi perangkat, mengontrol bagaimana dan kapan notifikasi ditampilkan kepada pengguna, dan menyediakan fitur manajemen notifikasi khusus.</string>
-    <string name="billing">Penagihan [BILLING]</string>
-    <string name="summary_preference_permissions_billing">Memungkinkan aplikasi untuk menggunakan Google Play Billing Library untuk menangani pembelian dan donasi dalam aplikasi</string>
-    <string name="check_license">Periksa lisensi [CHECK_LICENSE]</string>
-    <string name="summary_preference_permissions_check_license">Memungkinkan aplikasi untuk memverifikasi kepatuhannya dengan perjanjian lisensi dan menegakkan persyaratan lisensi untuk melindungi kekayaan intelektual.</string>
-    <string name="foreground_service">Layanan latar depan [FOREGROUND_SERVICE]</string>
-    <string name="summary_preference_permissions_foreground_service">Memungkinkan aplikasi untuk membuat dan menggunakan layanan yang berjalan di latar depan, memberi mereka prioritas atas proses latar belakang lainnya, dan meningkatkan kinerja dan keandalan.</string>
     <string name="request_delete_packages">Minta hapus paket [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Memungkinkan aplikasi untuk meminta penghapusan paket. Ini dapat digunakan untuk mencopot pemasangan aplikasi lain dari perangkat</string>
     <string name="access_media_location">Akses lokasi media [ACCESS_MEDIA_LOCATION]</string>

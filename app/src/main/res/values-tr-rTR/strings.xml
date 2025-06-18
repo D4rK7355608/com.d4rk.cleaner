@@ -136,22 +136,6 @@
 
     <string name="summary_preference_settings_privacy_and_security">Gizlilik ayarlarınızı yönetin</string>
 
-    <string name="ad_id">Reklam kimliği [AD_ID]</string>
-    <string name="summary_preference_permissions_ad_id">Uygulamanın kullanıcının cihazıyla ilişkili reklam tanımlayıcısını almasına ve kullanmasına izin verir, kişiselleştirilmiş reklamlar sağlar, reklam etkinliğini ölçer ve Android 13 veya üzeri cihazlarda reklamlar gösterir.</string>
-    <string name="internet">İnternet [INTERNET]</string>
-    <string name="summary_preference_permissions_internet">Uygulamanın hata raporları göndermek veya güncellemeleri kontrol etmek için internet bağlantısı kurmasına izin verir.</string>
-    <string name="post_notifications">Bildirimler gönder [POST_NOTIFICATIONS]</string>
-    <string name="summary_preference_permissions_post_notifications">Uygulamanın Android 13 veya üzeri cihazlarda bildirimler göstermesine izin verir.</string>
-    <string name="access_network_state">Ağ durumuna erişim [ACCESS_NETWORK_STATE]</string>
-    <string name="summary_preference_permissions_access_network_state">Uygulamanın ağ bağlantısını kontrol etmesine ve etkin durum ve bağlı Wi-Fi cihaz adları dahil olmak üzere Wi-Fi hakkında bilgi almasına izin verir.</string>
-    <string name="access_notification_policy">Bildirim politikasına erişim [ACCESS_NOTIFICATION_POLICY]</string>
-    <string name="summary_preference_permissions_access_notification_policy">Uygulamanın cihazın bildirim politikasına erişmesine ve onu değiştirmesine izin verir, bildirimlerin kullanıcıya nasıl ve ne zaman gösterileceğini kontrol eder ve özel bildirim yönetimi özellikleri sağlar.</string>
-    <string name="billing">Fatura [BILLING]</string>
-    <string name="summary_preference_permissions_billing">Uygulamanın uygulama içi satın alımları ve bağışları işlemek için Google Play Fatura Kütüphanesini kullanmasına izin verir</string>
-    <string name="check_license">Lisans kontrolü [CHECK_LICENSE]</string>
-    <string name="summary_preference_permissions_check_license">Uygulamanın lisans sözleşmesine uyumluluğunu doğrulamasına ve fikri mülkiyetini korumak için lisans koşullarını uygulamamasına izin verir.</string>
-    <string name="foreground_service">Ön plan hizmeti [FOREGROUND_SERVICE]</string>
-    <string name="summary_preference_permissions_foreground_service">Uygulamanın ön planda çalışan hizmetler oluşturmasına ve kullanmasına izin verir, bu hizmetlere diğer arka plan işlemlerine göre öncelik verir ve performansı ve güvenilirliği artırır.</string>
     <string name="request_delete_packages">Paket silme isteği [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Uygulamanın paketlerin silinmesini talep etmesine izin verir. Bu, cihazdan diğer uygulamaları kaldırmak için kullanılabilir</string>
     <string name="access_media_location">Medya konumuna erişim [ACCESS_MEDIA_LOCATION]</string>

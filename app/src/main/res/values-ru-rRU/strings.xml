@@ -140,22 +140,6 @@
 
     <string name="summary_preference_settings_privacy_and_security">Управление настройками конфиденциальности</string>
 
-    <string name="ad_id">Идентификатор рекламы [AD_ID]</string>
-    <string name="summary_preference_permissions_ad_id">Разрешает приложению получать и использовать идентификатор рекламы, связанный с устройством пользователя, предоставляя персонализированную рекламу, измеряя ее эффективность и показывая рекламу на устройствах Android 13 или более поздних версий.</string>
-    <string name="internet">Интернет [INTERNET]</string>
-    <string name="summary_preference_permissions_internet">Разрешает приложению устанавливать интернет-соединение для отправки отчетов об ошибках или проверки обновлений.</string>
-    <string name="post_notifications">Отправлять уведомления [POST_NOTIFICATIONS]</string>
-    <string name="summary_preference_permissions_post_notifications">Разрешает приложению отображать уведомления на устройствах с Android 13 или более поздних версий.</string>
-    <string name="access_network_state">Доступ к состоянию сети [ACCESS_NETWORK_STATE]</string>
-    <string name="summary_preference_permissions_access_network_state">Разрешает приложению проверять сетевое соединение и получать информацию о Wi-Fi, включая статус включения и имена подключенных устройств Wi-Fi.</string>
-    <string name="access_notification_policy">Доступ к политике уведомлений [ACCESS_NOTIFICATION_POLICY]</string>
-    <string name="summary_preference_permissions_access_notification_policy">Разрешает приложению получать доступ и изменять политику уведомлений устройства, контролируя, как и когда уведомления отображаются пользователю, а также предоставляя функции настройки уведомлений.</string>
-    <string name="billing">Биллинг [BILLING]</string>
-    <string name="summary_preference_permissions_billing">Разрешает приложению использовать библиотеку Google Play Billing для обработки покупок в приложении и пожертвований</string>
-    <string name="check_license">Проверка лицензии [CHECK_LICENSE]</string>
-    <string name="summary_preference_permissions_check_license">Разрешает приложению проверять его соответствие лицензионному соглашению и применять лицензионные условия для защиты интеллектуальной собственности.</string>
-    <string name="foreground_service">Фоновый сервис [FOREGROUND_SERVICE]</string>
-    <string name="summary_preference_permissions_foreground_service">Разрешает приложению создавать и использовать сервисы, работающие в фоновом режиме, предоставляя им приоритет над другими фоновыми процессами и повышая производительность и надежность.</string>
     <string name="request_delete_packages">Запрос на удаление пакетов [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Разрешает приложению запрашивать удаление пакетов. Это можно использовать для удаления других приложений с устройства</string>
     <string name="access_media_location">Доступ к местоположению медиафайлов [ACCESS_MEDIA_LOCATION]</string>

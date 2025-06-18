@@ -136,22 +136,6 @@
 
     <string name="summary_preference_settings_privacy_and_security">Az adatvédelmi beállítások kezelése</string>
 
-    <string name="ad_id">Hirdetésazonosító [AD_ID]</string>
-    <string name="summary_preference_permissions_ad_id">Lehetővé teszi az alkalmazás számára, hogy lekérje és felhasználja a felhasználó eszközéhez társított hirdetésazonosítót, személyre szabott hirdetéseket jelenítsen meg, mérje a hirdetések hatékonyságát, és hirdetéseket jelenítsen meg Android 13 vagy újabb eszközökön.</string>
-    <string name="internet">Internet [INTERNET]</string>
-    <string name="summary_preference_permissions_internet">Lehetővé teszi az alkalmazás számára, hogy internetkapcsolatot létesítsen hibajelentések küldéséhez vagy frissítések ellenőrzéséhez.</string>
-    <string name="post_notifications">Értesítések közzététele [POST_NOTIFICATIONS]</string>
-    <string name="summary_preference_permissions_post_notifications">Lehetővé teszi az alkalmazás számára, hogy értesítéseket jelenítsen meg az Android 13 vagy újabb eszközökön.</string>
-    <string name="access_network_state">Hálózati állapot elérése [ACCESS_NETWORK_STATE]</string>
-    <string name="summary_preference_permissions_access_network_state">Lehetővé teszi az alkalmazás számára, hogy ellenőrizze a hálózati kapcsolatot, és információkat szerezzen a Wi-Fi-ről, beleértve az engedélyezett állapotot és a csatlakoztatott Wi-Fi-eszközök nevét.</string>
-    <string name="access_notification_policy">Értesítési szabályzat elérése [ACCESS_NOTIFICATION_POLICY]</string>
-    <string name="summary_preference_permissions_access_notification_policy">Lehetővé teszi az alkalmazás számára, hogy hozzáférjen és módosítsa az eszköz értesítési szabályzatát, szabályozva, hogyan és mikor jelenjenek meg az értesítések a felhasználó számára, és egyéni értesítéskezelési funkciókat biztosítson.</string>
-    <string name="billing">Számlázás [BILLING]</string>
-    <string name="summary_preference_permissions_billing">Lehetővé teszi az alkalmazás számára, hogy a Google Play számlázási könyvtárát használja az alkalmazáson belüli vásárlások és adományok kezelésére</string>
-    <string name="check_license">Licenc ellenőrzése [CHECK_LICENSE]</string>
-    <string name="summary_preference_permissions_check_license">Lehetővé teszi az alkalmazás számára, hogy ellenőrizze a licencszerződésnek való megfelelést, és érvényesítse a licencfeltételeket a szellemi tulajdon védelme érdekében.</string>
-    <string name="foreground_service">Előtér-szolgáltatás [FOREGROUND_SERVICE]</string>
-    <string name="summary_preference_permissions_foreground_service">Lehetővé teszi az alkalmazás számára, hogy létrehozzon és használjon olyan szolgáltatásokat, amelyek az előtérben futnak, prioritást biztosítva számukra más háttérfolyamatokkal szemben, és javítva a teljesítményt és a megbízhatóságot.</string>
     <string name="request_delete_packages">Csomagok törlésének kérése [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Lehetővé teszi az alkalmazás számára, hogy csomagok törlését kérje. Ez felhasználható más alkalmazások eltávolítására az eszközről</string>
     <string name="access_media_location">Hozzáférés a médiafájlok helyéhez [ACCESS_MEDIA_LOCATION]</string>

@@ -134,22 +134,6 @@
 
     <string name="summary_preference_settings_privacy_and_security">จัดการการตั้งค่าความเป็นส่วนตัวของคุณ</string>
 
-    <string name="ad_id">รหัสโฆษณา [AD_ID]</string>
-    <string name="summary_preference_permissions_ad_id">อนุญาตให้แอปดึงข้อมูลและใช้รหัสโฆษณาที่เชื่อมโยงกับอุปกรณ์ของผู้ใช้ เพื่อแสดงโฆษณาส่วนบุคคล วัดประสิทธิภาพของโฆษณา และแสดงโฆษณาบนอุปกรณ์ Android 13 หรือใหม่กว่า</string>
-    <string name="internet">อินเทอร์เน็ต [INTERNET]</string>
-    <string name="summary_preference_permissions_internet">อนุญาตให้แอปสร้างการเชื่อมต่ออินเทอร์เน็ตเพื่อส่งรายงานข้อผิดพลาดหรือตรวจสอบการอัปเดต</string>
-    <string name="post_notifications">โพสต์การแจ้งเตือน [POST_NOTIFICATIONS]</string>
-    <string name="summary_preference_permissions_post_notifications">อนุญาตให้แอปแสดงการแจ้งเตือนบนอุปกรณ์ที่ใช้ Android 13 หรือใหม่กว่า</string>
-    <string name="access_network_state">เข้าถึงสถานะเครือข่าย [ACCESS_NETWORK_STATE]</string>
-    <string name="summary_preference_permissions_access_network_state">อนุญาตให้แอปตรวจสอบการเชื่อมต่อเครือข่ายและดึงข้อมูลเกี่ยวกับ Wi-Fi รวมถึงสถานะการเปิดใช้งานและชื่ออุปกรณ์ Wi-Fi ที่เชื่อมต่อ</string>
-    <string name="access_notification_policy">เข้านโยบายการแจ้งเตือน [ACCESS_NOTIFICATION_POLICY]</string>
-    <string name="summary_preference_permissions_access_notification_policy">อนุญาตให้แอปเข้าถึงและแก้ไขนโยบายการแจ้งเตือนของอุปกรณ์ ควบคุมวิธีและเวลาที่การแจ้งเตือนจะแสดงต่อผู้ใช้ และให้คุณสมบัติการจัดการการแจ้งเตือนที่กำหนดเอง</string>
-    <string name="billing">การเรียกเก็บเงิน [BILLING]</string>
-    <string name="summary_preference_permissions_billing">อนุญาตให้แอปใช้ Google Play Billing Library เพื่อจัดการการซื้อและการบริจาคในแอป</string>
-    <string name="check_license">ตรวจสอบใบอนุญาต [CHECK_LICENSE]</string>
-    <string name="summary_preference_permissions_check_license">อนุญาตให้แอปตรวจสอบความสอดคล้องกับข้อตกลงใบอนุญาตและบังคับใช้ข้อกำหนดสิทธิ์การใช้งานเพื่อปกป้องทรัพย์สินทางปัญญา</string>
-    <string name="foreground_service">บริการเบื้องหน้า [FOREGROUND_SERVICE]</string>
-    <string name="summary_preference_permissions_foreground_service">อนุญาตให้แอปสร้างและใช้บริการที่ทำงานในเบื้องหน้า ทำให้บริการเหล่านี้มีความสำคัญเหนือกว่ากระบวนการพื้นหลังอื่นๆ และปรับปรุงประสิทธิภาพและความน่าเชื่อถือ</string>
     <string name="request_delete_packages">ขอการลบแพ็คเกจ [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">อนุญาตให้แอปขอลบแพ็คเกจ ซึ่งสามารถใช้เพื่อถอนการติดตั้งแอปอื่นๆ ออกจากอุปกรณ์</string>
     <string name="access_media_location">เข้าถึงตำแหน่งสื่อ [ACCESS_MEDIA_LOCATION]</string>

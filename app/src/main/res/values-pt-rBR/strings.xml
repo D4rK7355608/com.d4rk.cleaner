@@ -138,22 +138,6 @@
 
     <string name="summary_preference_settings_privacy_and_security">Gerencie suas configurações de privacidade</string>
 
-    <string name="ad_id">ID de anúncio [AD_ID]</string>
-    <string name="summary_preference_permissions_ad_id">Permite que o aplicativo recupere e use o identificador de publicidade associado ao dispositivo do usuário, fornecendo anúncios personalizados, medindo a eficácia dos anúncios e exibindo anúncios em dispositivos com Android 13 ou posterior.</string>
-    <string name="internet">Internet [INTERNET]</string>
-    <string name="summary_preference_permissions_internet">Permite que o aplicativo estabeleça uma conexão com a internet para enviar relatórios de erros ou verificar se há atualizações.</string>
-    <string name="post_notifications">Publicar notificações [POST_NOTIFICATIONS]</string>
-    <string name="summary_preference_permissions_post_notifications">Permite que o aplicativo exiba notificações em dispositivos com Android 13 ou posterior.</string>
-    <string name="access_network_state">Acessar estado da rede [ACCESS_NETWORK_STATE]</string>
-    <string name="summary_preference_permissions_access_network_state">Permite que o aplicativo verifique a conectividade de rede e recupere informações sobre Wi-Fi, incluindo status ativado e nomes de dispositivos Wi-Fi conectados.</string>
-    <string name="access_notification_policy">Acessar política de notificação [ACCESS_NOTIFICATION_POLICY]</string>
-    <string name="summary_preference_permissions_access_notification_policy">Permite que o aplicativo acesse e modifique a política de notificação do dispositivo, controlando como e quando as notificações são exibidas ao usuário e fornecendo recursos personalizados de gerenciamento de notificações.</string>
-    <string name="billing">Cobrança [BILLING]</string>
-    <string name="summary_preference_permissions_billing">Permite que o aplicativo use a Google Play Billing Library para lidar com compras e doações no aplicativo</string>
-    <string name="check_license">Verificar licença [CHECK_LICENSE]</string>
-    <string name="summary_preference_permissions_check_license">Permite que o aplicativo verifique sua conformidade com o contrato de licença e aplique os termos de licenciamento para proteger a propriedade intelectual.</string>
-    <string name="foreground_service">Serviço em primeiro plano [FOREGROUND_SERVICE]</string>
-    <string name="summary_preference_permissions_foreground_service">Permite que o aplicativo crie e use serviços que são executados em primeiro plano, dando-lhes prioridade sobre outros processos em segundo plano e melhorando o desempenho e a confiabilidade.</string>
     <string name="request_delete_packages">Solicitar exclusão de pacotes [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Permite que o aplicativo solicite a exclusão de pacotes. Isso pode ser usado para desinstalar outros aplicativos do dispositivo</string>
     <string name="access_media_location">Acessar local da mídia [ACCESS_MEDIA_LOCATION]</string>

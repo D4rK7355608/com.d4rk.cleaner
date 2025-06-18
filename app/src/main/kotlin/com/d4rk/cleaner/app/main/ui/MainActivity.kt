@@ -19,6 +19,7 @@ import com.d4rk.android.libs.apptoolkit.app.theme.style.AppTheme
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ConsentFormHelper
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ConsentManagerHelper
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.IntentsHelper
+import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ReviewHelper
 import com.d4rk.cleaner.app.main.domain.actions.MainEvent
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.google.android.gms.ads.MobileAds
@@ -36,16 +37,20 @@ import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
-    private val dataStore : DataStore by inject()
-    private lateinit var updateResultLauncher : ActivityResultLauncher<IntentSenderRequest>
-    private lateinit var viewModel : MainViewModel
+    private val dataStore: DataStore by inject()
+    private var updateResultLauncher: ActivityResultLauncher<IntentSenderRequest> =
+        registerForActivityResult(contract = ActivityResultContracts.StartIntentSenderForResult()) {}
+    private lateinit var viewModel: MainViewModel
+    private var keepSplashVisible: Boolean = true
 
-    override fun onCreate(savedInstanceState : Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
+        val splashScreen = installSplashScreen()
+        splashScreen.setKeepOnScreenCondition { keepSplashVisible }
         enableEdgeToEdge()
         initializeDependencies()
         handleStartup()
+        checkInAppReview()
     }
 
     override fun onResume() {
@@ -60,10 +65,9 @@ class MainActivity : AppCompatActivity() {
             ConsentManagerHelper.applyInitialConsent(dataStore = dataStore)
         }
 
-        updateResultLauncher = registerForActivityResult(contract = ActivityResultContracts.StartIntentSenderForResult()) {}
-
         viewModel = getViewModel { parametersOf(updateResultLauncher) }
     }
+
     private fun handleStartup() {
         lifecycleScope.launch {
             val isFirstLaunch : Boolean = dataStore.startup.first()
@@ -75,6 +79,8 @@ class MainActivity : AppCompatActivity() {
                 actualTrashSize > storedTrashSize -> dataStore.addTrashSize(actualTrashSize - storedTrashSize)
                 actualTrashSize < storedTrashSize -> dataStore.subtractTrashSize(storedTrashSize - actualTrashSize)
             }
+
+            keepSplashVisible = false
 
             if (isFirstLaunch) {
                 startStartupActivity()
@@ -102,7 +108,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkUserConsent() {
         val consentInfo: ConsentInformation = UserMessagingPlatform.getConsentInformation(this)
-        ConsentFormHelper.showConsentFormIfRequired(activity = this , consentInfo = consentInfo)
+        ConsentFormHelper.showConsentFormIfRequired(activity = this, consentInfo = consentInfo)
+    }
+
+    private fun checkInAppReview() {
+        lifecycleScope.launch {
+            val sessionCount: Int = dataStore.sessionCount.first()
+            val hasPrompted: Boolean = dataStore.hasPromptedReview.first()
+            ReviewHelper.launchInAppReviewIfEligible(
+                activity = this@MainActivity,
+                sessionCount = sessionCount,
+                hasPromptedBefore = hasPrompted
+            ) {
+                lifecycleScope.launch { dataStore.setHasPromptedReview(value = true) }
+            }
+            dataStore.incrementSessionCount()
+        }
     }
 
     private fun calculateDirectorySize(directory : File) : Long {

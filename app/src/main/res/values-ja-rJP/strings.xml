@@ -134,22 +134,6 @@
 
     <string name="summary_preference_settings_privacy_and_security">プライバシー設定を管理する</string>
 
-    <string name="ad_id">広告ID [AD_ID]</string>
-    <string name="summary_preference_permissions_ad_id">アプリがユーザーのデバイスに関連付けられている広告識別子を検索して使用できるようにし、パーソナライズされた広告を提供し、広告の効果を測定し、Android 13以降のデバイスで広告を表示します。</string>
-    <string name="internet">インターネット [INTERNET]</string>
-    <string name="summary_preference_permissions_internet">アプリがインターネット接続を確立してエラーレポートを送信したり、更新を確認したりできるようにします。</string>
-    <string name="post_notifications">通知の投稿 [POST_NOTIFICATIONS]</string>
-    <string name="summary_preference_permissions_post_notifications">アプリがAndroid 13以降のデバイスに通知を表示できるようにします。</string>
-    <string name="access_network_state">ネットワークステータスへのアクセス [ACCESS_NETWORK_STATE]</string>
-    <string name="summary_preference_permissions_access_network_state">アプリがネットワーク接続を確認し、Wi-Fiに関する情報（有効なステータスや接続されたWi-Fiデバイスの名前など）を取得できるようにします。</string>
-    <string name="access_notification_policy">通知ポリシーへのアクセス [ACCESS_NOTIFICATION_POLICY]</string>
-    <string name="summary_preference_permissions_access_notification_policy">アプリがデバイスの通知ポリシーにアクセスして変更できるようにし、ユーザーへの通知の表示方法とタイミングを制御し、カスタム通知管理機能を提供します。</string>
-    <string name="billing">課金 [BILLING]</string>
-    <string name="summary_preference_permissions_billing">アプリがGoogle Play課金ライブラリを使用して、アプリ内購入と寄付を処理できるようにします</string>
-    <string name="check_license">ライセンスの確認 [CHECK_LICENSE]</string>
-    <string name="summary_preference_permissions_check_license">アプリがライセンス契約への準拠を検証し、知的財産を保護するためにライセンス条項を適用できるようにします。</string>
-    <string name="foreground_service">フォアグラウンドサービス [FOREGROUND_SERVICE]</string>
-    <string name="summary_preference_permissions_foreground_service">アプリがフォアグラウンドで実行されるサービスを作成して使用できるようにし、他のバックグラウンドプロセスよりも優先順位を高くし、パフォーマンスと信頼性を向上させます。</string>
     <string name="request_delete_packages">パッケージ削除の要求 [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">アプリがパッケージの削除を要求できるようにします。これは、デバイスから他のアプリをアンインストールするために使用できます</string>
     <string name="access_media_location">メディアの場所へのアクセス [ACCESS_MEDIA_LOCATION]</string>

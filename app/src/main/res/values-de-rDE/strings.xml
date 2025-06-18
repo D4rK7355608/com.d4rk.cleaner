@@ -135,22 +135,6 @@
     <string name="summary_preference_settings_notifications">App-Benachrichtigungen verwalten</string>
 
     <string name="summary_preference_settings_privacy_and_security">Verwalten Sie Ihre Datenschutzeinstellungen</string>
-    <string name="ad_id">Anzeigen-ID [AD_ID]</string>
-    <string name="summary_preference_permissions_ad_id">Ermöglicht der App, die mit dem Gerät des Benutzers verknüpfte Anzeigenkennung abzurufen und zu verwenden, um personalisierte Anzeigen bereitzustellen, die Effektivität von Anzeigen zu messen und Anzeigen auf Geräten mit Android 13 oder höher anzuzeigen.</string>
-    <string name="internet">Internet [INTERNET]</string>
-    <string name="summary_preference_permissions_internet">Ermöglicht der App, eine Internetverbindung herzustellen, um Fehlerberichte zu senden oder nach Updates zu suchen.</string>
-    <string name="post_notifications">Benachrichtigungen veröffentlichen [POST_NOTIFICATIONS]</string>
-    <string name="summary_preference_permissions_post_notifications">Ermöglicht der App, Benachrichtigungen auf Geräten mit Android 13 oder höher anzuzeigen.</string>
-    <string name="access_network_state">Zugriff auf den Netzwerkstatus [ACCESS_NETWORK_STATE]</string>
-    <string name="summary_preference_permissions_access_network_state">Ermöglicht der App, die Netzwerkverbindung zu überprüfen und Informationen über Wi-Fi abzurufen, einschließlich des aktivierten Status und der Namen der verbundenen Wi-Fi-Geräte.</string>
-    <string name="access_notification_policy">Zugriff auf die Benachrichtigungsrichtlinie [ACCESS_NOTIFICATION_POLICY]</string>
-    <string name="summary_preference_permissions_access_notification_policy">Ermöglicht der App, auf die Benachrichtigungsrichtlinie des Geräts zuzugreifen und diese zu ändern, um zu steuern, wie und wann Benachrichtigungen für den Benutzer angezeigt werden, und um benutzerdefinierte Funktionen zur Verwaltung von Benachrichtigungen bereitzustellen.</string>
-    <string name="billing">Abrechnung [BILLING]</string>
-    <string name="summary_preference_permissions_billing">Ermöglicht der App, die Google Play Billing Library zu verwenden, um In-App-Käufe und Spenden abzuwickeln</string>
-    <string name="check_license">Lizenz überprüfen [CHECK_LICENSE]</string>
-    <string name="summary_preference_permissions_check_license">Ermöglicht der App, die Einhaltung der Lizenzvereinbarung zu überprüfen und die Lizenzbedingungen durchzusetzen, um geistiges Eigentum zu schützen.</string>
-    <string name="foreground_service">Vordergrunddienst [FOREGROUND_SERVICE]</string>
-    <string name="summary_preference_permissions_foreground_service">Ermöglicht der App, Dienste zu erstellen und zu verwenden, die im Vordergrund laufen, wodurch sie Vorrang vor anderen Hintergrundprozessen erhalten und die Leistung und Zuverlässigkeit verbessert werden.</string>
     <string name="request_delete_packages">Paketlöschung anfordern [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Ermöglicht der App, die Löschung von Paketen anzufordern. Dies kann verwendet werden, um andere Apps vom Gerät zu deinstallieren</string>
     <string name="access_media_location">Zugriff auf den Speicherort von Mediendateien [ACCESS_MEDIA_LOCATION]</string>

@@ -138,22 +138,6 @@
 
     <string name="summary_preference_settings_privacy_and_security">Gestionați setările de confidențialitate</string>
 
-    <string name="ad_id">ID anunț [AD_ID]</string>
-    <string name="summary_preference_permissions_ad_id">Permite aplicației să preia și să utilizeze identificatorul de publicitate asociat dispozitivului utilizatorului, oferind anunțuri personalizate, măsurând eficacitatea anunțurilor și afișând anunțuri pe dispozitivele Android 13 sau mai noi.</string>
-    <string name="internet">Internet [INTERNET]</string>
-    <string name="summary_preference_permissions_internet">Permite aplicației să stabilească o conexiune la internet pentru a trimite rapoarte de erori sau pentru a verifica actualizările.</string>
-    <string name="post_notifications">Trimiteți notificări [POST_NOTIFICATIONS]</string>
-    <string name="summary_preference_permissions_post_notifications">Permite aplicației să afișeze notificări pe dispozitivele cu Android 13 sau mai noi.</string>
-    <string name="access_network_state">Accesează starea rețelei [ACCESS_NETWORK_STATE]</string>
-    <string name="summary_preference_permissions_access_network_state">Permite aplicației să verifice conectivitatea la rețea și să preia informații despre Wi-Fi, inclusiv starea activată și numele dispozitivelor Wi-Fi conectate.</string>
-    <string name="access_notification_policy">Accesează politica de notificare [ACCESS_NOTIFICATION_POLICY]</string>
-    <string name="summary_preference_permissions_access_notification_policy">Permite aplicației să acceseze și să modifice politica de notificare a dispozitivului, controlând modul și momentul în care notificările sunt afișate utilizatorului și oferind funcții de gestionare a notificărilor personalizate.</string>
-    <string name="billing">Facturare [BILLING]</string>
-    <string name="summary_preference_permissions_billing">Permite aplicației să utilizeze biblioteca Google Play Billing pentru a gestiona achizițiile în aplicație și donațiile</string>
-    <string name="check_license">Verifică licența [CHECK_LICENSE]</string>
-    <string name="summary_preference_permissions_check_license">Permite aplicației să verifice conformitatea sa cu acordul de licență și să aplice termenii de licențiere pentru a proteja proprietatea intelectuală.</string>
-    <string name="foreground_service">Serviciu în prim-plan [FOREGROUND_SERVICE]</string>
-    <string name="summary_preference_permissions_foreground_service">Permite aplicației să creeze și să utilizeze servicii care rulează în prim-plan, oferindu-le prioritate față de alte procese din fundal și îmbunătățind performanța și fiabilitatea.</string>
     <string name="request_delete_packages">Solicită ștergerea pachetelor [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Permite aplicației să solicite ștergerea pachetelor. Acest lucru poate fi utilizat pentru a dezinstala alte aplicații de pe dispozitiv</string>
     <string name="access_media_location">Accesează locația media [ACCESS_MEDIA_LOCATION]</string>

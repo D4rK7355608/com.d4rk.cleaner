@@ -136,22 +136,6 @@
 
     <string name="summary_preference_settings_privacy_and_security">Hantera dina integritetsinställningar</string>
 
-    <string name="ad_id">Annons-ID [AD_ID]</string>
-    <string name="summary_preference_permissions_ad_id">Tillåter appen att hämta och använda annonseringsidentifieraren som är kopplad till användarens enhet, vilket ger personlig annonsering, mäter annonseffektivitet och visar annonser på Android 13 eller senare enheter.</string>
-    <string name="internet">Internet [INTERNET]</string>
-    <string name="summary_preference_permissions_internet">Tillåter appen att upprätta en internetanslutning för att skicka felrapporter eller söka efter uppdateringar.</string>
-    <string name="post_notifications">Skicka notifieringar [POST_NOTIFICATIONS]</string>
-    <string name="summary_preference_permissions_post_notifications">Tillåter appen att visa notifieringar på enheter med Android 13 eller senare.</string>
-    <string name="access_network_state">Åtkomst till nätverksstatus [ACCESS_NETWORK_STATE]</string>
-    <string name="summary_preference_permissions_access_network_state">Tillåter appen att kontrollera nätverksanslutningen och hämta information om Wi-Fi, inklusive aktiverad status och anslutna Wi-Fi-enheters namn.</string>
-    <string name="access_notification_policy">Åtkomst till notifieringspolicy [ACCESS_NOTIFICATION_POLICY]</string>
-    <string name="summary_preference_permissions_access_notification_policy">Tillåter appen att komma åt och ändra enhetens notifieringspolicy, kontrollera hur och när notifieringar visas för användaren och tillhandahålla anpassade funktioner för notifieringshantering.</string>
-    <string name="billing">Fakturering [BILLING]</string>
-    <string name="summary_preference_permissions_billing">Tillåter appen att använda Google Play Billing Library för att hantera köp i appen och donationer</string>
-    <string name="check_license">Kontrollera licens [CHECK_LICENSE]</string>
-    <string name="summary_preference_permissions_check_license">Tillåter appen att verifiera sin efterlevnad av licensavtalet och tillämpa licensvillkor för att skydda immateriella rättigheter.</string>
-    <string name="foreground_service">Förgrundstjänst [FOREGROUND_SERVICE]</string>
-    <string name="summary_preference_permissions_foreground_service">Tillåter appen att skapa och använda tjänster som körs i förgrunden, vilket ger dem prioritet över andra bakgrundsprocesser och förbättrar prestanda och tillförlitlighet.</string>
     <string name="request_delete_packages">Begär radering av paket [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Tillåter appen att begära radering av paket. Detta kan användas för att avinstallera andra appar från enheten</string>
     <string name="access_media_location">Åtkomst till medialokal [ACCESS_MEDIA_LOCATION]</string>
