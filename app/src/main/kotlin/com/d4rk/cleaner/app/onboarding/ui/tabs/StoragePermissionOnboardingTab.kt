@@ -1,9 +1,6 @@
 package com.d4rk.cleaner.app.onboarding.ui.tabs
 
 import android.app.Activity
-import android.content.Intent
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,18 +18,18 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.DisposableEffect
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
@@ -52,21 +49,7 @@ fun StoragePermissionOnboardingTab() {
 
     val storageGranted by dataStore.storagePermissionGranted.collectAsState(initial = false)
     val usageGranted by dataStore.usagePermissionGranted.collectAsState(initial = false)
-    val treeGranted by dataStore.documentTreePermissionGranted.collectAsState(initial = false)
 
-    val documentTreeLauncher =
-        rememberLauncherForActivityResult(ActivityResultContracts.OpenDocumentTree()) { uri ->
-            if (uri != null) {
-                context.contentResolver.takePersistableUriPermission(
-                    uri,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                )
-                coroutineScope.launch {
-                    dataStore.saveDocumentTreeUri(uri.toString())
-                    dataStore.saveDocumentTreePermissionGranted(true)
-                }
-            }
-        }
 
     LaunchedEffect(Unit) {
         dataStore.saveStoragePermissionGranted(PermissionsHelper.hasStoragePermissions(context))
@@ -139,14 +122,6 @@ fun StoragePermissionOnboardingTab() {
                 PermissionsHelper.requestUsageAccess(context as Activity)
             },
             note = stringResource(id = R.string.package_usage_stats)
-        )
-
-        PermissionCard(
-            title = stringResource(id = R.string.permission_section_saf_title),
-            description = stringResource(id = R.string.permission_section_saf_description),
-            granted = treeGranted,
-            onClick = { documentTreeLauncher.launch(null) },
-            note = stringResource(id = R.string.action_open_document_tree)
         )
     }
 }

@@ -20,13 +20,13 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.analyze.components.DeleteOrTrashConfirmation
 import com.d4rk.cleaner.app.clean.analyze.components.StatusRowSelectAll
 import com.d4rk.cleaner.app.clean.analyze.components.tabs.TabsContent
+import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningState
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.UiHomeModel
 import com.d4rk.cleaner.app.clean.home.ui.HomeViewModel
 import com.d4rk.cleaner.app.clean.home.ui.components.TwoRowButtons
 import com.d4rk.cleaner.app.clean.nofilesfound.ui.NoFilesFoundScreen
 import kotlinx.coroutines.CoroutineScope
 import java.io.File
-import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningState
 
 @Composable
 fun AnalyzeScreen(

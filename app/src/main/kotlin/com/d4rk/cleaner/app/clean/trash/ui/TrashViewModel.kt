@@ -17,7 +17,6 @@ import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashFilesUseCase
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.RestoreFromTrashUseCase
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import java.io.File

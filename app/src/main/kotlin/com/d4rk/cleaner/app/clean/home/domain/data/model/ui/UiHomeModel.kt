@@ -1,9 +1,7 @@
 package com.d4rk.cleaner.app.clean.home.domain.data.model.ui
 
-import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
-
 /** State of the cleaning process. */
-import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningState
+import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
 import java.io.File
 
 data class UiHomeModel(

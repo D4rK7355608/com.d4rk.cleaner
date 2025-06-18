@@ -13,8 +13,6 @@
     <string name="permission_section_manage_description">Required to fully manage all files on your device.</string>
     <string name="permission_section_usage_title">App usage access</string>
     <string name="permission_section_usage_description">Allows Cleaner to analyze storage based on app usage.</string>
-    <string name="permission_section_saf_title">Document tree access</string>
-    <string name="permission_section_saf_description">Use the system file picker if other storage permissions fail.</string>
     <string name="permission_granted">Granted</string>
     <string name="onboarding_permission_storage_title">Storage Access</string>
     <string name="onboarding_permission_storage_description">Cleaner requires storage and usage permissions to scan and analyze apps.</string>

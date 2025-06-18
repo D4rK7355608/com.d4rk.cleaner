@@ -8,9 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import coil3.ImageLoader
+import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NonLazyGrid
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ScreenHelper
-import com.d4rk.cleaner.app.clean.home.ui.components.NonLazyGrid
 import java.io.File
 
 @Composable

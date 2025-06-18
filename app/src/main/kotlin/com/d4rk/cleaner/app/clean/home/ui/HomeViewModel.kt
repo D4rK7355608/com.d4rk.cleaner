@@ -13,9 +13,9 @@ import com.d4rk.android.libs.apptoolkit.core.ui.base.ScreenViewModel
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.UiTextHelper
 import com.d4rk.cleaner.app.clean.home.domain.actions.HomeAction
 import com.d4rk.cleaner.app.clean.home.domain.actions.HomeEvent
+import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningState
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.FileTypesData
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.UiHomeModel
-import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningState
 import com.d4rk.cleaner.app.clean.home.domain.usecases.AnalyzeFilesUseCase
 import com.d4rk.cleaner.app.clean.home.domain.usecases.DeleteFilesUseCase
 import com.d4rk.cleaner.app.clean.home.domain.usecases.GetFileTypesUseCase
