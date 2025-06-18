@@ -64,6 +64,8 @@ object PermissionsHelper {
                 val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
                 val uri : Uri = Uri.fromParts("package" , activity.packageName , null)
                 intent.data = uri
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                 activity.startActivity(intent)
             }
 
@@ -89,6 +91,8 @@ object PermissionsHelper {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             if (! isAccessGranted(activity)) {
                 val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                 activity.startActivity(intent)
             }
         }
