@@ -7,6 +7,18 @@
     <string name="onboarding_welcome_description">Let\'s walk through a quick setup and start freeing space.</string>
     <string name="onboarding_personalization_title">Customize Your Cleanup</string>
     <string name="onboarding_personalization_description">Adjust Cleaner to match your needs.</string>
+    <string name="permission_section_public_title">Public storage access</string>
+    <string name="permission_section_public_description">Allows Cleaner to read and write files on public storage.</string>
+    <string name="permission_section_manage_title">Full file management</string>
+    <string name="permission_section_manage_description">Required to fully manage all files on your device.</string>
+    <string name="permission_section_usage_title">App usage access</string>
+    <string name="permission_section_usage_description">Allows Cleaner to analyze storage based on app usage.</string>
+    <string name="permission_section_saf_title">Document tree access</string>
+    <string name="permission_section_saf_description">Use the system file picker if other storage permissions fail.</string>
+    <string name="permission_granted">Granted</string>
+    <string name="onboarding_permission_storage_title">Storage Access</string>
+    <string name="onboarding_permission_storage_description">Cleaner requires storage and usage permissions to scan and analyze apps.</string>
+    <string name="button_grant_permission">Grant permission</string>
 
     <string name="delete_forever">Delete forever</string>
     <string name="move_to_trash">Move to trash</string>
@@ -136,22 +148,6 @@
     <string name="scanner">Scanner</string>
     <string name="clipboard_clean">Clipboard clean</string>
 
-    <string name="onboarding_permission_storage_title">Storage Access</string>
-    <string name="onboarding_permission_storage_description">Cleaner requires storage and usage permissions to scan and analyze apps.</string>
-    <string name="onboarding_permission_notifications_title">Notifications</string>
-    <string name="onboarding_permission_notifications_description">Enable notifications to receive cleaning reminders.</string>
-    <string name="button_grant_permission">Grant permission</string>
-
-    <string name="permission_section_public_title">Public storage access</string>
-    <string name="permission_section_public_description">Allows Cleaner to read and write files on public storage.</string>
-    <string name="permission_section_manage_title">Full file management</string>
-    <string name="permission_section_manage_description">Required to fully manage all files on your device.</string>
-    <string name="permission_section_usage_title">App usage access</string>
-    <string name="permission_section_usage_description">Allows Cleaner to analyze storage based on app usage.</string>
-    <string name="permission_section_saf_title">Document tree access</string>
-    <string name="permission_section_saf_description">Use the system file picker if other storage permissions fail.</string>
-    <string name="permission_granted">Granted</string>
-
     <string name="notifications">Notifications</string>
     <string name="summary_preference_settings_notifications">Manage app notifications</string>
 
@@ -200,8 +196,6 @@
     <string name="summary_preference_faq_8">There is no set rule for how often you should use Cleaner, as it will depend on your device\'s usage and the amount of unnecessary files that accumulate over time. Some users may find it helpful to run Cleaner weekly or monthly, while others may only need to use it occasionally</string>
     <string name="question_9">Is Cleaner compatible with all Android devices?</string>
     <string name="summary_preference_faq_9">Cleaner should be compatible with most Android devices that meet the app\'s minimum system requirements. However, it is always a good idea to check the app\'s page on the Google Play Store or the app store you are using to confirm compatibility with your specific device. If you encounter any issues while using Cleaner, you can try troubleshooting the problem or contacting the app\'s support team for assistance</string>
-
-
 
     <!-- Error messages -->
     <string name="failed_to_encrypt_cart">Cart could not be secured. Please try again.</string>

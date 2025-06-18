@@ -212,46 +212,6 @@
         <item>memory_manager</item>
     </string-array>
 
-    <string-array name="preference_language_entries">
-        <item>@string/bulgarian</item>
-        <item>@string/english</item>
-        <item>@string/french</item>
-        <item>@string/german</item>
-        <item>@string/hindi</item>
-        <item>@string/hungarian</item>
-        <item>@string/indonesian</item>
-        <item>@string/italian</item>
-        <item>@string/japanese</item>
-        <item>@string/polish</item>
-        <item>@string/brazilian_portuguese</item>
-        <item>@string/romanian</item>
-        <item>@string/russian</item>
-        <item>@string/spanish</item>
-        <item>@string/thai</item>
-        <item>@string/turkish</item>
-        <item>@string/ukrainian</item>
-        <item>@string/traditional_chinese</item>
-    </string-array>
-    <string-array name="preference_language_values">
-        <item>bg</item>
-        <item>en</item>
-        <item>fr</item>
-        <item>de</item>
-        <item>hi</item>
-        <item>hu</item>
-        <item>in</item>
-        <item>it</item>
-        <item>ja</item>
-        <item>pl</item>
-        <item>pt</item>
-        <item>ro</item>
-        <item>ru</item>
-        <item>es</item>
-        <item>th</item>
-        <item>tr</item>
-        <item>uk</item>
-        <item>zh-Hant</item>
-    </string-array>
     <string-array name="file_sizes">
         <item>200</item>
         <item>400</item>

@@ -15,7 +15,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Storage
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -30,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
@@ -38,44 +38,6 @@ import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
-
-@Composable
-private fun PermissionCard(
-    title: String,
-    description: String,
-    granted: Boolean,
-    onClick: () -> Unit,
-    note: String? = null
-) {
-    OutlinedCard(modifier = Modifier.fillMaxWidth()) {
-        Column(modifier = Modifier.padding(SizeConstants.LargeSize)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(text = title, style = MaterialTheme.typography.titleMedium)
-                    SmallVerticalSpacer()
-                    Text(text = description, style = MaterialTheme.typography.bodySmall)
-                    note?.let {
-                        SmallVerticalSpacer()
-                        Text(text = it, style = MaterialTheme.typography.bodySmall)
-                    }
-                }
-                if (granted) {
-                    Icon(
-                        imageVector = Icons.Outlined.CheckCircle,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                }
-            }
-            if (!granted) {
-                LargeVerticalSpacer()
-                OutlinedButton(onClick = onClick, colors = ButtonDefaults.outlinedButtonColors()) {
-                    Text(text = stringResource(id = R.string.button_grant_permission))
-                }
-            }
-        }
-    }
-}
 
 @Composable
 fun StoragePermissionOnboardingTab() {
@@ -87,18 +49,19 @@ fun StoragePermissionOnboardingTab() {
     val usageGranted by dataStore.usagePermissionGranted.collectAsState(initial = false)
     val treeGranted by dataStore.documentTreePermissionGranted.collectAsState(initial = false)
 
-    val documentTreeLauncher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocumentTree()) { uri ->
-        if (uri != null) {
-            context.contentResolver.takePersistableUriPermission(
-                uri,
-                Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-            )
-            coroutineScope.launch {
-                dataStore.saveDocumentTreeUri(uri.toString())
-                dataStore.saveDocumentTreePermissionGranted(true)
+    val documentTreeLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.OpenDocumentTree()) { uri ->
+            if (uri != null) {
+                context.contentResolver.takePersistableUriPermission(
+                    uri,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                )
+                coroutineScope.launch {
+                    dataStore.saveDocumentTreeUri(uri.toString())
+                    dataStore.saveDocumentTreePermissionGranted(true)
+                }
             }
         }
-    }
 
     LaunchedEffect(Unit) {
         dataStore.saveStoragePermissionGranted(PermissionsHelper.hasStoragePermissions(context))
@@ -134,7 +97,11 @@ fun StoragePermissionOnboardingTab() {
             onClick = {
                 PermissionsHelper.requestStoragePermissions(context as Activity)
                 coroutineScope.launch {
-                    dataStore.saveStoragePermissionGranted(PermissionsHelper.hasStoragePermissions(context))
+                    dataStore.saveStoragePermissionGranted(
+                        PermissionsHelper.hasStoragePermissions(
+                            context
+                        )
+                    )
                 }
             }
         )
@@ -146,7 +113,11 @@ fun StoragePermissionOnboardingTab() {
             onClick = {
                 PermissionsHelper.requestStoragePermissions(context as Activity)
                 coroutineScope.launch {
-                    dataStore.saveStoragePermissionGranted(PermissionsHelper.hasStoragePermissions(context))
+                    dataStore.saveStoragePermissionGranted(
+                        PermissionsHelper.hasStoragePermissions(
+                            context
+                        )
+                    )
                 }
             },
             note = stringResource(id = R.string.manage_external_storage)
@@ -159,7 +130,11 @@ fun StoragePermissionOnboardingTab() {
             onClick = {
                 PermissionsHelper.requestUsageAccess(context as Activity)
                 coroutineScope.launch {
-                    dataStore.saveUsagePermissionGranted(PermissionsHelper.hasUsageAccessPermissions(context))
+                    dataStore.saveUsagePermissionGranted(
+                        PermissionsHelper.hasUsageAccessPermissions(
+                            context
+                        )
+                    )
                 }
             },
             note = stringResource(id = R.string.package_usage_stats)
@@ -172,5 +147,46 @@ fun StoragePermissionOnboardingTab() {
             onClick = { documentTreeLauncher.launch(null) },
             note = stringResource(id = R.string.action_open_document_tree)
         )
+    }
+}
+
+@Composable
+private fun PermissionCard(
+    title: String,
+    description: String,
+    granted: Boolean,
+    onClick: () -> Unit,
+    note: String? = null
+) {
+    OutlinedCard(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(SizeConstants.LargeSize)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(text = title, style = MaterialTheme.typography.titleMedium)
+                    SmallVerticalSpacer()
+                    Text(text = description, style = MaterialTheme.typography.bodySmall)
+                    note?.let {
+                        SmallVerticalSpacer()
+                        Text(text = it, style = MaterialTheme.typography.bodySmall)
+                    }
+                }
+                if (granted) {
+                    Icon(
+                        imageVector = Icons.Outlined.CheckCircle,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
+            }
+            if (!granted) {
+                LargeVerticalSpacer()
+                OutlinedButton(
+                    modifier = Modifier.bounceClick(),
+                    onClick = onClick
+                ) {
+                    Text(text = stringResource(id = R.string.button_grant_permission))
+                }
+            }
+        }
     }
 }
