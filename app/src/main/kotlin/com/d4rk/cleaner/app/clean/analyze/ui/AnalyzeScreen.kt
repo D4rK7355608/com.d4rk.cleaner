@@ -26,6 +26,7 @@ import com.d4rk.cleaner.app.clean.home.ui.components.TwoRowButtons
 import com.d4rk.cleaner.app.clean.nofilesfound.ui.NoFilesFoundScreen
 import kotlinx.coroutines.CoroutineScope
 import java.io.File
+import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningState
 
 @Composable
 fun AnalyzeScreen(
@@ -36,7 +37,7 @@ fun AnalyzeScreen(
 ) {
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     val hasSelectedFiles : Boolean = data.analyzeState.selectedFilesCount > 0
-    val isLoading : Boolean = data.analyzeState.isAnalyzing
+    val isLoading : Boolean = data.analyzeState.state == CleaningState.Analyzing
     val groupedFiles : Map<String , List<File>> = data.analyzeState.groupedFiles
 
     Column(

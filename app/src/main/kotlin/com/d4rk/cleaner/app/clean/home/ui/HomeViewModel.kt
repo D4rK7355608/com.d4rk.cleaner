@@ -15,6 +15,7 @@ import com.d4rk.cleaner.app.clean.home.domain.actions.HomeAction
 import com.d4rk.cleaner.app.clean.home.domain.actions.HomeEvent
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.FileTypesData
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.UiHomeModel
+import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningState
 import com.d4rk.cleaner.app.clean.home.domain.usecases.AnalyzeFilesUseCase
 import com.d4rk.cleaner.app.clean.home.domain.usecases.DeleteFilesUseCase
 import com.d4rk.cleaner.app.clean.home.domain.usecases.GetFileTypesUseCase
@@ -127,12 +128,21 @@ class HomeViewModel(
     }
 
     private fun analyzeFiles() {
+        if (_uiState.value.data?.analyzeState?.state != CleaningState.Idle) {
+            return
+        }
+
         launch(dispatchers.io) {
             analyzeFilesUseCase().collectLatest { result : DataState<Pair<List<File> , List<File>> , Errors> ->
                 _uiState.update { currentState : UiStateScreen<UiHomeModel> ->
                     val currentData : UiHomeModel = currentState.data ?: UiHomeModel()
                     when (result) {
-                        is DataState.Loading -> currentState.copy(screenState = ScreenState.IsLoading() , data = currentData.copy(analyzeState = currentData.analyzeState.copy(isAnalyzing = true)))
+                        is DataState.Loading -> currentState.copy(
+                            screenState = ScreenState.IsLoading(),
+                            data = currentData.copy(
+                                analyzeState = currentData.analyzeState.copy(state = CleaningState.Analyzing)
+                            )
+                        )
                         is DataState.Success -> {
                             val fileTypesData = currentData.analyzeState.fileTypesData
                             val preferences = mapOf(
@@ -152,11 +162,28 @@ class HomeViewModel(
                             val groupedFiles : Map<String , List<File>> = withContext(dispatchers.default) {
                                 computeGroupedFiles(scannedFiles = result.data.first , emptyFolders = result.data.second , fileTypesData = fileTypesData , preferences = preferences)
                             }
-                            currentState.copy(screenState = ScreenState.Success() , data = currentData.copy(analyzeState = currentData.analyzeState.copy(scannedFileList = result.data.first , emptyFolderList = result.data.second , groupedFiles = groupedFiles , isAnalyzing = false)))
+                            currentState.copy(
+                                screenState = ScreenState.Success(),
+                                data = currentData.copy(
+                                    analyzeState = currentData.analyzeState.copy(
+                                        scannedFileList = result.data.first,
+                                        emptyFolderList = result.data.second,
+                                        groupedFiles = groupedFiles,
+                                        state = CleaningState.Idle
+                                    )
+                                )
+                            )
                         }
 
                         is DataState.Error -> currentState.copy(
-                            screenState = ScreenState.Error() , data = currentData.copy(analyzeState = currentData.analyzeState.copy(isAnalyzing = false)) , errors = currentState.errors + UiSnackbar(message = UiTextHelper.DynamicString("Failed to analyze files: ${result.error}") , isError = true)
+                            screenState = ScreenState.Error(),
+                            data = currentData.copy(
+                                analyzeState = currentData.analyzeState.copy(state = CleaningState.Error)
+                            ),
+                            errors = currentState.errors + UiSnackbar(
+                                message = UiTextHelper.DynamicString("Failed to analyze files: ${result.error}"),
+                                isError = true
+                            )
                         )
                     }
                 }
@@ -243,7 +270,8 @@ class HomeViewModel(
                         files.any { movedFile : File -> existingFile.absolutePath == movedFile.absolutePath }
                     } , groupedFiles = computeGroupedFiles(scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile : File ->
                         files.any { movedFile : File -> existingFile.absolutePath == movedFile.absolutePath }
-                    } , emptyFolders = currentData.analyzeState.emptyFolderList , fileTypesData = currentData.analyzeState.fileTypesData , preferences = mapOf()) , selectedFilesCount = 0 , areAllFilesSelected = false , isAnalyzeScreenVisible = false , fileSelectionMap = emptyMap()))
+                    } , emptyFolders = currentData.analyzeState.emptyFolderList , fileTypesData = currentData.analyzeState.fileTypesData , preferences = mapOf()) , selectedFilesCount = 0 , areAllFilesSelected = false , isAnalyzeScreenVisible = false , fileSelectionMap = emptyMap(),
+          state = CleaningState.Success))
                 }
 
                 if (result is DataState.Success) {
@@ -260,7 +288,14 @@ class HomeViewModel(
             state.copy(
                 data = currentData.copy(
                     analyzeState = currentData.analyzeState.copy(
-                        isAnalyzeScreenVisible = false , scannedFileList = emptyList() , emptyFolderList = emptyList() , groupedFiles = emptyMap() , fileSelectionMap = emptyMap() , selectedFilesCount = 0 , areAllFilesSelected = false
+                        isAnalyzeScreenVisible = false ,
+                        scannedFileList = emptyList() ,
+                        emptyFolderList = emptyList() ,
+                        groupedFiles = emptyMap() ,
+                        fileSelectionMap = emptyMap() ,
+                        selectedFilesCount = 0 ,
+                        areAllFilesSelected = false ,
+                        state = CleaningState.Idle
                     )
                 )
             )
@@ -310,7 +345,19 @@ class HomeViewModel(
     }
 
     fun cleanFiles() {
+        if (_uiState.value.data?.analyzeState?.state != CleaningState.Idle) {
+            return
+        }
+
         launch(context = dispatchers.io) {
+
+            _uiState.update { state ->
+                state.copy(
+                    data = state.data?.copy(
+                        analyzeState = state.data.analyzeState.copy(state = CleaningState.Cleaning)
+                    )
+                )
+            }
 
             val currentScreenData : UiHomeModel = screenData ?: run {
                 sendAction(HomeAction.ShowSnackbar(UiSnackbar(message = UiTextHelper.DynamicString("Data not available.") , isError = true)))
@@ -333,7 +380,8 @@ class HomeViewModel(
                                                                                   selectedFilesCount = 0 ,
                                                                                   areAllFilesSelected = false ,
                                                                                   fileSelectionMap = emptyMap() ,
-                                                                                  isAnalyzeScreenVisible = false) , storageInfo = currentData.storageInfo.copy(isFreeSpaceLoading = true , isCleanedSpaceLoading = true))
+  isAnalyzeScreenVisible = false ,
+  state = CleaningState.Success) , storageInfo = currentData.storageInfo.copy(isFreeSpaceLoading = true , isCleanedSpaceLoading = true))
                 }
 
                 if (result is DataState.Success) {
@@ -344,13 +392,29 @@ class HomeViewModel(
                         dataStore.saveLastScanTimestamp(timestamp = System.currentTimeMillis())
                     }
                     loadInitialData()
+                } else if (result is DataState.Error) {
+                    _uiState.update { s ->
+                        s.copy(data = s.data?.copy(analyzeState = s.data.analyzeState.copy(state = CleaningState.Error)))
+                    }
                 }
             }
         }
     }
 
     fun moveSelectedToTrash() {
+        if (_uiState.value.data?.analyzeState?.state != CleaningState.Idle) {
+            return
+        }
+
         launch(dispatchers.io) {
+
+            _uiState.update { state ->
+                state.copy(
+                    data = state.data?.copy(
+                        analyzeState = state.data.analyzeState.copy(state = CleaningState.Cleaning)
+                    )
+                )
+            }
 
             val currentScreenData = screenData ?: run {
                 sendAction(HomeAction.ShowSnackbar(UiSnackbar(message = UiTextHelper.DynamicString("Data not available.") , isError = true)))
@@ -378,12 +442,17 @@ class HomeViewModel(
                                                                                   selectedFilesCount = 0 ,
                                                                                   areAllFilesSelected = false ,
                                                                                   isAnalyzeScreenVisible = false ,
-                                                                                  fileSelectionMap = emptyMap()))
+                                                                                  fileSelectionMap = emptyMap(),
+          state = CleaningState.Success))
                 }
 
                 if (result is DataState.Success) {
                     updateTrashSize(totalFileSizeToMove)
                     loadInitialData()
+                } else if (result is DataState.Error) {
+                    _uiState.update { s ->
+                        s.copy(data = s.data?.copy(analyzeState = s.data.analyzeState.copy(state = CleaningState.Error)))
+                    }
                 }
             }
         }
@@ -412,7 +481,12 @@ class HomeViewModel(
 
     private fun toggleAnalyzeScreen(visible : Boolean) {
         _uiState.updateData(ScreenState.Success()) { currentData ->
-            currentData.copy(analyzeState = currentData.analyzeState.copy(isAnalyzeScreenVisible = visible))
+            currentData.copy(
+                analyzeState = currentData.analyzeState.copy(
+                    isAnalyzeScreenVisible = visible,
+                    state = if (visible) currentData.analyzeState.state else CleaningState.Idle
+                )
+            )
         }
 
         if (visible) {
