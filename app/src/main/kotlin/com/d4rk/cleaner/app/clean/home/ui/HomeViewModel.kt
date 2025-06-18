@@ -352,9 +352,10 @@ class HomeViewModel(
         launch(context = dispatchers.io) {
 
             _uiState.update { state ->
+                val currentData = state.data ?: UiHomeModel()
                 state.copy(
-                    data = state.data?.copy(
-                        analyzeState = state.data.analyzeState.copy(state = CleaningState.Cleaning)
+                    data = currentData.copy(
+                        analyzeState = currentData.analyzeState.copy(state = CleaningState.Cleaning)
                     )
                 )
             }
@@ -394,7 +395,8 @@ class HomeViewModel(
                     loadInitialData()
                 } else if (result is DataState.Error) {
                     _uiState.update { s ->
-                        s.copy(data = s.data?.copy(analyzeState = s.data.analyzeState.copy(state = CleaningState.Error)))
+                        val currentErrorData = s.data ?: UiHomeModel()
+                        s.copy(data = currentErrorData.copy(analyzeState = currentErrorData.analyzeState.copy(state = CleaningState.Error)))
                     }
                 }
             }
@@ -409,9 +411,10 @@ class HomeViewModel(
         launch(dispatchers.io) {
 
             _uiState.update { state ->
+                val currentData = state.data ?: UiHomeModel()
                 state.copy(
-                    data = state.data?.copy(
-                        analyzeState = state.data.analyzeState.copy(state = CleaningState.Cleaning)
+                    data = currentData.copy(
+                        analyzeState = currentData.analyzeState.copy(state = CleaningState.Cleaning)
                     )
                 )
             }
@@ -451,7 +454,8 @@ class HomeViewModel(
                     loadInitialData()
                 } else if (result is DataState.Error) {
                     _uiState.update { s ->
-                        s.copy(data = s.data?.copy(analyzeState = s.data.analyzeState.copy(state = CleaningState.Error)))
+                        val currentErrorData = s.data ?: UiHomeModel()
+                        s.copy(data = currentErrorData.copy(analyzeState = currentErrorData.analyzeState.copy(state = CleaningState.Error)))
                     }
                 }
             }
