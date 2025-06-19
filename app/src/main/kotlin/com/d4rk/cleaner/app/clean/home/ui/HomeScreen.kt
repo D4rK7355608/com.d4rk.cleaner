@@ -54,7 +54,7 @@ fun HomeScreen(paddingValues: PaddingValues) {
         }.build()
     }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(key1 = true) {
         if (!PermissionsHelper.hasStoragePermissions(context)) {
             PermissionsHelper.requestStoragePermissions(context as Activity)
         }

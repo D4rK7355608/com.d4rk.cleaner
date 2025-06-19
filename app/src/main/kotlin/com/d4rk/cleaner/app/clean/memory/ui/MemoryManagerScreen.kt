@@ -66,7 +66,7 @@ fun MemoryManagerComposable(paddingValues : PaddingValues) {
     val uiState : UiStateScreen<UiMemoryManagerScreen> by viewModel.uiState.collectAsState()
     val context : Context = LocalContext.current
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(key1 = true) {
         if (! PermissionsHelper.hasStoragePermissions(context)) {
             PermissionsHelper.requestStoragePermissions(context as Activity)
         }

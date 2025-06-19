@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.clean.analyze.components
+package com.d4rk.cleaner.app.clean.analyze.components.dialogs
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

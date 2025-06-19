@@ -153,7 +153,7 @@ class HomeRepositoryImpl(
         if (totalSize > 0) {
             dataStore.addCleanedSpace(space = totalSize)
         }
-        clearClipboardImplementation() // TODO: Check if clear clipboard still applies even if the data store is false
+        clearClipboardImplementation()
     }
 
     private fun clearClipboardImplementation() {

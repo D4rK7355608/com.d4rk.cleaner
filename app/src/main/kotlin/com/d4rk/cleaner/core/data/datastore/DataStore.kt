@@ -269,17 +269,4 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
             prefs[usagePermissionGrantedKey] = granted
         }
     }
-
-    private val documentTreePermissionGrantedKey = booleanPreferencesKey("permission_document_tree_granted")
-    val documentTreePermissionGranted: Flow<Boolean> = dataStore.data.map { prefs ->
-        prefs[documentTreePermissionGrantedKey] == true
-    }
-
-
-    suspend fun saveDocumentTreePermissionGranted(granted: Boolean) {
-        dataStore.edit { prefs ->
-            prefs[documentTreePermissionGrantedKey] = granted
-        }
-    }
-
 }
