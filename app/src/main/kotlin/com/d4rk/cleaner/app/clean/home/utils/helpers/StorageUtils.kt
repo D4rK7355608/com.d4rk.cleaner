@@ -57,4 +57,21 @@ object StorageUtils {
 
         return String.format(Locale.US , "%.2f %s" , value , units[digitGroups])
     }
+
+    fun formatSizeReadable(size: Long): String {
+        if (size < 1024) return "$size B"
+
+        val kb: Double = size / 1024.0
+        if (kb < 1024) {
+            return String.format(Locale.US, "%.1f KB", kb)
+        }
+
+        val mb: Double = kb / 1024.0
+        if (mb < 1024) {
+            return String.format(Locale.US, "%.1f MB", mb)
+        }
+
+        val gb: Double = mb / 1024.0
+        return String.format(Locale.US, "%.1f GB", gb)
+    }
 }

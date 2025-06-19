@@ -23,6 +23,7 @@ import com.d4rk.cleaner.app.clean.home.domain.usecases.GetStorageInfoUseCase
 import com.d4rk.cleaner.app.clean.home.domain.usecases.MoveToTrashUseCase
 import com.d4rk.cleaner.app.clean.home.domain.usecases.UpdateTrashSizeUseCase
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
+import com.d4rk.cleaner.app.clean.home.utils.helpers.StorageUtils
 import com.d4rk.cleaner.app.settings.cleaning.utils.constants.ExtensionsConstants
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.domain.model.network.Errors
@@ -87,7 +88,11 @@ class HomeViewModel(
             }.collect { (storageState : DataState<UiHomeModel , Errors> , fileTypesState : DataState<FileTypesData , Errors> , cleanedSpaceValue : Long) ->
                 _uiState.update { currentState : UiStateScreen<UiHomeModel> ->
                     val currentData : UiHomeModel = currentState.data ?: UiHomeModel()
-                    val updatedStorageInfo : StorageInfo = currentData.storageInfo.copy(isFreeSpaceLoading = storageState is DataState.Loading , isCleanedSpaceLoading = false , cleanedSpace = "$cleanedSpaceValue KB")
+                    val updatedStorageInfo : StorageInfo = currentData.storageInfo.copy(
+                        isFreeSpaceLoading = storageState is DataState.Loading,
+                        isCleanedSpaceLoading = false,
+                        cleanedSpace = StorageUtils.formatSizeReadable(cleanedSpaceValue)
+                    )
                     val finalStorageInfo = if (storageState is DataState.Success) {
                         storageState.data.storageInfo.copy(cleanedSpace = updatedStorageInfo.cleanedSpace , isCleanedSpaceLoading = updatedStorageInfo.isCleanedSpaceLoading , isFreeSpaceLoading = false)
                     }
@@ -469,8 +474,11 @@ class HomeViewModel(
         launch(dispatchers.io) {
             dataStore.cleanedSpace.collect { cleanedSpace ->
                 _uiState.successData {
-
-                    copy(storageInfo = storageInfo.copy(cleanedSpace = cleanedSpace.toString()))
+                    copy(
+                        storageInfo = storageInfo.copy(
+                            cleanedSpace = StorageUtils.formatSizeReadable(cleanedSpace)
+                        )
+                    )
                 }
             }
         }
