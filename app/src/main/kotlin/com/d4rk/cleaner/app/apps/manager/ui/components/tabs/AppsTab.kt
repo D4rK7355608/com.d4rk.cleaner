@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.app.apps.manager.ui.components.tabs
 
+import androidx.compose.animation.Crossfade
 import android.content.pm.ApplicationInfo
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -18,27 +19,29 @@ import com.d4rk.cleaner.app.apps.manager.ui.components.AppItemComposable
 import com.d4rk.cleaner.app.apps.manager.ui.components.ShimmerLoadingScreen
 
 @Composable
-fun AppsTab(apps : List<ApplicationInfo> , isLoading : Boolean , viewModel : AppManagerViewModel, paddingValues : PaddingValues = PaddingValues()) {
-    when {
-        isLoading -> {
-            ShimmerLoadingScreen(paddingValues)
-        }
+fun AppsTab(apps : List<ApplicationInfo> , isLoading : Boolean , viewModel : AppManagerViewModel , paddingValues : PaddingValues = PaddingValues()) {
+    Crossfade(targetState = isLoading , label = "AppsTabCrossfade") { isLoadingState ->
+        when {
+            isLoadingState -> {
+                ShimmerLoadingScreen(paddingValues)
+            }
 
-        apps.isEmpty() -> {
-            NoDataScreen(
-                text = R.string.no_app_installed , showRetry = true , onRetry = {
-                    viewModel.onEvent(event = AppManagerEvent.LoadAppData)
-                })
-        }
+            apps.isEmpty() -> {
+                NoDataScreen(
+                    text = R.string.no_app_installed , showRetry = true , onRetry = {
+                        viewModel.onEvent(event = AppManagerEvent.LoadAppData)
+                    })
+            }
 
-        else -> {
-            LazyColumn(contentPadding = PaddingValues(horizontal = SizeConstants.ExtraTinySize) , verticalArrangement = Arrangement.spacedBy(space = SizeConstants.ExtraTinySize) , modifier = Modifier.fillMaxSize()) {
-                itemsIndexed(items = apps , key = { _ : Int , app : ApplicationInfo -> app.packageName }) { _ : Int , app : ApplicationInfo ->
-                    AppItemComposable(
-                        app , viewModel = viewModel , modifier = Modifier
-                                .animateItem()
-                                .padding(start = SizeConstants.SmallSize , end = SizeConstants.SmallSize , top = SizeConstants.SmallSize)
-                    )
+            else -> {
+                LazyColumn(contentPadding = PaddingValues(horizontal = SizeConstants.ExtraTinySize) , verticalArrangement = Arrangement.spacedBy(space = SizeConstants.ExtraTinySize) , modifier = Modifier.fillMaxSize()) {
+                    itemsIndexed(items = apps , key = { _ : Int , app : ApplicationInfo -> app.packageName }) { _ : Int , app : ApplicationInfo ->
+                        AppItemComposable(
+                            app , viewModel = viewModel , modifier = Modifier
+                                    .animateItem()
+                                    .padding(start = SizeConstants.SmallSize , end = SizeConstants.SmallSize , top = SizeConstants.SmallSize)
+                        )
+                    }
                 }
             }
         }

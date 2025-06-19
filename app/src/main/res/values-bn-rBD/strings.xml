@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_short_description">দৈনন্দিন ব্যবহারের জন্য আপনার প্রয়োজনীয় শেষ অ্যান্ড্রয়েড ক্লিনার!</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">ক্লিনারে স্বাগতম!</string>
+    <string name="onboarding_welcome_description">আসুন একটি দ্রুত সেটআপ সম্পন্ন করি এবং জায়গা খালি করা শুরু করি।</string>
+    <string name="onboarding_personalization_title">আপনার পরিষ্করণ কাস্টমাইজ করুন</string>
+    <string name="onboarding_personalization_description">আপনার প্রয়োজন অনুযায়ী ক্লিনার অ্যাডজাস্ট করুন।</string>
+    <string name="permission_section_public_title">পাবলিক স্টোরেজ অ্যাক্সেস</string>
+    <string name="permission_section_public_description">ক্লিনারকে পাবলিক স্টোরেজে ফাইল পড়া এবং লেখার অনুমতি দেয়।</string>
+    <string name="permission_section_manage_title">সম্পূর্ণ ফাইল ম্যানেজমেন্ট</string>
+    <string name="permission_section_manage_description">আপনার ডিভাইসের সমস্ত ফাইল সম্পূর্ণরূপে পরিচালনা করার জন্য প্রয়োজনীয়।</string>
+    <string name="permission_section_usage_title">অ্যাপ ব্যবহারের অ্যাক্সেস</string>
+    <string name="permission_section_usage_description">অ্যাপ ব্যবহারের উপর ভিত্তি করে ক্লিনারকে স্টোরেজ বিশ্লেষণ করার অনুমতি দেয়।</string>
+    <string name="onboarding_permission_storage_title">স্টোরেজ অ্যাক্সেস</string>
+    <string name="onboarding_permission_storage_description">অ্যাপ স্ক্যান এবং বিশ্লেষণ করার জন্য ক্লিনারের স্টোরেজ এবং ব্যবহারের অনুমতি প্রয়োজন।</string>
+    <string name="button_grant_permission">অনুমতি দিন</string>
+
+    <!-- Home -->
+    <string name="delete_forever">চিরতরে মুছুন</string>
+    <string name="move_to_trash">ট্র্যাশে সরান</string>
+    <string name="cleaned_space">পরিষ্কার করা স্থান</string>
+    <string name="free_space">খালি স্থান</string>
+    <string name="delete_forever_title">চিরতরে মুছুন</string>
+    <string name="delete_forever_message">আপনি কি নিশ্চিত যে এই ফাইলগুলি চিরতরে মুছতে চান? এই কাজটি আর ফেরানো যাবে না।</string>
+    <string name="move_to_trash_title">ট্র্যাশে সরান</string>
+    <string name="move_to_trash_message">আপনি কি নিশ্চিত যে এই ফাইলগুলি ট্র্যাশে সরাতে চান?</string>
+    <string name="quick_scan">দ্রুত স্ক্যান</string>
+    <string name="apks">এপিকে ফাইল</string>
+    <string name="archives">আর্কাইভসমূহ</string>
+    <string name="fonts">ফন্টসমূহ</string>
+    <string name="windows_files">উইন্ডোজ ফাইলসমূহ</string>
+    <string name="videos">ভিডিওসমূহ</string>
+    <string name="audios">অডিওসমূহ</string>
+    <string name="empty_folders">খালি ফোল্ডারসমূহ</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">স্থিতি: %1$d টি ফাইল নির্বাচিত</item>
+        <item quantity="other">স্থিতি: %1$d টি ফাইল নির্বাচিত</item>
+    </plurals>
+    <string name="status_no_files_selected">স্থিতি: কোনও ফাইল নির্বাচিত নেই</string>
+    <string name="select_all">সব নির্বাচন করুন</string>
+    <string name="today">আজ</string>
+    <string name="yesterday">গতকাল</string>
+    <string name="a_year_ago">গত বছর</string>
+    <plurals name="years_ago">
+        <item quantity="one">%d বছর আগে</item>
+        <item quantity="other">%d বছর আগে</item>
+    </plurals>
+    <string name="no_files_found">কোনও ফাইল পাওয়া যায়নি</string>
+
+    <!-- App manager -->
+    <string name="app_manager">অ্যাপ ম্যানেজার</string>
+    <string name="installed_apps">ইনস্টল করা অ্যাপসমূহ</string>
+    <string name="system_apps">সিস্টেম অ্যাপসমূহ</string>
+    <string name="app_install_files">অ্যাপ ইনস্টল ফাইলসমূহ (APKs)</string>
+    <string name="uninstall">আনইনস্টল করুন</string>
+    <string name="app_info">অ্যাপের তথ্য</string>
+    <string name="install">ইনস্টল করুন</string>
+    <string name="no_app_installed">কোনও অ্যাপ ইনস্টল করা নেই</string>
+
+    <!-- Memory Manager -->
+    <string name="memory_manager">মেমরি ম্যানেজার</string>
+    <string name="storage_information">স্টোরেজ তথ্য</string>
+    <string name="used">ব্যবহৃত:</string>
+    <string name="free">খালি:</string>
+    <string name="total">মোট:</string>
+    <string name="ram_information">RAM তথ্য</string>
+    <string name="used_ram">ব্যবহৃত RAM:</string>
+    <string name="free_ram">খালি RAM:</string>
+    <string name="total_ram">মোট RAM:</string>
+    <string name="categories">বিভাগসমূহ</string>
+    <string name="system">সিস্টেম</string>
+    <string name="music">মিউজিক</string>
+    <string name="images">ছবিসমূহ</string>
+    <string name="documents">ডকুমেন্টসমূহ</string>
+    <string name="downloads">ডাউনলোডসমূহ</string>
+    <string name="other_files">অন্যান্য ফাইলসমূহ</string>
+
+    <!-- Image Optimizer -->
+    <string name="image_optimizer">ইমেজ অপটিমাইজার</string>
+    <string name="summary_select_image">অপটিমাইজ করার জন্য ছবিটি নির্বাচন করুন</string>
+    <string name="choose_image">ছবি নির্বাচন করুন</string>
+    <string name="optimize_image">ছবি অপটিমাইজ করুন</string>
+    <string name="quick_compress">দ্রুত সংক্ষেপণ</string>
+    <string name="low">কম</string>
+    <string name="medium">মাঝারি</string>
+    <string name="high">উচ্চ</string>
+    <string name="file_size">ফাইলের আকার (KB)</string>
+    <string name="default_value">ডিফল্ট</string>
+    <string name="enter_a_value">একটি মান লিখুন</string>
+    <string name="manual">ম্যানুয়াল</string>
+    <string name="width">প্রস্থ (px)</string>
+    <string name="height">উচ্চতা (px)</string>
+    <string name="quality">গুণমান</string>
+
+    <!-- Trash -->
+    <string name="trash">ট্র্যাশ</string>
+    <string name="trash_is_empty">ট্র্যাশ খালি</string>
+    <string name="restore">পুনরুদ্ধার করুন</string>
+
+    <!-- Display -->
+    <string name="dialog_startup_subtitle">আপনার পছন্দের স্টার্টআপ পৃষ্ঠাটি বেছে নিন:</string>
+    <string name="dialog_info_startup">অ্যাপ্লিকেশন চালু করার সময় ব্যবহারকারীদের কাছে উপস্থাপিত প্রাথমিক স্ক্রিনটি কনফিগার করে। এই সেটিংটি অ্যাপের সাথে ব্যবহারকারীর প্রথম মিথস্ক্রিয়াকে প্রভাবিত করে এবং নির্দিষ্ট ব্যবহারকারী গোষ্ঠী বা পণ্যের লক্ষ্যের জন্য তৈরি করা যেতে পারে।</string>
+
+    <!-- Cleaning settings -->
+    <string name="cleaning">পরিষ্করণ</string>
+    <string name="summary_preference_settings_cleaning">আপনার পরিষ্করণ অভিজ্ঞতা কাস্টমাইজ করুন</string>
+    <string name="filters">ফিল্টারসমূহ</string>
+    <string name="generic_filter">সাধারণ ফিল্টার</string>
+    <string name="summary_preference_settings_generic_filter">অস্থায়ী, লগ, লগসমূহ এবং অন্যান্য অপ্রয়োজনীয় ফাইল ও ফোল্ডার মুছুন</string>
+    <string name="delete_empty_folders">খালি ফোল্ডার মুছুন</string>
+    <string name="delete_archives">আর্কাইভ মুছুন</string>
+    <string name="summary_preference_settings_archive_filter">আপনার ডিভাইস থেকে আর্কাইভ মুছুন</string>
+    <string name="delete_corpse_files">পরিত্যক্ত ফাইল মুছুন</string>
+    <string name="summary_preference_settings_delete_corpse_files">আনইনস্টল/সরানো অ্যাপ থেকে অবশিষ্ট ফাইল মুছুন</string>
+    <string name="delete_apk_files">APK ফাইল মুছুন</string>
+    <string name="summary_preference_settings_delete_apk_files">অ্যান্ড্রয়েডের জন্য ইনস্টলার ফাইল (.apk) মুছুন</string>
+    <string name="delete_windows_files">উইন্ডোজ এক্সটেনশন</string>
+    <string name="summary_preference_settings_delete_windows_files">উইন্ডোজ এক্সটেনশন (exe, dll, sys) সনাক্ত করে</string>
+    <string name="delete_office_files">অফিস এক্সটেনশন</string>
+    <string name="summary_preference_settings_delete_office_files">অফিস এক্সটেনশন (doc, xls, ppt, docx, xlsx, pptx) সনাক্ত করে</string>
+    <string name="delete_font_files">ফন্ট এক্সটেনশন</string>
+    <string name="summary_preference_settings_delete_font_files">ফন্ট এক্সটেনশন (ttf, otf) সনাক্ত করে</string>
+    <string name="delete_other_files">অন্যান্য এক্সটেনশন</string>
+    <string name="summary_preference_settings_delete_other_files">অন্যান্য সব ধরনের এক্সটেনশন সনাক্ত করে।</string>
+    <string name="media">মিডিয়া</string>
+    <string name="delete_audio">অডিও মুছুন</string>
+    <string name="summary_preference_settings_delete_audio">ডিভাইস থেকে অডিও ফাইল মুছুন</string>
+    <string name="delete_video">ভিডিও মুছুন</string>
+    <string name="summary_preference_settings_delete_video">ডিভাইস থেকে ভিডিও ফাইল মুছুন</string>
+    <string name="delete_images">ছবি মুছুন</string>
+    <string name="summary_preference_settings_delete_images">ডিভাইস থেকে ছবি ফাইল মুছুন</string>
+    <string name="delete_invalid_media">ত্রুটিপূর্ণ মিডিয়া মুছুন</string>
+    <string name="summary_preference_settings_delete_invalid_media">ত্রুটিপূর্ণ ছবি মুছুন</string>
+    <string name="scanner">স্ক্যানার</string>
+    <string name="clipboard_clean">ক্লিপবোর্ড পরিষ্কার করুন</string>
+
+    <!-- Permissions -->
+    <string name="request_delete_packages">প্যাকেজ মোছার অনুরোধ [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">অ্যাপটিকে প্যাকেজ মোছার অনুরোধ করার অনুমতি দেয়। এটি ডিভাইস থেকে অন্যান্য অ্যাপ আনইনস্টল করতে ব্যবহার করা যেতে পারে</string>
+    <string name="access_media_location">মিডিয়া লোকেশন অ্যাক্সেস [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">অ্যাপটিকে ডিভাইসের মিডিয়া ফাইলের লোকেশন অ্যাক্সেস করার অনুমতি দেয়</string>
+    <string name="action_open_document_tree">ডকুমেন্ট ট্রি খোলার অ্যাকশন [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">অ্যাপটিকে একটি ডকুমেন্ট ট্রি অ্যাক্সেস করার অনুমতি দেয়, যার মধ্যে ট্রিতে ফাইল পড়া এবং লেখার ক্ষমতা অন্তর্ভুক্ত</string>
+    <string name="manage_external_storage">এক্সটার্নাল স্টোরেজ পরিচালনা করুন [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">অ্যাপটিকে ডিভাইসের স্টোরেজে ফাইল মোছা এবং পুনঃনামকরণের মতো কাজ করার অনুমতি দেয়, যার মধ্যে ইন্টারনাল এবং এক্সটার্নাল উভয় স্টোরেজ অন্তর্ভুক্ত</string>
+    <string name="package_usage_stats">প্যাকেজ ব্যবহারের পরিসংখ্যান [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">অ্যাপটিকে ব্যবহারকারীর অ্যাপ ব্যবহারের তথ্য অ্যাক্সেস করার অনুমতি দেয়, যার মধ্যে কোন অ্যাপ ব্যবহার করা হয়েছে, কতক্ষণ ব্যবহার করা হয়েছে এবং কত ঘন ঘন ব্যবহার করা হয়েছে তা অন্তর্ভুক্ত</string>
+    <string name="query_all_packages">সমস্ত প্যাকেজ জিজ্ঞাসা করুন [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">অ্যাপটিকে ডিভাইসে ইনস্টল করা সমস্ত প্যাকেজ সম্পর্কে তথ্য জিজ্ঞাসা করার অনুমতি দেয়। অ্যাপ এই তথ্য ব্যবহার করে কোন ফাইলগুলি রাখবে বা মুছবে তা নির্ধারণ করে</string>
+    <string name="read_external_storage">এক্সটার্নাল স্টোরেজ পড়ুন [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">অ্যাপটিকে ডিভাইসের স্টোরেজ থেকে ফাইল পড়ার অনুমতি দেয়, যার মধ্যে ইন্টারনাল এবং এক্সটার্নাল উভয় স্টোরেজ অন্তর্ভুক্ত</string>
+    <string name="read_media_audio">মিডিয়া অডিও পড়ুন [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">অ্যাপটিকে ডিভাইসের স্টোরেজ থেকে অডিও ফাইল পড়ার অনুমতি দেয়</string>
+    <string name="read_media_images">মিডিয়া ছবি পড়ুন [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">অ্যাপটিকে ডিভাইসের স্টোরেজ থেকে ছবি ফাইল পড়ার অনুমতি দেয়</string>
+    <string name="read_media_video">মিডিয়া ভিডিও পড়ুন [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">অ্যাপটিকে ডিভাইসের স্টোরেজ থেকে ভিডিও ফাইল পড়ার অনুমতি দেয়</string>
+    <string name="write_external_storage">এক্সটার্নাল স্টোরেজে লিখুন [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">অ্যাপটিকে ডিভাইসের স্টোরেজে ফাইল লেখার অনুমতি দেয়, যার মধ্যে ইন্টারনাল এবং এক্সটার্নাল উভয় স্টোরেজ অন্তর্ভুক্ত</string>
+
+    <!-- About -->
+    <string name="summary_preference_settings_about">ক্লিনার সম্পর্কে আরও জানুন</string>
+
+    <!-- FAQ -->
+    <string name="question_1">ক্লিনার কী?</string>
+    <string name="summary_preference_faq_1">ক্লিনার একটি বিনামূল্যের এবং ওপেন সোর্স অ্যান্ড্রয়েড অ্যাপ যা আপনাকে আপনার ডিভাইসের পারফরম্যান্স অপটিমাইজ করতে এবং স্টোরেজ স্পেস খালি করতে সাহায্য করে। এটি আপনার ডিভাইস স্ক্যান করে অপ্রয়োজনীয় ফাইল খুঁজে বের করে মুছে ফেলতে পারে, সেইসাথে আপনার ডিভাইসের গতি বাড়ানোর জন্য ক্যাশে পরিষ্কার করতে পারে।</string>
+    <string name="question_2">ক্লিনার ব্যবহার করা কি নিরাপদ?</string>
+    <string name="summary_preference_faq_2">হ্যাঁ, ক্লিনার ব্যবহার করা নিরাপদ। এটি শুধুমাত্র সেই ফাইলগুলি সরিয়ে দেয় যা আপনার ডিভাইস বা অ্যাপগুলির অপারেশনের জন্য অপরিহার্য নয়, এবং এটি আপনার কোনও ব্যক্তিগত ডেটা বা গুরুত্বপূর্ণ সিস্টেম ফাইল মুছে ফেলে না।</string>
+    <string name="question_3">আমি কীভাবে ক্লিনার ব্যবহার করব?</string>
+    <string name="summary_preference_faq_3">ক্লিনার ব্যবহার করতে, গুগল প্লে স্টোর বা কোনও নির্ভরযোগ্য থার্ড-পার্টি অ্যাপ স্টোর থেকে অ্যাপটি ডাউনলোড এবং ইনস্টল করুন। তারপর, অ্যাপটি খুলুন এবং আপনার ডিভাইস স্ক্যান করতে ও অপ্রয়োজনীয় ফাইল মুছতে নির্দেশাবলী অনুসরণ করুন। ক্লিনার কোন ধরনের ফাইল খুঁজবে এবং মুছবে তা কাস্টমাইজ করতে আপনি অ্যাপের সেটিংস অ্যাক্সেস করতে পারেন।</string>
+    <string name="question_4">ক্লিনার কি অ্যাপ ক্যাশে মুছতে পারে?</string>
+    <string name="summary_preference_faq_4">হ্যাঁ, ক্লিনার অ্যাপ ক্যাশে মুছতে পারে। তবে, এটি মনে রাখা গুরুত্বপূর্ণ যে ক্যাশে মোছার ফলে অ্যাপটি পরেরবার লোড হতে বা নির্দিষ্ট কাজ করতে বেশি সময় নিতে পারে।</string>
+    <string name="question_5">ক্লিনারের কি রুট অ্যাক্সেস প্রয়োজন?</string>
+    <string name="summary_preference_faq_5">না, ক্লিনারের কাজ করার জন্য রুট অ্যাক্সেসের প্রয়োজন নেই। আপনি আপনার ডিভাইস রুট না করেই যেকোনো অ্যান্ড্রয়েড ডিভাইসে এটি ব্যবহার করতে পারেন।</string>
+    <string name="question_6">ক্লিনার কি iOS এর জন্য উপলব্ধ?</string>
+    <string name="summary_preference_faq_6">না, ক্লিনার বর্তমানে শুধুমাত্র অ্যান্ড্রয়েড ডিভাইসের জন্য উপলব্ধ।</string>
+    <string name="question_7">ক্লিনার কি ব্যাটারির আয়ু বাড়ায়?</string>
+    <string name="summary_preference_faq_7">ক্যাশে পরিষ্কার করার জন্য ক্লিনার ব্যবহার করলে অপ্রয়োজনীয় প্রসেস দ্বারা ব্যবহৃত শক্তি এবং সম্পদের পরিমাণ কমিয়ে আপনার ডিভাইসের ব্যাটারির আয়ু উন্নত করতে সাহায্য করতে পারে। তবে, ক্লিনার কতটা ব্যাটারির আয়ু উন্নত করতে পারবে তা বিভিন্ন কারণের উপর নির্ভর করবে যেমন আপনার ডিভাইসের ধরণ ও মডেল, আপনি যে অ্যাপগুলি ব্যবহার করেন এবং আপনার ব্যবহারের অভ্যাস।</string>
+    <string name="question_8">আমার কত ঘন ঘন ক্লিনার ব্যবহার করা উচিত?</string>
+    <string name="summary_preference_faq_8">আপনার কত ঘন ঘন ক্লিনার ব্যবহার করা উচিত তার কোনও নির্দিষ্ট নিয়ম নেই, কারণ এটি আপনার ডিভাইসের ব্যবহার এবং সময়ের সাথে জমা হওয়া অপ্রয়োজনীয় ফাইলের পরিমাণের উপর নির্ভর করবে। কিছু ব্যবহারকারী সাপ্তাহিক বা মাসিক ক্লিনার চালানো সহায়ক মনে করতে পারেন, আবার অন্যদের কেবল মাঝে মাঝে এটি ব্যবহার করার প্রয়োজন হতে পারে।</string>
+    <string name="question_9">ক্লিনার কি সমস্ত অ্যান্ড্রয়েড ডিভাইসের সাথে সামঞ্জস্যপূর্ণ?</string>
+    <string name="summary_preference_faq_9">ক্লিনার বেশিরভাগ অ্যান্ড্রয়েড ডিভাইসের সাথে সামঞ্জস্যপূর্ণ হওয়া উচিত যা অ্যাপের ন্যূনতম সিস্টেমের প্রয়োজনীয়তা পূরণ করে। তবে, আপনার নির্দিষ্ট ডিভাইসের সাথে সামঞ্জস্যতা নিশ্চিত করতে গুগল প্লে স্টোরে অ্যাপের পৃষ্ঠা বা আপনি যে অ্যাপ স্টোর ব্যবহার করছেন তা পরীক্ষা করা সর্বদা একটি ভাল ধারণা। ক্লিনার ব্যবহার করার সময় যদি কোনও সমস্যা হয়, আপনি সমস্যা সমাধানের চেষ্টা করতে পারেন বা সহায়তার জন্য অ্যাপের সাপোর্ট টিমের সাথে যোগাযোগ করতে পারেন।</string>
+
+    <!-- Error messages -->
+    <string name="request_no_internet">কোনও ইন্টারনেট সংযোগ নেই। দয়া করে আপনার সংযোগ পরীক্ষা করে আবার চেষ্টা করুন।</string>
+    <string name="request_timeout">অনুরোধের সময় শেষ। দয়া করে আবার চেষ্টা করুন।</string>
+    <string name="request_server_not_found">সার্ভার ত্রুটি। দয়া করে পরে আবার চেষ্টা করুন।</string>
+    <string name="request_payload_error">ডেটা ত্রুটি। দয়া করে আবার চেষ্টা করুন।</string>
+    <string name="failed_to_open_app_info">অ্যাপের তথ্য খুলতে ব্যর্থ: %1$s</string>
+    <string name="share_apk_failed">APK শেয়ার করতে ব্যর্থ</string>
+    <string name="share_app_failed">অ্যাপ শেয়ার করতে ব্যর্থ</string>
+    <string name="apk_installed_successfully">APK সফলভাবে ইনস্টল হয়েছে!</string>
+    <string name="failed_to_install_apk">APK ইনস্টল করতে ব্যর্থ: %1$s</string>
+    <string name="failed_to_uninstall_app">অ্যাপ আনইনস্টল করতে ব্যর্থ: %1$s</string>
+    <string name="app_uninstalled_successfully">অ্যাপ সফলভাবে আনইনস্টল হয়েছে</string>
+</resources>

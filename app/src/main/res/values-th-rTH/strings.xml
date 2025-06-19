@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_short_description">แอปทำความสะอาด Android ตัวสุดท้ายที่คุณต้องการ สำหรับการใช้งานในทุกๆ วัน!</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">ยินดีต้อนรับสู่ Cleaner!</string>
+    <string name="onboarding_welcome_description">มาตั้งค่าอย่างรวดเร็วและเริ่มเพิ่มพื้นที่ว่างกันเถอะ</string>
+    <string name="onboarding_personalization_title">ปรับแต่งการทำความสะอาดของคุณ</string>
+    <string name="onboarding_personalization_description">ปรับ Cleaner ให้ตรงกับความต้องการของคุณ</string>
+    <string name="permission_section_public_title">การเข้าถึงพื้นที่เก็บข้อมูลสาธารณะ</string>
+    <string name="permission_section_public_description">อนุญาตให้ Cleaner อ่านและเขียนไฟล์บนพื้นที่เก็บข้อมูลสาธารณะ</string>
+    <string name="permission_section_manage_title">การจัดการไฟล์ทั้งหมด</string>
+    <string name="permission_section_manage_description">จำเป็นสำหรับการจัดการไฟล์ทั้งหมดบนอุปกรณ์ของคุณอย่างเต็มรูปแบบ</string>
+    <string name="permission_section_usage_title">การเข้าถึงการใช้งานแอป</string>
+    <string name="permission_section_usage_description">อนุญาตให้ Cleaner วิเคราะห์พื้นที่เก็บข้อมูลตามการใช้งานแอป</string>
+    <string name="onboarding_permission_storage_title">การเข้าถึงพื้นที่เก็บข้อมูล</string>
+    <string name="onboarding_permission_storage_description">Cleaner ต้องการสิทธิ์เข้าถึงพื้นที่เก็บข้อมูลและการใช้งานเพื่อสแกนและวิเคราะห์แอป</string>
+    <string name="button_grant_permission">ให้สิทธิ์</string>
+
+    <!-- Home -->
+    <string name="delete_forever">ลบถาวร</string>
+    <string name="move_to_trash">ย้ายไปที่ถังขยะ</string>
+    <string name="cleaned_space">พื้นที่ที่ทำความสะอาดแล้ว</string>
+    <string name="free_space">พื้นที่ว่าง</string>
+    <string name="delete_forever_title">ลบถาวร</string>
+    <string name="delete_forever_message">คุณแน่ใจหรือไม่ว่าต้องการลบไฟล์เหล่านี้อย่างถาวร? การกระทำนี้ไม่สามารถเลิกทำได้</string>
+    <string name="move_to_trash_title">ย้ายไปที่ถังขยะ</string>
+    <string name="move_to_trash_message">คุณแน่ใจหรือไม่ว่าต้องการย้ายไฟล์เหล่านี้ไปที่ถังขยะ?</string>
+    <string name="quick_scan">สแกนด่วน</string>
+    <string name="apks">ไฟล์ APK</string>
+    <string name="archives">ไฟล์เก็บถาวร</string>
+    <string name="fonts">แบบอักษร</string>
+    <string name="windows_files">ไฟล์ Windows</string>
+    <string name="videos">วิดีโอ</string>
+    <string name="audios">ไฟล์เสียง</string>
+    <string name="empty_folders">โฟลเดอร์ว่าง</string>
+    <plurals name="status_selected_files">
+        <item quantity="other">สถานะ: เลือก %1$d ไฟล์</item>
+    </plurals>
+    <string name="status_no_files_selected">สถานะ: ไม่ได้เลือกไฟล์</string>
+    <string name="select_all">เลือกทั้งหมด</string>
+    <string name="today">วันนี้</string>
+    <string name="yesterday">เมื่อวาน</string>
+    <string name="a_year_ago">ปีที่แล้ว</string>
+    <plurals name="years_ago">
+        <item quantity="other">เมื่อ %d ปีที่แล้ว</item>
+    </plurals>
+    <string name="no_files_found">ไม่พบไฟล์</string>
+
+    <!-- App manager -->
+    <string name="app_manager">ตัวจัดการแอป</string>
+    <string name="installed_apps">แอปที่ติดตั้งแล้ว</string>
+    <string name="system_apps">แประบบ</string>
+    <string name="app_install_files">ไฟล์ติดตั้งแอป (APK)</string>
+    <string name="uninstall">ถอนการติดตั้ง</string>
+    <string name="app_info">ข้อมูลแอป</string>
+    <string name="install">ติดตั้ง</string>
+    <string name="no_app_installed">ไม่มีแอปที่ติดตั้ง</string>
+
+    <!-- Memory Manager -->
+    <string name="memory_manager">ตัวจัดการหน่วยความจำ</string>
+    <string name="storage_information">ข้อมูลพื้นที่เก็บข้อมูล</string>
+    <string name="used">ใช้ไป:</string>
+    <string name="free">ว่าง:</string>
+    <string name="total">ทั้งหมด:</string>
+    <string name="ram_information">ข้อมูล RAM</string>
+    <string name="used_ram">RAM ที่ใช้ไป:</string>
+    <string name="free_ram">RAM ที่ว่าง:</string>
+    <string name="total_ram">RAM ทั้งหมด:</string>
+    <string name="categories">หมวดหมู่</string>
+    <string name="system">ระบบ</string>
+    <string name="music">เพลง</string>
+    <string name="images">รูปภาพ</string>
+    <string name="documents">เอกสาร</string>
+    <string name="downloads">ดาวน์โหลด</string>
+    <string name="other_files">ไฟล์อื่นๆ</string>
+
+    <!-- Image Optimizer -->
+    <string name="image_optimizer">ตัวปรับประสิทธิภาพรูปภาพ</string>
+    <string name="summary_select_image">เลือกรูปภาพที่คุณต้องการเพิ่มประสิทธิภาพ</string>
+    <string name="choose_image">เลือกรูปภาพ</string>
+    <string name="optimize_image">เพิ่มประสิทธิภาพรูปภาพ</string>
+    <string name="quick_compress">บีบอัดด่วน</string>
+    <string name="low">ต่ำ</string>
+    <string name="medium">ปานกลาง</string>
+    <string name="high">สูง</string>
+    <string name="file_size">ขนาดไฟล์ (KB)</string>
+    <string name="default_value">ค่าเริ่มต้น</string>
+    <string name="enter_a_value">ป้อนค่า</string>
+    <string name="manual">กำหนดเอง</string>
+    <string name="width">ความกว้าง (px)</string>
+    <string name="height">ความสูง (px)</string>
+    <string name="quality">คุณภาพ</string>
+
+    <!-- Trash -->
+    <string name="trash">ถังขยะ</string>
+    <string name="trash_is_empty">ถังขยะว่างเปล่า</string>
+    <string name="restore">กู้คืน</string>
+
+    <!-- Display -->
+    <string name="dialog_startup_subtitle">เลือกหน้าเริ่มต้นที่คุณต้องการ:</string>
+    <string name="dialog_info_startup">กำหนดค่าหน้าจอเริ่มต้นที่จะแสดงต่อผู้ใช้เมื่อเปิดแอปพลิเคชัน การตั้งค่านี้มีผลต่อการโต้ตอบครั้งแรกของผู้ใช้กับแอป และสามารถปรับแต่งให้เหมาะกับกลุ่มผู้ใช้หรือเป้าหมายของผลิตภัณฑ์ได้</string>
+
+    <!-- Cleaning settings -->
+    <string name="cleaning">การทำความสะอาด</string>
+    <string name="summary_preference_settings_cleaning">ปรับแต่งประสบการณ์การทำความสะอาดของคุณ</string>
+    <string name="filters">ตัวกรอง</string>
+    <string name="generic_filter">ตัวกรองทั่วไป</string>
+    <string name="summary_preference_settings_generic_filter">ลบไฟล์และโฟลเดอร์ชั่วคราว, ไฟล์บันทึก (log) และไฟล์ขยะอื่นๆ</string>
+    <string name="delete_empty_folders">ลบโฟลเดอร์ว่าง</string>
+    <string name="delete_archives">ลบไฟล์เก็บถาวร</string>
+    <string name="summary_preference_settings_archive_filter">ลบไฟล์เก็บถาวรจากอุปกรณ์ของคุณ</string>
+    <string name="delete_corpse_files">ลบไฟล์ตกค้าง</string>
+    <string name="summary_preference_settings_delete_corpse_files">ลบไฟล์ที่หลงเหลือจากแอปที่ถอนการติดตั้ง/ลบออกไปแล้ว</string>
+    <string name="delete_apk_files">ลบไฟล์ APK</string>
+    <string name="summary_preference_settings_delete_apk_files">ลบไฟล์ติดตั้ง (.apk) สำหรับ Android</string>
+    <string name="delete_windows_files">นามสกุลไฟล์ของ Windows</string>
+    <string name="summary_preference_settings_delete_windows_files">ตรวจจับนามสกุลไฟล์ของ Windows (exe, dll, sys)</string>
+    <string name="delete_office_files">นามสกุลไฟล์ของ Office</string>
+    <string name="summary_preference_settings_delete_office_files">ตรวจจับนามสกุลไฟล์ของ Office (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">นามสกุลไฟล์แบบอักษร</string>
+    <string name="summary_preference_settings_delete_font_files">ตรวจจับนามสกุลไฟล์แบบอักษร (ttf, otf)</string>
+    <string name="delete_other_files">นามสกุลไฟล์อื่นๆ</string>
+    <string name="summary_preference_settings_delete_other_files">ตรวจจับนามสกุลไฟล์ประเภทอื่นๆ ทั้งหมด</string>
+    <string name="media">สื่อ</string>
+    <string name="delete_audio">ลบไฟล์เสียง</string>
+    <string name="summary_preference_settings_delete_audio">ลบไฟล์เสียงออกจากอุปกรณ์</string>
+    <string name="delete_video">ลบวิดีโอ</string>
+    <string name="summary_preference_settings_delete_video">ลบไฟล์วิดีโอออกจากอุปกรณ์</string>
+    <string name="delete_images">ลบรูปภาพ</string>
+    <string name="summary_preference_settings_delete_images">ลบไฟล์รูปภาพออกจากอุปกรณ์</string>
+    <string name="delete_invalid_media">ลบไฟล์สื่อที่เสียหาย</string>
+    <string name="summary_preference_settings_delete_invalid_media">ลบรูปภาพที่เสียหาย</string>
+    <string name="scanner">สแกนเนอร์</string>
+    <string name="clipboard_clean">ล้างคลิปบอร์ด</string>
+
+    <!-- Permissions -->
+    <string name="request_delete_packages">ร้องขอการลบแพ็คเกจ [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">อนุญาตให้แอปสามารถร้องขอการลบแพ็คเกจได้ ซึ่งสามารถใช้เพื่อถอนการติดตั้งแอปอื่นๆ ออกจากอุปกรณ์</string>
+    <string name="access_media_location">เข้าถึงตำแหน่งที่ตั้งของสื่อ [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">อนุญาตให้แอปเข้าถึงตำแหน่งที่ตั้งของไฟล์สื่อในอุปกรณ์</string>
+    <string name="action_open_document_tree">การดำเนินการเปิดโครงสร้างเอกสาร [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">อนุญาตให้แอปเข้าถึงโครงสร้างของเอกสาร รวมถึงความสามารถในการอ่านและเขียนไฟล์ในโครงสร้างนั้น</string>
+    <string name="manage_external_storage">จัดการพื้นที่เก็บข้อมูลภายนอก [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">อนุญาตให้แอปดำเนินการต่างๆ เช่น การลบและเปลี่ยนชื่อไฟล์บนพื้นที่เก็บข้อมูลของอุปกรณ์ รวมถึงทั้งพื้นที่เก็บข้อมูลภายในและภายนอก</string>
+    <string name="package_usage_stats">สถิติการใช้งานแพ็คเกจ [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">อนุญาตให้แอปเข้าถึงข้อมูลเกี่ยวกับการใช้งานแอปของผู้ใช้ รวมถึงแอปใดที่ถูกใช้งาน, ใช้งานนานเท่าใด, และใช้งานบ่อยแค่ไหน</string>
+    <string name="query_all_packages">ค้นหาแพ็คเกจทั้งหมด [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">อนุญาตให้แอปค้นหาข้อมูลเกี่ยวกับแพ็คเกจที่ติดตั้งทั้งหมดบนอุปกรณ์ แอปใช้ข้อมูลนี้เพื่อตัดสินใจว่าจะเก็บหรือลบไฟล์ใด</string>
+    <string name="read_external_storage">อ่านพื้นที่เก็บข้อมูลภายนอก [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">อนุญาตให้แอปอ่านไฟล์จากพื้นที่เก็บข้อมูลของอุปกรณ์ รวมถึงทั้งพื้นที่เก็บข้อมูลภายในและภายนอก</string>
+    <string name="read_media_audio">อ่านไฟล์เสียง [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">อนุญาตให้แอปอ่านไฟล์เสียงจากพื้นที่เก็บข้อมูลของอุปกรณ์</string>
+    <string name="read_media_images">อ่านไฟล์รูปภาพ [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">อนุญาตให้แอปอ่านไฟล์รูปภาพจากพื้นที่เก็บข้อมูลของอุปกรณ์</string>
+    <string name="read_media_video">อ่านไฟล์วิดีโอ [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">อนุญาตให้แอปอ่านไฟล์วิดีโอจากพื้นที่เก็บข้อมูลของอุปกรณ์</string>
+    <string name="write_external_storage">เขียนไปยังพื้นที่เก็บข้อมูลภายนอก [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">อนุญาตให้แอปเขียนไฟล์ไปยังพื้นที่เก็บข้อมูลของอุปกรณ์ รวมถึงทั้งพื้นที่เก็บข้อมูลภายในและภายนอก</string>
+
+    <!-- About -->
+    <string name="summary_preference_settings_about">เรียนรู้เพิ่มเติมเกี่ยวกับ Cleaner</string>
+
+    <!-- FAQ -->
+    <string name="question_1">Cleaner คืออะไร?</string>
+    <string name="summary_preference_faq_1">Cleaner เป็นแอป Android ฟรีและโอเพนซอร์สที่ช่วยให้คุณเพิ่มประสิทธิภาพของอุปกรณ์และเพิ่มพื้นที่เก็บข้อมูล สามารถสแกนอุปกรณ์ของคุณเพื่อหาไฟล์ที่ไม่จำเป็นและลบออก รวมถึงล้างแคชเพื่อเพิ่มความเร็วของอุปกรณ์</string>
+    <string name="question_2">Cleaner ปลอดภัยในการใช้งานหรือไม่?</string>
+    <string name="summary_preference_faq_2">ใช่ Cleaner ปลอดภัยในการใช้งาน แอปจะลบเฉพาะไฟล์ที่ไม่จำเป็นต่อการทำงานของอุปกรณ์หรือแอปของคุณ และจะไม่ลบข้อมูลส่วนตัวหรือไฟล์ระบบที่สำคัญใดๆ ของคุณ</string>
+    <string name="question_3">ฉันจะใช้ Cleaner ได้อย่างไร?</string>
+    <string name="summary_preference_faq_3">หากต้องการใช้ Cleaner เพียงดาวน์โหลดและติดตั้งแอปจาก Google Play Store หรือร้านค้าแอปของบุคคลที่สามที่มีชื่อเสียง จากนั้นเปิดแอปและทำตามคำแนะนำเพื่อสแกนอุปกรณ์และลบไฟล์ที่ไม่จำเป็น คุณยังสามารถเข้าถึงการตั้งค่าของแอปเพื่อปรับแต่งประเภทของไฟล์ที่ Cleaner ค้นหาและลบได้</string>
+    <string name="question_4">Cleaner สามารถลบแคชของแอปได้หรือไม่?</string>
+    <string name="summary_preference_faq_4">ใช่ Cleaner สามารถลบแคชของแอปได้ อย่างไรก็ตาม สิ่งสำคัญคือต้องทราบว่าการลบแคชอาจทำให้แอปใช้เวลาในการโหลดหรือทำงานบางอย่างนานขึ้นในครั้งต่อไปที่คุณใช้งาน</string>
+    <string name="question_5">Cleaner ต้องการสิทธิ์การเข้าถึงรูทหรือไม่?</string>
+    <string name="summary_preference_faq_5">ไม่ Cleaner ไม่ต้องการสิทธิ์การเข้าถึงรูทเพื่อทำงาน คุณสามารถใช้งานบนอุปกรณ์ Android ใดก็ได้โดยไม่ต้องรูทอุปกรณ์ของคุณ</string>
+    <string name="question_6">Cleaner มีให้สำหรับ iOS หรือไม่?</string>
+    <string name="summary_preference_faq_6">ไม่ ปัจจุบัน Cleaner มีให้ใช้งานสำหรับอุปกรณ์ Android เท่านั้น</string>
+    <string name="question_7">Cleaner ช่วยยืดอายุการใช้งานแบตเตอรี่หรือไม่?</string>
+    <string name="summary_preference_faq_7">การใช้ Cleaner เพื่อล้างแคชอาจช่วยยืดอายุการใช้งานแบตเตอรี่ของอุปกรณ์โดยการลดปริมาณพลังงานและทรัพยากรที่ใช้โดยกระบวนการที่ไม่จำเป็น อย่างไรก็ตาม ระดับที่ Cleaner สามารถยืดอายุแบตเตอรี่ของคุณได้นั้นจะขึ้นอยู่กับปัจจัยต่างๆ เช่น ยี่ห้อและรุ่นของอุปกรณ์, แอปที่คุณใช้, และพฤติกรรมการใช้งานของคุณ</string>
+    <string name="question_8">ฉันควรใช้ Cleaner บ่อยแค่ไหน?</string>
+    <string name="summary_preference_faq_8">ไม่มีกฎตายตัวว่าคุณควรใช้ Cleaner บ่อยแค่ไหน เนื่องจากจะขึ้นอยู่กับการใช้งานอุปกรณ์และปริมาณไฟล์ที่ไม่จำเป็นที่สะสมอยู่ตลอดเวลา ผู้ใช้บางคนอาจพบว่าการใช้ Cleaner ทุกสัปดาห์หรือทุกเดือนมีประโยชน์ ในขณะที่คนอื่นๆ อาจต้องการใช้งานเป็นครั้งคราวเท่านั้น</string>
+    <string name="question_9">Cleaner เข้ากันได้กับอุปกรณ์ Android ทั้งหมดหรือไม่?</string>
+    <string name="summary_preference_faq_9">Cleaner ควรจะเข้ากันได้กับอุปกรณ์ Android ส่วนใหญ่ที่ตรงตามข้อกำหนดขั้นต่ำของระบบของแอป อย่างไรก็ตาม ควรตรวจสอบหน้าแอปใน Google Play Store หรือร้านค้าแอปที่คุณใช้เพื่อยืนยันความเข้ากันได้กับอุปกรณ์เฉพาะของคุณเสมอ หากคุณพบปัญหาใดๆ ขณะใช้ Cleaner คุณสามารถลองแก้ไขปัญหาหรือติดต่อทีมสนับสนุนของแอปเพื่อขอความช่วยเหลือได้</string>
+
+    <!-- Error messages -->
+    <string name="request_no_internet">ไม่มีการเชื่อมต่ออินเทอร์เน็ต โปรดตรวจสอบการเชื่อมต่อของคุณและลองอีกครั้ง</string>
+    <string name="request_timeout">คำขอหมดเวลา โปรดลองอีกครั้ง</string>
+    <string name="request_server_not_found">เกิดข้อผิดพลาดที่เซิร์ฟเวอร์ โปรดลองอีกครั้งในภายหลัง</string>
+    <string name="request_payload_error">ข้อผิดพลาดของข้อมูล โปรดลองอีกครั้ง</string>
+    <string name="failed_to_open_app_info">ไม่สามารถเปิดข้อมูลแอปได้: %1$s</string>
+    <string name="share_apk_failed">ไม่สามารถแชร์ APK ได้</string>
+    <string name="share_app_failed">ไม่สามารถแชร์แอปได้</string>
+    <string name="apk_installed_successfully">ติดตั้ง APK สำเร็จแล้ว!</string>
+    <string name="failed_to_install_apk">ติดตั้ง APK ไม่สำเร็จ: %1$s</string>
+    <string name="failed_to_uninstall_app">ถอนการติดตั้งแอปไม่สำเร็จ: %1$s</string>
+    <string name="app_uninstalled_successfully">ถอนการติดตั้งแอปสำเร็จแล้ว</string>
+</resources>

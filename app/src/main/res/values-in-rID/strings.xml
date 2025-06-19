@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_short_description">Pembersih Android terakhir yang akan Anda perlukan untuk penggunaan sehari-hari!</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">Selamat datang di Cleaner!</string>
+    <string name="onboarding_welcome_description">Mari kita lalui pengaturan cepat dan mulai mengosongkan ruang.</string>
+    <string name="onboarding_personalization_title">Sesuaikan Pembersihan Anda</string>
+    <string name="onboarding_personalization_description">Sesuaikan Cleaner agar sesuai dengan kebutuhan Anda.</string>
+    <string name="permission_section_public_title">Akses penyimpanan publik</string>
+    <string name="permission_section_public_description">Mengizinkan Cleaner untuk membaca dan menulis file di penyimpanan publik.</string>
+    <string name="permission_section_manage_title">Manajemen file penuh</string>
+    <string name="permission_section_manage_description">Diperlukan untuk mengelola semua file di perangkat Anda sepenuhnya.</string>
+    <string name="permission_section_usage_title">Akses penggunaan aplikasi</string>
+    <string name="permission_section_usage_description">Mengizinkan Cleaner untuk menganalisis penyimpanan berdasarkan penggunaan aplikasi.</string>
+    <string name="onboarding_permission_storage_title">Akses Penyimpanan</string>
+    <string name="onboarding_permission_storage_description">Cleaner memerlukan izin penyimpanan dan penggunaan untuk memindai dan menganalisis aplikasi.</string>
+    <string name="button_grant_permission">Berikan izin</string>
+
+    <!-- Home -->
+    <string name="delete_forever">Hapus selamanya</string>
+    <string name="move_to_trash">Pindahkan ke sampah</string>
+    <string name="cleaned_space">Ruang yang Dibersihkan</string>
+    <string name="free_space">Ruang Kosong</string>
+    <string name="delete_forever_title">Hapus Selamanya</string>
+    <string name="delete_forever_message">Apakah Anda yakin ingin menghapus file-file ini selamanya? Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="move_to_trash_title">Pindahkan ke Sampah</string>
+    <string name="move_to_trash_message">Apakah Anda yakin ingin memindahkan file-file ini ke sampah?</string>
+    <string name="quick_scan">Pindai Cepat</string>
+    <string name="apks">APK</string>
+    <string name="archives">Arsip</string>
+    <string name="fonts">Font</string>
+    <string name="windows_files">File Windows</string>
+    <string name="videos">Video</string>
+    <string name="audios">Audio</string>
+    <string name="empty_folders">Folder Kosong</string>
+    <plurals name="status_selected_files">
+        <item quantity="other">Status: %1$d file dipilih</item>
+    </plurals>
+    <string name="status_no_files_selected">Status: Tidak ada file yang dipilih</string>
+    <string name="select_all">Pilih Semua</string>
+    <string name="today">Hari ini</string>
+    <string name="yesterday">Kemarin</string>
+    <string name="a_year_ago">Tahun Lalu</string>
+    <plurals name="years_ago">
+        <item quantity="other">%d tahun yang lalu</item>
+    </plurals>
+    <string name="no_files_found">Tidak ada file yang ditemukan</string>
+
+    <!-- App manager -->
+    <string name="app_manager">Manajer Aplikasi</string>
+    <string name="installed_apps">Aplikasi terinstal</string>
+    <string name="system_apps">Aplikasi sistem</string>
+    <string name="app_install_files">File instalasi aplikasi (APK)</string>
+    <string name="uninstall">Copot pemasangan</string>
+    <string name="app_info">Info aplikasi</string>
+    <string name="install">Instal</string>
+    <string name="no_app_installed">Tidak ada aplikasi yang terinstal</string>
+
+    <!-- Memory Manager -->
+    <string name="memory_manager">Manajer Memori</string>
+    <string name="storage_information">Informasi Penyimpanan</string>
+    <string name="used">Digunakan:</string>
+    <string name="free">Kosong:</string>
+    <string name="total">Total:</string>
+    <string name="ram_information">Informasi RAM</string>
+    <string name="used_ram">RAM Digunakan:</string>
+    <string name="free_ram">RAM Kosong:</string>
+    <string name="total_ram">Total RAM:</string>
+    <string name="categories">Kategori</string>
+    <string name="system">Sistem</string>
+    <string name="music">Musik</string>
+    <string name="images">Gambar</string>
+    <string name="documents">Dokumen</string>
+    <string name="downloads">Unduhan</string>
+    <string name="other_files">File Lainnya</string>
+
+    <!-- Image Optimizer -->
+    <string name="image_optimizer">Pengoptimal gambar</string>
+    <string name="summary_select_image">Pilih gambar yang ingin Anda optimalkan</string>
+    <string name="choose_image">Pilih gambar</string>
+    <string name="optimize_image">Optimalkan gambar</string>
+    <string name="quick_compress">Kompres Cepat</string>
+    <string name="low">Rendah</string>
+    <string name="medium">Sedang</string>
+    <string name="high">Tinggi</string>
+    <string name="file_size">Ukuran File (KB)</string>
+    <string name="default_value">Default</string>
+    <string name="enter_a_value">Masukkan nilai</string>
+    <string name="manual">Manual</string>
+    <string name="width">Lebar (px)</string>
+    <string name="height">Tinggi (px)</string>
+    <string name="quality">Kualitas</string>
+
+    <!-- Trash -->
+    <string name="trash">Sampah</string>
+    <string name="trash_is_empty">Sampah kosong</string>
+    <string name="restore">Pulihkan</string>
+
+    <!-- Display -->
+    <string name="dialog_startup_subtitle">Pilih halaman awal pilihan Anda:</string>
+    <string name="dialog_info_startup">Mengonfigurasi layar awal yang disajikan kepada pengguna saat meluncurkan aplikasi. Pengaturan ini memengaruhi interaksi pertama pengguna dengan aplikasi dan dapat disesuaikan dengan segmen pengguna atau tujuan produk tertentu.</string>
+
+    <!-- Cleaning settings -->
+    <string name="cleaning">Pembersihan</string>
+    <string name="summary_preference_settings_cleaning">Sesuaikan pengalaman pembersihan Anda</string>
+    <string name="filters">Filter</string>
+    <string name="generic_filter">Filter generik</string>
+    <string name="summary_preference_settings_generic_filter">Hapus file temp, log, logs, &amp; file &amp; folder tidak berguna lainnya</string>
+    <string name="delete_empty_folders">Hapus folder kosong</string>
+    <string name="delete_archives">Hapus arsip</string>
+    <string name="summary_preference_settings_archive_filter">Hapus arsip dari perangkat Anda</string>
+    <string name="delete_corpse_files">Hapus file sisa</string>
+    <string name="summary_preference_settings_delete_corpse_files">Hapus file yang tersisa dari aplikasi yang dicopot/dihapus</string>
+    <string name="delete_apk_files">Hapus file APK</string>
+    <string name="summary_preference_settings_delete_apk_files">Hapus file installer (.apk) untuk Android</string>
+    <string name="delete_windows_files">Ekstensi Windows</string>
+    <string name="summary_preference_settings_delete_windows_files">Mendeteksi ekstensi Windows (exe, dll, sys)</string>
+    <string name="delete_office_files">Ekstensi Office</string>
+    <string name="summary_preference_settings_delete_office_files">Mendeteksi ekstensi Office (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">Ekstensi Font</string>
+    <string name="summary_preference_settings_delete_font_files">Mendeteksi ekstensi font (ttf, otf)</string>
+    <string name="delete_other_files">Ekstensi Lainnya</string>
+    <string name="summary_preference_settings_delete_other_files">Mendeteksi semua jenis ekstensi lainnya.</string>
+    <string name="media">Media</string>
+    <string name="delete_audio">Hapus audio</string>
+    <string name="summary_preference_settings_delete_audio">Hapus file audio dari perangkat</string>
+    <string name="delete_video">Hapus video</string>
+    <string name="summary_preference_settings_delete_video">Hapus file video dari perangkat</string>
+    <string name="delete_images">Hapus gambar</string>
+    <string name="summary_preference_settings_delete_images">Hapus file gambar dari perangkat</string>
+    <string name="delete_invalid_media">Hapus media tidak valid</string>
+    <string name="summary_preference_settings_delete_invalid_media">Hapus gambar yang rusak</string>
+    <string name="scanner">Pemindai</string>
+    <string name="clipboard_clean">Bersihkan clipboard</string>
+
+    <!-- Permissions -->
+    <string name="request_delete_packages">Minta hapus paket [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">Mengizinkan aplikasi untuk meminta penghapusan paket. Ini dapat digunakan untuk mencopot pemasangan aplikasi lain dari perangkat</string>
+    <string name="access_media_location">Akses lokasi media [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">Mengizinkan aplikasi untuk mengakses lokasi file media perangkat</string>
+    <string name="action_open_document_tree">Tindakan buka pohon dokumen [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">Mengizinkan aplikasi untuk mengakses pohon dokumen, termasuk kemampuan untuk membaca dan menulis file di pohon tersebut</string>
+    <string name="manage_external_storage">Kelola penyimpanan eksternal [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">Mengizinkan aplikasi untuk melakukan tindakan seperti menghapus dan mengganti nama file di penyimpanan perangkat, termasuk penyimpanan internal dan eksternal</string>
+    <string name="package_usage_stats">Statistik penggunaan paket [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">Mengizinkan aplikasi untuk mengakses informasi tentang penggunaan aplikasi pengguna, termasuk aplikasi mana yang telah digunakan, berapa lama telah digunakan, dan seberapa sering telah digunakan</string>
+    <string name="query_all_packages">Kueri semua paket [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">Mengizinkan aplikasi untuk menanyakan informasi tentang semua paket yang terinstal di perangkat. Aplikasi menggunakan informasi ini untuk menentukan file mana yang akan disimpan atau dihapus</string>
+    <string name="read_external_storage">Baca penyimpanan eksternal [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">Mengizinkan aplikasi untuk membaca file dari penyimpanan perangkat, termasuk penyimpanan internal dan eksternal</string>
+    <string name="read_media_audio">Baca media audio [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">Mengizinkan aplikasi untuk membaca file audio dari penyimpanan perangkat</string>
+    <string name="read_media_images">Baca media gambar [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">Mengizinkan aplikasi untuk membaca file gambar dari penyimpanan perangkat</string>
+    <string name="read_media_video">Baca media video [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">Mengizinkan aplikasi untuk membaca file video dari penyimpanan perangkat</string>
+    <string name="write_external_storage">Tulis penyimpanan eksternal [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">Mengizinkan aplikasi untuk menulis file ke penyimpanan perangkat, termasuk penyimpanan internal dan eksternal</string>
+
+    <!-- About -->
+    <string name="summary_preference_settings_about">Pelajari lebih lanjut tentang Cleaner</string>
+
+    <!-- FAQ -->
+    <string name="question_1">Apa itu Cleaner?</string>
+    <string name="summary_preference_faq_1">Cleaner adalah aplikasi Android gratis dan sumber terbuka yang membantu Anda mengoptimalkan kinerja perangkat dan mengosongkan ruang penyimpanan. Aplikasi ini dapat memindai perangkat Anda untuk mencari file yang tidak perlu dan menghapusnya, serta membersihkan cache untuk meningkatkan kecepatan perangkat Anda</string>
+    <string name="question_2">Apakah Cleaner aman digunakan?</string>
+    <string name="summary_preference_faq_2">Ya, Cleaner aman digunakan. Aplikasi ini hanya menghapus file yang tidak penting untuk pengoperasian perangkat atau aplikasi Anda, dan tidak menghapus data pribadi atau file sistem penting Anda</string>
+    <string name="question_3">Bagaimana cara menggunakan Cleaner?</string>
+    <string name="summary_preference_faq_3">Untuk menggunakan Cleaner, cukup unduh dan instal aplikasi dari Google Play Store atau toko aplikasi pihak ketiga yang memiliki reputasi baik. Kemudian, buka aplikasi dan ikuti petunjuk untuk memindai perangkat Anda dan menghapus file yang tidak perlu. Anda juga dapat mengakses pengaturan aplikasi untuk menyesuaikan jenis file yang dicari dan dihapus oleh Cleaner</string>
+    <string name="question_4">Dapatkah Cleaner menghapus cache aplikasi?</string>
+    <string name="summary_preference_faq_4">Ya, Cleaner dapat menghapus cache aplikasi. Namun, penting untuk dicatat bahwa menghapus cache dapat menyebabkan aplikasi membutuhkan waktu lebih lama untuk dimuat atau melakukan tugas tertentu saat Anda menggunakannya lagi</string>
+    <string name="question_5">Apakah Cleaner memerlukan akses root?</string>
+    <string name="summary_preference_faq_5">Tidak, Cleaner tidak memerlukan akses root untuk berfungsi. Anda dapat menggunakannya di perangkat Android apa pun tanpa me-root perangkat Anda</string>
+    <string name="question_6">Apakah Cleaner tersedia untuk iOS?</string>
+    <string name="summary_preference_faq_6">Tidak, Cleaner saat ini hanya tersedia untuk perangkat Android</string>
+    <string name="question_7">Apakah Cleaner meningkatkan masa pakai baterai?</string>
+    <string name="summary_preference_faq_7">Menggunakan Cleaner untuk membersihkan cache dapat membantu meningkatkan masa pakai baterai perangkat Anda dengan mengurangi jumlah daya dan sumber daya yang digunakan oleh proses yang tidak perlu. Namun, sejauh mana Cleaner dapat meningkatkan masa pakai baterai Anda akan bergantung pada berbagai faktor seperti merek dan model perangkat Anda, aplikasi yang Anda gunakan, dan kebiasaan penggunaan Anda</string>
+    <string name="question_8">Seberapa sering saya harus menggunakan Cleaner?</string>
+    <string name="summary_preference_faq_8">Tidak ada aturan baku seberapa sering Anda harus menggunakan Cleaner, karena itu akan tergantung pada penggunaan perangkat Anda dan jumlah file yang tidak perlu yang terakumulasi dari waktu ke waktu. Beberapa pengguna mungkin merasa terbantu untuk menjalankan Cleaner mingguan atau bulanan, sementara yang lain mungkin hanya perlu menggunakannya sesekali</string>
+    <string name="question_9">Apakah Cleaner kompatibel dengan semua perangkat Android?</string>
+    <string name="summary_preference_faq_9">Cleaner seharusnya kompatibel dengan sebagian besar perangkat Android yang memenuhi persyaratan sistem minimum aplikasi. Namun, selalu merupakan ide yang baik untuk memeriksa halaman aplikasi di Google Play Store atau toko aplikasi yang Anda gunakan untuk mengonfirmasi kompatibilitas dengan perangkat spesifik Anda. Jika Anda mengalami masalah saat menggunakan Cleaner, Anda dapat mencoba memecahkan masalah atau menghubungi tim dukungan aplikasi untuk mendapatkan bantuan</string>
+
+    <!-- Error messages -->
+    <string name="request_no_internet">Tidak ada koneksi internet. Harap periksa koneksi Anda dan coba lagi.</string>
+    <string name="request_timeout">Permintaan waktu habis. Silakan coba lagi.</string>
+    <string name="request_server_not_found">Kesalahan server. Silakan coba lagi nanti.</string>
+    <string name="request_payload_error">Kesalahan data. Silakan coba lagi.</string>
+    <string name="failed_to_open_app_info">Gagal membuka info aplikasi: %1$s</string>
+    <string name="share_apk_failed">Gagal membagikan APK</string>
+    <string name="share_app_failed">Gagal membagikan aplikasi</string>
+    <string name="apk_installed_successfully">APK berhasil diinstal!</string>
+    <string name="failed_to_install_apk">Gagal menginstal APK: %1$s</string>
+    <string name="failed_to_uninstall_app">Gagal mencopot pemasangan aplikasi: %1$s</string>
+    <string name="app_uninstalled_successfully">Aplikasi berhasil dicopot pemasangannya</string>
+</resources>

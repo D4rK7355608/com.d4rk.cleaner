@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_short_description">Ultimul Cleaner Android de care veți avea vreodată nevoie pentru utilizarea de zi cu zi!</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">Bun venit la Cleaner!</string>
+    <string name="onboarding_welcome_description">Să parcurgem o configurare rapidă și să începem eliberarea spațiului.</string>
+    <string name="onboarding_personalization_title">Personalizați-vă curățarea</string>
+    <string name="onboarding_personalization_description">Ajustați Cleaner pentru a se potrivi nevoilor dumneavoastră.</string>
+    <string name="permission_section_public_title">Acces la stocarea publică</string>
+    <string name="permission_section_public_description">Permite Cleaner să citească și să scrie fișiere în stocarea publică.</string>
+    <string name="permission_section_manage_title">Gestionare completă a fișierelor</string>
+    <string name="permission_section_manage_description">Necesar pentru a gestiona complet toate fișierele de pe dispozitiv.</string>
+    <string name="permission_section_usage_title">Acces la utilizarea aplicațiilor</string>
+    <string name="permission_section_usage_description">Permite Cleaner să analizeze stocarea pe baza utilizării aplicațiilor.</string>
+    <string name="onboarding_permission_storage_title">Acces la stocare</string>
+    <string name="onboarding_permission_storage_description">Cleaner necesită permisiuni de stocare și utilizare pentru a scana și analiza aplicațiile.</string>
+    <string name="button_grant_permission">Acordă permisiunea</string>
+
+    <!-- Home -->
+    <string name="delete_forever">Șterge definitiv</string>
+    <string name="move_to_trash">Mută în coș</string>
+    <string name="cleaned_space">Spațiu curățat</string>
+    <string name="free_space">Spațiu liber</string>
+    <string name="delete_forever_title">Șterge definitiv</string>
+    <string name="delete_forever_message">Sigur doriți să ștergeți aceste fișiere definitiv? Această acțiune nu poate fi anulată.</string>
+    <string name="move_to_trash_title">Mută în coș</string>
+    <string name="move_to_trash_message">Sigur doriți să mutați aceste fișiere în coș?</string>
+    <string name="quick_scan">Scanare rapidă</string>
+    <string name="apks">APK-uri</string>
+    <string name="archives">Arhive</string>
+    <string name="fonts">Fonturi</string>
+    <string name="windows_files">Fișiere Windows</string>
+    <string name="videos">Videoclipuri</string>
+    <string name="audios">Fișiere audio</string>
+    <string name="empty_folders">Foldere goale</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">Stare: %1$d fișier selectat</item>
+        <item quantity="few">Stare: %1$d fișiere selectate</item>
+        <item quantity="other">Stare: %1$d de fișiere selectate</item>
+    </plurals>
+    <string name="status_no_files_selected">Stare: Niciun fișier selectat</string>
+    <string name="select_all">Selectează tot</string>
+    <string name="today">Astăzi</string>
+    <string name="yesterday">Ieri</string>
+    <string name="a_year_ago">Anul trecut</string>
+    <plurals name="years_ago">
+        <item quantity="one">Acum %d an</item>
+        <item quantity="few">Acum %d ani</item>
+        <item quantity="other">Acum %d de ani</item>
+    </plurals>
+    <string name="no_files_found">Niciun fișier găsit</string>
+
+    <!-- App manager -->
+    <string name="app_manager">Manager aplicații</string>
+    <string name="installed_apps">Aplicații instalate</string>
+    <string name="system_apps">Aplicații de sistem</string>
+    <string name="app_install_files">Fișiere de instalare aplicații (APK-uri)</string>
+    <string name="uninstall">Dezinstalează</string>
+    <string name="app_info">Informații aplicație</string>
+    <string name="install">Instalează</string>
+    <string name="no_app_installed">Nicio aplicație instalată</string>
+
+    <!-- Memory Manager -->
+    <string name="memory_manager">Manager memorie</string>
+    <string name="storage_information">Informații stocare</string>
+    <string name="used">Utilizat:</string>
+    <string name="free">Liber:</string>
+    <string name="total">Total:</string>
+    <string name="ram_information">Informații RAM</string>
+    <string name="used_ram">RAM utilizată:</string>
+    <string name="free_ram">RAM liberă:</string>
+    <string name="total_ram">RAM totală:</string>
+    <string name="categories">Categorii</string>
+    <string name="system">Sistem</string>
+    <string name="music">Muzică</string>
+    <string name="images">Imagini</string>
+    <string name="documents">Documente</string>
+    <string name="downloads">Descărcări</string>
+    <string name="other_files">Alte fișiere</string>
+
+    <!-- Image Optimizer -->
+    <string name="image_optimizer">Optimizator imagini</string>
+    <string name="summary_select_image">Selectați imaginea pe care doriți să o optimizați</string>
+    <string name="choose_image">Alege imagine</string>
+    <string name="optimize_image">Optimizează imagine</string>
+    <string name="quick_compress">Comprimare rapidă</string>
+    <string name="low">Scăzut</string>
+    <string name="medium">Mediu</string>
+    <string name="high">Înalt</string>
+    <string name="file_size">Dimensiune fișier (KB)</string>
+    <string name="default_value">Implicit</string>
+    <string name="enter_a_value">Introduceți o valoare</string>
+    <string name="manual">Manual</string>
+    <string name="width">Lățime (px)</string>
+    <string name="height">Înălțime (px)</string>
+    <string name="quality">Calitate</string>
+
+    <!-- Trash -->
+    <string name="trash">Coș</string>
+    <string name="trash_is_empty">Coșul este gol</string>
+    <string name="restore">Restaurează</string>
+
+    <!-- Display -->
+    <string name="dialog_startup_subtitle">Alegeți pagina de pornire preferată:</string>
+    <string name="dialog_info_startup">Configurează ecranul inițial prezentat utilizatorilor la lansarea aplicației. Această setare influențează prima interacțiune a utilizatorului cu aplicația și poate fi adaptată la segmente specifice de utilizatori sau la obiectivele produsului.</string>
+
+    <!-- Cleaning settings -->
+    <string name="cleaning">Curățare</string>
+    <string name="summary_preference_settings_cleaning">Personalizați-vă experiența de curățare</string>
+    <string name="filters">Filtre</string>
+    <string name="generic_filter">Filtru generic</string>
+    <string name="summary_preference_settings_generic_filter">Ștergeți fișierele temporare, jurnalele și alte fișiere și foldere inutile</string>
+    <string name="delete_empty_folders">Șterge folderele goale</string>
+    <string name="delete_archives">Șterge arhivele</string>
+    <string name="summary_preference_settings_archive_filter">Șterge arhivele de pe dispozitiv</string>
+    <string name="delete_corpse_files">Șterge fișierele reziduale</string>
+    <string name="summary_preference_settings_delete_corpse_files">Șterge fișierele rămase de la aplicațiile dezinstalate/eliminate</string>
+    <string name="delete_apk_files">Șterge fișierele APK</string>
+    <string name="summary_preference_settings_delete_apk_files">Șterge fișierele de instalare (.apk) pentru Android</string>
+    <string name="delete_windows_files">Extensii Windows</string>
+    <string name="summary_preference_settings_delete_windows_files">Detectează extensiile Windows (exe, dll, sys)</string>
+    <string name="delete_office_files">Extensii Office</string>
+    <string name="summary_preference_settings_delete_office_files">Detectează extensiile Office (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">Extensii fonturi</string>
+    <string name="summary_preference_settings_delete_font_files">Detectează extensiile de fonturi (ttf, otf)</string>
+    <string name="delete_other_files">Alte extensii</string>
+    <string name="summary_preference_settings_delete_other_files">Detectează toate celelalte tipuri de extensii.</string>
+    <string name="media">Media</string>
+    <string name="delete_audio">Șterge audio</string>
+    <string name="summary_preference_settings_delete_audio">Șterge fișierele audio de pe dispozitiv</string>
+    <string name="delete_video">Șterge video</string>
+    <string name="summary_preference_settings_delete_video">Șterge fișierele video de pe dispozitiv</string>
+    <string name="delete_images">Șterge imagini</string>
+    <string name="summary_preference_settings_delete_images">Șterge fișierele imagine de pe dispozitiv</string>
+    <string name="delete_invalid_media">Șterge media invalidă</string>
+    <string name="summary_preference_settings_delete_invalid_media">Șterge imaginile corupte</string>
+    <string name="scanner">Scaner</string>
+    <string name="clipboard_clean">Curăță clipboard</string>
+
+    <!-- Permissions -->
+    <string name="request_delete_packages">Solicită ștergerea pachetelor [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">Permite aplicației să solicite ștergerea pachetelor. Aceasta poate fi utilizată pentru a dezinstala alte aplicații de pe dispozitiv</string>
+    <string name="access_media_location">Accesează locația media [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">Permite aplicației să acceseze locația fișierelor media ale dispozitivului</string>
+    <string name="action_open_document_tree">Acțiune deschidere arbore documente [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">Permite aplicației să acceseze un arbore de documente, inclusiv capacitatea de a citi și scrie fișiere în arbore</string>
+    <string name="manage_external_storage">Gestionează stocarea externă [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">Permite aplicației să efectueze acțiuni precum ștergerea și redenumirea fișierelor din stocarea dispozitivului, inclusiv stocarea internă și externă</string>
+    <string name="package_usage_stats">Statistici de utilizare a pachetelor [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">Permite aplicației să acceseze informații despre utilizarea aplicațiilor de către utilizator, inclusiv ce aplicații au fost utilizate, cât timp au fost utilizate și cât de frecvent au fost utilizate</string>
+    <string name="query_all_packages">Interoghează toate pachetele [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">Permite aplicației să interogheze informații despre toate pachetele instalate pe dispozitiv. Aplicația utilizează aceste informații pentru a determina ce fișiere să păstreze sau să șteargă</string>
+    <string name="read_external_storage">Citește stocarea externă [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">Permite aplicației să citească fișiere din stocarea dispozitivului, inclusiv stocarea internă și externă</string>
+    <string name="read_media_audio">Citește audio media [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">Permite aplicației să citească fișiere audio din stocarea dispozitivului</string>
+    <string name="read_media_images">Citește imagini media [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">Permite aplicației să citească fișiere imagine din stocarea dispozitivului</string>
+    <string name="read_media_video">Citește video media [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">Permite aplicației să citească fișiere video din stocarea dispozitivului</string>
+    <string name="write_external_storage">Scrie în stocarea externă [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">Permite aplicației să scrie fișiere în stocarea dispozitivului, inclusiv stocarea internă și externă</string>
+
+    <!-- About -->
+    <string name="summary_preference_settings_about">Aflați mai multe despre Cleaner</string>
+
+    <!-- FAQ -->
+    <string name="question_1">Ce este Cleaner?</string>
+    <string name="summary_preference_faq_1">Cleaner este o aplicație Android gratuită și open-source care vă ajută să optimizați performanța dispozitivului și să eliberați spațiu de stocare. Poate scana dispozitivul pentru fișiere inutile și le poate șterge, precum și să golească memoria cache pentru a îmbunătăți viteza dispozitivului</string>
+    <string name="question_2">Este Cleaner sigur de utilizat?</string>
+    <string name="summary_preference_faq_2">Da, Cleaner este sigur de utilizat. Elimină doar fișierele care nu sunt esențiale pentru funcționarea dispozitivului sau a aplicațiilor și nu șterge niciuna dintre datele dumneavoastră personale sau fișierele importante de sistem</string>
+    <string name="question_3">Cum utilizez Cleaner?</string>
+    <string name="summary_preference_faq_3">Pentru a utiliza Cleaner, pur și simplu descărcați și instalați aplicația din Google Play Store sau dintr-un magazin de aplicații terț de încredere. Apoi, deschideți aplicația și urmați instrucțiunile pentru a scana dispozitivul și a șterge fișierele inutile. De asemenea, puteți accesa setările aplicației pentru a personaliza tipurile de fișiere pe care Cleaner le caută și le șterge</string>
+    <string name="question_4">Poate Cleaner să șteargă memoria cache a aplicațiilor?</string>
+    <string name="summary_preference_faq_4">Da, Cleaner poate șterge memoria cache a aplicațiilor. Cu toate acestea, este important de reținut că ștergerea memoriei cache poate face ca aplicația să dureze mai mult pentru a se încărca sau a efectua anumite sarcini data viitoare când o utilizați</string>
+    <string name="question_5">Necesită Cleaner acces root?</string>
+    <string name="summary_preference_faq_5">Nu, Cleaner nu necesită acces root pentru a funcționa. Îl puteți utiliza pe orice dispozitiv Android fără a vă roota dispozitivul</string>
+    <string name="question_6">Este Cleaner disponibil pentru iOS?</string>
+    <string name="summary_preference_faq_6">Nu, Cleaner este disponibil în prezent doar pentru dispozitive Android</string>
+    <string name="question_7">Îmbunătățește Cleaner durata de viață a bateriei?</string>
+    <string name="summary_preference_faq_7">Utilizarea Cleaner pentru a goli memoria cache poate ajuta la îmbunătățirea duratei de viață a bateriei dispozitivului prin reducerea cantității de energie și resurse utilizate de procesele inutile. Cu toate acestea, măsura în care Cleaner poate îmbunătăți durata de viață a bateriei va depinde de diverși factori, cum ar fi marca și modelul dispozitivului, aplicațiile pe care le utilizați și obiceiurile dumneavoastră de utilizare</string>
+    <string name="question_8">Cât de des ar trebui să utilizez Cleaner?</string>
+    <string name="summary_preference_faq_8">Nu există o regulă stabilită pentru cât de des ar trebui să utilizați Cleaner, deoarece aceasta va depinde de utilizarea dispozitivului și de cantitatea de fișiere inutile care se acumulează în timp. Unii utilizatori pot considera util să ruleze Cleaner săptămânal sau lunar, în timp ce alții pot avea nevoie să-l utilizeze doar ocazional</string>
+    <string name="question_9">Este Cleaner compatibil cu toate dispozitivele Android?</string>
+    <string name="summary_preference_faq_9">Cleaner ar trebui să fie compatibil cu majoritatea dispozitivelor Android care îndeplinesc cerințele minime de sistem ale aplicației. Cu toate acestea, este întotdeauna o idee bună să verificați pagina aplicației din Google Play Store sau din magazinul de aplicații pe care îl utilizați pentru a confirma compatibilitatea cu dispozitivul dumneavoastră specific. Dacă întâmpinați probleme în timpul utilizării Cleaner, puteți încerca să depanați problema sau să contactați echipa de asistență a aplicației pentru ajutor</string>
+
+    <!-- Error messages -->
+    <string name="request_no_internet">Nicio conexiune la internet. Vă rugăm să verificați conexiunea și să încercați din nou.</string>
+    <string name="request_timeout">Solicitarea a expirat. Vă rugăm să încercați din nou.</string>
+    <string name="request_server_not_found">Eroare de server. Vă rugăm să încercați din nou mai târziu.</string>
+    <string name="request_payload_error">Eroare de date. Vă rugăm să încercați din nou.</string>
+    <string name="failed_to_open_app_info">Nu s-au putut deschide informațiile aplicației: %1$s</string>
+    <string name="share_apk_failed">Nu s-a putut partaja APK-ul</string>
+    <string name="share_app_failed">Nu s-a putut partaja aplicația</string>
+    <string name="apk_installed_successfully">APK instalat cu succes!</string>
+    <string name="failed_to_install_apk">Nu s-a putut instala APK-ul: %1$s</string>
+    <string name="failed_to_uninstall_app">Nu s-a putut dezinstala aplicația: %1$s</string>
+    <string name="app_uninstalled_successfully">Aplicație dezinstalată cu succes</string>
+</resources>

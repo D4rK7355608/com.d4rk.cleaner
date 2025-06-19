@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_short_description">일상적인 사용에 필요한 마지막 Android 클리너입니다!</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">클리너에 오신 것을 환영합니다!</string>
+    <string name="onboarding_welcome_description">빠른 설정을 진행하고 공간 확보를 시작해 보겠습니다.</string>
+    <string name="onboarding_personalization_title">정리 사용자 지정</string>
+    <string name="onboarding_personalization_description">필요에 맞게 클리너를 조정하세요.</string>
+    <string name="permission_section_public_title">공용 저장소 접근 권한</string>
+    <string name="permission_section_public_description">클리ナー가 공용 저장소에서 파일을 읽고 쓸 수 있도록 허용합니다.</string>
+    <string name="permission_section_manage_title">전체 파일 관리</string>
+    <string name="permission_section_manage_description">기기의 모든 파일을 완전히 관리하는 데 필요합니다.</string>
+    <string name="permission_section_usage_title">앱 사용량 접근 권한</string>
+    <string name="permission_section_usage_description">클리ナー가 앱 사용량에 따라 저장소를 분석할 수 있도록 허용합니다.</string>
+    <string name="onboarding_permission_storage_title">저장소 접근 권한</string>
+    <string name="onboarding_permission_storage_description">클리너는 앱을 스캔하고 분석하기 위해 저장소 및 사용량 권한이 필요합니다.</string>
+    <string name="button_grant_permission">권한 부여</string>
+
+    <!-- Home -->
+    <string name="delete_forever">영구 삭제</string>
+    <string name="move_to_trash">휴지통으로 이동</string>
+    <string name="cleaned_space">정리된 공간</string>
+    <string name="free_space">사용 가능한 공간</string>
+    <string name="delete_forever_title">영구 삭제</string>
+    <string name="delete_forever_message">이 파일을 영구적으로 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.</string>
+    <string name="move_to_trash_title">휴지통으로 이동</string>
+    <string name="move_to_trash_message">이 파일을 휴지통으로 이동하시겠습니까?</string>
+    <string name="quick_scan">빠른 검사</string>
+    <string name="apks">APK</string>
+    <string name="archives">압축 파일</string>
+    <string name="fonts">글꼴</string>
+    <string name="windows_files">Windows 파일</string>
+    <string name="videos">동영상</string>
+    <string name="audios">오디오</string>
+    <string name="empty_folders">빈 폴더</string>
+    <plurals name="status_selected_files">
+        <item quantity="other">상태: %1$d개 파일 선택됨</item>
+    </plurals>
+    <string name="status_no_files_selected">상태: 선택된 파일 없음</string>
+    <string name="select_all">모두 선택</string>
+    <string name="today">오늘</string>
+    <string name="yesterday">어제</string>
+    <string name="a_year_ago">작년</string>
+    <plurals name="years_ago">
+        <item quantity="other">%d년 전</item>
+    </plurals>
+    <string name="no_files_found">파일을 찾을 수 없습니다.</string>
+
+    <!-- App manager -->
+    <string name="app_manager">앱 관리자</string>
+    <string name="installed_apps">설치된 앱</string>
+    <string name="system_apps">시스템 앱</string>
+    <string name="app_install_files">앱 설치 파일 (APK)</string>
+    <string name="uninstall">제거</string>
+    <string name="app_info">앱 정보</string>
+    <string name="install">설치</string>
+    <string name="no_app_installed">설치된 앱 없음</string>
+
+    <!-- Memory Manager -->
+    <string name="memory_manager">메모리 관리자</string>
+    <string name="storage_information">저장 공간 정보</string>
+    <string name="used">사용 중:</string>
+    <string name="free">사용 가능:</string>
+    <string name="total">총계:</string>
+    <string name="ram_information">RAM 정보</string>
+    <string name="used_ram">사용 중인 RAM:</string>
+    <string name="free_ram">사용 가능한 RAM:</string>
+    <string name="total_ram">총 RAM:</string>
+    <string name="categories">카테고리</string>
+    <string name="system">시스템</string>
+    <string name="music">음악</string>
+    <string name="images">이미지</string>
+    <string name="documents">문서</string>
+    <string name="downloads">다운로드</string>
+    <string name="other_files">기타 파일</string>
+
+    <!-- Image Optimizer -->
+    <string name="image_optimizer">이미지 최적화 도구</string>
+    <string name="summary_select_image">최적화할 이미지를 선택하세요.</string>
+    <string name="choose_image">이미지 선택</string>
+    <string name="optimize_image">이미지 최적화</string>
+    <string name="quick_compress">빠른 압축</string>
+    <string name="low">낮음</string>
+    <string name="medium">중간</string>
+    <string name="high">높음</string>
+    <string name="file_size">파일 크기 (KB)</string>
+    <string name="default_value">기본값</string>
+    <string name="enter_a_value">값을 입력하세요.</string>
+    <string name="manual">수동</string>
+    <string name="width">너비 (px)</string>
+    <string name="height">높이 (px)</string>
+    <string name="quality">품질</string>
+
+    <!-- Trash -->
+    <string name="trash">휴지통</string>
+    <string name="trash_is_empty">휴지통이 비어 있습니다.</string>
+    <string name="restore">복원</string>
+
+    <!-- Display -->
+    <string name="dialog_startup_subtitle">선호하는 시작 페이지를 선택하세요:</string>
+    <string name="dialog_info_startup">애플리케이션 실행 시 사용자에게 표시되는 초기 화면을 구성합니다. 이 설정은 앱과의 첫 사용자 상호 작용에 영향을 미치며 특정 사용자 세그먼트 또는 제품 목표에 맞게 조정할 수 있습니다.</string>
+
+    <!-- Cleaning settings -->
+    <string name="cleaning">정리</string>
+    <string name="summary_preference_settings_cleaning">정리 환경을 사용자 지정하세요.</string>
+    <string name="filters">필터</string>
+    <string name="generic_filter">일반 필터</string>
+    <string name="summary_preference_settings_generic_filter">임시 파일, 로그 파일 및 기타 불필요한 파일 및 폴더를 삭제합니다.</string>
+    <string name="delete_empty_folders">빈 폴더 삭제</string>
+    <string name="delete_archives">압축 파일 삭제</string>
+    <string name="summary_preference_settings_archive_filter">기기에서 압축 파일을 삭제합니다.</string>
+    <string name="delete_corpse_files">잔여 파일 삭제</string>
+    <string name="summary_preference_settings_delete_corpse_files">제거/삭제된 앱에서 남은 파일을 삭제합니다.</string>
+    <string name="delete_apk_files">APK 파일 삭제</string>
+    <string name="summary_preference_settings_delete_apk_files">Android용 설치 프로그램 파일(.apk)을 삭제합니다.</string>
+    <string name="delete_windows_files">Windows 확장자</string>
+    <string name="summary_preference_settings_delete_windows_files">Windows 확장자(exe, dll, sys)를 감지합니다.</string>
+    <string name="delete_office_files">Office 확장자</string>
+    <string name="summary_preference_settings_delete_office_files">Office 확장자(doc, xls, ppt, docx, xlsx, pptx)를 감지합니다.</string>
+    <string name="delete_font_files">글꼴 확장자</string>
+    <string name="summary_preference_settings_delete_font_files">글꼴 확장자(ttf, otf)를 감지합니다.</string>
+    <string name="delete_other_files">기타 확장자</string>
+    <string name="summary_preference_settings_delete_other_files">다른 모든 확장자 유형을 감지합니다.</string>
+    <string name="media">미디어</string>
+    <string name="delete_audio">오디오 삭제</string>
+    <string name="summary_preference_settings_delete_audio">기기에서 오디오 파일을 삭제합니다.</string>
+    <string name="delete_video">동영상 삭제</string>
+    <string name="summary_preference_settings_delete_video">기기에서 동영상 파일을 삭제합니다.</string>
+    <string name="delete_images">이미지 삭제</string>
+    <string name="summary_preference_settings_delete_images">기기에서 이미지 파일을 삭제합니다.</string>
+    <string name="delete_invalid_media">잘못된 미디어 삭제</string>
+    <string name="summary_preference_settings_delete_invalid_media">손상된 이미지를 삭제합니다.</string>
+    <string name="scanner">스캐너</string>
+    <string name="clipboard_clean">클립보드 정리</string>
+
+    <!-- Permissions -->
+    <string name="request_delete_packages">패키지 삭제 요청 [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">앱이 패키지 삭제를 요청할 수 있도록 허용합니다. 이를 사용하여 기기에서 다른 앱을 제거할 수 있습니다.</string>
+    <string name="access_media_location">미디어 위치 접근 권한 [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">앱이 기기의 미디어 파일 위치에 접근할 수 있도록 허용합니다.</string>
+    <string name="action_open_document_tree">문서 트리 열기 작업 [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">앱이 문서 트리에 접근하여 트리 내 파일을 읽고 쓸 수 있도록 허용합니다.</string>
+    <string name="manage_external_storage">외부 저장소 관리 [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">앱이 기기의 저장소(내부 및 외부 저장소 포함)에서 파일 삭제 및 이름 바꾸기와 같은 작업을 수행할 수 있도록 허용합니다.</string>
+    <string name="package_usage_stats">패키지 사용 통계 [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">앱이 사용자의 앱 사용 정보(사용된 앱, 사용 시간, 사용 빈도 등)에 접근할 수 있도록 허용합니다.</string>
+    <string name="query_all_packages">모든 패키지 쿼리 [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">앱이 기기에 설치된 모든 패키지에 대한 정보를 쿼리할 수 있도록 허용합니다. 앱은 이 정보를 사용하여 유지하거나 삭제할 파일을 결정합니다.</string>
+    <string name="read_external_storage">외부 저장소 읽기 [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">앱이 기기의 저장소(내부 및 외부 저장소 포함)에서 파일을 읽을 수 있도록 허용합니다.</string>
+    <string name="read_media_audio">미디어 오디오 읽기 [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">앱이 기기의 저장소에서 오디오 파일을 읽을 수 있도록 허용합니다.</string>
+    <string name="read_media_images">미디어 이미지 읽기 [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">앱이 기기의 저장소에서 이미지 파일을 읽을 수 있도록 허용합니다.</string>
+    <string name="read_media_video">미디어 동영상 읽기 [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">앱이 기기의 저장소에서 동영상 파일을 읽을 수 있도록 허용합니다.</string>
+    <string name="write_external_storage">외부 저장소 쓰기 [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">앱이 기기의 저장소(내부 및 외부 저장소 포함)에 파일을 쓸 수 있도록 허용합니다.</string>
+
+    <!-- About -->
+    <string name="summary_preference_settings_about">클리너에 대해 자세히 알아보기</string>
+
+    <!-- FAQ -->
+    <string name="question_1">클리너란 무엇인가요?</string>
+    <string name="summary_preference_faq_1">클리너는 기기 성능을 최적화하고 저장 공간을 확보하는 데 도움이 되는 무료 오픈 소스 Android 앱입니다. 불필요한 파일을 검색하여 삭제하고 캐시를 지워 기기 속도를 향상시킬 수 있습니다.</string>
+    <string name="question_2">클리너는 안전하게 사용할 수 있나요?</string>
+    <string name="summary_preference_faq_2">예, 클리너는 안전하게 사용할 수 있습니다. 기기 또는 앱 작동에 필수적이지 않은 파일만 제거하며 개인 데이터나 중요한 시스템 파일은 삭제하지 않습니다.</string>
+    <string name="question_3">클리너는 어떻게 사용하나요?</string>
+    <string name="summary_preference_faq_3">클리너를 사용하려면 Google Play 스토어 또는 신뢰할 수 있는 타사 앱 스토어에서 앱을 다운로드하여 설치하기만 하면 됩니다. 그런 다음 앱을 열고 안내에 따라 기기를 검색하고 불필요한 파일을 삭제하세요. 앱 설정에 접근하여 클리너가 검색하고 삭제하는 파일 유형을 사용자 지정할 수도 있습니다.</string>
+    <string name="question_4">클리너가 앱 캐시를 삭제할 수 있나요?</string>
+    <string name="summary_preference_faq_4">예, 클리너는 앱 캐시를 삭제할 수 있습니다. 그러나 캐시를 삭제하면 다음에 앱을 사용할 때 로드 시간이 길어지거나 특정 작업 수행이 느려질 수 있다는 점에 유의해야 합니다.</string>
+    <string name="question_5">클리너에 루트 접근 권한이 필요한가요?</string>
+    <string name="summary_preference_faq_5">아니요, 클리너는 작동하는 데 루트 접근 권한이 필요하지 않습니다. 기기를 루팅하지 않고 모든 Android 기기에서 사용할 수 있습니다.</string>
+    <string name="question_6">클리ナー는 iOS에서도 사용할 수 있나요?</string>
+    <string name="summary_preference_faq_6">아니요, 클리너는 현재 Android 기기에서만 사용할 수 있습니다.</string>
+    <string name="question_7">클리ナー는 배터리 수명을 향상시키나요?</string>
+    <string name="summary_preference_faq_7">캐시를 지우기 위해 클리너를 사용하면 불필요한 프로세스에서 사용하는 전력 및 리소스 양을 줄여 기기의 배터리 수명을 향상시키는 데 도움이 될 수 있습니다. 그러나 클리너가 배터리 수명을 얼마나 향상시킬 수 있는지는 기기 제조업체 및 모델, 사용하는 앱, 사용 습관과 같은 다양한 요인에 따라 달라집니다.</string>
+    <string name="question_8">클리너를 얼마나 자주 사용해야 하나요?</string>
+    <string name="summary_preference_faq_8">클리너를 얼마나 자주 사용해야 하는지에 대한 정해진 규칙은 없습니다. 기기 사용량과 시간이 지남에 따라 누적되는 불필요한 파일의 양에 따라 달라집니다. 일부 사용자는 매주 또는 매월 클리너를 실행하는 것이 유용하다고 생각할 수 있지만 다른 사용자는 가끔만 사용해야 할 수도 있습니다.</string>
+    <string name="question_9">클리너는 모든 Android 기기와 호환되나요?</string>
+    <string name="summary_preference_faq_9">클리너는 앱의 최소 시스템 요구 사항을 충족하는 대부분의 Android 기기와 호환되어야 합니다. 그러나 특정 기기와의 호환성을 확인하려면 Google Play 스토어의 앱 페이지 또는 사용 중인 앱 스토어를 확인하는 것이 좋습니다. 클리너를 사용하는 동안 문제가 발생하면 문제 해결을 시도하거나 앱 지원팀에 문의하여 도움을 받을 수 있습니다.</string>
+
+    <!-- Error messages -->
+    <string name="request_no_internet">인터넷에 연결되어 있지 않습니다. 연결을 확인하고 다시 시도하세요.</string>
+    <string name="request_timeout">요청 시간이 초과되었습니다. 다시 시도하세요.</string>
+    <string name="request_server_not_found">서버 오류입니다. 나중에 다시 시도하세요.</string>
+    <string name="request_payload_error">데이터 오류입니다. 다시 시도하세요.</string>
+    <string name="failed_to_open_app_info">앱 정보를 열지 못했습니다: %1$s</string>
+    <string name="share_apk_failed">APK 공유 실패</string>
+    <string name="share_app_failed">앱 공유 실패</string>
+    <string name="apk_installed_successfully">APK가 성공적으로 설치되었습니다!</string>
+    <string name="failed_to_install_apk">APK 설치 실패: %1$s</string>
+    <string name="failed_to_uninstall_app">앱 제거 실패: %1$s</string>
+    <string name="app_uninstalled_successfully">앱이 성공적으로 제거되었습니다.</string>
+</resources>

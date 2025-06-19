@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.app.apps.manager.ui.components.tabs
 
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,32 +20,31 @@ import com.d4rk.cleaner.app.apps.manager.ui.components.ShimmerLoadingScreen
 
 @Composable
 fun ApksTab(
-    apkFiles : List<ApkInfo> ,
-    isLoading : Boolean ,
-    viewModel : AppManagerViewModel ,
-    paddingValues : PaddingValues = PaddingValues()
+    apkFiles : List<ApkInfo> , isLoading : Boolean , viewModel : AppManagerViewModel , paddingValues : PaddingValues = PaddingValues()
 ) {
-    when {
-        isLoading -> {
-            ShimmerLoadingScreen(paddingValues)
-        }
+    Crossfade(targetState = isLoading , label = "ApksTab") { targetIsLoading ->
+        when {
+            targetIsLoading -> {
+                ShimmerLoadingScreen(paddingValues)
+            }
 
-        apkFiles.isEmpty() -> {
-            NoDataScreen(
-                text = R.string.no_app_installed , showRetry = true , onRetry = {
-                    viewModel.onEvent(event = AppManagerEvent.LoadAppData)
-                })
-        }
+            apkFiles.isEmpty() -> {
+                NoDataScreen(
+                    text = R.string.no_app_installed , showRetry = true , onRetry = {
+                        viewModel.onEvent(event = AppManagerEvent.LoadAppData)
+                    })
+            }
 
-        else -> {
-            LazyColumn(contentPadding = PaddingValues(horizontal = SizeConstants.ExtraTinySize) , verticalArrangement = Arrangement.spacedBy(space = SizeConstants.ExtraTinySize) , modifier = Modifier.fillMaxSize()) {
-                itemsIndexed(items = apkFiles , key = { _ : Int , apkInfo : ApkInfo -> apkInfo.id }) { _ : Int , apkInfo : ApkInfo ->
+            else -> {
+                LazyColumn(contentPadding = PaddingValues(horizontal = SizeConstants.ExtraTinySize) , verticalArrangement = Arrangement.spacedBy(space = SizeConstants.ExtraTinySize) , modifier = Modifier.fillMaxSize()) {
+                    itemsIndexed(items = apkFiles , key = { _ : Int , apkInfo : ApkInfo -> apkInfo.id }) { _ : Int , apkInfo : ApkInfo ->
 
-                    ApkItem(
-                        apkPath = apkInfo.path , viewModel = viewModel , modifier = Modifier
-                                .animateItem()
-                                .padding(start = SizeConstants.SmallSize , end = SizeConstants.SmallSize , top = SizeConstants.SmallSize)
-                    )
+                        ApkItem(
+                            apkPath = apkInfo.path , viewModel = viewModel , modifier = Modifier
+                                    .animateItem()
+                                    .padding(start = SizeConstants.SmallSize , end = SizeConstants.SmallSize , top = SizeConstants.SmallSize)
+                        )
+                    }
                 }
             }
         }

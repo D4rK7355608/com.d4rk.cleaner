@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_short_description">Az utolsó Android Tisztító, amire valaha szükséged lesz a mindennapi használathoz!</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">Üdvözlünk a Cleanerben!</string>
+    <string name="onboarding_welcome_description">Vegyünk végig egy gyors beállítást, és kezdjünk el helyet felszabadítani.</string>
+    <string name="onboarding_personalization_title">Tisztítás testreszabása</string>
+    <string name="onboarding_personalization_description">Állítsd be a Cleanert az igényeidnek megfelelően.</string>
+    <string name="permission_section_public_title">Nyilvános tárhely hozzáférés</string>
+    <string name="permission_section_public_description">Lehetővé teszi a Cleaner számára, hogy fájlokat olvasson és írjon a nyilvános tárhelyen.</string>
+    <string name="permission_section_manage_title">Teljes fájlkezelés</string>
+    <string name="permission_section_manage_description">Szükséges az eszközön lévő összes fájl teljes körű kezeléséhez.</string>
+    <string name="permission_section_usage_title">Alkalmazáshasználati hozzáférés</string>
+    <string name="permission_section_usage_description">Lehetővé teszi a Cleaner számára, hogy az alkalmazáshasználat alapján elemezze a tárhelyet.</string>
+    <string name="onboarding_permission_storage_title">Tárhely hozzáférés</string>
+    <string name="onboarding_permission_storage_description">A Cleanernek tárhely- és használati engedélyekre van szüksége az alkalmazások vizsgálatához és elemzéséhez.</string>
+    <string name="button_grant_permission">Engedély megadása</string>
+
+    <!-- Home -->
+    <string name="delete_forever">Végleges törlés</string>
+    <string name="move_to_trash">Áthelyezés a kukába</string>
+    <string name="cleaned_space">Megtisztított hely</string>
+    <string name="free_space">Szabad hely</string>
+    <string name="delete_forever_title">Végleges törlés</string>
+    <string name="delete_forever_message">Biztosan véglegesen törölni szeretnéd ezeket a fájlokat? Ez a művelet nem vonható vissza.</string>
+    <string name="move_to_trash_title">Áthelyezés a kukába</string>
+    <string name="move_to_trash_message">Biztosan át szeretnéd helyezni ezeket a fájlokat a kukába?</string>
+    <string name="quick_scan">Gyors vizsgálat</string>
+    <string name="apks">APK-k</string>
+    <string name="archives">Archívumok</string>
+    <string name="fonts">Betűtípusok</string>
+    <string name="windows_files">Windows fájlok</string>
+    <string name="videos">Videók</string>
+    <string name="audios">Hangfájlok</string>
+    <string name="empty_folders">Üres mappák</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">Állapot: %1$d fájl kiválasztva</item>
+        <item quantity="other">Állapot: %1$d fájl kiválasztva</item>
+    </plurals>
+    <string name="status_no_files_selected">Állapot: Nincs kiválasztott fájl</string>
+    <string name="select_all">Összes kijelölése</string>
+    <string name="today">Ma</string>
+    <string name="yesterday">Tegnap</string>
+    <string name="a_year_ago">Tavaly</string>
+    <plurals name="years_ago">
+        <item quantity="one">%d éve</item>
+        <item quantity="other">%d éve</item>
+    </plurals>
+    <string name="no_files_found">Nem található fájl</string>
+
+    <!-- App manager -->
+    <string name="app_manager">Alkalmazáskezelő</string>
+    <string name="installed_apps">Telepített alkalmazások</string>
+    <string name="system_apps">Rendszeralkalmazások</string>
+    <string name="app_install_files">Alkalmazástelepítő fájlok (APK-k)</string>
+    <string name="uninstall">Eltávolítás</string>
+    <string name="app_info">Alkalmazásinformáció</string>
+    <string name="install">Telepítés</string>
+    <string name="no_app_installed">Nincsenek telepített alkalmazások</string>
+
+    <!-- Memory Manager -->
+    <string name="memory_manager">Memóriakezelő</string>
+    <string name="storage_information">Tárhelyinformáció</string>
+    <string name="used">Használt:</string>
+    <string name="free">Szabad:</string>
+    <string name="total">Összesen:</string>
+    <string name="ram_information">RAM információ</string>
+    <string name="used_ram">Használt RAM:</string>
+    <string name="free_ram">Szabad RAM:</string>
+    <string name="total_ram">Összes RAM:</string>
+    <string name="categories">Kategóriák</string>
+    <string name="system">Rendszer</string>
+    <string name="music">Zene</string>
+    <string name="images">Képek</string>
+    <string name="documents">Dokumentumok</string>
+    <string name="downloads">Letöltések</string>
+    <string name="other_files">Egyéb fájlok</string>
+
+    <!-- Image Optimizer -->
+    <string name="image_optimizer">Képoptimalizáló</string>
+    <string name="summary_select_image">Válaszd ki az optimalizálni kívánt képet</string>
+    <string name="choose_image">Kép kiválasztása</string>
+    <string name="optimize_image">Kép optimalizálása</string>
+    <string name="quick_compress">Gyors tömörítés</string>
+    <string name="low">Alacsony</string>
+    <string name="medium">Közepes</string>
+    <string name="high">Magas</string>
+    <string name="file_size">Fájlméret (KB)</string>
+    <string name="default_value">Alapértelmezett</string>
+    <string name="enter_a_value">Adj meg egy értéket</string>
+    <string name="manual">Manuális</string>
+    <string name="width">Szélesség (px)</string>
+    <string name="height">Magasság (px)</string>
+    <string name="quality">Minőség</string>
+
+    <!-- Trash -->
+    <string name="trash">Kuka</string>
+    <string name="trash_is_empty">A kuka üres</string>
+    <string name="restore">Visszaállítás</string>
+
+    <!-- Display -->
+    <string name="dialog_startup_subtitle">Válaszd ki az előnyben részesített kezdőoldalt:</string>
+    <string name="dialog_info_startup">Beállítja a felhasználók számára az alkalmazás indításakor megjelenő kezdeti képernyőt. Ez a beállítás befolyásolja a felhasználó első interakcióját az alkalmazással, és testreszabható adott felhasználói szegmensekhez vagy termékcélokhoz.</string>
+
+    <!-- Cleaning settings -->
+    <string name="cleaning">Tisztítás</string>
+    <string name="summary_preference_settings_cleaning">Testreszabhatod a tisztítási élményt</string>
+    <string name="filters">Szűrők</string>
+    <string name="generic_filter">Általános szűrő</string>
+    <string name="summary_preference_settings_generic_filter">Ideiglenes, napló-, log- és egyéb felesleges fájlok és mappák törlése</string>
+    <string name="delete_empty_folders">Üres mappák törlése</string>
+    <string name="delete_archives">Archívumok törlése</string>
+    <string name="summary_preference_settings_archive_filter">Archívumok törlése az eszközről</string>
+    <string name="delete_corpse_files">Maradványfájlok törlése</string>
+    <string name="summary_preference_settings_delete_corpse_files">Eltávolított/törölt alkalmazásokból visszamaradt fájlok törlése</string>
+    <string name="delete_apk_files">APK fájlok törlése</string>
+    <string name="summary_preference_settings_delete_apk_files">Android telepítőfájlok (.apk) törlése</string>
+    <string name="delete_windows_files">Windows kiterjesztések</string>
+    <string name="summary_preference_settings_delete_windows_files">Windows kiterjesztések (exe, dll, sys) észlelése</string>
+    <string name="delete_office_files">Office kiterjesztések</string>
+    <string name="summary_preference_settings_delete_office_files">Office kiterjesztések (doc, xls, ppt, docx, xlsx, pptx) észlelése</string>
+    <string name="delete_font_files">Betűtípus kiterjesztések</string>
+    <string name="summary_preference_settings_delete_font_files">Betűtípus kiterjesztések (ttf, otf) észlelése</string>
+    <string name="delete_other_files">Egyéb kiterjesztések</string>
+    <string name="summary_preference_settings_delete_other_files">Minden egyéb kiterjesztéstípus észlelése.</string>
+    <string name="media">Média</string>
+    <string name="delete_audio">Hangfájlok törlése</string>
+    <string name="summary_preference_settings_delete_audio">Hangfájlok törlése az eszközről</string>
+    <string name="delete_video">Videók törlése</string>
+    <string name="summary_preference_settings_delete_video">Videófájlok törlése az eszközről</string>
+    <string name="delete_images">Képek törlése</string>
+    <string name="summary_preference_settings_delete_images">Képfájlok törlése az eszközről</string>
+    <string name="delete_invalid_media">Érvénytelen média törlése</string>
+    <string name="summary_preference_settings_delete_invalid_media">Sérült képek törlése</string>
+    <string name="scanner">Kereső</string>
+    <string name="clipboard_clean">Vágólap tisztítása</string>
+
+    <!-- Permissions -->
+    <string name="request_delete_packages">Csomagok törlésének kérése [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">Lehetővé teszi az alkalmazás számára, hogy csomagok törlését kérje. Ezzel más alkalmazásokat is el lehet távolítani az eszközről</string>
+    <string name="access_media_location">Média helyének elérése [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">Lehetővé teszi az alkalmazás számára az eszköz médiafájljainak helyének elérését</string>
+    <string name="action_open_document_tree">Dokumentumfa megnyitása művelet [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">Lehetővé teszi az alkalmazás számára egy dokumentumfa elérését, beleértve a fában lévő fájlok olvasásának és írásának képességét</string>
+    <string name="manage_external_storage">Külső tárhely kezelése [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">Lehetővé teszi az alkalmazás számára olyan műveletek végrehajtását, mint a fájlok törlése és átnevezése az eszköz tárhelyén, beleértve a belső és külső tárhelyet is</string>
+    <string name="package_usage_stats">Csomaghasználati statisztikák [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">Lehetővé teszi az alkalmazás számára a felhasználó alkalmazáshasználati információinak elérését, beleértve, hogy mely alkalmazásokat használták, mennyi ideig és milyen gyakran</string>
+    <string name="query_all_packages">Összes csomag lekérdezése [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">Lehetővé teszi az alkalmazás számára az eszközön telepített összes csomagra vonatkozó információk lekérdezését. Az alkalmazás ezeket az információkat használja annak eldöntésére, hogy mely fájlokat tartsa meg vagy törölje</string>
+    <string name="read_external_storage">Külső tárhely olvasása [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">Lehetővé teszi az alkalmazás számára fájlok olvasását az eszköz tárhelyéről, beleértve a belső és külső tárhelyet is</string>
+    <string name="read_media_audio">Média hangfájlok olvasása [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">Lehetővé teszi az alkalmazás számára hangfájlok olvasását az eszköz tárhelyéről</string>
+    <string name="read_media_images">Média képek olvasása [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">Lehetővé teszi az alkalmazás számára képfájlok olvasását az eszköz tárhelyéről</string>
+    <string name="read_media_video">Média videók olvasása [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">Lehetővé teszi az alkalmazás számára videófájlok olvasását az eszköz tárhelyéről</string>
+    <string name="write_external_storage">Külső tárhelyre írás [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">Lehetővé teszi az alkalmazás számára fájlok írását az eszköz tárhelyére, beleértve a belső és külső tárhelyet is</string>
+
+    <!-- About -->
+    <string name="summary_preference_settings_about">Tudj meg többet a Cleanerről</string>
+
+    <!-- FAQ -->
+    <string name="question_1">Mi az a Cleaner?</string>
+    <string name="summary_preference_faq_1">A Cleaner egy ingyenes és nyílt forráskódú Android alkalmazás, amely segít optimalizálni az eszköz teljesítményét és tárhelyet felszabadítani. Képes átvizsgálni az eszközt a felesleges fájlok után, és törölni azokat, valamint törölheti a gyorsítótárat az eszköz sebességének javítása érdekében.</string>
+    <string name="question_2">Biztonságos a Cleaner használata?</string>
+    <string name="summary_preference_faq_2">Igen, a Cleaner használata biztonságos. Csak olyan fájlokat távolít el, amelyek nem nélkülözhetetlenek az eszköz vagy az alkalmazások működéséhez, és nem töröl semmilyen személyes adatot vagy fontos rendszerfájlt.</string>
+    <string name="question_3">Hogyan használjam a Cleanert?</string>
+    <string name="summary_preference_faq_3">A Cleaner használatához egyszerűen töltsd le és telepítsd az alkalmazást a Google Play Áruházból vagy egy megbízható harmadik féltől származó alkalmazásboltból. Ezután nyisd meg az alkalmazást, és kövesd az utasításokat az eszköz átvizsgálásához és a felesleges fájlok törléséhez. Az alkalmazás beállításaiban testreszabhatod, hogy milyen típusú fájlokat keressen és töröljön a Cleaner.</string>
+    <string name="question_4">Képes a Cleaner alkalmazás-gyorsítótárat törölni?</string>
+    <string name="summary_preference_faq_4">Igen, a Cleaner képes törölni az alkalmazás-gyorsítótárat. Fontos azonban megjegyezni, hogy a gyorsítótár törlése miatt az alkalmazás lassabban töltődhet be, vagy bizonyos feladatokat lassabban végezhet el a következő használatkor.</string>
+    <string name="question_5">Szükséges root hozzáférés a Cleanerhez?</string>
+    <string name="summary_preference_faq_5">Nem, a Cleaner működéséhez nincs szükség root hozzáférésre. Bármely Android eszközön használhatod anélkül, hogy rootolnád az eszközt.</string>
+    <string name="question_6">Elérhető a Cleaner iOS-re?</string>
+    <string name="summary_preference_faq_6">Nem, a Cleaner jelenleg csak Android eszközökre érhető el.</string>
+    <string name="question_7">Javítja a Cleaner az akkumulátor élettartamát?</string>
+    <string name="summary_preference_faq_7">A Cleaner használata a gyorsítótár törlésére segíthet javítani az eszköz akkumulátorának élettartamát azáltal, hogy csökkenti a felesleges folyamatok által felhasznált energiát és erőforrásokat. Azonban, hogy a Cleaner milyen mértékben tudja javítani az akkumulátor élettartamát, az számos tényezőtől függ, például az eszköz márkájától és modelljétől, a használt alkalmazásoktól és a használati szokásoktól.</string>
+    <string name="question_8">Milyen gyakran kell használnom a Cleanert?</string>
+    <string name="summary_preference_faq_8">Nincs meghatározott szabály arra, hogy milyen gyakran kell használni a Cleanert, mivel ez az eszköz használatától és az idővel felhalmozódó felesleges fájlok mennyiségétől függ. Néhány felhasználó hasznosnak találhatja a Cleaner heti vagy havi futtatását, míg másoknak csak alkalmanként lehet rá szükségük.</string>
+    <string name="question_9">Kompatibilis a Cleaner minden Android eszközzel?</string>
+    <string name="summary_preference_faq_9">A Cleanernek kompatibilisnek kell lennie a legtöbb Android eszközzel, amely megfelel az alkalmazás minimális rendszerkövetelményeinek. Mindig jó ötlet azonban ellenőrizni az alkalmazás oldalát a Google Play Áruházban vagy az általad használt alkalmazásboltban, hogy megerősítsd a kompatibilitást az adott eszközzel. Ha bármilyen problémát tapasztalsz a Cleaner használata közben, megpróbálhatod elhárítani a problémát, vagy segítséget kérhetsz az alkalmazás támogatási csapatától.</string>
+
+    <!-- Error messages -->
+    <string name="request_no_internet">Nincs internetkapcsolat. Kérjük, ellenőrizd a kapcsolatot, és próbáld újra.</string>
+    <string name="request_timeout">A kérés időtúllépés miatt sikertelen. Kérjük, próbáld újra.</string>
+    <string name="request_server_not_found">Szerverhiba. Kérjük, próbáld újra később.</string>
+    <string name="request_payload_error">Adathiba. Kérjük, próbáld újra.</string>
+    <string name="failed_to_open_app_info">Nem sikerült megnyitni az alkalmazásinformációt: %1$s</string>
+    <string name="share_apk_failed">Nem sikerült megosztani az APK-t</string>
+    <string name="share_app_failed">Nem sikerült megosztani az alkalmazást</string>
+    <string name="apk_installed_successfully">Az APK sikeresen telepítve!</string>
+    <string name="failed_to_install_apk">Nem sikerült telepíteni az APK-t: %1$s</string>
+    <string name="failed_to_uninstall_app">Nem sikerült eltávolítani az alkalmazást: %1$s</string>
+    <string name="app_uninstalled_successfully">Az alkalmazás sikeresen eltávolítva</string>
+</resources>

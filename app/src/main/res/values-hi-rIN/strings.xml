@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_short_description">आखिरी एंड्रॉइड क्लीनर जिसकी आपको रोज़मर्रा के इस्तेमाल के लिए कभी भी ज़रूरत पड़ेगी!</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">क्लीनर में आपका स्वागत है!</string>
+    <string name="onboarding_welcome_description">चलिए एक त्वरित सेटअप से गुजरते हैं और जगह खाली करना शुरू करते हैं।</string>
+    <string name="onboarding_personalization_title">अपनी सफाई को अनुकूलित करें</string>
+    <string name="onboarding_personalization_description">अपनी ज़रूरतों के अनुसार क्लीनर को समायोजित करें।</string>
+    <string name="permission_section_public_title">सार्वजनिक संग्रहण तक पहुँच</string>
+    <string name="permission_section_public_description">क्लीनर को सार्वजनिक संग्रहण पर फ़ाइलें पढ़ने और लिखने की अनुमति देता है।</string>
+    <string name="permission_section_manage_title">पूर्ण फ़ाइल प्रबंधन</string>
+    <string name="permission_section_manage_description">आपके डिवाइस पर सभी फ़ाइलों को पूरी तरह से प्रबंधित करने के लिए आवश्यक है।</string>
+    <string name="permission_section_usage_title">ऐप उपयोग तक पहुँच</string>
+    <string name="permission_section_usage_description">क्लीनर को ऐप उपयोग के आधार पर संग्रहण का विश्लेषण करने की अनुमति देता है।</string>
+    <string name="onboarding_permission_storage_title">संग्रहण तक पहुँच</string>
+    <string name="onboarding_permission_storage_description">क्लीनर को ऐप्स को स्कैन और विश्लेषण करने के लिए संग्रहण और उपयोग अनुमतियों की आवश्यकता होती है।</string>
+    <string name="button_grant_permission">अनुमति दें</string>
+
+    <!-- Home -->
+    <string name="delete_forever">हमेशा के लिए हटाएं</string>
+    <string name="move_to_trash">ट्रैश में ले जाएं</string>
+    <string name="cleaned_space">साफ़ किया गया स्थान</string>
+    <string name="free_space">खाली स्थान</string>
+    <string name="delete_forever_title">हमेशा के लिए हटाएं</string>
+    <string name="delete_forever_message">क्या आप वाकई इन फ़ाइलों को हमेशा के लिए हटाना चाहते हैं? यह कार्रवाई पूर्ववत नहीं की जा सकती।</string>
+    <string name="move_to_trash_title">ट्रैश में ले जाएं</string>
+    <string name="move_to_trash_message">क्या आप वाकई इन फ़ाइलों को ट्रैश में ले जाना चाहते हैं?</string>
+    <string name="quick_scan">त्वरित स्कैन</string>
+    <string name="apks">एपीके</string>
+    <string name="archives">अभिलेखागार</string>
+    <string name="fonts">फ़ॉन्ट</string>
+    <string name="windows_files">विंडोज फ़ाइलें</string>
+    <string name="videos">वीडियो</string>
+    <string name="audios">ऑडियो</string>
+    <string name="empty_folders">खाली फ़ोल्डर</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">स्थिति: %1$d फ़ाइल चयनित</item>
+        <item quantity="other">स्थिति: %1$d फ़ाइलें चयनित</item>
+    </plurals>
+    <string name="status_no_files_selected">स्थिति: कोई फ़ाइल चयनित नहीं</string>
+    <string name="select_all">सभी चुनें</string>
+    <string name="today">आज</string>
+    <string name="yesterday">कल</string>
+    <string name="a_year_ago">पिछले साल</string>
+    <plurals name="years_ago">
+        <item quantity="one">%d वर्ष पहले</item>
+        <item quantity="other">%d वर्ष पहले</item>
+    </plurals>
+    <string name="no_files_found">कोई फ़ाइल नहीं मिली</string>
+
+    <!-- App manager -->
+    <string name="app_manager">ऐप मैनेजर</string>
+    <string name="installed_apps">इंस्टॉल किए गए ऐप्स</string>
+    <string name="system_apps">सिस्टम ऐप्स</string>
+    <string name="app_install_files">ऐप इंस्टॉल फ़ाइलें (एपीके)</string>
+    <string name="uninstall">अनइंस्टॉल करें</string>
+    <string name="app_info">ऐप जानकारी</string>
+    <string name="install">इंस्टॉल करें</string>
+    <string name="no_app_installed">कोई ऐप इंस्टॉल नहीं है</string>
+
+    <!-- Memory Manager -->
+    <string name="memory_manager">मेमोरी मैनेजर</string>
+    <string name="storage_information">संग्रहण जानकारी</string>
+    <string name="used">उपयोग किया गया:</string>
+    <string name="free">खाली:</string>
+    <string name="total">कुल:</string>
+    <string name="ram_information">रैम जानकारी</string>
+    <string name="used_ram">उपयोग की गई रैम:</string>
+    <string name="free_ram">खाली रैम:</string>
+    <string name="total_ram">कुल रैम:</string>
+    <string name="categories">श्रेणियाँ</string>
+    <string name="system">सिस्टम</string>
+    <string name="music">संगीत</string>
+    <string name="images">छवियां</string>
+    <string name="documents">दस्तावेज़</string>
+    <string name="downloads">डाउनलोड</string>
+    <string name="other_files">अन्य फ़ाइलें</string>
+
+    <!-- Image Optimizer -->
+    <string name="image_optimizer">छवि ऑप्टिमाइज़र</string>
+    <string name="summary_select_image">वह छवि चुनें जिसे आप ऑप्टिमाइज़ करना चाहते हैं</string>
+    <string name="choose_image">छवि चुनें</string>
+    <string name="optimize_image">छवि ऑप्टिमाइज़ करें</string>
+    <string name="quick_compress">त्वरित संपीड़न</string>
+    <string name="low">कम</string>
+    <string name="medium">मध्यम</string>
+    <string name="high">उच्च</string>
+    <string name="file_size">फ़ाइल का आकार (KB)</string>
+    <string name="default_value">डिफ़ॉल्ट</string>
+    <string name="enter_a_value">एक मान दर्ज करें</string>
+    <string name="manual">मैन्युअल</string>
+    <string name="width">चौड़ाई (px)</string>
+    <string name="height">ऊंचाई (px)</string>
+    <string name="quality">गुणवत्ता</string>
+
+    <!-- Trash -->
+    <string name="trash">ट्रैश</string>
+    <string name="trash_is_empty">ट्रैश खाली है</string>
+    <string name="restore">पुनर्स्थापित करें</string>
+
+    <!-- Display -->
+    <string name="dialog_startup_subtitle">अपना पसंदीदा स्टार्टअप पृष्ठ चुनें:</string>
+    <string name="dialog_info_startup">एप्लिकेशन लॉन्च करने पर उपयोगकर्ताओं को प्रस्तुत प्रारंभिक स्क्रीन को कॉन्फ़िगर करता है। यह सेटिंग ऐप के साथ उपयोगकर्ता की पहली बातचीत को प्रभावित करती है और इसे विशिष्ट उपयोगकर्ता खंडों या उत्पाद लक्ष्यों के अनुरूप बनाया जा सकता है।</string>
+
+    <!-- Cleaning settings -->
+    <string name="cleaning">सफाई</string>
+    <string name="summary_preference_settings_cleaning">अपने सफाई अनुभव को अनुकूलित करें</string>
+    <string name="filters">फ़िल्टर</string>
+    <string name="generic_filter">सामान्य फ़िल्टर</string>
+    <string name="summary_preference_settings_generic_filter">अस्थायी, लॉग, लॉग्स, और अन्य बेकार फ़ाइलें और फ़ोल्डर हटाएं</string>
+    <string name="delete_empty_folders">खाली फ़ोल्डर हटाएं</string>
+    <string name="delete_archives">अभिलेखागार हटाएं</string>
+    <string name="summary_preference_settings_archive_filter">अपने डिवाइस से अभिलेखागार हटाएं</string>
+    <string name="delete_corpse_files">मृत फ़ाइलें हटाएं</string>
+    <string name="summary_preference_settings_delete_corpse_files">अनइंस्टॉल/हटाए गए ऐप्स से बची हुई फ़ाइलें हटाएं</string>
+    <string name="delete_apk_files">एपीके फ़ाइलें हटाएं</string>
+    <string name="summary_preference_settings_delete_apk_files">एंड्रॉइड के लिए इंस्टॉलर फ़ाइलें (.apk) हटाएं</string>
+    <string name="delete_windows_files">विंडोज एक्सटेंशन</string>
+    <string name="summary_preference_settings_delete_windows_files">विंडोज एक्सटेंशन (exe, dll, sys) का पता लगाता है</string>
+    <string name="delete_office_files">ऑफिस एक्सटेंशन</string>
+    <string name="summary_preference_settings_delete_office_files">ऑफिस एक्सटेंशन (doc, xls, ppt, docx, xlsx, pptx) का पता लगाता है</string>
+    <string name="delete_font_files">फ़ॉन्ट एक्सटेंशन</string>
+    <string name="summary_preference_settings_delete_font_files">फ़ॉन्ट एक्सटेंशन (ttf, otf) का पता लगाता है</string>
+    <string name="delete_other_files">अन्य एक्सटेंशन</string>
+    <string name="summary_preference_settings_delete_other_files">अन्य सभी एक्सटेंशन प्रकारों का पता लगाता है।</string>
+    <string name="media">मीडिया</string>
+    <string name="delete_audio">ऑडियो हटाएं</string>
+    <string name="summary_preference_settings_delete_audio">डिवाइस से ऑडियो फ़ाइलें हटाएं</string>
+    <string name="delete_video">वीडियो हटाएं</string>
+    <string name="summary_preference_settings_delete_video">डिवाइस से वीडियो फ़ाइलें हटाएं</string>
+    <string name="delete_images">छवियां हटाएं</string>
+    <string name="summary_preference_settings_delete_images">डिवाइस से छवि फ़ाइलें हटाएं</string>
+    <string name="delete_invalid_media">अमान्य मीडिया हटाएं</string>
+    <string name="summary_preference_settings_delete_invalid_media">भ्रष्ट छवियां हटाएं</string>
+    <string name="scanner">स्कैनर</string>
+    <string name="clipboard_clean">क्लिपबोर्ड साफ़ करें</string>
+
+    <!-- Permissions -->
+    <string name="request_delete_packages">पैकेज हटाने का अनुरोध करें [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">ऐप को पैकेज हटाने का अनुरोध करने की अनुमति देता है। इसका उपयोग डिवाइस से अन्य ऐप्स को अनइंस्टॉल करने के लिए किया जा सकता है</string>
+    <string name="access_media_location">मीडिया स्थान तक पहुँचें [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">ऐप को डिवाइस की मीडिया फ़ाइलों के स्थान तक पहुंचने की अनुमति देता है</string>
+    <string name="action_open_document_tree">दस्तावेज़ ट्री खोलने की कार्रवाई [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">ऐप को दस्तावेज़ों के एक ट्री तक पहुंचने की अनुमति देता है, जिसमें ट्री में फ़ाइलों को पढ़ने और लिखने की क्षमता शामिल है</string>
+    <string name="manage_external_storage">बाहरी संग्रहण प्रबंधित करें [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">ऐप को डिवाइस के संग्रहण पर फ़ाइलों को हटाने और उनका नाम बदलने जैसी कार्रवाइयां करने की अनुमति देता है, जिसमें आंतरिक और बाहरी दोनों संग्रहण शामिल हैं</string>
+    <string name="package_usage_stats">पैकेज उपयोग आँकड़े [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">ऐप को उपयोगकर्ता के ऐप उपयोग के बारे में जानकारी तक पहुंचने की अनुमति देता है, जिसमें यह शामिल है कि कौन से ऐप्स का उपयोग किया गया है, उनका कितनी देर तक उपयोग किया गया है, और कितनी बार उनका उपयोग किया गया है</string>
+    <string name="query_all_packages">सभी पैकेज क्वेरी करें [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">ऐप को डिवाइस पर इंस्टॉल किए गए सभी पैकेजों के बारे में जानकारी के लिए क्वेरी करने की अनुमति देता है। ऐप इस जानकारी का उपयोग यह निर्धारित करने के लिए करता है कि कौन सी फ़ाइलें रखनी हैं या हटानी हैं</string>
+    <string name="read_external_storage">बाहरी संग्रहण पढ़ें [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">ऐप को डिवाइस के संग्रहण से फ़ाइलें पढ़ने की अनुमति देता है, जिसमें आंतरिक और बाहरी दोनों संग्रहण शामिल हैं</string>
+    <string name="read_media_audio">मीडिया ऑडियो पढ़ें [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">ऐप को डिवाइस के संग्रहण से ऑडियो फ़ाइलें पढ़ने की अनुमति देता है</string>
+    <string name="read_media_images">मीडिया छवियां पढ़ें [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">ऐप को डिवाइस के संग्रहण से छवि फ़ाइलें पढ़ने की अनुमति देता है</string>
+    <string name="read_media_video">मीडिया वीडियो पढ़ें [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">ऐप को डिवाइस के संग्रहण से वीडियो फ़ाइलें पढ़ने की अनुमति देता है</string>
+    <string name="write_external_storage">बाहरी संग्रहण पर लिखें [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">ऐप को डिवाइस के संग्रहण पर फ़ाइलें लिखने की अनुमति देता है, जिसमें आंतरिक और बाहरी दोनों संग्रहण शामिल हैं</string>
+
+    <!-- About -->
+    <string name="summary_preference_settings_about">क्लीनर के बारे में और जानें</string>
+
+    <!-- FAQ -->
+    <string name="question_1">क्लीनर क्या है?</string>
+    <string name="summary_preference_faq_1">क्लीनर एक मुफ़्त और ओपन-सोर्स एंड्रॉइड ऐप है जो आपके डिवाइस के प्रदर्शन को अनुकूलित करने और संग्रहण स्थान खाली करने में आपकी सहायता करता है। यह अनावश्यक फ़ाइलों के लिए आपके डिवाइस को स्कैन कर सकता है और उन्हें हटा सकता है, साथ ही आपके डिवाइस की गति को बेहतर बनाने के लिए आपके कैश को साफ़ कर सकता है</string>
+    <string name="question_2">क्या क्लीनर का उपयोग करना सुरक्षित है?</string>
+    <string name="summary_preference_faq_2">हाँ, क्लीनर का उपयोग करना सुरक्षित है। यह केवल उन फ़ाइलों को हटाता है जो आपके डिवाइस या ऐप्स के संचालन के लिए आवश्यक नहीं हैं, और यह आपके किसी भी व्यक्तिगत डेटा या महत्वपूर्ण सिस्टम फ़ाइलों को नहीं हटाता है</string>
+    <string name="question_3">मैं क्लीनर का उपयोग कैसे करूं?</string>
+    <string name="summary_preference_faq_3">क्लीनर का उपयोग करने के लिए, बस Google Play Store या किसी प्रतिष्ठित तृतीय-पक्ष ऐप स्टोर से ऐप डाउनलोड और इंस्टॉल करें। फिर, ऐप खोलें और अपने डिवाइस को स्कैन करने और अनावश्यक फ़ाइलों को हटाने के लिए संकेतों का पालन करें। आप उन फ़ाइलों के प्रकारों को अनुकूलित करने के लिए ऐप की सेटिंग्स तक भी पहुँच सकते हैं जिन्हें क्लीनर खोजता और हटाता है</string>
+    <string name="question_4">क्या क्लीनर ऐप कैश हटा सकता है?</string>
+    <string name="summary_preference_faq_4">हाँ, क्लीनर ऐप कैश हटा सकता है। हालाँकि, यह ध्यान रखना महत्वपूर्ण है कि कैश हटाने से अगली बार जब आप इसका उपयोग करेंगे तो ऐप को लोड होने या कुछ कार्य करने में अधिक समय लग सकता है</string>
+    <string name="question_5">क्या क्लीनर को रूट एक्सेस की आवश्यकता है?</string>
+    <string name="summary_preference_faq_5">नहीं, क्लीनर को काम करने के लिए रूट एक्सेस की आवश्यकता नहीं है। आप इसे अपने डिवाइस को रूट किए बिना किसी भी एंड्रॉइड डिवाइस पर उपयोग कर सकते हैं</string>
+    <string name="question_6">क्या क्लीनर iOS के लिए उपलब्ध है?</string>
+    <string name="summary_preference_faq_6">नहीं, क्लीनर वर्तमान में केवल एंड्रॉइड डिवाइस के लिए उपलब्ध है</string>
+    <string name="question_7">क्या क्लीनर बैटरी लाइफ में सुधार करता है?</string>
+    <string name="summary_preference_faq_7">अपने कैश को साफ़ करने के लिए क्लीनर का उपयोग करने से अनावश्यक प्रक्रियाओं द्वारा उपयोग की जाने वाली शक्ति और संसाधनों की मात्रा को कम करके आपके डिवाइस की बैटरी लाइफ को बेहतर बनाने में मदद मिल सकती है। हालाँकि, क्लीनर आपकी बैटरी लाइफ में कितना सुधार कर सकता है, यह विभिन्न कारकों पर निर्भर करेगा जैसे आपके डिवाइस का मेक और मॉडल, आपके द्वारा उपयोग किए जाने वाले ऐप्स और आपके उपयोग की आदतें</string>
+    <string name="question_8">मुझे कितनी बार क्लीनर का उपयोग करना चाहिए?</string>
+    <string name="summary_preference_faq_8">आपको कितनी बार क्लीनर का उपयोग करना चाहिए, इसके लिए कोई निर्धारित नियम नहीं है, क्योंकि यह आपके डिवाइस के उपयोग और समय के साथ जमा होने वाली अनावश्यक फ़ाइलों की मात्रा पर निर्भर करेगा। कुछ उपयोगकर्ताओं को साप्ताहिक या मासिक रूप से क्लीनर चलाना उपयोगी लग सकता है, जबकि अन्य को केवल कभी-कभी इसका उपयोग करने की आवश्यकता हो सकती है</string>
+    <string name="question_9">क्या क्लीनर सभी एंड्रॉइड डिवाइस के साथ संगत है?</string>
+    <string name="summary_preference_faq_9">क्लीनर को अधिकांश एंड्रॉइड डिवाइस के साथ संगत होना चाहिए जो ऐप की न्यूनतम सिस्टम आवश्यकताओं को पूरा करते हैं। हालाँकि, अपने विशिष्ट डिवाइस के साथ संगतता की पुष्टि करने के लिए Google Play Store पर ऐप के पेज या आपके द्वारा उपयोग किए जा रहे ऐप स्टोर की जांच करना हमेशा एक अच्छा विचार है। यदि क्लीनर का उपयोग करते समय आपको कोई समस्या आती है, तो आप समस्या का निवारण करने का प्रयास कर सकते हैं या सहायता के लिए ऐप की सहायता टीम से संपर्क कर सकते हैं</string>
+
+    <!-- Error messages -->
+    <string name="request_no_internet">कोई इंटरनेट कनेक्शन नहीं। कृपया अपना कनेक्शन जांचें और पुनः प्रयास करें।</string>
+    <string name="request_timeout">अनुरोध समय समाप्त हो गया। कृपया पुनः प्रयास करें।</string>
+    <string name="request_server_not_found">सर्वर त्रुटि। कृपया बाद में पुनः प्रयास करें।</string>
+    <string name="request_payload_error">डेटा त्रुटि। कृपया पुनः प्रयास करें।</string>
+    <string name="failed_to_open_app_info">ऐप जानकारी खोलने में विफल: %1$s</string>
+    <string name="share_apk_failed">एपीके साझा करने में विफल</string>
+    <string name="share_app_failed">ऐप साझा करने में विफल</string>
+    <string name="apk_installed_successfully">एपीके सफलतापूर्वक इंस्टॉल हो गया!</string>
+    <string name="failed_to_install_apk">एपीके इंस्टॉल करने में विफल: %1$s</string>
+    <string name="failed_to_uninstall_app">ऐप अनइंस्टॉल करने में विफल: %1$s</string>
+    <string name="app_uninstalled_successfully">ऐप सफलतापूर्वक अनइंस्टॉल हो गया</string>
+</resources>

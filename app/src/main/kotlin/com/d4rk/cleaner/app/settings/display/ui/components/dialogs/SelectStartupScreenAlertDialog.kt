@@ -34,11 +34,12 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.main.utils.constants.NavigationRoutes
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import kotlinx.coroutines.flow.firstOrNull
+import org.koin.compose.koinInject
 
 @Composable
-fun SelectStartupScreenAlertDialog(
-    dataStore : DataStore , onDismiss : () -> Unit , onStartupSelected : (String) -> Unit
+fun SelectStartupScreenAlertDialog(onDismiss : () -> Unit , onStartupSelected : (String) -> Unit
 ) {
+    val dataStore : DataStore = koinInject()
     val defaultPage : MutableState<String> = remember { mutableStateOf(NavigationRoutes.ROUTE_HOME) }
     val startupEntries : List<String> = stringArrayResource(id = R.array.preference_startup_entries).toList()
     val startupValues : List<String> = stringArrayResource(id = R.array.preference_startup_values).toList()

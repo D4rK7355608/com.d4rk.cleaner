@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.shimmerEffect
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 
+// FIXME: The placeholder does not have the top and bottom spacing like the real one have
 @Composable
 fun AppItemPlaceholder(modifier: Modifier) {
     OutlinedCard(modifier = modifier) {

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_short_description">Останній очищувач для Android, який вам знадобиться для щоденного використання!</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">Ласкаво просимо до Cleaner!</string>
+    <string name="onboarding_welcome_description">Пройдімо швидке налаштування та почнімо звільняти місце.</string>
+    <string name="onboarding_personalization_title">Налаштуйте очищення</string>
+    <string name="onboarding_personalization_description">Налаштуйте Cleaner відповідно до ваших потреб.</string>
+    <string name="permission_section_public_title">Доступ до загального сховища</string>
+    <string name="permission_section_public_description">Дозволяє Cleaner читати та записувати файли в загальному сховищі.</string>
+    <string name="permission_section_manage_title">Повне керування файлами</string>
+    <string name="permission_section_manage_description">Потрібно для повного керування всіма файлами на вашому пристрої.</string>
+    <string name="permission_section_usage_title">Доступ до даних про використання</string>
+    <string name="permission_section_usage_description">Дозволяє Cleaner аналізувати використання сховища на основі даних про використання додатків.</string>
+    <string name="onboarding_permission_storage_title">Доступ до сховища</string>
+    <string name="onboarding_permission_storage_description">Cleaner потребує дозволів на доступ до сховища та даних про використання для сканування й аналізу додатків.</string>
+    <string name="button_grant_permission">Надати дозвіл</string>
+
+    <!-- Home -->
+    <string name="delete_forever">Видалити назавжди</string>
+    <string name="move_to_trash">Перемістити до кошика</string>
+    <string name="cleaned_space">Очищено місця</string>
+    <string name="free_space">Вільно місця</string>
+    <string name="delete_forever_title">Видалити назавжди</string>
+    <string name="delete_forever_message">Ви впевнені, що хочете видалити ці файли назавжди? Цю дію неможливо скасувати.</string>
+    <string name="move_to_trash_title">Перемістити до кошика</string>
+    <string name="move_to_trash_message">Ви впевнені, що хочете перемістити ці файли до кошика?</string>
+    <string name="quick_scan">Швидке сканування</string>
+    <string name="apks">APK-файли</string>
+    <string name="archives">Архіви</string>
+    <string name="fonts">Шрифти</string>
+    <string name="windows_files">Файли Windows</string>
+    <string name="videos">Відео</string>
+    <string name="audios">Аудіо</string>
+    <string name="empty_folders">Порожні теки</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">Статус: Вибрано %1$d файл</item>
+        <item quantity="few">Статус: Вибрано %1$d файли</item>
+        <item quantity="many">Статус: Вибрано %1$d файлів</item>
+        <item quantity="other">Статус: Вибрано %1$d файлів</item>
+    </plurals>
+    <string name="status_no_files_selected">Статус: Файли не вибрано</string>
+    <string name="select_all">Вибрати все</string>
+    <string name="today">Сьогодні</string>
+    <string name="yesterday">Вчора</string>
+    <string name="a_year_ago">Минулого року</string>
+    <plurals name="years_ago">
+        <item quantity="one">%d рік тому</item>
+        <item quantity="few">%d роки тому</item>
+        <item quantity="many">%d років тому</item>
+        <item quantity="other">%d років тому</item>
+    </plurals>
+    <string name="no_files_found">Файлів не знайдено</string>
+
+    <!-- App manager -->
+    <string name="app_manager">Менеджер додатків</string>
+    <string name="installed_apps">Встановлені додатки</string>
+    <string name="system_apps">Системні додатки</string>
+    <string name="app_install_files">Файли встановлення додатків (APK)</string>
+    <string name="uninstall">Видалити</string>
+    <string name="app_info">Про додаток</string>
+    <string name="install">Встановити</string>
+    <string name="no_app_installed">Немає встановлених додатків</string>
+
+    <!-- Memory Manager -->
+    <string name="memory_manager">Менеджер пам\'яті</string>
+    <string name="storage_information">Інформація про сховище</string>
+    <string name="used">Використано:</string>
+    <string name="free">Вільно:</string>
+    <string name="total">Всього:</string>
+    <string name="ram_information">Інформація про ОЗП</string>
+    <string name="used_ram">Використано ОЗП:</string>
+    <string name="free_ram">Вільно ОЗП:</string>
+    <string name="total_ram">Всього ОЗП:</string>
+    <string name="categories">Категорії</string>
+    <string name="system">Система</string>
+    <string name="music">Музика</string>
+    <string name="images">Зображення</string>
+    <string name="documents">Документи</string>
+    <string name="downloads">Завантаження</string>
+    <string name="other_files">Інші файли</string>
+
+    <!-- Image Optimizer -->
+    <string name="image_optimizer">Оптимізатор зображень</string>
+    <string name="summary_select_image">Виберіть зображення для оптимізації</string>
+    <string name="choose_image">Вибрати зображення</string>
+    <string name="optimize_image">Оптимізувати зображення</string>
+    <string name="quick_compress">Швидке стиснення</string>
+    <string name="low">Низька</string>
+    <string name="medium">Середня</string>
+    <string name="high">Висока</string>
+    <string name="file_size">Розмір файлу (КБ)</string>
+    <string name="default_value">За замовчуванням</string>
+    <string name="enter_a_value">Введіть значення</string>
+    <string name="manual">Вручну</string>
+    <string name="width">Ширина (пікс.)</string>
+    <string name="height">Висота (пікс.)</string>
+    <string name="quality">Якість</string>
+
+    <!-- Trash -->
+    <string name="trash">Кошик</string>
+    <string name="trash_is_empty">Кошик порожній</string>
+    <string name="restore">Відновити</string>
+
+    <!-- Display -->
+    <string name="dialog_startup_subtitle">Виберіть бажану стартову сторінку:</string>
+    <string name="dialog_info_startup">Налаштовує початковий екран, що показується користувачам при запуску додатка. Це налаштування впливає на першу взаємодію користувача з додатком і може бути адаптоване для певних сегментів користувачів або цілей продукту.</string>
+
+    <!-- Cleaning settings -->
+    <string name="cleaning">Очищення</string>
+    <string name="summary_preference_settings_cleaning">Налаштуйте процес очищення</string>
+    <string name="filters">Фільтри</string>
+    <string name="generic_filter">Загальний фільтр</string>
+    <string name="summary_preference_settings_generic_filter">Видалення тимчасових файлів, логів та інших непотрібних файлів і тек</string>
+    <string name="delete_empty_folders">Видаляти порожні теки</string>
+    <string name="delete_archives">Видаляти архіви</string>
+    <string name="summary_preference_settings_archive_filter">Видалення архівів із вашого пристрою</string>
+    <string name="delete_corpse_files">Видаляти залишкові файли</string>
+    <string name="summary_preference_settings_delete_corpse_files">Видалення файлів, що залишилися після видалених додатків</string>
+    <string name="delete_apk_files">Видаляти APK-файли</string>
+    <string name="summary_preference_settings_delete_apk_files">Видалення файлів встановлення (.apk) для Android</string>
+    <string name="delete_windows_files">Розширення Windows</string>
+    <string name="summary_preference_settings_delete_windows_files">Виявляє розширення Windows (exe, dll, sys)</string>
+    <string name="delete_office_files">Розширення Office</string>
+    <string name="summary_preference_settings_delete_office_files">Виявляє розширення Office (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">Розширення шрифтів</string>
+    <string name="summary_preference_settings_delete_font_files">Виявляє розширення шрифтів (ttf, otf)</string>
+    <string name="delete_other_files">Інші розширення</string>
+    <string name="summary_preference_settings_delete_other_files">Виявляє всі інші типи розширень.</string>
+    <string name="media">Медіа</string>
+    <string name="delete_audio">Видаляти аудіо</string>
+    <string name="summary_preference_settings_delete_audio">Видалення аудіофайлів із пристрою</string>
+    <string name="delete_video">Видаляти відео</string>
+    <string name="summary_preference_settings_delete_video">Видалення відеофайлів із пристрою</string>
+    <string name="delete_images">Видаляти зображення</string>
+    <string name="summary_preference_settings_delete_images">Видалення файлів зображень із пристрою</string>
+    <string name="delete_invalid_media">Видаляти пошкоджені медіафайли</string>
+    <string name="summary_preference_settings_delete_invalid_media">Видалення пошкоджених зображень</string>
+    <string name="scanner">Сканер</string>
+    <string name="clipboard_clean">Очищення буфера обміну</string>
+
+    <!-- Permissions -->
+    <string name="request_delete_packages">Запит на видалення пакетів [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">Дозволяє додатку запитувати видалення пакетів. Це може використовуватися для видалення інших додатків з пристрою</string>
+    <string name="access_media_location">Доступ до розташування медіа [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">Дозволяє додатку отримувати доступ до розташування медіафайлів пристрою</string>
+    <string name="action_open_document_tree">Дія: відкрити дерево документів [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">Дозволяє додатку отримувати доступ до дерева документів, включаючи можливість читати та записувати файли в цьому дереві</string>
+    <string name="manage_external_storage">Керування зовнішнім сховищем [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">Дозволяє додатку виконувати такі дії, як видалення та перейменування файлів у сховищі пристрою, включаючи як внутрішнє, так і зовнішнє сховище</string>
+    <string name="package_usage_stats">Статистика використання пакетів [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">Дозволяє додатку отримувати доступ до інформації про використання додатків користувачем, включаючи те, які додатки використовувалися, як довго і як часто</string>
+    <string name="query_all_packages">Запит усіх пакетів [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">Дозволяє додатку запитувати інформацію про всі встановлені пакети на пристрої. Додаток використовує цю інформацію, щоб визначити, які файли залишити, а які видалити</string>
+    <string name="read_external_storage">Читання зовнішнього сховища [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">Дозволяє додатку читати файли зі сховища пристрою, включаючи як внутрішнє, так і зовнішнє сховище</string>
+    <string name="read_media_audio">Читання аудіофайлів [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">Дозволяє додатку читати аудіофайли зі сховища пристрою</string>
+    <string name="read_media_images">Читання зображень [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">Дозволяє додатку читати файли зображень зі сховища пристрою</string>
+    <string name="read_media_video">Читання відео [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">Дозволяє додатку читати відеофайли зі сховища пристрою</string>
+    <string name="write_external_storage">Запис у зовнішнє сховище [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">Дозволяє додатку записувати файли в сховище пристрою, включаючи як внутрішнє, так і зовнішнє сховище</string>
+
+    <!-- About -->
+    <string name="summary_preference_settings_about">Дізнайтеся більше про Cleaner</string>
+
+    <!-- FAQ -->
+    <string name="question_1">Що таке Cleaner?</string>
+    <string name="summary_preference_faq_1">Cleaner — це безкоштовний додаток для Android з відкритим кодом, який допомагає оптимізувати продуктивність вашого пристрою та звільнити місце у сховищі. Він може сканувати ваш пристрій на наявність непотрібних файлів і видаляти їх, а також очищувати кеш для підвищення швидкості роботи пристрою.</string>
+    <string name="question_2">Чи безпечно використовувати Cleaner?</string>
+    <string name="summary_preference_faq_2">Так, Cleaner безпечний у використанні. Він видаляє лише ті файли, які не є важливими для роботи вашого пристрою чи додатків, і не видаляє жодних ваших особистих даних або важливих системних файлів.</string>
+    <string name="question_3">Як користуватися Cleaner?</string>
+    <string name="summary_preference_faq_3">Щоб почати користуватися Cleaner, просто завантажте та встановіть додаток з Google Play Store або з іншого надійного магазину додатків. Потім відкрийте додаток і дотримуйтесь інструкцій, щоб просканувати пристрій і видалити непотрібні файли. Ви також можете зайти в налаштування додатка, щоб налаштувати типи файлів, які Cleaner буде шукати та видаляти.</string>
+    <string name="question_4">Чи може Cleaner видаляти кеш додатків?</string>
+    <string name="summary_preference_faq_4">Так, Cleaner може видаляти кеш додатків. Однак важливо зазначити, що видалення кешу може призвести до того, що наступного разу додаток буде завантажуватися довше або довше виконувати певні завдання.</string>
+    <string name="question_5">Чи потрібен Cleaner root-доступ?</string>
+    <string name="summary_preference_faq_5">Ні, для роботи Cleaner не потрібен root-доступ. Ви можете використовувати його на будь-якому пристрої Android без рутування.</string>
+    <string name="question_6">Чи доступний Cleaner для iOS?</string>
+    <string name="summary_preference_faq_6">Ні, наразі Cleaner доступний лише для пристроїв Android.</string>
+    <string name="question_7">Чи покращує Cleaner час роботи від батареї?</string>
+    <string name="summary_preference_faq_7">Використання Cleaner для очищення кешу може допомогти покращити час роботи від батареї вашого пристрою, зменшивши споживання енергії та ресурсів непотрібними процесами. Однак ступінь покращення залежить від різних факторів, таких як модель вашого пристрою, додатки, які ви використовуєте, та ваші звички використання.</string>
+    <string name="question_8">Як часто слід використовувати Cleaner?</string>
+    <string name="summary_preference_faq_8">Немає чіткого правила, як часто слід використовувати Cleaner, оскільки це залежить від інтенсивності використання вашого пристрою та кількості непотрібних файлів, що накопичуються з часом. Деяким користувачам може бути корисно запускати Cleaner щотижня або щомісяця, тоді як іншим може знадобитися використовувати його лише час від часу.</string>
+    <string name="question_9">Чи сумісний Cleaner з усіма пристроями Android?</string>
+    <string name="summary_preference_faq_9">Cleaner має бути сумісним із більшістю пристроїв Android, які відповідають мінімальним системним вимогам додатка. Однак завжди варто перевіряти сторінку додатка в Google Play Store або в магазині, який ви використовуєте, для підтвердження сумісності з вашим конкретним пристроєм. Якщо у вас виникнуть проблеми під час використання Cleaner, ви можете спробувати усунути їх самостійно або звернутися по допомогу до служби підтримки додатка.</string>
+
+    <!-- Error messages -->
+    <string name="request_no_internet">Немає з\'єднання з Інтернетом. Перевірте підключення та спробуйте ще раз.</string>
+    <string name="request_timeout">Час очікування запиту минув. Будь ласка, спробуйте ще раз.</string>
+    <string name="request_server_not_found">Помилка сервера. Будь ласка, спробуйте пізніше.</string>
+    <string name="request_payload_error">Помилка даних. Будь ласка, спробуйте ще раз.</string>
+    <string name="failed_to_open_app_info">Не вдалося відкрити інформацію про додаток: %1$s</string>
+    <string name="share_apk_failed">Не вдалося поділитися APK-файлом</string>
+    <string name="share_app_failed">Не вдалося поділитися додатком</string>
+    <string name="apk_installed_successfully">APK-файл успішно встановлено!</string>
+    <string name="failed_to_install_apk">Не вдалося встановити APK: %1$s</string>
+    <string name="failed_to_uninstall_app">Не вдалося видалити додаток: %1$s</string>
+    <string name="app_uninstalled_successfully">Додаток успішно видалено</string>
+</resources>

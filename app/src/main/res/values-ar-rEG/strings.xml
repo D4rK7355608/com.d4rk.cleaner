@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_short_description">آخر منظف أندرويد هتحتاجه لاستخدامك اليومي!</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">أهلًا بيك في كلينر!</string>
+    <string name="onboarding_welcome_description">يلا بينا نعمل إعداد سريع ونبدأ نفضي مساحة.</string>
+    <string name="onboarding_personalization_title">خصص تنظيفك</string>
+    <string name="onboarding_personalization_description">ظبّط كلينر عشان يناسب احتياجاتك.</string>
+    <string name="permission_section_public_title">الوصول لمساحة التخزين العامة</string>
+    <string name="permission_section_public_description">بيسمح لكلينر يقرا ويكتب ملفات على مساحة التخزين العامة.</string>
+    <string name="permission_section_manage_title">إدارة كاملة للملفات</string>
+    <string name="permission_section_manage_description">مطلوب لإدارة كل الملفات على جهازك بشكل كامل.</string>
+    <string name="permission_section_usage_title">الوصول لاستخدام التطبيقات</string>
+    <string name="permission_section_usage_description">بيسمح لكلينر يحلل مساحة التخزين بناءً على استخدام التطبيقات.</string>
+    <string name="onboarding_permission_storage_title">الوصول لمساحة التخزين</string>
+    <string name="onboarding_permission_storage_description">كلينر محتاج أذونات التخزين والاستخدام عشان يعمل مسح وتحليل للتطبيقات.</string>
+    <string name="button_grant_permission">منح الإذن</string>
+
+    <!-- Home -->
+    <string name="delete_forever">حذف نهائي</string>
+    <string name="move_to_trash">نقل لسلة المهملات</string>
+    <string name="cleaned_space">المساحة اللي اتنضفت</string>
+    <string name="free_space">مساحة فاضية</string>
+    <string name="delete_forever_title">حذف نهائي</string>
+    <string name="delete_forever_message">متأكد إنك عايز تحذف الملفات دي بشكل نهائي؟ الخطوة دي مش هينفع ترجع فيها.</string>
+    <string name="move_to_trash_title">نقل لسلة المهملات</string>
+    <string name="move_to_trash_message">متأكد إنك عايز تنقل الملفات دي لسلة المهملات؟</string>
+    <string name="quick_scan">فحص سريع</string>
+    <string name="apks">ملفات APK</string>
+    <string name="archives">الملفات المضغوطة</string>
+    <string name="fonts">الخطوط</string>
+    <string name="windows_files">ملفات ويندوز</string>
+    <string name="videos">الفيديوهات</string>
+    <string name="audios">الصوتيات</string>
+    <string name="empty_folders">مجلدات فاضية</string>
+    <plurals name="status_selected_files">
+        <item quantity="zero">الحالة: لم يتم تحديد أي ملفات</item>
+        <item quantity="one">الحالة: تم تحديد ملف واحد (%1$d)</item>
+        <item quantity="two">الحالة: تم تحديد ملفين (%1$d)</item>
+        <item quantity="few">الحالة: تم تحديد %1$d ملفات</item>
+        <item quantity="many">الحالة: تم تحديد %1$d ملفاً</item>
+        <item quantity="other">الحالة: تم تحديد %1$d ملف</item>
+    </plurals>
+    <string name="status_no_files_selected">الحالة: مفيش ملفات متحددة</string>
+    <string name="select_all">تحديد الكل</string>
+    <string name="today">النهاردة</string>
+    <string name="yesterday">امبارح</string>
+    <string name="a_year_ago">السنة اللي فاتت</string>
+    <plurals name="years_ago">
+        <item quantity="zero">منذ ٠ سنة</item>
+        <item quantity="one">منذ سنة واحدة</item>
+        <item quantity="two">منذ سنتين</item>
+        <item quantity="few">منذ %d سنوات</item>
+        <item quantity="many">منذ %d سنة</item>
+        <item quantity="other">منذ %d سنة</item>
+    </plurals>
+    <string name="no_files_found">مفيش ملفات</string>
+
+    <!-- App manager -->
+    <string name="app_manager">مدير التطبيقات</string>
+    <string name="installed_apps">التطبيقات المثبتة</string>
+    <string name="system_apps">تطبيقات النظام</string>
+    <string name="app_install_files">ملفات تثبيت التطبيقات (APKs)</string>
+    <string name="uninstall">إلغاء التثبيت</string>
+    <string name="app_info">معلومات التطبيق</string>
+    <string name="install">تثبيت</string>
+    <string name="no_app_installed">مفيش تطبيقات متثبتة</string>
+
+    <!-- Memory Manager -->
+    <string name="memory_manager">مدير الذاكرة</string>
+    <string name="storage_information">معلومات التخزين</string>
+    <string name="used">المستخدم:</string>
+    <string name="free">المتاح:</string>
+    <string name="total">الإجمالي:</string>
+    <string name="ram_information">معلومات الرام</string>
+    <string name="used_ram">الرام المستخدم:</string>
+    <string name="free_ram">الرام المتاح:</string>
+    <string name="total_ram">إجمالي الرام:</string>
+    <string name="categories">الفئات</string>
+    <string name="system">النظام</string>
+    <string name="music">الموسيقى</string>
+    <string name="images">الصور</string>
+    <string name="documents">المستندات</string>
+    <string name="downloads">التنزيلات</string>
+    <string name="other_files">ملفات أخرى</string>
+
+    <!-- Image Optimizer -->
+    <string name="image_optimizer">محسن الصور</string>
+    <string name="summary_select_image">اختار الصورة اللي عايز تحسنها</string>
+    <string name="choose_image">اختار صورة</string>
+    <string name="optimize_image">تحسين الصورة</string>
+    <string name="quick_compress">ضغط سريع</string>
+    <string name="low">منخفض</string>
+    <string name="medium">متوسط</string>
+    <string name="high">عالي</string>
+    <string name="file_size">حجم الملف (KB)</string>
+    <string name="default_value">افتراضي</string>
+    <string name="enter_a_value">أدخل قيمة</string>
+    <string name="manual">يدوي</string>
+    <string name="width">العرض (px)</string>
+    <string name="height">الارتفاع (px)</string>
+    <string name="quality">الجودة</string>
+
+    <!-- Trash -->
+    <string name="trash">سلة المهملات</string>
+    <string name="trash_is_empty">سلة المهملات فاضية</string>
+    <string name="restore">استعادة</string>
+
+    <!-- Display -->
+    <string name="dialog_startup_subtitle">اختار صفحة البداية المفضلة عندك:</string>
+    <string name="dialog_info_startup">بتحدد الشاشة الأولانية اللي بتظهر للمستخدمين لما يفتحوا التطبيق. الإعداد ده بيأثر على أول تفاعل للمستخدم مع التطبيق وممكن يتخصص لشرائح مستخدمين معينة أو لأهداف المنتج.</string>
+
+    <!-- Cleaning settings -->
+    <string name="cleaning">التنظيف</string>
+    <string name="summary_preference_settings_cleaning">خصص تجربة التنظيف بتاعتك</string>
+    <string name="filters">الفلاتر</string>
+    <string name="generic_filter">فلتر عام</string>
+    <string name="summary_preference_settings_generic_filter">حذف الملفات المؤقتة، ملفات السجل (log, logs)، والملفات والمجلدات التانية اللي مالهاش لازمة</string>
+    <string name="delete_empty_folders">حذف المجلدات الفاضية</string>
+    <string name="delete_archives">حذف الملفات المضغوطة</string>
+    <string name="summary_preference_settings_archive_filter">حذف الملفات المضغوطة من جهازك</string>
+    <string name="delete_corpse_files">حذف الملفات المتبقية</string>
+    <string name="summary_preference_settings_delete_corpse_files">حذف الملفات اللي سابتها التطبيقات اللي اتلغى تثبيتها أو اتشالت</string>
+    <string name="delete_apk_files">حذف ملفات APK</string>
+    <string name="summary_preference_settings_delete_apk_files">حذف ملفات التثبيت (.apk) الخاصة بالأندرويد</string>
+    <string name="delete_windows_files">امتدادات ويندوز</string>
+    <string name="summary_preference_settings_delete_windows_files">بيكتشف امتدادات ويندوز (exe, dll, sys)</string>
+    <string name="delete_office_files">امتدادات أوفيس</string>
+    <string name="summary_preference_settings_delete_office_files">بيكتشف امتدادات أوفيس (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">امتدادات الخطوط</string>
+    <string name="summary_preference_settings_delete_font_files">بيكتشف امتدادات الخطوط (ttf, otf)</string>
+    <string name="delete_other_files">امتدادات أخرى</string>
+    <string name="summary_preference_settings_delete_other_files">بيكتشف كل أنواع الامتدادات التانية.</string>
+    <string name="media">الوسائط</string>
+    <string name="delete_audio">حذف الصوتيات</string>
+    <string name="summary_preference_settings_delete_audio">حذف الملفات الصوتية من الجهاز</string>
+    <string name="delete_video">حذف الفيديوهات</string>
+    <string name="summary_preference_settings_delete_video">حذف ملفات الفيديو من الجهاز</string>
+    <string name="delete_images">حذف الصور</string>
+    <string name="summary_preference_settings_delete_images">حذف ملفات الصور من الجهاز</string>
+    <string name="delete_invalid_media">حذف الوسائط التالفة</string>
+    <string name="summary_preference_settings_delete_invalid_media">حذف الصور التالفة</string>
+    <string name="scanner">الماسح</string>
+    <string name="clipboard_clean">تنظيف الحافظة</string>
+
+    <!-- Permissions -->
+    <string name="request_delete_packages">طلب حذف الحزم [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">بيسمح للتطبيق يطلب حذف الحزم. ده ممكن يستخدم لإلغاء تثبيت تطبيقات تانية من الجهاز.</string>
+    <string name="access_media_location">الوصول لموقع الوسائط [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">بيسمح للتطبيق يوصل لمكان ملفات الوسائط على الجهاز.</string>
+    <string name="action_open_document_tree">إجراء فتح شجرة المستندات [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">بيسمح للتطبيق يوصل لشجرة مستندات، وده بيشمل القدرة على قراية وكتابة الملفات في الشجرة دي.</string>
+    <string name="manage_external_storage">إدارة التخزين الخارجي [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">بيسمح للتطبيق يعمل حاجات زي حذف وإعادة تسمية الملفات على مساحة تخزين الجهاز، وده بيشمل التخزين الداخلي والخارجي.</string>
+    <string name="package_usage_stats">إحصائيات استخدام الحزمة [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">بيسمح للتطبيق يوصل لمعلومات عن استخدام المستخدم للتطبيقات، زي إيه التطبيقات اللي استخدمها، ولمدة قد إيه، وعدد مرات استخدامها.</string>
+    <string name="query_all_packages">الاستعلام عن كل الحزم [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">بيسمح للتطبيق يستعلم عن معلومات بخصوص كل الحزم المتثبتة على الجهاز. التطبيق بيستخدم المعلومات دي عشان يحدد إيه الملفات اللي يحتفظ بيها أو يحذفها.</string>
+    <string name="read_external_storage">قراءة التخزين الخارجي [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">بيسمح للتطبيق يقرا ملفات من مساحة تخزين الجهاز، وده بيشمل التخزين الداخلي والخارجي.</string>
+    <string name="read_media_audio">قراءة ملفات الصوت [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">بيسمح للتطبيق يقرا الملفات الصوتية من مساحة تخزين الجهاز.</string>
+    <string name="read_media_images">قراءة ملفات الصور [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">بيسمح للتطبيق يقرا ملفات الصور من مساحة تخزين الجهاز.</string>
+    <string name="read_media_video">قراءة ملفات الفيديو [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">بيسمح للتطبيق يقرا ملفات الفيديو من مساحة تخزين الجهاز.</string>
+    <string name="write_external_storage">الكتابة على التخزين الخارجي [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">بيسمح للتطبيق يكتب ملفات على مساحة تخزين الجهاز، وده بيشمل التخزين الداخلي والخارجي.</string>
+
+    <!-- About -->
+    <string name="summary_preference_settings_about">اعرف أكتر عن كلينر</string>
+
+    <!-- FAQ -->
+    <string name="question_1">إيه هو كلينر؟</string>
+    <string name="summary_preference_faq_1">كلينر هو تطبيق أندرويد مجاني ومفتوح المصدر بيساعدك تحسن أداء جهازك وتفضي مساحة تخزين. ممكن يعمل مسح لجهازك عشان يلاقي الملفات اللي مالهاش لازمة ويحذفها، وكمان ينضف الكاش عشان يسرع جهازك.</string>
+    <string name="question_2">هل كلينر آمن للاستخدام؟</string>
+    <string name="summary_preference_faq_2">أيوه، كلينر آمن للاستخدام. هو بس بيشيل الملفات اللي مش ضرورية لتشغيل جهازك أو تطبيقاتك، ومش بيحذف أي بيانات شخصية أو ملفات نظام مهمة.</string>
+    <string name="question_3">إزاي أستخدم كلينر؟</string>
+    <string name="summary_preference_faq_3">عشان تستخدم كلينر، كل اللي عليك إنك تنزل وتثبت التطبيق من جوجل بلاي ستور أو أي متجر تطبيقات تاني موثوق. بعد كده، افتح التطبيق وامشي مع الخطوات عشان تعمل مسح لجهازك وتحذف الملفات اللي مالهاش لازمة. ممكن كمان تدخل على إعدادات التطبيق عشان تخصص أنواع الملفات اللي كلينر بيدور عليها وبيحذفها.</string>
+    <string name="question_4">هل كلينر ممكن يحذف كاش التطبيقات؟</string>
+    <string name="summary_preference_faq_4">أيوه، كلينر ممكن يحذف كاش التطبيقات. بس مهم تاخد بالك إن حذف الكاش ممكن يخلي التطبيق ياخد وقت أطول عشان يفتح أو يعمل حاجات معينة المرة الجاية اللي تستخدمه فيها.</string>
+    <string name="question_5">هل كلينر محتاج صلاحيات روت؟</string>
+    <string name="summary_preference_faq_5">لأ، كلينر مش محتاج صلاحيات روت عشان يشتغل. ممكن تستخدمه على أي جهاز أندرويد من غير ما تعمل روت لجهازك.</string>
+    <string name="question_6">هل كلينر متاح لأجهزة iOS؟</string>
+    <string name="summary_preference_faq_6">لأ، كلينر حاليًا متاح بس لأجهزة الأندرويد.</string>
+    <string name="question_7">هل كلينر بيحسن عمر البطارية؟</string>
+    <string name="summary_preference_faq_7">استخدام كلينر عشان تنضف الكاش ممكن يساعد في تحسين عمر بطارية جهازك عن طريق تقليل كمية الطاقة والموارد اللي بتستخدمها العمليات اللي مالهاش لازمة. بس، مدى تحسين كلينر لعمر البطارية هيعتمد على عوامل مختلفة زي نوع وموديل جهازك، التطبيقات اللي بتستخدمها، وعادات استخدامك.</string>
+    <string name="question_8">المفروض أستخدم كلينر كل قد إيه؟</string>
+    <string name="summary_preference_faq_8">مفيش قاعدة ثابتة لعدد مرات استخدام كلينر، الموضوع بيعتمد على استخدامك للجهاز وكمية الملفات اللي مالهاش لازمة اللي بتتراكم مع الوقت. بعض المستخدمين ممكن يشوفوا إن تشغيل كلينر أسبوعيًا أو شهريًا مفيد، بينما تانيين ممكن يحتاجوا يستخدموه كل فترة وفترة بس.</string>
+    <string name="question_9">هل كلينر متوافق مع كل أجهزة الأندرويد؟</string>
+    <string name="summary_preference_faq_9">المفروض إن كلينر يكون متوافق مع معظم أجهزة الأندرويد اللي بتلبي الحد الأدنى من متطلبات النظام للتطبيق. بس، دايمًا فكرة كويسة إنك تشوف صفحة التطبيق على جوجل بلاي ستور أو متجر التطبيقات اللي بتستخدمه عشان تتأكد من التوافق مع جهازك بالتحديد. لو واجهتك أي مشاكل وانت بتستخدم كلينر، ممكن تحاول تحل المشكلة أو تتواصل مع فريق دعم التطبيق للمساعدة.</string>
+
+    <!-- Error messages -->
+    <string name="request_no_internet">مفيش اتصال بالإنترنت. لو سمحت اتأكد من اتصالك وحاول تاني.</string>
+    <string name="request_timeout">الوقت خلص للطلب. لو سمحت حاول تاني.</string>
+    <string name="request_server_not_found">مشكلة في السيرفر. لو سمحت حاول تاني بعدين.</string>
+    <string name="request_payload_error">مشكلة في البيانات. لو سمحت حاول تاني.</string>
+    <string name="failed_to_open_app_info">فشل فتح معلومات التطبيق: %1$s</string>
+    <string name="share_apk_failed">فشل مشاركة ملف APK</string>
+    <string name="share_app_failed">فشل مشاركة التطبيق</string>
+    <string name="apk_installed_successfully">ملف APK اتثبت بنجاح!</string>
+    <string name="failed_to_install_apk">فشل تثبيت ملف APK: %1$s</string>
+    <string name="failed_to_uninstall_app">فشل إلغاء تثبيت التطبيق: %1$s</string>
+    <string name="app_uninstalled_successfully">التطبيق اتلغى تثبيته بنجاح</string>
+</resources>

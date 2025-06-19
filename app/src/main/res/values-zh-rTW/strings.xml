@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_short_description">您日常使用所需的最後一款 Android 清理工具！</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">歡迎使用 Cleaner！</string>
+    <string name="onboarding_welcome_description">讓我們進行快速設定，開始釋放空間。</string>
+    <string name="onboarding_personalization_title">自訂您的清理</string>
+    <string name="onboarding_personalization_description">調整 Cleaner 以符合您的需求。</string>
+    <string name="permission_section_public_title">公開儲存空間存取權限</string>
+    <string name="permission_section_public_description">允許 Cleaner 讀取和寫入公開儲存空間上的檔案。</string>
+    <string name="permission_section_manage_title">完整檔案管理</string>
+    <string name="permission_section_manage_description">在您的裝置上完全管理所有檔案所需。</string>
+    <string name="permission_section_usage_title">應用程式使用情況存取權限</string>
+    <string name="permission_section_usage_description">允許 Cleaner 根據應用程式使用情況分析儲存空間。</string>
+    <string name="onboarding_permission_storage_title">儲存空間存取權限</string>
+    <string name="onboarding_permission_storage_description">Cleaner 需要儲存空間和使用情況權限才能掃描和分析應用程式。</string>
+    <string name="button_grant_permission">授予權限</string>
+
+    <!-- Home -->
+    <string name="delete_forever">永久刪除</string>
+    <string name="move_to_trash">移至垃圾桶</string>
+    <string name="cleaned_space">已清理空間</string>
+    <string name="free_space">可用空間</string>
+    <string name="delete_forever_title">永久刪除</string>
+    <string name="delete_forever_message">您確定要永久刪除這些檔案嗎？此操作無法復原。</string>
+    <string name="move_to_trash_title">移至垃圾桶</string>
+    <string name="move_to_trash_message">您確定要將這些檔案移至垃圾桶嗎？</string>
+    <string name="quick_scan">快速掃描</string>
+    <string name="apks">APK</string>
+    <string name="archives">壓縮檔</string>
+    <string name="fonts">字型</string>
+    <string name="windows_files">Windows 檔案</string>
+    <string name="videos">影片</string>
+    <string name="audios">音訊</string>
+    <string name="empty_folders">空資料夾</string>
+    <plurals name="status_selected_files">
+        <item quantity="other">狀態：已選取 %1$d 個檔案</item>
+    </plurals>
+    <string name="status_no_files_selected">狀態：未選取任何檔案</string>
+    <string name="select_all">全選</string>
+    <string name="today">今天</string>
+    <string name="yesterday">昨天</string>
+    <string name="a_year_ago">去年</string>
+    <plurals name="years_ago">
+        <item quantity="other">%d 年前</item>
+    </plurals>
+    <string name="no_files_found">找不到任何檔案</string>
+
+    <!-- App manager -->
+    <string name="app_manager">應用程式管理員</string>
+    <string name="installed_apps">已安裝的應用程式</string>
+    <string name="system_apps">系統應用程式</string>
+    <string name="app_install_files">應用程式安裝檔 (APK)</string>
+    <string name="uninstall">解除安裝</string>
+    <string name="app_info">應用程式資訊</string>
+    <string name="install">安裝</string>
+    <string name="no_app_installed">沒有已安裝的應用程式</string>
+
+    <!-- Memory Manager -->
+    <string name="memory_manager">記憶體管理員</string>
+    <string name="storage_information">儲存空間資訊</string>
+    <string name="used">已使用：</string>
+    <string name="free">可用：</string>
+    <string name="total">總計：</string>
+    <string name="ram_information">RAM 資訊</string>
+    <string name="used_ram">已使用 RAM：</string>
+    <string name="free_ram">可用 RAM：</string>
+    <string name="total_ram">總 RAM：</string>
+    <string name="categories">類別</string>
+    <string name="system">系統</string>
+    <string name="music">音樂</string>
+    <string name="images">圖片</string>
+    <string name="documents">文件</string>
+    <string name="downloads">下載</string>
+    <string name="other_files">其他檔案</string>
+
+    <!-- Image Optimizer -->
+    <string name="image_optimizer">圖片最佳化工具</string>
+    <string name="summary_select_image">選取您要最佳化的圖片</string>
+    <string name="choose_image">選擇圖片</string>
+    <string name="optimize_image">最佳化圖片</string>
+    <string name="quick_compress">快速壓縮</string>
+    <string name="low">低</string>
+    <string name="medium">中</string>
+    <string name="high">高</string>
+    <string name="file_size">檔案大小 (KB)</string>
+    <string name="default_value">預設</string>
+    <string name="enter_a_value">輸入一個值</string>
+    <string name="manual">手動</string>
+    <string name="width">寬度 (px)</string>
+    <string name="height">高度 (px)</string>
+    <string name="quality">品質</string>
+
+    <!-- Trash -->
+    <string name="trash">垃圾桶</string>
+    <string name="trash_is_empty">垃圾桶是空的</string>
+    <string name="restore">還原</string>
+
+    <!-- Display -->
+    <string name="dialog_startup_subtitle">選擇您偏好的啟動頁面：</string>
+    <string name="dialog_info_startup">設定應用程式啟動時向使用者呈現的初始畫面。此設定會影響使用者與應用程式的首次互動，並可針對特定使用者群組或產品目標進行調整。</string>
+
+    <!-- Cleaning settings -->
+    <string name="cleaning">清理</string>
+    <string name="summary_preference_settings_cleaning">自訂您的清理體驗</string>
+    <string name="filters">篩選器</string>
+    <string name="generic_filter">一般篩選器</string>
+    <string name="summary_preference_settings_generic_filter">刪除暫存檔、日誌檔及其他無用的檔案與資料夾</string>
+    <string name="delete_empty_folders">刪除空資料夾</string>
+    <string name="delete_archives">刪除壓縮檔</string>
+    <string name="summary_preference_settings_archive_filter">從您的裝置刪除壓縮檔</string>
+    <string name="delete_corpse_files">刪除殘留檔案</string>
+    <string name="summary_preference_settings_delete_corpse_files">刪除從已解除安裝/移除的應用程式中殘留的檔案</string>
+    <string name="delete_apk_files">刪除 APK 檔案</string>
+    <string name="summary_preference_settings_delete_apk_files">刪除 Android 的安裝檔 (.apk)</string>
+    <string name="delete_windows_files">Windows 副檔名</string>
+    <string name="summary_preference_settings_delete_windows_files">偵測 Windows 副檔名 (exe, dll, sys)</string>
+    <string name="delete_office_files">Office 副檔名</string>
+    <string name="summary_preference_settings_delete_office_files">偵測 Office 副檔名 (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">字型副檔名</string>
+    <string name="summary_preference_settings_delete_font_files">偵測字型副檔名 (ttf, otf)</string>
+    <string name="delete_other_files">其他副檔名</string>
+    <string name="summary_preference_settings_delete_other_files">偵測所有其他副檔名類型。</string>
+    <string name="media">媒體</string>
+    <string name="delete_audio">刪除音訊</string>
+    <string name="summary_preference_settings_delete_audio">從裝置刪除音訊檔案</string>
+    <string name="delete_video">刪除影片</string>
+    <string name="summary_preference_settings_delete_video">從裝置刪除影片檔案</string>
+    <string name="delete_images">刪除圖片</string>
+    <string name="summary_preference_settings_delete_images">從裝置刪除圖片檔案</string>
+    <string name="delete_invalid_media">刪除無效媒體</string>
+    <string name="summary_preference_settings_delete_invalid_media">刪除損毀的圖片</string>
+    <string name="scanner">掃描器</string>
+    <string name="clipboard_clean">清理剪貼簿</string>
+
+    <!-- Permissions -->
+    <string name="request_delete_packages">請求刪除套件 [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">允許應用程式請求刪除套件。這可用於從裝置解除安裝其他應用程式</string>
+    <string name="access_media_location">存取媒體位置 [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">允許應用程式存取裝置的媒體檔案位置</string>
+    <string name="action_open_document_tree">操作開啟文件樹 [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">允許應用程式存取文件樹，包括讀取和寫入樹中檔案的能力</string>
+    <string name="manage_external_storage">管理外部儲存空間 [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">允許應用程式在裝置的儲存空間上執行刪除和重新命名檔案等操作，包括內部和外部儲存空間</string>
+    <string name="package_usage_stats">套件使用情況統計 [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">允許應用程式存取有關使用者應用程式使用情況的資訊，包括使用了哪些應用程式、使用了多長時間以及使用的頻率</string>
+    <string name="query_all_packages">查詢所有套件 [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">允許應用程式查詢裝置上所有已安裝套件的資訊。應用程式使用此資訊來決定要保留或刪除哪些檔案</string>
+    <string name="read_external_storage">讀取外部儲存空間 [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">允許應用程式從裝置的儲存空間讀取檔案，包括內部和外部儲存空間</string>
+    <string name="read_media_audio">讀取媒體音訊 [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">允許應用程式從裝置的儲存空間讀取音訊檔案</string>
+    <string name="read_media_images">讀取媒體圖片 [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">允許應用程式從裝置的儲存空間讀取圖片檔案</string>
+    <string name="read_media_video">讀取媒體影片 [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">允許應用程式從裝置的儲存空間讀取影片檔案</string>
+    <string name="write_external_storage">寫入外部儲存空間 [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">允許應用程式將檔案寫入裝置的儲存空間，包括內部和外部儲存空間</string>
+
+    <!-- About -->
+    <string name="summary_preference_settings_about">了解有關 Cleaner 的更多資訊</string>
+
+    <!-- FAQ -->
+    <string name="question_1">Cleaner 是什麼？</string>
+    <string name="summary_preference_faq_1">Cleaner 是一款免費的開源 Android 應用程式，可協助您最佳化裝置效能並釋放儲存空間。它可以掃描您的裝置以尋找不必要的檔案並將其刪除，還可以清除快取以提高裝置速度</string>
+    <string name="question_2">使用 Cleaner 安全嗎？</string>
+    <string name="summary_preference_faq_2">是的，使用 Cleaner 是安全的。它只會移除對您的裝置或應用程式運作不重要的檔案，並且不會刪除您的任何個人資料或重要的系統檔案</string>
+    <string name="question_3">如何使用 Cleaner？</string>
+    <string name="summary_preference_faq_3">若要使用 Cleaner，只需從 Google Play 商店或信譽良好的第三方應用程式商店下載並安裝該應用程式。然後，開啟應用程式並按照提示掃描您的裝置並刪除不必要的檔案。您還可以存取應用程式的設定來自訂 Cleaner 尋找和刪除的檔案類型</string>
+    <string name="question_4">Cleaner 可以刪除應用程式快取嗎？</string>
+    <string name="summary_preference_faq_4">是的，Cleaner 可以刪除應用程式快取。但是，請務必注意，刪除快取可能會導致應用程式下次使用時需要更長的時間來載入或執行某些任務</string>
+    <string name="question_5">Cleaner 需要 root 權限嗎？</string>
+    <string name="summary_preference_faq_5">不，Cleaner 不需要 root 權限即可運作。您可以在任何 Android 裝置上使用它，而無需 root 您的裝置</string>
+    <string name="question_6">Cleaner 是否適用於 iOS？</string>
+    <string name="summary_preference_faq_6">不，Cleaner 目前僅適用於 Android 裝置</string>
+    <string name="question_7">Cleaner 能改善電池續航力嗎？</string>
+    <string name="summary_preference_faq_7">使用 Cleaner 清除快取可以透過減少不必要的處理程序所使用的電量和資源來幫助改善裝置的電池續航力。但是，Cleaner 能夠改善電池續航力的程度將取決於各種因素，例如您的裝置品牌和型號、您使用的應用程式以及您的使用習慣</string>
+    <string name="question_8">我應該多久使用一次 Cleaner？</string>
+    <string name="summary_preference_faq_8">關於應該多久使用一次 Cleaner 沒有固定的規則，因為這將取決于您的裝置使用情況和隨著時間的推移累積的不必要檔案的數量。一些使用者可能會發現每週或每月執行一次 Cleaner 會很有幫助，而其他使用者可能只需要偶爾使用它</string>
+    <string name="question_9">Cleaner 是否與所有 Android 裝置相容？</string>
+    <string name="summary_preference_faq_9">Cleaner 應該與大多數符合應用程式最低系統要求的 Android 裝置相容。但是，最好在 Google Play 商店或您正在使用的應用程式商店中查看應用程式的頁面，以確認與您的特定裝置的相容性。如果您在使用 Cleaner 時遇到任何問題，可以嘗試對問題進行疑難排解或聯絡應用程式的支援團隊尋求協助</string>
+
+    <!-- Error messages -->
+    <string name="request_no_internet">沒有網際網路連線。請檢查您的連線並再試一次。</string>
+    <string name="request_timeout">請求逾時。請再試一次。</string>
+    <string name="request_server_not_found">伺服器錯誤。請稍後再試。</string>
+    <string name="request_payload_error">資料錯誤。請再試一次。</string>
+    <string name="failed_to_open_app_info">無法開啟應用程式資訊：%1$s</string>
+    <string name="share_apk_failed">無法分享 APK</string>
+    <string name="share_app_failed">無法分享應用程式</string>
+    <string name="apk_installed_successfully">APK 安裝成功！</string>
+    <string name="failed_to_install_apk">無法安裝 APK：%1$s</string>
+    <string name="failed_to_uninstall_app">無法解除安裝應用程式：%1$s</string>
+    <string name="app_uninstalled_successfully">應用程式已成功解除安裝</string>
+</resources>

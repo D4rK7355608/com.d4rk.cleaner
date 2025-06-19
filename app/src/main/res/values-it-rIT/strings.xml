@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_short_description">L\'ultimo Cleaner per Android di cui avrai mai bisogno per l\'uso quotidiano!</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">Benvenuto in Cleaner!</string>
+    <string name="onboarding_welcome_description">Eseguiamo una configurazione rapida e iniziamo a liberare spazio.</string>
+    <string name="onboarding_personalization_title">Personalizza la tua pulizia</string>
+    <string name="onboarding_personalization_description">Regola Cleaner in base alle tue esigenze.</string>
+    <string name="permission_section_public_title">Accesso alla memoria pubblica</string>
+    <string name="permission_section_public_description">Consente a Cleaner di leggere e scrivere file sulla memoria pubblica.</string>
+    <string name="permission_section_manage_title">Gestione completa dei file</string>
+    <string name="permission_section_manage_description">Necessario per gestire completamente tutti i file sul tuo dispositivo.</string>
+    <string name="permission_section_usage_title">Accesso all\'utilizzo delle app</string>
+    <string name="permission_section_usage_description">Consente a Cleaner di analizzare lo spazio di archiviazione in base all\'utilizzo delle app.</string>
+    <string name="onboarding_permission_storage_title">Accesso alla memoria</string>
+    <string name="onboarding_permission_storage_description">Cleaner richiede le autorizzazioni di archiviazione e utilizzo per scansionare e analizzare le app.</string>
+    <string name="button_grant_permission">Concedi autorizzazione</string>
+
+    <!-- Home -->
+    <string name="delete_forever">Elimina definitivamente</string>
+    <string name="move_to_trash">Sposta nel cestino</string>
+    <string name="cleaned_space">Spazio pulito</string>
+    <string name="free_space">Spazio libero</string>
+    <string name="delete_forever_title">Elimina definitivamente</string>
+    <string name="delete_forever_message">Sei sicuro di voler eliminare questi file definitivamente? Questa azione non può essere annullata.</string>
+    <string name="move_to_trash_title">Sposta nel cestino</string>
+    <string name="move_to_trash_message">Sei sicuro di voler spostare questi file nel cestino?</string>
+    <string name="quick_scan">Scansione rapida</string>
+    <string name="apks">APK</string>
+    <string name="archives">Archivi</string>
+    <string name="fonts">Caratteri</string>
+    <string name="windows_files">File di Windows</string>
+    <string name="videos">Video</string>
+    <string name="audios">Audio</string>
+    <string name="empty_folders">Cartelle vuote</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">Stato: %1$d file selezionato</item>
+        <item quantity="many">Stato: %1$d file selezionati</item>
+        <item quantity="other">Stato: %1$d file selezionati</item>
+    </plurals>
+    <string name="status_no_files_selected">Stato: Nessun file selezionato</string>
+    <string name="select_all">Seleziona tutto</string>
+    <string name="today">Oggi</string>
+    <string name="yesterday">Ieri</string>
+    <string name="a_year_ago">L\'anno scorso</string>
+    <plurals name="years_ago">
+        <item quantity="one">%d anno fa</item>
+        <item quantity="many">%d anni fa</item>
+        <item quantity="other">%d anni fa</item>
+    </plurals>
+    <string name="no_files_found">Nessun file trovato</string>
+
+    <!-- App manager -->
+    <string name="app_manager">Gestione app</string>
+    <string name="installed_apps">App installate</string>
+    <string name="system_apps">App di sistema</string>
+    <string name="app_install_files">File di installazione app (APK)</string>
+    <string name="uninstall">Disinstalla</string>
+    <string name="app_info">Info app</string>
+    <string name="install">Installa</string>
+    <string name="no_app_installed">Nessuna app installata</string>
+
+    <!-- Memory Manager -->
+    <string name="memory_manager">Gestione memoria</string>
+    <string name="storage_information">Informazioni memoria</string>
+    <string name="used">Usato:</string>
+    <string name="free">Libero:</string>
+    <string name="total">Totale:</string>
+    <string name="ram_information">Informazioni RAM</string>
+    <string name="used_ram">RAM usata:</string>
+    <string name="free_ram">RAM libera:</string>
+    <string name="total_ram">RAM totale:</string>
+    <string name="categories">Categorie</string>
+    <string name="system">Sistema</string>
+    <string name="music">Musica</string>
+    <string name="images">Immagini</string>
+    <string name="documents">Documenti</string>
+    <string name="downloads">Download</string>
+    <string name="other_files">Altri file</string>
+
+    <!-- Image Optimizer -->
+    <string name="image_optimizer">Ottimizzatore immagini</string>
+    <string name="summary_select_image">Seleziona l\'immagine che vuoi ottimizzare</string>
+    <string name="choose_image">Scegli immagine</string>
+    <string name="optimize_image">Ottimizza immagine</string>
+    <string name="quick_compress">Compressione rapida</string>
+    <string name="low">Bassa</string>
+    <string name="medium">Media</string>
+    <string name="high">Alta</string>
+    <string name="file_size">Dimensione file (KB)</string>
+    <string name="default_value">Predefinito</string>
+    <string name="enter_a_value">Inserisci un valore</string>
+    <string name="manual">Manuale</string>
+    <string name="width">Larghezza (px)</string>
+    <string name="height">Altezza (px)</string>
+    <string name="quality">Qualità</string>
+
+    <!-- Trash -->
+    <string name="trash">Cestino</string>
+    <string name="trash_is_empty">Il cestino è vuoto</string>
+    <string name="restore">Ripristina</string>
+
+    <!-- Display -->
+    <string name="dialog_startup_subtitle">Scegli la tua pagina di avvio preferita:</string>
+    <string name="dialog_info_startup">Configura la schermata iniziale presentata agli utenti all\'avvio dell\'applicazione. Questa impostazione influenza la prima interazione dell\'utente con l\'app e può essere personalizzata per specifici segmenti di utenti o obiettivi del prodotto.</string>
+
+    <!-- Cleaning settings -->
+    <string name="cleaning">Pulizia</string>
+    <string name="summary_preference_settings_cleaning">Personalizza la tua esperienza di pulizia</string>
+    <string name="filters">Filtri</string>
+    <string name="generic_filter">Filtro generico</string>
+    <string name="summary_preference_settings_generic_filter">Elimina file temporanei, log, registri e altri file e cartelle inutili</string>
+    <string name="delete_empty_folders">Elimina cartelle vuote</string>
+    <string name="delete_archives">Elimina archivi</string>
+    <string name="summary_preference_settings_archive_filter">Elimina archivi dal tuo dispositivo</string>
+    <string name="delete_corpse_files">Elimina file residui</string>
+    <string name="summary_preference_settings_delete_corpse_files">Elimina i file rimasti da app disinstallate/rimosse</string>
+    <string name="delete_apk_files">Elimina file APK</string>
+    <string name="summary_preference_settings_delete_apk_files">Elimina i file di installazione (.apk) per Android</string>
+    <string name="delete_windows_files">Estensioni Windows</string>
+    <string name="summary_preference_settings_delete_windows_files">Rileva estensioni Windows (exe, dll, sys)</string>
+    <string name="delete_office_files">Estensioni Office</string>
+    <string name="summary_preference_settings_delete_office_files">Rileva estensioni Office (doc, xls, ppt, docx, xlsx, pptx)</string>
+    <string name="delete_font_files">Estensioni caratteri</string>
+    <string name="summary_preference_settings_delete_font_files">Rileva estensioni caratteri (ttf, otf)</string>
+    <string name="delete_other_files">Altre estensioni</string>
+    <string name="summary_preference_settings_delete_other_files">Rileva tutti gli altri tipi di estensioni.</string>
+    <string name="media">Media</string>
+    <string name="delete_audio">Elimina audio</string>
+    <string name="summary_preference_settings_delete_audio">Elimina i file audio dal dispositivo</string>
+    <string name="delete_video">Elimina video</string>
+    <string name="summary_preference_settings_delete_video">Elimina i file video dal dispositivo</string>
+    <string name="delete_images">Elimina immagini</string>
+    <string name="summary_preference_settings_delete_images">Elimina i file immagine dal dispositivo</string>
+    <string name="delete_invalid_media">Elimina media non validi</string>
+    <string name="summary_preference_settings_delete_invalid_media">Elimina immagini corrotte</string>
+    <string name="scanner">Scanner</string>
+    <string name="clipboard_clean">Pulisci appunti</string>
+
+    <!-- Permissions -->
+    <string name="request_delete_packages">Richiedi eliminazione pacchetti [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">Consente all\'app di richiedere l\'eliminazione di pacchetti. Può essere utilizzato per disinstallare altre app dal dispositivo</string>
+    <string name="access_media_location">Accesso alla posizione dei media [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">Consente all\'app di accedere alla posizione dei file multimediali del dispositivo</string>
+    <string name="action_open_document_tree">Azione apri albero documenti [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">Consente all\'app di accedere a un albero di documenti, inclusa la possibilità di leggere e scrivere file nell\'albero</string>
+    <string name="manage_external_storage">Gestisci memoria esterna [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">Consente all\'app di eseguire azioni come l\'eliminazione e la ridenominazione di file sulla memoria del dispositivo, inclusa la memoria interna ed esterna</string>
+    <string name="package_usage_stats">Statistiche utilizzo pacchetti [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">Consente all\'app di accedere alle informazioni sull\'utilizzo delle app da parte dell\'utente, incluse quali app sono state utilizzate, per quanto tempo e con quale frequenza</string>
+    <string name="query_all_packages">Interroga tutti i pacchetti [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">Consente all\'app di interrogare informazioni su tutti i pacchetti installati sul dispositivo. L\'app utilizza queste informazioni per determinare quali file conservare o eliminare</string>
+    <string name="read_external_storage">Leggi memoria esterna [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">Consente all\'app di leggere file dalla memoria del dispositivo, inclusa la memoria interna ed esterna</string>
+    <string name="read_media_audio">Leggi audio multimediali [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">Consente all\'app di leggere file audio dalla memoria del dispositivo</string>
+    <string name="read_media_images">Leggi immagini multimediali [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">Consente all\'app di leggere file immagine dalla memoria del dispositivo</string>
+    <string name="read_media_video">Leggi video multimediali [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">Consente all\'app di leggere file video dalla memoria del dispositivo</string>
+    <string name="write_external_storage">Scrivi su memoria esterna [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">Consente all\'app di scrivere file sulla memoria del dispositivo, inclusa la memoria interna ed esterna</string>
+
+    <!-- About -->
+    <string name="summary_preference_settings_about">Scopri di più su Cleaner</string>
+
+    <!-- FAQ -->
+    <string name="question_1">Cos\'è Cleaner?</string>
+    <string name="summary_preference_faq_1">Cleaner è un\'app Android gratuita e open-source che ti aiuta a ottimizzare le prestazioni del tuo dispositivo e a liberare spazio di archiviazione. Può scansionare il tuo dispositivo alla ricerca di file non necessari ed eliminarli, oltre a svuotare la cache per migliorare la velocità del tuo dispositivo</string>
+    <string name="question_2">Cleaner è sicuro da usare?</string>
+    <string name="summary_preference_faq_2">Sì, Cleaner è sicuro da usare. Rimuove solo i file non essenziali per il funzionamento del tuo dispositivo o delle app e non elimina nessuno dei tuoi dati personali o file di sistema importanti</string>
+    <string name="question_3">Come si usa Cleaner?</string>
+    <string name="summary_preference_faq_3">Per usare Cleaner, scarica e installa semplicemente l\'app dal Google Play Store o da un app store di terze parti affidabile. Quindi, apri l\'app e segui le istruzioni per scansionare il tuo dispositivo ed eliminare i file non necessari. Puoi anche accedere alle impostazioni dell\'app per personalizzare i tipi di file che Cleaner cerca ed elimina</string>
+    <string name="question_4">Cleaner può eliminare la cache delle app?</string>
+    <string name="summary_preference_faq_4">Sì, Cleaner può eliminare la cache delle app. Tuttavia, è importante notare che l\'eliminazione della cache potrebbe far sì che l\'app impieghi più tempo a caricarsi o a eseguire determinate attività la prossima volta che la usi</string>
+    <string name="question_5">Cleaner richiede l\'accesso root?</string>
+    <string name="summary_preference_faq_5">No, Cleaner non richiede l\'accesso root per funzionare. Puoi usarlo su qualsiasi dispositivo Android senza effettuare il rooting del tuo dispositivo</string>
+    <string name="question_6">Cleaner è disponibile per iOS?</string>
+    <string name="summary_preference_faq_6">No, Cleaner è attualmente disponibile solo per dispositivi Android</string>
+    <string name="question_7">Cleaner migliora la durata della batteria?</string>
+    <string name="summary_preference_faq_7">L\'uso di Cleaner per svuotare la cache può aiutare a migliorare la durata della batteria del tuo dispositivo riducendo la quantità di energia e risorse utilizzate da processi non necessari. Tuttavia, la misura in cui Cleaner può migliorare la durata della batteria dipenderà da vari fattori come la marca e il modello del tuo dispositivo, le app che usi e le tue abitudini di utilizzo</string>
+    <string name="question_8">Quanto spesso dovrei usare Cleaner?</string>
+    <string name="summary_preference_faq_8">Non esiste una regola fissa sulla frequenza con cui dovresti usare Cleaner, poiché dipenderà dall\'utilizzo del tuo dispositivo e dalla quantità di file non necessari che si accumulano nel tempo. Alcuni utenti potrebbero trovare utile eseguire Cleaner settimanalmente o mensilmente, mentre altri potrebbero averne bisogno solo occasionalmente</string>
+    <string name="question_9">Cleaner è compatibile con tutti i dispositivi Android?</string>
+    <string name="summary_preference_faq_9">Cleaner dovrebbe essere compatibile con la maggior parte dei dispositivi Android che soddisfano i requisiti minimi di sistema dell\'app. Tuttavia, è sempre una buona idea controllare la pagina dell\'app sul Google Play Store o sull\'app store che stai utilizzando per confermare la compatibilità con il tuo dispositivo specifico. Se riscontri problemi durante l\'utilizzo di Cleaner, puoi provare a risolvere il problema o contattare il team di supporto dell\'app per assistenza</string>
+
+    <!-- Error messages -->
+    <string name="request_no_internet">Nessuna connessione internet. Controlla la tua connessione e riprova.</string>
+    <string name="request_timeout">Richiesta scaduta. Riprova.</string>
+    <string name="request_server_not_found">Errore del server. Riprova più tardi.</string>
+    <string name="request_payload_error">Errore dati. Riprova.</string>
+    <string name="failed_to_open_app_info">Impossibile aprire info app: %1$s</string>
+    <string name="share_apk_failed">Impossibile condividere l\'APK</string>
+    <string name="share_app_failed">Impossibile condividere l\'app</string>
+    <string name="apk_installed_successfully">APK installato con successo!</string>
+    <string name="failed_to_install_apk">Impossibile installare l\'APK: %1$s</string>
+    <string name="failed_to_uninstall_app">Impossibile disinstallare l\'app: %1$s</string>
+    <string name="app_uninstalled_successfully">App disinstallata con successo</string>
+</resources>

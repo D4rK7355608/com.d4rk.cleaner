@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_short_description">آخری اینڈرائیڈ کلینر جس کی آپ کو روزمرہ کے استعمال کے لیے ضرورت ہوگی!</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">کلینر میں خوش آمدید!</string>
+    <string name="onboarding_welcome_description">آئیے ایک فوری سیٹ اپ سے گزریں اور جگہ خالی کرنا شروع کریں۔</string>
+    <string name="onboarding_personalization_title">اپنی صفائی کو حسب ضرورت بنائیں</string>
+    <string name="onboarding_personalization_description">اپنی ضروریات کے مطابق کلینر کو ایڈجسٹ کریں۔</string>
+    <string name="permission_section_public_title">عوامی اسٹوریج تک رسائی</string>
+    <string name="permission_section_public_description">کلینر کو عوامی اسٹوریج پر فائلیں پڑھنے اور لکھنے کی اجازت دیتا ہے۔</string>
+    <string name="permission_section_manage_title">مکمل فائل مینجمنٹ</string>
+    <string name="permission_section_manage_description">آپ کے آلے پر تمام فائلوں کو مکمل طور پر منظم کرنے کے لیے درکار ہے۔</string>
+    <string name="permission_section_usage_title">ایپ کے استعمال تک رسائی</string>
+    <string name="permission_section_usage_description">کلینر کو ایپ کے استعمال کی بنیاد پر اسٹوریج کا تجزیہ کرنے کی اجازت دیتا ہے۔</string>
+    <string name="onboarding_permission_storage_title">اسٹوریج تک رسائی</string>
+    <string name="onboarding_permission_storage_description">کلینر کو ایپس کو اسکین اور تجزیہ کرنے کے لیے اسٹوریج اور استعمال کی اجازت درکار ہے۔</string>
+    <string name="button_grant_permission">اجازت دیں</string>
+
+    <!-- Home -->
+    <string name="delete_forever">ہمیشہ کے لیے حذف کریں</string>
+    <string name="move_to_trash">ردی کی ٹوکری میں منتقل کریں</string>
+    <string name="cleaned_space">صاف شدہ جگہ</string>
+    <string name="free_space">خالی جگہ</string>
+    <string name="delete_forever_title">ہمیشہ کے لیے حذف کریں</string>
+    <string name="delete_forever_message">کیا آپ واقعی ان فائلوں کو ہمیشہ کے لیے حذف کرنا چاہتے ہیں؟ اس کارروائی کو واپس نہیں کیا جا سکتا۔</string>
+    <string name="move_to_trash_title">ردی کی ٹوکری میں منتقل کریں</string>
+    <string name="move_to_trash_message">کیا آپ واقعی ان فائلوں کو ردی کی ٹوکری میں منتقل کرنا چاہتے ہیں؟</string>
+    <string name="quick_scan">فوری اسکین</string>
+    <string name="apks">APK فائلیں</string>
+    <string name="archives">آرکائیوز</string>
+    <string name="fonts">فونٹس</string>
+    <string name="windows_files">ونڈوز فائلیں</string>
+    <string name="videos">ویڈیوز</string>
+    <string name="audios">آڈیوز</string>
+    <string name="empty_folders">خالی فولڈرز</string>
+    <plurals name="status_selected_files">
+        <item quantity="one">حیثیت: %1$d فائل منتخب کی گئی</item>
+        <item quantity="other">حیثیت: %1$d فائلیں منتخب کی گئیں</item>
+    </plurals>
+    <string name="status_no_files_selected">حیثیت: کوئی فائل منتخب نہیں کی گئی</string>
+    <string name="select_all">سب کو منتخب کریں</string>
+    <string name="today">آج</string>
+    <string name="yesterday">کل</string>
+    <string name="a_year_ago">پچھلے سال</string>
+    <plurals name="years_ago">
+        <item quantity="one">%d سال پہلے</item>
+        <item quantity="other">%d سال پہلے</item>
+    </plurals>
+    <string name="no_files_found">کوئی فائل نہیں ملی</string>
+
+    <!-- App manager -->
+    <string name="app_manager">ایپ مینیجر</string>
+    <string name="installed_apps">انسٹال شدہ ایپس</string>
+    <string name="system_apps">سسٹم ایپس</string>
+    <string name="app_install_files">ایپ انسٹال فائلیں (APKs)</string>
+    <string name="uninstall">ان انسٹال کریں</string>
+    <string name="app_info">ایپ کی معلومات</string>
+    <string name="install">انسٹال کریں</string>
+    <string name="no_app_installed">کوئی ایپ انسٹال نہیں ہے</string>
+
+    <!-- Memory Manager -->
+    <string name="memory_manager">میموری مینیجر</string>
+    <string name="storage_information">اسٹوریج کی معلومات</string>
+    <string name="used">استعمال شدہ:</string>
+    <string name="free">خالی:</string>
+    <string name="total">کل:</string>
+    <string name="ram_information">RAM کی معلومات</string>
+    <string name="used_ram">استعمال شدہ RAM:</string>
+    <string name="free_ram">خالی RAM:</string>
+    <string name="total_ram">کل RAM:</string>
+    <string name="categories">زمرے</string>
+    <string name="system">سسٹم</string>
+    <string name="music">موسیقی</string>
+    <string name="images">تصاویر</string>
+    <string name="documents">دستاویزات</string>
+    <string name="downloads">ڈاؤن لوڈز</string>
+    <string name="other_files">دیگر فائلیں</string>
+
+    <!-- Image Optimizer -->
+    <string name="image_optimizer">تصویر آپٹمائزر</string>
+    <string name="summary_select_image">وہ تصویر منتخب کریں جسے آپ بہتر بنانا چاہتے ہیں</string>
+    <string name="choose_image">تصویر منتخب کریں</string>
+    <string name="optimize_image">تصویر کو بہتر بنائیں</string>
+    <string name="quick_compress">فوری کمپریس</string>
+    <string name="low">کم</string>
+    <string name="medium">درمیانی</string>
+    <string name="high">زیادہ</string>
+    <string name="file_size">فائل کا سائز (KB)</string>
+    <string name="default_value">ڈیفالٹ</string>
+    <string name="enter_a_value">ایک قدر درج کریں</string>
+    <string name="manual">دستی</string>
+    <string name="width">چوڑائی (px)</string>
+    <string name="height">اونچائی (px)</string>
+    <string name="quality">کوالٹی</string>
+
+    <!-- Trash -->
+    <string name="trash">ردی کی ٹوکری</string>
+    <string name="trash_is_empty">ردی کی ٹوکری خالی ہے</string>
+    <string name="restore">بحال کریں</string>
+
+    <!-- Display -->
+    <string name="dialog_startup_subtitle">اپنا پسندیدہ اسٹارٹ اپ صفحہ منتخب کریں:</string>
+    <string name="dialog_info_startup">ایپلی کیشن شروع کرنے پر صارفین کو پیش کی جانے والی ابتدائی اسکرین کو ترتیب دیتا ہے۔ یہ ترتیب ایپ کے ساتھ صارف کے پہلے تعامل کو متاثر کرتی ہے اور اسے مخصوص صارف کے حصوں یا مصنوعات کے اہداف کے مطابق بنایا جا سکتا ہے۔</string>
+
+    <!-- Cleaning settings -->
+    <string name="cleaning">صفائی</string>
+    <string name="summary_preference_settings_cleaning">اپنے صفائی کے تجربے کو حسب ضرورت بنائیں</string>
+    <string name="filters">فلٹرز</string>
+    <string name="generic_filter">عام فلٹر</string>
+    <string name="summary_preference_settings_generic_filter">عارضی، لاگ، اور دیگر بیکار فائلیں اور فولڈرز حذف کریں</string>
+    <string name="delete_empty_folders">خالی فولڈرز حذف کریں</string>
+    <string name="delete_archives">آرکائیوز حذف کریں</string>
+    <string name="summary_preference_settings_archive_filter">اپنے آلے سے آرکائیوز حذف کریں</string>
+    <string name="delete_corpse_files">باقی ماندہ فائلیں حذف کریں</string>
+    <string name="summary_preference_settings_delete_corpse_files">ان انسٹال شدہ/ہٹائی گئی ایپس سے بچ جانے والی فائلیں حذف کریں</string>
+    <string name="delete_apk_files">APK فائلیں حذف کریں</string>
+    <string name="summary_preference_settings_delete_apk_files">اینڈرائیڈ کے لیے انسٹالر فائلیں (.apk) حذف کریں</string>
+    <string name="delete_windows_files">ونڈوز ایکسٹینشنز</string>
+    <string name="summary_preference_settings_delete_windows_files">ونڈوز ایکسٹینشنز (exe, dll, sys) کا پتہ لگاتا ہے</string>
+    <string name="delete_office_files">آفس ایکسٹینشنز</string>
+    <string name="summary_preference_settings_delete_office_files">آفس ایکسٹینشنز (doc, xls, ppt, docx, xlsx, pptx) کا پتہ لگاتا ہے</string>
+    <string name="delete_font_files">فونٹ ایکسٹینشنز</string>
+    <string name="summary_preference_settings_delete_font_files">فونٹ ایکسٹینشنز (ttf, otf) کا پتہ لگاتا ہے</string>
+    <string name="delete_other_files">دیگر ایکسٹینشنز</string>
+    <string name="summary_preference_settings_delete_other_files">دیگر تمام ایکسٹینشن اقسام کا پتہ لگاتا ہے۔</string>
+    <string name="media">میڈیا</string>
+    <string name="delete_audio">آڈیو حذف کریں</string>
+    <string name="summary_preference_settings_delete_audio">آلے سے آڈیو فائلیں حذف کریں</string>
+    <string name="delete_video">ویڈیو حذف کریں</string>
+    <string name="summary_preference_settings_delete_video">آلے سے ویڈیو فائلیں حذف کریں</string>
+    <string name="delete_images">تصاویر حذف کریں</string>
+    <string name="summary_preference_settings_delete_images">آلے سے تصویری فائلیں حذف کریں</string>
+    <string name="delete_invalid_media">غلط میڈیا حذف کریں</string>
+    <string name="summary_preference_settings_delete_invalid_media">خراب تصاویر حذف کریں</string>
+    <string name="scanner">اسکینر</string>
+    <string name="clipboard_clean">کلپ بورڈ صاف کریں</string>
+
+    <!-- Permissions -->
+    <string name="request_delete_packages">پیکیجز حذف کرنے کی درخواست کریں [REQUEST_DELETE_PACKAGES]</string>
+    <string name="summary_preference_permissions_request_delete_packages">ایپ کو پیکیجز کو حذف کرنے کی درخواست کرنے کی اجازت دیتا ہے۔ اسے آلے سے دیگر ایپس کو ان انسٹال کرنے کے لیے استعمال کیا جا سکتا ہے۔</string>
+    <string name="access_media_location">میڈیا کے مقام تک رسائی [ACCESS_MEDIA_LOCATION]</string>
+    <string name="summary_preference_permissions_access_media_location">ایپ کو آلے کی میڈیا فائلوں کے مقام تک رسائی کی اجازت دیتا ہے۔</string>
+    <string name="action_open_document_tree">کارروائی: دستاویز کا درخت کھولیں [ACTION_OPEN_DOCUMENT_TREE]</string>
+    <string name="summary_preference_permissions_action_open_document_tree">ایپ کو دستاویزات کے درخت تک رسائی کی اجازت دیتا ہے، بشمول درخت میں فائلیں پڑھنے اور لکھنے کی صلاحیت۔</string>
+    <string name="manage_external_storage">بیرونی اسٹوریج کا نظم کریں [MANAGE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_manage_external_storage">ایپ کو آلے کے اسٹوریج پر فائلوں کو حذف کرنے اور نام تبدیل کرنے جیسی کارروائیاں انجام دینے کی اجازت دیتا ہے، بشمول اندرونی اور بیرونی اسٹوریج۔</string>
+    <string name="package_usage_stats">پیکیج کے استعمال کے اعدادوشمار [PACKAGE_USAGE_STATS]</string>
+    <string name="summary_preference_permissions_package_usage_stats">ایپ کو صارف کے ایپ کے استعمال کے بارے میں معلومات تک رسائی کی اجازت دیتا ہے، بشمول کون سی ایپس استعمال کی گئی ہیں، وہ کتنی دیر تک استعمال کی گئی ہیں، اور کتنی کثرت سے استعمال کی گئی ہیں۔</string>
+    <string name="query_all_packages">تمام پیکیجز سے استفسار کریں [QUERY_ALL_PACKAGES]</string>
+    <string name="summary_preference_permissions_query_all_packages">ایپ کو آلے پر نصب تمام پیکیجز کے بارے میں معلومات کے لیے استفسار کرنے کی اجازت دیتا ہے۔ ایپ اس معلومات کا استعمال یہ تعین کرنے کے لیے کرتی ہے کہ کون سی فائلیں رکھنی ہیں یا حذف کرنی ہیں۔</string>
+    <string name="read_external_storage">بیرونی اسٹوریج پڑھیں [READ_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_read_external_storage">ایپ کو آلے کے اسٹوریج سے فائلیں پڑھنے کی اجازت دیتا ہے، بشمول اندرونی اور بیرونی اسٹوریج۔</string>
+    <string name="read_media_audio">میڈیا آڈیو پڑھیں [READ_MEDIA_AUDIO]</string>
+    <string name="summary_preference_permissions_read_media_audio">ایپ کو آلے کے اسٹوریج سے آڈیو فائلیں پڑھنے کی اجازت دیتا ہے۔</string>
+    <string name="read_media_images">میڈیا تصاویر پڑھیں [READ_MEDIA_IMAGES]</string>
+    <string name="summary_preference_permissions_read_media_images">ایپ کو آلے کے اسٹوریج سے تصویری فائلیں پڑھنے کی اجازت دیتا ہے۔</string>
+    <string name="read_media_video">میڈیا ویڈیو پڑھیں [READ_MEDIA_VIDEO]</string>
+    <string name="summary_preference_permissions_read_media_video">ایپ کو آلے کے اسٹوریج سے ویڈیو فائلیں پڑھنے کی اجازت دیتا ہے۔</string>
+    <string name="write_external_storage">بیرونی اسٹوریج پر لکھیں [WRITE_EXTERNAL_STORAGE]</string>
+    <string name="summary_preference_permissions_write_external_storage">ایپ کو آلے کے اسٹوریج پر فائلیں لکھنے کی اجازت دیتا ہے، بشمول اندرونی اور بیرونی اسٹوریج۔</string>
+
+    <!-- About -->
+    <string name="summary_preference_settings_about">کلینر کے بارے میں مزید جانیں</string>
+
+    <!-- FAQ -->
+    <string name="question_1">کلینر کیا ہے؟</string>
+    <string name="summary_preference_faq_1">کلینر ایک مفت اور اوپن سورس اینڈرائیڈ ایپ ہے جو آپ کو اپنے آلے کی کارکردگی کو بہتر بنانے اور اسٹوریج کی جگہ خالی کرنے میں مدد دیتی ہے۔ یہ آپ کے آلے کو غیر ضروری فائلوں کے لیے اسکین کر سکتی ہے اور انہیں حذف کر سکتی ہے، ساتھ ہی آپ کے آلے کی رفتار کو بہتر بنانے کے لیے آپ کا کیش صاف کر سکتی ہے۔</string>
+    <string name="question_2">کیا کلینر استعمال کرنا محفوظ ہے؟</string>
+    <string name="summary_preference_faq_2">ہاں، کلینر استعمال کرنا محفوظ ہے۔ یہ صرف ان فائلوں کو ہٹاتا ہے جو آپ کے آلے یا ایپس کے آپریشن کے لیے ضروری نہیں ہیں، اور یہ آپ کے کسی بھی ذاتی ڈیٹا یا اہم سسٹم فائلوں کو حذف نہیں کرتا ہے۔</string>
+    <string name="question_3">میں کلینر کا استعمال کیسے کروں؟</string>
+    <string name="summary_preference_faq_3">کلینر استعمال کرنے کے لیے، بس گوگل پلے اسٹور یا کسی معروف تھرڈ پارٹی ایپ اسٹور سے ایپ ڈاؤن لوڈ اور انسٹال کریں۔ پھر، ایپ کھولیں اور اپنے آلے کو اسکین کرنے اور غیر ضروری فائلوں کو حذف کرنے کے لیے اشاروں پر عمل کریں۔ آپ ان فائلوں کی اقسام کو اپنی مرضی کے مطابق بنانے کے لیے ایپ کی ترتیبات تک بھی رسائی حاصل کر سکتے ہیں جنہیں کلینر تلاش کرتا اور حذف کرتا ہے۔</string>
+    <string name="question_4">کیا کلینر ایپ کیش کو حذف کر سکتا ہے؟</string>
+    <string name="summary_preference_faq_4">ہاں، کلینر ایپ کیش کو حذف کر سکتا ہے۔ تاہم، یہ نوٹ کرنا ضروری ہے کہ کیش کو حذف کرنے سے اگلی بار جب آپ اسے استعمال کریں گے تو ایپ کو لوڈ ہونے یا کچھ کام انجام دینے میں زیادہ وقت لگ سکتا ہے۔</string>
+    <string name="question_5">کیا کلینر کو روٹ رسائی درکار ہے؟</string>
+    <string name="summary_preference_faq_5">نہیں، کلینر کو کام کرنے کے لیے روٹ رسائی کی ضرورت نہیں ہے۔ آپ اسے اپنے آلے کو روٹ کیے بغیر کسی بھی اینڈرائیڈ ڈیوائس پر استعمال کر سکتے ہیں۔</string>
+    <string name="question_6">کیا کلینر iOS کے لیے دستیاب ہے؟</string>
+    <string name="summary_preference_faq_6">نہیں، کلینر فی الحال صرف اینڈرائیڈ ڈیوائسز کے لیے دستیاب ہے۔</string>
+    <string name="question_7">کیا کلینر بیٹری کی زندگی کو بہتر بناتا ہے؟</string>
+    <string name="summary_preference_faq_7">اپنے کیش کو صاف کرنے کے لیے کلینر کا استعمال غیر ضروری عملوں کے ذریعے استعمال ہونے والی طاقت اور وسائل کی مقدار کو کم کرکے آپ کے آلے کی بیٹری کی زندگی کو بہتر بنانے میں مدد کر سکتا ہے۔ تاہم، کلینر آپ کی بیٹری کی زندگی کو کس حد تک بہتر بنا سکتا ہے اس کا انحصار مختلف عوامل پر ہوگا جیسے آپ کے آلے کا میک اور ماڈل، آپ جو ایپس استعمال کرتے ہیں، اور آپ کے استعمال کی عادات۔</string>
+    <string name="question_8">مجھے کلینر کو کتنی بار استعمال کرنا چاہئے؟</string>
+    <string name="summary_preference_faq_8">اس بارے میں کوئی طے شدہ اصول نہیں ہے کہ آپ کو کلینر کو کتنی بار استعمال کرنا چاہیے، کیونکہ اس کا انحصار آپ کے آلے کے استعمال اور وقت کے ساتھ جمع ہونے والی غیر ضروری فائلوں کی مقدار پر ہوگا۔ کچھ صارفین کو کلینر کو ہفتہ وار یا ماہانہ چلانا مددگار معلوم ہو سکتا ہے، جبکہ دوسروں کو اسے کبھی کبھار ہی استعمال کرنے کی ضرورت پڑ سکتی ہے۔</string>
+    <string name="question_9">کیا کلینر تمام اینڈرائیڈ ڈیوائسز کے ساتھ مطابقت رکھتا ہے؟</string>
+    <string name="summary_preference_faq_9">کلینر کو زیادہ تر اینڈرائیڈ ڈیوائسز کے ساتھ مطابقت پذیر ہونا چاہئے جو ایپ کی کم از کم سسٹم کی ضروریات کو پورا کرتی ہیں۔ تاہم، اپنے مخصوص آلے کے ساتھ مطابقت کی تصدیق کے لیے گوگل پلے اسٹور یا آپ جس ایپ اسٹور کا استعمال کر رہے ہیں اس پر ایپ کے صفحہ کو چیک کرنا ہمیشہ ایک اچھا خیال ہے۔ اگر آپ کو کلینر استعمال کرتے وقت کسی بھی مسئلے کا سامنا کرنا پڑتا ہے، تو آپ مسئلہ کو حل کرنے کی کوشش کر سکتے ہیں یا مدد کے لیے ایپ کی سپورٹ ٹیم سے رابطہ کر سکتے ہیں۔</string>
+
+    <!-- Error messages -->
+    <string name="request_no_internet">انٹرنیٹ کنکشن نہیں ہے۔ براہ کرم اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
+    <string name="request_timeout">درخواست کا وقت ختم ہوگیا۔ براہ کرم دوبارہ کوشش کریں۔</string>
+    <string name="request_server_not_found">سرور کی خرابی۔ براہ کرم بعد میں دوبارہ کوشش کریں۔</string>
+    <string name="request_payload_error">ڈیٹا کی خرابی۔ براہ کرم دوبارہ کوشش کریں۔</string>
+    <string name="failed_to_open_app_info">ایپ کی معلومات کھولنے میں ناکام: %1$s</string>
+    <string name="share_apk_failed">APK شیئر کرنے میں ناکام</string>
+    <string name="share_app_failed">ایپ شیئر کرنے میں ناکام</string>
+    <string name="apk_installed_successfully">APK کامیابی سے انسٹال ہوگئی!</string>
+    <string name="failed_to_install_apk">APK انسٹال کرنے میں ناکام: %1$s</string>
+    <string name="failed_to_uninstall_app">ایپ ان انسٹال کرنے میں ناکام: %1$s</string>
+    <string name="app_uninstalled_successfully">ایپ کامیابی سے ان انسٹال ہوگئی</string>
+</resources>

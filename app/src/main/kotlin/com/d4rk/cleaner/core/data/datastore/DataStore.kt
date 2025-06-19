@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
+import com.d4rk.android.libs.apptoolkit.core.utils.constants.datastore.DataStoreNamesConstants
 import com.d4rk.android.libs.apptoolkit.data.datastore.CommonDataStore
 import com.d4rk.cleaner.app.main.utils.constants.NavigationRoutes
 import com.d4rk.cleaner.core.utils.constants.datastore.AppDataStoreConstants
@@ -23,12 +24,6 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
     suspend fun saveStartupPage(startupPage : String) {
         dataStore.edit { preferences ->
             preferences[stringPreferencesKey(name = AppDataStoreConstants.DATA_STORE_STARTUP_PAGE)] = startupPage
-        }
-    }
-
-    fun getShowBottomBarLabels() : Flow<Boolean> {
-        return dataStore.data.map { preferences ->
-            preferences[booleanPreferencesKey(name = AppDataStoreConstants.DATA_STORE_SHOW_BOTTOM_BAR_LABELS)] != false
         }
     }
 
