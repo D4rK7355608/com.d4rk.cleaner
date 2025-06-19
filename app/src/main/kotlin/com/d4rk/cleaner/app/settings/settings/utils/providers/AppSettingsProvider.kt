@@ -48,7 +48,6 @@ class AppSettingsProvider : SettingsProvider {
                     )
                 ) ,
 
-                // TODO: CLeaning settings screen
                 SettingsCategory(
                     preferences = listOf(
                         SettingsPreference(
