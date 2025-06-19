@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
+import androidx.core.graphics.scale
 
 class CompressImageUseCase(private val context: Context) {
     suspend operator fun invoke(
@@ -36,7 +37,7 @@ class CompressImageUseCase(private val context: Context) {
             return originalFile
         }
 
-        val scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, targetWidth, targetHeight, true)
+        val scaledBitmap = originalBitmap.scale(targetWidth, targetHeight)
 
         var minQuality = 10
         var maxQuality = 100
@@ -74,7 +75,7 @@ class CompressImageUseCase(private val context: Context) {
         format: Bitmap.CompressFormat
     ): File {
         val originalBitmap = BitmapFactory.decodeFile(originalFile.absolutePath)
-        val scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, targetWidth, targetHeight, true)
+        val scaledBitmap = originalBitmap.scale(targetWidth, targetHeight)
         val outputFile = File(context.cacheDir, "native_compressed_${System.currentTimeMillis()}.jpg")
         outputFile.outputStream().use { out ->
             scaledBitmap.compress(format, quality, out)
