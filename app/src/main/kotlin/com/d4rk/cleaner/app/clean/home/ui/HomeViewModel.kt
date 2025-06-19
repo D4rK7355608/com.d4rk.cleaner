@@ -485,21 +485,37 @@ class HomeViewModel(
     }
 
     private fun toggleAnalyzeScreen(visible : Boolean) {
-        _uiState.updateData(ScreenState.Success()) { currentData ->
-            currentData.copy(
-                analyzeState = currentData.analyzeState.copy(
-                    isAnalyzeScreenVisible = visible,
-                    state = if (visible) currentData.analyzeState.state else CleaningState.Idle
-                )
-            )
-        }
-
         if (visible) {
+            _uiState.update { state : UiStateScreen<UiHomeModel> ->
+                val currentData : UiHomeModel = state.data ?: UiHomeModel()
+                state.copy(
+                    data = currentData.copy(
+                        analyzeState = currentData.analyzeState.copy(
+                            isAnalyzeScreenVisible = true ,
+                            scannedFileList = emptyList() ,
+                            emptyFolderList = emptyList() ,
+                            groupedFiles = emptyMap() ,
+                            fileSelectionMap = emptyMap() ,
+                            selectedFilesCount = 0 ,
+                            areAllFilesSelected = false ,
+                            state = CleaningState.Idle
+                        )
+                    )
+                )
+            }
             analyzeFiles()
         }
         else {
-            _uiState.updateData(_uiState.value.screenState) { currentData ->
-                currentData.copy(analyzeState = currentData.analyzeState.copy(fileSelectionMap = emptyMap() , selectedFilesCount = 0 , areAllFilesSelected = false))
+            _uiState.updateData(ScreenState.Success()) { currentData ->
+                currentData.copy(
+                    analyzeState = currentData.analyzeState.copy(
+                        fileSelectionMap = emptyMap() ,
+                        selectedFilesCount = 0 ,
+                        areAllFilesSelected = false ,
+                        isAnalyzeScreenVisible = false ,
+                        state = CleaningState.Idle
+                    )
+                )
             }
         }
     }
