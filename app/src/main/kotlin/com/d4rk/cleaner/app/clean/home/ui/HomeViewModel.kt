@@ -234,6 +234,15 @@ class HomeViewModel(
                 sendAction(HomeAction.ShowSnackbar(UiSnackbar(message = UiTextHelper.DynamicString("No files selected to delete.") , isError = false)))
                 return@launch
             }
+            _uiState.update { state : UiStateScreen<UiHomeModel> ->
+                val currentData : UiHomeModel = state.data ?: UiHomeModel()
+                state.copy(
+                    data = currentData.copy(
+                        analyzeState = currentData.analyzeState.copy(state = CleaningState.Cleaning)
+                    )
+                )
+            }
+
 
             deleteFilesUseCase(filesToDelete = files).collectLatest { result : DataState<Unit , Errors> ->
                 _uiState.applyResult(result = result , errorMessage = UiTextHelper.DynamicString("Failed to delete files:")) { data , currentData ->
@@ -265,6 +274,15 @@ class HomeViewModel(
                 sendAction(HomeAction.ShowSnackbar(UiSnackbar(message = UiTextHelper.DynamicString("No files selected to move to trash.") , isError = false)))
                 return@launch
             }
+            _uiState.update { state : UiStateScreen<UiHomeModel> ->
+                val currentData : UiHomeModel = state.data ?: UiHomeModel()
+                state.copy(
+                    data = currentData.copy(
+                        analyzeState = currentData.analyzeState.copy(state = CleaningState.Cleaning)
+                    )
+                )
+            }
+
 
             val totalFileSizeToMove : Long = files.sumOf { it.length() }
 
