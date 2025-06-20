@@ -31,6 +31,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -151,17 +152,17 @@ class HomeViewModel(
                         is DataState.Success -> {
                             val fileTypesData = currentData.analyzeState.fileTypesData
                             val preferences = mapOf(
-                                ExtensionsConstants.GENERIC_EXTENSIONS to true ,
-                                ExtensionsConstants.IMAGE_EXTENSIONS to true ,
-                                ExtensionsConstants.VIDEO_EXTENSIONS to true ,
-                                ExtensionsConstants.AUDIO_EXTENSIONS to true ,
-                                ExtensionsConstants.OFFICE_EXTENSIONS to true ,
-                                ExtensionsConstants.ARCHIVE_EXTENSIONS to true ,
-                                ExtensionsConstants.APK_EXTENSIONS to true ,
-                                ExtensionsConstants.FONT_EXTENSIONS to true ,
-                                ExtensionsConstants.WINDOWS_EXTENSIONS to true ,
-                                ExtensionsConstants.EMPTY_FOLDERS to true ,
-                                ExtensionsConstants.OTHER_EXTENSIONS to true
+                                ExtensionsConstants.GENERIC_EXTENSIONS to dataStore.genericFilter.first(),
+                                ExtensionsConstants.IMAGE_EXTENSIONS to dataStore.deleteImageFiles.first(),
+                                ExtensionsConstants.VIDEO_EXTENSIONS to dataStore.deleteVideoFiles.first(),
+                                ExtensionsConstants.AUDIO_EXTENSIONS to dataStore.deleteAudioFiles.first(),
+                                ExtensionsConstants.OFFICE_EXTENSIONS to dataStore.deleteOfficeFiles.first(),
+                                ExtensionsConstants.ARCHIVE_EXTENSIONS to dataStore.deleteArchives.first(),
+                                ExtensionsConstants.APK_EXTENSIONS to dataStore.deleteApkFiles.first(),
+                                ExtensionsConstants.FONT_EXTENSIONS to dataStore.deleteFontFiles.first(),
+                                ExtensionsConstants.WINDOWS_EXTENSIONS to dataStore.deleteWindowsFiles.first(),
+                                ExtensionsConstants.EMPTY_FOLDERS to dataStore.deleteEmptyFolders.first(),
+                                ExtensionsConstants.OTHER_EXTENSIONS to dataStore.deleteOtherFiles.first()
                             )
 
                             val groupedFiles : Map<String , List<File>> = withContext(dispatchers.default) {
