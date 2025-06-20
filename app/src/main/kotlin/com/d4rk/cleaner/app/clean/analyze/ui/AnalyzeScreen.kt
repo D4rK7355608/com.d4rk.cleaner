@@ -4,7 +4,6 @@ import android.view.View
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -18,11 +17,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import coil3.ImageLoader
-import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
+import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.analyze.components.StatusRowSelectAll
@@ -35,12 +34,6 @@ import com.d4rk.cleaner.app.clean.home.ui.components.TwoRowButtons
 import com.d4rk.cleaner.app.clean.nofilesfound.ui.NoFilesFoundScreen
 import kotlinx.coroutines.CoroutineScope
 import java.io.File
-
-/**
- * Duration for the state crossfade animation. Increase the value to slow down
- * transitions when testing. Set to `0` for instant transitions.
- */
-private const val ANALYZE_CROSSFADE_DURATION = 1500
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -67,26 +60,25 @@ fun AnalyzeScreen(
         ) {
             Crossfade(
                 targetState = data.analyzeState.state,
-                animationSpec = tween(durationMillis = ANALYZE_CROSSFADE_DURATION),
-                label = "AnalyzeScreenCrossfade",
             ) { state ->
+                println("Current state: $state")
+
                 when (state) {
 
                     CleaningState.Analyzing -> {
+                        println("Showing LoadingScreen")
                         LoadingScreen()
                     }
 
                     CleaningState.Cleaning -> {
-                        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.cleaning_loop))
+                        println("Showing LottieAnimation")
+                        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.delete_anim))
                         LottieAnimation(composition = composition, iterations = LottieConstants.IterateForever)
                     }
 
-                    CleaningState.Idle,
-                    CleaningState.Success,
-                    CleaningState.Error -> {
-                        if (groupedFiles.isEmpty()) {
-                            NoFilesFoundScreen(viewModel = viewModel)
-                        } else {
+                    CleaningState.Success -> {
+                        if (groupedFiles.isNotEmpty()) {
+                            println("Showing TabsContent")
                             TabsContent(
                                 groupedFiles = groupedFiles,
                                 imageLoader = imageLoader,
@@ -97,8 +89,17 @@ fun AnalyzeScreen(
                             )
                         }
                     }
+                    CleaningState.Error -> {
+                        if (groupedFiles.isEmpty()) {
+                            println("Showing NoFilesFoundScreen")
+                            NoFilesFoundScreen(viewModel = viewModel)
+                        }
+                    }
 
-                    else -> { /* no-op */ }
+                    CleaningState.Idle -> {
+                        println("Showing IdleScreen")
+                        // This one should be empty to show the home screen with the rest of the stuff
+                    }
                 }
             }
         }
