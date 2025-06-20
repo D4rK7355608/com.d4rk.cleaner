@@ -1,6 +1,8 @@
 package com.d4rk.cleaner.app.clean.analyze.ui
 
 import android.view.View
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,6 +12,7 @@ import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.DeleteForever
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,6 +35,7 @@ import com.d4rk.cleaner.app.clean.nofilesfound.ui.NoFilesFoundScreen
 import kotlinx.coroutines.CoroutineScope
 import java.io.File
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun AnalyzeScreen(
     imageLoader : ImageLoader ,
@@ -41,8 +45,8 @@ fun AnalyzeScreen(
 ) {
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     val hasSelectedFiles : Boolean = data.analyzeState.selectedFilesCount > 0
-    val isLoading : Boolean = data.analyzeState.state == CleaningState.Analyzing
-    val isCleaning : Boolean = data.analyzeState.state == CleaningState.Cleaning
+    val isLoading : Boolean = data.analyzeState.state == CleaningState.Analyzing // FIXME: unused
+    val isCleaning : Boolean = data.analyzeState.state == CleaningState.Cleaning// FIXME: unused
     val groupedFiles : Map<String , List<File>> = data.analyzeState.groupedFiles
 
     Column(
@@ -56,27 +60,30 @@ fun AnalyzeScreen(
                     .weight(weight = 1f)
                     .fillMaxWidth() ,
         ) {
-            when {
+            Crossfade(targetState = data.analyzeState.state, label = "AnalyzeScreenCrossfade") { state ->
+                when (state) {
 
-                isLoading -> {
-                    LoadingScreen()
-                }
+                    CleaningState.Analyzing -> {
+                        LoadingScreen()
+                    }
 
-                isCleaning -> {
-                    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.cleaning_loop))
-                    LottieAnimation(composition = composition, iterations = LottieConstants.IterateForever)
-                }
+                    CleaningState.Cleaning -> {
+                        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.cleaning_loop))
+                        LottieAnimation(composition = composition, iterations = LottieConstants.IterateForever)
+                    }
 
-                groupedFiles.isEmpty() -> {
-                    NoFilesFoundScreen(viewModel = viewModel)
-                }
+                    CleaningState. -> { // FIXME:
+                        if (groupedFiles.isEmpty()) {
+                            NoFilesFoundScreen(viewModel = viewModel)
+                        } else {
+                            TabsContent(groupedFiles = groupedFiles , imageLoader = imageLoader , viewModel = viewModel , view = view , coroutineScope = coroutineScope , data = data)
+                        }
+                    }
 
-                groupedFiles.isNotEmpty() -> {
-                    TabsContent(groupedFiles = groupedFiles , imageLoader = imageLoader , viewModel = viewModel , view = view , coroutineScope = coroutineScope , data = data)
+                    else -> {} // TODO: Should not happen
                 }
             }
         }
-
         if (groupedFiles.isNotEmpty()) {
             StatusRowSelectAll(data = data , view = view , onClickSelectAll = {
                 viewModel.toggleSelectAllFiles()
