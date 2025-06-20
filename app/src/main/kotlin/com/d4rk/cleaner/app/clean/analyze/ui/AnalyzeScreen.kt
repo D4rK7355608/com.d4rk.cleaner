@@ -4,6 +4,7 @@ import android.view.View
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -35,6 +36,12 @@ import com.d4rk.cleaner.app.clean.nofilesfound.ui.NoFilesFoundScreen
 import kotlinx.coroutines.CoroutineScope
 import java.io.File
 
+/**
+ * Duration for the state crossfade animation. Increase the value to slow down
+ * transitions when testing. Set to `0` for instant transitions.
+ */
+private const val ANALYZE_CROSSFADE_DURATION = 1500
+
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun AnalyzeScreen(
@@ -45,8 +52,6 @@ fun AnalyzeScreen(
 ) {
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     val hasSelectedFiles : Boolean = data.analyzeState.selectedFilesCount > 0
-    val isLoading : Boolean = data.analyzeState.state == CleaningState.Analyzing // FIXME: unused
-    val isCleaning : Boolean = data.analyzeState.state == CleaningState.Cleaning// FIXME: unused
     val groupedFiles : Map<String , List<File>> = data.analyzeState.groupedFiles
 
     Column(
@@ -60,7 +65,11 @@ fun AnalyzeScreen(
                     .weight(weight = 1f)
                     .fillMaxWidth() ,
         ) {
-            Crossfade(targetState = data.analyzeState.state, label = "AnalyzeScreenCrossfade") { state ->
+            Crossfade(
+                targetState = data.analyzeState.state,
+                animationSpec = tween(durationMillis = ANALYZE_CROSSFADE_DURATION),
+                label = "AnalyzeScreenCrossfade",
+            ) { state ->
                 when (state) {
 
                     CleaningState.Analyzing -> {
@@ -72,15 +81,24 @@ fun AnalyzeScreen(
                         LottieAnimation(composition = composition, iterations = LottieConstants.IterateForever)
                     }
 
-                    CleaningState. -> { // FIXME:
+                    CleaningState.Idle,
+                    CleaningState.Success,
+                    CleaningState.Error -> {
                         if (groupedFiles.isEmpty()) {
                             NoFilesFoundScreen(viewModel = viewModel)
                         } else {
-                            TabsContent(groupedFiles = groupedFiles , imageLoader = imageLoader , viewModel = viewModel , view = view , coroutineScope = coroutineScope , data = data)
+                            TabsContent(
+                                groupedFiles = groupedFiles,
+                                imageLoader = imageLoader,
+                                viewModel = viewModel,
+                                view = view,
+                                coroutineScope = coroutineScope,
+                                data = data,
+                            )
                         }
                     }
 
-                    else -> {} // TODO: Should not happen
+                    else -> { /* no-op */ }
                 }
             }
         }
