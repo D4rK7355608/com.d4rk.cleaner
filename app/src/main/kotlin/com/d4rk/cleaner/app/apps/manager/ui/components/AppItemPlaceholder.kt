@@ -18,62 +18,62 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.shimmerEffect
-import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.MediumVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 
 @Composable
-fun AppItemPlaceholder(modifier : Modifier = Modifier) {
+fun AppItemPlaceholder(modifier: Modifier = Modifier) {
     OutlinedCard(modifier = modifier) {
         Column {
-            MediumVerticalSpacer()
+            Spacer(modifier = Modifier.height(height = 14.dp))
             Row(
 
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(SizeConstants.LargeSize)
-                        .clip(RoundedCornerShape(SizeConstants.LargeSize)) , verticalAlignment = Alignment.CenterVertically
+                    .fillMaxWidth()
+                    .padding(SizeConstants.LargeSize)
+                    .clip(RoundedCornerShape(SizeConstants.LargeSize)),
+                verticalAlignment = Alignment.CenterVertically
             ) {
 
                 Box(
                     modifier = Modifier
-                            .size(48.dp)
-                            .clip(CircleShape)
-                            .shimmerEffect()
+                        .size(48.dp)
+                        .clip(CircleShape)
+                        .shimmerEffect()
                 )
 
                 Column(
                     modifier = Modifier
-                            .padding(start = SizeConstants.LargeSize)
-                            .weight(1f)
+                        .padding(start = SizeConstants.LargeSize)
+                        .weight(1f)
                 ) {
 
                     Box(
                         modifier = Modifier
-                                .fillMaxWidth(0.7f)
-                                .height(MaterialTheme.typography.titleMedium.lineHeight.value.dp)
-                                .clip(CircleShape)
-                                .shimmerEffect()
+                            .fillMaxWidth(0.7f)
+                            .height(MaterialTheme.typography.titleMedium.lineHeight.value.dp)
+                            .clip(RoundedCornerShape(SizeConstants.ExtraSmallSize))
+                            .shimmerEffect()
                     )
 
                     Spacer(modifier = Modifier.height(SizeConstants.SmallSize / 2))
 
                     Box(
                         modifier = Modifier
-                                .fillMaxWidth(0.4f)
-                                .height(MaterialTheme.typography.bodyMedium.lineHeight.value.dp)
-                                .clip(CircleShape)
-                                .shimmerEffect()
+                            .fillMaxWidth(0.4f)
+                            .height(MaterialTheme.typography.bodyMedium.lineHeight.value.dp)
+                            .clip(RoundedCornerShape(SizeConstants.ExtraSmallSize))
+                            .shimmerEffect()
                     )
                 }
 
                 Box(
                     modifier = Modifier
-                            .size(40.dp)
-                            .clip(CircleShape)
-                            .shimmerEffect()
+                        .size(40.dp)
+                        .clip(CircleShape)
+                        .shimmerEffect()
                 )
             }
         }
-        MediumVerticalSpacer()
+        Spacer(modifier = Modifier.height(height = 14.dp))
     }
 }

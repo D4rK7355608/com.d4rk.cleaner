@@ -4,6 +4,7 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -27,7 +28,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.carousel.DotsIndicator
@@ -89,12 +89,6 @@ fun MemoryManagerShimmer(paddingValues: PaddingValues) {
 
 @Composable
 private fun ListHeaderShimmer() {
-    val density = LocalDensity.current
-    val headlineSmallHeight =
-        with(density) { MaterialTheme.typography.headlineSmall.fontSize.toDp() }
-
-    val iconButtonSize = 40.dp
-
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -105,7 +99,7 @@ private fun ListHeaderShimmer() {
         Spacer(
             modifier = Modifier
                 .weight(1f)
-                .height(headlineSmallHeight)
+                .height(MaterialTheme.typography.headlineSmall.lineHeight.value.dp)
                 .clip(RoundedCornerShape(SizeConstants.SmallSize))
                 .shimmerEffect()
         )
@@ -114,7 +108,7 @@ private fun ListHeaderShimmer() {
 
         Spacer(
             modifier = Modifier
-                .size(iconButtonSize)
+                .size(40.dp)
                 .clip(CircleShape)
                 .shimmerEffect()
         )
@@ -123,9 +117,6 @@ private fun ListHeaderShimmer() {
 
 @Composable
 private fun CarouselShimmerCard(pageOffset: Float) {
-    val density = LocalDensity.current
-    val titleHeight = with(density) { MaterialTheme.typography.titleLarge.fontSize.toDp() + 4.dp }
-    val bodyHeight = with(density) { MaterialTheme.typography.bodyMedium.fontSize.toDp() + 4.dp }
     val alpha = lerp(0.5f, 1f, 1f - pageOffset.coerceIn(0f, 1f))
     val scale = animateFloatAsState(
         targetValue = lerp(0.95f, 1f, 1f - pageOffset.coerceIn(0f, 1f)),
@@ -148,8 +139,8 @@ private fun CarouselShimmerCard(pageOffset: Float) {
             Spacer(
                 modifier = Modifier
                     .fillMaxWidth(0.7f)
-                    .height(titleHeight)
-                    .clip(RoundedCornerShape(SizeConstants.SmallSize))
+                    .height(MaterialTheme.typography.titleLarge.lineHeight.value.dp)
+                    .clip(RoundedCornerShape(SizeConstants.ExtraSmallSize))
                     .shimmerEffect()
             )
 
@@ -159,7 +150,7 @@ private fun CarouselShimmerCard(pageOffset: Float) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(SizeConstants.SmallSize)
-                    .clip(RoundedCornerShape(SizeConstants.SmallSize))
+                    .clip(CircleShape)
                     .shimmerEffect()
             )
 
@@ -168,8 +159,8 @@ private fun CarouselShimmerCard(pageOffset: Float) {
             Spacer(
                 modifier = Modifier
                     .fillMaxWidth(0.5f)
-                    .height(bodyHeight)
-                    .clip(RoundedCornerShape(SizeConstants.SmallSize))
+                    .height(MaterialTheme.typography.bodyMedium.lineHeight.value.dp)
+                    .clip(RoundedCornerShape(SizeConstants.ExtraSmallSize))
                     .shimmerEffect()
             )
 
@@ -178,8 +169,8 @@ private fun CarouselShimmerCard(pageOffset: Float) {
             Spacer(
                 modifier = Modifier
                     .fillMaxWidth(0.3f)
-                    .height(bodyHeight)
-                    .clip(RoundedCornerShape(SizeConstants.SmallSize))
+                    .height(MaterialTheme.typography.bodyMedium.lineHeight.value.dp)
+                    .clip(RoundedCornerShape(SizeConstants.ExtraSmallSize))
                     .shimmerEffect()
             )
 
@@ -188,8 +179,8 @@ private fun CarouselShimmerCard(pageOffset: Float) {
             Spacer(
                 modifier = Modifier
                     .fillMaxWidth(0.4f)
-                    .height(bodyHeight)
-                    .clip(RoundedCornerShape(SizeConstants.SmallSize))
+                    .height(MaterialTheme.typography.bodyMedium.lineHeight.value.dp)
+                    .clip(RoundedCornerShape(SizeConstants.ExtraSmallSize))
                     .shimmerEffect()
             )
         }
@@ -227,10 +218,6 @@ private fun StorageBreakdownGridShimmer() {
 
 @Composable
 private fun StorageBreakdownItemShimmer(modifier: Modifier = Modifier) {
-    val bodyHeight =
-        with(LocalDensity.current) { MaterialTheme.typography.bodyMedium.fontSize.toDp() }
-    val bodySmallHeight =
-        with(LocalDensity.current) { MaterialTheme.typography.bodySmall.fontSize.toDp() }
     Card(
         modifier = modifier
             .padding(all = SizeConstants.ExtraSmallSize),
@@ -243,11 +230,18 @@ private fun StorageBreakdownItemShimmer(modifier: Modifier = Modifier) {
         ) {
             Card(
                 modifier = Modifier
-                    .size(48.dp)
-                    .clip(MaterialTheme.shapes.medium)
-                    .shimmerEffect(),
+                    .size(48.dp),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
-            ) {}
+            ) {
+                Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
+                    Spacer(
+                        modifier = Modifier
+                            .size(24.dp)
+                            .clip(RoundedCornerShape(SizeConstants.ExtraSmallSize))
+                            .shimmerEffect()
+                    )
+                }
+            }
 
             Spacer(modifier = Modifier.padding(horizontal = SizeConstants.ExtraSmallSize))
 
@@ -255,16 +249,16 @@ private fun StorageBreakdownItemShimmer(modifier: Modifier = Modifier) {
                 Spacer(
                     modifier = Modifier
                         .fillMaxWidth(0.8f)
-                        .height(bodyHeight)
-                        .clip(RoundedCornerShape(SizeConstants.SmallSize))
+                        .height(MaterialTheme.typography.bodyMedium.lineHeight.value.dp)
+                        .clip(RoundedCornerShape(SizeConstants.ExtraSmallSize))
                         .shimmerEffect()
                 )
                 Spacer(modifier = Modifier.padding(vertical = SizeConstants.ExtraTinySize))
                 Spacer(
                     modifier = Modifier
                         .fillMaxWidth(0.6f)
-                        .height(bodySmallHeight)
-                        .clip(RoundedCornerShape(SizeConstants.SmallSize))
+                        .height(MaterialTheme.typography.bodySmall.lineHeight.value.dp)
+                        .clip(RoundedCornerShape(SizeConstants.ExtraSmallSize))
                         .shimmerEffect()
                 )
             }

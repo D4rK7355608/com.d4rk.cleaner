@@ -10,7 +10,6 @@ import com.d4rk.cleaner.core.utils.constants.datastore.AppDataStoreConstants
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-// TODO: Make the missing AppDataStoreConstants
 class DataStore(val context : Context) : CommonDataStore(context = context) {
 
     // Cleaning
@@ -30,7 +29,6 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
     suspend fun saveLastScanTimestamp(timestamp : Long) {
         dataStore.edit { preferences ->
             preferences[lastScanTimestampKey] = timestamp
-            println("Cleaner for Android -> Saved timestamp: $timestamp")
         }
     }
 
