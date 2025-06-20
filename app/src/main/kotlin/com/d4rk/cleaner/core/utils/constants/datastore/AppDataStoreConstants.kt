@@ -3,6 +3,12 @@ package com.d4rk.cleaner.core.utils.constants.datastore
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.datastore.DataStoreNamesConstants
 
 object AppDataStoreConstants : DataStoreNamesConstants() {
+    const val DATA_STORE_CLEANED_SPACE = "cleaned_space"
+    const val DATA_STORE_LAST_SCAN_TIMESTAMP = "last_scan_timestamp"
+    const val DATA_STORE_TRASH_FILE_ORIGINAL_PATHS = "trash_file_original_paths"
+    const val DATA_STORE_TRASH_SIZE = "trash_size"
+    const val DATA_STORE_PERMISSION_STORAGE_GRANTED = "permission_storage_granted"
+    const val DATA_STORE_PERMISSION_USAGE_STATS_GRANTED = "permission_usage_stats_granted"
     const val DATA_STORE_STARTUP_PAGE = "startup_page"
     const val DATA_STORE_SHOW_BOTTOM_BAR_LABELS = "show_bottom_bar_labels"
     const val DATA_STORE_GENERIC_FILTER = "generic_filter"
