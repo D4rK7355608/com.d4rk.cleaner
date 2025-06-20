@@ -1,11 +1,13 @@
 package com.d4rk.cleaner.core.di.modules
 
+import android.content.Context
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import com.d4rk.android.libs.apptoolkit.app.main.domain.usecases.PerformInAppUpdateUseCase
 import com.d4rk.android.libs.apptoolkit.app.oboarding.utils.interfaces.providers.OnboardingProvider
 import com.d4rk.android.libs.apptoolkit.data.client.KtorClient
 import com.d4rk.android.libs.apptoolkit.data.core.ads.AdsCoreManager
+import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.apps.manager.data.ApkFileManagerImpl
 import com.d4rk.cleaner.app.apps.manager.data.AppPackageManagerImpl
 import com.d4rk.cleaner.app.apps.manager.data.PackageManagerFacadeImpl
@@ -53,12 +55,21 @@ import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModel
 import org.koin.core.parameter.parametersOf
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val appModule : Module = module {
     single<DataStore> { DataStore(context = get()) }
     single<AdsCoreManager> { AdsCoreManager(context = get() , buildInfoProvider = get()) }
     single { KtorClient().createClient() }
+
+    single<List<String>>(qualifier = named(name = "startup_entries")) {
+        get<Context>().resources.getStringArray(R.array.preference_startup_entries).toList()
+    }
+
+    single<List<String>>(qualifier = named(name = "startup_values")) {
+        get<Context>().resources.getStringArray(R.array.preference_startup_values).toList()
+    }
 
     single<OnboardingProvider> { AppOnboardingProvider() }
 
@@ -110,7 +121,6 @@ val appModule : Module = module {
     viewModel<MemoryManagerViewModel> {
         MemoryManagerViewModel(getStorageInfoUseCase = get() , getRamInfoUseCase = get() , dispatchers = get())
     }
-
 
     single<GetTrashFilesUseCase> { GetTrashFilesUseCase(repository = get()) }
     single<RestoreFromTrashUseCase> { RestoreFromTrashUseCase(repository = get()) }

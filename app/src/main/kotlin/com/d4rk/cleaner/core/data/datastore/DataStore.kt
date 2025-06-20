@@ -4,28 +4,14 @@ import android.content.Context
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
-import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
-import com.d4rk.android.libs.apptoolkit.core.utils.constants.datastore.DataStoreNamesConstants
 import com.d4rk.android.libs.apptoolkit.data.datastore.CommonDataStore
-import com.d4rk.cleaner.app.main.utils.constants.NavigationRoutes
 import com.d4rk.cleaner.core.utils.constants.datastore.AppDataStoreConstants
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+// TODO: Make the missing AppDataStoreConstants
 class DataStore(val context : Context) : CommonDataStore(context = context) {
-
-    fun getStartupPage() : Flow<String> {
-        return dataStore.data.map { preferences ->
-            preferences[stringPreferencesKey(name = AppDataStoreConstants.DATA_STORE_STARTUP_PAGE)] ?: NavigationRoutes.ROUTE_HOME
-        }
-    }
-
-    suspend fun saveStartupPage(startupPage : String) {
-        dataStore.edit { preferences ->
-            preferences[stringPreferencesKey(name = AppDataStoreConstants.DATA_STORE_STARTUP_PAGE)] = startupPage
-        }
-    }
 
     // Cleaning
     private val cleanedSpaceKey = longPreferencesKey(name = "cleaned_space")

@@ -202,9 +202,9 @@
     </string-array>
 
     <string-array name="preference_startup_entries">
-        <item>Home</item>
-        <item>App Manager</item>
-        <item>Memory Manager</item>
+        <item>@string/home</item>
+        <item>@string/app_manager</item>
+        <item>@string/memory_manager</item>
     </string-array>
     <string-array name="preference_startup_values">
         <item>home</item>

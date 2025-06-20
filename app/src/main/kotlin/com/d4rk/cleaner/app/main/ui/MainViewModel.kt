@@ -17,7 +17,6 @@ import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.successData
 import com.d4rk.android.libs.apptoolkit.core.ui.base.ScreenViewModel
 import com.d4rk.cleaner.app.main.domain.actions.MainAction
 import com.d4rk.cleaner.app.main.domain.actions.MainEvent
-import com.d4rk.cleaner.app.main.domain.model.BottomNavigationScreen
 import com.d4rk.cleaner.app.main.domain.model.UiMainScreen
 
 class MainViewModel(private val performInAppUpdateUseCase : PerformInAppUpdateUseCase) : ScreenViewModel<UiMainScreen , MainEvent , MainAction>(initialState = UiStateScreen(data = UiMainScreen())) {
@@ -63,8 +62,6 @@ class MainViewModel(private val performInAppUpdateUseCase : PerformInAppUpdateUs
                             title = R.string.share ,
                             selectedIcon = Icons.Outlined.Share ,
                         )
-                    ) , bottomBarItems = listOf(
-                        BottomNavigationScreen.Home , BottomNavigationScreen.AppManager , BottomNavigationScreen.MemoryManager
                     )
                 )
             }

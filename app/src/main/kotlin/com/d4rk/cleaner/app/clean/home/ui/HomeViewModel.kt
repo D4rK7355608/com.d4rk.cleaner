@@ -22,8 +22,8 @@ import com.d4rk.cleaner.app.clean.home.domain.usecases.GetFileTypesUseCase
 import com.d4rk.cleaner.app.clean.home.domain.usecases.GetStorageInfoUseCase
 import com.d4rk.cleaner.app.clean.home.domain.usecases.MoveToTrashUseCase
 import com.d4rk.cleaner.app.clean.home.domain.usecases.UpdateTrashSizeUseCase
-import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
 import com.d4rk.cleaner.app.clean.home.utils.helpers.StorageUtils
+import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
 import com.d4rk.cleaner.app.settings.cleaning.utils.constants.ExtensionsConstants
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.domain.model.network.Errors

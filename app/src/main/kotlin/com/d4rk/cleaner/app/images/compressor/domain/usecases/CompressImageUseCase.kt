@@ -3,10 +3,10 @@ package com.d4rk.cleaner.app.images.compressor.domain.usecases
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import androidx.core.graphics.scale
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
-import androidx.core.graphics.scale
 
 class CompressImageUseCase(private val context: Context) {
     suspend operator fun invoke(

@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.d4rk.android.libs.apptoolkit.app.help.ui.HelpActivity
@@ -20,12 +22,17 @@ import com.d4rk.cleaner.app.clean.memory.ui.MemoryManagerComposable
 import com.d4rk.cleaner.app.clean.trash.ui.TrashActivity
 import com.d4rk.cleaner.app.images.picker.ui.ImagePickerActivity
 import com.d4rk.cleaner.app.main.utils.constants.NavigationRoutes
+import com.d4rk.cleaner.core.data.datastore.DataStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import org.koin.compose.koinInject
 
 @Composable
 fun AppNavigationHost(navController : NavHostController , snackbarHostState : SnackbarHostState , paddingValues : PaddingValues) {
-    NavigationHost(navController = navController , startDestination = NavigationRoutes.ROUTE_HOME) {
+    val dataStore : DataStore = koinInject()
+    val startupRoute by dataStore.getStartupPage(default = NavigationRoutes.ROUTE_HOME).collectAsState(initial = NavigationRoutes.ROUTE_HOME)
+
+    NavigationHost(navController = navController , startDestination = startupRoute) {
         composable(route = NavigationRoutes.ROUTE_HOME) { backStackEntry ->
             HomeScreen(paddingValues = paddingValues)
         }

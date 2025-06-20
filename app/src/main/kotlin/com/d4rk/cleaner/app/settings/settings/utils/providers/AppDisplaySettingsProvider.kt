@@ -3,10 +3,10 @@ package com.d4rk.cleaner.app.settings.settings.utils.providers
 import android.content.Context
 import androidx.compose.runtime.Composable
 import com.d4rk.android.libs.apptoolkit.R
+import com.d4rk.android.libs.apptoolkit.app.display.components.dialogs.SelectStartupScreenAlertDialog
 import com.d4rk.android.libs.apptoolkit.app.settings.general.ui.GeneralSettingsActivity
 import com.d4rk.android.libs.apptoolkit.app.settings.utils.constants.SettingsContent
 import com.d4rk.android.libs.apptoolkit.app.settings.utils.providers.DisplaySettingsProvider
-import com.d4rk.cleaner.app.settings.display.ui.components.dialogs.SelectStartupScreenAlertDialog
 
 class AppDisplaySettingsProvider(val context : Context) : DisplaySettingsProvider {
 
@@ -16,10 +16,10 @@ class AppDisplaySettingsProvider(val context : Context) : DisplaySettingsProvide
         )
     }
 
-    override val supportsStartupPage : Boolean = true
+    override val supportsStartupPage: Boolean = true
 
     @Composable
-    override fun StartupPageDialog(onDismiss : () -> Unit , onStartupSelected : (String) -> Unit) {
-        SelectStartupScreenAlertDialog(onDismiss = onDismiss , onStartupSelected = onStartupSelected)
+    override fun StartupPageDialog(onDismiss: () -> Unit, onStartupSelected: (String) -> Unit) {
+        SelectStartupScreenAlertDialog(onDismiss = onDismiss, onStartupSelected = onStartupSelected)
     }
 }

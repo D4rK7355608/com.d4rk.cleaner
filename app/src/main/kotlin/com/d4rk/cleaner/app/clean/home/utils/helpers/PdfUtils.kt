@@ -3,8 +3,8 @@ package com.d4rk.cleaner.app.clean.home.utils.helpers
 import android.graphics.Bitmap
 import android.graphics.pdf.PdfRenderer
 import android.os.ParcelFileDescriptor
-import java.io.File
 import androidx.core.graphics.createBitmap
+import java.io.File
 
 fun loadPdfThumbnail(file: File): Bitmap? {
     return try {

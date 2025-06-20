@@ -17,8 +17,8 @@ import coil3.ImageLoader
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.app.clean.analyze.components.dialogs.DeleteOrTrashConfirmation
 import com.d4rk.cleaner.app.clean.analyze.components.StatusRowSelectAll
+import com.d4rk.cleaner.app.clean.analyze.components.dialogs.DeleteOrTrashConfirmation
 import com.d4rk.cleaner.app.clean.analyze.components.tabs.TabsContent
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningState
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.UiHomeModel

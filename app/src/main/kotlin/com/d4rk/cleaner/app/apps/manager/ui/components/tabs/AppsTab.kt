@@ -1,7 +1,7 @@
 package com.d4rk.cleaner.app.apps.manager.ui.components.tabs
 
-import androidx.compose.animation.Crossfade
 import android.content.pm.ApplicationInfo
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
