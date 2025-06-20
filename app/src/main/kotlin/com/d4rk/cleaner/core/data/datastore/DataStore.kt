@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.map
 class DataStore(val context : Context) : CommonDataStore(context = context) {
 
     // Cleaning
-    private val cleanedSpaceKey = longPreferencesKey(name = "cleaned_space")
+    private val cleanedSpaceKey = longPreferencesKey(name = AppDataStoreConstants.DATA_STORE_CLEANED_SPACE)
     val cleanedSpace : Flow<Long> = dataStore.data.map { preferences ->
         preferences[cleanedSpaceKey] ?: 0L
     }
@@ -25,7 +25,7 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         }
     }
 
-    private val lastScanTimestampKey = longPreferencesKey(name = "last_scan_timestamp")
+    private val lastScanTimestampKey = longPreferencesKey(name = AppDataStoreConstants.DATA_STORE_LAST_SCAN_TIMESTAMP)
 
     suspend fun saveLastScanTimestamp(timestamp : Long) {
         dataStore.edit { preferences ->
@@ -34,7 +34,7 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         }
     }
 
-    private val trashFileOriginalPathsKey = stringSetPreferencesKey("trash_file_original_paths")
+    private val trashFileOriginalPathsKey = stringSetPreferencesKey(AppDataStoreConstants.DATA_STORE_TRASH_FILE_ORIGINAL_PATHS)
 
     val trashFileOriginalPaths : Flow<Set<String>> = dataStore.data.map { preferences ->
         preferences[trashFileOriginalPathsKey] ?: emptySet()
@@ -55,7 +55,7 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
     }
 
 
-    private val trashSizeKey = longPreferencesKey(name = "trash_size")
+    private val trashSizeKey = longPreferencesKey(name = AppDataStoreConstants.DATA_STORE_TRASH_SIZE)
     val trashSize : Flow<Long> = dataStore.data.map { preferences ->
         preferences[trashSizeKey] ?: 0L
     }
@@ -228,7 +228,7 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         }
     }
 
-    private val storagePermissionGrantedKey = booleanPreferencesKey("permission_storage_granted")
+    private val storagePermissionGrantedKey = booleanPreferencesKey(AppDataStoreConstants.DATA_STORE_PERMISSION_STORAGE_GRANTED)
     val storagePermissionGranted: Flow<Boolean> = dataStore.data.map { prefs ->
         prefs[storagePermissionGrantedKey] == true
     }
@@ -240,7 +240,7 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
     }
 
 
-    private val usagePermissionGrantedKey = booleanPreferencesKey("permission_usage_stats_granted")
+    private val usagePermissionGrantedKey = booleanPreferencesKey(AppDataStoreConstants.DATA_STORE_PERMISSION_USAGE_STATS_GRANTED)
     val usagePermissionGranted: Flow<Boolean> = dataStore.data.map { prefs ->
         prefs[usagePermissionGrantedKey] == true
     }
