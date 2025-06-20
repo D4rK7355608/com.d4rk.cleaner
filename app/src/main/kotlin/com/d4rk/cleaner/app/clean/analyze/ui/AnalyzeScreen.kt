@@ -15,6 +15,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import coil3.ImageLoader
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.analyze.components.StatusRowSelectAll
@@ -38,6 +42,7 @@ fun AnalyzeScreen(
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     val hasSelectedFiles : Boolean = data.analyzeState.selectedFilesCount > 0
     val isLoading : Boolean = data.analyzeState.state == CleaningState.Analyzing
+    val isCleaning : Boolean = data.analyzeState.state == CleaningState.Cleaning
     val groupedFiles : Map<String , List<File>> = data.analyzeState.groupedFiles
 
     Column(
@@ -55,6 +60,11 @@ fun AnalyzeScreen(
 
                 isLoading -> {
                     LoadingScreen()
+                }
+
+                isCleaning -> {
+                    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.cleaning_loop))
+                    LottieAnimation(composition = composition, iterations = LottieConstants.IterateForever)
                 }
 
                 groupedFiles.isEmpty() -> {
