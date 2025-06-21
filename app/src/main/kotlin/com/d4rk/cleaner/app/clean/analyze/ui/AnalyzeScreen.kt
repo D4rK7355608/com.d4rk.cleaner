@@ -76,7 +76,7 @@ fun AnalyzeScreen(
                         LottieAnimation(composition = composition, iterations = LottieConstants.IterateForever)
                     }
 
-                    CleaningState.Success -> {
+                    CleaningState.ReadyToClean -> {
                         if (groupedFiles.isNotEmpty()) {
                             println("Showing TabsContent")
                             TabsContent(
@@ -88,6 +88,11 @@ fun AnalyzeScreen(
                                 data = data,
                             )
                         }
+                    }
+
+                    CleaningState.Result -> {
+                        println("Showing NoFilesFoundScreen")
+                        NoFilesFoundScreen(viewModel = viewModel)
                     }
                     CleaningState.Error -> {
                         if (groupedFiles.isEmpty()) {
