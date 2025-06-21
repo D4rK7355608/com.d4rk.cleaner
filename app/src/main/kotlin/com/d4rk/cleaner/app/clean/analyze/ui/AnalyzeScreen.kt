@@ -27,6 +27,7 @@ import com.d4rk.cleaner.app.clean.analyze.components.StatusRowSelectAll
 import com.d4rk.cleaner.app.clean.analyze.components.dialogs.DeleteOrTrashConfirmation
 import com.d4rk.cleaner.app.clean.analyze.components.tabs.TabsContent
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningState
+import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningType
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.UiHomeModel
 import com.d4rk.cleaner.app.clean.home.ui.HomeViewModel
 import com.d4rk.cleaner.app.clean.home.ui.components.TwoRowButtons
@@ -66,7 +67,15 @@ fun AnalyzeScreen(
 
                 CleaningState.Cleaning -> {
                     println("Showing LottieAnimation")
-                    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.delete_anim))
+                    val composition by rememberLottieComposition(
+                        LottieCompositionSpec.RawRes(
+                            if (data.analyzeState.cleaningType == CleaningType.MOVE_TO_TRASH) {
+                                R.raw.cleaning_loop
+                            } else {
+                                R.raw.delete_anim
+                            }
+                        )
+                    )
                     LottieAnimation(composition = composition, iterations = LottieConstants.IterateForever)
                 }
 
