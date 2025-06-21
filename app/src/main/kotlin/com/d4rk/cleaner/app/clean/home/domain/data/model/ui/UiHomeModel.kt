@@ -2,6 +2,8 @@ package com.d4rk.cleaner.app.clean.home.domain.data.model.ui
 
 /** State of the cleaning process. */
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
+
+import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningType
 import java.io.File
 
 data class UiHomeModel(
@@ -13,6 +15,7 @@ data class UiHomeModel(
 
 data class UiAnalyzeModel(
     var state : CleaningState = CleaningState.Idle ,
+    var cleaningType : CleaningType = CleaningType.NONE ,
     var isAnalyzeScreenVisible : Boolean = false ,
     var scannedFileList : List<File> = emptyList() ,
     var emptyFolderList : List<File> = emptyList() ,

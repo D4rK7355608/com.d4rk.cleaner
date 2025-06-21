@@ -16,6 +16,7 @@ import com.d4rk.cleaner.app.clean.home.domain.actions.HomeEvent
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningState
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.FileTypesData
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.UiHomeModel
+import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningType
 import com.d4rk.cleaner.app.clean.home.domain.usecases.AnalyzeFilesUseCase
 import com.d4rk.cleaner.app.clean.home.domain.usecases.DeleteFilesUseCase
 import com.d4rk.cleaner.app.clean.home.domain.usecases.GetFileTypesUseCase
@@ -146,7 +147,10 @@ class HomeViewModel(
                         is DataState.Loading -> currentState.copy(
                             screenState = ScreenState.IsLoading(),
                             data = currentData.copy(
-                                analyzeState = currentData.analyzeState.copy(state = CleaningState.Analyzing)
+                                analyzeState = currentData.analyzeState.copy(
+                                    state = CleaningState.Analyzing,
+                                    cleaningType = CleaningType.NONE
+                                )
                             )
                         )
                         is DataState.Success -> {
@@ -177,7 +181,8 @@ class HomeViewModel(
                                         groupedFiles = groupedFiles,
                                         // Files are ready for the user to review
                                         // before starting the cleaning step
-                                        state = CleaningState.ReadyToClean
+                                        state = CleaningState.ReadyToClean,
+                                        cleaningType = CleaningType.NONE
                                     )
                                 )
                             )
@@ -186,7 +191,10 @@ class HomeViewModel(
                         is DataState.Error -> currentState.copy(
                             screenState = ScreenState.Error(),
                             data = currentData.copy(
-                                analyzeState = currentData.analyzeState.copy(state = CleaningState.Error)
+                                analyzeState = currentData.analyzeState.copy(
+                                    state = CleaningState.Error,
+                                    cleaningType = CleaningType.NONE
+                                )
                             ),
                             errors = currentState.errors + UiSnackbar(
                                 message = UiTextHelper.DynamicString("Failed to analyze files: ${result.error}"),
@@ -240,7 +248,10 @@ class HomeViewModel(
                 val currentData : UiHomeModel = state.data ?: UiHomeModel()
                 state.copy(
                     data = currentData.copy(
-                        analyzeState = currentData.analyzeState.copy(state = CleaningState.Cleaning)
+                        analyzeState = currentData.analyzeState.copy(
+                            state = CleaningState.Cleaning,
+                            cleaningType = CleaningType.DELETE
+                        )
                     )
                 )
             }
@@ -260,7 +271,6 @@ class HomeViewModel(
                 }
 
                 if (result is DataState.Success) {
-                    val clearedSpaceTotalSize : Long = files.sumOf { it.length() } // FIXME: Property "clearedSpaceTotalSize" is never used
                     launch {
                         dataStore.saveLastScanTimestamp(timestamp = System.currentTimeMillis())
                     }
@@ -280,7 +290,10 @@ class HomeViewModel(
                 val currentData : UiHomeModel = state.data ?: UiHomeModel()
                 state.copy(
                     data = currentData.copy(
-                        analyzeState = currentData.analyzeState.copy(state = CleaningState.Cleaning)
+                        analyzeState = currentData.analyzeState.copy(
+                            state = CleaningState.Cleaning,
+                            cleaningType = CleaningType.MOVE_TO_TRASH
+                        )
                     )
                 )
             }
@@ -334,7 +347,8 @@ class HomeViewModel(
                         fileSelectionMap = emptyMap() ,
                         selectedFilesCount = 0 ,
                         areAllFilesSelected = false ,
-                        state = CleaningState.Idle
+                        state = CleaningState.Idle,
+                        cleaningType = CleaningType.NONE
                     )
                 )
             )
@@ -392,7 +406,14 @@ class HomeViewModel(
 
             _uiState.update { state : UiStateScreen<UiHomeModel> ->
                 val currentData = state.data ?: UiHomeModel()
-                state.copy(data = currentData.copy(analyzeState = currentData.analyzeState.copy(state = CleaningState.Cleaning)))
+                state.copy(
+                    data = currentData.copy(
+                        analyzeState = currentData.analyzeState.copy(
+                            state = CleaningState.Cleaning,
+                            cleaningType = CleaningType.DELETE
+                        )
+                    )
+                )
             }
 
             val currentScreenData : UiHomeModel = screenData ?: run {
@@ -422,7 +443,6 @@ class HomeViewModel(
 
                 if (result is DataState.Success) {
                     println(message = "Debugging ---> Clean Files triggered, result is success")
-                    val clearedSpaceTotalSize : Long = filesToDelete.sumOf { it.length() } // FIXME: Property "clearedSpaceTotalSize" is never used
                     launch {
                         dataStore.saveLastScanTimestamp(timestamp = System.currentTimeMillis())
                     }
@@ -448,7 +468,10 @@ class HomeViewModel(
                 val currentData = state.data ?: UiHomeModel()
                 state.copy(
                     data = currentData.copy(
-                        analyzeState = currentData.analyzeState.copy(state = CleaningState.Cleaning)
+                        analyzeState = currentData.analyzeState.copy(
+                            state = CleaningState.Cleaning,
+                            cleaningType = CleaningType.MOVE_TO_TRASH
+                        )
                     )
                 )
             }
@@ -534,7 +557,8 @@ class HomeViewModel(
                             fileSelectionMap = emptyMap() ,
                             selectedFilesCount = 0 ,
                             areAllFilesSelected = false ,
-                            state = CleaningState.Idle
+                            state = CleaningState.Idle,
+                            cleaningType = CleaningType.NONE
                         )
                     )
                 )
@@ -549,7 +573,8 @@ class HomeViewModel(
                         selectedFilesCount = 0 ,
                         areAllFilesSelected = false ,
                         isAnalyzeScreenVisible = false ,
-                        state = CleaningState.Idle
+                        state = CleaningState.Idle,
+                        cleaningType = CleaningType.NONE
                     )
                 )
             }
