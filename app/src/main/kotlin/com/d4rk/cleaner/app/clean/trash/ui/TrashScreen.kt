@@ -62,7 +62,7 @@ fun TrashScreen(activity : TrashActivity) {
         ScreenStateHandler(screenState = uiStateScreen , onLoading = {
             LoadingScreen()
         } , onEmpty = {
-            NoDataScreen(text = R.string.trash_is_empty , icon = Icons.Outlined.RestoreFromTrash)
+            NoDataScreen(textMessage = R.string.trash_is_empty , icon = Icons.Outlined.RestoreFromTrash)
         } , onSuccess = { trashModel ->
             ConstraintLayout(
                 modifier = Modifier

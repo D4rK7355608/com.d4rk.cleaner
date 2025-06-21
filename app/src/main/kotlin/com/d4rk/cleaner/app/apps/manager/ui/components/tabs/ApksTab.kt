@@ -30,7 +30,7 @@ fun ApksTab(
 
             apkFiles.isEmpty() -> {
                 NoDataScreen(
-                    text = R.string.no_app_installed , showRetry = true , onRetry = {
+                    textMessage = R.string.no_app_installed , showRetry = true , onRetry = {
                         viewModel.onEvent(event = AppManagerEvent.LoadAppData)
                     })
             }

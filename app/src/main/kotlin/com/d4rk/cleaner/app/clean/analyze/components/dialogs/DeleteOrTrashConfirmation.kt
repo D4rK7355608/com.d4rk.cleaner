@@ -6,6 +6,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
@@ -33,7 +34,8 @@ fun DeleteOrTrashConfirmation(data: UiHomeModel, viewModel: HomeViewModel) {
                 LottieAnimation(
                     modifier = Modifier.fillMaxWidth(),
                     composition = composition,
-                    iterations = LottieConstants.IterateForever
+                    iterations = LottieConstants.IterateForever,
+                    contentScale = ContentScale.Crop
                 )
                 Text(text = stringResource(id = messageRes))
             }
