@@ -175,9 +175,9 @@ class HomeViewModel(
                                         scannedFileList = result.data.first,
                                         emptyFolderList = result.data.second,
                                         groupedFiles = groupedFiles,
-                                        // Transition to Success so the UI
-                                        // displays the scanned files list
-                                        state = CleaningState.Success
+                                        // Files are ready for the user to review
+                                        // before starting the cleaning step
+                                        state = CleaningState.ReadyToClean
                                     )
                                 )
                             )
@@ -290,12 +290,27 @@ class HomeViewModel(
 
             moveToTrashUseCase(filesToMove = files).collectLatest { result : DataState<Unit , Errors> ->
                 _uiState.applyResult(result = result , errorMessage = UiTextHelper.DynamicString("Failed to move files to trash:")) { data : Unit , currentData : UiHomeModel ->
-                    currentData.copy(analyzeState = currentData.analyzeState.copy(scannedFileList = currentData.analyzeState.scannedFileList.filterNot { existingFile : File ->
-                        files.any { movedFile : File -> existingFile.absolutePath == movedFile.absolutePath }
-                    } , groupedFiles = computeGroupedFiles(scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile : File ->
-                        files.any { movedFile : File -> existingFile.absolutePath == movedFile.absolutePath }
-                    } , emptyFolders = currentData.analyzeState.emptyFolderList , fileTypesData = currentData.analyzeState.fileTypesData , preferences = mapOf()) , selectedFilesCount = 0 , areAllFilesSelected = false , isAnalyzeScreenVisible = false , fileSelectionMap = emptyMap(),
-          state = CleaningState.Success))
+                    currentData.copy(
+                        analyzeState = currentData.analyzeState.copy(
+                            scannedFileList = currentData.analyzeState.scannedFileList.filterNot { existingFile: File ->
+                                files.any { movedFile: File -> existingFile.absolutePath == movedFile.absolutePath }
+                            },
+                            groupedFiles = computeGroupedFiles(
+                                scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile: File ->
+                                    files.any { movedFile: File -> existingFile.absolutePath == movedFile.absolutePath }
+                                },
+                                emptyFolders = currentData.analyzeState.emptyFolderList,
+                                fileTypesData = currentData.analyzeState.fileTypesData,
+                                preferences = mapOf()
+                            ),
+                            selectedFilesCount = 0,
+                            areAllFilesSelected = false,
+                            isAnalyzeScreenVisible = false,
+                            fileSelectionMap = emptyMap(),
+                            state = CleaningState.Result
+                        )
+                    )
+                )
                 }
 
                 if (result is DataState.Success) {
@@ -369,7 +384,7 @@ class HomeViewModel(
     }
 
     fun cleanFiles() {
-        if (_uiState.value.data?.analyzeState?.state != CleaningState.Idle) {
+        if (_uiState.value.data?.analyzeState?.state != CleaningState.ReadyToClean) {
             return
         }
 
@@ -402,7 +417,7 @@ class HomeViewModel(
                                                                                   areAllFilesSelected = false ,
                                                                                   fileSelectionMap = emptyMap() ,
   isAnalyzeScreenVisible = false ,
-  state = CleaningState.Success) , storageInfo = currentData.storageInfo.copy(isFreeSpaceLoading = true , isCleanedSpaceLoading = true))
+  state = CleaningState.Result) , storageInfo = currentData.storageInfo.copy(isFreeSpaceLoading = true , isCleanedSpaceLoading = true))
                 }
 
                 if (result is DataState.Success) {
@@ -423,7 +438,7 @@ class HomeViewModel(
     }
 
     fun moveSelectedToTrash() {
-        if (_uiState.value.data?.analyzeState?.state != CleaningState.Idle) {
+        if (_uiState.value.data?.analyzeState?.state != CleaningState.ReadyToClean) {
             return
         }
 
@@ -465,7 +480,7 @@ class HomeViewModel(
                                                                                   areAllFilesSelected = false ,
                                                                                   isAnalyzeScreenVisible = false ,
                                                                                   fileSelectionMap = emptyMap(),
-          state = CleaningState.Success))
+          state = CleaningState.Result))
                 }
 
                 if (result is DataState.Success) {

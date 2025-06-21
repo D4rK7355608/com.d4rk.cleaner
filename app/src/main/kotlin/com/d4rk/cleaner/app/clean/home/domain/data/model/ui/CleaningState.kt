@@ -7,7 +7,20 @@ package com.d4rk.cleaner.app.clean.home.domain.data.model.ui
 enum class CleaningState {
     Idle,
     Analyzing,
+    /**
+     * Files have been analyzed and the user can review the results.
+     */
+    ReadyToClean,
+
+    /**
+     * Deleting or moving the selected files is in progress.
+     */
     Cleaning,
-    Success,
+
+    /**
+     * Cleaning finished and a short summary/result should be shown.
+     */
+    Result,
+
     Error
 }
