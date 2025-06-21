@@ -1,7 +1,6 @@
 package com.d4rk.cleaner.app.clean.analyze.ui
 
 import android.view.View
-import androidx.compose.animation.Crossfade
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Column
@@ -58,53 +57,47 @@ fun AnalyzeScreen(
                     .weight(weight = 1f)
                     .fillMaxWidth() ,
         ) {
-            Crossfade(
-                targetState = data.analyzeState.state,
-            ) { state ->
-                println("Current state: $state")
+            when (data.analyzeState.state) {
 
-                when (state) {
+                CleaningState.Analyzing -> {
+                    println("Showing LoadingScreen")
+                    LoadingScreen()
+                }
 
-                    CleaningState.Analyzing -> {
-                        println("Showing LoadingScreen")
-                        LoadingScreen()
+                CleaningState.Cleaning -> {
+                    println("Showing LottieAnimation")
+                    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.delete_anim))
+                    LottieAnimation(composition = composition, iterations = LottieConstants.IterateForever)
+                }
+
+                CleaningState.ReadyToClean -> {
+                    if (groupedFiles.isNotEmpty()) {
+                        println("Showing TabsContent")
+                        TabsContent(
+                            groupedFiles = groupedFiles,
+                            imageLoader = imageLoader,
+                            viewModel = viewModel,
+                            view = view,
+                            coroutineScope = coroutineScope,
+                            data = data,
+                        )
                     }
+                }
 
-                    CleaningState.Cleaning -> {
-                        println("Showing LottieAnimation")
-                        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.delete_anim))
-                        LottieAnimation(composition = composition, iterations = LottieConstants.IterateForever)
-                    }
-
-                    CleaningState.ReadyToClean -> {
-                        if (groupedFiles.isNotEmpty()) {
-                            println("Showing TabsContent")
-                            TabsContent(
-                                groupedFiles = groupedFiles,
-                                imageLoader = imageLoader,
-                                viewModel = viewModel,
-                                view = view,
-                                coroutineScope = coroutineScope,
-                                data = data,
-                            )
-                        }
-                    }
-
-                    CleaningState.Result -> {
+                CleaningState.Result -> {
+                    println("Showing NoFilesFoundScreen")
+                    NoFilesFoundScreen(viewModel = viewModel)
+                }
+                CleaningState.Error -> {
+                    if (groupedFiles.isEmpty()) {
                         println("Showing NoFilesFoundScreen")
                         NoFilesFoundScreen(viewModel = viewModel)
                     }
-                    CleaningState.Error -> {
-                        if (groupedFiles.isEmpty()) {
-                            println("Showing NoFilesFoundScreen")
-                            NoFilesFoundScreen(viewModel = viewModel)
-                        }
-                    }
+                }
 
-                    CleaningState.Idle -> {
-                        println("Showing IdleScreen")
-                        // This one should be empty to show the home screen with the rest of the stuff
-                    }
+                CleaningState.Idle -> {
+                    println("Showing IdleScreen")
+                    // This one should be empty to show the home screen with the rest of the stuff
                 }
             }
         }

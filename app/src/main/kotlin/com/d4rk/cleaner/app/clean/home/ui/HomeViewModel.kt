@@ -260,7 +260,7 @@ class HomeViewModel(
                 }
 
                 if (result is DataState.Success) {
-                    val clearedSpaceTotalSize : Long = files.sumOf { it.length() }
+                    val clearedSpaceTotalSize : Long = files.sumOf { it.length() } // FIXME: Property "clearedSpaceTotalSize" is never used
                     launch {
                         dataStore.saveLastScanTimestamp(timestamp = System.currentTimeMillis())
                     }
@@ -310,7 +310,7 @@ class HomeViewModel(
                             state = CleaningState.Result
                         )
                     )
-                )
+
                 }
 
                 if (result is DataState.Success) {
@@ -422,7 +422,7 @@ class HomeViewModel(
 
                 if (result is DataState.Success) {
                     println(message = "Debugging ---> Clean Files triggered, result is success")
-                    val clearedSpaceTotalSize : Long = filesToDelete.sumOf { it.length() }
+                    val clearedSpaceTotalSize : Long = filesToDelete.sumOf { it.length() } // FIXME: Property "clearedSpaceTotalSize" is never used
                     launch {
                         dataStore.saveLastScanTimestamp(timestamp = System.currentTimeMillis())
                     }

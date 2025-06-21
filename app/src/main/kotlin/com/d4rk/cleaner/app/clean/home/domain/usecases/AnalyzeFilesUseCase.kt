@@ -17,7 +17,7 @@ class AnalyzeFilesUseCase(
             val result = homeRepository.getAllFiles()
             emit(DataState.Success(result))
         }.onFailure { throwable ->
-            emit(DataState.Error(throwable.toError()))
+            emit(value = DataState.Error(error = throwable.toError()))
         }
     }
 }
