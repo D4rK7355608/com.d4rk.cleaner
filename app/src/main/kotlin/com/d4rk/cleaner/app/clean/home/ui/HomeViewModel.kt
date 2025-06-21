@@ -175,7 +175,9 @@ class HomeViewModel(
                                         scannedFileList = result.data.first,
                                         emptyFolderList = result.data.second,
                                         groupedFiles = groupedFiles,
-                                        state = CleaningState.Idle
+                                        // Transition to Success so the UI
+                                        // displays the scanned files list
+                                        state = CleaningState.Success
                                     )
                                 )
                             )
