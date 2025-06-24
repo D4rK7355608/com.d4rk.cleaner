@@ -1,7 +1,7 @@
 package com.d4rk.cleaner.app.main.ui
 
 import android.content.Context
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.MenuOpen
@@ -99,16 +99,16 @@ fun MainScaffoldContent(drawerState : DrawerState) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScaffoldTabletContent() {
-    val scrollBehavior : TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+    val scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     var isRailExpanded by remember { mutableStateOf(value = false) }
-    val coroutineScope : CoroutineScope = rememberCoroutineScope()
-    val context : Context = LocalContext.current
-    val snackBarHostState : SnackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
+    val context: Context = LocalContext.current
+    val snackBarHostState: SnackbarHostState = remember { SnackbarHostState() }
 
-    val viewModel : MainViewModel = koinViewModel()
-    val screenState : UiStateScreen<UiMainScreen> by viewModel.uiState.collectAsState()
-    val uiState : UiMainScreen = screenState.data ?: UiMainScreen()
-    val navController : NavHostController = rememberNavController()
+    val viewModel: MainViewModel = koinViewModel()
+    val screenState: UiStateScreen<UiMainScreen> by viewModel.uiState.collectAsState()
+    val uiState: UiMainScreen = screenState.data ?: UiMainScreen()
+    val navController: NavHostController = rememberNavController()
 
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route ?: navController.currentDestination?.route
@@ -126,23 +126,34 @@ fun MainScaffoldTabletContent() {
     )
 
     Scaffold(
-        modifier = Modifier.fillMaxSize() , topBar = {
-            MainTopAppBar(navigationIcon = if (isRailExpanded) Icons.AutoMirrored.Outlined.MenuOpen else Icons.Default.Menu , onNavigationIconClick = { coroutineScope.launch { isRailExpanded = ! isRailExpanded } } , scrollBehavior = scrollBehavior)
+        topBar = {
+            MainTopAppBar(
+                navigationIcon = if (isRailExpanded) Icons.AutoMirrored.Outlined.MenuOpen else Icons.Default.Menu,
+                onNavigationIconClick = {
+                    coroutineScope.launch {
+                        isRailExpanded = !isRailExpanded
+                    }
+                },
+                scrollBehavior = scrollBehavior)
         }) { paddingValues ->
         LeftNavigationRail(
-            drawerItems = uiState.navigationDrawerItems ,
-                           bottomItems = bottomItems ,
-                           currentRoute = currentRoute ,
-                           isRailExpanded = isRailExpanded ,
-                           paddingValues = paddingValues ,
-                           onBottomItemClick = { item -> navController.navigate(item.route) } ,
-                           onDrawerItemClick = { item : NavigationDrawerItem ->
-                               handleNavigationItemClick(context = context , item = item)
-                           } ,
-                           content = {
-                               AppNavigationHost(
-                                   navController = navController , snackbarHostState = snackBarHostState , paddingValues = paddingValues
-                               )
-                           })
+            drawerItems = uiState.navigationDrawerItems,
+            bottomItems = bottomItems,
+            currentRoute = currentRoute,
+            isRailExpanded = isRailExpanded,
+            paddingValues = paddingValues,
+            onBottomItemClick = { item: BottomBarItem -> navController.navigate(item.route) },
+            onDrawerItemClick = { item: NavigationDrawerItem ->
+                handleNavigationItemClick(
+                    context = context,
+                    item = item
+                )
+            },
+            content = {
+                AppNavigationHost(
+                    navController = navController,
+                    snackbarHostState = snackBarHostState,
+                    paddingValues = PaddingValues())
+            })
     }
 }
