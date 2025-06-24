@@ -19,6 +19,7 @@ fun FilesGrid(
     imageLoader : ImageLoader ,
     fileSelectionStates : Map<File , Boolean> ,
     onFileSelectionChange : (File , Boolean) -> Unit ,
+    originals: Set<File> = emptySet(),
     view : View ,
 ) {
     val columns : Int = if (ScreenHelper.isTablet(context = LocalContext.current)) 6 else 3
@@ -30,7 +31,15 @@ fun FilesGrid(
             columns = columns , itemCount = files.size , modifier = Modifier.padding(horizontal = SizeConstants.SmallSize)
         ) { index ->
             val file : File = files[index]
-            FileCard(file = file , imageLoader = imageLoader , isChecked = fileSelectionStates[file] == true , onCheckedChange = { isChecked -> onFileSelectionChange(file , isChecked) } , view = view , modifier = Modifier)
+            FileCard(
+                file = file,
+                imageLoader = imageLoader,
+                isChecked = fileSelectionStates[file] == true,
+                onCheckedChange = { isChecked -> onFileSelectionChange(file, isChecked) },
+                isOriginal = file in originals,
+                view = view,
+                modifier = Modifier
+            )
         }
     }
 }

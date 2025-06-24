@@ -130,7 +130,17 @@ fun TrashItemsList(
         }
     }
 
-    FilesByDateSection(modifier = modifier , filesByDate = filesByDate , fileSelectionStates = uiState.fileSelectionStates , imageLoader = imageLoader , onFileSelectionChange = { file , isChecked ->
-        viewModel.onEvent(TrashEvent.OnFileSelectionChange(file , isChecked))
-    } , view = view)
+    FilesByDateSection(
+        modifier = modifier ,
+        filesByDate = filesByDate ,
+        fileSelectionStates = uiState.fileSelectionStates ,
+        imageLoader = imageLoader ,
+        onFileSelectionChange = { file , isChecked ->
+            viewModel.onEvent(TrashEvent.OnFileSelectionChange(file , isChecked))
+        } ,
+        onDateSelectionChange = { files, checked -> files.forEach { file ->
+            viewModel.onEvent(TrashEvent.OnFileSelectionChange(file, checked))
+        } },
+        view = view
+    )
 }

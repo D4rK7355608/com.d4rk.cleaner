@@ -53,6 +53,7 @@ import java.io.File
 fun FileCard(
     file : File , imageLoader : ImageLoader , onCheckedChange : (Boolean) -> Unit ,
     isChecked : Boolean ,
+    isOriginal: Boolean = false,
     view : View ,
     modifier : Modifier = Modifier ,
 ) {
@@ -158,6 +159,17 @@ fun FileCard(
                 view.playSoundEffect(SoundEffectConstants.CLICK)
                 onCheckedChange(checked)
             } , modifier = Modifier.align(alignment = Alignment.TopEnd))
+
+            if (isOriginal) {
+                Text(
+                    text = "Original",
+                    color = Color.White,
+                    modifier = Modifier
+                        .align(Alignment.TopStart)
+                        .background(Color.Red.copy(alpha = 0.7f))
+                        .padding(horizontal = 4.dp, vertical = 2.dp)
+                )
+            }
 
             Box(
                 modifier = Modifier

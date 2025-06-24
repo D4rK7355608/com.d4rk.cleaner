@@ -17,6 +17,8 @@ fun FilesByDateSection(
     fileSelectionStates : Map<File , Boolean> ,
     imageLoader : ImageLoader ,
     onFileSelectionChange : (File , Boolean) -> Unit ,
+    onDateSelectionChange: (List<File>, Boolean) -> Unit ,
+    originals: Set<File> = emptySet(),
     view : View ,
 ) {
     LazyColumn(
@@ -30,7 +32,7 @@ fun FilesByDateSection(
             val files : List<File> = filesByDate[date] ?: emptyList()
             item(key = date) {
                 DateHeader(
-                    files = files , fileSelectionStates = fileSelectionStates , onFileSelectionChange = onFileSelectionChange , view = view
+                    files = files , fileSelectionStates = fileSelectionStates , onFileSelectionChange = onFileSelectionChange , onDateSelectionChange = onDateSelectionChange , view = view
                 )
             }
 
@@ -40,6 +42,7 @@ fun FilesByDateSection(
                     imageLoader = imageLoader ,
                     fileSelectionStates = fileSelectionStates ,
                     onFileSelectionChange = onFileSelectionChange ,
+                    originals = originals ,
                     view = view ,
                 )
             }

@@ -13,6 +13,7 @@ sealed class HomeEvent : UiEvent {
     data class OnFileSelectionChange(val file : File , val isChecked : Boolean) : HomeEvent()
     object ToggleSelectAllFiles : HomeEvent()
     data class ToggleSelectFilesForCategory(val category : String) : HomeEvent()
+    data class ToggleSelectFilesForDate(val files: List<File>, val isChecked: Boolean) : HomeEvent()
     object CleanFiles : HomeEvent()
     object MoveSelectedToTrash : HomeEvent()
     data class SetDeleteForeverConfirmationDialogVisibility(val isVisible : Boolean) : HomeEvent()
