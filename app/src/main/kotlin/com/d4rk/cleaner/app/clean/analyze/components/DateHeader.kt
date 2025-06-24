@@ -24,6 +24,7 @@ fun DateHeader(
     files : List<File> ,
     fileSelectionStates : Map<File , Boolean> ,
     onFileSelectionChange : (File , Boolean) -> Unit ,
+    onDateSelectionChange : (List<File>, Boolean) -> Unit ,
     view : View ,
 ) {
     val context : Context = LocalContext.current
@@ -38,9 +39,7 @@ fun DateHeader(
         val allFilesForDateSelected : Boolean = files.all { fileSelectionStates[it] == true }
         Checkbox(modifier = Modifier.bounceClick() , checked = allFilesForDateSelected , onCheckedChange = { isChecked ->
             view.playSoundEffect(SoundEffectConstants.CLICK)
-            files.forEach { file ->
-                onFileSelectionChange(file , isChecked)
-            }
+            onDateSelectionChange(files, isChecked)
         })
     }
 }

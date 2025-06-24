@@ -22,6 +22,8 @@ data class UiAnalyzeModel(
     var fileSelectionMap : Map<File , Boolean> = emptyMap() ,
     var selectedFilesCount : Int = 0 ,
     var groupedFiles : Map<String , List<File>> = emptyMap() ,
+    /** Set of original files when duplicates are detected */
+    var duplicateOriginals : Set<File> = emptySet() ,
     var fileTypesData : FileTypesData = FileTypesData() ,
     var isDeleteForeverConfirmationDialogVisible : Boolean = false ,
     var isMoveToTrashConfirmationDialogVisible : Boolean = false ,
