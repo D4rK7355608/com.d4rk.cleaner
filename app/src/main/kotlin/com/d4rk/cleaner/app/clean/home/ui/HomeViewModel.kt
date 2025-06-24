@@ -255,29 +255,47 @@ class HomeViewModel(
         fileTypesData: FileTypesData,
         preferences: Map<String, Boolean>
     ): Map<String, List<File>> {
+        val defaultTitles = listOf(
+            "Images",
+            "Videos",
+            "Audios",
+            "Documents",
+            "Archives",
+            "APKs",
+            "Fonts",
+            "Windows files",
+            "Empty folders",
+            "Other files"
+        )
+        val titles = if (fileTypesData.fileTypesTitles.size >= defaultTitles.size) {
+            fileTypesData.fileTypesTitles
+        } else {
+            defaultTitles
+        }
+
         val knownExtensions: Set<String> =
             (fileTypesData.imageExtensions + fileTypesData.videoExtensions + fileTypesData.audioExtensions + fileTypesData.officeExtensions + fileTypesData.archiveExtensions + fileTypesData.apkExtensions + fileTypesData.fontExtensions + fileTypesData.windowsExtensions).toSet()
 
         val filesMap: LinkedHashMap<String, MutableList<File>> = linkedMapOf()
-        filesMap.putAll(fileTypesData.fileTypesTitles.associateWith { mutableListOf() })
+        filesMap.putAll(titles.associateWith { mutableListOf() })
 
         scannedFiles.forEach { file: File ->
-            val category: String? = when (val extension: String = file.extension.lowercase()) {
-                in fileTypesData.imageExtensions -> if (preferences[ExtensionsConstants.IMAGE_EXTENSIONS] == true) fileTypesData.fileTypesTitles[0] else null
-                in fileTypesData.videoExtensions -> if (preferences[ExtensionsConstants.VIDEO_EXTENSIONS] == true) fileTypesData.fileTypesTitles[1] else null
-                in fileTypesData.audioExtensions -> if (preferences[ExtensionsConstants.AUDIO_EXTENSIONS] == true) fileTypesData.fileTypesTitles[2] else null
-                in fileTypesData.officeExtensions -> if (preferences[ExtensionsConstants.OFFICE_EXTENSIONS] == true) fileTypesData.fileTypesTitles[3] else null
-                in fileTypesData.archiveExtensions -> if (preferences[ExtensionsConstants.ARCHIVE_EXTENSIONS] == true) fileTypesData.fileTypesTitles[4] else null
-                in fileTypesData.apkExtensions -> if (preferences[ExtensionsConstants.APK_EXTENSIONS] == true) fileTypesData.fileTypesTitles[5] else null
-                in fileTypesData.fontExtensions -> if (preferences[ExtensionsConstants.FONT_EXTENSIONS] == true) fileTypesData.fileTypesTitles[6] else null
-                in fileTypesData.windowsExtensions -> if (preferences[ExtensionsConstants.WINDOWS_EXTENSIONS] == true) fileTypesData.fileTypesTitles[7] else null
-                else -> if (!knownExtensions.contains(extension) && preferences[ExtensionsConstants.OTHER_EXTENSIONS] == true) fileTypesData.fileTypesTitles[9] else null
+            val categoryIndex: Int? = when (val extension: String = file.extension.lowercase()) {
+                in fileTypesData.imageExtensions -> if (preferences[ExtensionsConstants.IMAGE_EXTENSIONS] == true) 0 else null
+                in fileTypesData.videoExtensions -> if (preferences[ExtensionsConstants.VIDEO_EXTENSIONS] == true) 1 else null
+                in fileTypesData.audioExtensions -> if (preferences[ExtensionsConstants.AUDIO_EXTENSIONS] == true) 2 else null
+                in fileTypesData.officeExtensions -> if (preferences[ExtensionsConstants.OFFICE_EXTENSIONS] == true) 3 else null
+                in fileTypesData.archiveExtensions -> if (preferences[ExtensionsConstants.ARCHIVE_EXTENSIONS] == true) 4 else null
+                in fileTypesData.apkExtensions -> if (preferences[ExtensionsConstants.APK_EXTENSIONS] == true) 5 else null
+                in fileTypesData.fontExtensions -> if (preferences[ExtensionsConstants.FONT_EXTENSIONS] == true) 6 else null
+                in fileTypesData.windowsExtensions -> if (preferences[ExtensionsConstants.WINDOWS_EXTENSIONS] == true) 7 else null
+                else -> if (!knownExtensions.contains(extension) && preferences[ExtensionsConstants.OTHER_EXTENSIONS] == true) 9 else null
             }
-            category?.let { filesMap[it]?.add(element = file) }
+            categoryIndex?.let { index -> filesMap[titles[index]]?.add(element = file) }
         }
 
         if (emptyFolders.isNotEmpty() && preferences[ExtensionsConstants.EMPTY_FOLDERS] == true) {
-            filesMap[fileTypesData.fileTypesTitles[8]] = emptyFolders.toMutableList()
+            filesMap[titles[8]] = emptyFolders.toMutableList()
         }
 
         return filesMap.filter { it.value.isNotEmpty() }
