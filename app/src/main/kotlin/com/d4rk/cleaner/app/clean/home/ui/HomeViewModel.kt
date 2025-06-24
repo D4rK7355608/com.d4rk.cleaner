@@ -261,37 +261,55 @@ class HomeViewModel(
         val knownExtensions: Set<String> =
             (fileTypesData.imageExtensions + fileTypesData.videoExtensions + fileTypesData.audioExtensions + fileTypesData.officeExtensions + fileTypesData.archiveExtensions + fileTypesData.apkExtensions + fileTypesData.fontExtensions + fileTypesData.windowsExtensions).toSet()
 
+        val defaultTitles = listOf(
+            "Images",
+            "Videos",
+            "Audios",
+            "Documents",
+            "Archives",
+            "APKs",
+            "Fonts",
+            "Windows Files",
+            "Empty Folders",
+            "Other Files",
+            "Duplicates"
+        )
+
+        val finalTitles = defaultTitles.mapIndexed { index, fallback ->
+            fileTypesData.fileTypesTitles.getOrElse(index) { fallback }
+        }
+
         val filesMap: LinkedHashMap<String, MutableList<File>> = linkedMapOf()
-        filesMap.putAll(fileTypesData.fileTypesTitles.associateWith { mutableListOf() })
+        filesMap.putAll(finalTitles.associateWith { mutableListOf<File>() })
 
         val duplicateGroups: List<List<File>> = findDuplicateGroups(scannedFiles)
         val duplicateFiles: Set<File> = duplicateGroups.flatten().toSet()
         val duplicateOriginals: Set<File> = duplicateGroups.mapNotNull { group ->
             group.minByOrNull { it.lastModified() }
         }.toSet()
-        val duplicatesTitle = fileTypesData.fileTypesTitles.lastOrNull() ?: "Duplicates"
+        val duplicatesTitle = finalTitles.last()
 
         scannedFiles.forEach { file: File ->
             if (file in duplicateFiles) {
                 filesMap.getOrPut(duplicatesTitle) { mutableListOf() }.add(file)
             } else {
                 val category: String? = when (val extension: String = file.extension.lowercase()) {
-                    in fileTypesData.imageExtensions -> if (preferences[ExtensionsConstants.IMAGE_EXTENSIONS] == true) fileTypesData.fileTypesTitles[0] else null
-                    in fileTypesData.videoExtensions -> if (preferences[ExtensionsConstants.VIDEO_EXTENSIONS] == true) fileTypesData.fileTypesTitles[1] else null
-                    in fileTypesData.audioExtensions -> if (preferences[ExtensionsConstants.AUDIO_EXTENSIONS] == true) fileTypesData.fileTypesTitles[2] else null
-                    in fileTypesData.officeExtensions -> if (preferences[ExtensionsConstants.OFFICE_EXTENSIONS] == true) fileTypesData.fileTypesTitles[3] else null
-                    in fileTypesData.archiveExtensions -> if (preferences[ExtensionsConstants.ARCHIVE_EXTENSIONS] == true) fileTypesData.fileTypesTitles[4] else null
-                    in fileTypesData.apkExtensions -> if (preferences[ExtensionsConstants.APK_EXTENSIONS] == true) fileTypesData.fileTypesTitles[5] else null
-                    in fileTypesData.fontExtensions -> if (preferences[ExtensionsConstants.FONT_EXTENSIONS] == true) fileTypesData.fileTypesTitles[6] else null
-                    in fileTypesData.windowsExtensions -> if (preferences[ExtensionsConstants.WINDOWS_EXTENSIONS] == true) fileTypesData.fileTypesTitles[7] else null
-                    else -> if (!knownExtensions.contains(extension) && preferences[ExtensionsConstants.OTHER_EXTENSIONS] == true) fileTypesData.fileTypesTitles[9] else null
+                    in fileTypesData.imageExtensions -> if (preferences[ExtensionsConstants.IMAGE_EXTENSIONS] == true) finalTitles[0] else null
+                    in fileTypesData.videoExtensions -> if (preferences[ExtensionsConstants.VIDEO_EXTENSIONS] == true) finalTitles[1] else null
+                    in fileTypesData.audioExtensions -> if (preferences[ExtensionsConstants.AUDIO_EXTENSIONS] == true) finalTitles[2] else null
+                    in fileTypesData.officeExtensions -> if (preferences[ExtensionsConstants.OFFICE_EXTENSIONS] == true) finalTitles[3] else null
+                    in fileTypesData.archiveExtensions -> if (preferences[ExtensionsConstants.ARCHIVE_EXTENSIONS] == true) finalTitles[4] else null
+                    in fileTypesData.apkExtensions -> if (preferences[ExtensionsConstants.APK_EXTENSIONS] == true) finalTitles[5] else null
+                    in fileTypesData.fontExtensions -> if (preferences[ExtensionsConstants.FONT_EXTENSIONS] == true) finalTitles[6] else null
+                    in fileTypesData.windowsExtensions -> if (preferences[ExtensionsConstants.WINDOWS_EXTENSIONS] == true) finalTitles[7] else null
+                    else -> if (!knownExtensions.contains(extension) && preferences[ExtensionsConstants.OTHER_EXTENSIONS] == true) finalTitles[9] else null
                 }
                 category?.let { filesMap[it]?.add(element = file) }
             }
         }
 
         if (emptyFolders.isNotEmpty() && preferences[ExtensionsConstants.EMPTY_FOLDERS] == true) {
-            filesMap[fileTypesData.fileTypesTitles[8]] = emptyFolders.toMutableList()
+            filesMap[finalTitles[8]] = emptyFolders.toMutableList()
         }
 
         return filesMap.filter { it.value.isNotEmpty() } to duplicateOriginals
