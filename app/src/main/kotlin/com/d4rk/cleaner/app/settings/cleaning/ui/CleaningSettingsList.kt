@@ -40,6 +40,7 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
     val fontExtensions : Boolean by dataStore.deleteFontFiles.collectAsState(initial = false)
     val otherExtensions : Boolean by dataStore.deleteOtherFiles.collectAsState(initial = false)
     val deleteImageFiles : Boolean by dataStore.deleteImageFiles.collectAsState(initial = false)
+    val deleteDuplicateFiles: Boolean by dataStore.deleteDuplicateFiles.collectAsState(initial = false)
     val clipboardClean : Boolean by dataStore.clipboardClean.collectAsState(initial = false)
 
     LazyColumn(
@@ -229,6 +230,18 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
                         .padding(horizontal = SizeConstants.LargeSize)
                         .clip(shape = RoundedCornerShape(size = SizeConstants.LargeSize))
             ) {
+                SwitchPreferenceItem(
+                    title = stringResource(id = R.string.duplicates),
+                    summary = stringResource(id = R.string.summary_preference_settings_delete_duplicates),
+                    checked = deleteDuplicateFiles,
+                ) { isChecked ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        dataStore.saveDeleteDuplicateFiles(isChecked)
+                    }
+                }
+
+                ExtraTinyVerticalSpacer()
+
                 SwitchPreferenceItem(
                     title = stringResource(id = R.string.clipboard_clean) ,
                     checked = clipboardClean ,
