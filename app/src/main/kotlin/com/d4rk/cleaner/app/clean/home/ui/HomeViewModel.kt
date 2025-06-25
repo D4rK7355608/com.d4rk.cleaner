@@ -207,13 +207,15 @@ class HomeViewModel(
                                 ExtensionsConstants.OTHER_EXTENSIONS to dataStore.deleteOtherFiles.first()
                             )
 
+                            val includeDuplicates = dataStore.deleteDuplicateFiles.first()
                             val (groupedFiles, duplicateOriginals) =
                                 withContext(dispatchers.default) {
                                     computeGroupedFiles(
                                         scannedFiles = result.data.first,
                                         emptyFolders = result.data.second,
                                         fileTypesData = fileTypesData,
-                                        preferences = preferences
+                                        preferences = preferences,
+                                        includeDuplicates = includeDuplicates
                                     )
                                 }
                             currentState.copy(
@@ -256,12 +258,13 @@ class HomeViewModel(
         scannedFiles: List<File>,
         emptyFolders: List<File>,
         fileTypesData: FileTypesData,
-        preferences: Map<String, Boolean>
+        preferences: Map<String, Boolean>,
+        includeDuplicates: Boolean
     ): Pair<Map<String, List<File>>, Set<File>> {
         val knownExtensions: Set<String> =
             (fileTypesData.imageExtensions + fileTypesData.videoExtensions + fileTypesData.audioExtensions + fileTypesData.officeExtensions + fileTypesData.archiveExtensions + fileTypesData.apkExtensions + fileTypesData.fontExtensions + fileTypesData.windowsExtensions).toSet()
 
-        val defaultTitles = listOf(
+        val baseDefaultTitles = listOf(
             "Images",
             "Videos",
             "Audios",
@@ -271,45 +274,48 @@ class HomeViewModel(
             "Fonts",
             "Windows Files",
             "Empty Folders",
-            "Other Files",
-            "Duplicates"
+            "Other Files"
         )
 
-        val finalTitles = defaultTitles.mapIndexed { index, fallback ->
+        val baseFinalTitles = baseDefaultTitles.mapIndexed { index, fallback ->
             fileTypesData.fileTypesTitles.getOrElse(index) { fallback }
         }
 
-        val filesMap: LinkedHashMap<String, MutableList<File>> = linkedMapOf()
-        filesMap.putAll(finalTitles.associateWith { mutableListOf<File>() })
+        val duplicatesTitle = if (includeDuplicates) {
+            fileTypesData.fileTypesTitles.getOrElse(10) { "Duplicates" }
+        } else null
 
-        val duplicateGroups: List<List<File>> = findDuplicateGroups(scannedFiles)
-        val duplicateFiles: Set<File> = duplicateGroups.flatten().toSet()
-        val duplicateOriginals: Set<File> = duplicateGroups.mapNotNull { group ->
+        val filesMap: LinkedHashMap<String, MutableList<File>> = linkedMapOf()
+        filesMap.putAll(baseFinalTitles.associateWith { mutableListOf<File>() })
+        duplicatesTitle?.let { filesMap[it] = mutableListOf() }
+
+        val duplicateGroups: List<List<File>> = if (includeDuplicates) findDuplicateGroups(scannedFiles) else emptyList()
+        val duplicateFiles: Set<File> = if (includeDuplicates) duplicateGroups.flatten().toSet() else emptySet()
+        val duplicateOriginals: Set<File> = if (includeDuplicates) duplicateGroups.mapNotNull { group ->
             group.minByOrNull { it.lastModified() }
-        }.toSet()
-        val duplicatesTitle = finalTitles.last()
+        }.toSet() else emptySet()
 
         scannedFiles.forEach { file: File ->
-            if (file in duplicateFiles) {
-                filesMap.getOrPut(duplicatesTitle) { mutableListOf() }.add(file)
+            if (includeDuplicates && file in duplicateFiles) {
+                duplicatesTitle?.let { title -> filesMap.getOrPut(title) { mutableListOf() }.add(file) }
             } else {
                 val category: String? = when (val extension: String = file.extension.lowercase()) {
-                    in fileTypesData.imageExtensions -> if (preferences[ExtensionsConstants.IMAGE_EXTENSIONS] == true) finalTitles[0] else null
-                    in fileTypesData.videoExtensions -> if (preferences[ExtensionsConstants.VIDEO_EXTENSIONS] == true) finalTitles[1] else null
-                    in fileTypesData.audioExtensions -> if (preferences[ExtensionsConstants.AUDIO_EXTENSIONS] == true) finalTitles[2] else null
-                    in fileTypesData.officeExtensions -> if (preferences[ExtensionsConstants.OFFICE_EXTENSIONS] == true) finalTitles[3] else null
-                    in fileTypesData.archiveExtensions -> if (preferences[ExtensionsConstants.ARCHIVE_EXTENSIONS] == true) finalTitles[4] else null
-                    in fileTypesData.apkExtensions -> if (preferences[ExtensionsConstants.APK_EXTENSIONS] == true) finalTitles[5] else null
-                    in fileTypesData.fontExtensions -> if (preferences[ExtensionsConstants.FONT_EXTENSIONS] == true) finalTitles[6] else null
-                    in fileTypesData.windowsExtensions -> if (preferences[ExtensionsConstants.WINDOWS_EXTENSIONS] == true) finalTitles[7] else null
-                    else -> if (!knownExtensions.contains(extension) && preferences[ExtensionsConstants.OTHER_EXTENSIONS] == true) finalTitles[9] else null
+                    in fileTypesData.imageExtensions -> if (preferences[ExtensionsConstants.IMAGE_EXTENSIONS] == true) baseFinalTitles[0] else null
+                    in fileTypesData.videoExtensions -> if (preferences[ExtensionsConstants.VIDEO_EXTENSIONS] == true) baseFinalTitles[1] else null
+                    in fileTypesData.audioExtensions -> if (preferences[ExtensionsConstants.AUDIO_EXTENSIONS] == true) baseFinalTitles[2] else null
+                    in fileTypesData.officeExtensions -> if (preferences[ExtensionsConstants.OFFICE_EXTENSIONS] == true) baseFinalTitles[3] else null
+                    in fileTypesData.archiveExtensions -> if (preferences[ExtensionsConstants.ARCHIVE_EXTENSIONS] == true) baseFinalTitles[4] else null
+                    in fileTypesData.apkExtensions -> if (preferences[ExtensionsConstants.APK_EXTENSIONS] == true) baseFinalTitles[5] else null
+                    in fileTypesData.fontExtensions -> if (preferences[ExtensionsConstants.FONT_EXTENSIONS] == true) baseFinalTitles[6] else null
+                    in fileTypesData.windowsExtensions -> if (preferences[ExtensionsConstants.WINDOWS_EXTENSIONS] == true) baseFinalTitles[7] else null
+                    else -> if (!knownExtensions.contains(extension) && preferences[ExtensionsConstants.OTHER_EXTENSIONS] == true) baseFinalTitles[9] else null
                 }
                 category?.let { filesMap[it]?.add(element = file) }
             }
         }
 
         if (emptyFolders.isNotEmpty() && preferences[ExtensionsConstants.EMPTY_FOLDERS] == true) {
-            filesMap[finalTitles[8]] = emptyFolders.toMutableList()
+            filesMap[baseFinalTitles[8]] = emptyFolders.toMutableList()
         }
 
         return filesMap.filter { it.value.isNotEmpty() } to duplicateOriginals
@@ -368,11 +374,13 @@ class HomeViewModel(
                     result = result,
                     errorMessage = UiTextHelper.DynamicString("Failed to delete files:")
                 ) { data, currentData ->
+                    val includeDuplicates = dataStore.deleteDuplicateFiles.first()
                     val (groupedFilesUpdated, duplicateOriginals) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot { files.contains(it) },
                         emptyFolders = currentData.analyzeState.emptyFolderList,
                         fileTypesData = currentData.analyzeState.fileTypesData,
-                        preferences = mapOf()
+                        preferences = mapOf(),
+                        includeDuplicates = includeDuplicates
                     )
 
                     currentData.copy(analyzeState = currentData.analyzeState.copy(
@@ -434,13 +442,15 @@ class HomeViewModel(
                     result = result,
                     errorMessage = UiTextHelper.DynamicString("Failed to move files to trash:")
                 ) { data: Unit, currentData: UiHomeModel ->
+                    val includeDuplicates = dataStore.deleteDuplicateFiles.first()
                     val (groupedFilesUpdated2, duplicateOriginals2) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile: File ->
                             files.any { movedFile: File -> existingFile.absolutePath == movedFile.absolutePath }
                         },
                         emptyFolders = currentData.analyzeState.emptyFolderList,
                         fileTypesData = currentData.analyzeState.fileTypesData,
-                        preferences = mapOf()
+                        preferences = mapOf(),
+                        includeDuplicates = includeDuplicates
                     )
 
                     currentData.copy(
@@ -650,13 +660,15 @@ class HomeViewModel(
                     result = result,
                     errorMessage = UiTextHelper.DynamicString("Failed to delete files: ")
                 ) { _: Unit, currentData: UiHomeModel ->
+                    val includeDuplicates = dataStore.deleteDuplicateFiles.first()
                     val (groupedFilesUpdated, duplicateOriginals) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot {
                             filesToDelete.contains(it)
                         },
                         emptyFolders = currentData.analyzeState.emptyFolderList,
                         fileTypesData = currentData.analyzeState.fileTypesData,
-                        preferences = mapOf()
+                        preferences = mapOf(),
+                        includeDuplicates = includeDuplicates
                     )
 
                     currentData.copy(analyzeState = currentData.analyzeState.copy(scannedFileList = currentData.analyzeState.scannedFileList.filterNot {
@@ -749,13 +761,15 @@ class HomeViewModel(
                     errorMessage = UiTextHelper.DynamicString("Failed to move files to trash:")
                 ) { _, currentData ->
 
+                    val includeDuplicates = dataStore.deleteDuplicateFiles.first()
                     val (groupedFilesUpdated3, duplicateOriginals3) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile ->
                             filesToMove.any { movedFile -> existingFile.absolutePath == movedFile.absolutePath }
                         },
                         emptyFolders = currentData.analyzeState.emptyFolderList,
                         fileTypesData = currentData.analyzeState.fileTypesData,
-                        preferences = mapOf()
+                        preferences = mapOf(),
+                        includeDuplicates = includeDuplicates
                     )
 
                     currentData.copy(analyzeState = currentData.analyzeState.copy(scannedFileList = currentData.analyzeState.scannedFileList.filterNot { existingFile ->
@@ -819,25 +833,57 @@ class HomeViewModel(
 
     private fun toggleAnalyzeScreen(visible: Boolean) {
         if (visible) {
-            _uiState.update { state: UiStateScreen<UiHomeModel> ->
-                val currentData: UiHomeModel = state.data ?: UiHomeModel()
-                state.copy(
-                    data = currentData.copy(
-                        analyzeState = currentData.analyzeState.copy(
-                            isAnalyzeScreenVisible = true,
-                            scannedFileList = emptyList(),
-                            emptyFolderList = emptyList(),
-                            groupedFiles = emptyMap(),
-                            fileSelectionMap = emptyMap(),
-                            selectedFilesCount = 0,
-                            areAllFilesSelected = false,
-                            state = CleaningState.Idle,
-                            cleaningType = CleaningType.NONE
+            launch(dispatchers.io) {
+                val anyEnabled = listOf(
+                    dataStore.genericFilter.first(),
+                    dataStore.deleteEmptyFolders.first(),
+                    dataStore.deleteArchives.first(),
+                    dataStore.deleteInvalidMedia.first(),
+                    dataStore.deleteCorpseFiles.first(),
+                    dataStore.deleteApkFiles.first(),
+                    dataStore.deleteAudioFiles.first(),
+                    dataStore.deleteVideoFiles.first(),
+                    dataStore.deleteWindowsFiles.first(),
+                    dataStore.deleteOfficeFiles.first(),
+                    dataStore.deleteFontFiles.first(),
+                    dataStore.deleteOtherFiles.first(),
+                    dataStore.deleteImageFiles.first(),
+                    dataStore.clipboardClean.first(),
+                    dataStore.deleteDuplicateFiles.first()
+                ).any { it }
+
+                if (!anyEnabled) {
+                    sendAction(
+                        HomeAction.ShowSnackbar(
+                            UiSnackbar(
+                                message = UiTextHelper.DynamicString("No cleaning options selected. Please enable at least one setting."),
+                                isError = false
+                            )
                         )
                     )
-                )
+                    return@launch
+                }
+
+                _uiState.update { state: UiStateScreen<UiHomeModel> ->
+                    val currentData: UiHomeModel = state.data ?: UiHomeModel()
+                    state.copy(
+                        data = currentData.copy(
+                            analyzeState = currentData.analyzeState.copy(
+                                isAnalyzeScreenVisible = true,
+                                scannedFileList = emptyList(),
+                                emptyFolderList = emptyList(),
+                                groupedFiles = emptyMap(),
+                                fileSelectionMap = emptyMap(),
+                                selectedFilesCount = 0,
+                                areAllFilesSelected = false,
+                                state = CleaningState.Idle,
+                                cleaningType = CleaningType.NONE
+                            )
+                        )
+                    )
+                }
+                analyzeFiles()
             }
-            analyzeFiles()
         } else {
             _uiState.updateData(ScreenState.Success()) { currentData ->
                 currentData.copy(

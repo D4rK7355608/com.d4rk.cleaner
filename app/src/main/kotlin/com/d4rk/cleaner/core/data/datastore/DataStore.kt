@@ -215,6 +215,17 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         }
     }
 
+    private val deleteDuplicateFilesKey = booleanPreferencesKey(name = AppDataStoreConstants.DATA_STORE_DELETE_DUPLICATE_FILES)
+    val deleteDuplicateFiles: Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[deleteDuplicateFilesKey] == true
+    }
+
+    suspend fun saveDeleteDuplicateFiles(isChecked: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[deleteDuplicateFilesKey] = isChecked
+        }
+    }
+
     private val clipboardCleanKey = booleanPreferencesKey(name = AppDataStoreConstants.DATA_STORE_CLIPBOARD_CLEAN)
     val clipboardClean : Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[clipboardCleanKey] == true
