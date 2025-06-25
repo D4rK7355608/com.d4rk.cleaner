@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import coil3.ImageLoader
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.hapticPagerSwipe
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
 import com.d4rk.cleaner.app.clean.analyze.components.FilesByDateSection
 import com.d4rk.cleaner.app.clean.analyze.components.DuplicateGroupsSection
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.UiHomeModel
@@ -86,7 +87,7 @@ fun TabsContent(
                         Checkbox(checked = isCategoryChecked , onCheckedChange = {
                             viewModel.toggleSelectFilesForCategory(category = title)
                         })
-                        Spacer(modifier = Modifier.width(4.dp))
+                        ButtonIconSpacer()
                         Text(text = title)
                     }
                 })

@@ -3,6 +3,7 @@ package com.d4rk.cleaner.app.clean.analyze.components
 import android.view.View
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -35,10 +36,10 @@ fun DuplicateGroupsSection(
     val context = LocalContext.current
     val configuration = LocalConfiguration.current
     val columns = if (ScreenHelper.isTablet(context = context)) 6 else 3
-    val cardSize = (configuration.screenWidthDp.dp - SizeConstants.SmallSize * 2) / columns
+    val cardSize = (configuration.screenWidthDp.dp - SizeConstants.SmallSize * 2) / columns // FIXME: Using Configuration.screenWidthDp instead of LocalWindowInfo.current.containerSize
 
     LazyColumn(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxSize()
     ) {
         val sortedDates : List<String> = filesByDate.keys.sortedByDescending { dateString ->
             SimpleDateFormat("yyyy-MM-dd" , Locale.getDefault()).parse(dateString)
