@@ -136,6 +136,7 @@
     <string name="summary_preference_settings_delete_invalid_media">Bozuk görüntüleri sil</string>
     <string name="scanner">Tarayıcı</string>
     <string name="clipboard_clean">Panoyu temizle</string>
+    <string name="summary_preference_settings_delete_duplicates">Temizlik sırasında yinelenen dosyaları silin</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">Paket silme isteği [REQUEST_DELETE_PACKAGES]</string>

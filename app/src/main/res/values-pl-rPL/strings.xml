@@ -140,6 +140,7 @@
     <string name="summary_preference_settings_delete_invalid_media">Usuń uszkodzone obrazy</string>
     <string name="scanner">Skaner</string>
     <string name="clipboard_clean">Wyczyść schowek</string>
+    <string name="summary_preference_settings_delete_duplicates">Usuń zduplikowane pliki podczas czyszczenia</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">Żądanie usunięcia pakietów [REQUEST_DELETE_PACKAGES]</string>

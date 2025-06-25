@@ -138,6 +138,7 @@
     <string name="summary_preference_settings_delete_invalid_media">Elimina immagini corrotte</string>
     <string name="scanner">Scanner</string>
     <string name="clipboard_clean">Pulisci appunti</string>
+    <string name="summary_preference_settings_delete_duplicates">Elimina file duplicati durante la pulizia</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">Richiedi eliminazione pacchetti [REQUEST_DELETE_PACKAGES]</string>

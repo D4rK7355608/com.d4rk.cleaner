@@ -136,6 +136,7 @@
     <string name="summary_preference_settings_delete_invalid_media">Radera korrupta bilder</string>
     <string name="scanner">Skanner</string>
     <string name="clipboard_clean">Rensa urklipp</string>
+    <string name="summary_preference_settings_delete_duplicates">Ta bort duplicerade filer under rengöring</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">Begär radering av paket [REQUEST_DELETE_PACKAGES]</string>

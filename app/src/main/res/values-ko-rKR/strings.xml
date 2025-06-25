@@ -134,6 +134,7 @@
     <string name="summary_preference_settings_delete_invalid_media">손상된 이미지를 삭제합니다.</string>
     <string name="scanner">스캐너</string>
     <string name="clipboard_clean">클립보드 정리</string>
+    <string name="summary_preference_settings_delete_duplicates">청소 중에 중복 파일을 삭제하십시오</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">패키지 삭제 요청 [REQUEST_DELETE_PACKAGES]</string>

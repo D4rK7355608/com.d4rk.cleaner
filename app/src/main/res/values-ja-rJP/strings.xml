@@ -134,6 +134,7 @@
     <string name="summary_preference_settings_delete_invalid_media">破損した画像を削除します</string>
     <string name="scanner">スキャナー</string>
     <string name="clipboard_clean">クリップボードをクリア</string>
+    <string name="summary_preference_settings_delete_duplicates">クリーニング中に複製ファイルを削除します</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">パッケージ削除のリクエスト [REQUEST_DELETE_PACKAGES]</string>

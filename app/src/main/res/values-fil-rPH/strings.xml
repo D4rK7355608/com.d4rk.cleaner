@@ -136,6 +136,7 @@
     <string name="summary_preference_settings_delete_invalid_media">Burahin ang mga sirang imahe</string>
     <string name="scanner">Scanner</string>
     <string name="clipboard_clean">Linisin ang clipboard</string>
+    <string name="summary_preference_settings_delete_duplicates">Tanggalin ang mga dobleng file sa panahon ng paglilinis</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">Humiling ng pagbura ng mga package [REQUEST_DELETE_PACKAGES]</string>

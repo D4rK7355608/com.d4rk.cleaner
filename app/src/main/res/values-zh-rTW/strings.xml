@@ -134,6 +134,7 @@
     <string name="summary_preference_settings_delete_invalid_media">刪除損毀的圖片</string>
     <string name="scanner">掃描器</string>
     <string name="clipboard_clean">清理剪貼簿</string>
+    <string name="summary_preference_settings_delete_duplicates">清潔過程中刪除重複文件</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">請求刪除套件 [REQUEST_DELETE_PACKAGES]</string>

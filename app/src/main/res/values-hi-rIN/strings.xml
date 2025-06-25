@@ -136,6 +136,7 @@
     <string name="summary_preference_settings_delete_invalid_media">भ्रष्ट छवियां हटाएं</string>
     <string name="scanner">स्कैनर</string>
     <string name="clipboard_clean">क्लिपबोर्ड साफ़ करें</string>
+    <string name="summary_preference_settings_delete_duplicates">सफाई के दौरान डुप्लिकेट फ़ाइलों को हटाएं</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">पैकेज हटाने का अनुरोध करें [REQUEST_DELETE_PACKAGES]</string>
