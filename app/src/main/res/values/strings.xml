@@ -197,4 +197,15 @@
     <string name="failed_to_install_apk">Failed to install APK: %1$s</string>
     <string name="failed_to_uninstall_app">Failed to uninstall app: %1$s</string>
     <string name="app_uninstalled_successfully">App uninstalled successfully</string>
+    <string name="failed_to_load_storage_info">Failed to load storage info: %1$s</string>
+    <string name="failed_to_load_file_types">Failed to load file types: %1$s</string>
+    <string name="failed_to_analyze_files">Failed to analyze files: %1$s</string>
+    <string name="no_files_selected_to_delete">No files selected to delete.</string>
+    <string name="failed_to_delete_files">Failed to delete files: %1$s</string>
+    <string name="no_files_selected_move_to_trash">No files selected to move to trash.</string>
+    <string name="failed_to_move_files_to_trash">Failed to move files to trash: %1$s</string>
+    <string name="data_not_available">Data not available.</string>
+    <string name="no_files_selected_to_clean">No files selected to clean.</string>
+    <string name="failed_to_update_trash_size">Failed to update trash size: %1$s</string>
+    <string name="no_cleaning_options_selected">No cleaning options selected. Please enable at least one setting.</string>
 </resources>
