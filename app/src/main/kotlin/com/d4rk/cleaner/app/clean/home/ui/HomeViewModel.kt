@@ -7,12 +7,13 @@ import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiSnackbar
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.applyResult
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.setLoading
+import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.showSnackbar
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.successData
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.updateData
-import androidx.compose.material3.SnackbarDuration
 import com.d4rk.android.libs.apptoolkit.core.ui.base.ScreenViewModel
-import com.d4rk.android.libs.apptoolkit.core.ui.base.handling.UiEvent
+import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.ScreenMessageType
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.UiTextHelper
+import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.home.domain.actions.HomeAction
 import com.d4rk.cleaner.app.clean.home.domain.actions.HomeEvent
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningState
@@ -30,7 +31,6 @@ import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
 import com.d4rk.cleaner.app.settings.cleaning.utils.constants.ExtensionsConstants
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.domain.model.network.Errors
-import com.d4rk.cleaner.R
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
@@ -134,10 +134,7 @@ class HomeViewModel(
                         if (storageState is DataState.Error) {
                             add(
                                 element = UiSnackbar(
-                                    message = UiTextHelper.StringResource(
-                                        R.string.failed_to_load_storage_info,
-                                        storageState.error
-                                    ),
+                                    message = UiTextHelper.StringResource(R.string.failed_to_load_storage_info),
                                     isError = true
                                 )
                             )
@@ -146,10 +143,7 @@ class HomeViewModel(
                             if (storageState !is DataState.Error || storageState.error != fileTypesState.error) {
                                 add(
                                     element = UiSnackbar(
-                                        message = UiTextHelper.StringResource(
-                                            R.string.failed_to_load_file_types,
-                                            fileTypesState.error
-                                        ),
+                                        message = UiTextHelper.StringResource(R.string.failed_to_load_file_types),
                                         isError = true
                                     )
                                 )
@@ -253,10 +247,7 @@ class HomeViewModel(
                                 )
                             ),
                             errors = currentState.errors + UiSnackbar(
-                                message = UiTextHelper.StringResource(
-                                    R.string.failed_to_analyze_files,
-                                    result.error
-                                ),
+                                message = UiTextHelper.StringResource(R.string.failed_to_analyze_files),
                                 isError = true
                             )
                         )
@@ -903,20 +894,7 @@ class HomeViewModel(
         }
     }
 
-    private fun postSnackbar(
-        message: UiTextHelper,
-        isError: Boolean = false,
-        duration: SnackbarDuration = SnackbarDuration.Short
-    ) {
-        sendUiEvent(
-            UiEvent.Snackbar(
-                snackbar = UiSnackbar(
-                    message = message,
-                    isError = isError,
-                    timeStamp = System.currentTimeMillis(),
-                    duration = duration
-                )
-            )
-        )
+    private fun postSnackbar(message : UiTextHelper , isError : Boolean) {
+        screenState.showSnackbar(snackbar = UiSnackbar(message = message , isError = isError , timeStamp = System.currentTimeMillis() , type = ScreenMessageType.SNACKBAR))
     }
 }

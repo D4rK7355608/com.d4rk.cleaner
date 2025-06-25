@@ -34,7 +34,7 @@ fun AppNavigationHost(navController : NavHostController , snackbarHostState : Sn
 
     NavigationHost(navController = navController , startDestination = startupRoute) {
         composable(route = NavigationRoutes.ROUTE_HOME) { backStackEntry ->
-            HomeScreen(paddingValues = paddingValues)
+            HomeScreen(paddingValues = paddingValues, snackbarHostState = snackbarHostState)
         }
         composable(route = NavigationRoutes.ROUTE_APP_MANAGER) { backStackEntry ->
             AppManagerScreen(snackbarHostState = snackbarHostState , paddingValues = paddingValues)
