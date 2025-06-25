@@ -134,6 +134,7 @@
     <string name="summary_preference_settings_delete_invalid_media">ลบรูปภาพที่เสียหาย</string>
     <string name="scanner">สแกนเนอร์</string>
     <string name="clipboard_clean">ล้างคลิปบอร์ด</string>
+    <string name="summary_preference_settings_delete_duplicates">ลบไฟล์ที่ซ้ำกันระหว่างการทำความสะอาด</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">ร้องขอการลบแพ็คเกจ [REQUEST_DELETE_PACKAGES]</string>

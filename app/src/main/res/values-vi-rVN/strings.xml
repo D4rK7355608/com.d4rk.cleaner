@@ -134,6 +134,7 @@
     <string name="summary_preference_settings_delete_invalid_media">Xóa hình ảnh bị hỏng</string>
     <string name="scanner">Trình quét</string>
     <string name="clipboard_clean">Dọn dẹp bảng tạm</string>
+    <string name="summary_preference_settings_delete_duplicates">Xóa các tệp trùng lặp trong khi làm sạch</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">Yêu cầu xóa gói [REQUEST_DELETE_PACKAGES]</string>

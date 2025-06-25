@@ -139,6 +139,7 @@
     <string name="summary_preference_settings_delete_invalid_media">Supprimer les images corrompues</string>
     <string name="scanner">Scanner</string>
     <string name="clipboard_clean">Nettoyer le presse-papiers</string>
+    <string name="summary_preference_settings_delete_duplicates">Supprimer les fichiers en double pendant le nettoyage</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">Demander la suppression de paquets [REQUEST_DELETE_PACKAGES]</string>

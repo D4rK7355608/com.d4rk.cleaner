@@ -138,6 +138,7 @@
     <string name="summary_preference_settings_delete_invalid_media">Șterge imaginile corupte</string>
     <string name="scanner">Scaner</string>
     <string name="clipboard_clean">Curăță clipboard</string>
+    <string name="summary_preference_settings_delete_duplicates">Ștergeți fișierele duplicate în timpul curățării</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">Solicită ștergerea pachetelor [REQUEST_DELETE_PACKAGES]</string>

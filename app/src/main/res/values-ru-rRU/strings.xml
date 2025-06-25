@@ -140,6 +140,7 @@
     <string name="summary_preference_settings_delete_invalid_media">Удалить поврежденные изображения</string>
     <string name="scanner">Сканер</string>
     <string name="clipboard_clean">Очистить буфер обмена</string>
+    <string name="summary_preference_settings_delete_duplicates">Удалить дубликаты файлов во время очистки</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">Запросить удаление пакетов [REQUEST_DELETE_PACKAGES]</string>

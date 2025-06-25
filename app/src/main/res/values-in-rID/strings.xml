@@ -134,6 +134,7 @@
     <string name="summary_preference_settings_delete_invalid_media">Hapus gambar yang rusak</string>
     <string name="scanner">Pemindai</string>
     <string name="clipboard_clean">Bersihkan clipboard</string>
+    <string name="summary_preference_settings_delete_duplicates">Hapus file duplikat selama pembersihan</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">Minta hapus paket [REQUEST_DELETE_PACKAGES]</string>

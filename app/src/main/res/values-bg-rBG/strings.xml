@@ -136,6 +136,7 @@
     <string name="summary_preference_settings_delete_invalid_media">Изтриване на повредени изображения</string>
     <string name="scanner">Скенер</string>
     <string name="clipboard_clean">Почистване на клипборда</string>
+    <string name="summary_preference_settings_delete_duplicates">Изтрийте дублиращи се файлове по време на почистване</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">Заявка за изтриване на пакети [REQUEST_DELETE_PACKAGES]</string>

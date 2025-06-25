@@ -144,6 +144,7 @@
     <string name="summary_preference_settings_delete_invalid_media">حذف الصور التالفة</string>
     <string name="scanner">الماسح</string>
     <string name="clipboard_clean">تنظيف الحافظة</string>
+    <string name="summary_preference_settings_delete_duplicates">حذف الملفات المكررة أثناء التنظيف</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">طلب حذف الحزم [REQUEST_DELETE_PACKAGES]</string>

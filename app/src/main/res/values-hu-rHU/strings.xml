@@ -136,6 +136,7 @@
     <string name="summary_preference_settings_delete_invalid_media">Sérült képek törlése</string>
     <string name="scanner">Kereső</string>
     <string name="clipboard_clean">Vágólap tisztítása</string>
+    <string name="summary_preference_settings_delete_duplicates">Törölje a duplikált fájlokat a tisztítás során</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">Csomagok törlésének kérése [REQUEST_DELETE_PACKAGES]</string>

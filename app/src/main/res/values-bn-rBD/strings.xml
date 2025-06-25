@@ -136,6 +136,7 @@
     <string name="summary_preference_settings_delete_invalid_media">ত্রুটিপূর্ণ ছবি মুছুন</string>
     <string name="scanner">স্ক্যানার</string>
     <string name="clipboard_clean">ক্লিপবোর্ড পরিষ্কার করুন</string>
+    <string name="summary_preference_settings_delete_duplicates">পরিষ্কারের সময় সদৃশ ফাইলগুলি মুছুন</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">প্যাকেজ মোছার অনুরোধ [REQUEST_DELETE_PACKAGES]</string>
