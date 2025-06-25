@@ -196,4 +196,15 @@
     <string name="failed_to_install_apk">Неуспешно инсталиране на APK: %1$s</string>
     <string name="failed_to_uninstall_app">Неуспешно деинсталиране на приложението: %1$s</string>
     <string name="app_uninstalled_successfully">Приложението е деинсталирано успешно</string>
+    <string name="failed_to_load_storage_info">Неуспешна информация за зареждане на съхранение: %1$s</string>
+    <string name="failed_to_load_file_types">Неуспешно зареждане на файлове: %1$s</string>
+    <string name="failed_to_analyze_files">Неуспешно анализиране на файлове: %1$s</string>
+    <string name="no_files_selected_to_delete">Не са избрани файлове за изтриване.</string>
+    <string name="failed_to_delete_files">Неуспешно изтриване на файлове: %1$s</string>
+    <string name="no_files_selected_move_to_trash">Не са избрани файлове, за да се преместят в боклук.</string>
+    <string name="failed_to_move_files_to_trash">Неуспешно преместване на файлове в Trash: %1$s</string>
+    <string name="data_not_available">Данните не са налични.</string>
+    <string name="no_files_selected_to_clean">Не са избрани файлове за почистване.</string>
+    <string name="failed_to_update_trash_size">Неуспешно актуализиране на размера на боклука: %1$s</string>
+    <string name="no_cleaning_options_selected">Моля, изберете вашите предпочитания за почистване в настройките, за да продължите.</string>
 </resources>

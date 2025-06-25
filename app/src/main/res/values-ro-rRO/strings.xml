@@ -198,4 +198,15 @@
     <string name="failed_to_install_apk">Nu s-a putut instala APK-ul: %1$s</string>
     <string name="failed_to_uninstall_app">Nu s-a putut dezinstala aplicația: %1$s</string>
     <string name="app_uninstalled_successfully">Aplicație dezinstalată cu succes</string>
+    <string name="failed_to_load_storage_info">Nu a reușit să încarce informații de stocare: %1$s</string>
+    <string name="failed_to_load_file_types">Nu a reușit să încarce tipuri de fișiere: %1$s</string>
+    <string name="failed_to_analyze_files">Nu a reușit să analizeze fișierele: %1$s</string>
+    <string name="no_files_selected_to_delete">Nu există fișiere selectate pentru a șterge.</string>
+    <string name="failed_to_delete_files">Nu a reușit să șteargă fișierele: %1$s</string>
+    <string name="no_files_selected_move_to_trash">Nu există fișiere selectate pentru a se muta la gunoi.</string>
+    <string name="failed_to_move_files_to_trash">Nu a reușit să mute fișierele în gunoi: %1$s</string>
+    <string name="data_not_available">Datele nu sunt disponibile.</string>
+    <string name="no_files_selected_to_clean">Nu există fișiere selectate pentru a curăța.</string>
+    <string name="failed_to_update_trash_size">Nu a reușit să actualizeze dimensiunea gunoiului: %1$s</string>
+    <string name="no_cleaning_options_selected">Vă rugăm să alegeți preferințele dvs. de curățare în setări pentru a continua.</string>
 </resources>

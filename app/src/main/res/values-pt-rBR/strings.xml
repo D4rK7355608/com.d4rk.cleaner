@@ -198,4 +198,15 @@
     <string name="failed_to_install_apk">Falha ao instalar APK: %1$s</string>
     <string name="failed_to_uninstall_app">Falha ao desinstalar aplicativo: %1$s</string>
     <string name="app_uninstalled_successfully">Aplicativo desinstalado com sucesso</string>
+    <string name="failed_to_load_storage_info">Falha ao carregar informações de armazenamento: %1$s</string>
+    <string name="failed_to_load_file_types">Falha ao carregar os tipos de arquivo: %1$s</string>
+    <string name="failed_to_analyze_files">Falha ao analisar arquivos: %1$s</string>
+    <string name="no_files_selected_to_delete">Nenhum arquivo selecionado para excluir.</string>
+    <string name="failed_to_delete_files">Falha ao excluir arquivos: %1$s</string>
+    <string name="no_files_selected_move_to_trash">Nenhum arquivo selecionado para se mover para o lixo.</string>
+    <string name="failed_to_move_files_to_trash">Falha ao mover arquivos para o lixo: %1$s</string>
+    <string name="data_not_available">Dados não disponíveis.</string>
+    <string name="no_files_selected_to_clean">Nenhum arquivo selecionado para limpar.</string>
+    <string name="failed_to_update_trash_size">Falha ao atualizar o tamanho do lixo: %1$s</string>
+    <string name="no_cleaning_options_selected">Escolha suas preferências de limpeza nas configurações para prosseguir.</string>
 </resources>

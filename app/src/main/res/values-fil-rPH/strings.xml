@@ -196,4 +196,15 @@
     <string name="failed_to_install_apk">Nabigong i-install ang APK: %1$s</string>
     <string name="failed_to_uninstall_app">Nabigong i-uninstall ang app: %1$s</string>
     <string name="app_uninstalled_successfully">Matagumpay na na-uninstall ang app</string>
+    <string name="failed_to_load_storage_info">Nabigong mag -load ng impormasyon sa imbakan: %1$s</string>
+    <string name="failed_to_load_file_types">Nabigong mag -load ng mga uri ng file: %1$s</string>
+    <string name="failed_to_analyze_files">Nabigong pag -aralan ang mga file: %1$s</string>
+    <string name="no_files_selected_to_delete">Walang mga file na napili upang tanggalin.</string>
+    <string name="failed_to_delete_files">Nabigong tanggalin ang mga file: %1$s</string>
+    <string name="no_files_selected_move_to_trash">Walang mga file na napili upang lumipat sa basurahan.</string>
+    <string name="failed_to_move_files_to_trash">Nabigong ilipat ang mga file sa basurahan: %1$s</string>
+    <string name="data_not_available">Hindi magagamit ang data.</string>
+    <string name="no_files_selected_to_clean">Walang mga file na napili upang linisin.</string>
+    <string name="failed_to_update_trash_size">Nabigong i -update ang laki ng basurahan: %1$s</string>
+    <string name="no_cleaning_options_selected">Mangyaring piliin ang iyong mga kagustuhan sa paglilinis sa mga setting upang magpatuloy.</string>
 </resources>

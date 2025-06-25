@@ -196,4 +196,15 @@
     <string name="failed_to_install_apk">APK yüklenemedi: %1$s</string>
     <string name="failed_to_uninstall_app">Uygulama kaldırılamadı: %1$s</string>
     <string name="app_uninstalled_successfully">Uygulama başarıyla kaldırıldı</string>
+    <string name="failed_to_load_storage_info">Depolama bilgisi yüklenemedi: %1$s</string>
+    <string name="failed_to_load_file_types">Dosya Türleri Yüklenemedi: %1$s</string>
+    <string name="failed_to_analyze_files">Dosyaları analiz edemedi: %1$s</string>
+    <string name="no_files_selected_to_delete">Silmek için dosya seçilmedi.</string>
+    <string name="failed_to_delete_files">Dosyaları Silmemedi: %1$s</string>
+    <string name="no_files_selected_move_to_trash">Çöp kutusuna geçmek için hiçbir dosya seçilmedi.</string>
+    <string name="failed_to_move_files_to_trash">Dosyaları çöpe taşıyamadı: %1$s</string>
+    <string name="data_not_available">Veriler mevcut değil.</string>
+    <string name="no_files_selected_to_clean">Temizlemek için dosya seçilmedi.</string>
+    <string name="failed_to_update_trash_size">Çöp Boyutunu Güncelleme: %1$s</string>
+    <string name="no_cleaning_options_selected">Lütfen devam etmek için ayarlarda temizlik tercihlerinizi seçin.</string>
 </resources>

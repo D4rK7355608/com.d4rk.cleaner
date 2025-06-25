@@ -196,4 +196,15 @@
     <string name="failed_to_install_apk">एपीके इंस्टॉल करने में विफल: %1$s</string>
     <string name="failed_to_uninstall_app">ऐप अनइंस्टॉल करने में विफल: %1$s</string>
     <string name="app_uninstalled_successfully">ऐप सफलतापूर्वक अनइंस्टॉल हो गया</string>
+    <string name="failed_to_load_storage_info">भंडारण जानकारी लोड करने में विफल: %1$s</string>
+    <string name="failed_to_load_file_types">फ़ाइल प्रकार लोड करने में विफल: %1$s</string>
+    <string name="failed_to_analyze_files">फ़ाइलों का विश्लेषण करने में विफल: %1$s</string>
+    <string name="no_files_selected_to_delete">हटाने के लिए कोई फाइल नहीं चुनी गई।</string>
+    <string name="failed_to_delete_files">फ़ाइलों को हटाने में विफल: %1$s</string>
+    <string name="no_files_selected_move_to_trash">कोई फाइलें कचरा करने के लिए नहीं चुनी गई हैं।</string>
+    <string name="failed_to_move_files_to_trash">फाइलों को कचरा करने में विफल: %1$s</string>
+    <string name="data_not_available">डेटा उपलब्ध नहीं।</string>
+    <string name="no_files_selected_to_clean">कोई फाइलें साफ करने के लिए नहीं चुनी गईं।</string>
+    <string name="failed_to_update_trash_size">कचरा आकार अपडेट करने में विफल: %1$s</string>
+    <string name="no_cleaning_options_selected">कृपया आगे बढ़ने के लिए सेटिंग्स में अपनी सफाई वरीयताएँ चुनें।</string>
 </resources>

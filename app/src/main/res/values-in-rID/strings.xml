@@ -194,4 +194,15 @@
     <string name="failed_to_install_apk">Gagal menginstal APK: %1$s</string>
     <string name="failed_to_uninstall_app">Gagal mencopot pemasangan aplikasi: %1$s</string>
     <string name="app_uninstalled_successfully">Aplikasi berhasil dicopot pemasangannya</string>
+    <string name="failed_to_load_storage_info">Gagal memuat info penyimpanan: %1$s</string>
+    <string name="failed_to_load_file_types">Gagal memuat jenis file: %1$s</string>
+    <string name="failed_to_analyze_files">Gagal menganalisis file: %1$s</string>
+    <string name="no_files_selected_to_delete">Tidak ada file yang dipilih untuk dihapus.</string>
+    <string name="failed_to_delete_files">Gagal Menghapus File: %1$s</string>
+    <string name="no_files_selected_move_to_trash">Tidak ada file yang dipilih untuk pindah ke tempat sampah.</string>
+    <string name="failed_to_move_files_to_trash">Gagal memindahkan file ke sampah: %1$s</string>
+    <string name="data_not_available">Data tidak tersedia.</string>
+    <string name="no_files_selected_to_clean">Tidak ada file yang dipilih untuk dibersihkan.</string>
+    <string name="failed_to_update_trash_size">Gagal memperbarui ukuran sampah: %1$s</string>
+    <string name="no_cleaning_options_selected">Pilih preferensi pembersihan Anda dalam pengaturan untuk melanjutkan.</string>
 </resources>

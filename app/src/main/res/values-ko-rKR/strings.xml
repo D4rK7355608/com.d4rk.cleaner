@@ -194,4 +194,15 @@
     <string name="failed_to_install_apk">APK 설치 실패: %1$s</string>
     <string name="failed_to_uninstall_app">앱 제거 실패: %1$s</string>
     <string name="app_uninstalled_successfully">앱이 성공적으로 제거되었습니다.</string>
+    <string name="failed_to_load_storage_info">저장 정보를로드하지 못했습니다 : %1$s</string>
+    <string name="failed_to_load_file_types">파일 유형을로드하지 못했습니다 : %1$s</string>
+    <string name="failed_to_analyze_files">파일 분석에 실패 : %1$s</string>
+    <string name="no_files_selected_to_delete">삭제할 파일이 선택되지 않았습니다.</string>
+    <string name="failed_to_delete_files">파일 삭제에 실패 : %1$s</string>
+    <string name="no_files_selected_move_to_trash">휴지통으로 이동하기 위해 선택된 파일이 없습니다.</string>
+    <string name="failed_to_move_files_to_trash">파일을 쓰레기로 이동하지 못했습니다 : %1$s</string>
+    <string name="data_not_available">데이터를 사용할 수 없습니다.</string>
+    <string name="no_files_selected_to_clean">청소할 파일이 없습니다.</string>
+    <string name="failed_to_update_trash_size">쓰레기 크기를 업데이트하지 못했습니다 : %1$s</string>
+    <string name="no_cleaning_options_selected">진행할 설정에서 청소 환경 설정을 선택하십시오.</string>
 </resources>

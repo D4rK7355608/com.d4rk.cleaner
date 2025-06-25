@@ -196,4 +196,15 @@
     <string name="failed_to_install_apk">APK ইনস্টল করতে ব্যর্থ: %1$s</string>
     <string name="failed_to_uninstall_app">অ্যাপ আনইনস্টল করতে ব্যর্থ: %1$s</string>
     <string name="app_uninstalled_successfully">অ্যাপ সফলভাবে আনইনস্টল হয়েছে</string>
+    <string name="failed_to_load_storage_info">স্টোরেজ তথ্য লোড করতে ব্যর্থ: %1$s</string>
+    <string name="failed_to_load_file_types">ফাইলের ধরণগুলি লোড করতে ব্যর্থ: %1$s</string>
+    <string name="failed_to_analyze_files">ফাইলগুলি বিশ্লেষণ করতে ব্যর্থ: %1$s</string>
+    <string name="no_files_selected_to_delete">মুছতে কোনও ফাইল নির্বাচিত নয়।</string>
+    <string name="failed_to_delete_files">ফাইলগুলি মুছতে ব্যর্থ: %1$s</string>
+    <string name="no_files_selected_move_to_trash">ট্র্যাশে যাওয়ার জন্য কোনও ফাইল নির্বাচিত নয়।</string>
+    <string name="failed_to_move_files_to_trash">ফাইলগুলি ট্র্যাশে সরাতে ব্যর্থ: %1$s</string>
+    <string name="data_not_available">ডেটা উপলভ্য নয়।</string>
+    <string name="no_files_selected_to_clean">কোনও ফাইল পরিষ্কার করার জন্য নির্বাচিত নয়।</string>
+    <string name="failed_to_update_trash_size">আবর্জনার আকার আপডেট করতে ব্যর্থ: %1$s</string>
+    <string name="no_cleaning_options_selected">এগিয়ে যেতে সেটিংসে আপনার পরিষ্কারের পছন্দগুলি চয়ন করুন।</string>
 </resources>
