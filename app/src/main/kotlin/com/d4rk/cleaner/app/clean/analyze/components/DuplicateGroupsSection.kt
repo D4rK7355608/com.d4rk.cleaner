@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import coil3.ImageLoader
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ScreenHelper
@@ -68,7 +69,7 @@ fun DuplicateGroupsSection(
                             isOriginal = file in originals,
                             view = view,
                             modifier = Modifier
-                                .padding(end = SizeConstants.SmallSize)
+                                .padding(end = SizeConstants.SmallSize, top = SizeConstants.MediumSize)
                                 .width(cardSize)
                         )
                     }
