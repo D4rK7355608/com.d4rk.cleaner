@@ -194,4 +194,15 @@
     <string name="failed_to_install_apk">ติดตั้ง APK ไม่สำเร็จ: %1$s</string>
     <string name="failed_to_uninstall_app">ถอนการติดตั้งแอปไม่สำเร็จ: %1$s</string>
     <string name="app_uninstalled_successfully">ถอนการติดตั้งแอปสำเร็จแล้ว</string>
+    <string name="failed_to_load_storage_info">โหลดข้อมูลที่เก็บข้อมูลไม่ได้: %1$s</string>
+    <string name="failed_to_load_file_types">ไม่สามารถโหลดประเภทไฟล์: %1$s</string>
+    <string name="failed_to_analyze_files">ล้มเหลวในการวิเคราะห์ไฟล์: %1$s</string>
+    <string name="no_files_selected_to_delete">ไม่มีไฟล์ที่เลือกเพื่อลบ</string>
+    <string name="failed_to_delete_files">ล้มเหลวในการลบไฟล์: %1$s</string>
+    <string name="no_files_selected_move_to_trash">ไม่มีการเลือกไฟล์เพื่อย้ายไปที่ถังขยะ</string>
+    <string name="failed_to_move_files_to_trash">ไม่สามารถย้ายไฟล์ไปยังถังขยะ: %1$s</string>
+    <string name="data_not_available">ข้อมูลไม่พร้อมใช้งาน</string>
+    <string name="no_files_selected_to_clean">ไม่มีไฟล์ที่เลือกเพื่อทำความสะอาด</string>
+    <string name="failed_to_update_trash_size">ไม่สามารถอัปเดตขนาดถังขยะ: %1$s</string>
+    <string name="no_cleaning_options_selected">โปรดเลือกการตั้งค่าการทำความสะอาดของคุณในการตั้งค่าเพื่อดำเนินการต่อ</string>
 </resources>

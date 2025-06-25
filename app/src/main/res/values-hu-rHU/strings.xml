@@ -196,4 +196,15 @@
     <string name="failed_to_install_apk">Nem sikerült telepíteni az APK-t: %1$s</string>
     <string name="failed_to_uninstall_app">Nem sikerült eltávolítani az alkalmazást: %1$s</string>
     <string name="app_uninstalled_successfully">Az alkalmazás sikeresen eltávolítva</string>
+    <string name="failed_to_load_storage_info">Nem sikerült betölteni a tárolási információkat: %1$s</string>
+    <string name="failed_to_load_file_types">Nem sikerült betölteni a fájltípusokat: %1$s</string>
+    <string name="failed_to_analyze_files">Nem sikerült elemezni a fájlokat: %1$s</string>
+    <string name="no_files_selected_to_delete">A törléshez nincs kiválasztott fájl.</string>
+    <string name="failed_to_delete_files">Nem sikerült törölni a fájlokat: %1$s</string>
+    <string name="no_files_selected_move_to_trash">Nincs olyan fájl, amelyet a kukába költöznek.</string>
+    <string name="failed_to_move_files_to_trash">Nem sikerült a fájlokat kukába mozgatni: %1$s</string>
+    <string name="data_not_available">Az adatok nem állnak rendelkezésre.</string>
+    <string name="no_files_selected_to_clean">A tisztításhoz nincs kiválasztott fájl.</string>
+    <string name="failed_to_update_trash_size">Nem sikerült frissíteni a szemét méretét: %1$s</string>
+    <string name="no_cleaning_options_selected">Kérjük, válassza ki a tisztítási beállításokat a beállításokban.</string>
 </resources>

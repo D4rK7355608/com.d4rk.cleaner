@@ -194,4 +194,15 @@
     <string name="failed_to_install_apk">無法安裝 APK：%1$s</string>
     <string name="failed_to_uninstall_app">無法解除安裝應用程式：%1$s</string>
     <string name="app_uninstalled_successfully">應用程式已成功解除安裝</string>
+    <string name="failed_to_load_storage_info">无法加载存储信息：%1$s</string>
+    <string name="failed_to_load_file_types">无法加载文件类型：%1$s</string>
+    <string name="failed_to_analyze_files">未能分析文件：%1$s</string>
+    <string name="no_files_selected_to_delete">没有选择删除的文件。</string>
+    <string name="failed_to_delete_files">无法删除文件：%1$s</string>
+    <string name="no_files_selected_move_to_trash">没有选择移动到垃圾的文件。</string>
+    <string name="failed_to_move_files_to_trash">无法将文件移至垃圾：%1$s</string>
+    <string name="data_not_available">数据不可用。</string>
+    <string name="no_files_selected_to_clean">没有选择清洁文件。</string>
+    <string name="failed_to_update_trash_size">无法更新垃圾大小：%1$s</string>
+    <string name="no_cleaning_options_selected">请在设置中选择您的清洁偏好。</string>
 </resources>

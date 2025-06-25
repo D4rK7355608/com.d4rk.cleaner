@@ -196,4 +196,15 @@
     <string name="failed_to_install_apk">Kunde inte installera APK: %1$s</string>
     <string name="failed_to_uninstall_app">Kunde inte avinstallera app: %1$s</string>
     <string name="app_uninstalled_successfully">Appen avinstallerades framgångsrikt</string>
+    <string name="failed_to_load_storage_info">Det gick inte att ladda lagringsinformation: %1$s</string>
+    <string name="failed_to_load_file_types">Det gick inte att ladda filtyper: %1$s</string>
+    <string name="failed_to_analyze_files">Det gick inte att analysera filer: %1$s</string>
+    <string name="no_files_selected_to_delete">Inga filer valda för att radera.</string>
+    <string name="failed_to_delete_files">Det gick inte att ta bort filer: %1$s</string>
+    <string name="no_files_selected_move_to_trash">Inga filer som valts för att flytta till skräp.</string>
+    <string name="failed_to_move_files_to_trash">Det gick inte att flytta filer till skräp: %1$s</string>
+    <string name="data_not_available">Data inte tillgängliga.</string>
+    <string name="no_files_selected_to_clean">Inga filer valda för att rengöra.</string>
+    <string name="failed_to_update_trash_size">Det gick inte att uppdatera skräpstorlek: %1$s</string>
+    <string name="no_cleaning_options_selected">Välj dina rengöringspreferenser i inställningar för att fortsätta.</string>
 </resources>

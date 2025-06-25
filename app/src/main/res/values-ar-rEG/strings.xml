@@ -204,4 +204,15 @@
     <string name="failed_to_install_apk">فشل تثبيت ملف APK: %1$s</string>
     <string name="failed_to_uninstall_app">فشل إلغاء تثبيت التطبيق: %1$s</string>
     <string name="app_uninstalled_successfully">التطبيق اتلغى تثبيته بنجاح</string>
+    <string name="failed_to_load_storage_info">فشل تحميل معلومات التخزين: %1$s</string>
+    <string name="failed_to_load_file_types">فشل تحميل أنواع الملفات: %1$s</string>
+    <string name="failed_to_analyze_files">فشل في تحليل الملفات: %1$s</string>
+    <string name="no_files_selected_to_delete">لا توجد ملفات محددة لحذف.</string>
+    <string name="failed_to_delete_files">فشل في حذف الملفات: %1$s</string>
+    <string name="no_files_selected_move_to_trash">لم يتم تحديد ملفات للانتقال إلى المهملات.</string>
+    <string name="failed_to_move_files_to_trash">فشل في نقل الملفات إلى القمامة: %1$s</string>
+    <string name="data_not_available">البيانات غير متوفرة.</string>
+    <string name="no_files_selected_to_clean">لم يتم تحديد ملفات لتنظيف.</string>
+    <string name="failed_to_update_trash_size">فشل في تحديث حجم القمامة: %1$s</string>
+    <string name="no_cleaning_options_selected">يرجى اختيار تفضيلات التنظيف الخاصة بك في الإعدادات للمتابعة.</string>
 </resources>

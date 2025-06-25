@@ -200,4 +200,15 @@
     <string name="failed_to_install_apk">Не удалось установить APK: %1$s</string>
     <string name="failed_to_uninstall_app">Не удалось удалить приложение: %1$s</string>
     <string name="app_uninstalled_successfully">Приложение успешно удалено</string>
+    <string name="failed_to_load_storage_info">Не удалось загрузить информацию о хранении: %1$s</string>
+    <string name="failed_to_load_file_types">Не удалось загрузить типы файлов: %1$s</string>
+    <string name="failed_to_analyze_files">Не удалось проанализировать файлы: %1$s</string>
+    <string name="no_files_selected_to_delete">Никаких файлов, выбранных для удаления.</string>
+    <string name="failed_to_delete_files">Не удалось удалить файлы: %1$s</string>
+    <string name="no_files_selected_move_to_trash">Никаких файлов, выбранных для перемещения в мусор.</string>
+    <string name="failed_to_move_files_to_trash">Не удалось перенести файлы в мусор: %1$s</string>
+    <string name="data_not_available">Данные недоступны.</string>
+    <string name="no_files_selected_to_clean">Нет файлов, выбранных для очистки.</string>
+    <string name="failed_to_update_trash_size">Не удалось обновить размер мусора: %1$s</string>
+    <string name="no_cleaning_options_selected">Пожалуйста, выберите свои предпочтения в уборке в настройках, чтобы продолжить.</string>
 </resources>

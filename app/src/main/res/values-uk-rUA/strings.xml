@@ -200,4 +200,15 @@
     <string name="failed_to_install_apk">Не вдалося встановити APK: %1$s</string>
     <string name="failed_to_uninstall_app">Не вдалося видалити додаток: %1$s</string>
     <string name="app_uninstalled_successfully">Додаток успішно видалено</string>
+    <string name="failed_to_load_storage_info">Не вдалося завантажити інформацію про зберігання: %1$s</string>
+    <string name="failed_to_load_file_types">Не вдалося завантажити типи файлів: %1$s</string>
+    <string name="failed_to_analyze_files">Не вдалося проаналізувати файли: %1$s</string>
+    <string name="no_files_selected_to_delete">Жодних файлів, вибраних для видалення.</string>
+    <string name="failed_to_delete_files">Не вдалося видалити файли: %1$s</string>
+    <string name="no_files_selected_move_to_trash">Жодних файлів, вибраних для переходу на сміття.</string>
+    <string name="failed_to_move_files_to_trash">Не вдалося перемістити файли на сміття: %1$s</string>
+    <string name="data_not_available">Дані недоступні.</string>
+    <string name="no_files_selected_to_clean">Жодних файлів, вибраних для очищення.</string>
+    <string name="failed_to_update_trash_size">Не вдалося оновити розмір сміття: %1$s</string>
+    <string name="no_cleaning_options_selected">Будь ласка, виберіть свої вподобання прибирання в налаштуваннях для продовження.</string>
 </resources>

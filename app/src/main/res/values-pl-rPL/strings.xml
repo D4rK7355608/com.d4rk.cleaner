@@ -200,4 +200,15 @@
     <string name="failed_to_install_apk">Nie udało się zainstalować pliku APK: %1$s</string>
     <string name="failed_to_uninstall_app">Nie udało się odinstalować aplikacji: %1$s</string>
     <string name="app_uninstalled_successfully">Aplikacja została pomyślnie odinstalowana</string>
+    <string name="failed_to_load_storage_info">Nie udało się załadować informacji o pamięci: %1$s</string>
+    <string name="failed_to_load_file_types">Nie udało się załadować typów plików: %1$s</string>
+    <string name="failed_to_analyze_files">Nie udało się analizować plików: %1$s</string>
+    <string name="no_files_selected_to_delete">Brak plików do usunięcia.</string>
+    <string name="failed_to_delete_files">Nie udało się usunąć plików: %1$s</string>
+    <string name="no_files_selected_move_to_trash">Brak plików wybranych do przeniesienia się do śmieci.</string>
+    <string name="failed_to_move_files_to_trash">Nie udało się przenieść plików na śmieci: %1$s</string>
+    <string name="data_not_available">Dane niedostępne.</string>
+    <string name="no_files_selected_to_clean">Brak plików do czyszczenia.</string>
+    <string name="failed_to_update_trash_size">Nie udało się zaktualizować rozmiaru śmieci: %1$s</string>
+    <string name="no_cleaning_options_selected">Wybierz swoje preferencje czyszczące w ustawieniach, aby kontynuować.</string>
 </resources>

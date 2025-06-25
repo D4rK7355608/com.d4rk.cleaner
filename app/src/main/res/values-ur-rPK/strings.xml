@@ -196,4 +196,15 @@
     <string name="failed_to_install_apk">APK انسٹال کرنے میں ناکام: %1$s</string>
     <string name="failed_to_uninstall_app">ایپ ان انسٹال کرنے میں ناکام: %1$s</string>
     <string name="app_uninstalled_successfully">ایپ کامیابی سے ان انسٹال ہوگئی</string>
+    <string name="failed_to_load_storage_info">اسٹوریج کی معلومات کو لوڈ کرنے میں ناکام: %1$s</string>
+    <string name="failed_to_load_file_types">فائل کی اقسام کو لوڈ کرنے میں ناکام: %1$s</string>
+    <string name="failed_to_analyze_files">فائلوں کا تجزیہ کرنے میں ناکام: %1$s</string>
+    <string name="no_files_selected_to_delete">حذف کرنے کے لئے کوئی فائلیں منتخب نہیں کی گئیں۔</string>
+    <string name="failed_to_delete_files">فائلوں کو حذف کرنے میں ناکام: %1$s</string>
+    <string name="no_files_selected_move_to_trash">ردی کی ٹوکری میں جانے کے لئے کوئی فائلیں منتخب نہیں کی گئیں۔</string>
+    <string name="failed_to_move_files_to_trash">فائلوں کو ردی کی ٹوکری میں منتقل کرنے میں ناکام: %1$s</string>
+    <string name="data_not_available">ڈیٹا دستیاب نہیں ہے۔</string>
+    <string name="no_files_selected_to_clean">صاف کرنے کے لئے کوئی فائلیں منتخب نہیں کی گئیں۔</string>
+    <string name="failed_to_update_trash_size">کوڑے دان کے سائز کو اپ ڈیٹ کرنے میں ناکام: %1$s</string>
+    <string name="no_cleaning_options_selected">براہ کرم آگے بڑھنے کے لئے ترتیبات میں اپنی صفائی کی ترجیحات کا انتخاب کریں۔</string>
 </resources>

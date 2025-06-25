@@ -194,4 +194,15 @@
     <string name="failed_to_install_apk">APKのインストールに失敗しました: %1$s</string>
     <string name="failed_to_uninstall_app">アプリのアンインストールに失敗しました: %1$s</string>
     <string name="app_uninstalled_successfully">アプリは正常にアンインストールされました</string>
+    <string name="failed_to_load_storage_info">ストレージ情報のロードに失敗しました：%1$s</string>
+    <string name="failed_to_load_file_types">ファイルタイプのロードに失敗しました：%1$s</string>
+    <string name="failed_to_analyze_files">ファイルの分析に失敗しました：%1$s</string>
+    <string name="no_files_selected_to_delete">削除するために選択されたファイルはありません。</string>
+    <string name="failed_to_delete_files">ファイルの削除に失敗しました：%1$s</string>
+    <string name="no_files_selected_move_to_trash">ゴミに移動するために選択されたファイルはありません。</string>
+    <string name="failed_to_move_files_to_trash">ファイルをゴミに移動できませんでした：%1$s</string>
+    <string name="data_not_available">データは利用できません。</string>
+    <string name="no_files_selected_to_clean">クリーニングするために選択されたファイルはありません。</string>
+    <string name="failed_to_update_trash_size">ゴミのサイズの更新に失敗しました：%1$s</string>
+    <string name="no_cleaning_options_selected">続行するには、設定のクリーニング設定を選択してください。</string>
 </resources>
