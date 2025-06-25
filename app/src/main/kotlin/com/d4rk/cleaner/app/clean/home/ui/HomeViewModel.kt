@@ -9,7 +9,9 @@ import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.applyResult
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.setLoading
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.successData
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.updateData
+import androidx.compose.material3.SnackbarDuration
 import com.d4rk.android.libs.apptoolkit.core.ui.base.ScreenViewModel
+import com.d4rk.android.libs.apptoolkit.core.ui.base.handling.UiEvent
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.UiTextHelper
 import com.d4rk.cleaner.app.clean.home.domain.actions.HomeAction
 import com.d4rk.cleaner.app.clean.home.domain.actions.HomeEvent
@@ -28,6 +30,7 @@ import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
 import com.d4rk.cleaner.app.settings.cleaning.utils.constants.ExtensionsConstants
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.domain.model.network.Errors
+import com.d4rk.cleaner.R
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
@@ -131,7 +134,10 @@ class HomeViewModel(
                         if (storageState is DataState.Error) {
                             add(
                                 element = UiSnackbar(
-                                    message = UiTextHelper.DynamicString(content = "Failed to load storage info: ${storageState.error}"), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
+                                    message = UiTextHelper.StringResource(
+                                        R.string.failed_to_load_storage_info,
+                                        storageState.error
+                                    ),
                                     isError = true
                                 )
                             )
@@ -140,7 +146,10 @@ class HomeViewModel(
                             if (storageState !is DataState.Error || storageState.error != fileTypesState.error) {
                                 add(
                                     element = UiSnackbar(
-                                        message = UiTextHelper.DynamicString("Failed to load file types: ${fileTypesState.error}"), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
+                                        message = UiTextHelper.StringResource(
+                                            R.string.failed_to_load_file_types,
+                                            fileTypesState.error
+                                        ),
                                         isError = true
                                     )
                                 )
@@ -244,7 +253,10 @@ class HomeViewModel(
                                 )
                             ),
                             errors = currentState.errors + UiSnackbar(
-                                message = UiTextHelper.DynamicString("Failed to analyze files: ${result.error}"), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
+                                message = UiTextHelper.StringResource(
+                                    R.string.failed_to_analyze_files,
+                                    result.error
+                                ),
                                 isError = true
                             )
                         )
@@ -346,13 +358,9 @@ class HomeViewModel(
     private fun deleteFiles(files: Set<File>) {
         launch(context = dispatchers.io) {
             if (files.isEmpty()) {
-                sendAction(
-                    HomeAction.ShowSnackbar(
-                        UiSnackbar(
-                            message = UiTextHelper.DynamicString("No files selected to delete."), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
-                            isError = false
-                        )
-                    )
+                postSnackbar(
+                    message = UiTextHelper.StringResource(R.string.no_files_selected_to_delete),
+                    isError = false
                 )
                 return@launch
             }
@@ -370,11 +378,11 @@ class HomeViewModel(
 
 
             deleteFilesUseCase(filesToDelete = files).collectLatest { result: DataState<Unit, Errors> ->
+                val includeDuplicates = dataStore.deleteDuplicateFiles.first()
                 _uiState.applyResult(
                     result = result,
-                    errorMessage = UiTextHelper.DynamicString("Failed to delete files:") // FIXME: Make it string res (Ensure the placement in strings.xml is correct
+                    errorMessage = UiTextHelper.StringResource(R.string.failed_to_delete_files)
                 ) { data, currentData ->
-                    val includeDuplicates = dataStore.deleteDuplicateFiles.first() // FIXME: Suspension functions can only be called within coroutine body.
                     val (groupedFilesUpdated, duplicateOriginals) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot { files.contains(it) },
                         emptyFolders = currentData.analyzeState.emptyFolderList,
@@ -412,13 +420,9 @@ class HomeViewModel(
     private fun moveToTrash(files: List<File>) {
         launch(context = dispatchers.io) {
             if (files.isEmpty()) {
-                sendAction(
-                    HomeAction.ShowSnackbar(
-                        UiSnackbar(
-                            message = UiTextHelper.DynamicString("No files selected to move to trash."), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
-                            isError = false
-                        )
-                    )
+                postSnackbar(
+                    message = UiTextHelper.StringResource(R.string.no_files_selected_move_to_trash),
+                    isError = false
                 )
                 return@launch
             }
@@ -437,12 +441,12 @@ class HomeViewModel(
 
             val totalFileSizeToMove: Long = files.sumOf { it.length() }
 
+            val includeDuplicates = dataStore.deleteDuplicateFiles.first()
             moveToTrashUseCase(filesToMove = files).collectLatest { result: DataState<Unit, Errors> ->
                 _uiState.applyResult(
                     result = result,
-                    errorMessage = UiTextHelper.DynamicString("Failed to move files to trash:") // FIXME: Make it string res (Ensure the placement in strings.xml is correct
-                ) { data: Unit, currentData: UiHomeModel ->
-                    val includeDuplicates = dataStore.deleteDuplicateFiles.first() // FIXME: Suspension functions can only be called within coroutine body.
+                    errorMessage = UiTextHelper.StringResource(R.string.failed_to_move_files_to_trash)
+                ) { _: Unit, currentData: UiHomeModel ->
                     val (groupedFilesUpdated2, duplicateOriginals2) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile: File ->
                             files.any { movedFile: File -> existingFile.absolutePath == movedFile.absolutePath }
@@ -630,13 +634,9 @@ class HomeViewModel(
             }
 
             val currentScreenData: UiHomeModel = screenData ?: run {
-                sendAction(
-                    HomeAction.ShowSnackbar(
-                        UiSnackbar(
-                            message = UiTextHelper.DynamicString("Data not available."), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
-                            isError = true
-                        )
-                    )
+                postSnackbar(
+                    message = UiTextHelper.StringResource(R.string.data_not_available),
+                    isError = true
                 )
                 return@launch
             }
@@ -644,23 +644,19 @@ class HomeViewModel(
             val filesToDelete: Set<File> =
                 currentScreenData.analyzeState.fileSelectionMap.filter { it.value }.keys
             if (filesToDelete.isEmpty()) {
-                sendAction(
-                    HomeAction.ShowSnackbar(
-                        UiSnackbar(
-                            message = UiTextHelper.DynamicString("No files selected to clean."), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
-                            isError = false
-                        )
-                    )
+                postSnackbar(
+                    message = UiTextHelper.StringResource(R.string.no_files_selected_to_clean),
+                    isError = false
                 )
                 return@launch
             }
 
+            val includeDuplicates = dataStore.deleteDuplicateFiles.first()
             deleteFilesUseCase(filesToDelete = filesToDelete).collectLatest { result: DataState<Unit, Errors> ->
                 _uiState.applyResult(
                     result = result,
-                    errorMessage = UiTextHelper.DynamicString("Failed to delete files: ") // FIXME: Make it string res (Ensure the placement in strings.xml is correct
+                    errorMessage = UiTextHelper.StringResource(R.string.failed_to_delete_files)
                 ) { _: Unit, currentData: UiHomeModel ->
-                    val includeDuplicates = dataStore.deleteDuplicateFiles.first() // FIXME: Suspension functions can only be called within coroutine body.
                     val (groupedFilesUpdated, duplicateOriginals) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot {
                             filesToDelete.contains(it)
@@ -728,13 +724,9 @@ class HomeViewModel(
             }
 
             val currentScreenData = screenData ?: run {
-                sendAction(
-                    HomeAction.ShowSnackbar(
-                        UiSnackbar(
-                            message = UiTextHelper.DynamicString("Data not available."), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
-                            isError = true
-                        )
-                    )
+                postSnackbar(
+                    message = UiTextHelper.StringResource(R.string.data_not_available),
+                    isError = true
                 )
                 return@launch
             }
@@ -742,26 +734,21 @@ class HomeViewModel(
             val filesToMove: List<File> =
                 currentScreenData.analyzeState.fileSelectionMap.filter { it.value }.keys.toList()
             if (filesToMove.isEmpty()) {
-                sendAction(
-                    HomeAction.ShowSnackbar(
-                        UiSnackbar(
-                            message = UiTextHelper.DynamicString("No files selected to move to trash."), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
-                            isError = false
-                        )
-                    )
+                postSnackbar(
+                    message = UiTextHelper.StringResource(R.string.no_files_selected_move_to_trash),
+                    isError = false
                 )
                 return@launch
             }
 
             val totalFileSizeToMove: Long = filesToMove.sumOf { it.length() }
 
+            val includeDuplicates = dataStore.deleteDuplicateFiles.first()
             moveToTrashUseCase(filesToMove).collectLatest { result ->
                 _uiState.applyResult(
                     result = result,
-                    errorMessage = UiTextHelper.DynamicString("Failed to move files to trash:") // FIXME: Make it string res (Ensure the placement in strings.xml is correct
+                    errorMessage = UiTextHelper.StringResource(R.string.failed_to_move_files_to_trash)
                 ) { _, currentData ->
-
-                    val includeDuplicates = dataStore.deleteDuplicateFiles.first() // FIXME: Suspension functions can only be called within coroutine body.
                     val (groupedFilesUpdated3, duplicateOriginals3) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile ->
                             filesToMove.any { movedFile -> existingFile.absolutePath == movedFile.absolutePath }
@@ -809,7 +796,7 @@ class HomeViewModel(
             updateTrashSizeUseCase(sizeChange).collectLatest { result ->
                 _uiState.applyResult(
                     result = result,
-                    errorMessage = UiTextHelper.DynamicString("Failed to update trash size: ") // FIXME: Make it string res (Ensure the placement in strings.xml is correct
+                    errorMessage = UiTextHelper.StringResource(R.string.failed_to_update_trash_size)
                 ) { data, currentData ->
                     currentData
                 }
@@ -853,13 +840,9 @@ class HomeViewModel(
                 ).any { it }
 
                 if (!anyEnabled) {
-                    sendAction(
-                        HomeAction.ShowSnackbar(
-                            UiSnackbar(
-                                message = UiTextHelper.DynamicString("No cleaning options selected. Please enable at least one setting."), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
-                                isError = false
-                            )
-                        )
+                    postSnackbar(
+                        message = UiTextHelper.StringResource(R.string.no_cleaning_options_selected),
+                        isError = false
                     )
                     return@launch
                 }
@@ -918,5 +901,22 @@ class HomeViewModel(
                 )
             )
         }
+    }
+
+    private fun postSnackbar(
+        message: UiTextHelper,
+        isError: Boolean = false,
+        duration: SnackbarDuration = SnackbarDuration.Short
+    ) {
+        sendUiEvent(
+            UiEvent.Snackbar(
+                snackbar = UiSnackbar(
+                    message = message,
+                    isError = isError,
+                    timeStamp = System.currentTimeMillis(),
+                    duration = duration
+                )
+            )
+        )
     }
 }
