@@ -16,7 +16,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.dp
-import coil3.ImageLoader
+import coil3.imageLoader
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ScreenHelper
 import java.io.File
@@ -28,7 +28,6 @@ fun DuplicateGroupsSection(
     modifier : Modifier ,
     filesByDate : Map<String , List<List<File>>> ,
     fileSelectionStates : Map<File , Boolean> ,
-    imageLoader : ImageLoader ,
     onFileSelectionChange : (File , Boolean) -> Unit ,
     onDateSelectionChange: (List<File>, Boolean) -> Unit ,
     originals: Set<File> = emptySet(),
@@ -37,6 +36,7 @@ fun DuplicateGroupsSection(
     val context = LocalContext.current
     val windowInfo = LocalWindowInfo.current
     val density = LocalDensity.current
+    val imageLoader = LocalContext.current.imageLoader
     val columns = if (ScreenHelper.isTablet(context = context)) 6 else 3
     val containerWidth = with(density) { windowInfo.containerSize.width.toDp() }
     val cardSize = (containerWidth - SizeConstants.SmallSize * 2) / columns
@@ -69,7 +69,6 @@ fun DuplicateGroupsSection(
                     group.forEach { file ->
                         FileCard(
                             file = file,
-                            imageLoader = imageLoader,
                             isChecked = fileSelectionStates[file] == true,
                             onCheckedChange = { checked -> onFileSelectionChange(file, checked) },
                             isOriginal = file in originals,

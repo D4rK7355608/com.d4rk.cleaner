@@ -26,7 +26,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import coil3.ImageLoader
+import androidx.compose.ui.platform.LocalContext
+import coil3.imageLoader
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.hapticPagerSwipe
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
@@ -45,10 +46,11 @@ import java.util.Locale
 
 @Composable
 fun TabsContent(
-    groupedFiles : Map<String , List<File>> , imageLoader : ImageLoader , viewModel : HomeViewModel , view : View , coroutineScope : CoroutineScope , data : UiHomeModel
+    groupedFiles : Map<String , List<File>> , viewModel : HomeViewModel , view : View , coroutineScope : CoroutineScope , data : UiHomeModel
 ) {
     val tabs : List<String> = groupedFiles.keys.toList()
     val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
+    val imageLoader = LocalContext.current.imageLoader
 
     Row(
         modifier = Modifier.fillMaxWidth() , verticalAlignment = Alignment.CenterVertically
@@ -125,7 +127,6 @@ fun TabsContent(
                 modifier = Modifier,
                 filesByDate = filesByDate,
                 fileSelectionStates = data.analyzeState.fileSelectionMap,
-                imageLoader = imageLoader,
                 onFileSelectionChange = viewModel::onFileSelectionChange,
                 onDateSelectionChange = { files, checked -> viewModel.onEvent(HomeEvent.ToggleSelectFilesForDate(files, checked)) },
                 originals = data.analyzeState.duplicateOriginals,
@@ -136,7 +137,6 @@ fun TabsContent(
                 modifier = Modifier,
                 filesByDate = filesByDateRaw,
                 fileSelectionStates = data.analyzeState.fileSelectionMap,
-                imageLoader = imageLoader,
                 onFileSelectionChange = viewModel::onFileSelectionChange,
                 onDateSelectionChange = { files, checked -> viewModel.onEvent(HomeEvent.ToggleSelectFilesForDate(files, checked)) },
                 originals = data.analyzeState.duplicateOriginals,

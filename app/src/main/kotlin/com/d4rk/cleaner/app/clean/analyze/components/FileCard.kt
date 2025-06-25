@@ -35,7 +35,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
-import coil3.ImageLoader
+import coil3.imageLoader
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
@@ -51,13 +51,14 @@ import java.io.File
 
 @Composable
 fun FileCard(
-    file : File , imageLoader : ImageLoader , onCheckedChange : (Boolean) -> Unit ,
+    file : File , onCheckedChange : (Boolean) -> Unit ,
     isChecked : Boolean ,
     isOriginal: Boolean = false,
     view : View ,
     modifier : Modifier = Modifier ,
 ) {
     val isFolder : Boolean = file.isDirectory
+    val imageLoader = LocalContext.current.imageLoader
     val context : Context = LocalContext.current
     val fileExtension : String = remember(key1 = file.name) { getFileExtension(file.name) }
 
@@ -99,7 +100,6 @@ fun FileCard(
                             contentScale = ContentScale.FillWidth ,
                             contentDescription = file.name ,
                             modifier = Modifier.fillMaxWidth() ,
-                            imageLoader = imageLoader ,
                         )
                     }
 
@@ -108,7 +108,7 @@ fun FileCard(
                             ImageRequest.Builder(context = context).data(data = file).decoderFactory { result , options , _ ->
                                 VideoFrameDecoder(source = result.source , options = options)
                             }.videoFramePercent(framePercent = 0.5).crossfade(enable = true).build()
-                        } , imageLoader = imageLoader , contentDescription = file.name , contentScale = ContentScale.Crop , modifier = Modifier.fillMaxSize())
+                        } , contentDescription = file.name , contentScale = ContentScale.Crop , modifier = Modifier.fillMaxSize())
                     }
 
                     in officeExtensions -> {

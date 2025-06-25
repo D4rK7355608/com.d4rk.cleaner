@@ -18,16 +18,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
-import coil3.ImageLoader
-import coil3.disk.DiskCache
-import coil3.disk.directory
-import coil3.memory.MemoryCache
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.snackbar.DefaultSnackbarHandler
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
@@ -46,16 +41,6 @@ fun HomeScreen(paddingValues: PaddingValues, snackbarHostState: SnackbarHostStat
     val view: View = LocalView.current
     val viewModel: HomeViewModel = koinViewModel()
     val uiState: UiStateScreen<UiHomeModel> by viewModel.uiState.collectAsState()
-
-    val imageLoader: ImageLoader = remember {
-        ImageLoader.Builder(context = context).memoryCache {
-            MemoryCache.Builder().maxSizePercent(context = context, percent = 0.24).build()
-        }.diskCache {
-            DiskCache.Builder()
-                .directory(directory = context.cacheDir.resolve(relative = "image_cache"))
-                .maxSizePercent(percent = 0.02).build()
-        }.build()
-    }
 
     LaunchedEffect(key1 = true) {
         if (!PermissionsHelper.hasStoragePermissions(context)) {
@@ -104,7 +89,6 @@ fun HomeScreen(paddingValues: PaddingValues, snackbarHostState: SnackbarHostStat
                     uiState.data?.let { data ->
                         key(data.analyzeState.fileTypesData) {
                             AnalyzeScreen(
-                                imageLoader = imageLoader,
                                 view = view,
                                 viewModel = viewModel,
                                 data = data

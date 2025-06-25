@@ -14,7 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import coil3.ImageLoader
+import androidx.compose.ui.platform.LocalContext
+import coil3.imageLoader
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
@@ -32,12 +33,12 @@ import java.io.File
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun AnalyzeScreen(
-    imageLoader: ImageLoader,
     view: View,
     viewModel: HomeViewModel,
     data: UiHomeModel,
 ) {
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
+    val imageLoader = LocalContext.current.imageLoader
     val hasSelectedFiles: Boolean = data.analyzeState.selectedFilesCount > 0
     val groupedFiles: Map<String, List<File>> = data.analyzeState.groupedFiles
 
@@ -62,7 +63,6 @@ fun AnalyzeScreen(
                     if (groupedFiles.isNotEmpty()) {
                         TabsContent(
                             groupedFiles = groupedFiles,
-                            imageLoader = imageLoader,
                             viewModel = viewModel,
                             view = view,
                             coroutineScope = coroutineScope,

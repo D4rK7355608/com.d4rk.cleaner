@@ -18,10 +18,6 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import coil3.ImageLoader
-import coil3.disk.DiskCache
-import coil3.disk.directory
-import coil3.memory.MemoryCache
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
@@ -49,14 +45,6 @@ fun TrashScreen(activity : TrashActivity) {
     val context = LocalContext.current
     val uiStateScreen : UiStateScreen<UiTrashModel> by viewModel.uiState.collectAsState()
 
-    val imageLoader : ImageLoader = remember {
-        ImageLoader.Builder(context).memoryCache {
-            MemoryCache.Builder().maxSizePercent(context = context , percent = 0.24).build()
-        }.diskCache {
-            DiskCache.Builder().directory(context.cacheDir.resolve(relative = "image_cache")).maxSizePercent(percent = 0.02).build()
-        }.build()
-    }
-
     LargeTopAppBarWithScaffold(
         title = stringResource(id = R.string.trash) , onBackClicked = { activity.finish() }) { paddingValues ->
         ScreenStateHandler(screenState = uiStateScreen , onLoading = {
@@ -82,7 +70,6 @@ fun TrashScreen(activity : TrashActivity) {
                         height = Dimension.fillToConstraints
                     } ,
                     trashFiles = trashModel.trashFiles ,
-                    imageLoader = imageLoader ,
                     uiState = trashModel ,
                     viewModel = viewModel ,
                     view = view ,
@@ -119,7 +106,6 @@ fun TrashScreen(activity : TrashActivity) {
 fun TrashItemsList(
     modifier : Modifier ,
     trashFiles : List<File> ,
-    imageLoader : ImageLoader ,
     uiState : UiTrashModel ,
     viewModel : TrashViewModel ,
     view : View ,
@@ -134,7 +120,6 @@ fun TrashItemsList(
         modifier = modifier ,
         filesByDate = filesByDate ,
         fileSelectionStates = uiState.fileSelectionStates ,
-        imageLoader = imageLoader ,
         onFileSelectionChange = { file , isChecked ->
             viewModel.onEvent(TrashEvent.OnFileSelectionChange(file , isChecked))
         } ,
