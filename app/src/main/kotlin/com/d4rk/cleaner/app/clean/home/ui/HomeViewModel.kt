@@ -319,11 +319,16 @@ class HomeViewModel(
             }
         }
 
-        if (emptyFolders.isNotEmpty() && preferences[ExtensionsConstants.EMPTY_FOLDERS] == true) {
-            filesMap[baseFinalTitles[8]] = emptyFolders.toMutableList()
+        val emptyFoldersTitle = baseFinalTitles[8]
+        if (preferences[ExtensionsConstants.EMPTY_FOLDERS] == true) {
+            filesMap[emptyFoldersTitle] = emptyFolders.toMutableList()
         }
 
-        return filesMap.filter { it.value.isNotEmpty() } to duplicateOriginals
+        val filteredMap = filesMap.filter { (key, value) ->
+            value.isNotEmpty() || (key == emptyFoldersTitle && preferences[ExtensionsConstants.EMPTY_FOLDERS] == true)
+        }
+
+        return filteredMap to duplicateOriginals
     }
 
     private fun findDuplicateGroups(files: List<File>): List<List<File>> {
