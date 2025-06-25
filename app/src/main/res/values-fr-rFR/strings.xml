@@ -202,7 +202,7 @@
     <string name="app_uninstalled_successfully">Application désinstallée avec succès</string>
     <string name="failed_to_load_storage_info">Impossible de charger les informations de stockage: %1$s</string>
     <string name="failed_to_load_file_types">Échec de chargement des types de fichiers: %1$s</string>
-    <string name="failed_to_analyze_files">Échec de l'analyse des fichiers: %1$s</string>
+    <string name="failed_to_analyze_files">Échec de l\'analyse des fichiers: %1$s</string>
     <string name="no_files_selected_to_delete">Aucun fichier sélectionné pour supprimer.</string>
     <string name="failed_to_delete_files">Échec de la suppression des fichiers: %1$s</string>
     <string name="no_files_selected_move_to_trash">Aucun fichier sélectionné pour passer à la poubelle.</string>
