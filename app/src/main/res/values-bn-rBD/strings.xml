@@ -34,6 +34,7 @@
     <string name="videos">ভিডিওসমূহ</string>
     <string name="audios">অডিওসমূহ</string>
     <string name="empty_folders">খালি ফোল্ডারসমূহ</string>
+    <string name="duplicates">সদৃশ ফাইল</string>
     <plurals name="status_selected_files">
         <item quantity="one">স্থিতি: %1$d টি ফাইল নির্বাচিত</item>
         <item quantity="other">স্থিতি: %1$d টি ফাইল নির্বাচিত</item>

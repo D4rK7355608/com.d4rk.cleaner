@@ -34,6 +34,7 @@
     <string name="videos">الفيديوهات</string>
     <string name="audios">الصوتيات</string>
     <string name="empty_folders">مجلدات فاضية</string>
+    <string name="duplicates">ملفات مكررة</string>
     <plurals name="status_selected_files">
         <item quantity="zero">الحالة: لم يتم تحديد أي ملفات</item>
         <item quantity="one">الحالة: تم تحديد ملف واحد (%1$d)</item>

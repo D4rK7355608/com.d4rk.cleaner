@@ -34,6 +34,7 @@
     <string name="videos">Видео</string>
     <string name="audios">Аудио</string>
     <string name="empty_folders">Пустые папки</string>
+    <string name="duplicates">Дублировать файлы</string>
     <plurals name="status_selected_files">
         <item quantity="one">Статус: Выбран %1$d файл</item>
         <item quantity="few">Статус: Выбрано %1$d файла</item>

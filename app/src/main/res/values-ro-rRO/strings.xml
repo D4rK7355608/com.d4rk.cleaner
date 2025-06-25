@@ -34,6 +34,7 @@
     <string name="videos">Videoclipuri</string>
     <string name="audios">Fișiere audio</string>
     <string name="empty_folders">Foldere goale</string>
+    <string name="duplicates">Fișiere duplicate</string>
     <plurals name="status_selected_files">
         <item quantity="one">Stare: %1$d fișier selectat</item>
         <item quantity="few">Stare: %1$d fișiere selectate</item>

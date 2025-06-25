@@ -34,6 +34,7 @@
     <string name="videos">वीडियो</string>
     <string name="audios">ऑडियो</string>
     <string name="empty_folders">खाली फ़ोल्डर</string>
+    <string name="duplicates">डुप्लिकेट फ़ाइलें</string>
     <plurals name="status_selected_files">
         <item quantity="one">स्थिति: %1$d फ़ाइल चयनित</item>
         <item quantity="other">स्थिति: %1$d फ़ाइलें चयनित</item>

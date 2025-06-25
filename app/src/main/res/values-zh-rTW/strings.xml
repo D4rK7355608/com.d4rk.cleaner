@@ -34,6 +34,7 @@
     <string name="videos">影片</string>
     <string name="audios">音訊</string>
     <string name="empty_folders">空資料夾</string>
+    <string name="duplicates">複製文件</string>
     <plurals name="status_selected_files">
         <item quantity="other">狀態：已選取 %1$d 個檔案</item>
     </plurals>

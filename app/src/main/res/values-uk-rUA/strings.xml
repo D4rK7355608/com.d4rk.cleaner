@@ -34,6 +34,7 @@
     <string name="videos">Відео</string>
     <string name="audios">Аудіо</string>
     <string name="empty_folders">Порожні теки</string>
+    <string name="duplicates">Дублікат файлів</string>
     <plurals name="status_selected_files">
         <item quantity="one">Статус: Вибрано %1$d файл</item>
         <item quantity="few">Статус: Вибрано %1$d файли</item>

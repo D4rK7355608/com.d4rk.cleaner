@@ -34,6 +34,7 @@
     <string name="videos">Videók</string>
     <string name="audios">Hangfájlok</string>
     <string name="empty_folders">Üres mappák</string>
+    <string name="duplicates">Másolatú fájlok</string>
     <plurals name="status_selected_files">
         <item quantity="one">Állapot: %1$d fájl kiválasztva</item>
         <item quantity="other">Állapot: %1$d fájl kiválasztva</item>

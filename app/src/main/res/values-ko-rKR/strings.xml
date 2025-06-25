@@ -34,6 +34,7 @@
     <string name="videos">동영상</string>
     <string name="audios">오디오</string>
     <string name="empty_folders">빈 폴더</string>
+    <string name="duplicates">중복 파일</string>
     <plurals name="status_selected_files">
         <item quantity="other">상태: %1$d개 파일 선택됨</item>
     </plurals>

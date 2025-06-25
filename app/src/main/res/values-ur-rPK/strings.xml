@@ -34,6 +34,7 @@
     <string name="videos">ویڈیوز</string>
     <string name="audios">آڈیوز</string>
     <string name="empty_folders">خالی فولڈرز</string>
+    <string name="duplicates">ڈپلیکیٹ فائلیں</string>
     <plurals name="status_selected_files">
         <item quantity="one">حیثیت: %1$d فائل منتخب کی گئی</item>
         <item quantity="other">حیثیت: %1$d فائلیں منتخب کی گئیں</item>
