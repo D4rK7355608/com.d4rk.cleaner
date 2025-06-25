@@ -1,12 +1,11 @@
 # Version 3.3.0:
 
-- **New**: Added an onboarding flow and improved consent handling.
-- **New**: PDF files now show a thumbnail preview.
-- **Minor**: Shimmer placeholders replace loading screens in info and memory views.
-- **Minor**: Refreshed cleaning settings layout and ads qualifier.
-- **Minor**: Expanded localization and updated dependencies, including compileSdk 36.
-- **Patch**: Storage usage displays two decimals for better precision.
-- **Patch**: User consent is checked whenever the app resumes.
+- **New**: We've added a helpful setup guide and made how we ask for your permission clearer.
+- **New**: Now you can see a small preview of your PDF files.
+- **Patch**: Fixed how file cards look when showing duplicate files.
+- **Patch**: Solved some behind-the-scenes issues with how files are grouped.
+- **Minor**: Improved loading animations for a nicer look.
+- **Minor**: Easily find and remove duplicate files in the new "Duplicates" section.
 - **Patch**: Many under-the-hood improvements for better performance and stability.
 
 # Version 3.2.2:
