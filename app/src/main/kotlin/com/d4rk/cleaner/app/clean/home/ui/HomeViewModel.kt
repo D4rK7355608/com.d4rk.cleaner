@@ -98,7 +98,7 @@ class HomeViewModel(
                 )
             }
 
-            combine<DataState<UiHomeModel, Errors>, DataState<FileTypesData, Errors>, Long, Triple<DataState<UiHomeModel, Errors>, DataState<FileTypesData, Errors>, Long>>(
+            combine(
                 flow = getStorageInfoUseCase(),
                 flow2 = getFileTypesUseCase(),
                 flow3 = dataStore.cleanedSpace.distinctUntilChanged()
@@ -131,7 +131,7 @@ class HomeViewModel(
                         if (storageState is DataState.Error) {
                             add(
                                 element = UiSnackbar(
-                                    message = UiTextHelper.DynamicString(content = "Failed to load storage info: ${storageState.error}"),
+                                    message = UiTextHelper.DynamicString(content = "Failed to load storage info: ${storageState.error}"), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
                                     isError = true
                                 )
                             )
@@ -140,7 +140,7 @@ class HomeViewModel(
                             if (storageState !is DataState.Error || storageState.error != fileTypesState.error) {
                                 add(
                                     element = UiSnackbar(
-                                        message = UiTextHelper.DynamicString("Failed to load file types: ${fileTypesState.error}"),
+                                        message = UiTextHelper.DynamicString("Failed to load file types: ${fileTypesState.error}"), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
                                         isError = true
                                     )
                                 )
@@ -244,7 +244,7 @@ class HomeViewModel(
                                 )
                             ),
                             errors = currentState.errors + UiSnackbar(
-                                message = UiTextHelper.DynamicString("Failed to analyze files: ${result.error}"),
+                                message = UiTextHelper.DynamicString("Failed to analyze files: ${result.error}"), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
                                 isError = true
                             )
                         )
@@ -286,7 +286,7 @@ class HomeViewModel(
         } else null
 
         val filesMap: LinkedHashMap<String, MutableList<File>> = linkedMapOf()
-        filesMap.putAll(baseFinalTitles.associateWith { mutableListOf<File>() })
+        filesMap.putAll(baseFinalTitles.associateWith { mutableListOf() })
         duplicatesTitle?.let { filesMap[it] = mutableListOf() }
 
         val duplicateGroups: List<List<File>> = if (includeDuplicates) findDuplicateGroups(scannedFiles) else emptyList()
@@ -349,7 +349,7 @@ class HomeViewModel(
                 sendAction(
                     HomeAction.ShowSnackbar(
                         UiSnackbar(
-                            message = UiTextHelper.DynamicString("No files selected to delete."),
+                            message = UiTextHelper.DynamicString("No files selected to delete."), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
                             isError = false
                         )
                     )
@@ -372,9 +372,9 @@ class HomeViewModel(
             deleteFilesUseCase(filesToDelete = files).collectLatest { result: DataState<Unit, Errors> ->
                 _uiState.applyResult(
                     result = result,
-                    errorMessage = UiTextHelper.DynamicString("Failed to delete files:")
+                    errorMessage = UiTextHelper.DynamicString("Failed to delete files:") // FIXME: Make it string res (Ensure the placement in strings.xml is correct
                 ) { data, currentData ->
-                    val includeDuplicates = dataStore.deleteDuplicateFiles.first()
+                    val includeDuplicates = dataStore.deleteDuplicateFiles.first() // FIXME: Suspension functions can only be called within coroutine body.
                     val (groupedFilesUpdated, duplicateOriginals) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot { files.contains(it) },
                         emptyFolders = currentData.analyzeState.emptyFolderList,
@@ -415,7 +415,7 @@ class HomeViewModel(
                 sendAction(
                     HomeAction.ShowSnackbar(
                         UiSnackbar(
-                            message = UiTextHelper.DynamicString("No files selected to move to trash."),
+                            message = UiTextHelper.DynamicString("No files selected to move to trash."), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
                             isError = false
                         )
                     )
@@ -440,9 +440,9 @@ class HomeViewModel(
             moveToTrashUseCase(filesToMove = files).collectLatest { result: DataState<Unit, Errors> ->
                 _uiState.applyResult(
                     result = result,
-                    errorMessage = UiTextHelper.DynamicString("Failed to move files to trash:")
+                    errorMessage = UiTextHelper.DynamicString("Failed to move files to trash:") // FIXME: Make it string res (Ensure the placement in strings.xml is correct
                 ) { data: Unit, currentData: UiHomeModel ->
-                    val includeDuplicates = dataStore.deleteDuplicateFiles.first()
+                    val includeDuplicates = dataStore.deleteDuplicateFiles.first() // FIXME: Suspension functions can only be called within coroutine body.
                     val (groupedFilesUpdated2, duplicateOriginals2) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile: File ->
                             files.any { movedFile: File -> existingFile.absolutePath == movedFile.absolutePath }
@@ -523,7 +523,7 @@ class HomeViewModel(
     fun toggleSelectAllFiles() {
         _uiState.update { state: UiStateScreen<UiHomeModel> ->
             val currentData: UiHomeModel = state.data ?: UiHomeModel()
-            val newState: Boolean = currentData.analyzeState.areAllFilesSelected != true
+            val newState: Boolean = !currentData.analyzeState.areAllFilesSelected
             val visibleFiles: List<File> = currentData.analyzeState.groupedFiles.values.flatten()
             val duplicateOriginals = currentData.analyzeState.duplicateOriginals
             state.copy(
@@ -633,7 +633,7 @@ class HomeViewModel(
                 sendAction(
                     HomeAction.ShowSnackbar(
                         UiSnackbar(
-                            message = UiTextHelper.DynamicString("Data not available."),
+                            message = UiTextHelper.DynamicString("Data not available."), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
                             isError = true
                         )
                     )
@@ -647,7 +647,7 @@ class HomeViewModel(
                 sendAction(
                     HomeAction.ShowSnackbar(
                         UiSnackbar(
-                            message = UiTextHelper.DynamicString("No files selected to clean."),
+                            message = UiTextHelper.DynamicString("No files selected to clean."), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
                             isError = false
                         )
                     )
@@ -658,9 +658,9 @@ class HomeViewModel(
             deleteFilesUseCase(filesToDelete = filesToDelete).collectLatest { result: DataState<Unit, Errors> ->
                 _uiState.applyResult(
                     result = result,
-                    errorMessage = UiTextHelper.DynamicString("Failed to delete files: ")
+                    errorMessage = UiTextHelper.DynamicString("Failed to delete files: ") // FIXME: Make it string res (Ensure the placement in strings.xml is correct
                 ) { _: Unit, currentData: UiHomeModel ->
-                    val includeDuplicates = dataStore.deleteDuplicateFiles.first()
+                    val includeDuplicates = dataStore.deleteDuplicateFiles.first() // FIXME: Suspension functions can only be called within coroutine body.
                     val (groupedFilesUpdated, duplicateOriginals) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot {
                             filesToDelete.contains(it)
@@ -731,7 +731,7 @@ class HomeViewModel(
                 sendAction(
                     HomeAction.ShowSnackbar(
                         UiSnackbar(
-                            message = UiTextHelper.DynamicString("Data not available."),
+                            message = UiTextHelper.DynamicString("Data not available."), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
                             isError = true
                         )
                     )
@@ -745,7 +745,7 @@ class HomeViewModel(
                 sendAction(
                     HomeAction.ShowSnackbar(
                         UiSnackbar(
-                            message = UiTextHelper.DynamicString("No files selected to move to trash."),
+                            message = UiTextHelper.DynamicString("No files selected to move to trash."), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
                             isError = false
                         )
                     )
@@ -758,10 +758,10 @@ class HomeViewModel(
             moveToTrashUseCase(filesToMove).collectLatest { result ->
                 _uiState.applyResult(
                     result = result,
-                    errorMessage = UiTextHelper.DynamicString("Failed to move files to trash:")
+                    errorMessage = UiTextHelper.DynamicString("Failed to move files to trash:") // FIXME: Make it string res (Ensure the placement in strings.xml is correct
                 ) { _, currentData ->
 
-                    val includeDuplicates = dataStore.deleteDuplicateFiles.first()
+                    val includeDuplicates = dataStore.deleteDuplicateFiles.first() // FIXME: Suspension functions can only be called within coroutine body.
                     val (groupedFilesUpdated3, duplicateOriginals3) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile ->
                             filesToMove.any { movedFile -> existingFile.absolutePath == movedFile.absolutePath }
@@ -809,7 +809,7 @@ class HomeViewModel(
             updateTrashSizeUseCase(sizeChange).collectLatest { result ->
                 _uiState.applyResult(
                     result = result,
-                    errorMessage = UiTextHelper.DynamicString("Failed to update trash size: ")
+                    errorMessage = UiTextHelper.DynamicString("Failed to update trash size: ") // FIXME: Make it string res (Ensure the placement in strings.xml is correct
                 ) { data, currentData ->
                     currentData
                 }
@@ -856,7 +856,7 @@ class HomeViewModel(
                     sendAction(
                         HomeAction.ShowSnackbar(
                             UiSnackbar(
-                                message = UiTextHelper.DynamicString("No cleaning options selected. Please enable at least one setting."),
+                                message = UiTextHelper.DynamicString("No cleaning options selected. Please enable at least one setting."), // FIXME: Make it string res (Ensure the placement in strings.xml is correct
                                 isError = false
                             )
                         )
