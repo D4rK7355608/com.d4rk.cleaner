@@ -135,8 +135,8 @@
     <string name="delete_invalid_media">Delete invalid media</string>
     <string name="summary_preference_settings_delete_invalid_media">Delete corrupted images</string>
     <string name="scanner">Scanner</string>
-    <string name="summary_preference_settings_delete_duplicates">Delete duplicate files during cleaning</string>
     <string name="clipboard_clean">Clipboard clean</string>
+    <string name="summary_preference_settings_delete_duplicates">Delete duplicate files during cleaning</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">Request delete packages [REQUEST_DELETE_PACKAGES]</string>
