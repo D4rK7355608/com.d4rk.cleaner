@@ -33,9 +33,11 @@ fun DateHeader(
                 .fillMaxWidth()
                 .padding(horizontal = SizeConstants.SmallSize , vertical = SizeConstants.ExtraSmallSize) , verticalAlignment = Alignment.CenterVertically , horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(
-            modifier = Modifier.padding(start = SizeConstants.SmallSize) , text = TimeHelper.formatDate(date = Date(files[0].lastModified()) , context = context)
-        )
+        if (files.isNotEmpty()) {
+            Text(
+                modifier = Modifier.padding(start = SizeConstants.SmallSize) , text = TimeHelper.formatDate(date = Date(files[0].lastModified()) , context = context)
+            )
+        }
         val allFilesForDateSelected : Boolean = files.all { fileSelectionStates[it] == true }
         Checkbox(modifier = Modifier.bounceClick() , checked = allFilesForDateSelected , onCheckedChange = { isChecked ->
             view.playSoundEffect(SoundEffectConstants.CLICK)

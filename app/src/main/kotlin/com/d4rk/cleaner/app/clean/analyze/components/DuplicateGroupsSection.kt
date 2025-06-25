@@ -47,10 +47,12 @@ fun DuplicateGroupsSection(
         sortedDates.forEach { date ->
             val groups : List<List<File>> = filesByDate[date] ?: emptyList()
             val allFiles : List<File> = groups.flatten()
-            item(key = date) {
-                DateHeader(
-                    files = allFiles , fileSelectionStates = fileSelectionStates , onFileSelectionChange = onFileSelectionChange , onDateSelectionChange = onDateSelectionChange , view = view
-                )
+            if (allFiles.isNotEmpty()) {
+                item(key = date) {
+                    DateHeader(
+                        files = allFiles , fileSelectionStates = fileSelectionStates , onFileSelectionChange = onFileSelectionChange , onDateSelectionChange = onDateSelectionChange , view = view
+                    )
+                }
             }
 
             items(groups) { group ->
