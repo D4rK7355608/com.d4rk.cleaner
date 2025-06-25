@@ -30,21 +30,23 @@ fun FilesByDateSection(
 
         sortedDates.forEach { date ->
             val files : List<File> = filesByDate[date] ?: emptyList()
-            item(key = date) {
-                DateHeader(
-                    files = files , fileSelectionStates = fileSelectionStates , onFileSelectionChange = onFileSelectionChange , onDateSelectionChange = onDateSelectionChange , view = view
-                )
-            }
+            if (files.isNotEmpty()) {
+                item(key = date) {
+                    DateHeader(
+                        files = files , fileSelectionStates = fileSelectionStates , onFileSelectionChange = onFileSelectionChange , onDateSelectionChange = onDateSelectionChange , view = view
+                    )
+                }
 
-            item(key = "$date-grid") {
-                FilesGrid(
-                    files = files ,
-                    imageLoader = imageLoader ,
-                    fileSelectionStates = fileSelectionStates ,
-                    onFileSelectionChange = onFileSelectionChange ,
-                    originals = originals ,
-                    view = view ,
-                )
+                item(key = "$date-grid") {
+                    FilesGrid(
+                        files = files ,
+                        imageLoader = imageLoader ,
+                        fileSelectionStates = fileSelectionStates ,
+                        onFileSelectionChange = onFileSelectionChange ,
+                        originals = originals ,
+                        view = view ,
+                    )
+                }
             }
         }
     }
