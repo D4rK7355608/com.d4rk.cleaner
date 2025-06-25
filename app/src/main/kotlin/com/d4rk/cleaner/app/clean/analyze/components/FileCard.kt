@@ -67,7 +67,6 @@ fun FileCard(
 
     Card(
         modifier = modifier
-                .fillMaxWidth()
                 .aspectRatio(ratio = 1f)
                 .bounceClick()
                 .clickable {

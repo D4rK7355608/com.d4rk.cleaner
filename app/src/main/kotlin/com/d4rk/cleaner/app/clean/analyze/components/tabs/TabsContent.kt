@@ -30,6 +30,7 @@ import coil3.ImageLoader
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.hapticPagerSwipe
 import com.d4rk.cleaner.app.clean.analyze.components.FilesByDateSection
+import com.d4rk.cleaner.app.clean.analyze.components.DuplicateGroupsSection
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.UiHomeModel
 import com.d4rk.cleaner.app.clean.home.ui.HomeViewModel
 import com.d4rk.cleaner.app.clean.home.utils.helpers.groupDuplicatesByOriginal
@@ -112,21 +113,32 @@ fun TabsContent(
             SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(file.lastModified()))
         }
 
-        val filesByDate = if (tabs[page] == tabs.last()) {
-            filesByDateRaw.mapValues { (_, list) ->
-                groupDuplicatesByOriginal(list).flatten()
+        if (tabs[page] == tabs.last()) {
+            val filesByDate = filesByDateRaw.mapValues { (_, list) ->
+                groupDuplicatesByOriginal(list)
             }
-        } else filesByDateRaw
 
-        FilesByDateSection(
-            modifier = Modifier,
-            filesByDate = filesByDate,
-            fileSelectionStates = data.analyzeState.fileSelectionMap,
-            imageLoader = imageLoader,
-            onFileSelectionChange = viewModel::onFileSelectionChange,
-            onDateSelectionChange = { files, checked -> viewModel.onEvent(HomeEvent.ToggleSelectFilesForDate(files, checked)) },
-            originals = data.analyzeState.duplicateOriginals,
-            view = view
-        )
+            DuplicateGroupsSection(
+                modifier = Modifier,
+                filesByDate = filesByDate,
+                fileSelectionStates = data.analyzeState.fileSelectionMap,
+                imageLoader = imageLoader,
+                onFileSelectionChange = viewModel::onFileSelectionChange,
+                onDateSelectionChange = { files, checked -> viewModel.onEvent(HomeEvent.ToggleSelectFilesForDate(files, checked)) },
+                originals = data.analyzeState.duplicateOriginals,
+                view = view
+            )
+        } else {
+            FilesByDateSection(
+                modifier = Modifier,
+                filesByDate = filesByDateRaw,
+                fileSelectionStates = data.analyzeState.fileSelectionMap,
+                imageLoader = imageLoader,
+                onFileSelectionChange = viewModel::onFileSelectionChange,
+                onDateSelectionChange = { files, checked -> viewModel.onEvent(HomeEvent.ToggleSelectFilesForDate(files, checked)) },
+                originals = data.analyzeState.duplicateOriginals,
+                view = view
+            )
+        }
     }
 }
