@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import coil3.ImageLoader
+import coil3.imageLoader
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NonLazyGrid
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ScreenHelper
@@ -16,13 +16,13 @@ import java.io.File
 @Composable
 fun FilesGrid(
     files : List<File> ,
-    imageLoader : ImageLoader ,
     fileSelectionStates : Map<File , Boolean> ,
     onFileSelectionChange : (File , Boolean) -> Unit ,
     originals: Set<File> = emptySet(),
     view : View ,
 ) {
     val columns : Int = if (ScreenHelper.isTablet(context = LocalContext.current)) 6 else 3
+    val imageLoader = LocalContext.current.imageLoader
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -33,7 +33,6 @@ fun FilesGrid(
             val file : File = files[index]
             FileCard(
                 file = file,
-                imageLoader = imageLoader,
                 isChecked = fileSelectionStates[file] == true,
                 onCheckedChange = { isChecked -> onFileSelectionChange(file, isChecked) },
                 isOriginal = file in originals,
