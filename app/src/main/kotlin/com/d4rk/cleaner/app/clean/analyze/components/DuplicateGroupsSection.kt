@@ -12,8 +12,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.dp
 import coil3.ImageLoader
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
@@ -34,9 +35,11 @@ fun DuplicateGroupsSection(
     view : View ,
 ) {
     val context = LocalContext.current
-    val configuration = LocalConfiguration.current
+    val windowInfo = LocalWindowInfo.current
+    val density = LocalDensity.current
     val columns = if (ScreenHelper.isTablet(context = context)) 6 else 3
-    val cardSize = (configuration.screenWidthDp.dp - SizeConstants.SmallSize * 2) / columns // FIXME: Using Configuration.screenWidthDp instead of LocalWindowInfo.current.containerSize
+    val containerWidth = with(density) { windowInfo.containerSize.width.toDp() }
+    val cardSize = (containerWidth - SizeConstants.SmallSize * 2) / columns
 
     LazyColumn(
         modifier = modifier.fillMaxSize()

@@ -115,8 +115,10 @@ fun TabsContent(
         }
 
         if (tabs[page] == tabs.last()) {
-            val filesByDate = filesByDateRaw.mapValues { (_, list) ->
-                groupDuplicatesByOriginal(list)
+            val duplicateGroups = groupDuplicatesByOriginal(filesForCurrentPage)
+            val filesByDate = duplicateGroups.groupBy { group ->
+                val firstFile = group.first()
+                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(firstFile.lastModified()))
             }
 
             DuplicateGroupsSection(
