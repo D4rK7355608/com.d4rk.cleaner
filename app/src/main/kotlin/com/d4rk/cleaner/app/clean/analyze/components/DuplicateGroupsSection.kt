@@ -1,0 +1,68 @@
+package com.d4rk.cleaner.app.clean.analyze.components
+
+import android.view.View
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import coil3.ImageLoader
+import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Locale
+
+@Composable
+fun DuplicateGroupsSection(
+    modifier : Modifier ,
+    filesByDate : Map<String , List<List<File>>> ,
+    fileSelectionStates : Map<File , Boolean> ,
+    imageLoader : ImageLoader ,
+    onFileSelectionChange : (File , Boolean) -> Unit ,
+    onDateSelectionChange: (List<File>, Boolean) -> Unit ,
+    originals: Set<File> = emptySet(),
+    view : View ,
+) {
+    LazyColumn(
+        modifier = modifier.fillMaxWidth()
+    ) {
+        val sortedDates : List<String> = filesByDate.keys.sortedByDescending { dateString ->
+            SimpleDateFormat("yyyy-MM-dd" , Locale.getDefault()).parse(dateString)
+        }
+
+        sortedDates.forEach { date ->
+            val groups : List<List<File>> = filesByDate[date] ?: emptyList()
+            val allFiles : List<File> = groups.flatten()
+            item(key = date) {
+                DateHeader(
+                    files = allFiles , fileSelectionStates = fileSelectionStates , onFileSelectionChange = onFileSelectionChange , onDateSelectionChange = onDateSelectionChange , view = view
+                )
+            }
+
+            items(groups) { group ->
+                Row(
+                    modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = SizeConstants.SmallSize)
+                            .horizontalScroll(rememberScrollState())
+                ) {
+                    group.forEach { file ->
+                        FileCard(
+                            file = file,
+                            imageLoader = imageLoader,
+                            isChecked = fileSelectionStates[file] == true,
+                            onCheckedChange = { checked -> onFileSelectionChange(file, checked) },
+                            isOriginal = file in originals,
+                            view = view,
+                            modifier = Modifier.padding(end = SizeConstants.SmallSize)
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
