@@ -34,6 +34,7 @@
     <string name="videos">Mga Video</string>
     <string name="audios">Mga Audio</string>
     <string name="empty_folders">Mga Walang Lamang Folder</string>
+    <string name="duplicates">Dobleng mga file</string>
     <plurals name="status_selected_files">
         <item quantity="one">Katayuan: %1$d file ang napili</item>
         <item quantity="other">Katayuan: %1$d (na) file ang napili</item>

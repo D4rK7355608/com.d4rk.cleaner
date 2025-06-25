@@ -34,6 +34,7 @@
     <string name="videos">วิดีโอ</string>
     <string name="audios">ไฟล์เสียง</string>
     <string name="empty_folders">โฟลเดอร์ว่าง</string>
+    <string name="duplicates">ไฟล์ที่ซ้ำกัน</string>
     <plurals name="status_selected_files">
         <item quantity="other">สถานะ: เลือก %1$d ไฟล์</item>
     </plurals>

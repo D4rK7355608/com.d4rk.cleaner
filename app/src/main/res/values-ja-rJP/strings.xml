@@ -34,6 +34,7 @@
     <string name="videos">動画</string>
     <string name="audios">音声</string>
     <string name="empty_folders">空のフォルダ</string>
+    <string name="duplicates">ファイルの複製</string>
     <plurals name="status_selected_files">
         <item quantity="other">ステータス: %1$d個のファイルを選択中</item>
     </plurals>

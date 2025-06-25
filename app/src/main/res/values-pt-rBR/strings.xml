@@ -34,6 +34,7 @@
     <string name="videos">Vídeos</string>
     <string name="audios">Áudios</string>
     <string name="empty_folders">Pastas Vazias</string>
+    <string name="duplicates">Arquivos duplicados</string>
     <plurals name="status_selected_files">
         <item quantity="one">Status: %1$d arquivo selecionado</item>
         <item quantity="other">Status: %1$d arquivos selecionados</item>

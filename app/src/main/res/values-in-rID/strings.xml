@@ -34,6 +34,7 @@
     <string name="videos">Video</string>
     <string name="audios">Audio</string>
     <string name="empty_folders">Folder Kosong</string>
+    <string name="duplicates">Duplikat file</string>
     <plurals name="status_selected_files">
         <item quantity="other">Status: %1$d file dipilih</item>
     </plurals>

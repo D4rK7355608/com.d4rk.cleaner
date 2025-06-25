@@ -34,6 +34,7 @@
     <string name="videos">Video</string>
     <string name="audios">Âm thanh</string>
     <string name="empty_folders">Thư mục trống</string>
+    <string name="duplicates">Các tập tin trùng lặp</string>
     <plurals name="status_selected_files">
         <item quantity="other">Trạng thái: Đã chọn %1$d tệp</item>
     </plurals>

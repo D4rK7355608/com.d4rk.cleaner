@@ -34,6 +34,7 @@
     <string name="videos">Videor</string>
     <string name="audios">Ljudfiler</string>
     <string name="empty_folders">Tomma mappar</string>
+    <string name="duplicates">Duplicerade filer</string>
     <plurals name="status_selected_files">
         <item quantity="one">Status: %1$d fil vald</item>
         <item quantity="other">Status: %1$d filer valda</item>
