@@ -32,6 +32,7 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.hapticPager
 import com.d4rk.cleaner.app.clean.analyze.components.FilesByDateSection
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.UiHomeModel
 import com.d4rk.cleaner.app.clean.home.ui.HomeViewModel
+import com.d4rk.cleaner.app.clean.home.utils.helpers.groupDuplicatesByOriginal
 import com.d4rk.cleaner.app.clean.home.domain.actions.HomeEvent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -107,18 +108,24 @@ fun TabsContent(
     ) { page ->
         val filesForCurrentPage = groupedFiles[tabs[page]] ?: emptyList()
 
-        val filesByDate = filesForCurrentPage.groupBy { file ->
-            SimpleDateFormat("yyyy-MM-dd" , Locale.getDefault()).format(Date(file.lastModified()))
+        val filesByDateRaw = filesForCurrentPage.groupBy { file ->
+            SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(file.lastModified()))
         }
 
+        val filesByDate = if (tabs[page] == tabs.last()) {
+            filesByDateRaw.mapValues { (_, list) ->
+                groupDuplicatesByOriginal(list).flatten()
+            }
+        } else filesByDateRaw
+
         FilesByDateSection(
-            modifier = Modifier ,
-            filesByDate = filesByDate ,
-            fileSelectionStates = data.analyzeState.fileSelectionMap ,
-            imageLoader = imageLoader ,
-            onFileSelectionChange = viewModel::onFileSelectionChange ,
+            modifier = Modifier,
+            filesByDate = filesByDate,
+            fileSelectionStates = data.analyzeState.fileSelectionMap,
+            imageLoader = imageLoader,
+            onFileSelectionChange = viewModel::onFileSelectionChange,
             onDateSelectionChange = { files, checked -> viewModel.onEvent(HomeEvent.ToggleSelectFilesForDate(files, checked)) },
-            originals = data.analyzeState.duplicateOriginals ,
+            originals = data.analyzeState.duplicateOriginals,
             view = view
         )
     }
