@@ -18,4 +18,5 @@ sealed class HomeEvent : UiEvent {
     object MoveSelectedToTrash : HomeEvent()
     data class SetDeleteForeverConfirmationDialogVisibility(val isVisible : Boolean) : HomeEvent()
     data class SetMoveToTrashConfirmationDialogVisibility(val isVisible : Boolean) : HomeEvent()
+    data object DismissSnackbar : HomeEvent()
 }

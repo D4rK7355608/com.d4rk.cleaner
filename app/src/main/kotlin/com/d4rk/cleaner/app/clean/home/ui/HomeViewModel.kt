@@ -8,6 +8,7 @@ import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.applyResult
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.setLoading
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.showSnackbar
+import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.dismissSnackbar
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.successData
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.updateData
 import com.d4rk.android.libs.apptoolkit.core.ui.base.ScreenViewModel
@@ -86,6 +87,7 @@ class HomeViewModel(
             is HomeEvent.SetMoveToTrashConfirmationDialogVisibility -> setMoveToTrashConfirmationDialogVisibility(
                 isVisible = event.isVisible
             )
+            is HomeEvent.DismissSnackbar -> screenState.dismissSnackbar()
         }
     }
 
