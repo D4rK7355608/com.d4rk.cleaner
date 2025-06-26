@@ -50,6 +50,11 @@ fun TabsContent(
 ) {
     val tabs : List<String> = groupedFiles.keys.toList()
     val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
+    // Title for the duplicates tab as defined in resources. Used to detect if
+    // a duplicates page exists in the provided map of tabs.
+    val duplicatesTabTitle =
+        data.analyzeState.fileTypesData.fileTypesTitles.getOrElse(10) { "Duplicates" }
+    val hasDuplicatesTab = groupedFiles.containsKey(duplicatesTabTitle)
     val imageLoader = LocalContext.current.imageLoader
 
     Row(
@@ -116,7 +121,7 @@ fun TabsContent(
             SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(file.lastModified()))
         }
 
-        if (tabs[page] == tabs.last()) {
+        if (hasDuplicatesTab && tabs[page] == duplicatesTabTitle) {
             val duplicateGroups = groupDuplicatesByOriginal(filesForCurrentPage)
             val filesByDate = duplicateGroups.groupBy { group ->
                 val firstFile = group.first()
