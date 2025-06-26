@@ -66,12 +66,12 @@ class ImageOptimizerViewModel(
             }
             val destinationFile = originalFile?.let { getDestinationFileUseCase(it) }
             val compressedFile = originalFile?.let { file ->
-                try {
+                runCatching {
                     val desiredBytes = if (currentTab == 1 && _uiState.value.fileSizeKB > 0) _uiState.value.fileSizeKB * 1024L else null
                     val tempFile = compressImageUseCase(file, quality, targetWidth, targetHeight, desiredBytes)
                     destinationFile?.apply { tempFile.copyTo(this, overwrite = true) }
                     destinationFile
-                } catch (e: Exception) {
+                }.getOrElse { e ->
                     e.printStackTrace()
                     null
                 }
@@ -139,11 +139,12 @@ class ImageOptimizerViewModel(
                 else -> Pair(640, 480)
             }
             val previewFile = originalFile?.let { file ->
-                try {
+                runCatching {
                     val desiredBytes = if (currentTab == 1 && _uiState.value.fileSizeKB > 0) _uiState.value.fileSizeKB * 1024L else null
                     compressImageUseCase(file, quality, targetWidth, targetHeight, desiredBytes)
-                } catch (e: Exception) {
-                    e.printStackTrace(); null
+                }.getOrElse { e ->
+                    e.printStackTrace()
+                    null
                 }
             }
             val newSizeKB: Double = previewFile?.let { it.length() / 1024.0 } ?: 0.0

@@ -18,7 +18,7 @@ android {
         applicationId = "com.d4rk.cleaner"
         minSdk = 23
         targetSdk = 36
-        versionCode = 171
+        versionCode = 172
         versionName = "3.3.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         @Suppress("UnstableApiUsage") androidResources.localeFilters += listOf(

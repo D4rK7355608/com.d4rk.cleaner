@@ -16,6 +16,7 @@ import com.d4rk.cleaner.app.clean.memory.domain.data.model.ui.UiMemoryManagerScr
 import com.d4rk.cleaner.app.clean.memory.domain.usecases.GetRamInfoUseCase
 import com.d4rk.cleaner.app.clean.memory.domain.usecases.GetStorageInfoUseCase
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.collectLatest
@@ -103,7 +104,8 @@ class MemoryManagerViewModel(private val getStorageInfoUseCase : GetStorageInfoU
         ramUpdateJob = launch(dispatchers.default) {
             while (isActive) {
                 delay(5000)
-                try {
+
+                runCatching {
                     getRamInfoUseCase().collectLatest { result ->
                         when (result) {
                             is DataState.Success -> {
@@ -113,10 +115,11 @@ class MemoryManagerViewModel(private val getStorageInfoUseCase : GetStorageInfoU
                             }
 
                             is DataState.Error -> {
-                                coroutineContext.ensureActive() // ✅ Anti-pattern #4
+                                coroutineContext.ensureActive()
                                 _uiState.showSnackbar(
                                     UiSnackbar(
-                                        message = UiTextHelper.DynamicString("Error updating RAM info: ${result.error}") , isError = true
+                                        message = UiTextHelper.DynamicString("Error updating RAM info: ${result.error}"),
+                                        isError = true
                                     )
                                 )
                             }
@@ -124,14 +127,15 @@ class MemoryManagerViewModel(private val getStorageInfoUseCase : GetStorageInfoU
                             else -> Unit
                         }
                     }
-                } catch (e : Exception) {
-                    coroutineContext.ensureActive() // ✅ Ensures cancellation still propagates
+                }.onFailure { e ->
+                    coroutineContext.ensureActive()
                     _uiState.showSnackbar(
                         UiSnackbar(
-                            message = UiTextHelper.DynamicString("Exception during RAM update: ${e.message}") , isError = true
+                            message = UiTextHelper.DynamicString("Exception during RAM update: ${e.message}"),
+                            isError = true
                         )
                     )
-                    break // Stop loop if exception is not cancellation
+                    cancel()
                 }
             }
         }
