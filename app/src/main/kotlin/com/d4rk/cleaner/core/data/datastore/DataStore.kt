@@ -60,7 +60,7 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
     }
 
     private val lastCleanupNotificationDismissedKey = longPreferencesKey(name = AppDataStoreConstants.DATA_STORE_LAST_CLEANUP_NOTIFICATION_DISMISSED)
-    val lastCleanupNotificationDismissed: Flow<Long> = dataStore.data.map { prefs ->
+    val lastCleanupNotificationDismissed: Flow<Long> = dataStore.data.map { prefs -> // FIXME: Property "lastCleanupNotificationDismissed" is never used
         prefs[lastCleanupNotificationDismissedKey] ?: 0L
     }
 
@@ -87,7 +87,7 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         prefs[reminderFrequencyKey] ?: 7
     }
 
-    suspend fun saveCleanupReminderFrequencyDays(days: Int) {
+    suspend fun saveCleanupReminderFrequencyDays(days: Int) { // FIXME: Function "saveCleanupReminderFrequencyDays" is never used
         dataStore.edit { prefs ->
             prefs[reminderFrequencyKey] = days
         }
