@@ -13,8 +13,9 @@ class CleanupDismissReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
         CoroutineScope(Dispatchers.IO).launch {
             val store = DataStore(context)
-            store.saveLastCleanupNotificationDismissed(System.currentTimeMillis())
-            store.saveCleanupNotificationSnoozedUntil(System.currentTimeMillis() + 3.days.inWholeMilliseconds)
+            store.saveCleanupNotificationSnoozedUntil(
+                System.currentTimeMillis() + 3.days.inWholeMilliseconds
+            )
         }
     }
 }

@@ -59,16 +59,6 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         }
     }
 
-    private val lastCleanupNotificationDismissedKey = longPreferencesKey(name = AppDataStoreConstants.DATA_STORE_LAST_CLEANUP_NOTIFICATION_DISMISSED)
-    val lastCleanupNotificationDismissed: Flow<Long> = dataStore.data.map { prefs -> // FIXME: Property "lastCleanupNotificationDismissed" is never used
-        prefs[lastCleanupNotificationDismissedKey] ?: 0L
-    }
-
-    suspend fun saveLastCleanupNotificationDismissed(timestamp: Long) {
-        dataStore.edit { prefs ->
-            prefs[lastCleanupNotificationDismissedKey] = timestamp
-        }
-    }
 
     private val cleanupNotificationSnoozedUntilKey =
         longPreferencesKey(name = AppDataStoreConstants.DATA_STORE_CLEANUP_NOTIFICATION_SNOOZED_UNTIL)
@@ -87,11 +77,6 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         prefs[reminderFrequencyKey] ?: 7
     }
 
-    suspend fun saveCleanupReminderFrequencyDays(days: Int) { // FIXME: Function "saveCleanupReminderFrequencyDays" is never used
-        dataStore.edit { prefs ->
-            prefs[reminderFrequencyKey] = days
-        }
-    }
 
     private val trashFileOriginalPathsKey = stringSetPreferencesKey(AppDataStoreConstants.DATA_STORE_TRASH_FILE_ORIGINAL_PATHS)
 
