@@ -2,6 +2,22 @@
 <resources>
     <string name="app_short_description">Den sista Android-rensaren du någonsin kommer att behöva för dagligt bruk!</string>
 
+    <!-- Notifications -->
+    <string name="cleanup_notification_title">Din telefon kan behöva städas</string>
+    <string name="cleanup_notification_default">Tryck för att skanna och frigöra utrymme.</string>
+    <string name="scan_now">Skanna nu</string>
+    <string name="cleanup_title_variant1">Bara en snabb koll</string>
+    <string name="cleanup_title_variant2">Känns utrymmet trångt?</string>
+    <string name="cleanup_title_variant3">Cleaner finns här om du behöver</string>
+    <string name="cleanup_title_variant4">Din telefon har varit upptagen på sistone</string>
+    <string name="cleanup_title_variant5">Dags för en liten uppfräschning?</string>
+    <string name="cleanup_storage_very_high">Lagringen är riktigt full. Vill du städa lite?</string>
+    <string name="cleanup_storage_high">Du är på %1$d%% — tryck för att skanna vid behov.</string>
+    <string name="cleanup_storage_medium">Här finns mycket innehåll. En skanning kan hjälpa.</string>
+    <string name="cleanup_storage_ok">Ditt lagringsutrymme ser bra ut!</string>
+    <string name="cleanup_notification_last_scan_format">Senaste skanning: för %1$d dagar sedan. %2$s</string>
+    <string name="cleanup_notification_never_scanned">Du har inte skannat din telefon än. Tryck för att börja.</string>
+
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">Välkommen till Cleaner!</string>
     <string name="onboarding_welcome_description">Låt oss gå igenom en snabb installation och börja frigöra utrymme.</string>

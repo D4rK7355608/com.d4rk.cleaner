@@ -2,6 +2,22 @@
 <resources>
     <string name="app_short_description">Trình dọn dẹp Android cuối cùng bạn cần cho việc sử dụng hàng ngày!</string>
 
+    <!-- Notifications -->
+    <string name="cleanup_notification_title">Điện thoại của bạn có thể cần dọn dẹp</string>
+    <string name="cleanup_notification_default">Nhấn để quét và giải phóng dung lượng.</string>
+    <string name="scan_now">Quét ngay</string>
+    <string name="cleanup_title_variant1">Chỉ kiểm tra nhanh thôi</string>
+    <string name="cleanup_title_variant2">Thiếu chỗ trống?</string>
+    <string name="cleanup_title_variant3">Cleaner sẵn sàng nếu bạn cần</string>
+    <string name="cleanup_title_variant4">Điện thoại của bạn gần đây bận rộn</string>
+    <string name="cleanup_title_variant5">Đến lúc làm mới nhẹ?</string>
+    <string name="cleanup_storage_very_high">Bộ nhớ rất chật. Bạn muốn dọn dẹp chút không?</string>
+    <string name="cleanup_storage_high">Bạn đã dùng %1$d%% — nhấn để quét nếu cần.</string>
+    <string name="cleanup_storage_medium">Có khá nhiều thứ ở đây. Quét có thể giúp.</string>
+    <string name="cleanup_storage_ok">Bộ nhớ của bạn vẫn ổn!</string>
+    <string name="cleanup_notification_last_scan_format">Lần quét cuối: %1$d ngày trước. %2$s</string>
+    <string name="cleanup_notification_never_scanned">Bạn chưa quét điện thoại. Nhấn để bắt đầu.</string>
+
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">Chào mừng đến với Cleaner!</string>
     <string name="onboarding_welcome_description">Hãy cùng thực hiện một thiết lập nhanh và bắt đầu giải phóng dung lượng.</string>

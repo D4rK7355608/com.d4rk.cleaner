@@ -2,6 +2,22 @@
 <resources>
     <string name="app_short_description">Günlük kullanım için ihtiyaç duyacağınız son Android Temizleyici!</string>
 
+    <!-- Notifications -->
+    <string name="cleanup_notification_title">Telefonunuzun temizliğe ihtiyacı olabilir</string>
+    <string name="cleanup_notification_default">Tarayıp yer açmak için dokunun.</string>
+    <string name="scan_now">Şimdi tara</string>
+    <string name="cleanup_title_variant1">Sadece hızlı bir kontrol</string>
+    <string name="cleanup_title_variant2">Yer mi daralıyor?</string>
+    <string name="cleanup_title_variant3">İhtiyacın olursa Cleaner burada</string>
+    <string name="cleanup_title_variant4">Telefonun son zamanlarda meşguldü</string>
+    <string name="cleanup_title_variant5">Hafif bir yenileme zamanı mı?</string>
+    <string name="cleanup_storage_very_high">Depolama çok dolu. Biraz temizlemek ister misin?</string>
+    <string name="cleanup_storage_high">%1$d%% dolu — gerekirse taramak için dokun.</string>
+    <string name="cleanup_storage_medium">Burada epey şey var. Tarama yardımcı olabilir.</string>
+    <string name="cleanup_storage_ok">Depolaman gayet iyi!</string>
+    <string name="cleanup_notification_last_scan_format">Son tarama: %1$d gün önce. %2$s</string>
+    <string name="cleanup_notification_never_scanned">Telefonunu henüz taramadın. Başlamak için dokun.</string>
+
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">Cleaner\'a Hoş Geldiniz!</string>
     <string name="onboarding_welcome_description">Hızlı bir kurulum yapalım ve yer açmaya başlayalım.</string>

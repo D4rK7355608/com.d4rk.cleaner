@@ -2,6 +2,22 @@
 <resources>
     <string name="app_short_description">일상적인 사용에 필요한 마지막 Android 클리너입니다!</string>
 
+    <!-- Notifications -->
+    <string name="cleanup_notification_title">휴대폰을 정리해야 할 수도 있어요</string>
+    <string name="cleanup_notification_default">탭하여 스캔하고 공간을 확보하세요.</string>
+    <string name="scan_now">지금 스캔</string>
+    <string name="cleanup_title_variant1">간단한 점검이에요</string>
+    <string name="cleanup_title_variant2">공간이 부족한가요?</string>
+    <string name="cleanup_title_variant3">필요하면 클리너가 도와드려요</string>
+    <string name="cleanup_title_variant4">최근 휴대폰이 바빴네요</string>
+    <string name="cleanup_title_variant5">가볍게 새로고침할까요?</string>
+    <string name="cleanup_storage_very_high">저장공간이 매우 부족합니다. 조금 정리해볼까요?</string>
+    <string name="cleanup_storage_high">%1$d%% 사용 중 — 필요하면 탭해서 스캔하세요.</string>
+    <string name="cleanup_storage_medium">여기에 내용이 많네요. 스캔이 도움이 될 수 있어요.</string>
+    <string name="cleanup_storage_ok">저장공간은 괜찮아 보여요!</string>
+    <string name="cleanup_notification_last_scan_format">마지막 스캔: %1$d일 전. %2$s</string>
+    <string name="cleanup_notification_never_scanned">아직 휴대폰을 스캔하지 않았어요. 시작하려면 탭하세요.</string>
+
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">클리너에 오신 것을 환영합니다!</string>
     <string name="onboarding_welcome_description">빠른 설정을 진행하고 공간 확보를 시작해 보겠습니다.</string>

@@ -2,6 +2,22 @@
 <resources>
     <string name="app_short_description">¡El último limpiador de Android que necesitarás para el uso diario!</string>
 
+    <!-- Notifications -->
+    <string name="cleanup_notification_title">Puede que tu teléfono necesite una limpieza</string>
+    <string name="cleanup_notification_default">Toca para escanear y liberar espacio.</string>
+    <string name="scan_now">Escanear ahora</string>
+    <string name="cleanup_title_variant1">Solo una rápida revisión</string>
+    <string name="cleanup_title_variant2">¿Falta espacio?</string>
+    <string name="cleanup_title_variant3">Cleaner está aquí si lo necesitas</string>
+    <string name="cleanup_title_variant4">Tu teléfono ha estado ocupado últimamente</string>
+    <string name="cleanup_title_variant5">¿Hora de una ligera renovación?</string>
+    <string name="cleanup_storage_very_high">El almacenamiento está muy lleno. ¿Quieres limpiar un poco?</string>
+    <string name="cleanup_storage_high">Estás al %1$d%% — toca para escanear si lo necesitas.</string>
+    <string name="cleanup_storage_medium">Hay bastantes cosas aquí. Un escaneo podría ayudar.</string>
+    <string name="cleanup_storage_ok">¡Tu almacenamiento se ve bien!</string>
+    <string name="cleanup_notification_last_scan_format">Último escaneo: hace %1$d días. %2$s</string>
+    <string name="cleanup_notification_never_scanned">Aún no has escaneado tu teléfono. Toca para empezar.</string>
+
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">¡Bienvenido a Cleaner!</string>
     <string name="onboarding_welcome_description">Vamos a realizar una configuración rápida y empezar a liberar espacio.</string>
