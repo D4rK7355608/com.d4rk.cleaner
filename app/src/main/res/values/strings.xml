@@ -2,6 +2,21 @@
 <resources>
     <string name="app_short_description">The last Android Cleaner you will ever need for every day use!</string>
 
+    <!-- Notifications -->
+    <string name="cleanup_notification_title">Your phone might need a cleanup</string>
+    <string name="cleanup_notification_default">Tap to scan and free up space.</string>
+    <string name="scan_now">Scan now</string>
+    <string name="cleanup_title_variant1">Just a quick check-in</string>
+    <string name="cleanup_title_variant2">Space feeling tight?</string>
+    <string name="cleanup_title_variant3">Cleaner here if you need it</string>
+    <string name="cleanup_title_variant4">Your phone\’s been busy lately</string>
+    <string name="cleanup_title_variant5">Time for a light refresh?</string>
+    <string name="cleanup_storage_very_high">Storage is really tight. Want to clean a bit?</string>
+    <string name="cleanup_storage_high">You\'re at %1$d%% — tap to scan if needed.</string>
+    <string name="cleanup_storage_medium">Plenty of stuff here. A scan might help.</string>
+    <string name="cleanup_storage_ok">Your storage is looking fine!</string>
+    <string name="cleanup_notification_last_scan_format">Last scan: %1$d days ago. %2$s</string>
+
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">Welcome to Cleaner!</string>
     <string name="onboarding_welcome_description">Let\'s walk through a quick setup and start freeing space.</string>
@@ -208,17 +223,4 @@
     <string name="no_files_selected_to_clean">No files selected to clean.</string>
     <string name="failed_to_update_trash_size">Failed to update trash size: %1$s</string>
     <string name="no_cleaning_options_selected">Please choose your cleaning preferences in settings to proceed.</string>
-    <string name="cleanup_notification_title">Your phone might need a cleanup</string>
-    <string name="cleanup_notification_default">Tap to scan and free up space.</string>
-    <string name="scan_now">Scan now</string>
-    <string name="cleanup_title_variant1">Just a quick check-in</string>
-    <string name="cleanup_title_variant2">Space feeling tight?</string>
-    <string name="cleanup_title_variant3">Cleaner here if you need it</string>
-    <string name="cleanup_title_variant4">Your phone’s been busy lately</string>
-    <string name="cleanup_title_variant5">Time for a light refresh?</string>
-    <string name="cleanup_storage_very_high">Storage is really tight. Want to clean a bit?</string>
-    <string name="cleanup_storage_high">You're at %1$d%% — tap to scan if needed.</string>
-    <string name="cleanup_storage_medium">Plenty of stuff here. A scan might help.</string>
-    <string name="cleanup_storage_ok">Your storage is looking fine!</string>
-    <string name="cleanup_notification_last_scan_format">Last scan: %1$d days ago. %2$s</string>
 </resources>
