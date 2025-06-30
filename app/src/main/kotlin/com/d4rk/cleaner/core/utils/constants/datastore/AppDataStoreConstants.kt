@@ -9,7 +9,6 @@ object AppDataStoreConstants : DataStoreNamesConstants() {
     const val DATA_STORE_TRASH_SIZE = "trash_size"
     const val DATA_STORE_LAST_CLEANUP_NOTIFICATION_SHOWN = "last_cleanup_notif_shown"
     const val DATA_STORE_LAST_CLEANUP_NOTIFICATION_CLICKED = "last_cleanup_notif_clicked"
-    const val DATA_STORE_LAST_CLEANUP_NOTIFICATION_DISMISSED = "last_cleanup_notif_dismissed"
     const val DATA_STORE_CLEANUP_NOTIFICATION_SNOOZED_UNTIL = "cleanup_notif_snoozed_until"
     const val DATA_STORE_CLEANUP_REMINDER_FREQUENCY_DAYS = "cleanup_reminder_frequency_days"
     const val DATA_STORE_PERMISSION_STORAGE_GRANTED = "permission_storage_granted"
