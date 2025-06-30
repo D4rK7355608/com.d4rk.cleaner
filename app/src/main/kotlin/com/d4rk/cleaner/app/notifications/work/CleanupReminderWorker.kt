@@ -10,6 +10,7 @@ import com.d4rk.cleaner.app.notifications.notifications.CleanupNotifier
 import com.d4rk.cleaner.app.notifications.notifications.CleanupDismissReceiver
 import com.d4rk.cleaner.app.clean.memory.domain.interfaces.MemoryRepository
 import com.d4rk.cleaner.core.data.datastore.DataStore
+import com.d4rk.cleaner.R
 import kotlinx.coroutines.flow.first
 import kotlin.random.Random
 import org.koin.core.component.KoinComponent
@@ -56,17 +57,24 @@ class CleanupReminderWorker(
 
     private fun createFriendlyMessage(storagePercent: Int, ramPercent: Int, days: Int): Pair<String, String> {
         val titles = listOf(
-            "Hey, just checking in",
-            "Cleaner\u2019s ready when you are",
-            "Space feeling tight?"
+            R.string.cleanup_notification_friendly_title1,
+            R.string.cleanup_notification_friendly_title2,
+            R.string.cleanup_notification_friendly_title3,
         )
-        val title = titles.random(Random)
+        val titleRes = titles.random(Random)
+        val title = applicationContext.getString(titleRes)
 
         val message = when {
-            storagePercent > 80 -> "You've used $storagePercent% of storage. Want to tidy up?"
-            ramPercent > 85 -> "Memory looks busy ($ramPercent%). A light scan could help."
-            days > 7 -> "It\u2019s been $days days since your last cleanup. Ready for a refresh?"
-            else -> "Quick scan ready \u2013 clean your phone in 10 seconds."
+            storagePercent > 80 -> applicationContext.getString(
+                R.string.cleanup_notification_msg_storage, storagePercent
+            )
+            ramPercent > 85 -> applicationContext.getString(
+                R.string.cleanup_notification_msg_ram, ramPercent
+            )
+            days > 7 -> applicationContext.getString(
+                R.string.cleanup_notification_msg_days, days
+            )
+            else -> applicationContext.getString(R.string.cleanup_notification_msg_default)
         }
 
         return title to message

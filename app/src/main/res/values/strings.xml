@@ -211,4 +211,11 @@
     <string name="cleanup_notification_title">Your phone might need a cleanup</string>
     <string name="cleanup_notification_default">Tap to scan and free up space.</string>
     <string name="scan_now">Scan now</string>
+    <string name="cleanup_notification_friendly_title1">Hey, just checking in</string>
+    <string name="cleanup_notification_friendly_title2">Cleaner’s ready when you are</string>
+    <string name="cleanup_notification_friendly_title3">Space feeling tight?</string>
+    <string name="cleanup_notification_msg_storage">You've used %1$d%% of storage. Want to tidy up?</string>
+    <string name="cleanup_notification_msg_ram">Memory looks busy (%1$d%%). A light scan could help.</string>
+    <string name="cleanup_notification_msg_days">It’s been %1$d days since your last cleanup. Ready for a refresh?</string>
+    <string name="cleanup_notification_msg_default">Quick scan ready – clean your phone in 10 seconds.</string>
 </resources>
