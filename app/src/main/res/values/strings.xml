@@ -16,6 +16,7 @@
     <string name="cleanup_storage_medium">Plenty of stuff here. A scan might help.</string>
     <string name="cleanup_storage_ok">Your storage is looking fine!</string>
     <string name="cleanup_notification_last_scan_format">Last scan: %1$d days ago. %2$s</string>
+    <string name="cleanup_notification_never_scanned">You haven\’t scanned your phone yet. Tap to start.</string>
 
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">Welcome to Cleaner!</string>

@@ -1,21 +1,22 @@
 package com.d4rk.cleaner.app.notifications.notifications
 
+import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.os.Build
-import com.google.android.material.color.MaterialColors
+import androidx.annotation.RequiresPermission
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.d4rk.cleaner.R
-import androidx.core.content.ContextCompat
 import com.d4rk.cleaner.app.main.ui.MainActivity
+import com.google.android.material.color.MaterialColors
 
 class CleanupNotifier(private val context: Context) {
 
+    @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
     fun sendNotification(title: String, message: String, deleteIntent: PendingIntent) {
         createChannelIfNeeded()
         val intent = Intent(context, MainActivity::class.java).apply {
@@ -29,21 +30,17 @@ class CleanupNotifier(private val context: Context) {
         )
 
         val notification = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL)
-            .setSmallIcon(R.drawable.ic_auto_fix_high)
+            .setSmallIcon(R.drawable.ic_cleaner_notify)
             .setContentTitle(title)
             .setContentText(message)
             .setContentIntent(pendingIntent)
             .setDeleteIntent(deleteIntent)
             .setColor(MaterialColors.getColor(context, com.google.android.material.R.attr.colorPrimary, 0))
             .setAutoCancel(true)
-            .addAction(R.drawable.ic_auto_fix_high, context.getString(R.string.scan_now), pendingIntent)
+            .addAction(R.drawable.ic_cleaner_notify, context.getString(R.string.scan_now), pendingIntent)
             .build()
 
-        if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
-            NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, notification)
-        } else {
-            // Handle the case where permission is not granted, e.g., log an error or inform the user.
-        }
+        NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, notification)
     }
 
     private fun createChannelIfNeeded() {

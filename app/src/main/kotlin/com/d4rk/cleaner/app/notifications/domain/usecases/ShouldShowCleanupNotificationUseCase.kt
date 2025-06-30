@@ -34,7 +34,7 @@ class ShouldShowCleanupNotificationUseCase(
 
         val storageHigh = storageRatio >= 0.8f
         val ramHigh = ramRatio >= 0.9f
-        val scanOld = now - lastScan > 7.days.inWholeMilliseconds
+        val scanOld = lastScan == null || now - lastScan > 7.days.inWholeMilliseconds
 
         return storageHigh || ramHigh || scanOld
     }

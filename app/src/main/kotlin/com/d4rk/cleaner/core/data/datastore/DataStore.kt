@@ -27,8 +27,8 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
 
     private val lastScanTimestampKey = longPreferencesKey(name = AppDataStoreConstants.DATA_STORE_LAST_SCAN_TIMESTAMP)
 
-    val lastScanTimestamp : Flow<Long> = dataStore.data.map { preferences ->
-        preferences[lastScanTimestampKey] ?: 0L
+    val lastScanTimestamp : Flow<Long?> = dataStore.data.map { preferences ->
+        preferences[lastScanTimestampKey]
     }
 
     suspend fun saveLastScanTimestamp(timestamp : Long) {

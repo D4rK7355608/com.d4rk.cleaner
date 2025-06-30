@@ -36,7 +36,8 @@ class CleanupReminderWorker(
         val storagePercent = if (storageInfo.storageUsageProgress == 0f) 0 else
             (storageInfo.usedStorage.toFloat() / storageInfo.storageUsageProgress * 100).toInt()
 
-        val daysSinceLastScan = ((System.currentTimeMillis() - lastScan) / (1000 * 60 * 60 * 24)).toInt()
+        val now = System.currentTimeMillis()
+        val daysSinceLastScan = lastScan?.let { ((now - it) / (1000 * 60 * 60 * 24)).toInt() }
 
         val (title, message) = createFriendlyMessage(storagePercent, daysSinceLastScan)
 
@@ -53,14 +54,18 @@ class CleanupReminderWorker(
         return Result.success()
     }
 
-    private fun createFriendlyMessage(storagePercent: Int, days: Int): Pair<String, String> {
+    private fun createFriendlyMessage(storagePercent: Int, days: Int?): Pair<String, String> {
         val title = CleanerMessageProvider.getTitleVariants(applicationContext).random(Random)
         val base = CleanerMessageProvider.getStorageText(applicationContext, storagePercent)
-        val message = applicationContext.getString(
-            R.string.cleanup_notification_last_scan_format,
-            days,
-            base
-        )
+        val message = if (days == null) {
+            applicationContext.getString(R.string.cleanup_notification_never_scanned)
+        } else {
+            applicationContext.getString(
+                R.string.cleanup_notification_last_scan_format,
+                days,
+                base
+            )
+        }
         return title to message
     }
 }
