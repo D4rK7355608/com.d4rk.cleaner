@@ -7,11 +7,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import com.d4rk.cleaner.core.data.datastore.DataStore
+import kotlin.time.Duration.Companion.days
 
 class CleanupDismissReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
         CoroutineScope(Dispatchers.IO).launch {
-            DataStore(context).saveLastCleanupNotificationDismissed(System.currentTimeMillis())
+            val store = DataStore(context)
+            store.saveLastCleanupNotificationDismissed(System.currentTimeMillis())
+            store.saveCleanupNotificationSnoozedUntil(System.currentTimeMillis() + 3.days.inWholeMilliseconds)
         }
     }
 }

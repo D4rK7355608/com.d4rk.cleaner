@@ -211,11 +211,14 @@
     <string name="cleanup_notification_title">Your phone might need a cleanup</string>
     <string name="cleanup_notification_default">Tap to scan and free up space.</string>
     <string name="scan_now">Scan now</string>
-    <string name="cleanup_notification_friendly_title1">Hey, just checking in</string>
-    <string name="cleanup_notification_friendly_title2">Cleaner’s ready when you are</string>
-    <string name="cleanup_notification_friendly_title3">Space feeling tight?</string>
-    <string name="cleanup_notification_msg_storage">You've used %1$d%% of storage. Want to tidy up?</string>
-    <string name="cleanup_notification_msg_ram">Memory looks busy (%1$d%%). A light scan could help.</string>
-    <string name="cleanup_notification_msg_days">It’s been %1$d days since your last cleanup. Ready for a refresh?</string>
-    <string name="cleanup_notification_msg_default">Quick scan ready – clean your phone in 10 seconds.</string>
+    <string name="cleanup_title_variant1">Just a quick check-in</string>
+    <string name="cleanup_title_variant2">Space feeling tight?</string>
+    <string name="cleanup_title_variant3">Cleaner here if you need it</string>
+    <string name="cleanup_title_variant4">Your phone’s been busy lately</string>
+    <string name="cleanup_title_variant5">Time for a light refresh?</string>
+    <string name="cleanup_storage_very_high">Storage is really tight. Want to clean a bit?</string>
+    <string name="cleanup_storage_high">You're at %1$d%% — tap to scan if needed.</string>
+    <string name="cleanup_storage_medium">Plenty of stuff here. A scan might help.</string>
+    <string name="cleanup_storage_ok">Your storage is looking fine!</string>
+    <string name="cleanup_notification_last_scan_format">Last scan: %1$d days ago. %2$s</string>
 </resources>

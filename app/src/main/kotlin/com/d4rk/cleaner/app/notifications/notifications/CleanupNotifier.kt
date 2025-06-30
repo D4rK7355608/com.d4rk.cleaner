@@ -27,14 +27,14 @@ class CleanupNotifier(private val context: Context) {
         )
 
         val notification = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL)
-            .setSmallIcon(R.mipmap.ic_launcher)
+            .setSmallIcon(R.drawable.ic_cleaner_notify)
             .setContentTitle(title)
             .setContentText(message)
             .setContentIntent(pendingIntent)
             .setDeleteIntent(deleteIntent)
             .setColor(MaterialColors.getColor(context, com.google.android.material.R.attr.colorPrimary, 0))
             .setAutoCancel(true)
-            .addAction(R.mipmap.ic_launcher, context.getString(R.string.scan_now), pendingIntent)
+            .addAction(R.drawable.ic_cleaner_notify, context.getString(R.string.scan_now), pendingIntent)
             .build()
 
         NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, notification)

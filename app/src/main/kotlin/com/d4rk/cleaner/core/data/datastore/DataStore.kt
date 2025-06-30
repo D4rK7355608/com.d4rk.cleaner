@@ -70,6 +70,18 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         }
     }
 
+    private val cleanupNotificationSnoozedUntilKey =
+        longPreferencesKey(name = AppDataStoreConstants.DATA_STORE_CLEANUP_NOTIFICATION_SNOOZED_UNTIL)
+    val cleanupNotificationSnoozedUntil: Flow<Long> = dataStore.data.map { prefs ->
+        prefs[cleanupNotificationSnoozedUntilKey] ?: 0L
+    }
+
+    suspend fun saveCleanupNotificationSnoozedUntil(timestamp: Long) {
+        dataStore.edit { prefs ->
+            prefs[cleanupNotificationSnoozedUntilKey] = timestamp
+        }
+    }
+
     private val reminderFrequencyKey = intPreferencesKey(name = AppDataStoreConstants.DATA_STORE_CLEANUP_REMINDER_FREQUENCY_DAYS)
     val cleanupReminderFrequencyDays: Flow<Int> = dataStore.data.map { prefs ->
         prefs[reminderFrequencyKey] ?: 7

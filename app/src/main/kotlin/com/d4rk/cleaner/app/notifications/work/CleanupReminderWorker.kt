@@ -13,6 +13,7 @@ import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.R
 import kotlinx.coroutines.flow.first
 import kotlin.random.Random
+import com.d4rk.cleaner.app.notifications.notifications.CleanerMessageProvider
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -30,17 +31,14 @@ class CleanupReminderWorker(
         if (!useCase()) return Result.success()
 
         val storageInfo = memoryRepository.getStorageInfo()
-        val ramInfo = memoryRepository.getRamInfo()
         val lastScan = dataStore.lastScanTimestamp.first()
 
         val storagePercent = if (storageInfo.storageUsageProgress == 0f) 0 else
             (storageInfo.usedStorage.toFloat() / storageInfo.storageUsageProgress * 100).toInt()
-        val ramPercent = if (ramInfo.totalRam == 0L) 0 else
-            (ramInfo.usedRam.toFloat() / ramInfo.totalRam * 100).toInt()
 
         val daysSinceLastScan = ((System.currentTimeMillis() - lastScan) / (1000 * 60 * 60 * 24)).toInt()
 
-        val (title, message) = createFriendlyMessage(storagePercent, ramPercent, daysSinceLastScan)
+        val (title, message) = createFriendlyMessage(storagePercent, daysSinceLastScan)
 
         val deleteIntent = PendingIntent.getBroadcast(
             applicationContext,
@@ -55,28 +53,14 @@ class CleanupReminderWorker(
         return Result.success()
     }
 
-    private fun createFriendlyMessage(storagePercent: Int, ramPercent: Int, days: Int): Pair<String, String> {
-        val titles = listOf(
-            R.string.cleanup_notification_friendly_title1,
-            R.string.cleanup_notification_friendly_title2,
-            R.string.cleanup_notification_friendly_title3,
+    private fun createFriendlyMessage(storagePercent: Int, days: Int): Pair<String, String> {
+        val title = CleanerMessageProvider.getTitleVariants(applicationContext).random(Random)
+        val base = CleanerMessageProvider.getStorageText(applicationContext, storagePercent)
+        val message = applicationContext.getString(
+            R.string.cleanup_notification_last_scan_format,
+            days,
+            base
         )
-        val titleRes = titles.random(Random)
-        val title = applicationContext.getString(titleRes)
-
-        val message = when {
-            storagePercent > 80 -> applicationContext.getString(
-                R.string.cleanup_notification_msg_storage, storagePercent
-            )
-            ramPercent > 85 -> applicationContext.getString(
-                R.string.cleanup_notification_msg_ram, ramPercent
-            )
-            days > 7 -> applicationContext.getString(
-                R.string.cleanup_notification_msg_days, days
-            )
-            else -> applicationContext.getString(R.string.cleanup_notification_msg_default)
-        }
-
         return title to message
     }
 }

@@ -16,7 +16,7 @@ class ShouldShowCleanupNotificationUseCase(
         val lastScan = dataStore.lastScanTimestamp.first()
         val lastShown = dataStore.lastCleanupNotificationShown.first()
         val lastClicked = dataStore.lastCleanupNotificationClicked.first()
-        val lastDismissed = dataStore.lastCleanupNotificationDismissed.first()
+        val snoozedUntil = dataStore.cleanupNotificationSnoozedUntil.first()
         val frequency = dataStore.cleanupReminderFrequencyDays.first()
 
         if (frequency <= 0) return false
@@ -24,7 +24,7 @@ class ShouldShowCleanupNotificationUseCase(
         val now = System.currentTimeMillis()
         val lastInteraction = maxOf(lastShown, lastClicked)
         val enoughTimePassed = now - lastInteraction > frequency.days.inWholeMilliseconds
-        val snoozed = now - lastDismissed < 3.days.inWholeMilliseconds
+        val snoozed = now < snoozedUntil
 
         if (!enoughTimePassed || snoozed) return false
 
