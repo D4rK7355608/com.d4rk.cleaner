@@ -2,6 +2,22 @@
 <resources>
     <string name="app_short_description">দৈনন্দিন ব্যবহারের জন্য আপনার প্রয়োজনীয় শেষ অ্যান্ড্রয়েড ক্লিনার!</string>
 
+    <!-- Notifications -->
+    <string name="cleanup_notification_title">আপনার ফোনে হয়তো পরিষ্কার করা দরকার</string>
+    <string name="cleanup_notification_default">স্পেস খালি করতে স্ক্যান করতে ট্যাপ করুন।</string>
+    <string name="scan_now">এখন স্ক্যান করুন</string>
+    <string name="cleanup_title_variant1">একটি দ্রুত চেক-ইন মাত্র</string>
+    <string name="cleanup_title_variant2">জায়গা টাইট লাগছে?</string>
+    <string name="cleanup_title_variant3">প্রয়োজন হলে ক্লিনার এখানে</string>
+    <string name="cleanup_title_variant4">আপনার ফোন সাম্প্রতিককালে ব্যস্ত ছিল</string>
+    <string name="cleanup_title_variant5">একটু হালকা রিফ্রেশ করবেন?</string>
+    <string name="cleanup_storage_very_high">স্টোরেজ খুব টাইট। একটু পরিষ্কার করতে চান?</string>
+    <string name="cleanup_storage_high">আপনি %1$d%% এ আছেন — প্রয়োজনে স্ক্যান করতে ট্যাপ করুন।</string>
+    <string name="cleanup_storage_medium">এখানে অনেক কিছু আছে। একটি স্ক্যান সাহায্য করতে পারে।</string>
+    <string name="cleanup_storage_ok">আপনার স্টোরেজ ঠিক আছে!</string>
+    <string name="cleanup_notification_last_scan_format">সর্বশেষ স্ক্যান: %1$d দিন আগে। %2$s</string>
+    <string name="cleanup_notification_never_scanned">আপনি এখনও ফোন স্ক্যান করেননি। শুরু করতে ট্যাপ করুন।</string>
+
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">ক্লিনারে স্বাগতম!</string>
     <string name="onboarding_welcome_description">আসুন একটি দ্রুত সেটআপ সম্পন্ন করি এবং জায়গা খালি করা শুরু করি।</string>

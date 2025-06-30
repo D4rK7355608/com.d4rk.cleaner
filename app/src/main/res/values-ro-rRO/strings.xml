@@ -2,6 +2,22 @@
 <resources>
     <string name="app_short_description">Ultimul Cleaner Android de care veți avea vreodată nevoie pentru utilizarea de zi cu zi!</string>
 
+    <!-- Notifications -->
+    <string name="cleanup_notification_title">Telefonul tău ar putea avea nevoie de curățare</string>
+    <string name="cleanup_notification_default">Atinge pentru a scana și elibera spațiu.</string>
+    <string name="scan_now">Scanează acum</string>
+    <string name="cleanup_title_variant1">Doar o verificare rapidă</string>
+    <string name="cleanup_title_variant2">Spațiul e cam limitat?</string>
+    <string name="cleanup_title_variant3">Cleaner e aici dacă ai nevoie</string>
+    <string name="cleanup_title_variant4">Telefonul tău a fost ocupat în ultima vreme</string>
+    <string name="cleanup_title_variant5">E timpul pentru o mică reîmprospătare?</string>
+    <string name="cleanup_storage_very_high">Spațiul de stocare e foarte aglomerat. Vrei să cureți puțin?</string>
+    <string name="cleanup_storage_high">Ești la %1$d%% — atinge pentru scanare dacă e nevoie.</string>
+    <string name="cleanup_storage_medium">Sunt destule lucruri aici. Un scan ar putea ajuta.</string>
+    <string name="cleanup_storage_ok">Spațiul tău arată bine!</string>
+    <string name="cleanup_notification_last_scan_format">Ultimul scan: acum %1$d zile. %2$s</string>
+    <string name="cleanup_notification_never_scanned">Nu ți-ai scanat încă telefonul. Atinge pentru a începe.</string>
+
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">Bun venit la Cleaner!</string>
     <string name="onboarding_welcome_description">Să parcurgem o configurare rapidă și să începem eliberarea spațiului.</string>

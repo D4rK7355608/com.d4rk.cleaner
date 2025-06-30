@@ -2,6 +2,22 @@
 <resources>
     <string name="app_short_description">您日常使用所需的最後一款 Android 清理工具！</string>
 
+    <!-- Notifications -->
+    <string name="cleanup_notification_title">您的手機可能需要清理</string>
+    <string name="cleanup_notification_default">點擊掃描並釋放空間。</string>
+    <string name="scan_now">立即掃描</string>
+    <string name="cleanup_title_variant1">只是快速檢查一下</string>
+    <string name="cleanup_title_variant2">空間不夠用了嗎？</string>
+    <string name="cleanup_title_variant3">需要時 Cleaner 在這裡</string>
+    <string name="cleanup_title_variant4">您的手機最近很忙碌</string>
+    <string name="cleanup_title_variant5">該輕鬆清理一下了嗎？</string>
+    <string name="cleanup_storage_very_high">儲存空間相當吃緊，要清一下嗎？</string>
+    <string name="cleanup_storage_high">您已使用 %1$d%% — 如有需要點擊掃描。</string>
+    <string name="cleanup_storage_medium">這裡有很多內容，掃描或許有幫助。</string>
+    <string name="cleanup_storage_ok">您的儲存空間狀況良好！</string>
+    <string name="cleanup_notification_last_scan_format">上次掃描：%1$d 天前。%2$s</string>
+    <string name="cleanup_notification_never_scanned">您尚未掃描手機，點擊即可開始.</string>
+
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">歡迎使用 Cleaner！</string>
     <string name="onboarding_welcome_description">讓我們進行快速設定，開始釋放空間。</string>

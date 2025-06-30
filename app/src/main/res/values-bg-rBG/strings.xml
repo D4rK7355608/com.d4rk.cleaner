@@ -2,6 +2,22 @@
 <resources>
     <string name="app_short_description">Последният Android Cleaner, от който ще се нуждаете за ежедневна употреба!</string>
 
+    <!-- Notifications -->
+    <string name="cleanup_notification_title">Вашият телефон може да има нужда от почистване</string>
+    <string name="cleanup_notification_default">Докоснете за сканиране и освобождаване на място.</string>
+    <string name="scan_now">Сканирай сега</string>
+    <string name="cleanup_title_variant1">Само една бърза проверка</string>
+    <string name="cleanup_title_variant2">Недостига ли място?</string>
+    <string name="cleanup_title_variant3">Cleaner е тук, ако имате нужда</string>
+    <string name="cleanup_title_variant4">Телефонът ви беше зает напоследък</string>
+    <string name="cleanup_title_variant5">Време за леко освежаване?</string>
+    <string name="cleanup_storage_very_high">Паметта е доста запълнена. Искате ли да почистите малко?</string>
+    <string name="cleanup_storage_high">Вие сте на %1$d%% — докоснете за сканиране при нужда.</string>
+    <string name="cleanup_storage_medium">Има доста неща тук. Сканиране може да помогне.</string>
+    <string name="cleanup_storage_ok">Паметта ви изглежда добре!</string>
+    <string name="cleanup_notification_last_scan_format">Последно сканиране: преди %1$d дни. %2$s</string>
+    <string name="cleanup_notification_never_scanned">Все още не сте сканирали телефона си. Докоснете, за да започнете.</string>
+
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">Добре дошли в Cleaner!</string>
     <string name="onboarding_welcome_description">Нека да преминем през бърза настройка и да започнем да освобождаваме място.</string>
