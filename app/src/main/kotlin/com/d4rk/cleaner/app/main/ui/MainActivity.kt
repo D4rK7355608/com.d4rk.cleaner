@@ -20,6 +20,7 @@ import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ConsentFormHelper
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ConsentManagerHelper
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.IntentsHelper
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ReviewHelper
+import android.content.Intent
 import com.d4rk.cleaner.app.main.domain.actions.MainEvent
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.google.android.gms.ads.MobileAds
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         initializeDependencies()
         handleStartup()
+        handleNotificationIntent(intent)
         checkInAppReview()
     }
 
@@ -134,5 +136,13 @@ class MainActivity : AppCompatActivity() {
             totalSize += if (file.isFile) file.length() else calculateDirectorySize(file)
         }
         return totalSize
+    }
+
+    private fun handleNotificationIntent(intent: Intent?) {
+        if (intent?.getBooleanExtra("open_scan", false) == true) {
+            CoroutineScope(Dispatchers.IO).launch {
+                dataStore.saveLastCleanupNotificationClicked(System.currentTimeMillis())
+            }
+        }
     }
 }

@@ -8,12 +8,16 @@ coilVideoVersion = "3.2.0"
 compressor = "3.0.1"
 constraintlayoutCompose = "1.1.1"
 lottie = "6.6.7"
+work = "2.9.0"
+material = "1.12.0"
 
 [libraries]
 androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
 coil3-coil-video = { module = "io.coil-kt.coil3:coil-video", version.ref = "coilVideoVersion" }
 compressor = { module = "id.zelory:compressor", version.ref = "compressor" }
 lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

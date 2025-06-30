@@ -126,4 +126,6 @@ dependencies {
     implementation(dependencyNotation = libs.compressor)
     implementation(dependencyNotation = libs.coil3.coil.video)
     implementation(dependencyNotation = libs.lottie.compose)
+    implementation(dependencyNotation = libs.androidx.work.runtime.ktx)
+    implementation(dependencyNotation = libs.material)
 }

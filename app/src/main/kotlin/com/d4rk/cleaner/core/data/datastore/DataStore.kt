@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
+import androidx.datastore.preferences.core.intPreferencesKey
 import com.d4rk.android.libs.apptoolkit.data.datastore.CommonDataStore
 import com.d4rk.cleaner.core.utils.constants.datastore.AppDataStoreConstants
 import kotlinx.coroutines.flow.Flow
@@ -26,9 +27,57 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
 
     private val lastScanTimestampKey = longPreferencesKey(name = AppDataStoreConstants.DATA_STORE_LAST_SCAN_TIMESTAMP)
 
+    val lastScanTimestamp : Flow<Long> = dataStore.data.map { preferences ->
+        preferences[lastScanTimestampKey] ?: 0L
+    }
+
     suspend fun saveLastScanTimestamp(timestamp : Long) {
         dataStore.edit { preferences ->
             preferences[lastScanTimestampKey] = timestamp
+        }
+    }
+
+    private val lastCleanupNotificationShownKey = longPreferencesKey(name = AppDataStoreConstants.DATA_STORE_LAST_CLEANUP_NOTIFICATION_SHOWN)
+    val lastCleanupNotificationShown: Flow<Long> = dataStore.data.map { prefs ->
+        prefs[lastCleanupNotificationShownKey] ?: 0L
+    }
+
+    suspend fun saveLastCleanupNotificationShown(timestamp: Long) {
+        dataStore.edit { prefs ->
+            prefs[lastCleanupNotificationShownKey] = timestamp
+        }
+    }
+
+    private val lastCleanupNotificationClickedKey = longPreferencesKey(name = AppDataStoreConstants.DATA_STORE_LAST_CLEANUP_NOTIFICATION_CLICKED)
+    val lastCleanupNotificationClicked: Flow<Long> = dataStore.data.map { prefs ->
+        prefs[lastCleanupNotificationClickedKey] ?: 0L
+    }
+
+    suspend fun saveLastCleanupNotificationClicked(timestamp: Long) {
+        dataStore.edit { prefs ->
+            prefs[lastCleanupNotificationClickedKey] = timestamp
+        }
+    }
+
+    private val lastCleanupNotificationDismissedKey = longPreferencesKey(name = AppDataStoreConstants.DATA_STORE_LAST_CLEANUP_NOTIFICATION_DISMISSED)
+    val lastCleanupNotificationDismissed: Flow<Long> = dataStore.data.map { prefs ->
+        prefs[lastCleanupNotificationDismissedKey] ?: 0L
+    }
+
+    suspend fun saveLastCleanupNotificationDismissed(timestamp: Long) {
+        dataStore.edit { prefs ->
+            prefs[lastCleanupNotificationDismissedKey] = timestamp
+        }
+    }
+
+    private val reminderFrequencyKey = intPreferencesKey(name = AppDataStoreConstants.DATA_STORE_CLEANUP_REMINDER_FREQUENCY_DAYS)
+    val cleanupReminderFrequencyDays: Flow<Int> = dataStore.data.map { prefs ->
+        prefs[reminderFrequencyKey] ?: 7
+    }
+
+    suspend fun saveCleanupReminderFrequencyDays(days: Int) {
+        dataStore.edit { prefs ->
+            prefs[reminderFrequencyKey] = days
         }
     }
 

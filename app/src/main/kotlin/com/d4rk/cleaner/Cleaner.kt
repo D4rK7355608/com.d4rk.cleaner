@@ -14,6 +14,7 @@ import coil3.disk.directory
 import coil3.memory.MemoryCache
 import com.d4rk.android.libs.apptoolkit.data.core.BaseCoreManager
 import com.d4rk.android.libs.apptoolkit.data.core.ads.AdsCoreManager
+import com.d4rk.cleaner.app.notifications.work.CleanupReminderScheduler
 import com.d4rk.cleaner.core.di.initializeKoin
 import com.d4rk.cleaner.core.utils.constants.ads.AdsConstants
 import kotlinx.coroutines.async
@@ -30,6 +31,7 @@ class Cleaner : BaseCoreManager(), SingletonImageLoader.Factory {
         initializeKoin(context = this)
         SingletonImageLoader.setSafe { newImageLoader(this) }
         super.onCreate()
+        CleanupReminderScheduler.schedule(this)
         registerActivityLifecycleCallbacks(this)
         ProcessLifecycleOwner.get().lifecycle.addObserver(observer = this)
     }

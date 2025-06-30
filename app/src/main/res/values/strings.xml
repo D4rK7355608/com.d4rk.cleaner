@@ -208,4 +208,7 @@
     <string name="no_files_selected_to_clean">No files selected to clean.</string>
     <string name="failed_to_update_trash_size">Failed to update trash size: %1$s</string>
     <string name="no_cleaning_options_selected">Please choose your cleaning preferences in settings to proceed.</string>
+    <string name="cleanup_notification_title">Your phone might need a cleanup</string>
+    <string name="cleanup_notification_default">Tap to scan and free up space.</string>
+    <string name="scan_now">Scan now</string>
 </resources>
