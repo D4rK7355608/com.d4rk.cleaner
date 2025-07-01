@@ -75,7 +75,7 @@ fun MainScaffoldContent(drawerState : DrawerState) {
     val navController : NavHostController = rememberNavController()
     val bottomItems = listOf(
         BottomBarItem(
-            route = NavigationRoutes.ROUTE_HOME , icon = Icons.Outlined.CleaningServices , selectedIcon = Icons.Filled.CleaningServices , title = com.d4rk.android.libs.apptoolkit.R.string.home
+            route = NavigationRoutes.ROUTE_HOME , icon = Icons.Outlined.CleaningServices , selectedIcon = Icons.Filled.CleaningServices , title = R.string.scanner
         ) ,
         BottomBarItem(
             route = NavigationRoutes.ROUTE_APP_MANAGER , icon = Icons.Sharp.AppRegistration , selectedIcon = Icons.Rounded.AppRegistration , title = R.string.app_manager
@@ -115,7 +115,7 @@ fun MainScaffoldTabletContent() {
 
     val bottomItems = listOf(
         BottomBarItem(
-            route = NavigationRoutes.ROUTE_HOME , icon = Icons.Outlined.Home , selectedIcon = Icons.Filled.Home , title = com.d4rk.android.libs.apptoolkit.R.string.home
+            route = NavigationRoutes.ROUTE_HOME , icon = Icons.Outlined.Home , selectedIcon = Icons.Filled.Home , title = R.string.scanner
         ) ,
         BottomBarItem(
             route = NavigationRoutes.ROUTE_APP_MANAGER , icon = Icons.Sharp.AppRegistration , selectedIcon = Icons.Rounded.AppRegistration , title = R.string.app_manager

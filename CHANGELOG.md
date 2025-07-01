@@ -1,3 +1,10 @@
+# Version 3.3.1:
+
+- **Patch**: The app now checks if it has permission to send notifications before trying to send one for cleanup reminders. This prevents potential crashes.
+- **Minor**: The "Home" tab is now called "Scanner" and has a new icon, making it clearer what this section is for.
+- **Minor**: Cleanup reminder notifications are now available in more languages.
+- **Minor**: We've removed some unused code related to app permissions for better efficiency.
+
 # Version 3.3.0:
 
 - **New**: We've added a helpful setup guide and made how we ask for your permission clearer.
