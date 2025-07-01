@@ -2,6 +2,22 @@
 <resources>
     <string name="app_short_description">Ang huling Android Cleaner na kakailanganin mo para sa pang-araw-araw na paggamit!</string>
 
+    <!-- Notifications -->
+    <string name="cleanup_notification_title">Baka kailangan linisin ang iyong telepono</string>
+    <string name="cleanup_notification_default">Tapikin para i-scan at magpalaya ng espasyo.</string>
+    <string name="scan_now">I-scan ngayon</string>
+    <string name="cleanup_title_variant1">Mabilisang check lang</string>
+    <string name="cleanup_title_variant2">Mabigat ba ang espasyo?</string>
+    <string name="cleanup_title_variant3">Nandito ang Cleaner kung kailangan mo</string>
+    <string name="cleanup_title_variant4">Abala ang iyong telepono kamakailan</string>
+    <string name="cleanup_title_variant5">Panahon na ba para sa light refresh?</string>
+    <string name="cleanup_storage_very_high">Sobrang sikip ng storage. Gusto mo bang linisin ng kaunti?</string>
+    <string name="cleanup_storage_high">Nasa %1$d%% ka na — tapikin para mag-scan kung kailangan.</string>
+    <string name="cleanup_storage_medium">Maraming laman dito. Puwedeng makatulong ang scan.</string>
+    <string name="cleanup_storage_ok">Ayos naman ang storage mo!</string>
+    <string name="cleanup_notification_last_scan_format">Huling scan: %1$d araw na ang nakalipas. %2$s</string>
+    <string name="cleanup_notification_never_scanned">Hindi mo pa na-scan ang iyong telepono. Tapikin para magsimula.</string>
+
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">Maligayang pagdating sa Cleaner!</string>
     <string name="onboarding_welcome_description">Dumaan tayo sa mabilisang setup at simulan nang magbakante ng espasyo.</string>

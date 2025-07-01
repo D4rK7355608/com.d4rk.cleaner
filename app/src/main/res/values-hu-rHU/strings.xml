@@ -2,6 +2,22 @@
 <resources>
     <string name="app_short_description">Az utolsó Android Tisztító, amire valaha szükséged lesz a mindennapi használathoz!</string>
 
+    <!-- Notifications -->
+    <string name="cleanup_notification_title">Lehet, hogy a telefonodnak tisztításra van szüksége</string>
+    <string name="cleanup_notification_default">Érints rá a kereséshez és a hely felszabadításához.</string>
+    <string name="scan_now">Most keresés</string>
+    <string name="cleanup_title_variant1">Csak egy gyors ellenőrzés</string>
+    <string name="cleanup_title_variant2">Kevés a hely?</string>
+    <string name="cleanup_title_variant3">A Cleaner itt van, ha szükséged van rá</string>
+    <string name="cleanup_title_variant4">A telefonod mostanában elfoglalt volt</string>
+    <string name="cleanup_title_variant5">Ideje egy kis felfrissítésnek?</string>
+    <string name="cleanup_storage_very_high">Nagyon szűkös a tárhely. Szeretnél kicsit takarítani?</string>
+    <string name="cleanup_storage_high">Már %1$d%%-n állsz — érints rá a kereséshez, ha szükséges.</string>
+    <string name="cleanup_storage_medium">Elég sok minden van itt. Egy keresés segíthet.</string>
+    <string name="cleanup_storage_ok">A tárhelyed rendben van!</string>
+    <string name="cleanup_notification_last_scan_format">Utolsó keresés: %1$d napja. %2$s</string>
+    <string name="cleanup_notification_never_scanned">Még nem vizsgáltad át a telefonod. Kezdéshez érints ide.</string>
+
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">Üdvözlünk a Cleanerben!</string>
     <string name="onboarding_welcome_description">Vegyünk végig egy gyors beállítást, és kezdjünk el helyet felszabadítani.</string>

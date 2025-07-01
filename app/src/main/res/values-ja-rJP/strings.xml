@@ -2,6 +2,22 @@
 <resources>
     <string name="app_short_description">毎日の使用に最適な、究極のAndroidクリーナー！</string>
 
+    <!-- Notifications -->
+    <string name="cleanup_notification_title">お使いのスマートフォンはクリーニングが必要かもしれません</string>
+    <string name="cleanup_notification_default">タップしてスキャンし、空き容量を確保しましょう。</string>
+    <string name="scan_now">今すぐスキャン</string>
+    <string name="cleanup_title_variant1">ちょっとしたチェックです</string>
+    <string name="cleanup_title_variant2">容量が足りないですか？</string>
+    <string name="cleanup_title_variant3">必要ならCleanerがサポートします</string>
+    <string name="cleanup_title_variant4">最近スマホがよく使われています</string>
+    <string name="cleanup_title_variant5">軽くリフレッシュしませんか？</string>
+    <string name="cleanup_storage_very_high">ストレージがかなり不足しています。少しクリーンアップしますか？</string>
+    <string name="cleanup_storage_high">現在%1$d%%です—必要に応じてタップしてスキャンしてください。</string>
+    <string name="cleanup_storage_medium">ここにはたくさんのものがあります。スキャンが役立つかもしれません。</string>
+    <string name="cleanup_storage_ok">ストレージは良好です！</string>
+    <string name="cleanup_notification_last_scan_format">最終スキャン: %1$d日前。%2$s</string>
+    <string name="cleanup_notification_never_scanned">まだスキャンしていません。タップして開始してください。</string>
+
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">クリーナーへようこそ！</string>
     <string name="onboarding_welcome_description">簡単なセットアップを行い、空き容量を増やしましょう。</string>

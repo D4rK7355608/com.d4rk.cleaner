@@ -2,6 +2,22 @@
 <resources>
     <string name="app_short_description">آخر منظف أندرويد هتحتاجه لاستخدامك اليومي!</string>
 
+    <!-- Notifications -->
+    <string name="cleanup_notification_title">قد يحتاج هاتفك إلى تنظيف</string>
+    <string name="cleanup_notification_default">اضغط للفحص وتفريغ المساحة.</string>
+    <string name="scan_now">افحص الآن</string>
+    <string name="cleanup_title_variant1">فحص سريع بس</string>
+    <string name="cleanup_title_variant2">حاسس المساحة ضيقة؟</string>
+    <string name="cleanup_title_variant3">المنظف هنا لو محتاجه</string>
+    <string name="cleanup_title_variant4">تليفونك مشغول اليومين دول</string>
+    <string name="cleanup_title_variant5">عايز انتعاشة خفيفة؟</string>
+    <string name="cleanup_storage_very_high">المساحة ضيقة جدًا. عايز تنظف شوية؟</string>
+    <string name="cleanup_storage_high">انت على %1$d%% — اضغط للفحص لو حبيت.</string>
+    <string name="cleanup_storage_medium">فيه حاجات كتير هنا. الفحص ممكن يفيد.</string>
+    <string name="cleanup_storage_ok">المساحة عندك تمام!</string>
+    <string name="cleanup_notification_last_scan_format">آخر فحص: من %1$d يوم. %2$s</string>
+    <string name="cleanup_notification_never_scanned">لسه ما فحصتش تليفونك. اضغط للبدء.</string>
+
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">أهلًا بيك في كلينر!</string>
     <string name="onboarding_welcome_description">يلا بينا نعمل إعداد سريع ونبدأ نفضي مساحة.</string>

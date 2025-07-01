@@ -2,6 +2,22 @@
 <resources>
     <string name="app_short_description">आखिरी एंड्रॉइड क्लीनर जिसकी आपको रोज़मर्रा के इस्तेमाल के लिए कभी भी ज़रूरत पड़ेगी!</string>
 
+    <!-- Notifications -->
+    <string name="cleanup_notification_title">आपके फ़ोन को शायद सफ़ाई की ज़रूरत है</string>
+    <string name="cleanup_notification_default">स्कैन करके जगह खाली करने के लिए टैप करें.</string>
+    <string name="scan_now">अभी स्कैन करें</string>
+    <string name="cleanup_title_variant1">बस एक त्वरित जाँच</string>
+    <string name="cleanup_title_variant2">जगह कम लग रही है?</string>
+    <string name="cleanup_title_variant3">जरूरत पड़े तो Cleaner यहीं है</string>
+    <string name="cleanup_title_variant4">आपका फ़ोन हाल में व्यस्त रहा है</string>
+    <string name="cleanup_title_variant5">थोड़ा रीफ़्रेश करने का समय?</string>
+    <string name="cleanup_storage_very_high">स्टोरेज बहुत कम है। थोड़ा साफ़ करना चाहेंगे?</string>
+    <string name="cleanup_storage_high">आप %1$d%% पर हैं — ज़रूरत हो तो स्कैन करने के लिए टैप करें.</string>
+    <string name="cleanup_storage_medium">यहाँ काफी चीजें हैं। स्कैन मदद कर सकता है.</string>
+    <string name="cleanup_storage_ok">आपका स्टोरेज ठीक दिख रहा है!</string>
+    <string name="cleanup_notification_last_scan_format">आख़िरी स्कैन: %1$d दिन पहले. %2$s</string>
+    <string name="cleanup_notification_never_scanned">आपने अभी तक फ़ोन स्कैन नहीं किया है। शुरू करने के लिए टैप करें.</string>
+
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">क्लीनर में आपका स्वागत है!</string>
     <string name="onboarding_welcome_description">चलिए एक त्वरित सेटअप से गुजरते हैं और जगह खाली करना शुरू करते हैं।</string>
