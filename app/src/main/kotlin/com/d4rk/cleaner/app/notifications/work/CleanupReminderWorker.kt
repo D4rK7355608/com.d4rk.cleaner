@@ -1,8 +1,12 @@
 package com.d4rk.cleaner.app.notifications.work
 
+import android.Manifest
 import android.content.Context
 import android.app.PendingIntent
 import android.content.Intent
+import android.content.pm.PackageManager
+import androidx.annotation.RequiresPermission
+import androidx.core.content.ContextCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.d4rk.cleaner.app.notifications.domain.usecases.ShouldShowCleanupNotificationUseCase
@@ -27,6 +31,7 @@ class CleanupReminderWorker(
     private val memoryRepository: MemoryRepository by inject()
     private val dataStore: DataStore by inject()
 
+    @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
     override suspend fun doWork(): Result {
         if (!useCase()) return Result.success()
 
@@ -48,9 +53,15 @@ class CleanupReminderWorker(
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        notifier.sendNotification(title, message, deleteIntent)
-        dataStore.saveLastCleanupNotificationShown(System.currentTimeMillis())
-
+        if (
+            ContextCompat.checkSelfPermission(
+                applicationContext,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            notifier.sendNotification(title, message, deleteIntent)
+            dataStore.saveLastCleanupNotificationShown(System.currentTimeMillis())
+        }
         return Result.success()
     }
 
