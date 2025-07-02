@@ -2,11 +2,15 @@ package com.d4rk.cleaner.app.clean.home.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.background
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Chat
 import androidx.compose.material.icons.outlined.Delete
@@ -99,7 +103,11 @@ fun WhatsAppCleanerCard(
 }
 
 @Composable
-private fun CategoryRow(icon: androidx.compose.ui.graphics.vector.ImageVector, label: String, files: List<File>) {
+private fun CategoryRow(
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    label: String,
+    files: List<File>
+) {
     val preview = files.take(9)
     Column {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -110,26 +118,39 @@ private fun CategoryRow(icon: androidx.compose.ui.graphics.vector.ImageVector, l
                 modifier = Modifier.padding(start = SizeConstants.MediumSize)
             )
         }
-        Column(
-            modifier = Modifier.padding(start = SizeConstants.MediumSize),
-            verticalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize)
+        Row(
+            modifier = Modifier
+                .padding(start = SizeConstants.MediumSize)
+                .horizontalScroll(rememberScrollState()),
+            horizontalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            preview.chunked(3).forEach { rowFiles ->
-                Row(horizontalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize)) {
-                    rowFiles.forEach { file ->
-                        FilePreviewCard(
-                            file = file,
-                            modifier = Modifier.size(64.dp)
-                        )
-                    }
-                }
-            }
-            if (files.size > preview.size) {
-                Text(
-                    text = stringResource(id = R.string.apk_card_more_format, files.size - preview.size),
-                    style = MaterialTheme.typography.bodySmall
+            preview.forEach { file ->
+                FilePreviewCard(
+                    file = file,
+                    modifier = Modifier.size(64.dp)
                 )
             }
+            if (files.size > preview.size) {
+                MorePreviewTile(files.size - preview.size)
+            }
+        }
+    }
+}
+
+@Composable
+private fun MorePreviewTile(count: Int) {
+    Card {
+        Box(
+            modifier = Modifier
+                .size(64.dp)
+                .background(MaterialTheme.colorScheme.surfaceVariant),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = stringResource(id = R.string.apk_card_more_format, count),
+                style = MaterialTheme.typography.bodySmall
+            )
         }
     }
 }
