@@ -26,10 +26,12 @@ import com.d4rk.cleaner.app.apps.manager.domain.usecases.OpenAppInfoUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.ShareApkUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.ShareAppUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.UninstallAppUseCase
+import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class AppManagerViewModel(
     application : Application ,
@@ -64,6 +66,11 @@ class AppManagerViewModel(
     init {
         onEvent(AppManagerEvent.LoadAppData)
         registerPackageRemovedReceiver()
+        launch(dispatchers.io) {
+            CleaningEventBus.events.collectLatest {
+                onEvent(AppManagerEvent.LoadAppData)
+            }
+        }
     }
 
     override fun onEvent(event : AppManagerEvent) {
