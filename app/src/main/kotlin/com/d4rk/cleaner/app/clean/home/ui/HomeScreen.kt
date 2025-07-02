@@ -39,7 +39,10 @@ import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.UiHomeModel
 import com.d4rk.cleaner.app.clean.home.ui.components.QuickScanSummaryCard
 import com.d4rk.cleaner.app.clean.home.ui.components.WhatsAppCleanerCard
 import com.d4rk.cleaner.app.clean.home.ui.components.ClipboardCleanerCard
+import com.d4rk.cleaner.app.clean.home.ui.components.ImageOptimizerCard
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
+import com.d4rk.android.libs.apptoolkit.core.utils.helpers.IntentsHelper
+import com.d4rk.cleaner.app.images.picker.ui.ImagePickerActivity
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -116,6 +119,15 @@ fun HomeScreen(paddingValues: PaddingValues, snackbarHostState: SnackbarHostStat
                                 onCleanClick = { viewModel.onEvent(HomeEvent.CleanWhatsAppFiles) }
                             )
                         }
+                        ImageOptimizerCard(
+                            onOptimizeClick = {
+                                IntentsHelper.openActivity(
+                                    context = context,
+                                    activityClass = ImagePickerActivity::class.java
+                                )
+                            },
+                            onInfoClick = {}
+                        )
                         AnimatedVisibility(visible = clipboardText != null || clipboardSensitive) {
                             ClipboardCleanerCard(
                                 clipboardText = clipboardText,
