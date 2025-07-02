@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.app.main.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
 import androidx.activity.compose.setContent
@@ -20,7 +21,6 @@ import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ConsentFormHelper
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ConsentManagerHelper
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.IntentsHelper
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ReviewHelper
-import android.content.Intent
 import com.d4rk.cleaner.app.main.domain.actions.MainEvent
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.google.android.gms.ads.MobileAds

@@ -14,8 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import coil3.imageLoader
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
@@ -38,7 +36,6 @@ fun AnalyzeScreen(
     data: UiHomeModel,
 ) {
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
-    val imageLoader = LocalContext.current.imageLoader
     val hasSelectedFiles: Boolean = data.analyzeState.selectedFilesCount > 0
     val groupedFiles: Map<String, List<File>> = data.analyzeState.groupedFiles
 
@@ -46,7 +43,7 @@ fun AnalyzeScreen(
         modifier = Modifier
             .animateContentSize()
             .fillMaxWidth()
-            .padding(all = SizeConstants.LargeSize), horizontalAlignment = Alignment.End
+            .padding(vertical = SizeConstants.LargeSize), horizontalAlignment = Alignment.End
     ) {
         OutlinedCard(
             modifier = Modifier

@@ -1,25 +1,25 @@
 package com.d4rk.cleaner.app.notifications.work
 
 import android.Manifest
-import android.content.Context
 import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.annotation.RequiresPermission
 import androidx.core.content.ContextCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.d4rk.cleaner.app.notifications.domain.usecases.ShouldShowCleanupNotificationUseCase
-import com.d4rk.cleaner.app.notifications.notifications.CleanupNotifier
-import com.d4rk.cleaner.app.notifications.notifications.CleanupDismissReceiver
-import com.d4rk.cleaner.app.clean.memory.domain.interfaces.MemoryRepository
-import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.R
-import kotlinx.coroutines.flow.first
-import kotlin.random.Random
+import com.d4rk.cleaner.app.clean.memory.domain.interfaces.MemoryRepository
+import com.d4rk.cleaner.app.notifications.domain.usecases.ShouldShowCleanupNotificationUseCase
 import com.d4rk.cleaner.app.notifications.notifications.CleanerMessageProvider
+import com.d4rk.cleaner.app.notifications.notifications.CleanupDismissReceiver
+import com.d4rk.cleaner.app.notifications.notifications.CleanupNotifier
+import com.d4rk.cleaner.core.data.datastore.DataStore
+import kotlinx.coroutines.flow.first
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import kotlin.random.Random
 
 class CleanupReminderWorker(
     appContext: Context,

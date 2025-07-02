@@ -1,6 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.Properties
-import kotlin.toString
 
 plugins {
     alias(notation= libs.plugins.androidApplication)

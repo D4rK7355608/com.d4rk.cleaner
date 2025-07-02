@@ -3,10 +3,10 @@ package com.d4rk.cleaner.app.notifications.notifications
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import com.d4rk.cleaner.core.data.datastore.DataStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import com.d4rk.cleaner.core.data.datastore.DataStore
 import kotlin.time.Duration.Companion.days
 
 class CleanupDismissReceiver : BroadcastReceiver() {
