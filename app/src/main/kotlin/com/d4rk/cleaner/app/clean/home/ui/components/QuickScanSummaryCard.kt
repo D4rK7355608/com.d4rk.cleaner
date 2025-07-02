@@ -20,7 +20,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -82,15 +81,18 @@ fun QuickScanSummaryCard(
                         tint = MaterialTheme.colorScheme.primary
                     )
                     SmallHorizontalSpacer()
+                    val freeColor = MaterialTheme.colorScheme.tertiary
+                    val usedColor = MaterialTheme.colorScheme.error
+
                     Text(
                         text = buildAnnotatedString {
                             append(stringResource(id = R.string.free) + " ")
-                            withStyle(SpanStyle(color = Color(0xFF4CAF50))) {
+                            withStyle(SpanStyle(color = freeColor)) {
                                 append("$freePercent%")
                             }
                             append(" • ")
                             append(stringResource(id = R.string.used) + " ")
-                            withStyle(SpanStyle(color = Color(0xFFFFA000))) {
+                            withStyle(SpanStyle(color = usedColor)) {
                                 append("$usedPercent%")
                             }
                         },
