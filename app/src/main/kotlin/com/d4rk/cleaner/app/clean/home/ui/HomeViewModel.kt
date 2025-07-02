@@ -901,6 +901,10 @@ class HomeViewModel(
         }
     }
 
+    fun onCleanApks(apkFiles: List<File>) {
+        deleteFiles(apkFiles.toSet())
+    }
+
     private fun postSnackbar(message : UiTextHelper , isError : Boolean) {
         screenState.showSnackbar(snackbar = UiSnackbar(message = message , isError = isError , timeStamp = System.currentTimeMillis() , type = ScreenMessageType.SNACKBAR))
     }

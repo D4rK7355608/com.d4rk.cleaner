@@ -47,6 +47,10 @@
     <string name="quick_scan_cleaned_format">%1$s cleaned this week</string>
     <string name="quick_scan_free_format">%1$d%% free • %2$d%% used</string>
     <string name="quick_scan_summary_tip">Regular cleaning keeps your phone fast</string>
+    <string name="apk_card_title">Installers Found</string>
+    <string name="apk_card_subtitle">Old APK files can take up a lot of space.</string>
+    <string name="apk_card_more_format">+%1$d more</string>
+    <string name="clean_apks">Clean APKs</string>
     <string name="apks">APKs</string>
     <string name="archives">Archives</string>
     <string name="fonts">Fonts</string>
