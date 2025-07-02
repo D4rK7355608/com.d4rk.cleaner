@@ -126,10 +126,9 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                             )
                         }
                         CacheCleanerCard(
-                            onClick = {
+                            onScanClick = {
                                 viewModel.onEvent(ScannerEvent.CleanCache)
-                            },
-                            onInfoClick = {}
+                            }
                         )
                         ImageOptimizerCard(
                             onOptimizeClick = {
@@ -137,14 +136,12 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                                     context = context,
                                     activityClass = ImagePickerActivity::class.java
                                 )
-                            },
-                            onInfoClick = {}
+                            }
                         )
                         AnimatedVisibility(visible = clipboardText != null || clipboardSensitive) {
                             ClipboardCleanerCard(
                                 clipboardText = clipboardText,
-                                onCleanClick = { viewModel.onClipboardClear() },
-                                onSeeMoreClick = {}
+                                onCleanClick = { viewModel.onClipboardClear() }
                             )
                         }
                     }

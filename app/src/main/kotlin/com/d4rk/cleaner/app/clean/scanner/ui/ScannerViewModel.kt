@@ -88,6 +88,11 @@ class ScannerViewModel(
         loadCleanedSpace()
         loadWhatsAppMedia()
         loadClipboardData()
+        launch(dispatchers.io) {
+            CleaningEventBus.events.collectLatest {
+                onEvent(ScannerEvent.RefreshData)
+            }
+        }
     }
 
     override fun onEvent(event: ScannerEvent) {

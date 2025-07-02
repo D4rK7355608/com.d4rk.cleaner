@@ -10,11 +10,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Image
-import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.PhotoSizeSelectLarge
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -33,7 +31,6 @@ fun ImageOptimizerCard(
     modifier: Modifier = Modifier,
     lastOptimized: String? = null,
     onOptimizeClick: () -> Unit,
-    onInfoClick: () -> Unit = {},
 ) {
     OutlinedCard(
         modifier = modifier.fillMaxWidth() ,
@@ -63,13 +60,6 @@ fun ImageOptimizerCard(
                     Text(
                         text = stringResource(id = R.string.image_optimizer_card_subtitle),
                         style = MaterialTheme.typography.bodySmall,
-                    )
-                }
-                IconButton(onClick = onInfoClick) {
-                    Icon(
-                        imageVector = Icons.Outlined.Info,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             }

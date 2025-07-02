@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ContentPaste
 import androidx.compose.material.icons.outlined.Delete
-import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -32,7 +31,6 @@ fun ClipboardCleanerCard(
     clipboardText: String?,
     modifier: Modifier = Modifier,
     onCleanClick: () -> Unit,
-    onSeeMoreClick: () -> Unit,
 ) {
     OutlinedCard(
         modifier = modifier.fillMaxWidth() ,
@@ -85,15 +83,6 @@ fun ClipboardCleanerCard(
                     )
                     ButtonIconSpacer()
                     Text(text = stringResource(id = R.string.clean_clipboard))
-                }
-                FilledTonalButton(onClick = onSeeMoreClick, modifier = Modifier.weight(1f).bounceClick()) {
-                    Icon(
-                        imageVector = Icons.Outlined.Visibility,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                    ButtonIconSpacer()
-                    Text(text = stringResource(id = R.string.see_more))
                 }
             }
         }

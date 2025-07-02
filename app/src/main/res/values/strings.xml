@@ -66,6 +66,7 @@
     <string name="image_optimizer_card_footer">Supports JPEG • Custom quality &amp; size</string>
     <string name="cache_cleaner_card_title">Cache Cleaner</string>
     <string name="cache_cleaner_card_subtitle">Free up space from app cache</string>
+    <string name="scan_cache">Scan Cache</string>
     <string name="cache_cleaner">Cache Cleaner</string>
     <string name="apks">APKs</string>
     <string name="archives">Archives</string>
