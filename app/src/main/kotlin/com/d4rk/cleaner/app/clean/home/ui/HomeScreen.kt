@@ -64,6 +64,7 @@ fun HomeScreen(paddingValues: PaddingValues, snackbarHostState: SnackbarHostStat
         modifier = Modifier
             .fillMaxSize()
             .padding(paddingValues)
+            .padding(horizontal = SizeConstants.LargeSize)
     ) {
         Box(
             modifier = Modifier
