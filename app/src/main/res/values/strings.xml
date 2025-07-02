@@ -49,7 +49,7 @@
     <string name="quick_scan_summary_tip">Looking good! Want to scan again for extra space?</string>
     <string name="apk_card_title">Old Installers Found</string>
     <string name="apk_card_subtitle">Remove leftover installer files and reclaim space.</string>
-    <string name="apk_card_more_format">+%1$d more files</string>
+    <string name="apk_card_more_format">+%1$d more</string>
     <string name="clean_apks">Delete Installers</string>
     <string name="whatsapp_card_title">WhatsApp Files</string>
     <string name="whatsapp_card_subtitle">Clear out media you no longer need.</string>
@@ -64,8 +64,6 @@
     <string name="image_optimizer_card_subtitle">Compress photos without losing quality.&#10;Save space with one tap.</string>
     <string name="image_optimizer_last_format">Last optimization: %1$s</string>
     <string name="image_optimizer_card_footer">Supports JPEG • Custom quality &amp; size</string>
-
-    <!-- Cache Cleaner -->
     <string name="cache_cleaner_card_title">Cache Cleaner</string>
     <string name="cache_cleaner_card_subtitle">Free up space from app cache</string>
     <string name="cache_cleaner">Cache Cleaner</string>

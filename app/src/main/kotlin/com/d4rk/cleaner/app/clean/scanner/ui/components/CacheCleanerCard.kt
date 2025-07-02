@@ -18,18 +18,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 
 @Composable
 fun CacheCleanerCard(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit,
+    onClick: () -> Unit, // FIXME: Parameter "onClick" is never used
     onInfoClick: () -> Unit = {}
 ) {
     OutlinedCard(
-        modifier = modifier.fillMaxWidth().bounceClick(),
+        modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(SizeConstants.ExtraLargeSize),
     ) {
         Column(
