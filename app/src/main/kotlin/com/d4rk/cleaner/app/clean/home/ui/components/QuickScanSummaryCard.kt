@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Icon
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -16,9 +17,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.Color
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.CleaningServices
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Storage
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallHorizontalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 
@@ -47,20 +59,62 @@ fun QuickScanSummaryCard(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = stringResource(id = R.string.quick_scan_cleaned_format, cleanedSize),
-                    style = MaterialTheme.typography.titleMedium
-                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = Icons.Outlined.CleaningServices,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                    SmallHorizontalSpacer()
+                    Text(
+                        text = stringResource(id = R.string.quick_scan_cleaned_format, cleanedSize),
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
                 SmallVerticalSpacer()
-                Text(
-                    text = stringResource(id = R.string.quick_scan_free_format, freePercent, usedPercent),
-                    style = MaterialTheme.typography.bodyMedium
-                )
+
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = Icons.Outlined.Storage,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                    SmallHorizontalSpacer()
+                    Text(
+                        text = buildAnnotatedString {
+                            append(stringResource(id = R.string.free) + " ")
+                            withStyle(SpanStyle(color = Color(0xFF4CAF50))) {
+                                append("$freePercent%")
+                            }
+                            append(" • ")
+                            append(stringResource(id = R.string.used) + " ")
+                            withStyle(SpanStyle(color = Color(0xFFFFA000))) {
+                                append("$usedPercent%")
+                            }
+                        },
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+
                 SmallVerticalSpacer()
-                Text(
-                    text = stringResource(id = R.string.quick_scan_summary_tip),
-                    style = MaterialTheme.typography.bodySmall
-                )
+
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = Icons.Outlined.Info,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    SmallHorizontalSpacer()
+                    Text(
+                        text = stringResource(id = R.string.quick_scan_summary_tip),
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            fontStyle = FontStyle.Italic
+                        )
+                    )
+                }
             }
             Box(
                 modifier = Modifier.padding(start = SizeConstants.LargeSize),
