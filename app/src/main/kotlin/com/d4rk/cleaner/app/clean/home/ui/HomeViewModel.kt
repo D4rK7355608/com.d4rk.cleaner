@@ -1,5 +1,10 @@
 package com.d4rk.cleaner.app.clean.home.ui
 
+import android.app.Application
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.os.Build
 import com.d4rk.android.libs.apptoolkit.core.di.DispatcherProvider
 import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.ScreenState
@@ -48,6 +53,7 @@ import java.security.MessageDigest
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class HomeViewModel(
+    private val application: Application,
     private val getStorageInfoUseCase: GetStorageInfoUseCase,
     private val getFileTypesUseCase: GetFileTypesUseCase,
     private val analyzeFilesUseCase: AnalyzeFilesUseCase,
@@ -63,10 +69,17 @@ class HomeViewModel(
     private val _whatsAppMediaSummary = MutableStateFlow(WhatsAppMediaSummary())
     val whatsAppMediaSummary: StateFlow<WhatsAppMediaSummary> = _whatsAppMediaSummary
 
+    private val _clipboardPreview = MutableStateFlow<String?>(null)
+    val clipboardPreview: StateFlow<String?> = _clipboardPreview
+
+    private val _clipboardDetectedSensitive = MutableStateFlow(false)
+    val clipboardDetectedSensitive: StateFlow<Boolean> = _clipboardDetectedSensitive
+
     init {
         onEvent(HomeEvent.LoadInitialData)
         loadCleanedSpace()
         loadWhatsAppMedia()
+        loadClipboardData()
     }
 
     override fun onEvent(event: HomeEvent) {
@@ -927,6 +940,34 @@ class HomeViewModel(
 
     fun onCleanWhatsAppFiles() {
         postSnackbar(UiTextHelper.StringResource(R.string.feature_not_available), isError = false)
+    }
+
+    fun onClipboardClear() {
+        val clipboardManager = application.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        runCatching {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                clipboardManager.clearPrimaryClip()
+            } else {
+                clipboardManager.setPrimaryClip(ClipData.newPlainText("", ""))
+            }
+        }
+        _clipboardPreview.value = null
+        _clipboardDetectedSensitive.value = false
+    }
+
+    private fun loadClipboardData() {
+        val clipboardManager = application.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val text = clipboardManager.primaryClip?.takeIf { it.itemCount > 0 }
+            ?.getItemAt(0)?.coerceToText(application)?.toString()?.trim()
+        _clipboardPreview.value = text
+        _clipboardDetectedSensitive.value = text?.let { detectSensitive(it) } ?: false
+    }
+
+    private fun detectSensitive(text: String): Boolean {
+        val urlPattern = Regex("https?://")
+        val emailPattern = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")
+        val pwdPattern = Regex("(?i)password")
+        return urlPattern.containsMatchIn(text) || emailPattern.containsMatchIn(text) || pwdPattern.containsMatchIn(text)
     }
 
     private fun postSnackbar(message : UiTextHelper , isError : Boolean) {
