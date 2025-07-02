@@ -34,6 +34,7 @@ import com.d4rk.cleaner.app.clean.home.domain.usecases.GetStorageInfoUseCase
 import com.d4rk.cleaner.app.clean.home.domain.usecases.MoveToTrashUseCase
 import com.d4rk.cleaner.app.clean.home.domain.usecases.UpdateTrashSizeUseCase
 import com.d4rk.cleaner.app.clean.home.utils.helpers.StorageUtils
+import com.d4rk.cleaner.app.clean.home.utils.helpers.getWhatsAppMediaSummary
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
 import com.d4rk.cleaner.app.settings.cleaning.utils.constants.ExtensionsConstants
 import com.d4rk.cleaner.core.data.datastore.DataStore
@@ -838,15 +839,14 @@ class HomeViewModel(
     }
 
     private fun loadWhatsAppMedia() {
-        // TODO: Replace with real scan logic
-        val images = listOf(
-            File("IMG_2024.jpg"),
-            File("IMG_2023.jpg"),
-            File("Screenshot.png")
-        )
-        val videos = listOf(File("VID_001.mp4"))
-        val docs = listOf(File("doc.pdf"))
-        _whatsAppMediaSummary.value = WhatsAppMediaSummary(images = images, videos = videos, documents = docs)
+        launch(context = dispatchers.io) {
+            val (images, videos, docs) = getWhatsAppMediaSummary()
+            _whatsAppMediaSummary.value = WhatsAppMediaSummary(
+                images = images,
+                videos = videos,
+                documents = docs
+            )
+        }
     }
 
     private fun toggleAnalyzeScreen(visible: Boolean) {
