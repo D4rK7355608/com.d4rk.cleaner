@@ -81,8 +81,16 @@ fun QuickScanSummaryCard(
                         tint = MaterialTheme.colorScheme.primary
                     )
                     SmallHorizontalSpacer()
-                    val freeColor = MaterialTheme.colorScheme.tertiary
-                    val usedColor = MaterialTheme.colorScheme.error
+                    val freeColor = when {
+                        freePercent >= 75 -> MaterialTheme.colorScheme.tertiary
+                        freePercent >= 50 -> MaterialTheme.colorScheme.primary
+                        else -> MaterialTheme.colorScheme.error
+                    }
+                    val usedColor = when {
+                        usedPercent >= 90 -> MaterialTheme.colorScheme.error
+                        usedPercent >= 75 -> MaterialTheme.colorScheme.tertiary
+                        else -> MaterialTheme.colorScheme.onSurfaceVariant
+                    }
 
                     Text(
                         text = buildAnnotatedString {
