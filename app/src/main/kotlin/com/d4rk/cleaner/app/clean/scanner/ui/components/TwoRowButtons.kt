@@ -40,7 +40,9 @@ fun TwoRowButtons(
                     .bounceClick() ,
         ) {
             Icon(
-                imageVector = onStartButtonIcon , contentDescription = "Move to trash" , modifier = Modifier.size(size = SizeConstants.ButtonIconSize)
+                imageVector = onStartButtonIcon ,
+                contentDescription = "Move to trash" , // TODO: Use string resource
+                modifier = Modifier.size(size = SizeConstants.ButtonIconSize)
             )
             ButtonIconSpacer()
             Text(text = stringResource(id = onStartButtonText) , modifier = Modifier.basicMarquee())
@@ -59,7 +61,9 @@ fun TwoRowButtons(
                     .bounceClick() ,
         ) {
             Icon(
-                imageVector = onEndButtonIcon , contentDescription = "Delete forever" , modifier = Modifier.size(size = SizeConstants.ButtonIconSize)
+                imageVector = onEndButtonIcon ,
+                contentDescription = "Delete forever" , // TODO: Use string res
+                modifier = Modifier.size(size = SizeConstants.ButtonIconSize)
             )
             ButtonIconSpacer()
             Text(text = stringResource(id = onEndButtonText) , modifier = Modifier.basicMarquee())

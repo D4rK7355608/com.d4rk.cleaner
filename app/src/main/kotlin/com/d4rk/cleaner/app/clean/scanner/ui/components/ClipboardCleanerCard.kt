@@ -6,10 +6,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ContentPaste
-import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.ContentPasteOff
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -72,8 +73,7 @@ fun ClipboardCleanerCard(
             }
 
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(SizeConstants.MediumSize)
+                horizontalArrangement = Arrangement.End
             ) {
                 FilledTonalButton(
                     onClick = onCleanClick,
@@ -82,7 +82,8 @@ fun ClipboardCleanerCard(
                         .bounceClick()
                 ) {
                     Icon(
-                        imageVector = Icons.Outlined.Delete,
+                        modifier = Modifier.size(SizeConstants.ButtonIconSize),
+                        imageVector = Icons.Outlined.ContentPasteOff,
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary
                     )

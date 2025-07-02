@@ -233,12 +233,12 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                                 )
                             }
                         }
+
+                        LargeVerticalSpacer()
                     }
                 }
             }
         }
-
-        LargeVerticalSpacer()
     }
 
     DefaultSnackbarHandler(screenState = uiState , snackbarHostState = snackbarHostState , getDismissEvent = { ScannerEvent.DismissSnackbar } , onEvent = { viewModel.onEvent(event = it) })

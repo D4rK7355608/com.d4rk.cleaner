@@ -36,6 +36,7 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.fab.AnimatedE
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
+import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.images.compressor.ui.ImageOptimizerActivity
 
@@ -82,7 +83,11 @@ fun ImagePickerComposable(
                     activity.selectImage()
                 },
                 text = { Text(text = stringResource(id = R.string.choose_image)) },
-                icon = { Icon(Icons.Outlined.AddPhotoAlternate, contentDescription = null) },
+                icon = { Icon(
+                    modifier = Modifier.size(SizeConstants.ButtonIconSize),
+                    imageVector = Icons.Outlined.AddPhotoAlternate,
+                    contentDescription = null
+                ) },
                 expanded = isFabExtended.value,
                 modifier = Modifier.bounceClick()
             )

@@ -106,6 +106,7 @@ fun WhatsAppCleanerCard(
                 modifier = Modifier.align(Alignment.End).bounceClick(),
             ) {
                 Icon(
+                    modifier = Modifier.size(SizeConstants.ButtonIconSize),
                     imageVector = Icons.Outlined.Delete,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary

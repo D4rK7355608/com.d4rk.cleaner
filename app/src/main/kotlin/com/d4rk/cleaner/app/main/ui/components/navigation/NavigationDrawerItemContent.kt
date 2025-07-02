@@ -21,7 +21,7 @@ fun NavigationDrawerItemContent(item : NavigationDrawerItem , handleNavigationIt
     NavigationDrawerItem(label = { Text(text = title) } , selected = false , onClick = {
         handleNavigationItemClick()
     } , icon = {
-        Icon(item.selectedIcon , contentDescription = title)
+        Icon(imageVector = item.selectedIcon, contentDescription = title)
     } , badge = {
         if (item.badgeText.isNotBlank()) {
             Text(text = item.badgeText)

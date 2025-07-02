@@ -63,7 +63,8 @@ fun StorageBreakdownItem(icon : String , size : Long , modifier : Modifier = Mod
             ) {
                 Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
                     Icon(
-                        modifier = Modifier.bounceClick() , imageVector = storageIcons[icon] ?: Icons.Outlined.SnippetFolder , contentDescription = icon , tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        modifier = Modifier.bounceClick() ,
+                        imageVector = storageIcons[icon] ?: Icons.Outlined.SnippetFolder , contentDescription = icon , tint = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                 }
             }

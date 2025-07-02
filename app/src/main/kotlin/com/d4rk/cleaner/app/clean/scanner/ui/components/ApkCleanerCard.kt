@@ -124,6 +124,7 @@ fun ApkCleanerCard(
                     )
                 } else {
                     Icon(
+                        modifier = Modifier.size(SizeConstants.ButtonIconSize),
                         imageVector = Icons.Outlined.Delete,
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary

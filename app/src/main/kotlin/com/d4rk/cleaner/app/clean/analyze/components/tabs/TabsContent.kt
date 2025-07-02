@@ -5,6 +5,7 @@ import android.view.View
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
@@ -29,6 +30,7 @@ import coil3.imageLoader
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.hapticPagerSwipe
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
+import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.app.clean.analyze.components.DuplicateGroupsSection
 import com.d4rk.cleaner.app.clean.analyze.components.FilesByDateSection
 import com.d4rk.cleaner.app.clean.scanner.domain.actions.ScannerEvent
@@ -104,7 +106,9 @@ fun TabsContent(
             viewModel.onCloseAnalyzeComposable()
         }) {
             Icon(
-                imageVector = Icons.Outlined.Close , contentDescription = null
+                modifier = Modifier.size(SizeConstants.ButtonIconSize),
+                imageVector = Icons.Outlined.Close ,
+                contentDescription = null
             )
         }
     }
