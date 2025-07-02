@@ -38,6 +38,7 @@ import com.d4rk.cleaner.app.clean.scanner.domain.usecases.DeleteFilesUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetFileTypesUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.MoveToTrashUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.UpdateTrashSizeUseCase
+import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashSizeUseCase
 import com.d4rk.cleaner.app.clean.scanner.ui.ScannerViewModel
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashFilesUseCase
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.RestoreFromTrashUseCase
@@ -79,7 +80,10 @@ val appModule : Module = module {
     }
 
     viewModel<MainViewModel> { (launcher : ActivityResultLauncher<IntentSenderRequest>) ->
-        MainViewModel(performInAppUpdateUseCase = get { parametersOf(launcher) })
+        MainViewModel(
+            performInAppUpdateUseCase = get { parametersOf(launcher) },
+            getTrashSizeUseCase = get(),
+        )
     }
 
     single<ScannerRepositoryInterface> { ScannerRepositoryImpl(application = get() , dataStore = get()) }
@@ -89,6 +93,7 @@ val appModule : Module = module {
     single<DeleteFilesUseCase> { DeleteFilesUseCase(homeRepository = get()) }
     single<MoveToTrashUseCase> { MoveToTrashUseCase(homeRepository = get()) }
     single<UpdateTrashSizeUseCase> { UpdateTrashSizeUseCase(homeRepository = get()) }
+    single<GetTrashSizeUseCase> { GetTrashSizeUseCase(dataStore = get()) }
 
     viewModel<ScannerViewModel> {
         ScannerViewModel(
