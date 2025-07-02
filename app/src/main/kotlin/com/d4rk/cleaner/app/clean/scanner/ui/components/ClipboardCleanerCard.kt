@@ -33,8 +33,8 @@ fun ClipboardCleanerCard(
     onCleanClick: () -> Unit,
 ) {
     OutlinedCard(
-        modifier = modifier.fillMaxWidth() ,
-        shape = RoundedCornerShape(SizeConstants.ExtraLargeSize) ,
+        modifier = modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(SizeConstants.ExtraLargeSize),
     ) {
         Column(
             modifier = Modifier
@@ -61,9 +61,9 @@ fun ClipboardCleanerCard(
                 }
             }
 
-            if (!clipboardText.isNullOrBlank()) {
+            clipboardText?.let { text ->
                 Text(
-                    text = stringResource(id = R.string.clipboard_current_format, clipboardText),
+                    text = stringResource(id = R.string.clipboard_current_format, text),
                     style = MaterialTheme.typography.bodyMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -75,7 +75,12 @@ fun ClipboardCleanerCard(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(SizeConstants.MediumSize)
             ) {
-                FilledTonalButton(onClick = onCleanClick, modifier = Modifier.weight(1f).bounceClick()) {
+                FilledTonalButton(
+                    onClick = onCleanClick,
+                    modifier = Modifier
+                        .weight(1f)
+                        .bounceClick()
+                ) {
                     Icon(
                         imageVector = Icons.Outlined.Delete,
                         contentDescription = null,
