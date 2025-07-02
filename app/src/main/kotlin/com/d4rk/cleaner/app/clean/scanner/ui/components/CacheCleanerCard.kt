@@ -8,9 +8,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DeleteSweep
-import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -18,14 +17,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 
 @Composable
 fun CacheCleanerCard(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit, // FIXME: Parameter "onClick" is never used
-    onInfoClick: () -> Unit = {}
+    onScanClick: () -> Unit,
 ) {
     OutlinedCard(
         modifier = modifier.fillMaxWidth(),
@@ -56,13 +56,19 @@ fun CacheCleanerCard(
                         style = MaterialTheme.typography.bodySmall
                     )
                 }
-                IconButton(onClick = onInfoClick) {
-                    Icon(
-                        imageVector = Icons.Outlined.Info,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
+            }
+
+            FilledTonalButton(
+                onClick = onScanClick,
+                modifier = Modifier.align(Alignment.End).bounceClick()
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.DeleteSweep,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                ButtonIconSpacer()
+                Text(text = stringResource(id = R.string.scan_cache))
             }
         }
     }
