@@ -27,7 +27,7 @@ fun QuickScanSummaryCard(
     usedPercent: Int,
     progress: Float,
     modifier: Modifier = Modifier,
-    buttonSize: Dp = 96.dp,
+    buttonSize: Dp = 112.dp,
     onQuickScanClick: () -> Unit,
 ) {
     Card(
@@ -39,7 +39,7 @@ fun QuickScanSummaryCard(
                 .fillMaxWidth()
                 .padding(all = SizeConstants.LargeSize),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(SizeConstants.LargeSize)
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
@@ -57,10 +57,12 @@ fun QuickScanSummaryCard(
                     style = MaterialTheme.typography.bodySmall
                 )
             }
-            Box(contentAlignment = Alignment.Center) {
+            Box(
+                modifier = Modifier.padding(start = SizeConstants.LargeSize),
+                contentAlignment = Alignment.Center
+            ) {
                 StorageProgressButton(
                     progress = progress,
-                    modifier = Modifier,
                     size = buttonSize,
                     onClick = onQuickScanClick
                 )

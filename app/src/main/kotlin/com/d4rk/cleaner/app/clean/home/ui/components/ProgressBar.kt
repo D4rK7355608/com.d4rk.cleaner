@@ -95,7 +95,9 @@ fun StorageProgressButton(
                 onClick()
             } , colors = ButtonDefaults.filledTonalButtonColors()) {
                 Text(
-                    text = stringResource(id = R.string.quick_scan) , textAlign = TextAlign.Center , style = MaterialTheme.typography.titleLarge
+                    text = stringResource(id = R.string.quick_scan),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.titleMedium
                 )
             }
         }

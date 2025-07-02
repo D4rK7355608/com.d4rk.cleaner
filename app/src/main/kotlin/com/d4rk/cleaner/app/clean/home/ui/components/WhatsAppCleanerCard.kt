@@ -13,17 +13,27 @@ import androidx.compose.material.icons.outlined.Chat
 import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material.icons.outlined.Videocam
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.outlined.PictureAsPdf
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.video.VideoFrameDecoder
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.WhatsAppMediaSummary
@@ -82,7 +92,13 @@ fun WhatsAppCleanerCard(
                 )
             }
 
-            Button(modifier = Modifier.align(Alignment.End), onClick = onCleanClick) {
+            FilledTonalButton(
+                onClick = onCleanClick,
+                modifier = Modifier.align(Alignment.End),
+                colors = ButtonDefaults.filledTonalButtonColors()
+            ) {
+                Icon(imageVector = Icons.Outlined.Delete, contentDescription = null)
+                ButtonIconSpacer()
                 Text(text = stringResource(id = R.string.clean_whatsapp))
             }
         }
@@ -92,6 +108,7 @@ fun WhatsAppCleanerCard(
 @Composable
 private fun CategoryRow(icon: androidx.compose.ui.graphics.vector.ImageVector, label: String, files: List<File>) {
     val preview = files.take(3)
+    val context = LocalContext.current
     Row(verticalAlignment = Alignment.CenterVertically) {
         Icon(imageVector = icon, contentDescription = null)
         Row(
@@ -102,7 +119,37 @@ private fun CategoryRow(icon: androidx.compose.ui.graphics.vector.ImageVector, l
             verticalAlignment = Alignment.CenterVertically
         ) {
             preview.forEach { file ->
-                Text(text = file.name, style = MaterialTheme.typography.bodySmall)
+                val ext = file.extension.lowercase()
+                if (icon == Icons.Outlined.Image || icon == Icons.Outlined.Videocam) {
+                    val request = remember(file) {
+                        if (icon == Icons.Outlined.Videocam) {
+                            ImageRequest.Builder(context)
+                                .data(file)
+                                .decoderFactory { result, options, _ ->
+                                    VideoFrameDecoder(result.source, options)
+                                }
+                                .videoFramePercent(0.5f)
+                                .build()
+                        } else {
+                            ImageRequest.Builder(context).data(file).build()
+                        }
+                    }
+                    AsyncImage(
+                        model = request,
+                        contentDescription = null,
+                        modifier = Modifier.size(48.dp)
+                    )
+                } else {
+                    if (ext == "pdf") {
+                        Icon(
+                            imageVector = Icons.Outlined.PictureAsPdf,
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    } else {
+                        AssistChip(onClick = {}, label = { Text(file.name) }, enabled = false)
+                    }
+                }
             }
             if (files.size > preview.size) {
                 Text(
