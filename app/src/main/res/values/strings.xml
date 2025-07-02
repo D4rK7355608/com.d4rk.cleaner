@@ -59,6 +59,11 @@
     <string name="clipboard_current_format">Current: %1$s</string>
     <string name="clean_clipboard">Clean</string>
     <string name="see_more">See More</string>
+    <string name="learn_more">Learn more</string>
+    <string name="image_optimizer_card_title">Optimize Images</string>
+    <string name="image_optimizer_card_subtitle">Shrink image sizes without losing quality.&#10;Free up space with a single tap.</string>
+    <string name="image_optimizer_last_format">Last optimized: %1$s</string>
+    <string name="image_optimizer_card_footer">Supports JPEG • Adjustable quality &amp; size</string>
     <string name="apks">APKs</string>
     <string name="archives">Archives</string>
     <string name="fonts">Fonts</string>
