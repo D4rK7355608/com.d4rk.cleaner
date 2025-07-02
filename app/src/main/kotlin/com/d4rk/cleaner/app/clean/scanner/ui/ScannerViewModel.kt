@@ -39,6 +39,7 @@ import com.d4rk.cleaner.app.clean.scanner.utils.helpers.getWhatsAppMediaSummary
 import com.d4rk.cleaner.app.settings.cleaning.utils.constants.ExtensionsConstants
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.domain.model.network.Errors
+import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -67,6 +68,11 @@ class ScannerViewModel(
     initialState = UiStateScreen(data = UiScannerModel())
 ) {
 
+    private val clipboardManager =
+        application.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    private val clipboardListener =
+        ClipboardManager.OnPrimaryClipChangedListener { loadClipboardData() }
+
     private val _whatsAppMediaSummary = MutableStateFlow(WhatsAppMediaSummary())
     val whatsAppMediaSummary: StateFlow<WhatsAppMediaSummary> = _whatsAppMediaSummary
 
@@ -77,6 +83,7 @@ class ScannerViewModel(
     val clipboardDetectedSensitive: StateFlow<Boolean> = _clipboardDetectedSensitive
 
     init {
+        clipboardManager.addPrimaryClipChangedListener(clipboardListener)
         onEvent(ScannerEvent.LoadInitialData)
         loadCleanedSpace()
         loadWhatsAppMedia()
@@ -433,6 +440,9 @@ class ScannerViewModel(
                         dataStore.saveLastScanTimestamp(timestamp = System.currentTimeMillis())
                     }
                     loadInitialData()
+                    loadWhatsAppMedia()
+                    loadClipboardData()
+                    CleaningEventBus.notifyCleaned()
                 }
             }
         }
@@ -498,6 +508,9 @@ class ScannerViewModel(
                 if (result is DataState.Success) {
                     updateTrashSize(sizeChange = totalFileSizeToMove)
                     loadInitialData()
+                    loadWhatsAppMedia()
+                    loadClipboardData()
+                    CleaningEventBus.notifyCleaned()
                 }
             }
         }
@@ -709,6 +722,9 @@ class ScannerViewModel(
                         dataStore.saveLastScanTimestamp(timestamp = System.currentTimeMillis())
                     }
                     loadInitialData()
+                    loadWhatsAppMedia()
+                    loadClipboardData()
+                    CleaningEventBus.notifyCleaned()
                 } else if (result is DataState.Error) {
                     _uiState.update { s ->
                         val currentErrorData = s.data ?: UiScannerModel()
@@ -796,6 +812,9 @@ class ScannerViewModel(
                 if (result is DataState.Success) {
                     updateTrashSize(totalFileSizeToMove)
                     loadInitialData()
+                    loadWhatsAppMedia()
+                    loadClipboardData()
+                    CleaningEventBus.notifyCleaned()
                 } else if (result is DataState.Error) {
                     _uiState.update { s ->
                         val currentErrorData = s.data ?: UiScannerModel()
@@ -940,6 +959,8 @@ class ScannerViewModel(
     }
 
     fun onCleanWhatsAppFiles() {
+        _whatsAppMediaSummary.value = WhatsAppMediaSummary()
+        CleaningEventBus.notifyCleaned()
         postSnackbar(UiTextHelper.StringResource(R.string.feature_not_available), isError = false)
     }
 
@@ -948,7 +969,6 @@ class ScannerViewModel(
     }
 
     fun onClipboardClear() {
-        val clipboardManager = application.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         runCatching {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 clipboardManager.clearPrimaryClip()
@@ -958,10 +978,10 @@ class ScannerViewModel(
         }
         _clipboardPreview.value = null
         _clipboardDetectedSensitive.value = false
+        CleaningEventBus.notifyCleaned()
     }
 
     private fun loadClipboardData() {
-        val clipboardManager = application.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val text = clipboardManager.primaryClip?.takeIf { it.itemCount > 0 }
             ?.getItemAt(0)?.coerceToText(application)?.toString()?.trim()
         _clipboardPreview.value = text
@@ -977,5 +997,10 @@ class ScannerViewModel(
 
     private fun postSnackbar(message : UiTextHelper , isError : Boolean) {
         screenState.showSnackbar(snackbar = UiSnackbar(message = message , isError = isError , timeStamp = System.currentTimeMillis() , type = ScreenMessageType.SNACKBAR))
+    }
+
+    override fun onCleared() {
+        clipboardManager.removePrimaryClipChangedListener(clipboardListener)
+        super.onCleared()
     }
 }
