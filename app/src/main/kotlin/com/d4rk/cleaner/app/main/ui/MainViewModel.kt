@@ -18,8 +18,13 @@ import com.d4rk.android.libs.apptoolkit.core.ui.base.ScreenViewModel
 import com.d4rk.cleaner.app.main.domain.actions.MainAction
 import com.d4rk.cleaner.app.main.domain.actions.MainEvent
 import com.d4rk.cleaner.app.main.domain.model.UiMainScreen
+import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashSizeUseCase
+import com.d4rk.cleaner.app.clean.scanner.utils.helpers.StorageUtils
 
-class MainViewModel(private val performInAppUpdateUseCase : PerformInAppUpdateUseCase) : ScreenViewModel<UiMainScreen , MainEvent , MainAction>(initialState = UiStateScreen(data = UiMainScreen())) {
+class MainViewModel(
+    private val performInAppUpdateUseCase : PerformInAppUpdateUseCase,
+    private val getTrashSizeUseCase: GetTrashSizeUseCase,
+) : ScreenViewModel<UiMainScreen , MainEvent , MainAction>(initialState = UiStateScreen(data = UiMainScreen())) {
 
     init {
         onEvent(event = MainEvent.LoadNavigation)
@@ -40,6 +45,9 @@ class MainViewModel(private val performInAppUpdateUseCase : PerformInAppUpdateUs
 
     private fun loadNavigationItems() {
         launch {
+            val trashSize = getTrashSizeUseCase()
+            val trashBadge = if (trashSize > 0) StorageUtils.formatSizeReadable(trashSize) else ""
+
             screenState.successData {
                 copy(
                     navigationDrawerItems = listOf(
@@ -49,6 +57,7 @@ class MainViewModel(private val performInAppUpdateUseCase : PerformInAppUpdateUs
                         ) , NavigationDrawerItem(
                             title = com.d4rk.cleaner.R.string.trash ,
                             selectedIcon = Icons.Outlined.Delete ,
+                            badgeText = trashBadge ,
                         ) , NavigationDrawerItem(
                             title = R.string.settings ,
                             selectedIcon = Icons.Outlined.Settings ,
