@@ -30,13 +30,16 @@ import com.d4rk.cleaner.app.clean.home.domain.usecases.UpdateTrashSizeUseCase
 import com.d4rk.cleaner.app.clean.home.utils.helpers.StorageUtils
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
 import com.d4rk.cleaner.app.settings.cleaning.utils.constants.ExtensionsConstants
+import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.WhatsAppMediaSummary
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.domain.model.network.Errors
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -57,9 +60,13 @@ class HomeViewModel(
     initialState = UiStateScreen(data = UiHomeModel())
 ) {
 
+    private val _whatsAppMediaSummary = MutableStateFlow(WhatsAppMediaSummary())
+    val whatsAppMediaSummary: StateFlow<WhatsAppMediaSummary> = _whatsAppMediaSummary
+
     init {
         onEvent(HomeEvent.LoadInitialData)
         loadCleanedSpace()
+        loadWhatsAppMedia()
     }
 
     override fun onEvent(event: HomeEvent) {
@@ -79,6 +86,7 @@ class HomeViewModel(
             is HomeEvent.ToggleSelectFilesForCategory -> toggleSelectFilesForCategory(category = event.category)
             is HomeEvent.ToggleSelectFilesForDate -> toggleSelectFilesForDate(event.files, event.isChecked)
             is HomeEvent.CleanFiles -> cleanFiles()
+            is HomeEvent.CleanWhatsAppFiles -> onCleanWhatsAppFiles()
             is HomeEvent.MoveSelectedToTrash -> moveSelectedToTrash()
             is HomeEvent.SetDeleteForeverConfirmationDialogVisibility -> setDeleteForeverConfirmationDialogVisibility(
                 isVisible = event.isVisible
@@ -816,6 +824,18 @@ class HomeViewModel(
         }
     }
 
+    private fun loadWhatsAppMedia() {
+        // TODO: Replace with real scan logic
+        val images = listOf(
+            File("IMG_2024.jpg"),
+            File("IMG_2023.jpg"),
+            File("Screenshot.png")
+        )
+        val videos = listOf(File("VID_001.mp4"))
+        val docs = listOf(File("doc.pdf"))
+        _whatsAppMediaSummary.value = WhatsAppMediaSummary(images = images, videos = videos, documents = docs)
+    }
+
     private fun toggleAnalyzeScreen(visible: Boolean) {
         if (visible) {
             launch(dispatchers.io) {
@@ -903,6 +923,10 @@ class HomeViewModel(
 
     fun onCleanApks(apkFiles: List<File>) {
         deleteFiles(apkFiles.toSet())
+    }
+
+    fun onCleanWhatsAppFiles() {
+        postSnackbar(UiTextHelper.StringResource(R.string.feature_not_available), isError = false)
     }
 
     private fun postSnackbar(message : UiTextHelper , isError : Boolean) {

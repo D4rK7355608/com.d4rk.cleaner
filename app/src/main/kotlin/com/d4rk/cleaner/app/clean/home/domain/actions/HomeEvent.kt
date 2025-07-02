@@ -15,6 +15,7 @@ sealed class HomeEvent : UiEvent {
     data class ToggleSelectFilesForCategory(val category : String) : HomeEvent()
     data class ToggleSelectFilesForDate(val files: List<File>, val isChecked: Boolean) : HomeEvent()
     object CleanFiles : HomeEvent()
+    object CleanWhatsAppFiles : HomeEvent()
     object MoveSelectedToTrash : HomeEvent()
     data class SetDeleteForeverConfirmationDialogVisibility(val isVisible : Boolean) : HomeEvent()
     data class SetMoveToTrashConfirmationDialogVisibility(val isVisible : Boolean) : HomeEvent()

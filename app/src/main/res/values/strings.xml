@@ -51,6 +51,9 @@
     <string name="apk_card_subtitle">Old APK files can take up a lot of space.</string>
     <string name="apk_card_more_format">+%1$d more</string>
     <string name="clean_apks">Clean APKs</string>
+    <string name="whatsapp_card_title">WhatsApp Cleanup</string>
+    <string name="whatsapp_card_subtitle">Free up space by removing old WhatsApp files.</string>
+    <string name="clean_whatsapp">Clean WhatsApp</string>
     <string name="apks">APKs</string>
     <string name="archives">Archives</string>
     <string name="fonts">Fonts</string>
@@ -229,6 +232,7 @@
     <string name="no_files_selected_move_to_trash">No files selected to move to trash.</string>
     <string name="failed_to_move_files_to_trash">Failed to move files to trash: %1$s</string>
     <string name="data_not_available">Data not available.</string>
+    <string name="feature_not_available">Feature not available yet.</string>
     <string name="no_files_selected_to_clean">No files selected to clean.</string>
     <string name="failed_to_update_trash_size">Failed to update trash size: %1$s</string>
     <string name="no_cleaning_options_selected">Please choose your cleaning preferences in settings to proceed.</string>
