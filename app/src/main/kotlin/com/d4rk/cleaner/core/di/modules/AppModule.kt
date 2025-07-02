@@ -93,6 +93,7 @@ val appModule : Module = module {
     single<DeleteFilesUseCase> { DeleteFilesUseCase(homeRepository = get()) }
     single<MoveToTrashUseCase> { MoveToTrashUseCase(homeRepository = get()) }
     single<UpdateTrashSizeUseCase> { UpdateTrashSizeUseCase(homeRepository = get()) }
+    single<GetPromotedAppUseCase> { GetPromotedAppUseCase() }
     single<GetTrashSizeUseCase> { GetTrashSizeUseCase(dataStore = get()) }
 
     viewModel<ScannerViewModel> {
@@ -104,6 +105,7 @@ val appModule : Module = module {
             deleteFilesUseCase = get(),
             moveToTrashUseCase = get(),
             updateTrashSizeUseCase = get(),
+            getPromotedAppUseCase = get(),
             dispatchers = get(),
             dataStore = get()
         )

@@ -39,6 +39,7 @@ import com.d4rk.cleaner.app.clean.scanner.utils.helpers.getWhatsAppMediaSummary
 import com.d4rk.cleaner.app.settings.cleaning.utils.constants.ExtensionsConstants
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.domain.model.network.Errors
+import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetPromotedAppUseCase
 import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -62,6 +63,7 @@ class ScannerViewModel(
     private val deleteFilesUseCase: DeleteFilesUseCase,
     private val moveToTrashUseCase: MoveToTrashUseCase,
     private val updateTrashSizeUseCase: UpdateTrashSizeUseCase,
+    private val getPromotedAppUseCase: GetPromotedAppUseCase,
     private val dispatchers: DispatcherProvider,
     private val dataStore: DataStore
 ) : ScreenViewModel<UiScannerModel, ScannerEvent, ScannerAction>(
@@ -88,6 +90,7 @@ class ScannerViewModel(
         loadCleanedSpace()
         loadWhatsAppMedia()
         loadClipboardData()
+        loadPromotedApp()
         launch(dispatchers.io) {
             CleaningEventBus.events.collectLatest {
                 onEvent(ScannerEvent.RefreshData)
@@ -871,6 +874,17 @@ class ScannerViewModel(
                 videos = videos,
                 documents = docs
             )
+        }
+    }
+
+    private fun loadPromotedApp() {
+        launch(dispatchers.io) {
+            val promoted = getPromotedAppUseCase(application.packageName)
+            promoted?.let {
+                _uiState.updateData(ScreenState.Success()) { current ->
+                    current.copy(promotedApp = promoted)
+                }
+            }
         }
     }
 
