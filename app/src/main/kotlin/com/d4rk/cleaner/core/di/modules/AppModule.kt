@@ -91,7 +91,17 @@ val appModule : Module = module {
     single<UpdateTrashSizeUseCase> { UpdateTrashSizeUseCase(homeRepository = get()) }
 
     viewModel<HomeViewModel> {
-        HomeViewModel(getStorageInfoUseCase = get() , getFileTypesUseCase = get() , analyzeFilesUseCase = get() , deleteFilesUseCase = get() , moveToTrashUseCase = get() , updateTrashSizeUseCase = get() , dispatchers = get() , dataStore = get())
+        HomeViewModel(
+            application = get(),
+            getStorageInfoUseCase = get(),
+            getFileTypesUseCase = get(),
+            analyzeFilesUseCase = get(),
+            deleteFilesUseCase = get(),
+            moveToTrashUseCase = get(),
+            updateTrashSizeUseCase = get(),
+            dispatchers = get(),
+            dataStore = get()
+        )
     }
 
     single<PackageManagerFacade> { PackageManagerFacadeImpl(application = get()) }

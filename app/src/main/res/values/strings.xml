@@ -54,6 +54,11 @@
     <string name="whatsapp_card_title">WhatsApp Cleanup</string>
     <string name="whatsapp_card_subtitle">Free up space by removing old WhatsApp files.</string>
     <string name="clean_whatsapp">Clean WhatsApp</string>
+    <string name="clipboard_card_title">Clipboard Cleanup</string>
+    <string name="clipboard_card_subtitle">Sensitive data can stay copied longer than needed.</string>
+    <string name="clipboard_current_format">Current: %1$s</string>
+    <string name="clean_clipboard">Clean</string>
+    <string name="see_more">See More</string>
     <string name="apks">APKs</string>
     <string name="archives">Archives</string>
     <string name="fonts">Fonts</string>

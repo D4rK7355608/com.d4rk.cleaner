@@ -38,6 +38,7 @@ import com.d4rk.cleaner.app.clean.home.domain.actions.HomeEvent
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.UiHomeModel
 import com.d4rk.cleaner.app.clean.home.ui.components.QuickScanSummaryCard
 import com.d4rk.cleaner.app.clean.home.ui.components.WhatsAppCleanerCard
+import com.d4rk.cleaner.app.clean.home.ui.components.ClipboardCleanerCard
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -50,6 +51,8 @@ fun HomeScreen(paddingValues: PaddingValues, snackbarHostState: SnackbarHostStat
     val uiState: UiStateScreen<UiHomeModel> by viewModel.uiState.collectAsState()
     val appManagerState: UiStateScreen<UiAppManagerModel> by appManagerViewModel.uiState.collectAsState()
     val whatsappSummary by viewModel.whatsAppMediaSummary.collectAsState()
+    val clipboardText by viewModel.clipboardPreview.collectAsState()
+    val clipboardSensitive by viewModel.clipboardDetectedSensitive.collectAsState()
 
     LaunchedEffect(key1 = true) {
         if (!PermissionsHelper.hasStoragePermissions(context)) {
@@ -110,6 +113,13 @@ fun HomeScreen(paddingValues: PaddingValues, snackbarHostState: SnackbarHostStat
                             WhatsAppCleanerCard(
                                 mediaSummary = whatsappSummary,
                                 onCleanClick = { viewModel.onEvent(HomeEvent.CleanWhatsAppFiles) }
+                            )
+                        }
+                        AnimatedVisibility(visible = clipboardText != null || clipboardSensitive) {
+                            ClipboardCleanerCard(
+                                clipboardText = clipboardText,
+                                onCleanClick = { viewModel.onClipboardClear() },
+                                onSeeMoreClick = {}
                             )
                         }
                     }
