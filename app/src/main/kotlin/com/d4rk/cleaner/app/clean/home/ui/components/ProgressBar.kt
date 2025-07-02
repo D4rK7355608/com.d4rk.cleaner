@@ -31,6 +31,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
@@ -50,7 +51,10 @@ import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
  */
 @Composable
 fun StorageProgressButton(
-    progress : Float , modifier : Modifier = Modifier , onClick : () -> Unit = {}
+    progress: Float,
+    modifier: Modifier = Modifier,
+    size: Dp = 240.dp,
+    onClick: () -> Unit = {}
 ) {
     val view : View = LocalView.current
     val isVisible = remember { mutableStateOf(true) }
@@ -60,7 +64,8 @@ fun StorageProgressButton(
     )
 
     Box(
-        contentAlignment = Alignment.Center , modifier = modifier.size(240.dp)
+        contentAlignment = Alignment.Center,
+        modifier = modifier.size(size)
     ) {
         CircularProgressIndicator(
             progress = { 1f } ,

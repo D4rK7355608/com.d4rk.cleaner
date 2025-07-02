@@ -30,8 +30,7 @@ import com.d4rk.cleaner.app.apps.manager.domain.actions.AppManagerEvent
 import com.d4rk.cleaner.app.clean.analyze.ui.AnalyzeScreen
 import com.d4rk.cleaner.app.clean.home.domain.actions.HomeEvent
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.UiHomeModel
-import com.d4rk.cleaner.app.clean.home.ui.components.ExtraStorageInfo
-import com.d4rk.cleaner.app.clean.home.ui.components.StorageProgressButton
+import com.d4rk.cleaner.app.clean.home.ui.components.QuickScanSummaryCard
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -58,34 +57,12 @@ fun HomeScreen(paddingValues: PaddingValues, snackbarHostState: SnackbarHostStat
                 .weight(4f)
                 .fillMaxWidth()
         ) {
-            if (uiState.data?.analyzeState?.isAnalyzeScreenVisible == false) {
-                StorageProgressButton(
-                    progress = uiState.data?.storageInfo?.storageUsageProgress ?: 0f,
-                    modifier = Modifier
-                        .align(Alignment.TopCenter)
-                        .offset(y = 98.dp),
-                    onClick = {
-                        viewModel.onEvent(HomeEvent.ToggleAnalyzeScreen(true))
-                    }
-                )
-
-                ExtraStorageInfo(
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .padding(bottom = SizeConstants.LargeSize),
-                    cleanedSpace = uiState.data?.storageInfo?.cleanedSpace ?: "",
-                    freeSpace = "${uiState.data?.storageInfo?.freeSpacePercentage ?: 0} %",
-                    isCleanedSpaceLoading = uiState.data?.storageInfo?.isCleanedSpaceLoading == true,
-                    isFreeSpaceLoading = uiState.data?.storageInfo?.isFreeSpaceLoading == true
-                )
-            }
-
             Crossfade(
                 targetState = uiState.data?.analyzeState?.isAnalyzeScreenVisible,
                 animationSpec = tween(durationMillis = 300),
                 label = ""
-            ) { showCleaningComposable ->
-                if (showCleaningComposable == true) {
+            ) { showAnalyze ->
+                if (showAnalyze == true) {
                     uiState.data?.let { data ->
                         key(data.analyzeState.fileTypesData) {
                             AnalyzeScreen(
@@ -95,6 +72,15 @@ fun HomeScreen(paddingValues: PaddingValues, snackbarHostState: SnackbarHostStat
                             )
                         }
                     }
+                } else {
+                    QuickScanSummaryCard(
+                        cleanedSize = uiState.data?.storageInfo?.cleanedSpace ?: "",
+                        freePercent = uiState.data?.storageInfo?.freeSpacePercentage ?: 0,
+                        usedPercent = ((uiState.data?.storageInfo?.storageUsageProgress ?: 0f) * 100).toInt(),
+                        progress = uiState.data?.storageInfo?.storageUsageProgress ?: 0f,
+                        modifier = Modifier.align(Alignment.Center),
+                        onQuickScanClick = { viewModel.onEvent(HomeEvent.ToggleAnalyzeScreen(true)) }
+                    )
                 }
             }
         }
