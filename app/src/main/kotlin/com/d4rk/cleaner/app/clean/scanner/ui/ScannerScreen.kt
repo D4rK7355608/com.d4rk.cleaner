@@ -25,6 +25,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import com.d4rk.android.libs.apptoolkit.core.domain.model.ads.AdsConfig
+import com.d4rk.android.libs.apptoolkit.core.ui.components.ads.AdBanner
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.snackbar.DefaultSnackbarHandler
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
@@ -46,6 +48,8 @@ import com.d4rk.cleaner.app.clean.scanner.ui.components.WhatsAppCleanerCard
 import com.d4rk.cleaner.app.images.picker.ui.ImagePickerActivity
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.viewmodel.koinViewModel
+import org.koin.compose.koinInject
+import org.koin.core.qualifier.named
 
 @Composable
 fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHostState) {
@@ -57,6 +61,16 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
     val appManagerState: UiStateScreen<UiAppManagerModel> by appManagerViewModel.uiState.collectAsState()
     val whatsappSummary by viewModel.whatsAppMediaSummary.collectAsState()
     val clipboardText by viewModel.clipboardPreview.collectAsState()
+    val mediumRectAdsConfig: AdsConfig = koinInject(qualifier = named(name = "banner_medium_rectangle"))
+
+    val showApkCard = appManagerState.data?.apkFiles?.isNotEmpty() == true
+    val showWhatsAppCard = whatsappSummary.hasData
+    val showClipboardCard = !clipboardText.isNullOrBlank()
+
+    val visibleCardsCount = 3 +
+        (if (showApkCard) 1 else 0) +
+        (if (showWhatsAppCard) 1 else 0) +
+        (if (showClipboardCard) 1 else 0)
 
     LaunchedEffect(key1 = true) {
         if (!PermissionsHelper.hasStoragePermissions(context)) {
@@ -98,6 +112,8 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                         verticalArrangement = Arrangement.spacedBy(SizeConstants.LargeSize),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
+                        var itemIndex = 0
+
                         QuickScanSummaryCard(
                             cleanedSize = uiState.data?.storageInfo?.cleanedSpace ?: "",
                             freePercent = uiState.data?.storageInfo?.freeSpacePercentage ?: 0,
@@ -105,30 +121,74 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                             progress = uiState.data?.storageInfo?.storageUsageProgress ?: 0f,
                             onQuickScanClick = { viewModel.onEvent(event = ScannerEvent.ToggleAnalyzeScreen(visible = true)) }
                         )
-                        AnimatedVisibility(visible = appManagerState.data?.apkFiles?.isNotEmpty() == true) {
-                            val isCleaningApks = uiState.data?.analyzeState?.state == CleaningState.Cleaning &&
-                                    uiState.data?.analyzeState?.cleaningType == CleaningType.DELETE &&
-                                    uiState.data?.analyzeState?.isAnalyzeScreenVisible == false
-                            ApkCleanerCard(
-                                apkFiles = appManagerState.data?.apkFiles ?: emptyList(),
-                                isLoading = isCleaningApks,
-                                onCleanClick = { selected ->
-                                    val files = selected.map { java.io.File(it.path) }
-                                    viewModel.onCleanApks(files)
+                        itemIndex++
+                        if (visibleCardsCount > 3 && itemIndex % 4 == 0) {
+                            key("ad_$itemIndex") {
+                                AdBanner(
+                                    modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                                    adsConfig = mediumRectAdsConfig
+                                )
+                            }
+                        }
+
+                        if (showApkCard) {
+                            AnimatedVisibility(visible = showApkCard) {
+                                val isCleaningApks = uiState.data?.analyzeState?.state == CleaningState.Cleaning &&
+                                        uiState.data?.analyzeState?.cleaningType == CleaningType.DELETE &&
+                                        uiState.data?.analyzeState?.isAnalyzeScreenVisible == false
+                                ApkCleanerCard(
+                                    apkFiles = appManagerState.data?.apkFiles ?: emptyList(),
+                                    isLoading = isCleaningApks,
+                                    onCleanClick = { selected ->
+                                        val files = selected.map { java.io.File(it.path) }
+                                        viewModel.onCleanApks(files)
+                                    }
+                                )
+                            }
+                            itemIndex++
+                            if (visibleCardsCount > 3 && itemIndex % 4 == 0) {
+                                key("ad_$itemIndex") {
+                                    AdBanner(
+                                        modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                                        adsConfig = mediumRectAdsConfig
+                                    )
                                 }
-                            )
+                            }
                         }
-                        AnimatedVisibility(visible = whatsappSummary.hasData) {
-                            WhatsAppCleanerCard(
-                                mediaSummary = whatsappSummary,
-                                onCleanClick = { viewModel.onEvent(ScannerEvent.CleanWhatsAppFiles) }
-                            )
+
+                        if (showWhatsAppCard) {
+                            AnimatedVisibility(visible = showWhatsAppCard) {
+                                WhatsAppCleanerCard(
+                                    mediaSummary = whatsappSummary,
+                                    onCleanClick = { viewModel.onEvent(ScannerEvent.CleanWhatsAppFiles) }
+                                )
+                            }
+                            itemIndex++
+                            if (visibleCardsCount > 3 && itemIndex % 4 == 0) {
+                                key("ad_$itemIndex") {
+                                    AdBanner(
+                                        modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                                        adsConfig = mediumRectAdsConfig
+                                    )
+                                }
+                            }
                         }
+
                         CacheCleanerCard(
                             onScanClick = {
                                 viewModel.onEvent(ScannerEvent.CleanCache)
                             }
                         )
+                        itemIndex++
+                        if (visibleCardsCount > 3 && itemIndex % 4 == 0) {
+                            key("ad_$itemIndex") {
+                                AdBanner(
+                                    modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                                    adsConfig = mediumRectAdsConfig
+                                )
+                            }
+                        }
+
                         ImageOptimizerCard(
                             onOptimizeClick = {
                                 IntentsHelper.openActivity(
@@ -137,13 +197,41 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                                 )
                             }
                         )
-                        AnimatedVisibility(
-                            visible = !clipboardText.isNullOrBlank()
-                        ) {
-                            ClipboardCleanerCard(
-                                clipboardText = clipboardText,
-                                onCleanClick = { viewModel.onClipboardClear() }
-                            )
+                        itemIndex++
+                        if (visibleCardsCount > 3 && itemIndex % 4 == 0) {
+                            key("ad_$itemIndex") {
+                                AdBanner(
+                                    modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                                    adsConfig = mediumRectAdsConfig
+                                )
+                            }
+                        }
+
+                        if (showClipboardCard) {
+                            AnimatedVisibility(visible = showClipboardCard) {
+                                ClipboardCleanerCard(
+                                    clipboardText = clipboardText,
+                                    onCleanClick = { viewModel.onClipboardClear() }
+                                )
+                            }
+                            itemIndex++
+                            if (visibleCardsCount > 3 && itemIndex % 4 == 0) {
+                                key("ad_$itemIndex") {
+                                    AdBanner(
+                                        modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                                        adsConfig = mediumRectAdsConfig
+                                    )
+                                }
+                            }
+                        }
+
+                        if (visibleCardsCount <= 3) {
+                            key("ad_end") {
+                                AdBanner(
+                                    modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                                    adsConfig = mediumRectAdsConfig
+                                )
+                            }
                         }
                     }
                 }
