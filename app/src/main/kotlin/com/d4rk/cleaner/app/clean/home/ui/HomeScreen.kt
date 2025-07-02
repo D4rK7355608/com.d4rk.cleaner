@@ -33,6 +33,8 @@ import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.app.apps.manager.domain.data.model.ui.UiAppManagerModel
 import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
 import com.d4rk.cleaner.app.clean.home.ui.components.ApkCleanerCard
+import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningState
+import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.CleaningType
 import com.d4rk.cleaner.app.clean.analyze.ui.AnalyzeScreen
 import com.d4rk.cleaner.app.clean.home.domain.actions.HomeEvent
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.UiHomeModel
@@ -105,10 +107,14 @@ fun HomeScreen(paddingValues: PaddingValues, snackbarHostState: SnackbarHostStat
                             onQuickScanClick = { viewModel.onEvent(HomeEvent.ToggleAnalyzeScreen(true)) }
                         )
                         AnimatedVisibility(visible = appManagerState.data?.apkFiles?.isNotEmpty() == true) {
+                            val isCleaningApks = uiState.data?.analyzeState?.state == CleaningState.Cleaning &&
+                                    uiState.data?.analyzeState?.cleaningType == CleaningType.DELETE &&
+                                    uiState.data?.analyzeState?.isAnalyzeScreenVisible == false
                             ApkCleanerCard(
                                 apkFiles = appManagerState.data?.apkFiles ?: emptyList(),
-                                onCleanClick = {
-                                    val files = appManagerState.data?.apkFiles?.map { java.io.File(it.path) } ?: emptyList()
+                                isLoading = isCleaningApks,
+                                onCleanClick = { selected ->
+                                    val files = selected.map { java.io.File(it.path) }
                                     viewModel.onCleanApks(files)
                                 }
                             )

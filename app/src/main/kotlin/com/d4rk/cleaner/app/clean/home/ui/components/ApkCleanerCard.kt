@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
@@ -41,9 +42,10 @@ import java.io.File
 fun ApkCleanerCard(
     apkFiles: List<ApkInfo>,
     modifier: Modifier = Modifier,
-    onCleanClick: () -> Unit
+    isLoading: Boolean = false,
+    onCleanClick: (List<ApkInfo>) -> Unit
 ) {
-    val preview = apkFiles.take(3)
+    val preview = apkFiles.take(4)
     val context: Context = LocalContext.current
 
     Card(
@@ -91,22 +93,25 @@ fun ApkCleanerCard(
                     val appName = appInfo?.loadLabel(context.packageManager)?.toString() ?: File(apk.path).name
                     val icon = appInfo?.loadIcon(context.packageManager)
 
-                    Row(verticalAlignment = Alignment.CenterVertically) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.width(64.dp)
+                    ) {
                         AsyncImage(
                             model = icon,
                             contentDescription = null,
-                            modifier = Modifier.size(24.dp)
+                            modifier = Modifier.size(48.dp)
                         )
-                        Column(modifier = Modifier.padding(start = SizeConstants.ExtraSmallSize)) {
-                            Text(
-                                text = appName,
-                                style = MaterialTheme.typography.bodySmall
-                            )
-                            Text(
-                                text = StorageUtils.formatSizeReadable(apk.size),
-                                style = MaterialTheme.typography.bodySmall
-                            )
-                        }
+                        Text(
+                            text = appName,
+                            style = MaterialTheme.typography.bodySmall,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        Text(
+                            text = StorageUtils.formatSizeReadable(apk.size),
+                            style = MaterialTheme.typography.bodySmall
+                        )
                     }
                 }
                 if (apkFiles.size > preview.size) {
@@ -118,13 +123,20 @@ fun ApkCleanerCard(
             }
 
             FilledTonalButton(
-                onClick = onCleanClick,
+                onClick = { onCleanClick(apkFiles) },
                 modifier = Modifier.align(Alignment.End),
+                enabled = !isLoading,
                 colors = ButtonDefaults.filledTonalButtonColors()
             ) {
-                Icon(imageVector = Icons.Outlined.Delete, contentDescription = null)
-                ButtonIconSpacer()
-                Text(text = stringResource(id = R.string.clean_apks))
+                if (isLoading) {
+                    androidx.compose.material3.CircularProgressIndicator(
+                        modifier = Modifier.size(SizeConstants.ButtonIconSize)
+                    )
+                } else {
+                    Icon(imageVector = Icons.Outlined.Delete, contentDescription = null)
+                    ButtonIconSpacer()
+                    Text(text = stringResource(id = R.string.clean_apks))
+                }
             }
         }
     }
