@@ -44,8 +44,8 @@ import coil3.video.videoFramePercent
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.app.clean.home.utils.helpers.getFileIcon
-import com.d4rk.cleaner.app.clean.home.utils.helpers.loadPdfThumbnail
+import com.d4rk.cleaner.app.clean.scanner.utils.helpers.getFileIcon
+import com.d4rk.cleaner.app.clean.scanner.utils.helpers.loadPdfThumbnail
 import com.google.common.io.Files.getFileExtension
 import java.io.File
 

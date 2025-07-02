@@ -31,10 +31,10 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.hapticPager
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
 import com.d4rk.cleaner.app.clean.analyze.components.DuplicateGroupsSection
 import com.d4rk.cleaner.app.clean.analyze.components.FilesByDateSection
-import com.d4rk.cleaner.app.clean.home.domain.actions.HomeEvent
-import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.UiHomeModel
-import com.d4rk.cleaner.app.clean.home.ui.HomeViewModel
-import com.d4rk.cleaner.app.clean.home.utils.helpers.groupDuplicatesByOriginal
+import com.d4rk.cleaner.app.clean.scanner.domain.actions.ScannerEvent
+import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.UiScannerModel
+import com.d4rk.cleaner.app.clean.scanner.ui.ScannerViewModel
+import com.d4rk.cleaner.app.clean.scanner.utils.helpers.groupDuplicatesByOriginal
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.io.File
@@ -44,7 +44,7 @@ import java.util.Locale
 
 @Composable
 fun TabsContent(
-    groupedFiles : Map<String , List<File>> , viewModel : HomeViewModel , view : View , coroutineScope : CoroutineScope , data : UiHomeModel
+    groupedFiles : Map<String , List<File>> , viewModel : ScannerViewModel , view : View , coroutineScope : CoroutineScope , data : UiScannerModel
 ) {
     val tabs : List<String> = groupedFiles.keys.toList()
     val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
@@ -127,22 +127,22 @@ fun TabsContent(
             }
 
             DuplicateGroupsSection(
-                modifier = Modifier,
-                filesByDate = filesByDate,
-                fileSelectionStates = data.analyzeState.fileSelectionMap,
-                onFileSelectionChange = viewModel::onFileSelectionChange,
-                onDateSelectionChange = { files, checked -> viewModel.onEvent(HomeEvent.ToggleSelectFilesForDate(files, checked)) },
-                originals = data.analyzeState.duplicateOriginals,
+                modifier = Modifier ,
+                filesByDate = filesByDate ,
+                fileSelectionStates = data.analyzeState.fileSelectionMap ,
+                onFileSelectionChange = viewModel::onFileSelectionChange ,
+                onDateSelectionChange = { files, checked -> viewModel.onEvent(ScannerEvent.ToggleSelectFilesForDate(files , checked)) } ,
+                originals = data.analyzeState.duplicateOriginals ,
                 view = view
             )
         } else {
             FilesByDateSection(
-                modifier = Modifier,
-                filesByDate = filesByDateRaw,
-                fileSelectionStates = data.analyzeState.fileSelectionMap,
-                onFileSelectionChange = viewModel::onFileSelectionChange,
-                onDateSelectionChange = { files, checked -> viewModel.onEvent(HomeEvent.ToggleSelectFilesForDate(files, checked)) },
-                originals = data.analyzeState.duplicateOriginals,
+                modifier = Modifier ,
+                filesByDate = filesByDateRaw ,
+                fileSelectionStates = data.analyzeState.fileSelectionMap ,
+                onFileSelectionChange = viewModel::onFileSelectionChange ,
+                onDateSelectionChange = { files, checked -> viewModel.onEvent(ScannerEvent.ToggleSelectFilesForDate(files , checked)) } ,
+                originals = data.analyzeState.duplicateOriginals ,
                 view = view
             )
         }

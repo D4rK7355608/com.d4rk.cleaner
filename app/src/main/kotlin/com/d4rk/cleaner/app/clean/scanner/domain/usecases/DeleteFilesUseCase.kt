@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.clean.trash.domain.usecases
+package com.d4rk.cleaner.app.clean.scanner.domain.usecases
 
 import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
 import com.d4rk.cleaner.app.clean.scanner.domain.`interface`.ScannerRepositoryInterface
@@ -7,13 +7,15 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.io.File
 
-class RestoreFromTrashUseCase(
-    private val repository : ScannerRepositoryInterface
+class DeleteFilesUseCase(
+    private val homeRepository : ScannerRepositoryInterface
 ) {
-    operator fun invoke(filesToRestore : Set<File>) : Flow<DataState<Unit , Errors>> = flow {
+    operator fun invoke(filesToDelete : Set<File>) : Flow<DataState<Unit , Errors>> = flow {
         runCatching {
-            repository.restoreFromTrash(filesToRestore)
+            homeRepository.deleteFiles(filesToDelete)
             emit(DataState.Success(Unit))
+        }.onFailure {
+            // e -> emit(DataState.Error(e as Errors))
         }
     }
 }

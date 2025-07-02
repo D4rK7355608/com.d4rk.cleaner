@@ -8,8 +8,8 @@ import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.updateData
 import com.d4rk.android.libs.apptoolkit.core.ui.base.ScreenViewModel
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.UiTextHelper
-import com.d4rk.cleaner.app.clean.home.domain.usecases.DeleteFilesUseCase
-import com.d4rk.cleaner.app.clean.home.domain.usecases.UpdateTrashSizeUseCase
+import com.d4rk.cleaner.app.clean.scanner.domain.usecases.DeleteFilesUseCase
+import com.d4rk.cleaner.app.clean.scanner.domain.usecases.UpdateTrashSizeUseCase
 import com.d4rk.cleaner.app.clean.trash.domain.actions.TrashAction
 import com.d4rk.cleaner.app.clean.trash.domain.actions.TrashEvent
 import com.d4rk.cleaner.app.clean.trash.domain.data.model.ui.UiTrashModel

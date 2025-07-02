@@ -8,7 +8,7 @@ import android.content.pm.PackageManager
 import android.os.Environment
 import android.os.StatFs
 import com.d4rk.cleaner.R // Assuming R is accessible or you abstract strings
-import com.d4rk.cleaner.app.clean.home.utils.helpers.StorageUtils // Assuming StorageUtils is in infrastructure
+import com.d4rk.cleaner.app.clean.scanner.utils.helpers.StorageUtils // Assuming StorageUtils is in infrastructure
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.InternalStorageInfo // Keep as data model?
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.RamInfo // Assuming these are now in domain
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo

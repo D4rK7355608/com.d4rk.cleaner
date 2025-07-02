@@ -26,7 +26,7 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAp
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.analyze.components.FilesByDateSection
-import com.d4rk.cleaner.app.clean.home.ui.components.TwoRowButtons
+import com.d4rk.cleaner.app.clean.scanner.ui.components.TwoRowButtons
 import com.d4rk.cleaner.app.clean.trash.domain.actions.TrashEvent
 import com.d4rk.cleaner.app.clean.trash.domain.data.model.ui.UiTrashModel
 import org.koin.compose.viewmodel.koinViewModel

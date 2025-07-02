@@ -21,11 +21,11 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpa
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.app.clean.home.domain.actions.HomeEvent
-import com.d4rk.cleaner.app.clean.home.ui.HomeViewModel
+import com.d4rk.cleaner.app.clean.scanner.domain.actions.ScannerEvent
+import com.d4rk.cleaner.app.clean.scanner.ui.ScannerViewModel
 
 @Composable
-fun NoFilesFoundScreen(viewModel : HomeViewModel) {
+fun NoFilesFoundScreen(viewModel : ScannerViewModel) {
     Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Icon(
@@ -37,7 +37,7 @@ fun NoFilesFoundScreen(viewModel : HomeViewModel) {
             )
 
             OutlinedButton(modifier = Modifier.bounceClick() , onClick = {
-                viewModel.onEvent(HomeEvent.ToggleAnalyzeScreen(true))
+                viewModel.onEvent(ScannerEvent.ToggleAnalyzeScreen(true))
             }) {
                 Icon(
                     modifier = Modifier.size(size = SizeConstants.ButtonIconSize) , imageVector = Icons.Outlined.Refresh , contentDescription = null

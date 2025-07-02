@@ -17,7 +17,7 @@ import com.d4rk.android.libs.apptoolkit.core.utils.constants.links.AppLinks
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.IntentsHelper
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.apps.manager.ui.AppManagerScreen
-import com.d4rk.cleaner.app.clean.home.ui.HomeScreen
+import com.d4rk.cleaner.app.clean.scanner.ui.ScannerScreen
 import com.d4rk.cleaner.app.clean.memory.ui.MemoryManagerComposable
 import com.d4rk.cleaner.app.clean.trash.ui.TrashActivity
 import com.d4rk.cleaner.app.images.picker.ui.ImagePickerActivity
@@ -34,7 +34,7 @@ fun AppNavigationHost(navController : NavHostController , snackbarHostState : Sn
 
     NavigationHost(navController = navController , startDestination = startupRoute) {
         composable(route = NavigationRoutes.ROUTE_HOME) { backStackEntry ->
-            HomeScreen(paddingValues = paddingValues, snackbarHostState = snackbarHostState)
+            ScannerScreen(paddingValues = paddingValues , snackbarHostState = snackbarHostState)
         }
         composable(route = NavigationRoutes.ROUTE_APP_MANAGER) { backStackEntry ->
             AppManagerScreen(snackbarHostState = snackbarHostState , paddingValues = paddingValues)

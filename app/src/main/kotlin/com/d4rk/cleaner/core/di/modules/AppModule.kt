@@ -26,19 +26,19 @@ import com.d4rk.cleaner.app.apps.manager.domain.usecases.ShareApkUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.ShareAppUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.UninstallAppUseCase
 import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
-import com.d4rk.cleaner.app.clean.home.data.HomeRepositoryImpl
-import com.d4rk.cleaner.app.clean.home.domain.`interface`.HomeRepositoryInterface
-import com.d4rk.cleaner.app.clean.home.domain.usecases.AnalyzeFilesUseCase
-import com.d4rk.cleaner.app.clean.home.domain.usecases.DeleteFilesUseCase
-import com.d4rk.cleaner.app.clean.home.domain.usecases.GetFileTypesUseCase
-import com.d4rk.cleaner.app.clean.home.domain.usecases.MoveToTrashUseCase
-import com.d4rk.cleaner.app.clean.home.domain.usecases.UpdateTrashSizeUseCase
-import com.d4rk.cleaner.app.clean.home.ui.HomeViewModel
 import com.d4rk.cleaner.app.clean.memory.data.MemoryRepositoryImpl
 import com.d4rk.cleaner.app.clean.memory.domain.interfaces.MemoryRepository
 import com.d4rk.cleaner.app.clean.memory.domain.usecases.GetRamInfoUseCase
 import com.d4rk.cleaner.app.clean.memory.domain.usecases.GetStorageInfoUseCase
 import com.d4rk.cleaner.app.clean.memory.ui.MemoryManagerViewModel
+import com.d4rk.cleaner.app.clean.scanner.data.ScannerRepositoryImpl
+import com.d4rk.cleaner.app.clean.scanner.domain.`interface`.ScannerRepositoryInterface
+import com.d4rk.cleaner.app.clean.scanner.domain.usecases.AnalyzeFilesUseCase
+import com.d4rk.cleaner.app.clean.scanner.domain.usecases.DeleteFilesUseCase
+import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetFileTypesUseCase
+import com.d4rk.cleaner.app.clean.scanner.domain.usecases.MoveToTrashUseCase
+import com.d4rk.cleaner.app.clean.scanner.domain.usecases.UpdateTrashSizeUseCase
+import com.d4rk.cleaner.app.clean.scanner.ui.ScannerViewModel
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashFilesUseCase
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.RestoreFromTrashUseCase
 import com.d4rk.cleaner.app.clean.trash.ui.TrashViewModel
@@ -82,16 +82,16 @@ val appModule : Module = module {
         MainViewModel(performInAppUpdateUseCase = get { parametersOf(launcher) })
     }
 
-    single<HomeRepositoryInterface> { HomeRepositoryImpl(application = get() , dataStore = get()) }
-    single<com.d4rk.cleaner.app.clean.home.domain.usecases.GetStorageInfoUseCase> { com.d4rk.cleaner.app.clean.home.domain.usecases.GetStorageInfoUseCase(homeRepository = get()) }
+    single<ScannerRepositoryInterface> { ScannerRepositoryImpl(application = get() , dataStore = get()) }
+    single<com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetStorageInfoUseCase> { com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetStorageInfoUseCase(homeRepository = get()) }
     single<GetFileTypesUseCase> { GetFileTypesUseCase(homeRepository = get()) }
     single<AnalyzeFilesUseCase> { AnalyzeFilesUseCase(homeRepository = get()) }
     single<DeleteFilesUseCase> { DeleteFilesUseCase(homeRepository = get()) }
     single<MoveToTrashUseCase> { MoveToTrashUseCase(homeRepository = get()) }
     single<UpdateTrashSizeUseCase> { UpdateTrashSizeUseCase(homeRepository = get()) }
 
-    viewModel<HomeViewModel> {
-        HomeViewModel(
+    viewModel<ScannerViewModel> {
+        ScannerViewModel(
             application = get(),
             getStorageInfoUseCase = get(),
             getFileTypesUseCase = get(),
