@@ -9,10 +9,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Chat
 import androidx.compose.material.icons.outlined.Delete
@@ -22,6 +24,7 @@ import androidx.compose.material.icons.outlined.Videocam
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -44,7 +47,9 @@ fun WhatsAppCleanerCard(
     modifier: Modifier = Modifier,
     onCleanClick: () -> Unit
 ) {
-    Card(
+    if (!mediaSummary.hasData) return
+
+    OutlinedCard(
         modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.outlinedCardColors(),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
@@ -113,20 +118,31 @@ private fun CategoryRow(
     label: String,
     files: List<File>
 ) {
-    val preview = files.take(9)
-    Column {
+    val configuration = LocalConfiguration.current
+    val density = LocalDensity.current
+    val maxSlots = remember(configuration.screenWidthDp) {
+        val screenPx = with(density) { configuration.screenWidthDp.dp.toPx() }
+        val slotPx = with(density) { (64.dp + SizeConstants.SmallSize).toPx() }
+        val raw = (screenPx / slotPx).toInt().coerceAtLeast(1).coerceAtMost(5)
+        raw
+    }
+    val previewCount = if (files.size > maxSlots) maxSlots - 1 else minOf(files.size, maxSlots)
+    val preview = files.take(previewCount)
+    val remaining = files.size - preview.size
+
+    Column(verticalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(imageVector = icon, contentDescription = null)
             Text(
                 text = label,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.titleSmall,
                 modifier = Modifier.padding(start = SizeConstants.MediumSize)
             )
         }
         Row(
             modifier = Modifier
                 .padding(start = SizeConstants.MediumSize)
-                .horizontalScroll(rememberScrollState()),
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -136,8 +152,9 @@ private fun CategoryRow(
                     modifier = Modifier.size(64.dp)
                 )
             }
-            if (files.size > preview.size) {
-                MorePreviewTile(files.size - preview.size)
+            Spacer(modifier = Modifier.weight(1f))
+            if (remaining > 0) {
+                MorePreviewTile(remaining)
             }
         }
     }
