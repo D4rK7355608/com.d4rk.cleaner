@@ -29,6 +29,8 @@ import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.apps.manager.domain.data.model.ApkInfo
 import android.content.Context
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.ui.platform.LocalContext
 import java.io.File
 

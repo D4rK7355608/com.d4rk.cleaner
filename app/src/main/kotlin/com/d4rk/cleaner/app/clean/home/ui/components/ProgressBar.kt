@@ -71,7 +71,7 @@ fun StorageProgressButton(
             progress = { 1f } ,
             modifier = Modifier.fillMaxSize() ,
             color = MaterialTheme.colorScheme.primaryContainer ,
-            strokeWidth = SizeConstants.SmallSize ,
+            strokeWidth = SizeConstants.ExtraSmallSize ,
         )
         CircularProgressIndicator(
             progress = { animatedProgress } ,
@@ -79,7 +79,7 @@ fun StorageProgressButton(
                     .animateContentSize()
                     .fillMaxSize() ,
             color = MaterialTheme.colorScheme.primary ,
-            strokeWidth = SizeConstants.SmallSize ,
+            strokeWidth = SizeConstants.ExtraSmallSize ,
             strokeCap = StrokeCap.Round ,
         )
 
@@ -89,7 +89,7 @@ fun StorageProgressButton(
             FilledTonalButton(modifier = Modifier
                     .animateContentSize()
                     .fillMaxSize()
-                    .padding(all = SizeConstants.LargeSize)
+                    .padding(all = SizeConstants.SmallSize)
                     .bounceClick() , onClick = {
                 view.playSoundEffect(SoundEffectConstants.CLICK)
                 onClick()
@@ -97,7 +97,7 @@ fun StorageProgressButton(
                 Text(
                     text = stringResource(id = R.string.quick_scan),
                     textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.titleMedium
+                    style = MaterialTheme.typography.labelMedium
                 )
             }
         }
