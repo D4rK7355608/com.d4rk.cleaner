@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -65,7 +66,8 @@ fun QuickScanSummaryCard(
                     Text(
                         text = stringResource(id = R.string.quick_scan_cleaned_format, cleanedSize),
                         style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.animateContentSize()
                     )
                 }
 
@@ -101,7 +103,8 @@ fun QuickScanSummaryCard(
                                 append("$usedPercent%")
                             }
                         },
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.animateContentSize()
                     )
                 }
 

@@ -1,6 +1,7 @@
 package com.d4rk.cleaner.app.clean.scanner.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
@@ -63,7 +64,11 @@ fun WhatsAppCleanerCard(
             verticalArrangement = Arrangement.spacedBy(SizeConstants.MediumSize)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(imageVector = Icons.AutoMirrored.Outlined.Chat , contentDescription = null)
+                Icon(
+                    imageVector = Icons.AutoMirrored.Outlined.Chat,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
                 Column(modifier = Modifier.padding(start = SizeConstants.MediumSize)) {
                     Text(
                         text = stringResource(id = R.string.whatsapp_card_title),
@@ -103,7 +108,11 @@ fun WhatsAppCleanerCard(
                 onClick = onCleanClick,
                 modifier = Modifier.align(Alignment.End).bounceClick(),
             ) {
-                Icon(imageVector = Icons.Outlined.Delete, contentDescription = null)
+                Icon(
+                    imageVector = Icons.Outlined.Delete,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
                 ButtonIconSpacer()
                 Text(text = stringResource(id = R.string.clean_whatsapp))
             }
@@ -130,7 +139,11 @@ private fun CategoryRow(
 
     Column(verticalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Icon(imageVector = icon, contentDescription = null)
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary
+            )
             Text(
                 text = label,
                 style = MaterialTheme.typography.titleSmall,
@@ -141,7 +154,8 @@ private fun CategoryRow(
             modifier = Modifier
                 .padding(start = SizeConstants.MediumSize)
                 .fillMaxWidth()
-                .horizontalScroll(state = rememberScrollState()) ,
+                .horizontalScroll(state = rememberScrollState())
+                .animateContentSize() ,
             horizontalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize) ,
             verticalAlignment = Alignment.CenterVertically
         ) {

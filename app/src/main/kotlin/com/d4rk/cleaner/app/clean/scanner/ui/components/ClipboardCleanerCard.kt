@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -47,7 +48,11 @@ fun ClipboardCleanerCard(
             verticalArrangement = Arrangement.spacedBy(SizeConstants.MediumSize)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(imageVector = Icons.Outlined.ContentPaste, contentDescription = null)
+                Icon(
+                    imageVector = Icons.Outlined.ContentPaste,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
                 Column(modifier = Modifier.padding(start = SizeConstants.MediumSize)) {
                     Text(
                         text = stringResource(id = R.string.clipboard_card_title),
@@ -66,7 +71,8 @@ fun ClipboardCleanerCard(
                     text = stringResource(id = R.string.clipboard_current_format, clipboardText),
                     style = MaterialTheme.typography.bodyMedium,
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.animateContentSize()
                 )
             }
 
@@ -75,12 +81,20 @@ fun ClipboardCleanerCard(
                 horizontalArrangement = Arrangement.spacedBy(SizeConstants.MediumSize)
             ) {
                 FilledTonalButton(onClick = onCleanClick, modifier = Modifier.weight(1f).bounceClick()) {
-                    Icon(imageVector = Icons.Outlined.Delete, contentDescription = null)
+                    Icon(
+                        imageVector = Icons.Outlined.Delete,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary
+                    )
                     ButtonIconSpacer()
                     Text(text = stringResource(id = R.string.clean_clipboard))
                 }
                 FilledTonalButton(onClick = onSeeMoreClick, modifier = Modifier.weight(1f).bounceClick()) {
-                    Icon(imageVector = Icons.Outlined.Visibility, contentDescription = null)
+                    Icon(
+                        imageVector = Icons.Outlined.Visibility,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary
+                    )
                     ButtonIconSpacer()
                     Text(text = stringResource(id = R.string.see_more))
                 }
