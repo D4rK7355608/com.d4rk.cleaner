@@ -64,6 +64,11 @@
     <string name="image_optimizer_card_subtitle">Shrink image sizes without losing quality.&#10;Free up space with a single tap.</string>
     <string name="image_optimizer_last_format">Last optimized: %1$s</string>
     <string name="image_optimizer_card_footer">Supports JPEG • Adjustable quality &amp; size</string>
+
+    <!-- Cache Cleaner -->
+    <string name="cache_cleaner_card_title">Cache Cleaner</string>
+    <string name="cache_cleaner_card_subtitle">Free up space from app cache</string>
+    <string name="cache_cleaner">Cache Cleaner</string>
     <string name="apks">APKs</string>
     <string name="archives">Archives</string>
     <string name="fonts">Fonts</string>

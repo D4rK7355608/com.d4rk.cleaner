@@ -16,6 +16,7 @@ sealed class ScannerEvent : UiEvent {
     data class ToggleSelectFilesForDate(val files: List<File>, val isChecked: Boolean) : ScannerEvent()
     object CleanFiles : ScannerEvent()
     object CleanWhatsAppFiles : ScannerEvent()
+    object CleanCache : ScannerEvent()
     object MoveSelectedToTrash : ScannerEvent()
     data class SetDeleteForeverConfirmationDialogVisibility(val isVisible : Boolean) : ScannerEvent()
     data class SetMoveToTrashConfirmationDialogVisibility(val isVisible : Boolean) : ScannerEvent()

@@ -101,6 +101,7 @@ class ScannerViewModel(
             is ScannerEvent.ToggleSelectFilesForDate -> toggleSelectFilesForDate(event.files , event.isChecked)
             is ScannerEvent.CleanFiles -> cleanFiles()
             is ScannerEvent.CleanWhatsAppFiles -> onCleanWhatsAppFiles()
+            is ScannerEvent.CleanCache -> onCleanCache()
             is ScannerEvent.MoveSelectedToTrash -> moveSelectedToTrash()
             is ScannerEvent.SetDeleteForeverConfirmationDialogVisibility -> setDeleteForeverConfirmationDialogVisibility(
                 isVisible = event.isVisible
@@ -939,6 +940,10 @@ class ScannerViewModel(
     }
 
     fun onCleanWhatsAppFiles() {
+        postSnackbar(UiTextHelper.StringResource(R.string.feature_not_available), isError = false)
+    }
+
+    fun onCleanCache() {
         postSnackbar(UiTextHelper.StringResource(R.string.feature_not_available), isError = false)
     }
 
