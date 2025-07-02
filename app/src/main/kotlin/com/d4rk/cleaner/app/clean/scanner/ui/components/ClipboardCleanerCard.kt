@@ -73,12 +73,12 @@ fun ClipboardCleanerCard(
             }
 
             Row(
-                horizontalArrangement = Arrangement.End
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End,
             ) {
                 FilledTonalButton(
                     onClick = onCleanClick,
                     modifier = Modifier
-                        .weight(1f)
                         .bounceClick()
                 ) {
                     Icon(
