@@ -3,12 +3,14 @@ package com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui
 /** State of the cleaning process. */
 
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
+import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.PromotedApp
 import java.io.File
 
 data class UiScannerModel(
     val storageInfo : StorageInfo = StorageInfo() ,
     var analyzeState : UiAnalyzeModel = UiAnalyzeModel() ,
     var daysFromLastScan : Int = 0 ,
+    var promotedApp : PromotedApp? = null ,
     var isRescanDialogVisible : Boolean = false ,
 )
 

@@ -45,6 +45,7 @@ import com.d4rk.cleaner.app.clean.scanner.ui.components.CacheCleanerCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.ImageOptimizerCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.QuickScanSummaryCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.WhatsAppCleanerCard
+import com.d4rk.cleaner.app.clean.scanner.ui.components.PromotedAppCard
 import com.d4rk.cleaner.app.images.picker.ui.ImagePickerActivity
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.viewmodel.koinViewModel
@@ -61,6 +62,7 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
     val appManagerState: UiStateScreen<UiAppManagerModel> by appManagerViewModel.uiState.collectAsState()
     val whatsappSummary by viewModel.whatsAppMediaSummary.collectAsState()
     val clipboardText by viewModel.clipboardPreview.collectAsState()
+    val promotedApp = uiState.data?.promotedApp
     val mediumRectAdsConfig: AdsConfig = koinInject(qualifier = named(name = "banner_medium_rectangle"))
 
     val showApkCard = appManagerState.data?.apkFiles?.isNotEmpty() == true
@@ -70,7 +72,8 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
     val visibleCardsCount = 3 +
         (if (showApkCard) 1 else 0) +
         (if (showWhatsAppCard) 1 else 0) +
-        (if (showClipboardCard) 1 else 0)
+        (if (showClipboardCard) 1 else 0) +
+        (if (promotedApp != null) 1 else 0)
 
     LaunchedEffect(key1 = true) {
         if (!PermissionsHelper.hasStoragePermissions(context)) {
@@ -214,6 +217,19 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                                     onCleanClick = { viewModel.onClipboardClear() }
                                 )
                             }
+                            itemIndex++
+                            if (visibleCardsCount > 3 && itemIndex % 4 == 0) {
+                                key("ad_$itemIndex") {
+                                    AdBanner(
+                                        modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                                        adsConfig = mediumRectAdsConfig
+                                    )
+                                }
+                            }
+                        }
+
+                        promotedApp?.let { app ->
+                            PromotedAppCard(app = app)
                             itemIndex++
                             if (visibleCardsCount > 3 && itemIndex % 4 == 0) {
                                 key("ad_$itemIndex") {
