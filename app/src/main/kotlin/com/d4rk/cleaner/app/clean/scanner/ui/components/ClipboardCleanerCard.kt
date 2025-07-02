@@ -1,10 +1,9 @@
 package com.d4rk.cleaner.app.clean.scanner.ui.components
 
-import androidx.compose.foundation.BorderStroke
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
@@ -38,7 +36,6 @@ fun ClipboardCleanerCard(
 ) {
     OutlinedCard(
         modifier = modifier.fillMaxWidth() ,
-        border = BorderStroke(width = 1.dp , color = MaterialTheme.colorScheme.outline) ,
         shape = RoundedCornerShape(SizeConstants.ExtraLargeSize) ,
     ) {
         Column(

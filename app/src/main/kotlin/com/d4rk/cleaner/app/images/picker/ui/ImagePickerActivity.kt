@@ -32,9 +32,10 @@ class ImagePickerActivity : AppCompatActivity() {
                 }
             }
         }
+        selectImage()
     }
 
     fun selectImage() {
-        pickMediaLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        pickMediaLauncher.launch(input = PickVisualMediaRequest(mediaType = ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
 }

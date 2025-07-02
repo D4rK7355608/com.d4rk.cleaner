@@ -2,7 +2,6 @@ package com.d4rk.cleaner.app.clean.scanner.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -16,12 +15,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.Chat
+import androidx.compose.material.icons.filled.Whatsapp
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material.icons.outlined.Videocam
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
@@ -54,7 +52,6 @@ fun WhatsAppCleanerCard(
 
     OutlinedCard(
         modifier = modifier.fillMaxWidth() ,
-        border = BorderStroke(width = 1.dp , color = MaterialTheme.colorScheme.outline) ,
         shape = RoundedCornerShape(SizeConstants.ExtraLargeSize) ,
     ) {
         Column(
@@ -65,7 +62,7 @@ fun WhatsAppCleanerCard(
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
-                    imageVector = Icons.AutoMirrored.Outlined.Chat,
+                    imageVector = Icons.Default.Whatsapp,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
                 )

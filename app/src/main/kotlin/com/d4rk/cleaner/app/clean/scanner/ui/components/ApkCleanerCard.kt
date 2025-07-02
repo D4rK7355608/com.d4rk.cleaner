@@ -1,13 +1,12 @@
 package com.d4rk.cleaner.app.clean.scanner.ui.components
 
 import android.content.Context
-import androidx.compose.foundation.BorderStroke
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -17,7 +16,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Android
 import androidx.compose.material.icons.outlined.Delete
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -53,7 +51,6 @@ fun ApkCleanerCard(
 
     OutlinedCard(
         modifier = modifier.fillMaxWidth() ,
-        border = BorderStroke(width = 1.dp , color = MaterialTheme.colorScheme.outline) ,
         shape = RoundedCornerShape(SizeConstants.ExtraLargeSize) ,
     ) {
         Column(

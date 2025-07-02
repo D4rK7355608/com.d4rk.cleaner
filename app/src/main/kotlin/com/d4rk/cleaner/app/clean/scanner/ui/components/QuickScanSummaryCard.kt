@@ -1,11 +1,10 @@
 package com.d4rk.cleaner.app.clean.scanner.ui.components
 
-import androidx.compose.foundation.BorderStroke
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -45,7 +44,6 @@ fun QuickScanSummaryCard(
 ) {
     OutlinedCard(
         modifier = modifier.fillMaxWidth() ,
-        border = BorderStroke(width = 1.dp , color = MaterialTheme.colorScheme.outline) ,
         shape = RoundedCornerShape(size = SizeConstants.ExtraLargeSize) ,
     ) {
         Row(

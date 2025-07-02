@@ -1,6 +1,5 @@
 package com.d4rk.cleaner.app.clean.scanner.ui.components
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,7 +18,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
@@ -31,8 +29,7 @@ fun CacheCleanerCard(
     onInfoClick: () -> Unit = {}
 ) {
     OutlinedCard(
-        modifier = modifier.fillMaxWidth().bounceClick(onClick = onClick),
-        border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.outline),
+        modifier = modifier.fillMaxWidth().bounceClick(),
         shape = RoundedCornerShape(SizeConstants.ExtraLargeSize),
     ) {
         Column(
