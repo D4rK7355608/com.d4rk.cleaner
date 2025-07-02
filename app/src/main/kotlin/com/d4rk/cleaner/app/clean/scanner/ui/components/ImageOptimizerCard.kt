@@ -4,6 +4,8 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -50,7 +52,11 @@ fun ImageOptimizerCard(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(SizeConstants.MediumSize)
             ) {
-                Icon(imageVector = Icons.Outlined.Image, contentDescription = null)
+                Icon(
+                    imageVector = Icons.Outlined.Image,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = stringResource(id = R.string.image_optimizer_card_title),
@@ -63,28 +69,40 @@ fun ImageOptimizerCard(
                     )
                 }
                 IconButton(onClick = onInfoClick) {
-                    Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
+                    Icon(
+                        imageVector = Icons.Outlined.Info,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 }
             }
 
             Icon(
                 imageVector = Icons.Outlined.PhotoSizeSelectLarge,
                 contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
 
-            lastOptimized?.let { size ->
-                Text(
-                    text = stringResource(id = R.string.image_optimizer_last_format, size),
-                    style = MaterialTheme.typography.bodySmall,
-                )
+            AnimatedVisibility(visible = lastOptimized != null) {
+                lastOptimized?.let { size ->
+                    Text(
+                        text = stringResource(id = R.string.image_optimizer_last_format, size),
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.animateContentSize()
+                    )
+                }
             }
 
             FilledTonalButton(
                 onClick = onOptimizeClick,
                 modifier = Modifier.align(Alignment.End).bounceClick()
             ) {
-                Icon(imageVector = Icons.Outlined.Image, contentDescription = null)
+                Icon(
+                    imageVector = Icons.Outlined.Image,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
                 ButtonIconSpacer()
                 Text(text = stringResource(id = R.string.optimize_image))
             }

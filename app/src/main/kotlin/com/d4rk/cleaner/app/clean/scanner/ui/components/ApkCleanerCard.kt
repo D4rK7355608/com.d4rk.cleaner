@@ -6,6 +6,8 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -61,7 +63,11 @@ fun ApkCleanerCard(
             verticalArrangement = Arrangement.spacedBy(SizeConstants.MediumSize)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(imageVector = Icons.Outlined.Android, contentDescription = null)
+                Icon(
+                    imageVector = Icons.Outlined.Android,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
                 Column(modifier = Modifier.padding(start = SizeConstants.MediumSize)) {
                     Text(
                         text = stringResource(id = R.string.apk_card_title),
@@ -77,47 +83,36 @@ fun ApkCleanerCard(
 
             SmallVerticalSpacer()
 
-            Row(
-                modifier = Modifier.horizontalScroll(rememberScrollState()),
-                horizontalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                preview.forEach { apk ->
-                    val appInfo = remember(apk.path) {
-                        context.packageManager.getPackageArchiveInfo(apk.path, 0)?.applicationInfo?.apply {
-                            sourceDir = apk.path
-                            publicSourceDir = apk.path
+            AnimatedVisibility(visible = preview.isNotEmpty()) {
+                Row(
+                    modifier = Modifier
+                        .horizontalScroll(rememberScrollState())
+                        .animateContentSize(),
+                    horizontalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    preview.forEach { apk ->
+                        val appInfo = remember(apk.path) {
+                            context.packageManager.getPackageArchiveInfo(apk.path, 0)?.applicationInfo?.apply {
+                                sourceDir = apk.path
+                                publicSourceDir = apk.path
+                            }
                         }
-                    }
-                    val appName = appInfo?.loadLabel(context.packageManager)?.toString() ?: File(apk.path).name
-                    val icon = appInfo?.loadIcon(context.packageManager)
+                        val appName = appInfo?.loadLabel(context.packageManager)?.toString() ?: File(apk.path).name
+                        val icon = appInfo?.loadIcon(context.packageManager)
 
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.width(64.dp)
-                    ) {
-                        AsyncImage(
-                            model = icon,
-                            contentDescription = null,
-                            modifier = Modifier.size(48.dp)
+                        ApkPreviewItem(
+                            name = appName,
+                            size = StorageUtils.formatSizeReadable(apk.size),
+                            icon = icon
                         )
+                    }
+                    if (apkFiles.size > preview.size) {
                         Text(
-                            text = appName,
-                            style = MaterialTheme.typography.bodySmall,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                        Text(
-                            text = StorageUtils.formatSizeReadable(apk.size),
+                            text = stringResource(id = R.string.apk_card_more_format, apkFiles.size - preview.size),
                             style = MaterialTheme.typography.bodySmall
                         )
                     }
-                }
-                if (apkFiles.size > preview.size) {
-                    Text(
-                        text = stringResource(id = R.string.apk_card_more_format, apkFiles.size - preview.size),
-                        style = MaterialTheme.typography.bodySmall
-                    )
                 }
             }
 
@@ -131,11 +126,39 @@ fun ApkCleanerCard(
                         modifier = Modifier.size(SizeConstants.ButtonIconSize)
                     )
                 } else {
-                    Icon(imageVector = Icons.Outlined.Delete, contentDescription = null)
+                    Icon(
+                        imageVector = Icons.Outlined.Delete,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary
+                    )
                     ButtonIconSpacer()
                     Text(text = stringResource(id = R.string.clean_apks))
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun ApkPreviewItem(name: String, size: String, icon: Any?) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.width(64.dp)
+    ) {
+        AsyncImage(
+            model = icon,
+            contentDescription = null,
+            modifier = Modifier.size(48.dp)
+        )
+        Text(
+            text = name,
+            style = MaterialTheme.typography.bodySmall,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
+        Text(
+            text = size,
+            style = MaterialTheme.typography.bodySmall
+        )
     }
 }
