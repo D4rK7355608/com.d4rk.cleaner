@@ -57,7 +57,6 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
     val appManagerState: UiStateScreen<UiAppManagerModel> by appManagerViewModel.uiState.collectAsState()
     val whatsappSummary by viewModel.whatsAppMediaSummary.collectAsState()
     val clipboardText by viewModel.clipboardPreview.collectAsState()
-    val clipboardSensitive by viewModel.clipboardDetectedSensitive.collectAsState()
 
     LaunchedEffect(key1 = true) {
         if (!PermissionsHelper.hasStoragePermissions(context)) {
@@ -138,7 +137,9 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                                 )
                             }
                         )
-                        AnimatedVisibility(visible = clipboardText != null || clipboardSensitive) {
+                        AnimatedVisibility(
+                            visible = !clipboardText.isNullOrBlank()
+                        ) {
                             ClipboardCleanerCard(
                                 clipboardText = clipboardText,
                                 onCleanClick = { viewModel.onClipboardClear() }
