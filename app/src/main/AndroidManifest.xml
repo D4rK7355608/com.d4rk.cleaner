@@ -86,6 +86,7 @@
             android:label="@string/trash"
             android:parentActivityName=".app.main.ui.MainActivity" />
 
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

@@ -39,6 +39,7 @@ import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.CleaningType
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.UiScannerModel
 import com.d4rk.cleaner.app.clean.scanner.ui.components.ApkCleanerCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.ClipboardCleanerCard
+import com.d4rk.cleaner.app.clean.scanner.ui.components.CacheCleanerCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.ImageOptimizerCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.QuickScanSummaryCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.WhatsAppCleanerCard
@@ -124,6 +125,12 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                                 onCleanClick = { viewModel.onEvent(ScannerEvent.CleanWhatsAppFiles) }
                             )
                         }
+                        CacheCleanerCard(
+                            onClick = {
+                                viewModel.onEvent(ScannerEvent.CleanCache)
+                            },
+                            onInfoClick = {}
+                        )
                         ImageOptimizerCard(
                             onOptimizeClick = {
                                 IntentsHelper.openActivity(
