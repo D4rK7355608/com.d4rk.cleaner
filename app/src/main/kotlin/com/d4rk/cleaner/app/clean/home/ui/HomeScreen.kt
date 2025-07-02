@@ -37,6 +37,7 @@ import com.d4rk.cleaner.app.clean.analyze.ui.AnalyzeScreen
 import com.d4rk.cleaner.app.clean.home.domain.actions.HomeEvent
 import com.d4rk.cleaner.app.clean.home.domain.data.model.ui.UiHomeModel
 import com.d4rk.cleaner.app.clean.home.ui.components.QuickScanSummaryCard
+import com.d4rk.cleaner.app.clean.home.ui.components.WhatsAppCleanerCard
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -48,6 +49,7 @@ fun HomeScreen(paddingValues: PaddingValues, snackbarHostState: SnackbarHostStat
     val appManagerViewModel: AppManagerViewModel = koinViewModel()
     val uiState: UiStateScreen<UiHomeModel> by viewModel.uiState.collectAsState()
     val appManagerState: UiStateScreen<UiAppManagerModel> by appManagerViewModel.uiState.collectAsState()
+    val whatsappSummary by viewModel.whatsAppMediaSummary.collectAsState()
 
     LaunchedEffect(key1 = true) {
         if (!PermissionsHelper.hasStoragePermissions(context)) {
@@ -102,6 +104,12 @@ fun HomeScreen(paddingValues: PaddingValues, snackbarHostState: SnackbarHostStat
                                     val files = appManagerState.data?.apkFiles?.map { java.io.File(it.path) } ?: emptyList()
                                     viewModel.onCleanApks(files)
                                 }
+                            )
+                        }
+                        AnimatedVisibility(visible = whatsappSummary.hasData) {
+                            WhatsAppCleanerCard(
+                                mediaSummary = whatsappSummary,
+                                onCleanClick = { viewModel.onEvent(HomeEvent.CleanWhatsAppFiles) }
                             )
                         }
                     }
