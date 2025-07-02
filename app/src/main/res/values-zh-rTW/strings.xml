@@ -16,7 +16,7 @@
     <string name="cleanup_storage_medium">這裡有很多內容，掃描或許有幫助。</string>
     <string name="cleanup_storage_ok">您的儲存空間狀況良好！</string>
     <string name="cleanup_notification_last_scan_format">上次掃描：%1$d 天前。%2$s</string>
-    <string name="cleanup_notification_never_scanned">您尚未掃描手機，點擊即可開始.</string>
+    <string name="cleanup_notification_never_scanned">您尚未掃描手機，點擊即可開始。</string>
 
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">歡迎使用 Cleaner！</string>
@@ -50,8 +50,9 @@
     <string name="videos">影片</string>
     <string name="audios">音訊</string>
     <string name="empty_folders">空資料夾</string>
-    <string name="duplicates">複製文件</string>
+    <string name="duplicates">重複檔案</string>
     <plurals name="status_selected_files">
+        <item quantity="one">狀態：已選取 %1$d 個檔案</item>
         <item quantity="other">狀態：已選取 %1$d 個檔案</item>
     </plurals>
     <string name="status_no_files_selected">狀態：未選取任何檔案</string>
@@ -60,6 +61,7 @@
     <string name="yesterday">昨天</string>
     <string name="a_year_ago">去年</string>
     <plurals name="years_ago">
+        <item quantity="one">%d 年前</item>
         <item quantity="other">%d 年前</item>
     </plurals>
     <string name="no_files_found">找不到任何檔案</string>
@@ -121,8 +123,8 @@
     <!-- Cleaning settings -->
     <string name="cleaning">清理</string>
     <string name="summary_preference_settings_cleaning">自訂您的清理體驗</string>
-    <string name="filters">篩選器</string>
-    <string name="generic_filter">一般篩選器</string>
+    <string name="filters">過濾器</string>
+    <string name="generic_filter">一般過濾器</string>
     <string name="summary_preference_settings_generic_filter">刪除暫存檔、日誌檔及其他無用的檔案與資料夾</string>
     <string name="delete_empty_folders">刪除空資料夾</string>
     <string name="delete_archives">刪除壓縮檔</string>
@@ -150,7 +152,7 @@
     <string name="summary_preference_settings_delete_invalid_media">刪除損毀的圖片</string>
     <string name="scanner">掃描器</string>
     <string name="clipboard_clean">清理剪貼簿</string>
-    <string name="summary_preference_settings_delete_duplicates">清潔過程中刪除重複文件</string>
+    <string name="summary_preference_settings_delete_duplicates">清理過程中刪除重複檔案</string>
 
     <!-- Permissions -->
     <string name="request_delete_packages">請求刪除套件 [REQUEST_DELETE_PACKAGES]</string>
@@ -181,23 +183,23 @@
 
     <!-- FAQ -->
     <string name="question_1">Cleaner 是什麼？</string>
-    <string name="summary_preference_faq_1">Cleaner 是一款免費的開源 Android 應用程式，可協助您最佳化裝置效能並釋放儲存空間。它可以掃描您的裝置以尋找不必要的檔案並將其刪除，還可以清除快取以提高裝置速度</string>
+    <string name="summary_preference_faq_1">Cleaner 是一款免費的開源 Android 應用程式，可協助您最佳化裝置效能並釋放儲存空間。它可以掃描您的裝置以尋找不必要的檔案並將其刪除，還可以清除快取以提高裝置速度。</string>
     <string name="question_2">使用 Cleaner 安全嗎？</string>
-    <string name="summary_preference_faq_2">是的，使用 Cleaner 是安全的。它只會移除對您的裝置或應用程式運作不重要的檔案，並且不會刪除您的任何個人資料或重要的系統檔案</string>
+    <string name="summary_preference_faq_2">是的，使用 Cleaner 是安全的。它只會移除對您的裝置或應用程式運作不重要的檔案，並且不會刪除您的任何個人資料或重要的系統檔案。</string>
     <string name="question_3">如何使用 Cleaner？</string>
-    <string name="summary_preference_faq_3">若要使用 Cleaner，只需從 Google Play 商店或信譽良好的第三方應用程式商店下載並安裝該應用程式。然後，開啟應用程式並按照提示掃描您的裝置並刪除不必要的檔案。您還可以存取應用程式的設定來自訂 Cleaner 尋找和刪除的檔案類型</string>
+    <string name="summary_preference_faq_3">若要使用 Cleaner，只需從 Google Play 商店或信譽良好的第三方應用程式商店下載並安裝該應用程式。然後，開啟應用程式並按照提示掃描您的裝置並刪除不必要的檔案。您還可以存取應用程式的設定來自訂 Cleaner 尋找和刪除的檔案類型。</string>
     <string name="question_4">Cleaner 可以刪除應用程式快取嗎？</string>
-    <string name="summary_preference_faq_4">是的，Cleaner 可以刪除應用程式快取。但是，請務必注意，刪除快取可能會導致應用程式下次使用時需要更長的時間來載入或執行某些任務</string>
+    <string name="summary_preference_faq_4">是的，Cleaner 可以刪除應用程式快取。但是，請務必注意，刪除快取可能會導致應用程式下次使用時需要更長的時間來載入或執行某些任務。</string>
     <string name="question_5">Cleaner 需要 root 權限嗎？</string>
-    <string name="summary_preference_faq_5">不，Cleaner 不需要 root 權限即可運作。您可以在任何 Android 裝置上使用它，而無需 root 您的裝置</string>
+    <string name="summary_preference_faq_5">不，Cleaner 不需要 root 權限即可運作。您可以在任何 Android 裝置上使用它，而無需 root 您的裝置。</string>
     <string name="question_6">Cleaner 是否適用於 iOS？</string>
-    <string name="summary_preference_faq_6">不，Cleaner 目前僅適用於 Android 裝置</string>
+    <string name="summary_preference_faq_6">不，Cleaner 目前僅適用於 Android 裝置。</string>
     <string name="question_7">Cleaner 能改善電池續航力嗎？</string>
-    <string name="summary_preference_faq_7">使用 Cleaner 清除快取可以透過減少不必要的處理程序所使用的電量和資源來幫助改善裝置的電池續航力。但是，Cleaner 能夠改善電池續航力的程度將取決於各種因素，例如您的裝置品牌和型號、您使用的應用程式以及您的使用習慣</string>
+    <string name="summary_preference_faq_7">使用 Cleaner 清除快取可以透過減少不必要的處理程序所使用的電量和資源來幫助改善裝置的電池續航力。但是，Cleaner 能夠改善電池續航力的程度將取決於各種因素，例如您的裝置品牌和型號、您使用的應用程式以及您的使用習慣。</string>
     <string name="question_8">我應該多久使用一次 Cleaner？</string>
-    <string name="summary_preference_faq_8">關於應該多久使用一次 Cleaner 沒有固定的規則，因為這將取決于您的裝置使用情況和隨著時間的推移累積的不必要檔案的數量。一些使用者可能會發現每週或每月執行一次 Cleaner 會很有幫助，而其他使用者可能只需要偶爾使用它</string>
+    <string name="summary_preference_faq_8">關於應該多久使用一次 Cleaner 沒有固定的規則，因為這將取決于您的裝置使用情況和隨著時間的推移累積的不必要檔案的數量。一些使用者可能會發現每週或每月執行一次 Cleaner 會很有幫助，而其他使用者可能只需要偶爾使用它。</string>
     <string name="question_9">Cleaner 是否與所有 Android 裝置相容？</string>
-    <string name="summary_preference_faq_9">Cleaner 應該與大多數符合應用程式最低系統要求的 Android 裝置相容。但是，最好在 Google Play 商店或您正在使用的應用程式商店中查看應用程式的頁面，以確認與您的特定裝置的相容性。如果您在使用 Cleaner 時遇到任何問題，可以嘗試對問題進行疑難排解或聯絡應用程式的支援團隊尋求協助</string>
+    <string name="summary_preference_faq_9">Cleaner 應該與大多數符合應用程式最低系統要求的 Android 裝置相容。但是，最好在 Google Play 商店或您正在使用的應用程式商店中查看應用程式的頁面，以確認與您的特定裝置的相容性。如果您在使用 Cleaner 時遇到任何問題，可以嘗試對問題進行疑難排解或聯絡應用程式的支援團隊尋求協助。</string>
 
     <!-- Error messages -->
     <string name="request_no_internet">沒有網際網路連線。請檢查您的連線並再試一次。</string>
@@ -211,15 +213,15 @@
     <string name="failed_to_install_apk">無法安裝 APK：%1$s</string>
     <string name="failed_to_uninstall_app">無法解除安裝應用程式：%1$s</string>
     <string name="app_uninstalled_successfully">應用程式已成功解除安裝</string>
-    <string name="failed_to_load_storage_info">无法加载存储信息：%1$s</string>
-    <string name="failed_to_load_file_types">无法加载文件类型：%1$s</string>
-    <string name="failed_to_analyze_files">未能分析文件：%1$s</string>
-    <string name="no_files_selected_to_delete">没有选择删除的文件。</string>
-    <string name="failed_to_delete_files">无法删除文件：%1$s</string>
-    <string name="no_files_selected_move_to_trash">没有选择移动到垃圾的文件。</string>
-    <string name="failed_to_move_files_to_trash">无法将文件移至垃圾：%1$s</string>
-    <string name="data_not_available">数据不可用。</string>
-    <string name="no_files_selected_to_clean">没有选择清洁文件。</string>
-    <string name="failed_to_update_trash_size">无法更新垃圾大小：%1$s</string>
-    <string name="no_cleaning_options_selected">请在设置中选择您的清洁偏好。</string>
+    <string name="failed_to_load_storage_info">無法載入儲存空間資訊：%1$s</string>
+    <string name="failed_to_load_file_types">無法載入檔案類型：%1$s</string>
+    <string name="failed_to_analyze_files">分析檔案失敗：%1$s</string>
+    <string name="no_files_selected_to_delete">未選取要刪除的檔案。</string>
+    <string name="failed_to_delete_files">刪除檔案失敗：%1$s</string>
+    <string name="no_files_selected_move_to_trash">未選取要移至垃圾桶的檔案。</string>
+    <string name="failed_to_move_files_to_trash">將檔案移至垃圾桶失敗：%1$s</string>
+    <string name="data_not_available">無可用資料。</string>
+    <string name="no_files_selected_to_clean">未選取要清理的檔案。</string>
+    <string name="failed_to_update_trash_size">更新垃圾桶大小失敗：%1$s</string>
+    <string name="no_cleaning_options_selected">請在設定中選擇您的清理偏好以繼續。</string>
 </resources>
