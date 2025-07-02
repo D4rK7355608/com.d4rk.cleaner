@@ -17,8 +17,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -31,6 +33,7 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallHorizont
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.app.notifications.notifications.CleanerMessageProvider
 
 @Composable
 fun QuickScanSummaryCard(
@@ -42,6 +45,10 @@ fun QuickScanSummaryCard(
     buttonSize: Dp = 112.dp,
     onQuickScanClick: () -> Unit,
 ) {
+
+    val context = LocalContext.current
+    val tip: String = remember { CleanerMessageProvider.getRandomQuickScanTip(context = context) }
+
     OutlinedCard(
         modifier = modifier.fillMaxWidth() ,
         shape = RoundedCornerShape(size = SizeConstants.ExtraLargeSize) ,
@@ -116,7 +123,7 @@ fun QuickScanSummaryCard(
                     )
                     SmallHorizontalSpacer()
                     Text(
-                        text = stringResource(id = R.string.quick_scan_summary_tip),
+                        text = tip,
                         style = MaterialTheme.typography.bodySmall.copy(
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             fontStyle = FontStyle.Italic
