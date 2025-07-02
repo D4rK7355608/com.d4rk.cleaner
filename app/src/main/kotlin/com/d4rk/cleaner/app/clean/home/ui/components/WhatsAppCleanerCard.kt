@@ -1,14 +1,12 @@
 package com.d4rk.cleaner.app.clean.home.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Chat
 import androidx.compose.material.icons.outlined.Delete
@@ -16,7 +14,6 @@ import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material.icons.outlined.PictureAsPdf
 import androidx.compose.material.icons.outlined.Videocam
-import androidx.compose.material3.AssistChip
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -25,16 +22,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import coil3.compose.AsyncImage
-import coil3.request.ImageRequest
-import coil3.video.VideoFrameDecoder
-import coil3.video.videoFramePercent
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
@@ -110,47 +101,27 @@ fun WhatsAppCleanerCard(
 
 @Composable
 private fun CategoryRow(icon: androidx.compose.ui.graphics.vector.ImageVector, label: String, files: List<File>) {
-    val preview = files.take(3)
-    val context = LocalContext.current
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Icon(imageVector = icon, contentDescription = null)
-        Row(
-            modifier = Modifier
-                .padding(start = SizeConstants.MediumSize)
-                .horizontalScroll(rememberScrollState()),
-            horizontalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize),
-            verticalAlignment = Alignment.CenterVertically
+    val preview = files.take(9)
+    Column {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(imageVector = icon, contentDescription = null)
+            Text(
+                text = label,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(start = SizeConstants.MediumSize)
+            )
+        }
+        Column(
+            modifier = Modifier.padding(start = SizeConstants.MediumSize),
+            verticalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize)
         ) {
-            preview.forEach { file ->
-                val ext = file.extension.lowercase()
-                if (icon == Icons.Outlined.Image || icon == Icons.Outlined.Videocam) {
-                    val request = remember(file) {
-                        if (icon == Icons.Outlined.Videocam) {
-                            ImageRequest.Builder(context)
-                                .data(file)
-                                .decoderFactory { result, options, _ ->
-                                    VideoFrameDecoder(result.source, options)
-                                }
-                                .videoFramePercent(0.5)
-                                .build()
-                        } else {
-                            ImageRequest.Builder(context).data(file).build()
-                        }
-                    }
-                    AsyncImage(
-                        model = request,
-                        contentDescription = null,
-                        modifier = Modifier.size(48.dp)
-                    )
-                } else {
-                    if (ext == "pdf") {
-                        Icon(
-                            imageVector = Icons.Outlined.PictureAsPdf,
-                            contentDescription = null,
-                            modifier = Modifier.size(24.dp)
+            preview.chunked(3).forEach { rowFiles ->
+                Row(horizontalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize)) {
+                    rowFiles.forEach { file ->
+                        FilePreviewCard(
+                            file = file,
+                            modifier = Modifier.size(64.dp)
                         )
-                    } else {
-                        AssistChip(onClick = {}, label = { Text(file.name) }, enabled = false)
                     }
                 }
             }

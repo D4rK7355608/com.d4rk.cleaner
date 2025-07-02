@@ -32,6 +32,7 @@ import android.content.Context
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.ui.platform.LocalContext
+import com.d4rk.cleaner.app.clean.home.utils.helpers.StorageUtils
 import java.io.File
 
 @Composable
@@ -91,11 +92,16 @@ fun ApkCleanerCard(
                             contentDescription = null,
                             modifier = Modifier.size(24.dp)
                         )
-                        Text(
-                            text = appName,
-                            style = MaterialTheme.typography.bodySmall,
-                            modifier = Modifier.padding(start = SizeConstants.ExtraSmallSize)
-                        )
+                        Column(modifier = Modifier.padding(start = SizeConstants.ExtraSmallSize)) {
+                            Text(
+                                text = appName,
+                                style = MaterialTheme.typography.bodySmall
+                            )
+                            Text(
+                                text = StorageUtils.formatSizeReadable(apk.size),
+                                style = MaterialTheme.typography.bodySmall
+                            )
+                        }
                     }
                 }
                 if (apkFiles.size > preview.size) {
