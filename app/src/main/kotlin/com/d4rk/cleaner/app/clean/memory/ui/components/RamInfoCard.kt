@@ -11,9 +11,9 @@ import androidx.compose.ui.text.font.FontWeight
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.app.clean.scanner.ui.components.StorageProgressBar
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.RamInfo
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
+import com.d4rk.cleaner.app.clean.scanner.ui.components.StorageProgressBar
 
 @Composable
 fun RamInfoCard(ramInfo : RamInfo) {

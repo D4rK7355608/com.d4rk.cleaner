@@ -9,11 +9,11 @@ import android.media.MediaScannerConnection
 import android.os.Build
 import android.os.Environment
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.FileTypesData
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.UiScannerModel
 import com.d4rk.cleaner.app.clean.scanner.domain.`interface`.ScannerRepositoryInterface
 import com.d4rk.cleaner.app.clean.scanner.utils.helpers.StorageUtils
-import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first

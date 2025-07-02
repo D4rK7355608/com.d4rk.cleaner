@@ -84,6 +84,9 @@
     <string name="quick_scan_summary_tip_6">Great job! Ready for a second sweep?</string>
     <string name="quick_scan_summary_tip_7">Cleaner thinks there\'s still more to do!</string>
     <string name="quick_scan_summary_tip_8">Every bit counts. Let\'s scan again.</string>
+    <string name="cleaner_recommends_icon_description">Recommendation icon</string>
+    <string name="promoted_app_icon_description">Icon for %1$s</string>
+    <string name="install_button_icon_description">Install app icon</string>
     <string name="apk_card_title">Old Installers Found</string>
     <string name="apk_card_subtitle">Remove leftover installer files and reclaim space.</string>
     <string name="apk_card_more_format">+%1$d more</string>

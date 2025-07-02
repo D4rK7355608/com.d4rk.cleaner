@@ -17,8 +17,8 @@ import com.d4rk.android.libs.apptoolkit.core.utils.constants.links.AppLinks
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.IntentsHelper
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.apps.manager.ui.AppManagerScreen
-import com.d4rk.cleaner.app.clean.scanner.ui.ScannerScreen
 import com.d4rk.cleaner.app.clean.memory.ui.MemoryManagerComposable
+import com.d4rk.cleaner.app.clean.scanner.ui.ScannerScreen
 import com.d4rk.cleaner.app.clean.trash.ui.TrashActivity
 import com.d4rk.cleaner.app.images.picker.ui.ImagePickerActivity
 import com.d4rk.cleaner.app.main.utils.constants.NavigationRoutes

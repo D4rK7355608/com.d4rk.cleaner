@@ -20,11 +20,11 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.analyze.components.StatusRowSelectAll
 import com.d4rk.cleaner.app.clean.analyze.components.dialogs.DeleteOrTrashConfirmation
 import com.d4rk.cleaner.app.clean.analyze.components.tabs.TabsContent
+import com.d4rk.cleaner.app.clean.nofilesfound.ui.NoFilesFoundScreen
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.CleaningState
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.UiScannerModel
 import com.d4rk.cleaner.app.clean.scanner.ui.ScannerViewModel
 import com.d4rk.cleaner.app.clean.scanner.ui.components.TwoRowButtons
-import com.d4rk.cleaner.app.clean.nofilesfound.ui.NoFilesFoundScreen
 import kotlinx.coroutines.CoroutineScope
 import java.io.File
 

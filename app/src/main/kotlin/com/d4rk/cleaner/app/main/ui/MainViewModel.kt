@@ -15,11 +15,11 @@ import com.d4rk.android.libs.apptoolkit.core.domain.model.network.Errors
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.successData
 import com.d4rk.android.libs.apptoolkit.core.ui.base.ScreenViewModel
+import com.d4rk.cleaner.app.clean.scanner.utils.helpers.StorageUtils
+import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashSizeUseCase
 import com.d4rk.cleaner.app.main.domain.actions.MainAction
 import com.d4rk.cleaner.app.main.domain.actions.MainEvent
 import com.d4rk.cleaner.app.main.domain.model.UiMainScreen
-import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashSizeUseCase
-import com.d4rk.cleaner.app.clean.scanner.utils.helpers.StorageUtils
 
 class MainViewModel(
     private val performInAppUpdateUseCase : PerformInAppUpdateUseCase,

@@ -36,11 +36,12 @@ import com.d4rk.cleaner.app.clean.scanner.domain.`interface`.ScannerRepositoryIn
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.AnalyzeFilesUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.DeleteFilesUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetFileTypesUseCase
+import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetPromotedAppUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.MoveToTrashUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.UpdateTrashSizeUseCase
-import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashSizeUseCase
 import com.d4rk.cleaner.app.clean.scanner.ui.ScannerViewModel
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashFilesUseCase
+import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashSizeUseCase
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.RestoreFromTrashUseCase
 import com.d4rk.cleaner.app.clean.trash.ui.TrashViewModel
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.CompressImageUseCase
