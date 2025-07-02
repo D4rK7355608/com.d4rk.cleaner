@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CleaningServices
+import androidx.compose.material.icons.outlined.DiscFull
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Storage
 import androidx.compose.material3.Icon
@@ -79,8 +80,15 @@ fun QuickScanSummaryCard(
                 SmallVerticalSpacer()
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
+
+                    val storageIcon = when {
+                        usedPercent >= 75 -> Icons.Outlined.DiscFull
+                        usedPercent >= 25 -> Icons.Outlined.Storage
+                        else -> Icons.Outlined.Storage
+                    }
+
                     Icon(
-                        imageVector = Icons.Outlined.Storage,
+                        imageVector = storageIcon,
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary
                     )
