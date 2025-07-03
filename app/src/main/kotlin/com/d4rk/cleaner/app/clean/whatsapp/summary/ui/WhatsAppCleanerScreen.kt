@@ -202,7 +202,7 @@ private fun SuccessContent(
                 count = summary.profilePhotos.files.size,
                 size = summary.profilePhotos.formattedSize
             ),
-        )
+        ).filter { it.size != "0 B" }
     }
     val total = remember(directoryList) { directoryList.sumOf { it.count } }
 
