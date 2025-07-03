@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavHostController
+import androidx.compose.ui.platform.LocalContext
 import com.d4rk.cleaner.BuildConfig
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.ScreenState
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.shimmerEffect
@@ -51,14 +52,8 @@ import com.d4rk.cleaner.app.clean.whatsapp.navigation.WhatsAppRoute
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
+import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.model.ViewState
 import org.koin.compose.viewmodel.koinViewModel
-
-
-private sealed class ViewState<out T> { // TODO: move it to another place
-    data object Loading : ViewState<Nothing>()
-    data class Success<T>(val data: T) : ViewState<T>()
-    data class Error(val message: String) : ViewState<Nothing>()
-}
 
 @Composable
 fun WhatsAppCleanerScreen(
@@ -99,6 +94,16 @@ private fun Content(
     val docs = stringResource(id = R.string.documents)
     val images = stringResource(id = R.string.images)
 
+    val totalSize = remember(summary) {
+        summary.images.sumOf { it.length() } +
+                summary.videos.sumOf { it.length() } +
+                summary.documents.sumOf { it.length() }
+    }
+    val context = LocalContext.current
+    val freeUp = remember(totalSize) {
+        android.text.format.Formatter.formatShortFileSize(context, totalSize)
+    }
+
     val directoryState = remember(summaryState.screenState, summary) {
         when (summaryState.screenState) {
             is ScreenState.Success -> {
@@ -137,6 +142,11 @@ private fun Content(
         verticalArrangement = Arrangement.Center
     ) {
         val modifier = if (directoryState is ViewState.Success) Modifier else Modifier.shimmerEffect()
+        Text(
+            text = stringResource(id = R.string.free_up_format, freeUp),
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(16.dp)
+        )
 
         when (directoryState) {
             is ViewState.Success -> {

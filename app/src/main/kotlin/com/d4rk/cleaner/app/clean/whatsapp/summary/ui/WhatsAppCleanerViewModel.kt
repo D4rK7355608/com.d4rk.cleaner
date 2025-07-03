@@ -14,6 +14,7 @@ import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.DeleteWhatsAp
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.GetWhatsAppMediaSummaryUseCase
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
+import java.io.File
 
 class WhatsAppCleanerViewModel(
     private val getSummaryUseCase: GetWhatsAppMediaSummaryUseCase,
@@ -29,6 +30,7 @@ class WhatsAppCleanerViewModel(
         when (event) {
             WhatsAppCleanerEvent.LoadMedia -> loadSummary()
             WhatsAppCleanerEvent.CleanAll -> cleanAll()
+            is WhatsAppCleanerEvent.DeleteSelected -> deleteSelected(event.files)
         }
     }
 
@@ -61,7 +63,40 @@ class WhatsAppCleanerViewModel(
             summary.images + summary.videos + summary.documents
         } ?: emptyList()
         launch(context = dispatchers.io) {
-            deleteUseCase(files).collectLatest {
+            deleteUseCase(files).collectLatest { result ->
+                val freed = files.sumOf { it.length() }
+                if (result is DataState.Success) {
+                    sendAction(
+                        WhatsAppCleanerAction.ShowSnackbar(
+                            UiSnackbar(
+                                message = UiTextHelper.DynamicString(
+                                    "Cleaned ${freed / 1024 / 1024} MB"
+                                )
+                            )
+                        )
+                    )
+                }
+                onEvent(WhatsAppCleanerEvent.LoadMedia)
+            }
+        }
+    }
+
+    private fun deleteSelected(files: List<File>) {
+        if (files.isEmpty()) return
+        launch(context = dispatchers.io) {
+            deleteUseCase(files).collectLatest { result ->
+                val freed = files.sumOf { it.length() }
+                if (result is DataState.Success) {
+                    sendAction(
+                        WhatsAppCleanerAction.ShowSnackbar(
+                            UiSnackbar(
+                                message = UiTextHelper.DynamicString(
+                                    "Cleaned ${freed / 1024 / 1024} MB"
+                                )
+                            )
+                        )
+                    )
+                }
                 onEvent(WhatsAppCleanerEvent.LoadMedia)
             }
         }

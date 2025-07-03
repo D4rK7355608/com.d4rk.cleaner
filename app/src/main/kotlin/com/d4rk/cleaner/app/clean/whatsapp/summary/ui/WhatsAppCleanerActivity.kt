@@ -53,7 +53,7 @@ class WhatsAppCleanerActivity : AppCompatActivity() {
 @Composable
 private fun WhatsappScreenContent(activity: Activity) {
     val scrollBehavior: TopAppBarScrollBehavior =
-        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState()) // TODO: map scroll behavior to the lists to ensure proper movement when scrolling in screen
+        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     val navController = rememberNavController()
     val startDestination = if (PermissionsHelper.hasStoragePermissions(activity)) {
         WhatsAppRoute.Summary.route
@@ -62,15 +62,14 @@ private fun WhatsappScreenContent(activity: Activity) {
     }
 
     LargeTopAppBarWithScaffold(
-        title = stringResource(id = R.string.image_optimizer), // TODO add new title
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        title = stringResource(id = R.string.whatsapp_cleaner),
         onBackClicked = {
             activity.finish()
         },
         scrollBehavior = scrollBehavior,
     ) { paddingValues ->
 
-        // (maybe not needed) TODO: move the navigation host to a separate file in the whatsapp module whatsapp.navigation
-        // TODO: i want the permissions the cleaner screen and the details to be all activities. I think navigatrion can be removed
         NavHost(
             navController = navController,
             startDestination = startDestination,
@@ -96,8 +95,6 @@ private fun WhatsappScreenContent(activity: Activity) {
         }
     }
 }
-
-// TODO: Check the HomeScreen.kt from the src/whatsappcleaner and add the missing items here and in the rest of the project
 @Composable
 private fun DetailsScreenNav(
     type: String,
@@ -111,5 +108,9 @@ private fun DetailsScreenNav(
         "documents" -> summary.documents
         else -> emptyList()
     }
-    DetailsScreen(title = type, files = files)
+    DetailsScreen(
+        title = type,
+        files = files,
+        onDelete = { viewModel.onEvent(WhatsAppCleanerEvent.DeleteSelected(it)) }
+    )
 }
