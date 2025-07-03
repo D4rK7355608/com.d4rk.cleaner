@@ -118,15 +118,7 @@ private fun SuccessContent(
     val docs = stringResource(id = R.string.documents)
     val images = stringResource(id = R.string.images)
 
-    val totalSize = remember(summary) {
-        summary.images.sumOf { it.length() } +
-                summary.videos.sumOf { it.length() } +
-                summary.documents.sumOf { it.length() }
-    }
-    val context = LocalContext.current
-    val freeUp = remember(totalSize) {
-        android.text.format.Formatter.formatShortFileSize(context, totalSize)
-    }
+    val freeUp = uiModel.totalSize
 
     val directoryList = remember(summary) {
         listOf(
@@ -134,19 +126,22 @@ private fun SuccessContent(
                 type = "images",
                 name = images,
                 icon = R.drawable.ic_image,
-                count = summary.images.size
+                count = summary.images.files.size,
+                size = summary.images.formattedSize
             ),
             DirectoryItem(
                 type = "videos",
                 name = videos,
                 icon = R.drawable.ic_video_file,
-                count = summary.videos.size
+                count = summary.videos.files.size,
+                size = summary.videos.formattedSize
             ),
             DirectoryItem(
                 type = "documents",
                 name = docs,
                 icon = R.drawable.ic_apk_document,
-                count = summary.documents.size
+                count = summary.documents.files.size,
+                size = summary.documents.formattedSize
             )
         )
     }
@@ -225,19 +220,22 @@ private fun LoadingContent(
                         type = "images",
                         name = images,
                         icon = R.drawable.ic_image,
-                        count = 0
+                        count = 0,
+                        size = "0 B"
                     ),
                     DirectoryItem(
                         type = "videos",
                         name = videos,
                         icon = R.drawable.ic_video_file,
-                        count = 0
+                        count = 0,
+                        size = "0 B"
                     ),
                     DirectoryItem(
                         type = "documents",
                         name = docs,
                         icon = R.drawable.ic_apk_document,
-                        count = 0
+                        count = 0,
+                        size = "0 B"
                     )
                 )
             ) { DirectoryCard(it, onOpenDetails) }
@@ -336,7 +334,7 @@ private fun DirectoryCard(item: DirectoryItem, onOpenDetails: (String) -> Unit) 
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(text = item.name, style = MaterialTheme.typography.titleMedium)
-                Text(text = item.count.toString(), style = MaterialTheme.typography.bodySmall)
+                Text(text = item.size, style = MaterialTheme.typography.bodySmall)
             }
         }
     }

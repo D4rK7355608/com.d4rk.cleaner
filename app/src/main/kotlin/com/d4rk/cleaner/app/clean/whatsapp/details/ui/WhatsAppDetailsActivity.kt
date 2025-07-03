@@ -46,9 +46,17 @@ private fun DetailsScreenContent(type: String, viewModel: WhatsAppCleanerViewMod
     val state = viewModel.uiState.collectAsState().value
     val summary = state.data?.mediaSummary ?: WhatsAppMediaSummary()
     val files = when (type) {
-        "images" -> summary.images
-        "videos" -> summary.videos
-        "documents" -> summary.documents
+        "images" -> summary.images.files
+        "videos" -> summary.videos.files
+        "documents" -> summary.documents.files
+        "audios" -> summary.audios.files
+        "statuses" -> summary.statuses.files
+        "voice_notes" -> summary.voiceNotes.files
+        "video_notes" -> summary.videoNotes.files
+        "gifs" -> summary.gifs.files
+        "wallpapers" -> summary.wallpapers.files
+        "stickers" -> summary.stickers.files
+        "profile_photos" -> summary.profilePhotos.files
         else -> emptyList()
     }
     DetailsScreen(

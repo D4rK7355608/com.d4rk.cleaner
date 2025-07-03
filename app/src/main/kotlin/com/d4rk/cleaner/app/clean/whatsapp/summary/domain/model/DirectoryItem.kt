@@ -4,5 +4,6 @@ data class DirectoryItem(
     val type: String,
     val name: String,
     val icon: Int,
-    val count: Int
+    val count: Int,
+    val size: String
 )
