@@ -19,6 +19,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -28,6 +30,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.scanner.ui.components.FilePreviewCard
@@ -49,6 +53,7 @@ fun DetailsScreen(
     val sortedFiles by viewModel.files.collectAsState()
     val isGrid by viewModel.isGridView.collectAsState()
     var showSort by remember { mutableStateOf(false) }
+    var showConfirm by remember { mutableStateOf(false) }
 
     LaunchedEffect(files) {
         viewModel.setFiles(files)
@@ -68,6 +73,29 @@ fun DetailsScreen(
                     Text(text = context.getString(R.string.no_files))
                 }
             } else {
+                val allSelected = selected.size == sortedFiles.size && sortedFiles.isNotEmpty()
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 8.dp)
+                ) {
+                    Checkbox(
+                        checked = allSelected,
+                        onCheckedChange = {
+                            if (allSelected) selected.clear() else {
+                                selected.clear();
+                                selected.addAll(sortedFiles)
+                            }
+                        }
+                    )
+                    Text(
+                        text = if (allSelected)
+                            stringResource(id = R.string.deselect_all)
+                        else
+                            stringResource(id = R.string.select_all)
+                    )
+                }
                 if (isGrid) {
                     LazyVerticalGrid(columns = GridCells.Adaptive(96.dp), modifier = Modifier.weight(1f)) {
                         items(sortedFiles) { file ->
@@ -112,7 +140,7 @@ fun DetailsScreen(
                     }
                 }
                 Button(
-                    onClick = { onDelete(selected.toList()) },
+                    onClick = { showConfirm = true },
                     enabled = selected.isNotEmpty(),
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
@@ -129,6 +157,34 @@ fun DetailsScreen(
             current = viewModel.sortType.collectAsState().value,
             onDismiss = { showSort = false },
             onSortSelected = { viewModel.applySort(it) }
+        )
+    }
+
+    if (showConfirm) {
+        AlertDialog(
+            onDismissRequest = { showConfirm = false },
+            confirmButton = {
+                TextButton(onClick = {
+                    showConfirm = false
+                    onDelete(selected.toList())
+                    selected.clear()
+                }) {
+                    Text(text = stringResource(id = R.string.delete))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showConfirm = false }) { Text("Cancel") }
+            },
+            title = { Text(text = stringResource(id = R.string.delete_confirmation_title)) },
+            text = {
+                Text(
+                    text = pluralStringResource(
+                        id = R.plurals.delete_confirmation_message,
+                        count = selected.size,
+                        selected.size
+                    )
+                )
+            }
         )
     }
 }
