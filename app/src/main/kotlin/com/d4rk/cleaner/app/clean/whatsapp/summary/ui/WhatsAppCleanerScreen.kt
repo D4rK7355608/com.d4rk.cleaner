@@ -5,12 +5,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -210,17 +214,11 @@ private fun SuccessContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(
-            text = stringResource(id = R.string.free_up_format, freeUp),
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.padding(16.dp)
-        )
-
         LazyColumn(
             Modifier.weight(1f),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            item { ListSizeHeader(Modifier, total.toString()) }
+            item { ListSizeHeader(Modifier, freeUp, total.toString()) }
             item { DirectoryGrid(items = directoryList, onOpenDetails = onOpenDetails) }
         }
 
@@ -260,17 +258,11 @@ private fun LoadingContent(
     ) {
         val modifier = Modifier.shimmerEffect()
 
-        Text(
-            text = stringResource(id = R.string.free_up_format, freeUp),
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.padding(16.dp)
-        )
-
         LazyColumn(
             Modifier.weight(1f),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            item { ListSizeHeader(modifier, "0") }
+            item { ListSizeHeader(modifier, freeUp, "0") }
             item {
                 DirectoryGrid(
                     items = listOf(
@@ -406,13 +398,49 @@ private fun ErrorContent(
 }
 
 @Composable
-private fun ListSizeHeader(modifier: Modifier, total: String) = Banner(
-    modifier.padding(16.dp),
-    buildAnnotatedString {
-        withStyle(SpanStyle(fontSize = 24.sp)) { append(total) }
-        withStyle(SpanStyle(fontSize = 18.sp)) { append(" files") }
+private fun ListSizeHeader(modifier: Modifier, freeUp: String, total: String) {
+    val bgColor = MaterialTheme.colorScheme.primaryContainer
+    val textColor = MaterialTheme.colorScheme.onPrimaryContainer
+
+    Column(
+        modifier = modifier.padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Box(
+            Modifier
+                .padding(12.dp)
+                .fillMaxWidth(0.5f)
+                .aspectRatio(1f)
+                .shadow(elevation = 16.dp, shape = CircleShape)
+                .background(bgColor, shape = CircleShape),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_cleaner_notify),
+                    contentDescription = null,
+                    tint = textColor,
+                    modifier = Modifier.size(36.dp)
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = stringResource(id = R.string.free_up_format, freeUp),
+                    style = MaterialTheme.typography.titleMedium,
+                    color = textColor,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    text = stringResource(id = R.string.total_files_format, total),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = textColor,
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
     }
-)
+}
 
 @Composable
 private fun Banner(modifier: Modifier, text: AnnotatedString) {

@@ -98,6 +98,7 @@
     <string name="clean_whatsapp">Clean WhatsApp Media</string>
     <string name="whatsapp_cleaner">WhatsApp Cleaner</string>
     <string name="free_up_format">You can free up %1$s</string>
+    <string name="total_files_format">%1$s files</string>
     <string name="delete_selected">Delete Selected</string>
     <string name="smart_suggestions">Smart Suggestions</string>
     <string name="delete_all_suggested">Delete All Suggested</string>
