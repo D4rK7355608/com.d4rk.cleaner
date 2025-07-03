@@ -264,6 +264,14 @@ private fun LoadingContent(
     val videos = stringResource(id = R.string.videos)
     val docs = stringResource(id = R.string.documents)
     val images = stringResource(id = R.string.images)
+    val audios = stringResource(id = R.string.audios)
+    val statuses = stringResource(id = R.string.statuses)
+    val voiceNotes = stringResource(id = R.string.voice_notes)
+    val videoNotes = stringResource(id = R.string.video_notes)
+    val gifs = stringResource(id = R.string.gifs)
+    val wallpapers = stringResource(id = R.string.wallpapers)
+    val stickers = stringResource(id = R.string.stickers)
+    val profiles = stringResource(id = R.string.profile_photos)
 
     val context = LocalContext.current
     val freeUp = remember {
@@ -430,9 +438,6 @@ private fun ListSizeHeader(modifier: Modifier, total: String) = Banner(
         withStyle(SpanStyle(fontSize = 18.sp)) { append(" files") }
     }
 )
-
-@Composable
-
 
 @Composable
 private fun Title(modifier: Modifier, text: String) {
