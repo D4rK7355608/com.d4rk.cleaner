@@ -18,10 +18,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.d4rk.android.libs.apptoolkit.app.theme.style.AppTheme
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.fab.AnimatedExtendedFloatingActionButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.DeleteSweep
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.WhatsAppDetailsActivity
 import com.d4rk.cleaner.app.clean.whatsapp.permission.ui.WhatsAppPermissionActivity
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
+import org.koin.compose.viewmodel.koinViewModel
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
+import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsAppCleanerViewModel
 
 class WhatsAppCleanerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +57,7 @@ class WhatsAppCleanerActivity : AppCompatActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun WhatsappScreenContent(activity: Activity) {
+    val viewModel: WhatsAppCleanerViewModel = koinViewModel()
     val scrollBehavior: TopAppBarScrollBehavior =
         TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     LargeTopAppBarWithScaffold(
@@ -56,6 +66,21 @@ private fun WhatsappScreenContent(activity: Activity) {
             activity.finish()
         },
         scrollBehavior = scrollBehavior,
+        floatingActionButton = {
+            AnimatedExtendedFloatingActionButton(
+                onClick = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
+                icon = {
+                    Icon(
+                        modifier = Modifier.size(SizeConstants.ButtonIconSize),
+                        imageVector = Icons.Outlined.DeleteSweep,
+                        contentDescription = null
+                    )
+                },
+                text = {
+                    Text(text = stringResource(id = R.string.clean_whatsapp))
+                }
+            )
+        }
     ) { paddingValues ->
         WhatsAppCleanerScreen(
             paddingValues = paddingValues,
