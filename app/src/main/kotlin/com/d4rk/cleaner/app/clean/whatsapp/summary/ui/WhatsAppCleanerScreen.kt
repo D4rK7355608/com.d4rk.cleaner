@@ -37,7 +37,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavHostController
@@ -45,11 +44,9 @@ import com.d4rk.cleaner.BuildConfig
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.ScreenState
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.shimmerEffect
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
-import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
-import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
-import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.whatsapp.navigation.WhatsAppRoute
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
 import org.koin.compose.viewmodel.koinViewModel
 
 private data class DirectoryItem(
@@ -98,7 +95,7 @@ private fun Content(
     paddingValues: PaddingValues,
     onOpenDetails: (String) -> Unit
 ) {
-    val summary = summaryState.data?.mediaSummary ?: com.d4rk.cleaner.app.clean.whatsappcleaner.domain.model.WhatsAppMediaSummary()
+    val summary = summaryState.data?.mediaSummary ?: com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.WhatsAppMediaSummary()
 
     val directoryState = remember(summaryState.screenState, summary) {
         when (summaryState.screenState) {

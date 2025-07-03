@@ -100,7 +100,7 @@ private fun DetailsScreenNav(
     viewModel: WhatsAppCleanerViewModel = koinViewModel()
 ) {
     val state = viewModel.uiState.collectAsState().value
-    val summary = state.data?.mediaSummary ?: com.d4rk.cleaner.app.clean.whatsappcleaner.domain.model.WhatsAppMediaSummary()
+    val summary = state.data?.mediaSummary ?: com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.WhatsAppMediaSummary()
     val files = when (type) {
         "images" -> summary.images
         "videos" -> summary.videos

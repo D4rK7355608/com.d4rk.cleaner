@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.clean.whatsappcleaner.domain.model
+package com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model
 
 import java.io.File
 
@@ -10,3 +10,7 @@ data class WhatsAppMediaSummary(
     val hasData: Boolean
         get() = images.isNotEmpty() || videos.isNotEmpty() || documents.isNotEmpty()
 }
+
+data class UiWhatsAppCleanerModel(
+    val mediaSummary: WhatsAppMediaSummary = WhatsAppMediaSummary()
+)
