@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.app.clean.whatsapp.summary.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,46 +10,39 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.calculateEndPadding
-import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.DisposableEffect
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.platform.LocalContext
-import com.d4rk.cleaner.BuildConfig
-import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.shimmerEffect
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
+import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
+import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.shimmerEffect
+import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.DirectoryGrid
-import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -70,48 +64,39 @@ fun WhatsAppCleanerScreen(
         onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
     }
 
-    Scaffold(topBar = { HomeTopBar() }) { innerPadding ->
-        val combinedPadding = PaddingValues(
-            start = paddingValues.calculateStartPadding(layoutDirection = androidx.compose.ui.unit.LayoutDirection.Ltr),
-            top = paddingValues.calculateTopPadding() + innerPadding.calculateTopPadding(),
-            end = paddingValues.calculateEndPadding(layoutDirection = androidx.compose.ui.unit.LayoutDirection.Ltr),
-            bottom = paddingValues.calculateBottomPadding() + innerPadding.calculateBottomPadding()
-        )
-
-        ScreenStateHandler(
-            screenState = state,
-            onLoading = {
-                LoadingContent(
-                    paddingValues = combinedPadding,
-                    onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
-                    onOpenDetails = { type ->
-                        onOpenDetails(type)
-                    }
-                )
-            },
-            onEmpty = {
-                LoadingContent(
-                    paddingValues = combinedPadding,
-                    onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
-                    onOpenDetails = { type -> onOpenDetails(type) }
-                )
-            },
-            onSuccess = { data ->
-                SuccessContent(
-                    uiModel = data,
-                    paddingValues = combinedPadding,
-                    onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
-                    onOpenDetails = { type -> onOpenDetails(type) }
-                )
-            },
-            onError = {
-                ErrorContent(
-                    paddingValues = combinedPadding,
-                    onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) }
-                )
-            }
-        )
-    }
+    ScreenStateHandler(
+        screenState = state,
+        onLoading = {
+            LoadingContent(
+                paddingValues = paddingValues,
+                onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
+                onOpenDetails = { type ->
+                    onOpenDetails(type)
+                }
+            )
+        },
+        onEmpty = {
+            LoadingContent(
+                paddingValues = paddingValues,
+                onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
+                onOpenDetails = { type -> onOpenDetails(type) }
+            )
+        },
+        onSuccess = { data ->
+            SuccessContent(
+                uiModel = data,
+                paddingValues = paddingValues,
+                onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
+                onOpenDetails = { type -> onOpenDetails(type) }
+            )
+        },
+        onError = {
+            ErrorContent(
+                paddingValues = paddingValues,
+                onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) }
+            )
+        }
+    )
 }
 
 @Composable
@@ -440,17 +425,6 @@ private fun ListSizeHeader(modifier: Modifier, total: String) = Banner(
 )
 
 @Composable
-private fun Title(modifier: Modifier, text: String) {
-    Text(
-        modifier = modifier.padding(8.dp),
-        text = text,
-        fontSize = 24.sp,
-        textAlign = TextAlign.Start,
-        fontWeight = FontWeight.Bold,
-    )
-}
-
-@Composable
 private fun Banner(modifier: Modifier, text: AnnotatedString) {
     val bgColor = MaterialTheme.colorScheme.primaryContainer
     val textColor = MaterialTheme.colorScheme.onPrimaryContainer
@@ -478,15 +452,4 @@ private fun Banner(modifier: Modifier, text: AnnotatedString) {
             )
         }
     }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun HomeTopBar(modifier: Modifier = Modifier) {
-    TopAppBar(
-        modifier = modifier,
-        title = {
-            Title(modifier = Modifier, text = stringResource(R.string.app_name))
-        }
-    )
 }
