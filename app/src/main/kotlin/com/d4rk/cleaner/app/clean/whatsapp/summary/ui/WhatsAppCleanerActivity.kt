@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.clean.whatsappcleaner.ui
+package com.d4rk.cleaner.app.clean.whatsapp.summary.ui
 
 import android.app.Activity
 import android.os.Bundle

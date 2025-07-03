@@ -46,7 +46,7 @@ import com.d4rk.cleaner.app.clean.scanner.ui.components.ImageOptimizerCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.PromotedAppCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.QuickScanSummaryCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.WhatsAppCleanerCard
-import com.d4rk.cleaner.app.clean.whatsappcleaner.ui.WhatsAppCleanerActivity
+import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsAppCleanerActivity
 import com.d4rk.cleaner.app.images.picker.ui.ImagePickerActivity
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.koinInject

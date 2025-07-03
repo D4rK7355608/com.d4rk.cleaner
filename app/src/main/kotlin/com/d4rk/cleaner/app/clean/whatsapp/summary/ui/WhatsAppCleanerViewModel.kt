@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.clean.whatsappcleaner.ui
+package com.d4rk.cleaner.app.clean.whatsapp.summary.ui
 
 import com.d4rk.android.libs.apptoolkit.core.di.DispatcherProvider
 import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState

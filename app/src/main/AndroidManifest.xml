@@ -87,7 +87,7 @@
             android:parentActivityName=".app.main.ui.MainActivity" />
 
         <activity
-            android:name=".app.clean.whatsappcleaner.ui.WhatsAppCleanerActivity"
+            android:name=".app.clean.whatsapp.summary.ui.WhatsAppCleanerActivity"
             android:exported="false"
             android:label="@string/clean_whatsapp"
             android:parentActivityName=".app.main.ui.MainActivity" />

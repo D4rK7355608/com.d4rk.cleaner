@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.clean.whatsappcleaner.ui
+package com.d4rk.cleaner.app.clean.whatsapp.summary.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
