@@ -42,8 +42,13 @@ class WhatsAppCleanerViewModel(
                         is DataState.Loading -> current.copy(screenState = ScreenState.IsLoading())
                         is DataState.Success -> current.copy(
                             screenState = ScreenState.Success(),
-                            data = current.data?.copy(mediaSummary = result.data)
-                                ?: UiWhatsAppCleanerModel(result.data)
+                            data = current.data?.copy(
+                                mediaSummary = result.data,
+                                totalSize = result.data.formattedTotalSize
+                            ) ?: UiWhatsAppCleanerModel(
+                                mediaSummary = result.data,
+                                totalSize = result.data.formattedTotalSize
+                            )
                         )
                         is DataState.Error -> current.copy(
                             screenState = ScreenState.Error(),
@@ -60,7 +65,17 @@ class WhatsAppCleanerViewModel(
 
     private fun cleanAll() {
         val files = _uiState.value.data?.mediaSummary?.let { summary ->
-            summary.images + summary.videos + summary.documents
+            summary.images.files +
+                    summary.videos.files +
+                    summary.documents.files +
+                    summary.audios.files +
+                    summary.statuses.files +
+                    summary.voiceNotes.files +
+                    summary.videoNotes.files +
+                    summary.gifs.files +
+                    summary.wallpapers.files +
+                    summary.stickers.files +
+                    summary.profilePhotos.files
         } ?: emptyList()
         launch(context = dispatchers.io) {
             deleteUseCase(files).collectLatest { result ->
