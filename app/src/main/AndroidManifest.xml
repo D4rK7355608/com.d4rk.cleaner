@@ -86,6 +86,11 @@
             android:label="@string/trash"
             android:parentActivityName=".app.main.ui.MainActivity" />
 
+        <activity
+            android:name=".app.clean.whatsappcleaner.ui.WhatsAppCleanerActivity"
+            android:exported="false"
+            android:label="@string/clean_whatsapp"
+            android:parentActivityName=".app.main.ui.MainActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
