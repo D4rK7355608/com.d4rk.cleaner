@@ -9,40 +9,33 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.WhatsAppMediaSummary
-import com.d4rk.cleaner.app.clean.whatsappcleaner.domain.data.model.ui.UiWhatsAppCleanerModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun WhatsAppCleanerScreen(viewModel: WhatsAppCleanerViewModel = koinViewModel()) {
+fun WhatsAppCleanerScreen(modifier: Modifier = Modifier, viewModel: WhatsAppCleanerViewModel = koinViewModel()) {
     val state: UiStateScreen<UiWhatsAppCleanerModel> by viewModel.uiState.collectAsState()
     ScreenStateHandler(
         screenState = state,
-        onLoading = {
-            LoadingScreen()
-        },
-        onEmpty = {
-            NoDataScreen()
-        },
+        modifier = modifier.fillMaxSize(),
+        onLoading = { LoadingScreen() },
+        onEmpty = { NoDataScreen() },
         onSuccess = { data ->
-            Content(
-                summary = data.mediaSummary,
-                onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) })
+            Content(summary = data.mediaSummary, onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) })
         }
     )
 }
 
 @Composable
-private fun Content(summary: WhatsAppMediaSummary, onClean: () -> Unit) {
+private fun Content(summary: com.d4rk.cleaner.app.clean.whatsappcleaner.domain.model.WhatsAppMediaSummary, onClean: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize().padding(all = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),

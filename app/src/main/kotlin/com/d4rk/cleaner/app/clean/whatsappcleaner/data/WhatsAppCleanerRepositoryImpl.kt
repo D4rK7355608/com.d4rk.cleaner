@@ -2,8 +2,8 @@ package com.d4rk.cleaner.app.clean.whatsappcleaner.data
 
 import android.app.Application
 import android.os.Environment
-import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.WhatsAppMediaSummary
-import com.d4rk.cleaner.app.clean.whatsappcleaner.domain.interfaces.WhatsAppCleanerRepository
+import com.d4rk.cleaner.app.clean.whatsappcleaner.domain.model.WhatsAppMediaSummary
+import com.d4rk.cleaner.app.clean.whatsappcleaner.domain.repository.WhatsAppCleanerRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -32,9 +32,7 @@ class WhatsAppCleanerRepositoryImpl(private val application: Application) : What
 
     override suspend fun deleteFiles(files: List<File>) = withContext(Dispatchers.IO) {
         files.forEach { file ->
-            if (file.exists()) {
-                file.deleteRecursively()
-            }
+            if (file.exists()) file.deleteRecursively()
         }
     }
 }
