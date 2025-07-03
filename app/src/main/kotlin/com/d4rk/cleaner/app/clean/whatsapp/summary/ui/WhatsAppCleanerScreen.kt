@@ -100,7 +100,6 @@ fun WhatsAppCleanerScreen(
 }
 
 @Composable
-
 private fun SuccessContent(
     uiModel: UiWhatsAppCleanerModel,
     paddingValues: PaddingValues,
@@ -228,15 +227,6 @@ private fun SuccessContent(
         Button(onClick = onClean, modifier = Modifier.padding(16.dp)) {
             Text(text = stringResource(id = R.string.clean_whatsapp))
         }
-
-        if (BuildConfig.DEBUG)
-            Text(
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(4.dp),
-                text = "Debug Build ${BuildConfig.VERSION_NAME}",
-                style = MaterialTheme.typography.labelSmall,
-            )
     }
 }
 
