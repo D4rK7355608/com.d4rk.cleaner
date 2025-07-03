@@ -132,6 +132,14 @@ private fun SuccessContent(
     val videos = stringResource(id = R.string.videos)
     val docs = stringResource(id = R.string.documents)
     val images = stringResource(id = R.string.images)
+    val audios = stringResource(id = R.string.audios)
+    val statuses = stringResource(id = R.string.statuses)
+    val voiceNotes = stringResource(id = R.string.voice_notes)
+    val videoNotes = stringResource(id = R.string.video_notes)
+    val gifs = stringResource(id = R.string.gifs)
+    val wallpapers = stringResource(id = R.string.wallpapers)
+    val stickers = stringResource(id = R.string.stickers)
+    val profiles = stringResource(id = R.string.profile_photos)
 
     val freeUp = uiModel.totalSize
 
@@ -157,7 +165,63 @@ private fun SuccessContent(
                 icon = R.drawable.ic_apk_document,
                 count = summary.documents.files.size,
                 size = summary.documents.formattedSize
-            )
+            ),
+            DirectoryItem(
+                type = "audios",
+                name = audios,
+                icon = R.drawable.ic_audio_file,
+                count = summary.audios.files.size,
+                size = summary.audios.formattedSize
+            ),
+            DirectoryItem(
+                type = "statuses",
+                name = statuses,
+                icon = R.drawable.ic_image,
+                count = summary.statuses.files.size,
+                size = summary.statuses.formattedSize
+            ),
+            DirectoryItem(
+                type = "voice_notes",
+                name = voiceNotes,
+                icon = R.drawable.ic_audio_file,
+                count = summary.voiceNotes.files.size,
+                size = summary.voiceNotes.formattedSize
+            ),
+            DirectoryItem(
+                type = "video_notes",
+                name = videoNotes,
+                icon = R.drawable.ic_video_file,
+                count = summary.videoNotes.files.size,
+                size = summary.videoNotes.formattedSize
+            ),
+            DirectoryItem(
+                type = "gifs",
+                name = gifs,
+                icon = R.drawable.ic_image,
+                count = summary.gifs.files.size,
+                size = summary.gifs.formattedSize
+            ),
+            DirectoryItem(
+                type = "wallpapers",
+                name = wallpapers,
+                icon = R.drawable.ic_image,
+                count = summary.wallpapers.files.size,
+                size = summary.wallpapers.formattedSize
+            ),
+            DirectoryItem(
+                type = "stickers",
+                name = stickers,
+                icon = R.drawable.ic_image,
+                count = summary.stickers.files.size,
+                size = summary.stickers.formattedSize
+            ),
+            DirectoryItem(
+                type = "profile_photos",
+                name = profiles,
+                icon = R.drawable.ic_image,
+                count = summary.profilePhotos.files.size,
+                size = summary.profilePhotos.formattedSize
+            ),
         )
     }
     val total = remember(directoryList) { directoryList.sumOf { it.count } }
@@ -249,6 +313,62 @@ private fun LoadingContent(
                         type = "documents",
                         name = docs,
                         icon = R.drawable.ic_apk_document,
+                        count = 0,
+                        size = "0 B"
+                    ),
+                    DirectoryItem(
+                        type = "audios",
+                        name = audios,
+                        icon = R.drawable.ic_audio_file,
+                        count = 0,
+                        size = "0 B"
+                    ),
+                    DirectoryItem(
+                        type = "statuses",
+                        name = statuses,
+                        icon = R.drawable.ic_image,
+                        count = 0,
+                        size = "0 B"
+                    ),
+                    DirectoryItem(
+                        type = "voice_notes",
+                        name = voiceNotes,
+                        icon = R.drawable.ic_audio_file,
+                        count = 0,
+                        size = "0 B"
+                    ),
+                    DirectoryItem(
+                        type = "video_notes",
+                        name = videoNotes,
+                        icon = R.drawable.ic_video_file,
+                        count = 0,
+                        size = "0 B"
+                    ),
+                    DirectoryItem(
+                        type = "gifs",
+                        name = gifs,
+                        icon = R.drawable.ic_image,
+                        count = 0,
+                        size = "0 B"
+                    ),
+                    DirectoryItem(
+                        type = "wallpapers",
+                        name = wallpapers,
+                        icon = R.drawable.ic_image,
+                        count = 0,
+                        size = "0 B"
+                    ),
+                    DirectoryItem(
+                        type = "stickers",
+                        name = stickers,
+                        icon = R.drawable.ic_image,
+                        count = 0,
+                        size = "0 B"
+                    ),
+                    DirectoryItem(
+                        type = "profile_photos",
+                        name = profiles,
+                        icon = R.drawable.ic_image,
                         count = 0,
                         size = "0 B"
                     )

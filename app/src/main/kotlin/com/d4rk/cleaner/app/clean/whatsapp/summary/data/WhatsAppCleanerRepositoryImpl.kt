@@ -38,31 +38,35 @@ class WhatsAppCleanerRepositoryImpl(private val application: Application) : What
             return DirectorySummary(files, size, formatted)
         }
 
-        val images = collect("WhatsApp Images")
-        val videos = collect("WhatsApp Video")
-        val docs = collect("WhatsApp Documents")
-        val audios = collect("WhatsApp Audio")
-        val statuses = collect(".Statuses")
-        val voiceNotes = collect("WhatsApp Voice Notes")
-        val videoNotes = collect("WhatsApp Video Notes")
-        val gifs = collect("WhatsApp Animated Gifs")
-        val wallpapers = collect("WallPaper")
-        val stickers = collect("WhatsApp Stickers")
-        val profile = collect("WhatsApp Profile Photos")
+        val directories = mapOf(
+            "images" to "WhatsApp Images",
+            "videos" to "WhatsApp Video",
+            "documents" to "WhatsApp Documents",
+            "audios" to "WhatsApp Audio",
+            "statuses" to ".Statuses",
+            "voice_notes" to "WhatsApp Voice Notes",
+            "video_notes" to "WhatsApp Video Notes",
+            "gifs" to "WhatsApp Animated Gifs",
+            "wallpapers" to "WallPaper",
+            "stickers" to "WhatsApp Stickers",
+            "profile_photos" to "WhatsApp Profile Photos",
+        )
 
-        val totalSize = listOf(
-            images,
-            videos,
-            docs,
-            audios,
-            statuses,
-            voiceNotes,
-            videoNotes,
-            gifs,
-            wallpapers,
-            stickers,
-            profile,
-        ).sumOf { it.totalBytes }
+        val collected = directories.mapValues { (_, dirName) -> collect(dirName) }
+
+        val images = collected.getValue("images")
+        val videos = collected.getValue("videos")
+        val docs = collected.getValue("documents")
+        val audios = collected.getValue("audios")
+        val statuses = collected.getValue("statuses")
+        val voiceNotes = collected.getValue("voice_notes")
+        val videoNotes = collected.getValue("video_notes")
+        val gifs = collected.getValue("gifs")
+        val wallpapers = collected.getValue("wallpapers")
+        val stickers = collected.getValue("stickers")
+        val profile = collected.getValue("profile_photos")
+
+        val totalSize = collected.values.sumOf { it.totalBytes }
         val totalFormatted = Formatter.formatFileSize(application, totalSize)
 
         WhatsAppMediaSummary(
