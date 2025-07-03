@@ -1,13 +1,13 @@
 package com.d4rk.cleaner.app.clean.whatsappcleaner.di
 
 import com.d4rk.cleaner.app.clean.whatsappcleaner.data.WhatsAppCleanerRepositoryImpl
-import com.d4rk.cleaner.app.clean.whatsappcleaner.domain.interface.WhatsAppCleanerRepository
+import com.d4rk.cleaner.app.clean.whatsappcleaner.domain.interfaces.WhatsAppCleanerRepository
 import com.d4rk.cleaner.app.clean.whatsappcleaner.domain.usecases.DeleteWhatsAppMediaUseCase
 import com.d4rk.cleaner.app.clean.whatsappcleaner.domain.usecases.GetWhatsAppMediaSummaryUseCase
 import com.d4rk.cleaner.app.clean.whatsappcleaner.ui.WhatsAppCleanerViewModel
 import org.koin.android.ext.koin.androidApplication
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
+import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 val whatsAppCleanerModule: Module = module {

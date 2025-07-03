@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.clean.whatsappcleaner.domain.interface
+package com.d4rk.cleaner.app.clean.whatsappcleaner.domain.interfaces
 
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.WhatsAppMediaSummary
 import java.io.File

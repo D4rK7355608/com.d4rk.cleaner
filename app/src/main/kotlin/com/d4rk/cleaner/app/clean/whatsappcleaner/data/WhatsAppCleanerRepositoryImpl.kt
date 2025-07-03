@@ -3,7 +3,7 @@ package com.d4rk.cleaner.app.clean.whatsappcleaner.data
 import android.app.Application
 import android.os.Environment
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.WhatsAppMediaSummary
-import com.d4rk.cleaner.app.clean.whatsappcleaner.domain.interface.WhatsAppCleanerRepository
+import com.d4rk.cleaner.app.clean.whatsappcleaner.domain.interfaces.WhatsAppCleanerRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File

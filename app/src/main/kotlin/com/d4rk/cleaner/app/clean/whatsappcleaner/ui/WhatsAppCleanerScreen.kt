@@ -14,17 +14,31 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
+import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
+import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.WhatsAppMediaSummary
+import com.d4rk.cleaner.app.clean.whatsappcleaner.domain.data.model.ui.UiWhatsAppCleanerModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun WhatsAppCleanerScreen(viewModel: WhatsAppCleanerViewModel = koinViewModel()) {
     val state: UiStateScreen<UiWhatsAppCleanerModel> by viewModel.uiState.collectAsState()
-    ScreenStateHandler(state = state) { data ->
-        Content(summary = data.mediaSummary, onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) })
-    }
+    ScreenStateHandler(
+        screenState = state,
+        onLoading = {
+            LoadingScreen()
+        },
+        onEmpty = {
+            NoDataScreen()
+        },
+        onSuccess = { data ->
+            Content(
+                summary = data.mediaSummary,
+                onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) })
+        }
+    )
 }
 
 @Composable
