@@ -1,10 +1,9 @@
 package com.d4rk.cleaner.app.clean.scanner.ui
 
 import android.app.Application
-import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.os.Build
+import com.d4rk.cleaner.core.utils.extensions.clearClipboardCompat
 import com.d4rk.android.libs.apptoolkit.core.di.DispatcherProvider
 import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.ScreenState
@@ -989,11 +988,7 @@ class ScannerViewModel(
 
     fun onClipboardClear() {
         runCatching {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                clipboardManager.clearPrimaryClip()
-            } else {
-                clipboardManager.setPrimaryClip(ClipData.newPlainText("", ""))
-            }
+            clipboardManager.clearClipboardCompat()
         }
         _clipboardPreview.value = null
         _clipboardDetectedSensitive.value = false

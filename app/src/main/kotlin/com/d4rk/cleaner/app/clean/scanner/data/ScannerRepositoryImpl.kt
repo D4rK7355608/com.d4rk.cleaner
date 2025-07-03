@@ -2,11 +2,9 @@ package com.d4rk.cleaner.app.clean.scanner.data
 
 
 import android.app.Application
-import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.media.MediaScannerConnection
-import android.os.Build
 import android.os.Environment
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
@@ -15,6 +13,7 @@ import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.UiScannerModel
 import com.d4rk.cleaner.app.clean.scanner.domain.`interface`.ScannerRepositoryInterface
 import com.d4rk.cleaner.app.clean.scanner.utils.helpers.StorageUtils
 import com.d4rk.cleaner.core.data.datastore.DataStore
+import com.d4rk.cleaner.core.utils.extensions.clearClipboardCompat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
@@ -160,12 +159,7 @@ class ScannerRepositoryImpl(
         val clipboardManager : ClipboardManager = application.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager ?: return
 
         runCatching {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                clipboardManager.clearPrimaryClip()
-            }
-            else {
-                clipboardManager.setPrimaryClip(ClipData.newPlainText("" , ""))
-            }
+            clipboardManager.clearClipboardCompat()
         }
     }
 
