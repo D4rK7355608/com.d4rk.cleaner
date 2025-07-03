@@ -7,22 +7,17 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -36,7 +31,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.buildAnnotatedString
@@ -53,6 +47,7 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
+import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.DirectoryGrid
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -242,7 +237,7 @@ private fun SuccessContent(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             item { ListSizeHeader(Modifier, total.toString()) }
-            items(directoryList) { DirectoryCard(it, onOpenDetails) }
+            item { DirectoryGrid(items = directoryList, onOpenDetails = onOpenDetails) }
         }
 
         Button(onClick = onClean, modifier = Modifier.padding(16.dp)) {
@@ -293,15 +288,16 @@ private fun LoadingContent(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             item { ListSizeHeader(modifier, "0") }
-            items(
-                listOf(
-                    DirectoryItem(
-                        type = "images",
-                        name = images,
-                        icon = R.drawable.ic_image,
-                        count = 0,
-                        size = "0 B"
-                    ),
+            item {
+                DirectoryGrid(
+                    items = listOf(
+                        DirectoryItem(
+                            type = "images",
+                            name = images,
+                            icon = R.drawable.ic_image,
+                            count = 0,
+                            size = "0 B"
+                        ),
                     DirectoryItem(
                         type = "videos",
                         name = videos,
@@ -372,8 +368,10 @@ private fun LoadingContent(
                         count = 0,
                         size = "0 B"
                     )
+                ),
+                    onOpenDetails = onOpenDetails
                 )
-            ) { DirectoryCard(it, onOpenDetails) }
+            }
         }
 
         Button(onClick = onClean, modifier = Modifier.padding(16.dp)) {
@@ -434,46 +432,6 @@ private fun ListSizeHeader(modifier: Modifier, total: String) = Banner(
 )
 
 @Composable
-private fun DirectoryCard(item: DirectoryItem, onOpenDetails: (String) -> Unit) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
-        onClick = { onOpenDetails(item.type) }
-    ) {
-        Row(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Box(
-                modifier = Modifier
-                    .padding(end = 16.dp)
-                    .fillMaxWidth(0.15f)
-                    .aspectRatio(1f)
-                    .shadow(4.dp, CircleShape)
-                    .background(MaterialTheme.colorScheme.secondaryContainer, CircleShape),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    painter = painterResource(id = item.icon),
-                    contentDescription = null,
-                    tint = Color.Unspecified
-                )
-            }
-            Column(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(text = item.name, style = MaterialTheme.typography.titleMedium)
-                Text(text = item.size, style = MaterialTheme.typography.bodySmall)
-            }
-        }
-    }
-}
 
 
 @Composable
