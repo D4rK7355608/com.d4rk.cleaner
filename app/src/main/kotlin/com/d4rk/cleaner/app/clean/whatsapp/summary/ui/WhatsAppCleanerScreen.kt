@@ -2,17 +2,16 @@ package com.d4rk.cleaner.app.clean.whatsapp.summary.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -23,24 +22,22 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
-import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.shimmerEffect
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ExtraTinyHorizontalSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.MediumVerticalSpacer
+import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
@@ -218,7 +215,7 @@ private fun SuccessContent(
             Modifier.weight(1f),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            item { ListSizeHeader(Modifier, freeUp, total.toString()) }
+            item { ListSizeHeader(freeUp, total.toString()) }
             item { DirectoryGrid(items = directoryList, onOpenDetails = onOpenDetails) }
         }
 
@@ -256,13 +253,11 @@ private fun LoadingContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        val modifier = Modifier.shimmerEffect()
-
         LazyColumn(
             Modifier.weight(1f),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            item { ListSizeHeader(modifier, freeUp, "0") }
+            item { ListSizeHeader(freeUp, "0") }
             item {
                 DirectoryGrid(
                     items = listOf(
@@ -273,77 +268,77 @@ private fun LoadingContent(
                             count = 0,
                             size = "0 B"
                         ),
-                    DirectoryItem(
-                        type = "videos",
-                        name = videos,
-                        icon = R.drawable.ic_video_file,
-                        count = 0,
-                        size = "0 B"
+                        DirectoryItem(
+                            type = "videos",
+                            name = videos,
+                            icon = R.drawable.ic_video_file,
+                            count = 0,
+                            size = "0 B"
+                        ),
+                        DirectoryItem(
+                            type = "documents",
+                            name = docs,
+                            icon = R.drawable.ic_apk_document,
+                            count = 0,
+                            size = "0 B"
+                        ),
+                        DirectoryItem(
+                            type = "audios",
+                            name = audios,
+                            icon = R.drawable.ic_audio_file,
+                            count = 0,
+                            size = "0 B"
+                        ),
+                        DirectoryItem(
+                            type = "statuses",
+                            name = statuses,
+                            icon = R.drawable.ic_image,
+                            count = 0,
+                            size = "0 B"
+                        ),
+                        DirectoryItem(
+                            type = "voice_notes",
+                            name = voiceNotes,
+                            icon = R.drawable.ic_audio_file,
+                            count = 0,
+                            size = "0 B"
+                        ),
+                        DirectoryItem(
+                            type = "video_notes",
+                            name = videoNotes,
+                            icon = R.drawable.ic_video_file,
+                            count = 0,
+                            size = "0 B"
+                        ),
+                        DirectoryItem(
+                            type = "gifs",
+                            name = gifs,
+                            icon = R.drawable.ic_image,
+                            count = 0,
+                            size = "0 B"
+                        ),
+                        DirectoryItem(
+                            type = "wallpapers",
+                            name = wallpapers,
+                            icon = R.drawable.ic_image,
+                            count = 0,
+                            size = "0 B"
+                        ),
+                        DirectoryItem(
+                            type = "stickers",
+                            name = stickers,
+                            icon = R.drawable.ic_image,
+                            count = 0,
+                            size = "0 B"
+                        ),
+                        DirectoryItem(
+                            type = "profile_photos",
+                            name = profiles,
+                            icon = R.drawable.ic_image,
+                            count = 0,
+                            size = "0 B"
+                        )
                     ),
-                    DirectoryItem(
-                        type = "documents",
-                        name = docs,
-                        icon = R.drawable.ic_apk_document,
-                        count = 0,
-                        size = "0 B"
-                    ),
-                    DirectoryItem(
-                        type = "audios",
-                        name = audios,
-                        icon = R.drawable.ic_audio_file,
-                        count = 0,
-                        size = "0 B"
-                    ),
-                    DirectoryItem(
-                        type = "statuses",
-                        name = statuses,
-                        icon = R.drawable.ic_image,
-                        count = 0,
-                        size = "0 B"
-                    ),
-                    DirectoryItem(
-                        type = "voice_notes",
-                        name = voiceNotes,
-                        icon = R.drawable.ic_audio_file,
-                        count = 0,
-                        size = "0 B"
-                    ),
-                    DirectoryItem(
-                        type = "video_notes",
-                        name = videoNotes,
-                        icon = R.drawable.ic_video_file,
-                        count = 0,
-                        size = "0 B"
-                    ),
-                    DirectoryItem(
-                        type = "gifs",
-                        name = gifs,
-                        icon = R.drawable.ic_image,
-                        count = 0,
-                        size = "0 B"
-                    ),
-                    DirectoryItem(
-                        type = "wallpapers",
-                        name = wallpapers,
-                        icon = R.drawable.ic_image,
-                        count = 0,
-                        size = "0 B"
-                    ),
-                    DirectoryItem(
-                        type = "stickers",
-                        name = stickers,
-                        icon = R.drawable.ic_image,
-                        count = 0,
-                        size = "0 B"
-                    ),
-                    DirectoryItem(
-                        type = "profile_photos",
-                        name = profiles,
-                        icon = R.drawable.ic_image,
-                        count = 0,
-                        size = "0 B"
-                    )
-                ),
                     onOpenDetails = onOpenDetails
                 )
             }
@@ -397,77 +392,58 @@ private fun ErrorContent(
     }
 }
 
-@Composable
-private fun ListSizeHeader(modifier: Modifier, freeUp: String, total: String) {
-    val bgColor = MaterialTheme.colorScheme.primaryContainer
-    val textColor = MaterialTheme.colorScheme.onPrimaryContainer
 
-    Column(
-        modifier = modifier.padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+@Composable
+private fun ListSizeHeader(freeUp: String, total: String) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 24.dp),
+        shape = MaterialTheme.shapes.large,
     ) {
-        Box(
-            Modifier
-                .padding(12.dp)
-                .fillMaxWidth(0.5f)
-                .aspectRatio(1f)
-                .shadow(elevation = 16.dp, shape = CircleShape)
-                .background(bgColor, shape = CircleShape),
-            contentAlignment = Alignment.Center
+        Column(
+            modifier = Modifier.padding(SizeConstants.LargeSize)
         ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_cleaner_notify),
                     contentDescription = null,
-                    tint = textColor,
-                    modifier = Modifier.size(36.dp)
+                    modifier = Modifier.size(size = MaterialTheme.typography.headlineSmall.fontSize.value.dp),
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+                ButtonIconSpacer()
                 Text(
                     text = stringResource(id = R.string.free_up_format, freeUp),
-                    style = MaterialTheme.typography.titleMedium,
-                    color = textColor,
+                    style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center
-                )
-                Text(
-                    text = stringResource(id = R.string.total_files_format, total),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = textColor,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
             }
-        }
-    }
-}
 
-@Composable
-private fun Banner(modifier: Modifier, text: AnnotatedString) {
-    val bgColor = MaterialTheme.colorScheme.primaryContainer
-    val textColor = MaterialTheme.colorScheme.onPrimaryContainer
+            MediumVerticalSpacer()
 
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Box(
-            Modifier
-                .padding(12.dp)
-                .fillMaxWidth(0.4f)
-                .aspectRatio(1f)
-                .shadow(elevation = 16.dp, shape = CircleShape)
-                .background(bgColor, shape = CircleShape),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = text,
-                style = MaterialTheme.typography.titleLarge,
-                color = textColor,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-            )
+            Row(
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .background(MaterialTheme.colorScheme.surfaceVariant)
+                    .padding(horizontal = SizeConstants.ExtraTinySize),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(id = R.string.total),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(start = SizeConstants.SmallSize)
+                )
+                ExtraTinyHorizontalSpacer()
+                Text(
+                    text = stringResource(id = R.string.total_files_format, total),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
         }
     }
 }
