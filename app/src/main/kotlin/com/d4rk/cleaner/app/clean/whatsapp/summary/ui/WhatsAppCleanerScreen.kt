@@ -1,16 +1,17 @@
 package com.d4rk.cleaner.app.clean.whatsapp.summary.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.FolderOff
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -23,7 +24,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -33,12 +33,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
+import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
+import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ExtraTinyHorizontalSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.MediumVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
-import com.d4rk.cleaner.BuildConfig
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
@@ -68,33 +69,20 @@ fun WhatsAppCleanerScreen(
     ScreenStateHandler(
         screenState = state,
         onLoading = {
-            LoadingContent(
-                paddingValues = paddingValues,
-                onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
-                onOpenDetails = { type ->
-                    onOpenDetails(type)
-                }
-            )
+            LoadingScreen()
         },
         onEmpty = {
-            LoadingContent(
-                paddingValues = paddingValues,
-                onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
-                onOpenDetails = { type -> onOpenDetails(type) }
+            NoDataScreen(
+                icon = Icons.Outlined.FolderOff,
+                showRetry = true,
+                onRetry = { viewModel.onEvent(WhatsAppCleanerEvent.LoadMedia) },
             )
         },
         onSuccess = { data ->
             SuccessContent(
                 uiModel = data,
                 paddingValues = paddingValues,
-                onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
                 onOpenDetails = { type -> onOpenDetails(type) }
-            )
-        },
-        onError = {
-            ErrorContent(
-                paddingValues = paddingValues,
-                onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) }
             )
         }
     )
@@ -104,7 +92,6 @@ fun WhatsAppCleanerScreen(
 private fun SuccessContent(
     uiModel: UiWhatsAppCleanerModel,
     paddingValues: PaddingValues,
-    onClean: () -> Unit,
     onOpenDetails: (String) -> Unit
 ) {
     val summary = uiModel.mediaSummary
@@ -206,192 +193,14 @@ private fun SuccessContent(
     }
     val total = remember(directoryList) { directoryList.sumOf { it.count } }
 
-    Column(
-        Modifier.padding(paddingValues),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+    LazyColumn(
+        modifier = Modifier.fillMaxSize().padding(paddingValues),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        LazyColumn(
-            Modifier.weight(1f),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            item { ListSizeHeader(freeUp, total.toString()) }
-            item { DirectoryGrid(items = directoryList, onOpenDetails = onOpenDetails) }
-        }
-
-        Button(onClick = onClean, modifier = Modifier.padding(16.dp)) {
-            Text(text = stringResource(id = R.string.clean_whatsapp))
-        }
+        item { ListSizeHeader(freeUp, total.toString()) }
+        item { DirectoryGrid(items = directoryList, onOpenDetails = onOpenDetails) }
     }
 }
-
-@Composable
-private fun LoadingContent(
-    paddingValues: PaddingValues,
-    onClean: () -> Unit,
-    onOpenDetails: (String) -> Unit
-) {
-    val videos = stringResource(id = R.string.videos)
-    val docs = stringResource(id = R.string.documents)
-    val images = stringResource(id = R.string.images)
-    val audios = stringResource(id = R.string.audios)
-    val statuses = stringResource(id = R.string.statuses)
-    val voiceNotes = stringResource(id = R.string.voice_notes)
-    val videoNotes = stringResource(id = R.string.video_notes)
-    val gifs = stringResource(id = R.string.gifs)
-    val wallpapers = stringResource(id = R.string.wallpapers)
-    val stickers = stringResource(id = R.string.stickers)
-    val profiles = stringResource(id = R.string.profile_photos)
-
-    val context = LocalContext.current
-    val freeUp = remember {
-        android.text.format.Formatter.formatShortFileSize(context, 0)
-    }
-
-    Column(
-        Modifier.padding(paddingValues),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        LazyColumn(
-            Modifier.weight(1f),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            item { ListSizeHeader(freeUp, "0") }
-            item {
-                DirectoryGrid(
-                    items = listOf(
-                        DirectoryItem(
-                            type = "images",
-                            name = images,
-                            icon = R.drawable.ic_image,
-                            count = 0,
-                            size = "0 B"
-                        ),
-                        DirectoryItem(
-                            type = "videos",
-                            name = videos,
-                            icon = R.drawable.ic_video_file,
-                            count = 0,
-                            size = "0 B"
-                        ),
-                        DirectoryItem(
-                            type = "documents",
-                            name = docs,
-                            icon = R.drawable.ic_apk_document,
-                            count = 0,
-                            size = "0 B"
-                        ),
-                        DirectoryItem(
-                            type = "audios",
-                            name = audios,
-                            icon = R.drawable.ic_audio_file,
-                            count = 0,
-                            size = "0 B"
-                        ),
-                        DirectoryItem(
-                            type = "statuses",
-                            name = statuses,
-                            icon = R.drawable.ic_image,
-                            count = 0,
-                            size = "0 B"
-                        ),
-                        DirectoryItem(
-                            type = "voice_notes",
-                            name = voiceNotes,
-                            icon = R.drawable.ic_audio_file,
-                            count = 0,
-                            size = "0 B"
-                        ),
-                        DirectoryItem(
-                            type = "video_notes",
-                            name = videoNotes,
-                            icon = R.drawable.ic_video_file,
-                            count = 0,
-                            size = "0 B"
-                        ),
-                        DirectoryItem(
-                            type = "gifs",
-                            name = gifs,
-                            icon = R.drawable.ic_image,
-                            count = 0,
-                            size = "0 B"
-                        ),
-                        DirectoryItem(
-                            type = "wallpapers",
-                            name = wallpapers,
-                            icon = R.drawable.ic_image,
-                            count = 0,
-                            size = "0 B"
-                        ),
-                        DirectoryItem(
-                            type = "stickers",
-                            name = stickers,
-                            icon = R.drawable.ic_image,
-                            count = 0,
-                            size = "0 B"
-                        ),
-                        DirectoryItem(
-                            type = "profile_photos",
-                            name = profiles,
-                            icon = R.drawable.ic_image,
-                            count = 0,
-                            size = "0 B"
-                        )
-                    ),
-                    onOpenDetails = onOpenDetails
-                )
-            }
-        }
-
-        Button(onClick = onClean, modifier = Modifier.padding(16.dp)) {
-            Text(text = stringResource(id = R.string.clean_whatsapp))
-        }
-
-        if (BuildConfig.DEBUG)
-            Text(
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(4.dp),
-                text = "Debug Build ${BuildConfig.VERSION_NAME}",
-                style = MaterialTheme.typography.labelSmall,
-            )
-    }
-}
-
-@Composable
-private fun ErrorContent(
-    paddingValues: PaddingValues,
-    onClean: () -> Unit
-) {
-    Column(
-        Modifier.padding(paddingValues),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            text = "Error",
-            style = MaterialTheme.typography.labelSmall
-        )
-
-        Button(onClick = onClean, modifier = Modifier.padding(16.dp)) {
-            Text(text = stringResource(id = R.string.clean_whatsapp))
-        }
-
-        if (BuildConfig.DEBUG)
-            Text(
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(4.dp),
-                text = "Debug Build ${BuildConfig.VERSION_NAME}",
-                style = MaterialTheme.typography.labelSmall,
-            )
-    }
-}
-
 
 @Composable
 private fun ListSizeHeader(freeUp: String, total: String) {

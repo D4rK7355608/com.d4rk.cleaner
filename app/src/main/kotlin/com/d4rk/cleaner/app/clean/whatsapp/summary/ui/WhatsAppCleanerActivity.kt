@@ -7,9 +7,14 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.DeleteSweep
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
@@ -17,20 +22,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.d4rk.android.libs.apptoolkit.app.theme.style.AppTheme
-import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.fab.AnimatedExtendedFloatingActionButton
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.DeleteSweep
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
+import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.WhatsAppDetailsActivity
 import com.d4rk.cleaner.app.clean.whatsapp.permission.ui.WhatsAppPermissionActivity
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.viewmodel.koinViewModel
-import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
-import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsAppCleanerViewModel
 
 class WhatsAppCleanerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
