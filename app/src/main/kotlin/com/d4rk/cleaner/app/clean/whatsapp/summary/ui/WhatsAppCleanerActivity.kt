@@ -29,6 +29,7 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.DetailsScreen
 import com.d4rk.cleaner.app.clean.whatsapp.navigation.WhatsAppRoute
 import com.d4rk.cleaner.app.clean.whatsapp.permission.ui.PermissionScreen
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -62,7 +63,6 @@ private fun WhatsappScreenContent(activity: Activity) {
     }
 
     LargeTopAppBarWithScaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         title = stringResource(id = R.string.whatsapp_cleaner),
         onBackClicked = {
             activity.finish()
