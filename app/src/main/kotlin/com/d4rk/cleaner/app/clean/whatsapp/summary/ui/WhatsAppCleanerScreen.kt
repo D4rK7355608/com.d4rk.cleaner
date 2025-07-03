@@ -41,13 +41,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.navigation.NavHostController
 import androidx.compose.ui.platform.LocalContext
 import com.d4rk.cleaner.BuildConfig
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.shimmerEffect
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.app.clean.whatsapp.navigation.WhatsAppRoute
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
@@ -56,9 +54,9 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun WhatsAppCleanerScreen(
-    navController: NavHostController,
+    paddingValues: PaddingValues,
+    onOpenDetails: (String) -> Unit,
     viewModel: WhatsAppCleanerViewModel = koinViewModel(),
-    paddingValues: PaddingValues
 ) {
     val state: UiStateScreen<UiWhatsAppCleanerModel> by viewModel.uiState.collectAsState()
 
@@ -77,7 +75,7 @@ fun WhatsAppCleanerScreen(
                     paddingValues = combinedPadding,
                     onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
                     onOpenDetails = { type ->
-                        navController.navigate(WhatsAppRoute.Details.create(type))
+                        onOpenDetails(type)
                     }
                 )
             },
@@ -85,9 +83,7 @@ fun WhatsAppCleanerScreen(
                 LoadingContent(
                     paddingValues = combinedPadding,
                     onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
-                    onOpenDetails = { type ->
-                        navController.navigate(WhatsAppRoute.Details.create(type))
-                    }
+                    onOpenDetails = { type -> onOpenDetails(type) }
                 )
             },
             onSuccess = { data ->
@@ -95,9 +91,7 @@ fun WhatsAppCleanerScreen(
                     uiModel = data,
                     paddingValues = combinedPadding,
                     onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
-                    onOpenDetails = { type ->
-                        navController.navigate(WhatsAppRoute.Details.create(type))
-                    }
+                    onOpenDetails = { type -> onOpenDetails(type) }
                 )
             },
             onError = {
