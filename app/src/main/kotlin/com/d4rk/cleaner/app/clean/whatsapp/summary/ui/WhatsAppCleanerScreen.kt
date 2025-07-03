@@ -12,6 +12,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -46,15 +48,11 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.shimmerEffe
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.whatsapp.navigation.WhatsAppRoute
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
 import org.koin.compose.viewmodel.koinViewModel
 
-private data class DirectoryItem(
-    val type: String,
-    val name: String,
-    val icon: Int,
-    val count: Int
-)
 
 private sealed class ViewState<out T> {
     data object Loading : ViewState<Nothing>()
@@ -97,13 +95,32 @@ private fun Content(
 ) {
     val summary = summaryState.data?.mediaSummary ?: com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.WhatsAppMediaSummary()
 
+    val videos = stringResource(id = R.string.videos)
+    val docs = stringResource(id = R.string.documents)
+    val images = stringResource(id = R.string.images)
+
     val directoryState = remember(summaryState.screenState, summary) {
         when (summaryState.screenState) {
             is ScreenState.Success -> {
                 val list = listOf(
-                    DirectoryItem("images", stringResource(id = R.string.images), R.drawable.ic_image, summary.images.size),
-                    DirectoryItem("videos", stringResource(id = R.string.videos), R.drawable.ic_video_file, summary.videos.size),
-                    DirectoryItem("documents", stringResource(id = R.string.documents), R.drawable.ic_apk_document, summary.documents.size)
+                    DirectoryItem(
+                        type = "images",
+                        name = images,
+                        icon = R.drawable.ic_image,
+                        count = summary.images.size
+                    ),
+                    DirectoryItem(
+                        type = "videos",
+                        name = videos,
+                        icon = R.drawable.ic_video_file,
+                        count = summary.videos.size
+                    ),
+                    DirectoryItem(
+                        type = "documents",
+                        name = docs,
+                        icon = R.drawable.ic_apk_document,
+                        count = summary.documents.size
+                    )
                 )
                 val total = list.sumOf { it.count }
                 ViewState.Success(total.toString() to list)
@@ -138,11 +155,26 @@ private fun Content(
                 item { ListSizeHeader(modifier, "0") }
                 items(
                     listOf(
-                        DirectoryItem("images", stringResource(id = R.string.images), R.drawable.ic_image, 0),
-                        DirectoryItem("videos", stringResource(id = R.string.videos), R.drawable.ic_video_file, 0),
-                        DirectoryItem("documents", stringResource(id = R.string.documents), R.drawable.ic_apk_document, 0)
+                        DirectoryItem(
+                            type = "images",
+                            name = images,
+                            icon = R.drawable.ic_image,
+                            count = 0
+                        ),
+                        DirectoryItem(
+                            type = "videos",
+                            name = videos,
+                            icon = R.drawable.ic_video_file,
+                            count = 0
+                        ),
+                        DirectoryItem(
+                            type = "documents",
+                            name = docs,
+                            icon = R.drawable.ic_apk_document,
+                            count = 0
+                        )
                     )
-                ) { DirectoryCard(it, onOpenDetails) }
+                ) { DirectoryCard(item = it, onOpenDetails = onOpenDetails) }
             }
             is ViewState.Error -> Text(
                 modifier = Modifier
