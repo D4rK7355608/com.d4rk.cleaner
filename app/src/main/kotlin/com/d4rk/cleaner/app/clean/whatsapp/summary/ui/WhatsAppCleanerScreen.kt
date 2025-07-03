@@ -44,7 +44,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavHostController
 import androidx.compose.ui.platform.LocalContext
 import com.d4rk.cleaner.BuildConfig
-import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.ScreenState
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.shimmerEffect
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.cleaner.R
@@ -52,7 +51,7 @@ import com.d4rk.cleaner.app.clean.whatsapp.navigation.WhatsAppRoute
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
-import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.model.ViewState
+import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -70,25 +69,56 @@ fun WhatsAppCleanerScreen(
             end = paddingValues.calculateEndPadding(layoutDirection = androidx.compose.ui.unit.LayoutDirection.Ltr),
             bottom = paddingValues.calculateBottomPadding() + innerPadding.calculateBottomPadding()
         )
-        Content(
-            summaryState = state,
-            onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
-            paddingValues = combinedPadding,
-            onOpenDetails = { type ->
-                navController.navigate(WhatsAppRoute.Details.create(type))
+
+        ScreenStateHandler(
+            screenState = state,
+            onLoading = {
+                LoadingContent(
+                    paddingValues = combinedPadding,
+                    onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
+                    onOpenDetails = { type ->
+                        navController.navigate(WhatsAppRoute.Details.create(type))
+                    }
+                )
+            },
+            onEmpty = {
+                LoadingContent(
+                    paddingValues = combinedPadding,
+                    onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
+                    onOpenDetails = { type ->
+                        navController.navigate(WhatsAppRoute.Details.create(type))
+                    }
+                )
+            },
+            onSuccess = { data ->
+                SuccessContent(
+                    uiModel = data,
+                    paddingValues = combinedPadding,
+                    onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
+                    onOpenDetails = { type ->
+                        navController.navigate(WhatsAppRoute.Details.create(type))
+                    }
+                )
+            },
+            onError = {
+                ErrorContent(
+                    paddingValues = combinedPadding,
+                    onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) }
+                )
             }
         )
     }
 }
 
 @Composable
-private fun Content(
-    summaryState: UiStateScreen<UiWhatsAppCleanerModel>,
-    onClean: () -> Unit,
+
+private fun SuccessContent(
+    uiModel: UiWhatsAppCleanerModel,
     paddingValues: PaddingValues,
+    onClean: () -> Unit,
     onOpenDetails: (String) -> Unit
 ) {
-    val summary = summaryState.data?.mediaSummary ?: com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.WhatsAppMediaSummary()
+    val summary = uiModel.mediaSummary
 
     val videos = stringResource(id = R.string.videos)
     val docs = stringResource(id = R.string.documents)
@@ -104,36 +134,77 @@ private fun Content(
         android.text.format.Formatter.formatShortFileSize(context, totalSize)
     }
 
-    val directoryState = remember(summaryState.screenState, summary) {
-        when (summaryState.screenState) {
-            is ScreenState.Success -> {
-                val list = listOf(
-                    DirectoryItem(
-                        type = "images",
-                        name = images,
-                        icon = R.drawable.ic_image,
-                        count = summary.images.size
-                    ),
-                    DirectoryItem(
-                        type = "videos",
-                        name = videos,
-                        icon = R.drawable.ic_video_file,
-                        count = summary.videos.size
-                    ),
-                    DirectoryItem(
-                        type = "documents",
-                        name = docs,
-                        icon = R.drawable.ic_apk_document,
-                        count = summary.documents.size
-                    )
-                )
-                val total = list.sumOf { it.count }
-                ViewState.Success(total.toString() to list)
-            }
-            is ScreenState.IsLoading -> ViewState.Loading
-            is ScreenState.Error -> ViewState.Error("Error")
-            else -> ViewState.Loading
+    val directoryList = remember(summary) {
+        listOf(
+            DirectoryItem(
+                type = "images",
+                name = images,
+                icon = R.drawable.ic_image,
+                count = summary.images.size
+            ),
+            DirectoryItem(
+                type = "videos",
+                name = videos,
+                icon = R.drawable.ic_video_file,
+                count = summary.videos.size
+            ),
+            DirectoryItem(
+                type = "documents",
+                name = docs,
+                icon = R.drawable.ic_apk_document,
+                count = summary.documents.size
+            )
+        )
+    }
+    val total = remember(directoryList) { directoryList.sumOf { it.count } }
+
+    Column(
+        Modifier.padding(paddingValues),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = stringResource(id = R.string.free_up_format, freeUp),
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(16.dp)
+        )
+
+        LazyColumn(
+            Modifier.weight(1f),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            item { ListSizeHeader(Modifier, total.toString()) }
+            items(directoryList) { DirectoryCard(it, onOpenDetails) }
         }
+
+        Button(onClick = onClean, modifier = Modifier.padding(16.dp)) {
+            Text(text = stringResource(id = R.string.clean_whatsapp))
+        }
+
+        if (BuildConfig.DEBUG)
+            Text(
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(4.dp),
+                text = "Debug Build ${BuildConfig.VERSION_NAME}",
+                style = MaterialTheme.typography.labelSmall,
+            )
+    }
+}
+
+@Composable
+private fun LoadingContent(
+    paddingValues: PaddingValues,
+    onClean: () -> Unit,
+    onOpenDetails: (String) -> Unit
+) {
+    val videos = stringResource(id = R.string.videos)
+    val docs = stringResource(id = R.string.documents)
+    val images = stringResource(id = R.string.images)
+
+    val context = LocalContext.current
+    val freeUp = remember {
+        android.text.format.Formatter.formatShortFileSize(context, 0)
     }
 
     Column(
@@ -141,59 +212,75 @@ private fun Content(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        val modifier = if (directoryState is ViewState.Success) Modifier else Modifier.shimmerEffect()
+        val modifier = Modifier.shimmerEffect()
+
         Text(
             text = stringResource(id = R.string.free_up_format, freeUp),
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(16.dp)
         )
 
-        when (directoryState) {
-            is ViewState.Success -> {
-                LazyColumn(
-                    Modifier.weight(1f),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    item { ListSizeHeader(modifier, directoryState.data.first) }
-                    items(directoryState.data.second) { DirectoryCard(it, onOpenDetails) }
-                }
-            }
-            is ViewState.Loading -> LazyColumn(
-                Modifier.weight(1f),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                item { ListSizeHeader(modifier, "0") }
-                items(
-                    listOf(
-                        DirectoryItem(
-                            type = "images",
-                            name = images,
-                            icon = R.drawable.ic_image,
-                            count = 0
-                        ),
-                        DirectoryItem(
-                            type = "videos",
-                            name = videos,
-                            icon = R.drawable.ic_video_file,
-                            count = 0
-                        ),
-                        DirectoryItem(
-                            type = "documents",
-                            name = docs,
-                            icon = R.drawable.ic_apk_document,
-                            count = 0
-                        )
+        LazyColumn(
+            Modifier.weight(1f),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            item { ListSizeHeader(modifier, "0") }
+            items(
+                listOf(
+                    DirectoryItem(
+                        type = "images",
+                        name = images,
+                        icon = R.drawable.ic_image,
+                        count = 0
+                    ),
+                    DirectoryItem(
+                        type = "videos",
+                        name = videos,
+                        icon = R.drawable.ic_video_file,
+                        count = 0
+                    ),
+                    DirectoryItem(
+                        type = "documents",
+                        name = docs,
+                        icon = R.drawable.ic_apk_document,
+                        count = 0
                     )
-                ) { DirectoryCard(item = it, onOpenDetails = onOpenDetails) }
-            }
-            is ViewState.Error -> Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                text = directoryState.message,
-                style = MaterialTheme.typography.labelSmall
-            )
+                )
+            ) { DirectoryCard(it, onOpenDetails) }
         }
+
+        Button(onClick = onClean, modifier = Modifier.padding(16.dp)) {
+            Text(text = stringResource(id = R.string.clean_whatsapp))
+        }
+
+        if (BuildConfig.DEBUG)
+            Text(
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(4.dp),
+                text = "Debug Build ${BuildConfig.VERSION_NAME}",
+                style = MaterialTheme.typography.labelSmall,
+            )
+    }
+}
+
+@Composable
+private fun ErrorContent(
+    paddingValues: PaddingValues,
+    onClean: () -> Unit
+) {
+    Column(
+        Modifier.padding(paddingValues),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            text = "Error",
+            style = MaterialTheme.typography.labelSmall
+        )
 
         Button(onClick = onClean, modifier = Modifier.padding(16.dp)) {
             Text(text = stringResource(id = R.string.clean_whatsapp))
