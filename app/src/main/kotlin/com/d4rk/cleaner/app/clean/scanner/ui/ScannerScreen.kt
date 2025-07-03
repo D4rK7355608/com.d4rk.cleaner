@@ -65,16 +65,12 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
     val clipboardText by viewModel.clipboardPreview.collectAsState()
     val promotedApp = uiState.data?.promotedApp
     val mediumRectAdsConfig: AdsConfig = koinInject(qualifier = named(name = "banner_medium_rectangle"))
+    val largeBannerAdsConfig: AdsConfig = koinInject(qualifier = named(name = "large_banner"))
+    val bannerAdsConfig: AdsConfig = koinInject()
 
     val showApkCard = appManagerState.data?.apkFiles?.isNotEmpty() == true
     val showWhatsAppCard = whatsappSummary.hasData
     val showClipboardCard = !clipboardText.isNullOrBlank()
-
-    val visibleCardsCount = 3 +
-        (if (showApkCard) 1 else 0) +
-        (if (showWhatsAppCard) 1 else 0) +
-        (if (showClipboardCard) 1 else 0) +
-        (if (promotedApp != null) 1 else 0)
 
     LaunchedEffect(key1 = true) {
         if (!PermissionsHelper.hasStoragePermissions(context)) {
@@ -116,7 +112,6 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                         verticalArrangement = Arrangement.spacedBy(SizeConstants.LargeSize),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        var itemIndex = 0
 
                         QuickScanSummaryCard(
                             cleanedSize = uiState.data?.storageInfo?.cleanedSpace ?: "",
@@ -125,12 +120,17 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                             progress = uiState.data?.storageInfo?.storageUsageProgress ?: 0f,
                             onQuickScanClick = { viewModel.onEvent(event = ScannerEvent.ToggleAnalyzeScreen(visible = true)) }
                         )
-                        itemIndex++
-                        if (visibleCardsCount > 3 && itemIndex % 4 == 0) {
-                            key("ad_$itemIndex") {
-                                AdBanner(
-                                    modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
-                                    adsConfig = mediumRectAdsConfig
+
+                        if (showWhatsAppCard) {
+                            AnimatedVisibility(visible = showWhatsAppCard) {
+                                WhatsAppCleanerCard(
+                                    mediaSummary = whatsappSummary,
+                                    onCleanClick = {
+                                        IntentsHelper.openActivity(
+                                            context = context,
+                                            activityClass = WhatsAppCleanerActivity::class.java
+                                        )
+                                    }
                                 )
                             }
                         }
@@ -149,54 +149,12 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                                     }
                                 )
                             }
-                            itemIndex++
-                            if (visibleCardsCount > 3 && itemIndex % 4 == 0) {
-                                key("ad_$itemIndex") {
-                                    AdBanner(
-                                        modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
-                                        adsConfig = mediumRectAdsConfig
-                                    )
-                                }
-                            }
                         }
 
-                        if (showWhatsAppCard) {
-                            AnimatedVisibility(visible = showWhatsAppCard) {
-                                WhatsAppCleanerCard(
-                                    mediaSummary = whatsappSummary,
-                                    onCleanClick = {
-                                        IntentsHelper.openActivity(
-                                            context = context,
-                                            activityClass = WhatsAppCleanerActivity::class.java
-                                        )
-                                    }
-                                )
-                            }
-                            itemIndex++
-                            if (visibleCardsCount > 3 && itemIndex % 4 == 0) {
-                                key("ad_$itemIndex") {
-                                    AdBanner(
-                                        modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
-                                        adsConfig = mediumRectAdsConfig
-                                    )
-                                }
-                            }
-                        }
-
-                        CacheCleanerCard(
-                            onScanClick = {
-                                viewModel.onEvent(ScannerEvent.CleanCache)
-                            }
+                        AdBanner(
+                            modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                            adsConfig = mediumRectAdsConfig
                         )
-                        itemIndex++
-                        if (visibleCardsCount > 3 && itemIndex % 4 == 0) {
-                            key("ad_$itemIndex") {
-                                AdBanner(
-                                    modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
-                                    adsConfig = mediumRectAdsConfig
-                                )
-                            }
-                        }
 
                         ImageOptimizerCard(
                             onOptimizeClick = {
@@ -206,15 +164,6 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                                 )
                             }
                         )
-                        itemIndex++
-                        if (visibleCardsCount > 3 && itemIndex % 4 == 0) {
-                            key("ad_$itemIndex") {
-                                AdBanner(
-                                    modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
-                                    adsConfig = mediumRectAdsConfig
-                                )
-                            }
-                        }
 
                         if (showClipboardCard) {
                             AnimatedVisibility(visible = showClipboardCard) {
@@ -223,38 +172,27 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                                     onCleanClick = { viewModel.onClipboardClear() }
                                 )
                             }
-                            itemIndex++
-                            if (visibleCardsCount > 3 && itemIndex % 4 == 0) {
-                                key("ad_$itemIndex") {
-                                    AdBanner(
-                                        modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
-                                        adsConfig = mediumRectAdsConfig
-                                    )
-                                }
-                            }
                         }
+
+                        AdBanner(
+                            modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                            adsConfig = largeBannerAdsConfig
+                        )
+
+                        CacheCleanerCard(
+                            onScanClick = {
+                                viewModel.onEvent(ScannerEvent.CleanCache)
+                            }
+                        )
 
                         promotedApp?.let { app ->
                             PromotedAppCard(app = app)
-                            itemIndex++
-                            if (visibleCardsCount > 3 && itemIndex % 4 == 0) {
-                                key("ad_$itemIndex") {
-                                    AdBanner(
-                                        modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
-                                        adsConfig = mediumRectAdsConfig
-                                    )
-                                }
-                            }
                         }
 
-                        if (visibleCardsCount <= 3) {
-                            key("ad_end") {
-                                AdBanner(
-                                    modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
-                                    adsConfig = mediumRectAdsConfig
-                                )
-                            }
-                        }
+                        AdBanner(
+                            modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                            adsConfig = bannerAdsConfig
+                        )
 
                         LargeVerticalSpacer()
                     }
