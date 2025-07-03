@@ -41,6 +41,8 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.bumptech.glide.integration.compose.placeholder
 import com.vishnu.whatsappcleaner.R
 
+
+// TODO: Unused file. check the PermissionScreen.kt from the src/whatsappcleaner and add the missing items here and in the rest of the project
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun PermissionScreen(

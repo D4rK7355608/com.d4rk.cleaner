@@ -55,6 +55,7 @@ import com.vishnu.whatsappcleaner.R
 import com.vishnu.whatsappcleaner.ViewState
 import com.vishnu.whatsappcleaner.model.ListDirectory
 
+// TODO: Unused file. check the HomeScreen.kt from the src/whatsappcleaner and add the missing items here and in the rest of the project
 @Composable
 fun HomeScreen(navController: NavHostController, viewModel: MainViewModel) {
     var forceReload by remember { mutableStateOf(false) }

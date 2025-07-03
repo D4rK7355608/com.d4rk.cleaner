@@ -54,7 +54,7 @@ import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleane
 import org.koin.compose.viewmodel.koinViewModel
 
 
-private sealed class ViewState<out T> {
+private sealed class ViewState<out T> { // TODO: move it to another place
     data object Loading : ViewState<Nothing>()
     data class Success<T>(val data: T) : ViewState<T>()
     data class Error(val message: String) : ViewState<Nothing>()

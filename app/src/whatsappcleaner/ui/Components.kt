@@ -95,6 +95,7 @@ import com.vishnu.whatsappcleaner.model.ListDirectory
 import com.vishnu.whatsappcleaner.model.ListFile
 import java.text.DateFormat
 
+// TODO: Unused file. check the DetailsScreen.kt from the src/whatsappcleaner and add the missing items here and in the rest of the project
 @Composable
 fun Title(modifier: Modifier, text: String) {
     Text(

@@ -42,7 +42,7 @@ class WhatsAppCleanerActivity : AppCompatActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ScreenContent(activity = this)
+                    WhatsappScreenContent(activity = this)
                 }
             }
         }
@@ -51,9 +51,9 @@ class WhatsAppCleanerActivity : AppCompatActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ScreenContent(activity: Activity) {
+private fun WhatsappScreenContent(activity: Activity) {
     val scrollBehavior: TopAppBarScrollBehavior =
-        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState()) // TODO: map scroll behavior to the lists to ensure proper movement when scrolling in screen
     val navController = rememberNavController()
     val startDestination = if (PermissionsHelper.hasStoragePermissions(activity)) {
         WhatsAppRoute.Summary.route
@@ -62,12 +62,15 @@ private fun ScreenContent(activity: Activity) {
     }
 
     LargeTopAppBarWithScaffold(
-        title = stringResource(id = R.string.image_optimizer),
+        title = stringResource(id = R.string.image_optimizer), // TODO add new title
         onBackClicked = {
             activity.finish()
         },
         scrollBehavior = scrollBehavior,
     ) { paddingValues ->
+
+        // (maybe not needed) TODO: move the navigation host to a separate file in the whatsapp module whatsapp.navigation
+        // TODO: i want the permissions the cleaner screen and the details to be all activities. I think navigatrion can be removed
         NavHost(
             navController = navController,
             startDestination = startDestination,
@@ -94,6 +97,7 @@ private fun ScreenContent(activity: Activity) {
     }
 }
 
+// TODO: Check the HomeScreen.kt from the src/whatsappcleaner and add the missing items here and in the rest of the project
 @Composable
 private fun DetailsScreenNav(
     type: String,
