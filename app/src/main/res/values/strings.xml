@@ -129,6 +129,13 @@
     </plurals>
     <string name="status_no_files_selected">Status: No files selected</string>
     <string name="select_all">Select All</string>
+    <string name="deselect_all">Deselect All</string>
+    <string name="delete_confirmation_title">Delete Selected</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">Delete %1$d item?</item>
+        <item quantity="other">Delete %1$d items?</item>
+    </plurals>
+    <string name="delete">Delete</string>
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
     <string name="a_year_ago">Last Year</string>
