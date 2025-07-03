@@ -2,6 +2,7 @@ package com.d4rk.cleaner.app.clean.whatsappcleaner.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -21,23 +22,26 @@ import com.d4rk.cleaner.R
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun WhatsAppCleanerScreen(modifier: Modifier = Modifier, viewModel: WhatsAppCleanerViewModel = koinViewModel()) {
+fun WhatsAppCleanerScreen(viewModel: WhatsAppCleanerViewModel = koinViewModel(), paddingValues: PaddingValues) {
     val state: UiStateScreen<UiWhatsAppCleanerModel> by viewModel.uiState.collectAsState()
     ScreenStateHandler(
         screenState = state,
-        modifier = modifier.fillMaxSize(),
         onLoading = { LoadingScreen() },
         onEmpty = { NoDataScreen() },
         onSuccess = { data ->
-            Content(summary = data.mediaSummary, onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) })
+            Content(
+                paddingValues = paddingValues,
+                summary = data.mediaSummary,
+                onClean = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) }
+            )
         }
     )
 }
 
 @Composable
-private fun Content(summary: com.d4rk.cleaner.app.clean.whatsappcleaner.domain.model.WhatsAppMediaSummary, onClean: () -> Unit) {
+private fun Content(summary: com.d4rk.cleaner.app.clean.whatsappcleaner.domain.model.WhatsAppMediaSummary, onClean: () -> Unit, paddingValues: PaddingValues) {
     Column(
-        modifier = Modifier.fillMaxSize().padding(all = 16.dp),
+        modifier = Modifier.fillMaxSize().padding(paddingValues = paddingValues),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
