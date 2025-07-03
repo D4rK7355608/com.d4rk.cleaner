@@ -87,6 +87,8 @@
     <string name="cleaner_recommends_icon_description">Recommendation icon</string>
     <string name="promoted_app_icon_description">Icon for %1$s</string>
     <string name="install_button_icon_description">Install app icon</string>
+    <string name="move_to_trash_icon_description">Move to trash icon</string>
+    <string name="delete_forever_icon_description">Delete forever icon</string>
     <string name="apk_card_title">Old Installers Found</string>
     <string name="apk_card_subtitle">Remove leftover installer files and reclaim space.</string>
     <string name="apk_card_more_format">+%1$d more</string>

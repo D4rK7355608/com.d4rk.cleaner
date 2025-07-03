@@ -20,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
+import com.d4rk.cleaner.R
 
 @Composable
 fun TwoRowButtons(
@@ -41,7 +42,7 @@ fun TwoRowButtons(
         ) {
             Icon(
                 imageVector = onStartButtonIcon ,
-                contentDescription = "Move to trash" , // TODO: Use string resource
+                contentDescription = stringResource(id = R.string.move_to_trash_icon_description) ,
                 modifier = Modifier.size(size = SizeConstants.ButtonIconSize)
             )
             ButtonIconSpacer()
@@ -62,7 +63,7 @@ fun TwoRowButtons(
         ) {
             Icon(
                 imageVector = onEndButtonIcon ,
-                contentDescription = "Delete forever" , // TODO: Use string res
+                contentDescription = stringResource(id = R.string.delete_forever_icon_description) ,
                 modifier = Modifier.size(size = SizeConstants.ButtonIconSize)
             )
             ButtonIconSpacer()

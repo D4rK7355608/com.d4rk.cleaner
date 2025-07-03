@@ -19,8 +19,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
-
-// TODO: make activity
 @Composable
 fun PermissionScreen(onPermissionGranted: () -> Unit) {
     val context = LocalContext.current
