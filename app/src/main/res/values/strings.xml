@@ -94,6 +94,10 @@
     <string name="whatsapp_card_title">WhatsApp Files</string>
     <string name="whatsapp_card_subtitle">Clear out media you no longer need.</string>
     <string name="clean_whatsapp">Clean WhatsApp Media</string>
+    <string name="whatsapp_cleaner">WhatsApp Cleaner</string>
+    <string name="free_up_format">You can free up %1$s</string>
+    <string name="delete_selected">Delete Selected</string>
+    <string name="no_files">No files found</string>
     <string name="clipboard_card_title">Clipboard Content</string>
     <string name="clipboard_card_subtitle">Your clipboard may still hold private info.</string>
     <string name="clipboard_current_format">Current clipboard: %1$s</string>

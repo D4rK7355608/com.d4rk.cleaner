@@ -15,8 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-
-// TODO: Unused file. check the HomeScreen.kt from the src/whatsappcleaner and add the missing items here and in the rest of the project
 @Composable
 fun CustomTabLayout(
     items: List<String>,
