@@ -27,6 +27,7 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.scanner.ui.components.FilePreviewCard
 import java.io.File
 
+//  TODO: this should be activity
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DetailsScreen(

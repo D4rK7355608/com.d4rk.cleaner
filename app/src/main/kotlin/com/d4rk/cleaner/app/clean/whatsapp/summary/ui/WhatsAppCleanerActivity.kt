@@ -70,6 +70,7 @@ private fun WhatsappScreenContent(activity: Activity) {
         scrollBehavior = scrollBehavior,
     ) { paddingValues ->
 
+        // TODO: no nav hosting, we will make them activities.
         NavHost(
             navController = navController,
             startDestination = startDestination,
@@ -95,6 +96,8 @@ private fun WhatsappScreenContent(activity: Activity) {
         }
     }
 }
+
+// TODO:  this should be shown in the whatsapp scren (i gueess)
 @Composable
 private fun DetailsScreenNav(
     type: String,
