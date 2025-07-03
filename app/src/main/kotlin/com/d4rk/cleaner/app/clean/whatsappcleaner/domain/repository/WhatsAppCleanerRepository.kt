@@ -1,6 +1,6 @@
-package com.d4rk.cleaner.app.clean.whatsappcleaner.domain.interfaces
+package com.d4rk.cleaner.app.clean.whatsappcleaner.domain.repository
 
-import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.WhatsAppMediaSummary
+import com.d4rk.cleaner.app.clean.whatsappcleaner.domain.model.WhatsAppMediaSummary
 import java.io.File
 
 interface WhatsAppCleanerRepository {

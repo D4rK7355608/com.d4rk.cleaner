@@ -10,7 +10,6 @@ import com.d4rk.android.libs.apptoolkit.core.ui.base.ScreenViewModel
 import com.d4rk.android.libs.apptoolkit.core.ui.base.handling.ActionEvent
 import com.d4rk.android.libs.apptoolkit.core.ui.base.handling.UiEvent
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.UiTextHelper
-import com.d4rk.cleaner.app.clean.whatsappcleaner.domain.data.model.ui.UiWhatsAppCleanerModel
 import com.d4rk.cleaner.app.clean.whatsappcleaner.domain.usecases.DeleteWhatsAppMediaUseCase
 import com.d4rk.cleaner.app.clean.whatsappcleaner.domain.usecases.GetWhatsAppMediaSummaryUseCase
 import kotlinx.coroutines.flow.collectLatest
