@@ -3,6 +3,7 @@ package com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -53,7 +54,11 @@ fun DirectoryCard(item: DirectoryItem, onOpenDetails: (String) -> Unit, modifier
                 )
             }
             Column(modifier = Modifier.weight(1f)) {
-                Text(text = item.name, style = MaterialTheme.typography.titleMedium)
+                Text(
+                    text = item.name,
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.basicMarquee()
+                )
                 Text(text = item.size, style = MaterialTheme.typography.bodySmall)
             }
         }
