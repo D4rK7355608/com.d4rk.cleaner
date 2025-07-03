@@ -123,6 +123,13 @@
     <string name="windows_files">Windows Files</string>
     <string name="videos">Videos</string>
     <string name="audios">Audios</string>
+    <string name="statuses">Statuses</string>
+    <string name="voice_notes">Voice Notes</string>
+    <string name="video_notes">Video Notes</string>
+    <string name="gifs">GIFs</string>
+    <string name="wallpapers">Wallpapers</string>
+    <string name="stickers">Stickers</string>
+    <string name="profile_photos">Profile Photos</string>
     <string name="empty_folders">Empty Folders</string>
     <string name="duplicates">Duplicates</string>
     <plurals name="status_selected_files">
