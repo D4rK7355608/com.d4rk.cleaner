@@ -14,11 +14,13 @@ import com.d4rk.android.libs.apptoolkit.app.theme.style.AppTheme
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.WhatsAppMediaSummary
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsAppCleanerViewModel
+import com.d4rk.cleaner.app.clean.whatsapp.details.ui.DetailsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WhatsAppDetailsActivity : AppCompatActivity() {
 
     private val viewModel: WhatsAppCleanerViewModel by viewModel()
+    private val detailsViewModel: DetailsViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +32,11 @@ class WhatsAppDetailsActivity : AppCompatActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    DetailsScreenContent(type = type, viewModel = viewModel)
+                    DetailsScreenContent(
+                        type = type,
+                        viewModel = viewModel,
+                        detailsViewModel = detailsViewModel
+                    )
                 }
             }
         }
@@ -42,7 +48,11 @@ class WhatsAppDetailsActivity : AppCompatActivity() {
 }
 
 @Composable
-private fun DetailsScreenContent(type: String, viewModel: WhatsAppCleanerViewModel) {
+private fun DetailsScreenContent(
+    type: String,
+    viewModel: WhatsAppCleanerViewModel,
+    detailsViewModel: DetailsViewModel
+) {
     val state = viewModel.uiState.collectAsState().value
     val summary = state.data?.mediaSummary ?: WhatsAppMediaSummary()
     val files = when (type) {
@@ -62,7 +72,8 @@ private fun DetailsScreenContent(type: String, viewModel: WhatsAppCleanerViewMod
     DetailsScreen(
         title = type,
         files = files,
-        onDelete = { viewModel.onEvent(WhatsAppCleanerEvent.DeleteSelected(it)) }
+        onDelete = { viewModel.onEvent(WhatsAppCleanerEvent.DeleteSelected(it)) },
+        viewModel = detailsViewModel
     )
 }
 
