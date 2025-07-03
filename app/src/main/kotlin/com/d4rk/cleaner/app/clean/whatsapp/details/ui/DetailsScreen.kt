@@ -13,9 +13,12 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -51,6 +54,7 @@ fun DetailsScreen(
     val selected = remember { mutableStateListOf<File>() }
     val context = LocalContext.current
     val sortedFiles by viewModel.files.collectAsState()
+    val suggested by viewModel.suggested.collectAsState()
     val isGrid by viewModel.isGridView.collectAsState()
     var showSort by remember { mutableStateOf(false) }
     var showConfirm by remember { mutableStateOf(false) }
@@ -73,6 +77,40 @@ fun DetailsScreen(
                     Text(text = context.getString(R.string.no_files))
                 }
             } else {
+                if (suggested.isNotEmpty()) {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp)
+                    ) {
+                        Column(modifier = Modifier.padding(8.dp)) {
+                            Text(
+                                text = stringResource(id = R.string.smart_suggestions),
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                            LazyRow(modifier = Modifier.fillMaxWidth()) {
+                                items(suggested) { file ->
+                                    FilePreviewCard(
+                                        file = file,
+                                        modifier = Modifier
+                                            .padding(4.dp)
+                                            .size(64.dp)
+                                    )
+                                }
+                            }
+                            Button(
+                                onClick = {
+                                    selected.clear()
+                                    selected.addAll(suggested)
+                                    showConfirm = true
+                                },
+                                modifier = Modifier.align(Alignment.End)
+                            ) {
+                                Text(text = stringResource(id = R.string.delete_all_suggested))
+                            }
+                        }
+                    }
+                }
                 val allSelected = selected.size == sortedFiles.size && sortedFiles.isNotEmpty()
                 Row(
                     verticalAlignment = Alignment.CenterVertically,

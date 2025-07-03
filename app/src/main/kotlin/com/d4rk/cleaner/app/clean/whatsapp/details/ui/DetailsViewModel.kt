@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import java.io.File
+import java.util.concurrent.TimeUnit
 
 enum class SortType { NAME, DATE, SIZE }
 
@@ -19,8 +20,13 @@ class DetailsViewModel : ViewModel() {
     private val _files = MutableStateFlow<List<File>>(emptyList())
     val files: StateFlow<List<File>> = _files
 
+    private val _suggested = MutableStateFlow<List<File>>(emptyList())
+    val suggested: StateFlow<List<File>> = _suggested
+
     fun setFiles(list: List<File>) {
-        _files.value = sort(list)
+        val sorted = sort(list)
+        _files.value = sorted
+        _suggested.value = sort(getJunkCandidates(sorted))
     }
 
     fun toggleView() {
@@ -30,6 +36,7 @@ class DetailsViewModel : ViewModel() {
     fun applySort(type: SortType) {
         _sortType.value = type
         _files.update { sort(it) }
+        _suggested.update { sort(getJunkCandidates(_files.value)) }
     }
 
     private fun sort(list: List<File>): List<File> {
@@ -39,5 +46,13 @@ class DetailsViewModel : ViewModel() {
             SortType.SIZE -> list.sortedBy { it.length() }
         }
         return sorted
+    }
+
+    private fun getJunkCandidates(list: List<File>): List<File> {
+        val threshold = System.currentTimeMillis() - TimeUnit.DAYS.toMillis(90)
+        return list.filter { file ->
+            file.absolutePath.contains("WhatsApp Images${File.separator}Sent") &&
+                    file.lastModified() < threshold
+        }
     }
 }
