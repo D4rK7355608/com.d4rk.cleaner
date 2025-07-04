@@ -30,4 +30,5 @@ object AppDataStoreConstants : DataStoreNamesConstants() {
     const val DATA_STORE_DELETE_FONT_FILES = "delete_font_files"
     const val DATA_STORE_OTHER_EXTENSIONS = "other_extensions"
     const val DATA_STORE_CLIPBOARD_CLEAN = "clipboard_clean"
+    const val DATA_STORE_WHATSAPP_GRID_VIEW = "whatsapp_grid_view"
 }

@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -59,6 +61,7 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.scanner.ui.components.FilePreviewCard
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.WhatsAppMediaSummary
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsappCleanerSummaryViewModel
+import com.d4rk.cleaner.app.clean.whatsapp.utils.helpers.openFile
 import java.io.File
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
@@ -144,8 +147,13 @@ fun DetailsScreen(
     if (showSort) {
         SortDialog(
             current = detailsViewModel.sortType.collectAsState().value,
+            descending = detailsViewModel.descending.collectAsState().value,
+            startDate = detailsViewModel.startDate.collectAsState().value,
+            endDate = detailsViewModel.endDate.collectAsState().value,
             onDismiss = { showSort = false },
-            onSortSelected = { detailsViewModel.applySort(it) }
+            onApply = { type, desc, start, end ->
+                detailsViewModel.applySort(type, desc, start, end)
+            }
         )
     }
 
@@ -223,9 +231,12 @@ fun DetailsScreenContent(
                                         file = file,
                                         modifier = Modifier
                                             .size(64.dp)
-                                            .clickable {
-                                                if (checked) selected.remove(file) else selected.add(
-                                                    file
+                                            .pointerInput(file) {
+                                                detectTapGestures(
+                                                    onLongPress = {
+                                                        if (checked) selected.remove(file) else selected.add(file)
+                                                    },
+                                                    onTap = { openFile(context, file) }
                                                 )
                                             }
                                     )
@@ -267,11 +278,15 @@ fun DetailsScreenContent(
                             FilePreviewCard(
                                 file = file, modifier = Modifier
                                     .fillMaxWidth()
-                                    .clickable {
-                                        if (checked) selected.remove(file) else selected.add(
-                                            file
+                                    .pointerInput(file) {
+                                        detectTapGestures(
+                                            onLongPress = {
+                                                if (checked) selected.remove(file) else selected.add(file)
+                                            },
+                                            onTap = { openFile(context, file) }
                                         )
-                                    })
+                                    }
+                            )
                             Checkbox(
                                 checked = checked,
                                 onCheckedChange = {
@@ -290,8 +305,13 @@ fun DetailsScreenContent(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(4.dp)
-                                .clickable {
-                                    if (checked) selected.remove(file) else selected.add(file)
+                                .pointerInput(file) {
+                                    detectTapGestures(
+                                        onLongPress = {
+                                            if (checked) selected.remove(file) else selected.add(file)
+                                        },
+                                        onTap = { openFile(context, file) }
+                                    )
                                 }
                         ) {
                             FilePreviewCard(file = file, modifier = Modifier.weight(1f))

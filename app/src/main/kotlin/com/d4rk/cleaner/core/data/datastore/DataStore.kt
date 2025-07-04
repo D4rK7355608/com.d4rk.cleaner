@@ -305,4 +305,16 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
             prefs[usagePermissionGrantedKey] = granted
         }
     }
+
+    private val whatsappGridViewKey = booleanPreferencesKey(AppDataStoreConstants.DATA_STORE_WHATSAPP_GRID_VIEW)
+    val whatsappGridView: Flow<Boolean> = dataStore.data.map { prefs ->
+        prefs[whatsappGridViewKey] ?: true
+    }
+
+    suspend fun saveWhatsAppGridView(isGrid: Boolean) {
+        dataStore.edit { prefs ->
+            prefs[whatsappGridViewKey] = isGrid
+        }
+    }
+
 }
