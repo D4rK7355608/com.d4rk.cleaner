@@ -2,10 +2,7 @@ package com.d4rk.cleaner.app.clean.whatsapp.summary.ui
 
 import android.app.Activity
 import android.content.Intent
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -20,11 +17,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DeleteSweep
 import androidx.compose.material.icons.outlined.FolderOff
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material.icons.outlined.FolderOpen
+import androidx.compose.material.icons.outlined.SdStorage
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
@@ -45,22 +43,21 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import android.os.Environment
-import android.os.StatFs
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.fab.AnimatedExtendedFloatingActionButton
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.WhatsAppDetailsActivity
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
-import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.DirectoryGrid
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.CleanerProgressIndicator
+import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.DirectoryGrid
 import org.koin.compose.viewmodel.koinViewModel
 
 
@@ -286,15 +283,11 @@ fun CleanerInfoCard(
         0f
     }
 
-    Card(
+    OutlinedCard(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 24.dp),
-        shape = MaterialTheme.shapes.large,
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        shape = MaterialTheme.shapes.extraLarge,
     ) {
         Row(
             modifier = Modifier
@@ -311,11 +304,20 @@ fun CleanerInfoCard(
             Spacer(modifier = Modifier.width(24.dp))
 
             Column(verticalArrangement = Arrangement.Center) {
-                Text(
-                    text = stringResource(id = R.string.can_be_freed),
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = Icons.Outlined.SdStorage,
+                        contentDescription = null,
+                        modifier = Modifier.size(MaterialTheme.typography.bodyLarge.fontSize.value.dp),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    ButtonIconSpacer()
+                    Text(
+                        text = stringResource(id = R.string.can_be_freed),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
 
                 Text(
                     text = formattedFreeUp,
@@ -327,11 +329,20 @@ fun CleanerInfoCard(
 
                 Spacer(modifier = Modifier.height(4.dp))
 
-                Text(
-                    text = stringResource(id = R.string.total_files_format, filesCount),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = Icons.Outlined.FolderOpen,
+                        contentDescription = null,
+                        modifier = Modifier.size(MaterialTheme.typography.bodyMedium.fontSize.value.dp),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    ButtonIconSpacer()
+                    Text(
+                        text = stringResource(id = R.string.total_files_format, filesCount),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             }
         }
     }
