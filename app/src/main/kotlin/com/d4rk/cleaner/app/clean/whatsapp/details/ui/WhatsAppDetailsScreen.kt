@@ -46,6 +46,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -137,7 +138,7 @@ fun DetailsScreen(
         if (hasPrivate) stringResource(id = R.string.private_tab) else null
     )
 
-    val tabFiles = buildList<List<File>> {
+    val tabFiles = buildList {
         add(receivedFiles)
         if (hasSent) add(sentFiles)
         if (hasPrivate) add(privateFiles)
@@ -146,7 +147,7 @@ fun DetailsScreen(
     val suggested by detailsViewModel.suggested.collectAsState()
 
     val pagerState = rememberPagerState { tabs.size }
-    var selectedTabIndex by remember { mutableStateOf(0) }
+    var selectedTabIndex by remember { mutableIntStateOf(0) }
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(pagerState.currentPage) {
@@ -284,11 +285,11 @@ fun DetailsScreen(
 
 @Composable
 fun DetailsScreenContent(
-    paddingValues: PaddingValues,
+    paddingValues: PaddingValues, // FIXME: Parameter "paddingValues" is never used
     selected: MutableList<File>,
     isGrid: Boolean,
-    onShowConfirmChange: (Boolean) -> Unit,
-    detailsViewModel: DetailsViewModel,
+    onShowConfirmChange: (Boolean) -> Unit, // FIXME: Parameter "onShowConfirmChange" is never used
+    detailsViewModel: DetailsViewModel, // FIXME: Parameter "detailsViewModel" is never used
     files: List<File>
 ) {
     val context : Context = LocalContext.current
