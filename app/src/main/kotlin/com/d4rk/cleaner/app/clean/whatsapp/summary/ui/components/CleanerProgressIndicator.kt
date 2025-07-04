@@ -41,7 +41,7 @@ fun CleanerProgressIndicator(
             progress = { 1f },
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.primaryContainer,
-            strokeWidth = SizeConstants.ExtraSmallSize,
+            strokeWidth = SizeConstants.SmallSize,
         )
         CircularProgressIndicator(
             progress = { animatedProgress },
@@ -49,7 +49,7 @@ fun CleanerProgressIndicator(
                 .animateContentSize()
                 .fillMaxSize(),
             color = MaterialTheme.colorScheme.primary,
-            strokeWidth = SizeConstants.ExtraSmallSize,
+            strokeWidth = SizeConstants.SmallSize,
             strokeCap = StrokeCap.Round,
         )
         Icon(

@@ -224,13 +224,17 @@ fun DetailsScreenContent(
                                         modifier = Modifier
                                             .size(64.dp)
                                             .clickable {
-                                                if (checked) selected.remove(file) else selected.add(file)
+                                                if (checked) selected.remove(file) else selected.add(
+                                                    file
+                                                )
                                             }
                                     )
                                     Checkbox(
                                         checked = checked,
                                         onCheckedChange = {
-                                            if (checked) selected.remove(file) else selected.add(file)
+                                            if (checked) selected.remove(file) else selected.add(
+                                                file
+                                            )
                                         },
                                         modifier = Modifier.align(Alignment.TopEnd)
                                     )
@@ -250,6 +254,8 @@ fun DetailsScreenContent(
                             Text(text = stringResource(id = R.string.delete_all_suggested))
                         }
                     }
+                }
+            }
             if (isGrid) {
                 LazyVerticalGrid(
                     columns = GridCells.Adaptive(96.dp),
