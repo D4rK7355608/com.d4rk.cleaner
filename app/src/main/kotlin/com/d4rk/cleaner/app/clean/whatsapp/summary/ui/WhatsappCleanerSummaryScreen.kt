@@ -40,6 +40,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.d4rk.android.libs.apptoolkit.core.domain.model.ads.AdsConfig
+import com.d4rk.android.libs.apptoolkit.core.ui.components.ads.AdBanner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -60,6 +62,8 @@ import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.CleanerProgress
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.DirectoryGrid
 import com.d4rk.cleaner.app.clean.whatsapp.utils.constants.WhatsAppMediaConstants
 import org.koin.compose.viewmodel.koinViewModel
+import org.koin.compose.koinInject
+import org.koin.core.qualifier.named
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -147,7 +151,8 @@ fun WhatsappCleanerSummaryScreenContent(
 private fun WhatsappCleanerSummaryScreenSuccessContent(
     uiModel: UiWhatsAppCleanerModel,
     paddingValues: PaddingValues,
-    onOpenDetails: (String) -> Unit
+    onOpenDetails: (String) -> Unit,
+    adsConfig: AdsConfig = koinInject(qualifier = named(name = "large_banner"))
 ) {
     val summary = uiModel.mediaSummary
 
@@ -261,6 +266,12 @@ private fun WhatsappCleanerSummaryScreenSuccessContent(
                 freeUpSizeBytes = freeUpBytes,
                 totalSizeBytes = totalDeviceBytes,
                 filesCount = totalFiles
+            )
+        }
+        item {
+            AdBanner(
+                modifier = Modifier.padding(vertical = SizeConstants.MediumSize),
+                adsConfig = adsConfig
             )
         }
         item { DirectoryGrid(items = directoryList, onOpenDetails = onOpenDetails) }
