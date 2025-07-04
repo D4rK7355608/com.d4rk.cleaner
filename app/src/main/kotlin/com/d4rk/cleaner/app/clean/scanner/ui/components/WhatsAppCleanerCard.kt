@@ -16,7 +16,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Whatsapp
-import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material.icons.outlined.Videocam
@@ -107,7 +107,7 @@ fun WhatsAppCleanerCard(
             ) {
                 Icon(
                     modifier = Modifier.size(SizeConstants.ButtonIconSize),
-                    imageVector = Icons.Outlined.Delete,
+                    imageVector = Icons.Outlined.Search,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
                 )
