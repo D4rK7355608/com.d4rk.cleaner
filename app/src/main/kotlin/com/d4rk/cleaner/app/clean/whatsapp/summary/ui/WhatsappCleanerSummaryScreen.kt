@@ -1,5 +1,7 @@
 package com.d4rk.cleaner.app.clean.whatsapp.summary.ui
 
+import android.app.Activity
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -11,11 +13,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.DeleteSweep
 import androidx.compose.material.icons.outlined.FolderOff
 import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
@@ -33,25 +40,69 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.fab.AnimatedExtendedFloatingActionButton
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
+import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ExtraTinyHorizontalSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.MediumVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.app.clean.whatsapp.details.ui.WhatsAppDetailsActivity
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.DirectoryGrid
 import org.koin.compose.viewmodel.koinViewModel
 
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WhatsAppCleanerScreen(
+fun WhatsappCleanerSummaryScreen(activity: Activity) {
+    val viewModel: WhatsappCleanerSummaryViewModel = koinViewModel()
+    val scrollBehavior: TopAppBarScrollBehavior =
+        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    LargeTopAppBarWithScaffold(
+        title = stringResource(id = R.string.whatsapp_cleaner),
+        onBackClicked = {
+            activity.finish()
+        },
+        scrollBehavior = scrollBehavior,
+        floatingActionButton = {
+            AnimatedExtendedFloatingActionButton(
+                onClick = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
+                icon = {
+                    Icon(
+                        modifier = Modifier.size(SizeConstants.ButtonIconSize),
+                        imageVector = Icons.Outlined.DeleteSweep,
+                        contentDescription = null
+                    )
+                },
+                text = {
+                    Text(text = stringResource(id = R.string.clean_whatsapp))
+                }
+            )
+        }
+    ) { paddingValues ->
+        WhatsappCleanerSummaryScreenContent(
+            paddingValues = paddingValues,
+            onOpenDetails = { type ->
+                val intent = Intent(activity, WhatsAppDetailsActivity::class.java)
+                intent.putExtra(WhatsAppDetailsActivity.EXTRA_TYPE, type)
+                activity.startActivity(intent)
+            }
+        )
+    }
+}
+
+
+@Composable
+fun WhatsappCleanerSummaryScreenContent(
     paddingValues: PaddingValues,
     onOpenDetails: (String) -> Unit,
-    viewModel: WhatsAppCleanerViewModel = koinViewModel(),
+    viewModel: WhatsappCleanerSummaryViewModel = koinViewModel(),
 ) {
     val state: UiStateScreen<UiWhatsAppCleanerModel> by viewModel.uiState.collectAsState()
 
@@ -79,7 +130,7 @@ fun WhatsAppCleanerScreen(
             )
         },
         onSuccess = { data ->
-            SuccessContent(
+            WhatsappCleanerSummaryScreenSuccessContent(
                 uiModel = data,
                 paddingValues = paddingValues,
                 onOpenDetails = { type -> onOpenDetails(type) }
@@ -89,7 +140,7 @@ fun WhatsAppCleanerScreen(
 }
 
 @Composable
-private fun SuccessContent(
+private fun WhatsappCleanerSummaryScreenSuccessContent(
     uiModel: UiWhatsAppCleanerModel,
     paddingValues: PaddingValues,
     onOpenDetails: (String) -> Unit

@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import java.io.File
 
-class WhatsAppCleanerViewModel(
+class WhatsappCleanerSummaryViewModel(
     private val getSummaryUseCase: GetWhatsAppMediaSummaryUseCase,
     private val deleteUseCase: DeleteWhatsAppMediaUseCase,
     private val dispatchers: DispatcherProvider
