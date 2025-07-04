@@ -297,7 +297,7 @@ fun DetailsScreenContent(
         .fillMaxSize()) {
         if (files.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text(text = context.getString(R.string.no_files))
+                Text(text = context.getString(R.string.no_files_found))
             }
         } else {
             if (isGrid) {
