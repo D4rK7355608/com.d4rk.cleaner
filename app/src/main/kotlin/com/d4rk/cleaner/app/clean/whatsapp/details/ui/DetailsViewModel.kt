@@ -49,10 +49,12 @@ class DetailsViewModel : ViewModel() {
     }
 
     private fun getJunkCandidates(list: List<File>): List<File> {
-        val threshold = System.currentTimeMillis() - TimeUnit.DAYS.toMillis(90)
+        val threshold = System.currentTimeMillis() - TimeUnit.DAYS.toMillis(60)
         return list.filter { file ->
-            file.absolutePath.contains("WhatsApp Images${File.separator}Sent") &&
-                    file.lastModified() < threshold
+            (
+                file.absolutePath.contains("WhatsApp Images${File.separator}Sent") ||
+                        file.absolutePath.contains("WhatsApp Video${File.separator}Sent")
+                ) && file.lastModified() < threshold && file.length() > 1_000_000
         }
     }
 }

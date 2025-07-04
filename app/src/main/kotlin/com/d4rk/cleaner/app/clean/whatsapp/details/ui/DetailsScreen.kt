@@ -24,6 +24,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Sort
 import androidx.compose.material.icons.automirrored.filled.ViewList
 import androidx.compose.material.icons.filled.GridView
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -50,6 +51,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.painterResource
 import com.d4rk.cleaner.app.clean.whatsapp.utils.constants.WhatsAppMediaConstants
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
@@ -202,18 +204,37 @@ fun DetailsScreenContent(
                         .padding(8.dp)
                 ) {
                     Column(modifier = Modifier.padding(8.dp)) {
-                        Text(
-                            text = stringResource(id = R.string.smart_suggestions),
-                            style = MaterialTheme.typography.titleMedium
-                        )
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_auto_fix_high),
+                                contentDescription = null
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text(
+                                text = stringResource(id = R.string.smart_suggestions),
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                        }
                         LazyRow(modifier = Modifier.fillMaxWidth()) {
                             items(suggested) { file ->
-                                FilePreviewCard(
-                                    file = file,
-                                    modifier = Modifier
-                                        .padding(4.dp)
-                                        .size(64.dp)
-                                )
+                                val checked = file in selected
+                                Box(modifier = Modifier.padding(4.dp)) {
+                                    FilePreviewCard(
+                                        file = file,
+                                        modifier = Modifier
+                                            .size(64.dp)
+                                            .clickable {
+                                                if (checked) selected.remove(file) else selected.add(file)
+                                            }
+                                    )
+                                    Checkbox(
+                                        checked = checked,
+                                        onCheckedChange = {
+                                            if (checked) selected.remove(file) else selected.add(file)
+                                        },
+                                        modifier = Modifier.align(Alignment.TopEnd)
+                                    )
+                                }
                             }
                         }
                         Button(
@@ -222,36 +243,13 @@ fun DetailsScreenContent(
                                 selected.addAll(suggested)
                                 onShowConfirmChange(true)
                             },
-                            modifier = Modifier.align(Alignment.End)
+                            modifier = Modifier.align(Alignment.End),
                         ) {
+                            Icon(imageVector = Icons.Outlined.Delete, contentDescription = null)
+                            Spacer(modifier = Modifier.width(4.dp))
                             Text(text = stringResource(id = R.string.delete_all_suggested))
                         }
                     }
-                }
-            }
-            val allSelected = selected.size == sortedFiles.size && sortedFiles.isNotEmpty()
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 8.dp)
-            ) {
-                Checkbox(
-                    checked = allSelected,
-                    onCheckedChange = {
-                        if (allSelected) selected.clear() else {
-                            selected.clear()
-                            selected.addAll(sortedFiles)
-                        }
-                    }
-                )
-                Text(
-                    text = if (allSelected)
-                        stringResource(id = R.string.deselect_all)
-                    else
-                        stringResource(id = R.string.select_all)
-                )
-            }
             if (isGrid) {
                 LazyVerticalGrid(
                     columns = GridCells.Adaptive(96.dp),
