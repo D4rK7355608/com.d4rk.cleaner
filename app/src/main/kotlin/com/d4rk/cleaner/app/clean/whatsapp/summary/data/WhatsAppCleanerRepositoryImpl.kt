@@ -79,4 +79,5 @@ class WhatsAppCleanerRepositoryImpl(private val application: Application) : What
             if (file.exists()) file.deleteRecursively()
         }
     }
+
 }
