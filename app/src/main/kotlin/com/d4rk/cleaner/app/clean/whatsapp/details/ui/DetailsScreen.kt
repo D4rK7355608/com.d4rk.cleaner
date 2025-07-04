@@ -70,6 +70,20 @@ fun DetailsScreen(
 
     val state = viewModel.uiState.collectAsState().value
     val summary = state.data?.mediaSummary ?: WhatsAppMediaSummary()
+    val localizedTitle = when (title) {
+        "images" -> stringResource(id = R.string.images)
+        "videos" -> stringResource(id = R.string.videos)
+        "documents" -> stringResource(id = R.string.documents)
+        "audios" -> stringResource(id = R.string.audios)
+        "statuses" -> stringResource(id = R.string.statuses)
+        "voice_notes" -> stringResource(id = R.string.voice_notes)
+        "video_notes" -> stringResource(id = R.string.video_notes)
+        "gifs" -> stringResource(id = R.string.gifs)
+        "wallpapers" -> stringResource(id = R.string.wallpapers)
+        "stickers" -> stringResource(id = R.string.stickers)
+        "profile_photos" -> stringResource(id = R.string.profile_photos)
+        else -> title
+    }
     val files = when (title) {
         "images" -> summary.images.files
         "videos" -> summary.videos.files
@@ -109,7 +123,7 @@ fun DetailsScreen(
                 Icon(imageVector = Icons.AutoMirrored.Filled.Sort, contentDescription = null)
             }
         },
-        title = title,
+        title = localizedTitle,
         onBackClicked = {
             activity.finish()
         },
