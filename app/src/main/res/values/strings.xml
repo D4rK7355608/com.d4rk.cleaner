@@ -131,6 +131,7 @@
     <string name="wallpapers">Wallpapers</string>
     <string name="stickers">Stickers</string>
     <string name="profile_photos">Profile Photos</string>
+    <string name="can_be_freed">Can be freed</string>
     <string name="empty_folders">Empty Folders</string>
     <string name="duplicates">Duplicates</string>
     <plurals name="status_selected_files">

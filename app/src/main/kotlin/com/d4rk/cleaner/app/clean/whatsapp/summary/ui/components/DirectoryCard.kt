@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
 
@@ -29,7 +30,8 @@ fun DirectoryCard(item: DirectoryItem, onOpenDetails: (String) -> Unit, modifier
     Card(
         modifier = modifier
             .padding(all = SizeConstants.ExtraSmallSize)
-            .animateContentSize(),
+            .animateContentSize()
+            .bounceClick(),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
         onClick = { onOpenDetails(item.type) }
     ) {
