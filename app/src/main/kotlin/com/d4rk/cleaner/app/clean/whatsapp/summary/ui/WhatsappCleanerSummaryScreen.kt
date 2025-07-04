@@ -180,7 +180,7 @@ private fun WhatsappCleanerSummaryScreenSuccessContent(
             DirectoryItem(
                 type = "documents",
                 name = docs,
-                icon = R.drawable.ic_apk_document,
+                icon = R.drawable.ic_description,
                 count = summary.documents.files.size,
                 size = summary.documents.formattedSize
             ),
@@ -194,14 +194,14 @@ private fun WhatsappCleanerSummaryScreenSuccessContent(
             DirectoryItem(
                 type = "statuses",
                 name = statuses,
-                icon = R.drawable.ic_image,
+                icon = R.drawable.ic_web_stories,
                 count = summary.statuses.files.size,
                 size = summary.statuses.formattedSize
             ),
             DirectoryItem(
                 type = "voice_notes",
                 name = voiceNotes,
-                icon = R.drawable.ic_audio_file,
+                icon = R.drawable.ic_voice_selection,
                 count = summary.voiceNotes.files.size,
                 size = summary.voiceNotes.formattedSize
             ),
@@ -215,28 +215,28 @@ private fun WhatsappCleanerSummaryScreenSuccessContent(
             DirectoryItem(
                 type = "gifs",
                 name = gifs,
-                icon = R.drawable.ic_image,
+                icon = R.drawable.ic_gif,
                 count = summary.gifs.files.size,
                 size = summary.gifs.formattedSize
             ),
             DirectoryItem(
                 type = "wallpapers",
                 name = wallpapers,
-                icon = R.drawable.ic_image,
+                icon = R.drawable.ic_wallpaper,
                 count = summary.wallpapers.files.size,
                 size = summary.wallpapers.formattedSize
             ),
             DirectoryItem(
                 type = "stickers",
                 name = stickers,
-                icon = R.drawable.ic_image,
+                icon = R.drawable.ic_ar_stickers,
                 count = summary.stickers.files.size,
                 size = summary.stickers.formattedSize
             ),
             DirectoryItem(
                 type = "profile_photos",
                 name = profiles,
-                icon = R.drawable.ic_image,
+                icon = R.drawable.ic_person_pin,
                 count = summary.profilePhotos.files.size,
                 size = summary.profilePhotos.formattedSize
             ),
