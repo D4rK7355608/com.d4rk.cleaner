@@ -44,7 +44,7 @@ fun DirectoryCard(item: DirectoryItem, onOpenDetails: (String) -> Unit, modifier
                 modifier = Modifier
                     .padding(end = 16.dp)
                     .size(48.dp)
-                    .background(MaterialTheme.colorScheme.secondaryContainer, CircleShape),
+                    .background(MaterialTheme.colorScheme.primaryContainer, CircleShape),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(

@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
-import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.DirectoryCard
 
 @Composable
 fun DirectoryGrid(items: List<DirectoryItem>, onOpenDetails: (String) -> Unit) {
