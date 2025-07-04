@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
@@ -66,7 +67,7 @@ fun CacheCleanerCard(
             ) {
                 Icon(
                     modifier = Modifier.size(SizeConstants.ButtonIconSize),
-                    imageVector = Icons.Outlined.Search,
+                    painter = painterResource(id = R.drawable.ic_folder_search),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
                 )

@@ -16,6 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Android
 import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.DeleteSweep
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -125,7 +126,7 @@ fun ApkCleanerCard(
                 } else {
                     Icon(
                         modifier = Modifier.size(SizeConstants.ButtonIconSize),
-                        imageVector = Icons.Outlined.Delete,
+                        imageVector = Icons.Outlined.DeleteSweep,
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary
                     )

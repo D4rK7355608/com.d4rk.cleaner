@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Image
+import androidx.compose.material.icons.outlined.ImageSearch
 import androidx.compose.material.icons.outlined.PhotoSizeSelectLarge
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
@@ -88,7 +89,7 @@ fun ImageOptimizerCard(
             ) {
                 Icon(
                     modifier = Modifier.size(SizeConstants.ButtonIconSize),
-                    imageVector = Icons.Outlined.Image,
+                    imageVector = Icons.Outlined.ImageSearch,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
                 )

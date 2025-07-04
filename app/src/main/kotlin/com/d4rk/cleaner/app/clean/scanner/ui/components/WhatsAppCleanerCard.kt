@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalWindowInfo
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
@@ -106,8 +107,8 @@ fun WhatsAppCleanerCard(
                 modifier = Modifier.align(Alignment.End).bounceClick(),
             ) {
                 Icon(
-                    modifier = Modifier.size(SizeConstants.ButtonIconSize),
-                    imageVector = Icons.Outlined.Search,
+                    modifier = Modifier.size(size = SizeConstants.ButtonIconSize),
+                    painter = painterResource(id = R.drawable.ic_folder_search),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
                 )
