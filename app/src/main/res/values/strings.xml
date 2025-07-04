@@ -96,6 +96,9 @@
     <string name="whatsapp_card_title">WhatsApp Files</string>
     <string name="whatsapp_card_subtitle">Clear out media you no longer need.</string>
     <string name="clean_whatsapp">Clean WhatsApp Media</string>
+    <string name="clean_whatsapp_warning_title">Clean WhatsApp Media</string>
+    <string name="clean_whatsapp_warning_message">This will delete all WhatsApp media files. Continue?</string>
+    <string name="cancel">Cancel</string>
     <string name="whatsapp_cleaner">WhatsApp Cleaner</string>
     <string name="free_up_format">You can free up %1$s</string>
     <string name="total_files_format">%1$s files</string>

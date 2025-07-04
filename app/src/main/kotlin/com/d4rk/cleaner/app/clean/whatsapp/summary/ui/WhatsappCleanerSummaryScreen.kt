@@ -15,11 +15,15 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -55,6 +59,8 @@ fun WhatsappCleanerSummaryScreen(activity: Activity) {
     val scrollBehavior: TopAppBarScrollBehavior =
         TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
 
+    var showCleanDialog by remember { mutableStateOf(false) }
+
     val state: UiStateScreen<UiWhatsAppCleanerModel> by viewModel.uiState.collectAsState()
 
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -76,7 +82,7 @@ fun WhatsappCleanerSummaryScreen(activity: Activity) {
         scrollBehavior = scrollBehavior,
         floatingActionButton = {
             AnimatedExtendedFloatingActionButton(
-                onClick = { viewModel.onEvent(WhatsAppCleanerEvent.CleanAll) },
+                onClick = { showCleanDialog = true },
                 icon = {
                     Icon(
                         modifier = Modifier.size(SizeConstants.ButtonIconSize),
@@ -113,6 +119,27 @@ fun WhatsappCleanerSummaryScreen(activity: Activity) {
                     }
                 )
             }
+        )
+    }
+
+    if (showCleanDialog) {
+        AlertDialog(
+            onDismissRequest = { showCleanDialog = false },
+            confirmButton = {
+                TextButton(onClick = {
+                    showCleanDialog = false
+                    viewModel.onEvent(WhatsAppCleanerEvent.CleanAll)
+                }) {
+                    Text(text = stringResource(id = R.string.clean_whatsapp))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showCleanDialog = false }) {
+                    Text(text = stringResource(id = R.string.cancel))
+                }
+            },
+            title = { Text(text = stringResource(id = R.string.clean_whatsapp_warning_title)) },
+            text = { Text(text = stringResource(id = R.string.clean_whatsapp_warning_message)) }
         )
     }
 }
