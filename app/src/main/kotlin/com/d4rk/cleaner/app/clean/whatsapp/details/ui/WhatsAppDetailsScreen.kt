@@ -3,7 +3,6 @@ package com.d4rk.cleaner.app.clean.whatsapp.details.ui
 import android.app.Activity
 import android.content.Context
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.foundation.layout.Box
@@ -66,6 +65,7 @@ import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.WhatsAppMediaSum
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsappCleanerSummaryViewModel
 import com.d4rk.cleaner.app.clean.whatsapp.utils.helpers.openFile
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.CustomTabLayout
+import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.SortDialog
 import java.io.File
 import kotlinx.coroutines.launch
 

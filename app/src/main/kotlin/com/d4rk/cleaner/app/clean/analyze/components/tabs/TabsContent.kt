@@ -24,12 +24,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import coil3.imageLoader
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.hapticPagerSwipe
-import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.app.clean.analyze.components.DuplicateGroupsSection
 import com.d4rk.cleaner.app.clean.analyze.components.FilesByDateSection
@@ -50,12 +47,9 @@ fun TabsContent(
 ) {
     val tabs : List<String> = groupedFiles.keys.toList()
     val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
-    // Title for the duplicates tab as defined in resources. Used to detect if
-    // a duplicates page exists in the provided map of tabs.
     val duplicatesTabTitle =
         data.analyzeState.fileTypesData.fileTypesTitles.getOrElse(10) { "Duplicates" }
     val hasDuplicatesTab = groupedFiles.containsKey(duplicatesTabTitle)
-    val imageLoader = LocalContext.current.imageLoader
 
     Row(
         modifier = Modifier.fillMaxWidth() , verticalAlignment = Alignment.CenterVertically
@@ -94,7 +88,6 @@ fun TabsContent(
                         Checkbox(checked = isCategoryChecked , onCheckedChange = {
                             viewModel.toggleSelectFilesForCategory(category = title)
                         })
-                        ButtonIconSpacer()
                         Text(text = title)
                     }
                 })

@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.clean.whatsapp.details.ui
+package com.d4rk.cleaner.app.clean.whatsapp.details.ui.components
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
