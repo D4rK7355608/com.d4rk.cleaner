@@ -137,13 +137,18 @@ fun DetailsScreen(
         if (hasPrivate) stringResource(id = R.string.private_tab) else null
     )
 
+    val tabFiles = buildList<List<File>> {
+        add(receivedFiles)
+        if (hasSent) add(sentFiles)
+        if (hasPrivate) add(privateFiles)
+    }
+
     val pagerState = rememberPagerState { tabs.size }
     var selectedTabIndex by remember { mutableStateOf(0) }
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(pagerState.currentPage) {
         selectedTabIndex = pagerState.currentPage
-        selected.clear()
     }
 
     LargeTopAppBarWithScaffold(
@@ -173,9 +178,19 @@ fun DetailsScreen(
                         .padding(horizontal = 16.dp, vertical = 8.dp),
                     selectedItemIndex = selectedTabIndex,
                     items = tabs,
+                    filesPerTab = tabFiles,
+                    selectedFiles = selected,
                     onTabSelected = { index ->
                         selectedTabIndex = index
                         scope.launch { pagerState.animateScrollToPage(index) }
+                    },
+                    onTabCheckedChange = { index, checked ->
+                        val files = tabFiles.getOrNull(index) ?: emptyList()
+                        if (checked) {
+                            files.filterNot { it in selected }.forEach { selected.add(it) }
+                        } else {
+                            selected.removeAll(files)
+                        }
                     }
                 )
             }
@@ -200,6 +215,16 @@ fun DetailsScreen(
                     detailsViewModel = detailsViewModel,
                     files = list
                 )
+            }
+
+            Button(
+                onClick = { showConfirm = true },
+                enabled = selected.isNotEmpty(),
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(8.dp)
+            ) {
+                Text(text = stringResource(id = R.string.delete_selected))
             }
         }
     }
@@ -386,15 +411,6 @@ fun DetailsScreenContent(
                         }
                     }
                 }
-            }
-            Button(
-                onClick = { onShowConfirmChange(true) },
-                enabled = selected.isNotEmpty(),
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(8.dp)
-            ) {
-                Text(text = context.getString(R.string.delete_selected))
             }
         }
     }
