@@ -58,6 +58,7 @@ import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.CleanerProgressIndicator
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.DirectoryGrid
+import com.d4rk.cleaner.app.clean.whatsapp.utils.constants.WhatsAppMediaConstants
 import org.koin.compose.viewmodel.koinViewModel
 
 
@@ -171,77 +172,77 @@ private fun WhatsappCleanerSummaryScreenSuccessContent(
     val directoryList = remember(summary) {
         listOf(
             DirectoryItem(
-                type = "images",
+                type = WhatsAppMediaConstants.IMAGES,
                 name = images,
                 icon = R.drawable.ic_image,
                 count = summary.images.files.size,
                 size = summary.images.formattedSize
             ),
             DirectoryItem(
-                type = "videos",
+                type = WhatsAppMediaConstants.VIDEOS,
                 name = videos,
                 icon = R.drawable.ic_video_file,
                 count = summary.videos.files.size,
                 size = summary.videos.formattedSize
             ),
             DirectoryItem(
-                type = "documents",
+                type = WhatsAppMediaConstants.DOCUMENTS,
                 name = docs,
                 icon = R.drawable.ic_description,
                 count = summary.documents.files.size,
                 size = summary.documents.formattedSize
             ),
             DirectoryItem(
-                type = "audios",
+                type = WhatsAppMediaConstants.AUDIOS,
                 name = audios,
                 icon = R.drawable.ic_audio_file,
                 count = summary.audios.files.size,
                 size = summary.audios.formattedSize
             ),
             DirectoryItem(
-                type = "statuses",
+                type = WhatsAppMediaConstants.STATUSES,
                 name = statuses,
                 icon = R.drawable.ic_web_stories,
                 count = summary.statuses.files.size,
                 size = summary.statuses.formattedSize
             ),
             DirectoryItem(
-                type = "voice_notes",
+                type = WhatsAppMediaConstants.VOICE_NOTES,
                 name = voiceNotes,
                 icon = R.drawable.ic_voice_selection,
                 count = summary.voiceNotes.files.size,
                 size = summary.voiceNotes.formattedSize
             ),
             DirectoryItem(
-                type = "video_notes",
+                type = WhatsAppMediaConstants.VIDEO_NOTES,
                 name = videoNotes,
                 icon = R.drawable.ic_video_file,
                 count = summary.videoNotes.files.size,
                 size = summary.videoNotes.formattedSize
             ),
             DirectoryItem(
-                type = "gifs",
+                type = WhatsAppMediaConstants.GIFS,
                 name = gifs,
                 icon = R.drawable.ic_gif,
                 count = summary.gifs.files.size,
                 size = summary.gifs.formattedSize
             ),
             DirectoryItem(
-                type = "wallpapers",
+                type = WhatsAppMediaConstants.WALLPAPERS,
                 name = wallpapers,
                 icon = R.drawable.ic_wallpaper,
                 count = summary.wallpapers.files.size,
                 size = summary.wallpapers.formattedSize
             ),
             DirectoryItem(
-                type = "stickers",
+                type = WhatsAppMediaConstants.STICKERS,
                 name = stickers,
                 icon = R.drawable.ic_ar_stickers,
                 count = summary.stickers.files.size,
                 size = summary.stickers.formattedSize
             ),
             DirectoryItem(
-                type = "profile_photos",
+                type = WhatsAppMediaConstants.PROFILE_PHOTOS,
                 name = profiles,
                 icon = R.drawable.ic_person_pin,
                 count = summary.profilePhotos.files.size,

@@ -50,6 +50,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import com.d4rk.cleaner.app.clean.whatsapp.utils.constants.WhatsAppMediaConstants
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.cleaner.R
@@ -71,31 +72,31 @@ fun DetailsScreen(
     val state = viewModel.uiState.collectAsState().value
     val summary = state.data?.mediaSummary ?: WhatsAppMediaSummary()
     val localizedTitle = when (title) {
-        "images" -> stringResource(id = R.string.images)
-        "videos" -> stringResource(id = R.string.videos)
-        "documents" -> stringResource(id = R.string.documents)
-        "audios" -> stringResource(id = R.string.audios)
-        "statuses" -> stringResource(id = R.string.statuses)
-        "voice_notes" -> stringResource(id = R.string.voice_notes)
-        "video_notes" -> stringResource(id = R.string.video_notes)
-        "gifs" -> stringResource(id = R.string.gifs)
-        "wallpapers" -> stringResource(id = R.string.wallpapers)
-        "stickers" -> stringResource(id = R.string.stickers)
-        "profile_photos" -> stringResource(id = R.string.profile_photos)
+        WhatsAppMediaConstants.IMAGES -> stringResource(id = R.string.images)
+        WhatsAppMediaConstants.VIDEOS -> stringResource(id = R.string.videos)
+        WhatsAppMediaConstants.DOCUMENTS -> stringResource(id = R.string.documents)
+        WhatsAppMediaConstants.AUDIOS -> stringResource(id = R.string.audios)
+        WhatsAppMediaConstants.STATUSES -> stringResource(id = R.string.statuses)
+        WhatsAppMediaConstants.VOICE_NOTES -> stringResource(id = R.string.voice_notes)
+        WhatsAppMediaConstants.VIDEO_NOTES -> stringResource(id = R.string.video_notes)
+        WhatsAppMediaConstants.GIFS -> stringResource(id = R.string.gifs)
+        WhatsAppMediaConstants.WALLPAPERS -> stringResource(id = R.string.wallpapers)
+        WhatsAppMediaConstants.STICKERS -> stringResource(id = R.string.stickers)
+        WhatsAppMediaConstants.PROFILE_PHOTOS -> stringResource(id = R.string.profile_photos)
         else -> title
     }
     val files = when (title) {
-        "images" -> summary.images.files
-        "videos" -> summary.videos.files
-        "documents" -> summary.documents.files
-        "audios" -> summary.audios.files
-        "statuses" -> summary.statuses.files
-        "voice_notes" -> summary.voiceNotes.files
-        "video_notes" -> summary.videoNotes.files
-        "gifs" -> summary.gifs.files
-        "wallpapers" -> summary.wallpapers.files
-        "stickers" -> summary.stickers.files
-        "profile_photos" -> summary.profilePhotos.files
+        WhatsAppMediaConstants.IMAGES -> summary.images.files
+        WhatsAppMediaConstants.VIDEOS -> summary.videos.files
+        WhatsAppMediaConstants.DOCUMENTS -> summary.documents.files
+        WhatsAppMediaConstants.AUDIOS -> summary.audios.files
+        WhatsAppMediaConstants.STATUSES -> summary.statuses.files
+        WhatsAppMediaConstants.VOICE_NOTES -> summary.voiceNotes.files
+        WhatsAppMediaConstants.VIDEO_NOTES -> summary.videoNotes.files
+        WhatsAppMediaConstants.GIFS -> summary.gifs.files
+        WhatsAppMediaConstants.WALLPAPERS -> summary.wallpapers.files
+        WhatsAppMediaConstants.STICKERS -> summary.stickers.files
+        WhatsAppMediaConstants.PROFILE_PHOTOS -> summary.profilePhotos.files
         else -> emptyList()
     }
 
