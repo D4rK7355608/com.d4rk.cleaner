@@ -6,6 +6,7 @@ import android.text.format.Formatter
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectorySummary
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.WhatsAppMediaSummary
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.repository.WhatsAppCleanerRepository
+import com.d4rk.cleaner.app.clean.whatsapp.utils.constants.WhatsAppMediaConstants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -38,33 +39,21 @@ class WhatsAppCleanerRepositoryImpl(private val application: Application) : What
             return DirectorySummary(files, size, formatted)
         }
 
-        val directories = mapOf(
-            "images" to "WhatsApp Images",
-            "videos" to "WhatsApp Video",
-            "documents" to "WhatsApp Documents",
-            "audios" to "WhatsApp Audio",
-            "statuses" to ".Statuses",
-            "voice_notes" to "WhatsApp Voice Notes",
-            "video_notes" to "WhatsApp Video Notes",
-            "gifs" to "WhatsApp Animated Gifs",
-            "wallpapers" to "WallPaper",
-            "stickers" to "WhatsApp Stickers",
-            "profile_photos" to "WhatsApp Profile Photos",
-        )
+        val directories = WhatsAppMediaConstants.DIRECTORIES
 
         val collected = directories.mapValues { (_, dirName) -> collect(dirName) }
 
-        val images = collected.getValue("images")
-        val videos = collected.getValue("videos")
-        val docs = collected.getValue("documents")
-        val audios = collected.getValue("audios")
-        val statuses = collected.getValue("statuses")
-        val voiceNotes = collected.getValue("voice_notes")
-        val videoNotes = collected.getValue("video_notes")
-        val gifs = collected.getValue("gifs")
-        val wallpapers = collected.getValue("wallpapers")
-        val stickers = collected.getValue("stickers")
-        val profile = collected.getValue("profile_photos")
+        val images = collected.getValue(WhatsAppMediaConstants.IMAGES)
+        val videos = collected.getValue(WhatsAppMediaConstants.VIDEOS)
+        val docs = collected.getValue(WhatsAppMediaConstants.DOCUMENTS)
+        val audios = collected.getValue(WhatsAppMediaConstants.AUDIOS)
+        val statuses = collected.getValue(WhatsAppMediaConstants.STATUSES)
+        val voiceNotes = collected.getValue(WhatsAppMediaConstants.VOICE_NOTES)
+        val videoNotes = collected.getValue(WhatsAppMediaConstants.VIDEO_NOTES)
+        val gifs = collected.getValue(WhatsAppMediaConstants.GIFS)
+        val wallpapers = collected.getValue(WhatsAppMediaConstants.WALLPAPERS)
+        val stickers = collected.getValue(WhatsAppMediaConstants.STICKERS)
+        val profile = collected.getValue(WhatsAppMediaConstants.PROFILE_PHOTOS)
 
         val totalSize = collected.values.sumOf { it.totalBytes }
         val totalFormatted = Formatter.formatFileSize(application, totalSize)
