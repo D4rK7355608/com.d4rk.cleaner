@@ -143,6 +143,8 @@ fun DetailsScreen(
         if (hasPrivate) add(privateFiles)
     }
 
+    val suggested by detailsViewModel.suggested.collectAsState()
+
     val pagerState = rememberPagerState { tabs.size }
     var selectedTabIndex by remember { mutableStateOf(0) }
     val scope = rememberCoroutineScope()
@@ -170,7 +172,16 @@ fun DetailsScreen(
         },
         scrollBehavior = scrollBehavior,
     ) { paddingValues ->
-        Column(modifier = Modifier.fillMaxSize()) {
+        Column(modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)) {
+            if (suggested.isNotEmpty()) {
+                SmartSuggestionsCard(
+                    selected = selected,
+                    suggested = suggested,
+                    onShowConfirmChange = { showConfirm = it }
+                )
+            }
             if (hasSent || hasPrivate) {
                 CustomTabLayout(
                     modifier = Modifier
@@ -281,78 +292,14 @@ fun DetailsScreenContent(
     files: List<File>
 ) {
     val context : Context = LocalContext.current
-    val suggested by detailsViewModel.suggested.collectAsState()
 
     Column(modifier = Modifier
-        .fillMaxSize()
-        .padding(paddingValues)) {
+        .fillMaxSize()) {
         if (files.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text(text = context.getString(R.string.no_files))
             }
         } else {
-            if (suggested.isNotEmpty()) {
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp)
-                ) {
-                    Column(modifier = Modifier.padding(8.dp)) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_auto_fix_high),
-                                contentDescription = null
-                            )
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Text(
-                                text = stringResource(id = R.string.smart_suggestions),
-                                style = MaterialTheme.typography.titleMedium
-                            )
-                        }
-                        LazyRow(modifier = Modifier.fillMaxWidth()) {
-                            items(suggested) { file ->
-                                val checked = file in selected
-                                Box(modifier = Modifier.padding(4.dp)) {
-                                    FilePreviewCard(
-                                        file = file,
-                                        modifier = Modifier
-                                            .size(64.dp)
-                                            .pointerInput(file) {
-                                                detectTapGestures(
-                                                    onLongPress = {
-                                                        if (checked) selected.remove(file) else selected.add(file)
-                                                    },
-                                                    onTap = { openFile(context, file) }
-                                                )
-                                            }
-                                    )
-                                    Checkbox(
-                                        checked = checked,
-                                        onCheckedChange = {
-                                            if (checked) selected.remove(file) else selected.add(
-                                                file
-                                            )
-                                        },
-                                        modifier = Modifier.align(Alignment.TopEnd)
-                                    )
-                                }
-                            }
-                        }
-                        Button(
-                            onClick = {
-                                selected.clear()
-                                selected.addAll(suggested)
-                                onShowConfirmChange(true)
-                            },
-                            modifier = Modifier.align(Alignment.End),
-                        ) {
-                            Icon(imageVector = Icons.Outlined.Delete, contentDescription = null)
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Text(text = stringResource(id = R.string.delete_all_suggested))
-                        }
-                    }
-                }
-            }
             if (isGrid) {
                 LazyVerticalGrid(
                     columns = GridCells.Adaptive(96.dp),
@@ -411,6 +358,73 @@ fun DetailsScreenContent(
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun SmartSuggestionsCard(
+    selected: MutableList<File>,
+    suggested: List<File>,
+    onShowConfirmChange: (Boolean) -> Unit,
+) {
+    val context: Context = LocalContext.current
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        Column(modifier = Modifier.padding(8.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_auto_fix_high),
+                    contentDescription = null
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(
+                    text = stringResource(id = R.string.smart_suggestions),
+                    style = MaterialTheme.typography.titleMedium
+                )
+            }
+            LazyRow(modifier = Modifier.fillMaxWidth()) {
+                items(suggested) { file ->
+                    val checked = file in selected
+                    Box(modifier = Modifier.padding(4.dp)) {
+                        FilePreviewCard(
+                            file = file,
+                            modifier = Modifier
+                                .size(64.dp)
+                                .pointerInput(file) {
+                                    detectTapGestures(
+                                        onLongPress = {
+                                            if (checked) selected.remove(file) else selected.add(file)
+                                        },
+                                        onTap = { openFile(context, file) }
+                                    )
+                                }
+                        )
+                        Checkbox(
+                            checked = checked,
+                            onCheckedChange = {
+                                if (checked) selected.remove(file) else selected.add(file)
+                            },
+                            modifier = Modifier.align(Alignment.TopEnd)
+                        )
+                    }
+                }
+            }
+            Button(
+                onClick = {
+                    selected.clear()
+                    selected.addAll(suggested)
+                    onShowConfirmChange(true)
+                },
+                modifier = Modifier.align(Alignment.End)
+            ) {
+                Icon(imageVector = Icons.Outlined.Delete, contentDescription = null)
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(text = stringResource(id = R.string.delete_all_suggested))
             }
         }
     }
