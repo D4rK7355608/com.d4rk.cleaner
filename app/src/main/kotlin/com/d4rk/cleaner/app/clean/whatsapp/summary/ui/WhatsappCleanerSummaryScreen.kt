@@ -22,7 +22,6 @@ import androidx.compose.material.icons.outlined.DeleteSweep
 import androidx.compose.material.icons.outlined.FolderOff
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -37,7 +36,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -47,6 +45,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import android.os.Environment
+import android.os.StatFs
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.fab.AnimatedExtendedFloatingActionButton
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
@@ -60,6 +60,7 @@ import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleane
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.DirectoryGrid
+import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.CleanerProgressIndicator
 import org.koin.compose.viewmodel.koinViewModel
 
 
@@ -164,8 +165,11 @@ private fun WhatsappCleanerSummaryScreenSuccessContent(
     val stickers = stringResource(id = R.string.stickers)
     val profiles = stringResource(id = R.string.profile_photos)
 
-    val freeUp = uiModel.totalSize // FIXME: Property "freeUp" is never used && Unused variable
     val freeUpBytes = summary.totalBytes
+    val totalDeviceBytes = remember {
+        val stat = android.os.StatFs(android.os.Environment.getDataDirectory().path)
+        stat.blockCountLong * stat.blockSizeLong
+    }
 
     val directoryList = remember(summary) {
         listOf(
@@ -257,7 +261,7 @@ private fun WhatsappCleanerSummaryScreenSuccessContent(
         item {
             CleanerInfoCard(
                 freeUpSizeBytes = freeUpBytes,
-                totalSizeBytes = freeUpBytes,
+                totalSizeBytes = totalDeviceBytes,
                 filesCount = totalFiles
             )
         }
@@ -281,10 +285,6 @@ fun CleanerInfoCard(
     } else {
         0f
     }
-    val animatedProgress by animateFloatAsState(
-        targetValue = progress,
-        animationSpec = tween(durationMillis = 1000, delayMillis = 200)
-    )
 
     Card(
         modifier = modifier
@@ -302,23 +302,11 @@ fun CleanerInfoCard(
                 .padding(24.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Box(contentAlignment = Alignment.Center) {
-                CircularProgressIndicator(
-                    progress = { animatedProgress },
-                    modifier = Modifier.size(100.dp),
-                    color = MaterialTheme.colorScheme.primary,
-                    strokeWidth = 8.dp,
-                    trackColor = MaterialTheme.colorScheme.surfaceVariant,
-                    strokeCap = StrokeCap.Round
-                )
-                // Icon centered inside the circle
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_cleaner_notify),
-                    contentDescription = null,
-                    modifier = Modifier.size(40.dp),
-                    tint = MaterialTheme.colorScheme.primary
-                )
-            }
+            CleanerProgressIndicator(
+                progress = progress,
+                icon = painterResource(id = R.drawable.ic_cleaner_notify),
+                size = 100.dp
+            )
 
             Spacer(modifier = Modifier.width(24.dp))
 
