@@ -131,6 +131,9 @@
     <string name="wallpapers">Wallpapers</string>
     <string name="stickers">Stickers</string>
     <string name="profile_photos">Profile Photos</string>
+    <string name="received">Received</string>
+    <string name="sent">Sent</string>
+    <string name="private_tab">Private</string>
     <string name="can_be_freed">Can be freed</string>
     <string name="empty_folders">Empty Folders</string>
     <string name="duplicates">Duplicates</string>

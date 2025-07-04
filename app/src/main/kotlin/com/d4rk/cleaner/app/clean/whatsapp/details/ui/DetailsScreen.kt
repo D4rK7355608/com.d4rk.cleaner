@@ -22,6 +22,9 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Sort
 import androidx.compose.material.icons.automirrored.filled.ViewList
@@ -62,7 +65,9 @@ import com.d4rk.cleaner.app.clean.scanner.ui.components.FilePreviewCard
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.WhatsAppMediaSummary
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsappCleanerSummaryViewModel
 import com.d4rk.cleaner.app.clean.whatsapp.utils.helpers.openFile
+import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.CustomTabLayout
 import java.io.File
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -116,6 +121,31 @@ fun DetailsScreen(
 
     val scrollBehavior: TopAppBarScrollBehavior =
         TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val sortedFiles by detailsViewModel.files.collectAsState()
+    val receivedFiles = remember(sortedFiles) {
+        sortedFiles.filterNot { it.path.contains("${File.separator}Sent") || it.path.contains("${File.separator}Private") }
+    }
+    val sentFiles = remember(sortedFiles) { sortedFiles.filter { it.path.contains("${File.separator}Sent") } }
+    val privateFiles = remember(sortedFiles) { sortedFiles.filter { it.path.contains("${File.separator}Private") } }
+
+    val hasSent = sentFiles.isNotEmpty()
+    val hasPrivate = privateFiles.isNotEmpty()
+
+    val tabs = listOfNotNull(
+        stringResource(id = R.string.received),
+        if (hasSent) stringResource(id = R.string.sent) else null,
+        if (hasPrivate) stringResource(id = R.string.private_tab) else null
+    )
+
+    val pagerState = rememberPagerState { tabs.size }
+    var selectedTabIndex by remember { mutableStateOf(0) }
+    val scope = rememberCoroutineScope()
+
+    LaunchedEffect(pagerState.currentPage) {
+        selectedTabIndex = pagerState.currentPage
+        selected.clear()
+    }
+
     LargeTopAppBarWithScaffold(
         actions = {
             IconButton(onClick = { detailsViewModel.toggleView() }) {
@@ -135,13 +165,43 @@ fun DetailsScreen(
         },
         scrollBehavior = scrollBehavior,
     ) { paddingValues ->
-        DetailsScreenContent(
-            paddingValues = paddingValues,
-            selected = selected,
-            isGrid = isGrid,
-            onShowConfirmChange = { showConfirm = it },
-            detailsViewModel = detailsViewModel
-        )
+        Column(modifier = Modifier.fillMaxSize()) {
+            if (hasSent || hasPrivate) {
+                CustomTabLayout(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                    selectedItemIndex = selectedTabIndex,
+                    items = tabs,
+                    onTabSelected = { index ->
+                        selectedTabIndex = index
+                        scope.launch { pagerState.animateScrollToPage(index) }
+                    }
+                )
+            }
+
+            HorizontalPager(
+                state = pagerState,
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+            ) { page ->
+                val list = when (page) {
+                    0 -> receivedFiles
+                    1 -> if (hasSent) sentFiles else privateFiles
+                    else -> privateFiles
+                }
+
+                DetailsScreenContent(
+                    paddingValues = paddingValues,
+                    selected = selected,
+                    isGrid = isGrid,
+                    onShowConfirmChange = { showConfirm = it },
+                    detailsViewModel = detailsViewModel,
+                    files = list
+                )
+            }
+        }
     }
 
     if (showSort) {
@@ -192,15 +252,16 @@ fun DetailsScreenContent(
     selected: MutableList<File>,
     isGrid: Boolean,
     onShowConfirmChange: (Boolean) -> Unit,
-    detailsViewModel: DetailsViewModel) {
+    detailsViewModel: DetailsViewModel,
+    files: List<File>
+) {
     val context : Context = LocalContext.current
-    val sortedFiles by detailsViewModel.files.collectAsState()
     val suggested by detailsViewModel.suggested.collectAsState()
 
     Column(modifier = Modifier
         .fillMaxSize()
         .padding(paddingValues)) {
-        if (sortedFiles.isEmpty()) {
+        if (files.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text(text = context.getString(R.string.no_files))
             }
@@ -272,7 +333,7 @@ fun DetailsScreenContent(
                     columns = GridCells.Adaptive(96.dp),
                     modifier = Modifier.weight(1f)
                 ) {
-                    items(sortedFiles) { file ->
+                    items(files) { file ->
                         val checked = file in selected
                         Box(modifier = Modifier.padding(4.dp)) {
                             FilePreviewCard(
@@ -299,7 +360,7 @@ fun DetailsScreenContent(
                 }
             } else {
                 LazyColumn(modifier = Modifier.weight(1f)) {
-                    items(sortedFiles) { file ->
+                    items(files) { file ->
                         val checked = file in selected
                         Row(
                             modifier = Modifier
