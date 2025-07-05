@@ -1,79 +1,105 @@
 package com.d4rk.cleaner.app.clean.whatsapp.details.ui
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import com.d4rk.android.libs.apptoolkit.core.di.DispatcherProvider
+import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.ScreenState
+import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
+import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.updateData
+import com.d4rk.android.libs.apptoolkit.core.ui.base.ScreenViewModel
+import com.d4rk.cleaner.app.clean.whatsapp.details.domain.actions.WhatsAppDetailsAction
+import com.d4rk.cleaner.app.clean.whatsapp.details.domain.actions.WhatsAppDetailsEvent
+import com.d4rk.cleaner.app.clean.whatsapp.details.domain.model.UiWhatsAppDetailsModel
 import com.d4rk.cleaner.core.data.datastore.DataStore
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import java.io.File
 import java.util.concurrent.TimeUnit
 
 enum class SortType { NAME, DATE, SIZE }
 
-class DetailsViewModel(private val dataStore: DataStore) : ViewModel() {
-
-    private val _isGridView = MutableStateFlow(true)
-    val isGridView: StateFlow<Boolean> = _isGridView
-
-    private val _descending = MutableStateFlow(false)
-    val descending: StateFlow<Boolean> = _descending
-
-    private val _startDate = MutableStateFlow<Long?>(null)
-    val startDate: StateFlow<Long?> = _startDate
-
-    private val _endDate = MutableStateFlow<Long?>(null)
-    val endDate: StateFlow<Long?> = _endDate
-
-    private val _sortType = MutableStateFlow(SortType.DATE)
-    val sortType: StateFlow<SortType> = _sortType
-
-    private val _files = MutableStateFlow<List<File>>(emptyList())
-    val files: StateFlow<List<File>> = _files
-
-    private val _suggested = MutableStateFlow<List<File>>(emptyList())
-    val suggested: StateFlow<List<File>> = _suggested
+class DetailsViewModel(
+    private val dataStore: DataStore,
+    private val dispatchers: DispatcherProvider,
+) : ScreenViewModel<UiWhatsAppDetailsModel, WhatsAppDetailsEvent, WhatsAppDetailsAction>(
+    initialState = UiStateScreen(data = UiWhatsAppDetailsModel())
+) {
 
     init {
-        viewModelScope.launch {
-            dataStore.whatsappGridView.collect { _isGridView.value = it }
+        launch(dispatchers.io) {
+            dataStore.whatsappGridView.collectLatest { isGrid ->
+                _uiState.updateData(newState = _uiState.value.screenState) { current ->
+                    current.copy(isGridView = isGrid)
+                }
+            }
         }
     }
 
-    fun setFiles(list: List<File>) {
+    override fun onEvent(event: WhatsAppDetailsEvent) {
+        when (event) {
+            is WhatsAppDetailsEvent.SetFiles -> setFiles(event.files)
+            WhatsAppDetailsEvent.ToggleView -> toggleView()
+            is WhatsAppDetailsEvent.ApplySort -> applySort(
+                type = event.type,
+                descending = event.descending,
+                start = event.startDate,
+                end = event.endDate
+            )
+        }
+    }
+
+    private fun setFiles(list: List<File>) {
         val sorted = sort(list)
-        _files.value = sorted
-        _suggested.value = sort(getJunkCandidates(sorted))
-    }
-
-    fun toggleView() {
-        viewModelScope.launch {
-            val new = !_isGridView.value
-            dataStore.saveWhatsAppGridView(new)
-            _isGridView.value = new
+        _uiState.update { current ->
+            val data = current.data ?: UiWhatsAppDetailsModel()
+            current.copy(
+                data = data.copy(
+                    files = sorted,
+                    suggested = sort(getJunkCandidates(sorted))
+                ),
+                screenState = if (sorted.isEmpty()) ScreenState.NoData() else ScreenState.Success()
+            )
         }
     }
 
-    fun applySort(type: SortType, descending: Boolean, start: Long?, end: Long?) {
-        _sortType.value = type
-        _descending.value = descending
-        _startDate.value = start
-        _endDate.value = end
-        _files.update { sort(it) }
-        _suggested.update { sort(getJunkCandidates(_files.value)) }
+    private fun toggleView() {
+        val new = !(_uiState.value.data?.isGridView ?: true)
+        launch(dispatchers.io) { dataStore.saveWhatsAppGridView(new) }
+        _uiState.updateData(ScreenState.Success()) { it.copy(isGridView = new) }
+    }
+
+    private fun applySort(type: SortType, descending: Boolean, start: Long?, end: Long?) {
+        _uiState.update { current ->
+            val data = current.data ?: UiWhatsAppDetailsModel()
+            current.copy(
+                data = data.copy(
+                    sortType = type,
+                    descending = descending,
+                    startDate = start,
+                    endDate = end
+                )
+            )
+        }
+        _uiState.update { current ->
+            val sorted = sort(current.data?.files ?: emptyList())
+            current.copy(
+                data = current.data?.copy(
+                    files = sorted,
+                    suggested = sort(getJunkCandidates(sorted))
+                )
+            )
+        }
     }
 
     private fun sort(list: List<File>): List<File> {
-        var sorted = when (_sortType.value) {
+        val state = _uiState.value.data ?: UiWhatsAppDetailsModel()
+        var sorted = when (state.sortType) {
             SortType.NAME -> list.sortedBy { it.name.lowercase() }
             SortType.DATE -> list.sortedBy { it.lastModified() }
             SortType.SIZE -> list.sortedBy { it.length() }
         }
-        if (_sortType.value == SortType.DATE && _startDate.value != null && _endDate.value != null) {
-            sorted = sorted.filter { it.lastModified() in _startDate.value!!.._endDate.value!! }
+        if (state.sortType == SortType.DATE && state.startDate != null && state.endDate != null) {
+            sorted = sorted.filter { it.lastModified() in state.startDate!!..state.endDate!! }
         }
-        if (_descending.value) sorted = sorted.reversed()
+        if (state.descending) sorted = sorted.reversed()
         return sorted
     }
 
