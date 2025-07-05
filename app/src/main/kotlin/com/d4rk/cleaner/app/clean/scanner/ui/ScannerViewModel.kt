@@ -86,6 +86,13 @@ class ScannerViewModel(
     private val _cleanStreak = MutableStateFlow(0)
     val cleanStreak: StateFlow<Int> = _cleanStreak
 
+    private val _showStreakCard = MutableStateFlow(true)
+    val showStreakCard: StateFlow<Boolean> = _showStreakCard
+    private val _showStreakCardPref = MutableStateFlow(true)
+    val showStreakCardPref: StateFlow<Boolean> = _showStreakCardPref
+    private val _streakHideUntil = MutableStateFlow(0L)
+    val streakHideUntil: StateFlow<Long> = _streakHideUntil
+
     init {
         clipboardManager.addPrimaryClipChangedListener(clipboardListener)
         onEvent(ScannerEvent.LoadInitialData)
@@ -94,6 +101,7 @@ class ScannerViewModel(
         loadClipboardData()
         loadPromotedApp()
         loadCleanStreak()
+        loadStreakCardVisibility()
         launch(dispatchers.io) {
             CleaningEventBus.events.collectLatest {
                 onEvent(ScannerEvent.RefreshData)
@@ -128,6 +136,9 @@ class ScannerViewModel(
             is ScannerEvent.SetMoveToTrashConfirmationDialogVisibility -> setMoveToTrashConfirmationDialogVisibility(
                 isVisible = event.isVisible
             )
+            is ScannerEvent.SetHideStreakDialogVisibility -> setHideStreakDialogVisibility(event.isVisible)
+            ScannerEvent.HideStreakForNow -> hideStreakForNow()
+            ScannerEvent.HideStreakPermanently -> hideStreakPermanently()
             is ScannerEvent.DismissSnackbar -> screenState.dismissSnackbar()
         }
     }
@@ -996,6 +1007,47 @@ class ScannerViewModel(
 
     fun onCleanCache() {
         postSnackbar(UiTextHelper.StringResource(R.string.feature_not_available), isError = false)
+    }
+
+    fun setHideStreakDialogVisibility(isVisible: Boolean) {
+        _uiState.updateData(ScreenState.Success()) { currentData ->
+            currentData.copy(isHideStreakDialogVisible = isVisible)
+        }
+    }
+
+    fun hideStreakForNow() {
+        launch(dispatchers.io) { dataStore.saveStreakHideUntil(startOfNextWeek()) }
+        setHideStreakDialogVisibility(false)
+    }
+
+    fun hideStreakPermanently() {
+        launch(dispatchers.io) { dataStore.saveShowStreakCard(false) }
+        setHideStreakDialogVisibility(false)
+    }
+
+    private fun loadStreakCardVisibility() {
+        launch(dispatchers.io) {
+            combine(dataStore.showStreakCard, dataStore.streakHideUntil) { show, hide ->
+                _showStreakCardPref.value = show
+                _streakHideUntil.value = hide
+                show && hide <= System.currentTimeMillis()
+            }.collect { visible ->
+                _showStreakCard.value = visible
+            }
+        }
+    }
+
+    private fun startOfNextWeek(): Long {
+        val cal = java.util.Calendar.getInstance()
+        val dayOfWeek = cal.get(java.util.Calendar.DAY_OF_WEEK)
+        var daysUntilMonday = (java.util.Calendar.MONDAY - dayOfWeek + 7) % 7
+        if (daysUntilMonday == 0) daysUntilMonday = 7
+        cal.add(java.util.Calendar.DAY_OF_YEAR, daysUntilMonday)
+        cal.set(java.util.Calendar.HOUR_OF_DAY, 0)
+        cal.set(java.util.Calendar.MINUTE, 0)
+        cal.set(java.util.Calendar.SECOND, 0)
+        cal.set(java.util.Calendar.MILLISECOND, 0)
+        return cal.timeInMillis
     }
 
     fun onClipboardClear() {

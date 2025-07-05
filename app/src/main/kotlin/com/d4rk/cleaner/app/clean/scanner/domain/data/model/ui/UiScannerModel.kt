@@ -11,6 +11,7 @@ data class UiScannerModel(
     var daysFromLastScan : Int = 0 ,
     var promotedApp : PromotedApp? = null ,
     var isRescanDialogVisible : Boolean = false ,
+    var isHideStreakDialogVisible: Boolean = false,
 )
 
 data class UiAnalyzeModel(

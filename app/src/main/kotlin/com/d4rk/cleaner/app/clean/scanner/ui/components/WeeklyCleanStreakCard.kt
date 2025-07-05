@@ -8,8 +8,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.LocalFireDepartment
+import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.rounded.LocalFireDepartment
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -18,12 +20,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
+import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.R
 
 @Composable
 fun WeeklyCleanStreakCard(
     streakDays: Int,
     modifier: Modifier = Modifier,
+    onDismiss: () -> Unit = {},
 ) {
     val reward = when (streakDays) {
         1 -> stringResource(id = R.string.streak_reward_day1)
@@ -54,10 +58,19 @@ fun WeeklyCleanStreakCard(
             verticalArrangement = Arrangement.spacedBy(SizeConstants.MediumSize),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = stringResource(id = R.string.clean_streak_title),
-                style = MaterialTheme.typography.titleMedium
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(id = R.string.clean_streak_title),
+                    style = MaterialTheme.typography.titleMedium
+                )
+                IconButton(modifier = Modifier.bounceClick(), onClick = onDismiss) {
+                    Icon(imageVector = Icons.Outlined.Close, contentDescription = null)
+                }
+            }
             Text(
                 text = message,
                 style = MaterialTheme.typography.bodyMedium

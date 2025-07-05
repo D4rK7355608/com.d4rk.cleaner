@@ -12,6 +12,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.LocalContext
+import android.widget.Toast
 import com.d4rk.android.libs.apptoolkit.core.ui.components.preferences.PreferenceCategoryItem
 import com.d4rk.android.libs.apptoolkit.core.ui.components.preferences.SwitchPreferenceItem
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ExtraTinyVerticalSpacer
@@ -26,6 +28,7 @@ import org.koin.compose.koinInject
 
 @Composable
 fun CleaningSettingsList(paddingValues : PaddingValues) {
+    val context = LocalContext.current
     val dataStore : DataStore = koinInject()
     val genericFilter : Boolean by dataStore.genericFilter.collectAsState(initial = true)
     val deleteEmptyFolders : Boolean by dataStore.deleteEmptyFolders.collectAsState(initial = true)
@@ -43,6 +46,7 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
     val deleteDuplicateFiles: Boolean by dataStore.deleteDuplicateFiles.collectAsState(initial = false)
     val clipboardClean : Boolean by dataStore.clipboardClean.collectAsState(initial = false)
     val streakReminderEnabled: Boolean by dataStore.streakReminderEnabled.collectAsState(initial = false)
+    val showStreakCardPref: Boolean by dataStore.showStreakCard.collectAsState(initial = true)
 
     LazyColumn(
         modifier = Modifier
@@ -260,6 +264,22 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveStreakReminderEnabled(isChecked)
+                    }
+                }
+
+                if (!showStreakCardPref) {
+                    ExtraTinyVerticalSpacer()
+                    SwitchPreferenceItem(
+                        title = stringResource(id = R.string.preference_show_streak_card),
+                        checked = showStreakCardPref,
+                    ) { isChecked ->
+                        CoroutineScope(Dispatchers.IO).launch {
+                            dataStore.saveShowStreakCard(isChecked)
+                            if (isChecked) dataStore.saveStreakHideUntil(0L)
+                        }
+                        if (isChecked) {
+                            Toast.makeText(context, context.getString(R.string.streak_return_toast), Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             }
