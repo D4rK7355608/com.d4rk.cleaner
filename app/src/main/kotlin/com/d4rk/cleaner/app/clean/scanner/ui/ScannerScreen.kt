@@ -80,6 +80,7 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
     val promotedApp = uiState.data?.promotedApp
     val mediumRectAdsConfig: AdsConfig = koinInject(qualifier = named(name = "banner_medium_rectangle"))
     val largeBannerAdsConfig: AdsConfig = koinInject(qualifier = named(name = "large_banner"))
+    val leaderboard: AdsConfig = koinInject(qualifier = named(name = "leaderboard"))
     val bannerAdsConfig: AdsConfig = koinInject()
 
     val showApkCard = appManagerState.data?.apkFiles?.isNotEmpty() == true
@@ -137,10 +138,6 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                             onQuickScanClick = { viewModel.onEvent(event = ScannerEvent.ToggleAnalyzeScreen(visible = true)) }
                         )
 
-                        promotedApp?.let { app ->
-                            PromotedAppCard(app = app)
-                        }
-
                         if (showStreakCard) {
                             WeeklyCleanStreakCard(
                                 streakDays = streakDays,
@@ -162,7 +159,7 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                         }
 
                         if (cleanerCardsCount > 0) {
-                            val topAdConfig = if (cleanerCardsCount > 1) largeBannerAdsConfig else bannerAdsConfig
+                            val topAdConfig = if (cleanerCardsCount > 1) mediumRectAdsConfig else largeBannerAdsConfig
                             AdBanner(
                                 modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
                                 adsConfig = topAdConfig
@@ -209,7 +206,7 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                         }
 
                         if (cleanerCardsCount > 0) {
-                            val midAdConfig = if (cleanerCardsCount >= 2) mediumRectAdsConfig else bannerAdsConfig
+                            val midAdConfig = if (cleanerCardsCount >= 2) mediumRectAdsConfig else largeBannerAdsConfig
                             AdBanner(
                                 modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
                                 adsConfig = midAdConfig
@@ -231,8 +228,12 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                             }
                         )
 
-                        if (promotedApp == null || cleanerCardsCount >= 2) {
-                            val endAdConfig = if (promotedApp == null) largeBannerAdsConfig else bannerAdsConfig
+                        promotedApp?.let { app ->
+                            PromotedAppCard(app = app)
+                        }
+
+                        if (promotedApp == null || cleanerCardsCount >= 1) {
+                            val endAdConfig = if (promotedApp == null) bannerAdsConfig else leaderboard
                             AdBanner(
                                 modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
                                 adsConfig = endAdConfig

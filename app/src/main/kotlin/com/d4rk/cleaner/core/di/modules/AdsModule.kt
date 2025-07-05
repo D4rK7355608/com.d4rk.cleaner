@@ -24,4 +24,12 @@ val adsModule : Module = module {
     single<AdsConfig>(named(name = "banner_medium_rectangle")) {
         AdsConfig(bannerAdUnitId = AdsConstants.BANNER_AD_UNIT_ID , adSize = AdSize.MEDIUM_RECTANGLE)
     }
+
+    single<AdsConfig>(named(name = "leaderboard")) {
+        AdsConfig(bannerAdUnitId = AdsConstants.BANNER_AD_UNIT_ID, adSize = AdSize.LEADERBOARD)
+    }
+
+    single<AdsConfig>(named(name = "wide_skyscraper")) {
+        AdsConfig(bannerAdUnitId = AdsConstants.BANNER_AD_UNIT_ID, adSize = AdSize.WIDE_SKYSCRAPER)
+    }
 }
