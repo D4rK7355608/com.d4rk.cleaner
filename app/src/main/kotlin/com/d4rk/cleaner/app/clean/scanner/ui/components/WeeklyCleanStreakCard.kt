@@ -7,9 +7,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.LocalFireDepartment
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.outlined.AutoAwesome
 import androidx.compose.material.icons.outlined.Close
-import androidx.compose.material.icons.rounded.LocalFireDepartment
+import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -18,7 +22,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.cleaner.R
@@ -39,12 +45,8 @@ fun WeeklyCleanStreakCard(
 
     val message = when {
         streakDays == 0 -> stringResource(id = R.string.clean_streak_start)
-        streakDays == 1 -> stringResource(id = R.string.clean_streak_day1)
-        streakDays in 2..3 -> stringResource(id = R.string.clean_streak_day2_3, streakDays)
-        streakDays == 6 -> stringResource(id = R.string.clean_streak_almost_week)
-        streakDays >= 7 && streakDays < 10 -> stringResource(id = R.string.clean_streak_week)
-        streakDays >= 10 -> stringResource(id = R.string.clean_streak_long_format, streakDays)
-        else -> stringResource(id = R.string.clean_streak_day2_3, streakDays)
+        streakDays in 1..6 -> stringResource(id = R.string.clean_streak_in_progress, streakDays)
+        else -> stringResource(id = R.string.clean_streak_perfect_week_message)
     }
 
     OutlinedCard(
@@ -58,36 +60,49 @@ fun WeeklyCleanStreakCard(
             verticalArrangement = Arrangement.spacedBy(SizeConstants.MediumSize),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+            Box(modifier = Modifier.fillMaxWidth()) {
                 Text(
                     text = stringResource(id = R.string.clean_streak_title),
-                    style = MaterialTheme.typography.titleMedium
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.align(Alignment.Center)
                 )
-                IconButton(modifier = Modifier.bounceClick(), onClick = onDismiss) {
+                IconButton(
+                    modifier = Modifier.align(Alignment.CenterEnd).bounceClick(),
+                    onClick = onDismiss
+                ) {
                     Icon(imageVector = Icons.Outlined.Close, contentDescription = null)
                 }
             }
+            LargeVerticalSpacer()
             Text(
                 text = message,
                 style = MaterialTheme.typography.bodyMedium
             )
-            Row(horizontalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize)) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
                 for (i in 1..7) {
                     val filled = streakDays >= i
+                    val scale = animateFloatAsState(
+                        targetValue = if (filled) 1f else 0.8f,
+                        animationSpec = tween(durationMillis = 300),
+                        label = "StreakDotScale$i"
+                    ).value
                     Icon(
-                        imageVector = if (filled) Icons.Rounded.LocalFireDepartment else Icons.Outlined.LocalFireDepartment,
+                        imageVector = if (filled) Icons.Rounded.AutoAwesome else Icons.Outlined.AutoAwesome,
                         contentDescription = null,
-                        tint = if (filled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline
+                        tint = if (filled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
+                        modifier = Modifier.size(SizeConstants.LargeSize).graphicsLayer {
+                            scaleX = scale
+                            scaleY = scale
+                        }
                     )
                 }
             }
             if (streakDays >= 7) {
                 Text(
-                    text = stringResource(id = R.string.clean_streak_perfect_week),
+                    text = stringResource(id = R.string.clean_streak_perfect_week_message),
                     style = MaterialTheme.typography.bodyMedium
                 )
             } else if (reward != null) {
