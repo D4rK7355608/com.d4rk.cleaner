@@ -43,9 +43,9 @@ fun WeeklyCleanStreakCard(
         else -> null
     }
 
-    val message = when {
-        streakDays == 0 -> stringResource(id = R.string.clean_streak_start)
-        streakDays in 1..6 -> stringResource(id = R.string.clean_streak_in_progress, streakDays)
+    val message = when (streakDays) {
+        0 -> stringResource(id = R.string.clean_streak_start)
+        in 1..6 -> stringResource(id = R.string.clean_streak_in_progress, streakDays)
         else -> stringResource(id = R.string.clean_streak_perfect_week_message)
     }
 
@@ -85,7 +85,7 @@ fun WeeklyCleanStreakCard(
                 for (i in 1..7) {
                     val filled = streakDays >= i
                     val scale = animateFloatAsState(
-                        targetValue = if (filled) 1f else 0.8f,
+                        targetValue = if (filled) 1.4f else 1f,
                         animationSpec = tween(durationMillis = 300),
                         label = "StreakDotScale$i"
                     ).value
@@ -93,7 +93,7 @@ fun WeeklyCleanStreakCard(
                         imageVector = if (filled) Icons.Rounded.AutoAwesome else Icons.Outlined.AutoAwesome,
                         contentDescription = null,
                         tint = if (filled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
-                        modifier = Modifier.size(SizeConstants.LargeSize).graphicsLayer {
+                        modifier = Modifier.graphicsLayer {
                             scaleX = scale
                             scaleY = scale
                         }

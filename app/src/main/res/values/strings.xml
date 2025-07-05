@@ -89,10 +89,10 @@
     <string name="install_button_icon_description">Install app icon</string>
     <string name="move_to_trash_icon_description">Move to trash icon</string>
     <string name="delete_forever_icon_description">Delete forever icon</string>
-    <string name="clean_streak_title">✨ Weekly Clean Streak</string>
+    <string name="clean_streak_title">🧹 Weekly Clean Streak</string>
     <string name="clean_streak_start">Start your Clean Streak today.</string>
     <string name="clean_streak_in_progress">%1$d days in a row — keep it up!</string>
-    <string name="clean_streak_perfect_week_message">Perfect week! 💎 You've earned it.</string>
+    <string name="clean_streak_perfect_week_message">Perfect week! 💎 You\'ve earned it.</string>
     <string name="streak_reward_day1">Nice start!</string>
     <string name="streak_reward_day3">Did you know you can sort by size?</string>
     <string name="streak_reward_day5">Estimate system junk!</string>
