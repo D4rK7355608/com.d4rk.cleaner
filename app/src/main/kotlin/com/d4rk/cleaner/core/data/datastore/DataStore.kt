@@ -317,4 +317,37 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         }
     }
 
+    private val streakCountKey = intPreferencesKey(name = AppDataStoreConstants.DATA_STORE_STREAK_COUNT)
+    val streakCount: Flow<Int> = dataStore.data.map { prefs ->
+        prefs[streakCountKey] ?: 0
+    }
+
+    suspend fun saveStreakCount(count: Int) {
+        dataStore.edit { prefs ->
+            prefs[streakCountKey] = count
+        }
+    }
+
+    private val lastCleanDayKey = longPreferencesKey(name = AppDataStoreConstants.DATA_STORE_LAST_CLEAN_DAY)
+    val lastCleanDay: Flow<Long> = dataStore.data.map { prefs ->
+        prefs[lastCleanDayKey] ?: 0L
+    }
+
+    suspend fun saveLastCleanDay(timestamp: Long) {
+        dataStore.edit { prefs ->
+            prefs[lastCleanDayKey] = timestamp
+        }
+    }
+
+    private val streakReminderEnabledKey = booleanPreferencesKey(AppDataStoreConstants.DATA_STORE_STREAK_REMINDER_ENABLED)
+    val streakReminderEnabled: Flow<Boolean> = dataStore.data.map { prefs ->
+        prefs[streakReminderEnabledKey] ?: false
+    }
+
+    suspend fun saveStreakReminderEnabled(enabled: Boolean) {
+        dataStore.edit { prefs ->
+            prefs[streakReminderEnabledKey] = enabled
+        }
+    }
+
 }

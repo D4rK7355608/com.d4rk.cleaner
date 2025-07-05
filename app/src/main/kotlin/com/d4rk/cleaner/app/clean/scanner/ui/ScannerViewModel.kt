@@ -83,6 +83,9 @@ class ScannerViewModel(
     private val _clipboardDetectedSensitive = MutableStateFlow(false)
     val clipboardDetectedSensitive: StateFlow<Boolean> = _clipboardDetectedSensitive
 
+    private val _cleanStreak = MutableStateFlow(0)
+    val cleanStreak: StateFlow<Int> = _cleanStreak
+
     init {
         clipboardManager.addPrimaryClipChangedListener(clipboardListener)
         onEvent(ScannerEvent.LoadInitialData)
@@ -90,6 +93,7 @@ class ScannerViewModel(
         loadWhatsAppMedia()
         loadClipboardData()
         loadPromotedApp()
+        loadCleanStreak()
         launch(dispatchers.io) {
             CleaningEventBus.events.collectLatest {
                 onEvent(ScannerEvent.RefreshData)
@@ -883,6 +887,14 @@ class ScannerViewModel(
                 _uiState.updateData(ScreenState.Success()) { current ->
                     current.copy(promotedApp = promoted)
                 }
+            }
+        }
+    }
+
+    private fun loadCleanStreak() {
+        launch(dispatchers.io) {
+            dataStore.streakCount.collect { streak ->
+                _cleanStreak.value = streak
             }
         }
     }

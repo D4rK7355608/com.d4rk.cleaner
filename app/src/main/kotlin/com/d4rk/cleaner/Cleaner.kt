@@ -15,8 +15,10 @@ import coil3.memory.MemoryCache
 import com.d4rk.android.libs.apptoolkit.data.core.BaseCoreManager
 import com.d4rk.android.libs.apptoolkit.data.core.ads.AdsCoreManager
 import com.d4rk.cleaner.app.notifications.work.CleanupReminderScheduler
+import com.d4rk.cleaner.app.notifications.work.StreakReminderScheduler
 import com.d4rk.cleaner.core.di.initializeKoin
 import com.d4rk.cleaner.core.utils.constants.ads.AdsConstants
+import com.d4rk.cleaner.core.utils.helpers.StreakTracker
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.supervisorScope
@@ -29,9 +31,11 @@ class Cleaner : BaseCoreManager(), SingletonImageLoader.Factory {
 
     override fun onCreate() {
         initializeKoin(context = this)
+        StreakTracker.initialize()
         SingletonImageLoader.setSafe { newImageLoader(this) }
         super.onCreate()
         CleanupReminderScheduler.schedule(this)
+        StreakReminderScheduler.schedule(this)
         registerActivityLifecycleCallbacks(this)
         ProcessLifecycleOwner.get().lifecycle.addObserver(observer = this)
     }

@@ -320,4 +320,16 @@
     <string name="no_files_selected_to_clean">No files selected to clean.</string>
     <string name="failed_to_update_trash_size">Failed to update trash size: %1$s</string>
     <string name="no_cleaning_options_selected">Please choose your cleaning preferences in settings to proceed.</string>
+    <string name="clean_streak_title">🔥 Weekly Clean Streak</string>
+    <string name="clean_streak_days_format">You've cleaned for %1$d day(s) in a row!</string>
+    <string name="clean_streak_perfect_week">🏆 Perfect Week! Keep it going!</string>
+    <string name="streak_reward_day1">Nice start!</string>
+    <string name="streak_reward_day3">Did you know you can sort by size?</string>
+    <string name="streak_reward_day5">Estimate system junk!</string>
+    <string name="streak_reward_day7">Perfect Week 🏅</string>
+    <string name="streak_notification_title">Keep your Clean Streak going!</string>
+    <string name="streak_notification_daily">Time to clean up your device and keep your streak going.</string>
+    <string name="streak_notification_missed">You didn’t clean yesterday — clean now to keep the 🔥 alive!</string>
+    <string name="streak_notification_milestone_format">🔥 You're on a %1$d-day streak! Great job!</string>
+    <string name="preference_streak_reminder">Remind me to clean daily (helps maintain streak)</string>
 </resources>
