@@ -350,4 +350,26 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         }
     }
 
+    private val showStreakCardKey = booleanPreferencesKey(AppDataStoreConstants.DATA_STORE_SHOW_STREAK_CARD)
+    val showStreakCard: Flow<Boolean> = dataStore.data.map { prefs ->
+        prefs[showStreakCardKey] ?: true
+    }
+
+    suspend fun saveShowStreakCard(show: Boolean) {
+        dataStore.edit { prefs ->
+            prefs[showStreakCardKey] = show
+        }
+    }
+
+    private val streakHideUntilKey = longPreferencesKey(AppDataStoreConstants.DATA_STORE_STREAK_HIDE_UNTIL)
+    val streakHideUntil: Flow<Long> = dataStore.data.map { prefs ->
+        prefs[streakHideUntilKey] ?: 0L
+    }
+
+    suspend fun saveStreakHideUntil(timestamp: Long) {
+        dataStore.edit { prefs ->
+            prefs[streakHideUntilKey] = timestamp
+        }
+    }
+
 }

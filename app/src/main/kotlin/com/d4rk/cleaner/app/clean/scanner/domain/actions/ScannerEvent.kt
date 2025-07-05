@@ -20,5 +20,8 @@ sealed class ScannerEvent : UiEvent {
     object MoveSelectedToTrash : ScannerEvent()
     data class SetDeleteForeverConfirmationDialogVisibility(val isVisible : Boolean) : ScannerEvent()
     data class SetMoveToTrashConfirmationDialogVisibility(val isVisible : Boolean) : ScannerEvent()
+    data class SetHideStreakDialogVisibility(val isVisible: Boolean) : ScannerEvent()
+    data object HideStreakForNow : ScannerEvent()
+    data object HideStreakPermanently : ScannerEvent()
     data object DismissSnackbar : ScannerEvent()
 }

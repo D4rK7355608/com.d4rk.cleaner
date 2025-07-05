@@ -15,7 +15,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -25,6 +31,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.res.stringResource
+import androidx.compose.foundation.layout.Row
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ads.AdsConfig
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.ads.AdBanner
@@ -65,6 +73,9 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
     val whatsappSummary by viewModel.whatsAppMediaSummary.collectAsState()
     val clipboardText by viewModel.clipboardPreview.collectAsState()
     val streakDays by viewModel.cleanStreak.collectAsState()
+    val showStreakCard by viewModel.showStreakCard.collectAsState()
+    val streakHideUntil by viewModel.streakHideUntil.collectAsState()
+    val streakDialogVisible = uiState.data?.isHideStreakDialogVisible == true
     val promotedApp = uiState.data?.promotedApp
     val mediumRectAdsConfig: AdsConfig = koinInject(qualifier = named(name = "banner_medium_rectangle"))
     val largeBannerAdsConfig: AdsConfig = koinInject(qualifier = named(name = "large_banner"))
@@ -123,7 +134,25 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                             onQuickScanClick = { viewModel.onEvent(event = ScannerEvent.ToggleAnalyzeScreen(visible = true)) }
                         )
 
-                        WeeklyCleanStreakCard(streakDays = streakDays)
+                        if (showStreakCard) {
+                            WeeklyCleanStreakCard(
+                                streakDays = streakDays,
+                                onDismiss = { viewModel.onEvent(ScannerEvent.SetHideStreakDialogVisibility(true)) }
+                            )
+                        } else if (streakHideUntil > System.currentTimeMillis()) {
+                            OutlinedCard(
+                                modifier = Modifier.fillMaxWidth(),
+                                shape = RoundedCornerShape(SizeConstants.ExtraLargeSize)
+                            ) {
+                                Text(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(SizeConstants.LargeSize),
+                                    text = stringResource(id = R.string.streak_quiet_banner),
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
+                        }
 
                         if (showWhatsAppCard) {
                             AnimatedVisibility(visible = showWhatsAppCard) {
@@ -206,4 +235,27 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
     }
 
     DefaultSnackbarHandler(screenState = uiState , snackbarHostState = snackbarHostState , getDismissEvent = { ScannerEvent.DismissSnackbar } , onEvent = { viewModel.onEvent(event = it) })
+
+    if (streakDialogVisible) {
+        AlertDialog(
+            onDismissRequest = { viewModel.onEvent(ScannerEvent.SetHideStreakDialogVisibility(false)) },
+            confirmButton = {
+                Row(horizontalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize)) {
+                    TextButton(onClick = { viewModel.onEvent(ScannerEvent.HideStreakForNow) }) {
+                        Text(text = stringResource(id = R.string.hide_for_now))
+                    }
+                    TextButton(onClick = { viewModel.onEvent(ScannerEvent.HideStreakPermanently) }) {
+                        Text(text = stringResource(id = R.string.dont_show_again))
+                    }
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { viewModel.onEvent(ScannerEvent.SetHideStreakDialogVisibility(false)) }) {
+                    Text(text = stringResource(id = R.string.cancel))
+                }
+            },
+            title = { Text(text = stringResource(id = R.string.hide_clean_streak_title)) },
+            text = { Text(text = stringResource(id = R.string.hide_clean_streak_message)) }
+        )
+    }
 }

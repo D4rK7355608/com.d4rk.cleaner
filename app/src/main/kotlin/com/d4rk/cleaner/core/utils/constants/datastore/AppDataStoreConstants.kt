@@ -34,4 +34,6 @@ object AppDataStoreConstants : DataStoreNamesConstants() {
     const val DATA_STORE_STREAK_COUNT = "streak_count"
     const val DATA_STORE_LAST_CLEAN_DAY = "last_clean_day"
     const val DATA_STORE_STREAK_REMINDER_ENABLED = "streak_reminder_enabled"
+    const val DATA_STORE_SHOW_STREAK_CARD = "show_streak_card"
+    const val DATA_STORE_STREAK_HIDE_UNTIL = "streak_hide_until"
 }
