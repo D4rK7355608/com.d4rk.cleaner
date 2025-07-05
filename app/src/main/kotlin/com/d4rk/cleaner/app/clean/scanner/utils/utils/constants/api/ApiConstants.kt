@@ -5,7 +5,7 @@ object ApiHost {
     const val USERNAME: String = "D4rK7355608"
     const val API_REPO: String = "com.d4rk.apis"
     const val API_BRANCH: String = "main"
-    const val API_FOLDER_PATH: String = "App%20Toolkit"
+    const val API_FOLDER_PATH: String = "App Toolkit"
 }
 
 object ApiEnvironments {

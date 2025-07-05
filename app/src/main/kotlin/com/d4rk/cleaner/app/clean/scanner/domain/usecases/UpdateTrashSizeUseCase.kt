@@ -18,8 +18,6 @@ class UpdateTrashSizeUseCase(
                 homeRepository.subtractTrashSize(size = - sizeChange)
             }
             emit(DataState.Success(data = Unit))
-        }.onFailure { e ->
-            // emit(DataState.Error(e))
         }
     }
 }
