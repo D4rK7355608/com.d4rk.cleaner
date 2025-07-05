@@ -119,6 +119,8 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                         }
                     }
                 } else {
+                    val cleanerCardsCount = listOf(showWhatsAppCard, showApkCard, showClipboardCard).count { it }
+
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
@@ -134,6 +136,10 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                             progress = uiState.data?.storageInfo?.storageUsageProgress ?: 0f,
                             onQuickScanClick = { viewModel.onEvent(event = ScannerEvent.ToggleAnalyzeScreen(visible = true)) }
                         )
+
+                        promotedApp?.let { app ->
+                            PromotedAppCard(app = app)
+                        }
 
                         if (showStreakCard) {
                             WeeklyCleanStreakCard(
@@ -153,6 +159,14 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
+                        }
+
+                        if (cleanerCardsCount > 0) {
+                            val topAdConfig = if (cleanerCardsCount > 1) largeBannerAdsConfig else bannerAdsConfig
+                            AdBanner(
+                                modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                                adsConfig = topAdConfig
+                            )
                         }
 
                         if (showWhatsAppCard) {
@@ -185,10 +199,22 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                             }
                         }
 
-                        AdBanner(
-                            modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
-                            adsConfig = mediumRectAdsConfig
-                        )
+                        if (showClipboardCard) {
+                            AnimatedVisibility(visible = showClipboardCard) {
+                                ClipboardCleanerCard(
+                                    clipboardText = clipboardText,
+                                    onCleanClick = { viewModel.onClipboardClear() }
+                                )
+                            }
+                        }
+
+                        if (cleanerCardsCount > 0) {
+                            val midAdConfig = if (cleanerCardsCount >= 2) mediumRectAdsConfig else bannerAdsConfig
+                            AdBanner(
+                                modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                                adsConfig = midAdConfig
+                            )
+                        }
 
                         ImageOptimizerCard(
                             onOptimizeClick = {
@@ -199,34 +225,19 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                             }
                         )
 
-                        if (showClipboardCard) {
-                            AnimatedVisibility(visible = showClipboardCard) {
-                                ClipboardCleanerCard(
-                                    clipboardText = clipboardText,
-                                    onCleanClick = { viewModel.onClipboardClear() }
-                                )
-                            }
-                        }
-
-                        AdBanner(
-                            modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
-                            adsConfig = largeBannerAdsConfig
-                        )
-
                         CacheCleanerCard(
                             onScanClick = {
                                 viewModel.onEvent(ScannerEvent.CleanCache)
                             }
                         )
 
-                        promotedApp?.let { app ->
-                            PromotedAppCard(app = app)
+                        if (promotedApp == null || cleanerCardsCount >= 2) {
+                            val endAdConfig = if (promotedApp == null) largeBannerAdsConfig else bannerAdsConfig
+                            AdBanner(
+                                modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                                adsConfig = endAdConfig
+                            )
                         }
-
-                        AdBanner(
-                            modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
-                            adsConfig = bannerAdsConfig
-                        )
 
                         LargeVerticalSpacer()
                     }
