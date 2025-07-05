@@ -1,16 +1,16 @@
 package com.d4rk.cleaner.app.clean.scanner.ui.components
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.outlined.AutoAwesome
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.rounded.AutoAwesome
@@ -24,9 +24,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
-import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
-import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
+import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 
 @Composable
@@ -70,10 +69,9 @@ fun WeeklyCleanStreakCard(
                     modifier = Modifier.align(Alignment.CenterEnd).bounceClick(),
                     onClick = onDismiss
                 ) {
-                    Icon(imageVector = Icons.Outlined.Close, contentDescription = null)
+                    Icon(modifier = Modifier.size(SizeConstants.ButtonIconSize), imageVector = Icons.Outlined.Close, contentDescription = null)
                 }
             }
-            LargeVerticalSpacer()
             Text(
                 text = message,
                 style = MaterialTheme.typography.bodyMedium

@@ -98,7 +98,7 @@ fun AppItemComposable(
                     view.playSoundEffect(SoundEffectConstants.CLICK)
                     showMenu = true
                 }) {
-                    Icon(Icons.Outlined.MoreVert, contentDescription = null)
+                    Icon(modifier = Modifier.size(SizeConstants.ButtonIconSize), imageVector = Icons.Outlined.MoreVert, contentDescription = null)
                 }
 
                 DropdownMenu(expanded = showMenu, onDismissRequest = {
