@@ -28,7 +28,7 @@ import androidx.compose.material.icons.automirrored.filled.ViewList
 import androidx.compose.material.icons.filled.GridView
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.FolderOff
-import androidx.compose.material3.AlertDialog
+import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
@@ -37,7 +37,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
@@ -276,22 +275,16 @@ fun DetailsScreen(
     }
 
     if (showConfirm) {
-        AlertDialog(
-            onDismissRequest = { showConfirm = false },
-            confirmButton = {
-                TextButton(onClick = {
-                    showConfirm = false
-                    onDelete(selected.toList())
-                    selected.clear()
-                }) {
-                    Text(text = stringResource(id = R.string.delete))
-                }
+        BasicAlertDialog(
+            onDismiss = { showConfirm = false },
+            onConfirm = {
+                showConfirm = false
+                onDelete(selected.toList())
+                selected.clear()
             },
-            dismissButton = {
-                TextButton(onClick = { showConfirm = false }) { Text("Cancel") }
-            },
-            title = { Text(text = stringResource(id = R.string.delete_confirmation_title)) },
-            text = {
+            onCancel = { showConfirm = false },
+            title = stringResource(id = R.string.delete_confirmation_title),
+            content = {
                 Text(
                     text = pluralStringResource(
                         id = R.plurals.delete_confirmation_message,
@@ -299,7 +292,9 @@ fun DetailsScreen(
                         selected.size
                     )
                 )
-            }
+            },
+            confirmButtonText = stringResource(id = R.string.delete),
+            dismissButtonText = "Cancel"
         )
     }
 }
