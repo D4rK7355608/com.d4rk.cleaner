@@ -4,17 +4,14 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-06-25T12:35:22.961616800Z">
+        <DropdownSelection timestamp="2025-07-05T06:47:25.734260800Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\d4rk7\.android\avd\Pixel_Tablet.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=3B230DLJG002U4" />
             </handle>
           </Target>
         </DropdownSelection>
         <DialogSelection />
-      </SelectionState>
-      <SelectionState runConfigName="Smart_Cleaner_for_Android.app">
-        <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
   </component>
