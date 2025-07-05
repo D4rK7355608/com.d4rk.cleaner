@@ -109,9 +109,9 @@
     <string name="hide_clean_streak_title">Hide Clean Streak?</string>
     <string name="hide_clean_streak_message">Would you like to hide your Clean Streak card?</string>
     <string name="hide_for_now">Hide for now</string>
-    <string name="dont_show_again">Don't show again</string>
+    <string name="dont_show_again">Don\'t show again</string>
     <string name="preference_show_streak_card">Show Clean Streak Card</string>
-    <string name="streak_quiet_banner">You're in quiet mode. Clean streak resumes next week.</string>
+    <string name="streak_quiet_banner">You\'re in quiet mode. Clean streak resumes next week.</string>
     <string name="streak_return_toast">Clean Streak will return next time you clean.</string>
     <string name="apk_card_title">Old Installers Found</string>
     <string name="apk_card_subtitle">Remove leftover installer files and reclaim space.</string>
