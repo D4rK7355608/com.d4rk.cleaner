@@ -10,11 +10,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DeleteSweep
 import androidx.compose.material.icons.outlined.FolderOff
-import androidx.compose.material3.AlertDialog
+import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
@@ -123,23 +122,17 @@ fun WhatsappCleanerSummaryScreen(activity: Activity) {
     }
 
     if (showCleanDialog) {
-        AlertDialog(
-            onDismissRequest = { showCleanDialog = false },
-            confirmButton = {
-                TextButton(onClick = {
-                    showCleanDialog = false
-                    viewModel.onEvent(WhatsAppCleanerEvent.CleanAll)
-                }) {
-                    Text(text = stringResource(id = R.string.clean_whatsapp))
-                }
+        BasicAlertDialog(
+            onDismiss = { showCleanDialog = false },
+            onConfirm = {
+                showCleanDialog = false
+                viewModel.onEvent(WhatsAppCleanerEvent.CleanAll)
             },
-            dismissButton = {
-                TextButton(onClick = { showCleanDialog = false }) {
-                    Text(text = stringResource(id = R.string.cancel))
-                }
-            },
-            title = { Text(text = stringResource(id = R.string.clean_whatsapp_warning_title)) },
-            text = { Text(text = stringResource(id = R.string.clean_whatsapp_warning_message)) }
+            onCancel = { showCleanDialog = false },
+            title = stringResource(id = R.string.clean_whatsapp_warning_title),
+            content = { Text(text = stringResource(id = R.string.clean_whatsapp_warning_message)) },
+            confirmButtonText = stringResource(id = R.string.clean_whatsapp),
+            dismissButtonText = stringResource(id = R.string.cancel)
         )
     }
 }
