@@ -91,10 +91,10 @@
     <string name="delete_forever_icon_description">Delete forever icon</string>
     <string name="clean_streak_title">🔥 Weekly Clean Streak</string>
     <string name="clean_streak_start">Start your clean streak today!</string>
-    <string name="clean_streak_day1">You’ve started a streak! 🔥 Keep going!</string>
-    <string name="clean_streak_day2_3">Nice! You’re on a %1$d-day streak.</string>
+    <string name="clean_streak_day1">You\'ve started a streak! 🔥 Keep going!</string>
+    <string name="clean_streak_day2_3">Nice! You\'re on a %1$d-day streak.</string>
     <string name="clean_streak_almost_week">Almost there… One more clean for a perfect week!</string>
-    <string name="clean_streak_week">🏆 7-Day Streak! You're on fire!</string>
+    <string name="clean_streak_week">🏆 7-Day Streak! You\'re on fire!</string>
     <string name="clean_streak_long_format">🔥 %1$d-Day Streak! You’re unstoppable.</string>
     <string name="clean_streak_perfect_week">🏆 Perfect Week! Keep it going!</string>
     <string name="streak_reward_day1">Nice start!</string>
