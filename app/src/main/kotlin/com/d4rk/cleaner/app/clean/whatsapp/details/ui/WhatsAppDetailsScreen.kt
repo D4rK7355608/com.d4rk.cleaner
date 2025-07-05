@@ -29,6 +29,7 @@ import androidx.compose.material.icons.automirrored.filled.Sort
 import androidx.compose.material.icons.automirrored.filled.ViewList
 import androidx.compose.material.icons.filled.GridView
 import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.FolderOff
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -59,11 +60,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.painterResource
 import com.d4rk.cleaner.app.clean.whatsapp.utils.constants.WhatsAppMediaConstants
 import androidx.compose.ui.unit.dp
+import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
+import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
+import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
+import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.scanner.ui.components.FilePreviewCard
-import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.WhatsAppMediaSummary
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsappCleanerSummaryViewModel
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
+import com.d4rk.cleaner.app.clean.whatsapp.details.domain.actions.WhatsAppDetailsEvent
+import com.d4rk.cleaner.app.clean.whatsapp.details.domain.model.UiWhatsAppDetailsModel
 import com.d4rk.cleaner.app.clean.whatsapp.utils.helpers.openFile
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.CustomTabLayout
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.SortDialog
@@ -80,8 +88,8 @@ fun DetailsScreen(
     activity: Activity
 ) {
 
-    val state = viewModel.uiState.collectAsState().value
-    val summary = state.data?.mediaSummary ?: WhatsAppMediaSummary()
+    val state: UiStateScreen<UiWhatsAppCleanerModel> by viewModel.uiState.collectAsState()
+    val detailsState: UiStateScreen<UiWhatsAppDetailsModel> by detailsViewModel.uiState.collectAsState()
     val localizedTitle = when (title) {
         WhatsAppMediaConstants.IMAGES -> stringResource(id = R.string.images)
         WhatsAppMediaConstants.VIDEOS -> stringResource(id = R.string.videos)
@@ -96,67 +104,19 @@ fun DetailsScreen(
         WhatsAppMediaConstants.PROFILE_PHOTOS -> stringResource(id = R.string.profile_photos)
         else -> title
     }
-    val files = when (title) {
-        WhatsAppMediaConstants.IMAGES -> summary.images.files
-        WhatsAppMediaConstants.VIDEOS -> summary.videos.files
-        WhatsAppMediaConstants.DOCUMENTS -> summary.documents.files
-        WhatsAppMediaConstants.AUDIOS -> summary.audios.files
-        WhatsAppMediaConstants.STATUSES -> summary.statuses.files
-        WhatsAppMediaConstants.VOICE_NOTES -> summary.voiceNotes.files
-        WhatsAppMediaConstants.VIDEO_NOTES -> summary.videoNotes.files
-        WhatsAppMediaConstants.GIFS -> summary.gifs.files
-        WhatsAppMediaConstants.WALLPAPERS -> summary.wallpapers.files
-        WhatsAppMediaConstants.STICKERS -> summary.stickers.files
-        WhatsAppMediaConstants.PROFILE_PHOTOS -> summary.profilePhotos.files
-        else -> emptyList()
-    }
-
     val selected = remember { mutableStateListOf<File>() }
-    val isGrid: Boolean by detailsViewModel.isGridView.collectAsState()
-    var showSort: Boolean by remember { mutableStateOf(false) }
-    var showConfirm: Boolean by remember { mutableStateOf(false) }
-
-    LaunchedEffect(files) {
-        detailsViewModel.setFiles(files)
-    }
+    val isGrid = detailsState.data?.isGridView ?: true
+    var showSort by remember { mutableStateOf(false) }
+    var showConfirm by remember { mutableStateOf(false) }
 
     val scrollBehavior: TopAppBarScrollBehavior =
         TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    val sortedFiles by detailsViewModel.files.collectAsState()
-    val receivedFiles = remember(sortedFiles) {
-        sortedFiles.filterNot { it.path.contains("${File.separator}Sent") || it.path.contains("${File.separator}Private") }
-    }
-    val sentFiles = remember(sortedFiles) { sortedFiles.filter { it.path.contains("${File.separator}Sent") } }
-    val privateFiles = remember(sortedFiles) { sortedFiles.filter { it.path.contains("${File.separator}Private") } }
-
-    val hasSent = sentFiles.isNotEmpty()
-    val hasPrivate = privateFiles.isNotEmpty()
-
-    val tabs = listOfNotNull(
-        stringResource(id = R.string.received),
-        if (hasSent) stringResource(id = R.string.sent) else null,
-        if (hasPrivate) stringResource(id = R.string.private_tab) else null
-    )
-
-    val tabFiles = buildList {
-        add(receivedFiles)
-        if (hasSent) add(sentFiles)
-        if (hasPrivate) add(privateFiles)
-    }
-
-    val suggested by detailsViewModel.suggested.collectAsState()
-
-    val pagerState = rememberPagerState { tabs.size }
-    var selectedTabIndex by remember { mutableIntStateOf(0) }
-    val scope = rememberCoroutineScope()
-
-    LaunchedEffect(pagerState.currentPage) {
-        selectedTabIndex = pagerState.currentPage
-    }
+    val sortedFiles = detailsState.data?.files ?: emptyList()
+    val suggested = detailsState.data?.suggested ?: emptyList()
 
     LargeTopAppBarWithScaffold(
         actions = {
-            IconButton(onClick = { detailsViewModel.toggleView() }) {
+            IconButton(onClick = { detailsViewModel.onEvent(WhatsAppDetailsEvent.ToggleView) }) {
                 Icon(
                     imageVector = if (isGrid) Icons.AutoMirrored.Filled.ViewList else Icons.Filled.GridView,
                     contentDescription = null
@@ -168,88 +128,149 @@ fun DetailsScreen(
             }
         },
         title = localizedTitle,
-        onBackClicked = {
-            activity.finish()
-        },
+        onBackClicked = { activity.finish() },
         scrollBehavior = scrollBehavior,
     ) { paddingValues ->
-        Column(modifier = Modifier
-            .fillMaxSize()
-            .padding(paddingValues)) {
-            if (suggested.isNotEmpty()) {
-                SmartSuggestionsCard(
-                    selected = selected,
-                    suggested = suggested,
-                    onShowConfirmChange = { showConfirm = it }
+        ScreenStateHandler(
+            screenState = state,
+            onLoading = { LoadingScreen() },
+            onEmpty = {
+                NoDataScreen(
+                    icon = Icons.Outlined.FolderOff,
+                    showRetry = true,
+                    onRetry = { viewModel.onEvent(WhatsAppCleanerEvent.LoadMedia) }
                 )
-            }
-            if (hasSent || hasPrivate) {
-                CustomTabLayout(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp),
-                    selectedItemIndex = selectedTabIndex,
-                    items = tabs,
-                    filesPerTab = tabFiles,
-                    selectedFiles = selected,
-                    onTabSelected = { index ->
-                        selectedTabIndex = index
-                        scope.launch { pagerState.animateScrollToPage(index) }
-                    },
-                    onTabCheckedChange = { index, checked ->
-                        val files = tabFiles.getOrNull(index) ?: emptyList()
-                        if (checked) {
-                            files.filterNot { it in selected }.forEach { selected.add(it) }
-                        } else {
-                            selected.removeAll(files)
-                        }
-                    }
-                )
-            }
-
-            HorizontalPager(
-                state = pagerState,
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth()
-            ) { page ->
-                val list = when (page) {
-                    0 -> receivedFiles
-                    1 -> if (hasSent) sentFiles else privateFiles
-                    else -> privateFiles
+            },
+            onSuccess = { data ->
+                val summary = data.mediaSummary
+                val files = when (title) {
+                    WhatsAppMediaConstants.IMAGES -> summary.images.files
+                    WhatsAppMediaConstants.VIDEOS -> summary.videos.files
+                    WhatsAppMediaConstants.DOCUMENTS -> summary.documents.files
+                    WhatsAppMediaConstants.AUDIOS -> summary.audios.files
+                    WhatsAppMediaConstants.STATUSES -> summary.statuses.files
+                    WhatsAppMediaConstants.VOICE_NOTES -> summary.voiceNotes.files
+                    WhatsAppMediaConstants.VIDEO_NOTES -> summary.videoNotes.files
+                    WhatsAppMediaConstants.GIFS -> summary.gifs.files
+                    WhatsAppMediaConstants.WALLPAPERS -> summary.wallpapers.files
+                    WhatsAppMediaConstants.STICKERS -> summary.stickers.files
+                    WhatsAppMediaConstants.PROFILE_PHOTOS -> summary.profilePhotos.files
+                    else -> emptyList()
                 }
 
-                DetailsScreenContent(
-                    paddingValues = paddingValues,
-                    selected = selected,
-                    isGrid = isGrid,
-                    onShowConfirmChange = { showConfirm = it },
-                    detailsViewModel = detailsViewModel,
-                    files = list
-                )
-            }
+                LaunchedEffect(files) { detailsViewModel.onEvent(WhatsAppDetailsEvent.SetFiles(files)) }
 
-            Button(
-                onClick = { showConfirm = true },
-                enabled = selected.isNotEmpty(),
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(8.dp)
-            ) {
-                Text(text = stringResource(id = R.string.delete_selected))
+                val receivedFiles = remember(sortedFiles) {
+                    sortedFiles.filterNot { it.path.contains("${File.separator}Sent") || it.path.contains("${File.separator}Private") }
+                }
+                val sentFiles = remember(sortedFiles) { sortedFiles.filter { it.path.contains("${File.separator}Sent") } }
+                val privateFiles = remember(sortedFiles) { sortedFiles.filter { it.path.contains("${File.separator}Private") } }
+
+                val hasSent = sentFiles.isNotEmpty()
+                val hasPrivate = privateFiles.isNotEmpty()
+
+                val tabs = listOfNotNull(
+                    stringResource(id = R.string.received),
+                    if (hasSent) stringResource(id = R.string.sent) else null,
+                    if (hasPrivate) stringResource(id = R.string.private_tab) else null,
+                )
+
+                val tabFiles = buildList {
+                    add(receivedFiles)
+                    if (hasSent) add(sentFiles)
+                    if (hasPrivate) add(privateFiles)
+                }
+
+                val pagerState = rememberPagerState { tabs.size }
+                var selectedTabIndex by remember { mutableIntStateOf(0) }
+                val scope = rememberCoroutineScope()
+
+                LaunchedEffect(pagerState.currentPage) { selectedTabIndex = pagerState.currentPage }
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues)
+                ) {
+                    if (suggested.isNotEmpty()) {
+                        SmartSuggestionsCard(
+                            selected = selected,
+                            suggested = suggested,
+                            onShowConfirmChange = { showConfirm = it }
+                        )
+                    }
+
+                    if (hasSent || hasPrivate) {
+                        CustomTabLayout(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 16.dp, vertical = 8.dp),
+                            selectedItemIndex = selectedTabIndex,
+                            items = tabs,
+                            filesPerTab = tabFiles,
+                            selectedFiles = selected,
+                            onTabSelected = { index ->
+                                selectedTabIndex = index
+                                scope.launch { pagerState.animateScrollToPage(index) }
+                            },
+                            onTabCheckedChange = { index, checked ->
+                                val listFiles = tabFiles.getOrNull(index) ?: emptyList()
+                                if (checked) {
+                                    listFiles.filterNot { it in selected }.forEach { selected.add(it) }
+                                } else {
+                                    selected.removeAll(listFiles)
+                                }
+                            }
+                        )
+                    }
+
+                    HorizontalPager(
+                        state = pagerState,
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxWidth(),
+                    ) { page ->
+                        val list = when (page) {
+                            0 -> receivedFiles
+                            1 -> if (hasSent) sentFiles else privateFiles
+                            else -> privateFiles
+                        }
+
+                        DetailsScreenContent(
+                            paddingValues = paddingValues,
+                            selected = selected,
+                            isGrid = isGrid,
+                            onShowConfirmChange = { showConfirm = it },
+                            detailsViewModel = detailsViewModel,
+                            files = list
+                        )
+                    }
+
+                    Button(
+                        onClick = { showConfirm = true },
+                        enabled = selected.isNotEmpty(),
+                        modifier = Modifier
+                            .align(Alignment.CenterHorizontally)
+                            .padding(8.dp),
+                    ) {
+                        Text(text = stringResource(id = R.string.delete_selected))
+                    }
+                }
             }
-        }
+        )
     }
 
     if (showSort) {
         SortDialog(
-            current = detailsViewModel.sortType.collectAsState().value,
-            descending = detailsViewModel.descending.collectAsState().value,
-            startDate = detailsViewModel.startDate.collectAsState().value,
-            endDate = detailsViewModel.endDate.collectAsState().value,
+            current = detailsState.data?.sortType ?: SortType.DATE,
+            descending = detailsState.data?.descending ?: false,
+            startDate = detailsState.data?.startDate,
+            endDate = detailsState.data?.endDate,
             onDismiss = { showSort = false },
             onApply = { type, desc, start, end ->
-                detailsViewModel.applySort(type, desc, start, end)
+                detailsViewModel.onEvent(
+                    WhatsAppDetailsEvent.ApplySort(type, desc, start, end)
+                )
             }
         )
     }

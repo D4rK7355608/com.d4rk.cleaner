@@ -16,5 +16,5 @@ val whatsappCleanerModule: Module = module {
     single { GetWhatsAppMediaSummaryUseCase(repository = get()) }
     single { DeleteWhatsAppMediaUseCase(repository = get()) }
     viewModel { WhatsappCleanerSummaryViewModel(getSummaryUseCase = get(), deleteUseCase = get(), dispatchers = get()) }
-    viewModel { DetailsViewModel(dataStore = get()) }
+    viewModel { DetailsViewModel(dataStore = get(), dispatchers = get()) }
 }
