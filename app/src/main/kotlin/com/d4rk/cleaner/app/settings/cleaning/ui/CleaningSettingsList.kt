@@ -42,6 +42,7 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
     val deleteImageFiles : Boolean by dataStore.deleteImageFiles.collectAsState(initial = false)
     val deleteDuplicateFiles: Boolean by dataStore.deleteDuplicateFiles.collectAsState(initial = false)
     val clipboardClean : Boolean by dataStore.clipboardClean.collectAsState(initial = false)
+    val streakReminderEnabled: Boolean by dataStore.streakReminderEnabled.collectAsState(initial = false)
 
     LazyColumn(
         modifier = Modifier
@@ -248,6 +249,17 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
                 ) { isChecked ->
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveClipboardClean(isChecked)
+                    }
+                }
+
+                ExtraTinyVerticalSpacer()
+
+                SwitchPreferenceItem(
+                    title = stringResource(id = R.string.preference_streak_reminder),
+                    checked = streakReminderEnabled,
+                ) { isChecked ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        dataStore.saveStreakReminderEnabled(isChecked)
                     }
                 }
             }

@@ -45,6 +45,7 @@ import com.d4rk.cleaner.app.clean.scanner.ui.components.ClipboardCleanerCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.ImageOptimizerCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.PromotedAppCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.QuickScanSummaryCard
+import com.d4rk.cleaner.app.clean.scanner.ui.components.WeeklyCleanStreakCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.WhatsAppCleanerCard
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsAppCleanerActivity
 import com.d4rk.cleaner.app.images.picker.ui.ImagePickerActivity
@@ -63,6 +64,7 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
     val appManagerState: UiStateScreen<UiAppManagerModel> by appManagerViewModel.uiState.collectAsState()
     val whatsappSummary by viewModel.whatsAppMediaSummary.collectAsState()
     val clipboardText by viewModel.clipboardPreview.collectAsState()
+    val streakDays by viewModel.cleanStreak.collectAsState()
     val promotedApp = uiState.data?.promotedApp
     val mediumRectAdsConfig: AdsConfig = koinInject(qualifier = named(name = "banner_medium_rectangle"))
     val largeBannerAdsConfig: AdsConfig = koinInject(qualifier = named(name = "large_banner"))
@@ -120,6 +122,8 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                             progress = uiState.data?.storageInfo?.storageUsageProgress ?: 0f,
                             onQuickScanClick = { viewModel.onEvent(event = ScannerEvent.ToggleAnalyzeScreen(visible = true)) }
                         )
+
+                        WeeklyCleanStreakCard(streakDays = streakDays)
 
                         if (showWhatsAppCard) {
                             AnimatedVisibility(visible = showWhatsAppCard) {

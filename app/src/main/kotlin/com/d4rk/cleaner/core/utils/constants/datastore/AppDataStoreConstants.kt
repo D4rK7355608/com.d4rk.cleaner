@@ -31,4 +31,7 @@ object AppDataStoreConstants : DataStoreNamesConstants() {
     const val DATA_STORE_OTHER_EXTENSIONS = "other_extensions"
     const val DATA_STORE_CLIPBOARD_CLEAN = "clipboard_clean"
     const val DATA_STORE_WHATSAPP_GRID_VIEW = "whatsapp_grid_view"
+    const val DATA_STORE_STREAK_COUNT = "streak_count"
+    const val DATA_STORE_LAST_CLEAN_DAY = "last_clean_day"
+    const val DATA_STORE_STREAK_REMINDER_ENABLED = "streak_reminder_enabled"
 }
