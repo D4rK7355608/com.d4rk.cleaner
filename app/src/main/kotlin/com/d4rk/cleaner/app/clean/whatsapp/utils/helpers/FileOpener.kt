@@ -3,9 +3,9 @@ package com.d4rk.cleaner.app.clean.whatsapp.utils.helpers
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import androidx.core.content.FileProvider
-import android.widget.Toast
 import android.webkit.MimeTypeMap
+import android.widget.Toast
+import androidx.core.content.FileProvider
 import java.io.File
 
 fun openFile(context: Context, file: File) {

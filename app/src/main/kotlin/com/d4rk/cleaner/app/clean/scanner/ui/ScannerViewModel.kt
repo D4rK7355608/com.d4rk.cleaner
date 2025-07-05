@@ -3,7 +3,6 @@ package com.d4rk.cleaner.app.clean.scanner.ui
 import android.app.Application
 import android.content.ClipboardManager
 import android.content.Context
-import com.d4rk.cleaner.core.utils.extensions.clearClipboardCompat
 import com.d4rk.android.libs.apptoolkit.core.di.DispatcherProvider
 import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.ScreenState
@@ -39,6 +38,7 @@ import com.d4rk.cleaner.app.clean.scanner.utils.helpers.getWhatsAppMediaSummary
 import com.d4rk.cleaner.app.settings.cleaning.utils.constants.ExtensionsConstants
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.domain.model.network.Errors
+import com.d4rk.cleaner.core.utils.extensions.clearClipboardCompat
 import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -23,7 +22,6 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Sort
 import androidx.compose.material.icons.automirrored.filled.ViewList
@@ -51,14 +49,15 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.painterResource
-import com.d4rk.cleaner.app.clean.whatsapp.utils.constants.WhatsAppMediaConstants
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
@@ -67,16 +66,17 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHa
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.scanner.ui.components.FilePreviewCard
-import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
-import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsappCleanerSummaryViewModel
-import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
 import com.d4rk.cleaner.app.clean.whatsapp.details.domain.actions.WhatsAppDetailsEvent
 import com.d4rk.cleaner.app.clean.whatsapp.details.domain.model.UiWhatsAppDetailsModel
-import com.d4rk.cleaner.app.clean.whatsapp.utils.helpers.openFile
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.CustomTabLayout
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.SortDialog
-import java.io.File
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
+import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsappCleanerSummaryViewModel
+import com.d4rk.cleaner.app.clean.whatsapp.utils.constants.WhatsAppMediaConstants
+import com.d4rk.cleaner.app.clean.whatsapp.utils.helpers.openFile
 import kotlinx.coroutines.launch
+import java.io.File
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable

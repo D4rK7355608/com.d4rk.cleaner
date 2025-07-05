@@ -1,7 +1,5 @@
 package com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model
 
-import java.io.File
-
 data class WhatsAppMediaSummary(
     val images: DirectorySummary = DirectorySummary(),
     val videos: DirectorySummary = DirectorySummary(),

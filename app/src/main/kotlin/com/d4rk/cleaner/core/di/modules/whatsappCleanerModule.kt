@@ -1,11 +1,11 @@
 package com.d4rk.cleaner.core.di.modules
 
+import com.d4rk.cleaner.app.clean.whatsapp.details.ui.DetailsViewModel
 import com.d4rk.cleaner.app.clean.whatsapp.summary.data.WhatsAppCleanerRepositoryImpl
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.repository.WhatsAppCleanerRepository
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.DeleteWhatsAppMediaUseCase
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.GetWhatsAppMediaSummaryUseCase
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsappCleanerSummaryViewModel
-import com.d4rk.cleaner.app.clean.whatsapp.details.ui.DetailsViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModel
