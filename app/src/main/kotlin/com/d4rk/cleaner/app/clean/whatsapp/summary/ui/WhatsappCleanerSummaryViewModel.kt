@@ -12,6 +12,7 @@ import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleane
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.DeleteWhatsAppMediaUseCase
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.GetWhatsAppMediaSummaryUseCase
+import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import java.io.File
@@ -92,6 +93,7 @@ class WhatsappCleanerSummaryViewModel(
                     )
                 }
                 onEvent(WhatsAppCleanerEvent.LoadMedia)
+                CleaningEventBus.notifyCleaned()
             }
         }
     }
@@ -113,6 +115,7 @@ class WhatsappCleanerSummaryViewModel(
                     )
                 }
                 onEvent(WhatsAppCleanerEvent.LoadMedia)
+                CleaningEventBus.notifyCleaned()
             }
         }
     }
