@@ -223,6 +223,8 @@ class ScannerViewModel(
 
     private fun refreshData() {
         loadInitialData()
+        loadWhatsAppMedia()
+        loadClipboardData()
         if (screenData?.analyzeState?.isAnalyzeScreenVisible == true) {
             analyzeFiles()
         }
