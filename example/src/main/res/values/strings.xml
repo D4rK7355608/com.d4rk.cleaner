@@ -1,0 +1,7 @@
+<resources>
+	<string name="app_name">Droid Dex</string>
+
+	<string name="individual">Individual</string>
+	<string name="aggregate">Aggregate</string>
+	<string name="weighted_aggregate">Weighted Aggregate</string>
+</resources>

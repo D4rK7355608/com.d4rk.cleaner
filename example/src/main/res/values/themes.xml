@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="BaseDroidDexExampleTheme" parent="Theme.Material3.Light.NoActionBar">
+		<item name="android:statusBarColor">@android:color/white</item>
+		<item name="android:windowLightStatusBar">true</item>
+
+		<item name="fontFamily">@font/poppins</item>
+		<item name="android:fontFamily">@font/poppins</item>
+	</style>
+
+	<style name="DroidDexExampleTheme" parent="BaseDroidDexExampleTheme"/>
+
+	<style name="TextAppearanceThin">
+		<item name="android:fontFamily">@font/poppins_thin</item>
+		<item name="fontFamily">@font/poppins_thin</item>
+	</style>
+
+	<style name="TextAppearanceExtraLight">
+		<item name="android:fontFamily">@font/poppins_extralight</item>
+		<item name="fontFamily">@font/poppins_extralight</item>
+	</style>
+
+	<style name="TextAppearanceLight">
+		<item name="android:fontFamily">@font/poppins_light</item>
+		<item name="fontFamily">@font/poppins_light</item>
+	</style>
+
+	<style name="TextAppearanceRegular">
+		<item name="android:fontFamily">@font/poppins_regular</item>
+		<item name="fontFamily">@font/poppins_regular</item>
+	</style>
+
+	<style name="TextAppearanceMedium">
+		<item name="android:fontFamily">@font/poppins_medium</item>
+		<item name="fontFamily">@font/poppins_medium</item>
+	</style>
+
+	<style name="TextAppearanceSemiBold">
+		<item name="android:fontFamily">@font/poppins_semibold</item>
+		<item name="fontFamily">@font/poppins_semibold</item>
+	</style>
+
+	<style name="TextAppearanceBold">
+		<item name="android:fontFamily">@font/poppins_bold</item>
+		<item name="fontFamily">@font/poppins_bold</item>
+	</style>
+
+	<style name="TextAppearanceExtraBold">
+		<item name="android:fontFamily">@font/poppins_extrabold</item>
+		<item name="fontFamily">@font/poppins_extrabold</item>
+	</style>
+</resources>

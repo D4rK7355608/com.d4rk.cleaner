@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="DroidDexExampleTheme" parent="BaseDroidDexExampleTheme">
+		<item name="android:windowSplashScreenBackground">@color/excellent</item>
+		<item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+	</style>
+</resources>

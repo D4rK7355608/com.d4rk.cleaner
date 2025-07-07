@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+	<ProgressBar
+		android:id="@+id/progress_bar"
+		android:layout_width="100dp"
+		android:layout_height="100dp"
+		android:layout_marginTop="8dp"
+		android:indeterminateOnly="false"
+		android:max="100"
+		android:rotation="-90"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"/>
+
+	<TextView
+		android:id="@+id/level"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:ellipsize="end"
+		android:gravity="center"
+		android:padding="8dp"
+		android:textAlignment="center"
+		android:textColor="@color/black"
+		android:textSize="11sp"
+		app:layout_constraintBottom_toBottomOf="@id/progress_bar"
+		app:layout_constraintEnd_toEndOf="@id/progress_bar"
+		app:layout_constraintStart_toStartOf="@id/progress_bar"
+		app:layout_constraintTop_toTopOf="@id/progress_bar"
+		tools:text="TYPE"/>
+
+	<TextView
+		android:id="@+id/class_name"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="8dp"
+		android:layout_marginTop="8dp"
+		android:autoSizeMinTextSize="11sp"
+		android:autoSizeStepGranularity="1sp"
+		android:autoSizeTextType="uniform"
+		android:ellipsize="end"
+		android:maxLines="2"
+		android:textAlignment="center"
+		android:textColor="@color/black"
+		android:textSize="14sp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/progress_bar"
+		tools:ignore="UnusedAttribute"
+		tools:text="CLASS"/>
+
+</merge>

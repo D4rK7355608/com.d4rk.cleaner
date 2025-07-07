@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/background"
+	android:orientation="vertical">
+
+	<View
+		android:id="@+id/logo"
+		android:layout_width="match_parent"
+		android:layout_height="64dp"
+		android:background="@drawable/logo_background"/>
+
+	<ScrollView
+		android:id="@+id/scroll_view"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fillViewport="true"
+		android:scrollbars="none">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingBottom="16dp"
+			tools:context=".main.MainActivity">
+
+			<TextView
+				android:id="@+id/heading_individual"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_gravity="start"
+				android:layout_marginStart="12dp"
+				android:layout_marginTop="24dp"
+				android:text="@string/individual"
+				android:textColor="@color/black"
+				android:textSize="20sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"/>
+
+			<LinearLayout
+				android:id="@+id/individual_first"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:orientation="horizontal"
+				android:paddingHorizontal="6dp"
+				app:layout_constraintTop_toBottomOf="@id/heading_individual">
+
+				<com.blinkit.droiddexexample.views.ItemView
+					android:id="@+id/cpu"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="6dp"
+					android:layout_weight="1"/>
+
+				<com.blinkit.droiddexexample.views.ItemView
+					android:id="@+id/memory"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="6dp"
+					android:layout_weight="1"/>
+
+				<com.blinkit.droiddexexample.views.ItemView
+					android:id="@+id/network"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="6dp"
+					android:layout_weight="1"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/individual_second"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="12dp"
+				android:orientation="horizontal"
+				android:paddingHorizontal="6dp"
+				app:layout_constraintTop_toBottomOf="@id/individual_first">
+
+				<com.blinkit.droiddexexample.views.ItemView
+					android:id="@+id/storage"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="6dp"
+					android:layout_weight="1"/>
+
+				<com.blinkit.droiddexexample.views.ItemView
+					android:id="@+id/battery"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="6dp"
+					android:layout_weight="1"/>
+
+			</LinearLayout>
+
+			<TextView
+				android:id="@+id/heading_aggregate"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_gravity="start"
+				android:layout_marginStart="12dp"
+				android:layout_marginTop="24dp"
+				android:text="@string/aggregate"
+				android:textColor="@color/black"
+				android:textSize="20sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/individual_second"/>
+
+			<LinearLayout
+				android:id="@+id/aggregate"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:orientation="horizontal"
+				android:paddingHorizontal="6dp"
+				app:layout_constraintTop_toBottomOf="@id/heading_aggregate">
+
+				<com.blinkit.droiddexexample.views.ItemView
+					android:id="@+id/cpu_and_memory"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="6dp"
+					android:layout_weight="1"/>
+
+				<com.blinkit.droiddexexample.views.ItemView
+					android:id="@+id/network_and_storage"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="6dp"
+					android:layout_weight="1"/>
+
+				<com.blinkit.droiddexexample.views.ItemView
+					android:id="@+id/cpu_memory_and_network"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="6dp"
+					android:layout_weight="1"/>
+
+			</LinearLayout>
+
+			<TextView
+				android:id="@+id/heading_weighted_aggregate"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_gravity="start"
+				android:layout_marginStart="12dp"
+				android:layout_marginTop="24dp"
+				android:text="@string/weighted_aggregate"
+				android:textColor="@color/black"
+				android:textSize="20sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/aggregate"/>
+
+			<LinearLayout
+				android:id="@+id/weighted_aggregate"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:orientation="horizontal"
+				android:paddingHorizontal="6dp"
+				app:layout_constraintTop_toBottomOf="@id/heading_weighted_aggregate">
+
+				<com.blinkit.droiddexexample.views.ItemView
+					android:id="@+id/memory_and_network_weighted"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="6dp"
+					android:layout_weight="1"/>
+
+				<com.blinkit.droiddexexample.views.ItemView
+					android:id="@+id/cpu_and_battery_weighted"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="6dp"
+					android:layout_weight="1"/>
+
+			</LinearLayout>
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+	</ScrollView>
+
+</LinearLayout>

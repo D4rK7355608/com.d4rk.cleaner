@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="background">#F4F6FB</color>
+
+    <color name="low">#EF4F5F</color>
+	<color name="average">#FAD975</color>
+	<color name="high">#BBD959</color>
+	<color name="excellent">#3AB757</color>
+
+	<color name="black">#1F1F1F</color>
+</resources>
