@@ -1,0 +1,212 @@
+package com.d4rk.cleaner.app.clean.dashboard
+
+import android.content.Context
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.d4rk.android.libs.apptoolkit.core.domain.model.ads.AdsConfig
+import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
+import com.d4rk.android.libs.apptoolkit.core.ui.components.ads.AdBanner
+import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.animateVisibility
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
+import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
+import com.d4rk.android.libs.apptoolkit.core.utils.helpers.IntentsHelper
+import com.d4rk.cleaner.R
+import com.d4rk.cleaner.app.apps.manager.domain.data.model.ui.UiAppManagerModel
+import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
+import com.d4rk.cleaner.app.clean.scanner.domain.actions.ScannerEvent
+import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.CleaningState
+import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.CleaningType
+import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.UiScannerModel
+import com.d4rk.cleaner.app.clean.scanner.ui.ScannerViewModel
+import com.d4rk.cleaner.app.clean.scanner.ui.components.ApkCleanerCard
+import com.d4rk.cleaner.app.clean.scanner.ui.components.CacheCleanerCard
+import com.d4rk.cleaner.app.clean.scanner.ui.components.ClipboardCleanerCard
+import com.d4rk.cleaner.app.clean.scanner.ui.components.ImageOptimizerCard
+import com.d4rk.cleaner.app.clean.scanner.ui.components.PromotedAppCard
+import com.d4rk.cleaner.app.clean.scanner.ui.components.QuickScanSummaryCard
+import com.d4rk.cleaner.app.clean.scanner.ui.components.WeeklyCleanStreakCard
+import com.d4rk.cleaner.app.clean.scanner.ui.components.WhatsAppCleanerCard
+import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsAppCleanerActivity
+import com.d4rk.cleaner.app.images.picker.ui.ImagePickerActivity
+import org.koin.compose.koinInject
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.qualifier.named
+
+@Composable
+fun ScannerDashboardScreen(
+    context : Context ,
+    uiState : UiStateScreen<UiScannerModel> ,
+    viewModel : ScannerViewModel ,
+) {
+    val appManagerViewModel: AppManagerViewModel = koinViewModel()
+
+
+    val promotedApp = uiState.data?.promotedApp
+    val mediumRectAdsConfig: AdsConfig = koinInject(qualifier = named(name = "banner_medium_rectangle"))
+    val largeBannerAdsConfig: AdsConfig = koinInject(qualifier = named(name = "large_banner"))
+    val leaderboard: AdsConfig = koinInject(qualifier = named(name = "leaderboard"))
+    val bannerAdsConfig: AdsConfig = koinInject()
+
+    val appManagerState: UiStateScreen<UiAppManagerModel> by appManagerViewModel.uiState.collectAsState()
+    val whatsappSummary by viewModel.whatsAppMediaSummary.collectAsState()
+    val clipboardText by viewModel.clipboardPreview.collectAsState()
+    val streakDays by viewModel.cleanStreak.collectAsState()
+    val showStreakCard by viewModel.showStreakCard.collectAsState()
+    val streakHideUntil by viewModel.streakHideUntil.collectAsState()
+
+    val showApkCard = appManagerState.data?.apkFiles?.isNotEmpty() == true
+    val showWhatsAppCard = whatsappSummary.hasData
+    val showClipboardCard = !clipboardText.isNullOrBlank()
+
+    val cleanerCardsCount = listOf(showWhatsAppCard , showApkCard , showClipboardCard).count { it }
+
+    val listState = rememberLazyListState()
+
+    Column(
+        modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()) , verticalArrangement = Arrangement.spacedBy(SizeConstants.LargeSize) , horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        QuickScanSummaryCard(
+            modifier = Modifier.animateVisibility(
+                visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
+                index =
+            ),
+            cleanedSize = uiState.data?.storageInfo?.cleanedSpace ?: "" ,
+            freePercent = uiState.data?.storageInfo?.freeSpacePercentage ?: 0 ,
+            usedPercent = ((uiState.data?.storageInfo?.storageUsageProgress ?: 0f) * 100).toInt() ,
+            progress = uiState.data?.storageInfo?.storageUsageProgress ?: 0f ,
+            onQuickScanClick = { viewModel.onEvent(event = ScannerEvent.ToggleAnalyzeScreen(visible = true)) })
+
+        if (showStreakCard) {
+            WeeklyCleanStreakCard(
+                modifier = Modifier.animateVisibility(
+                    visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
+                    index =
+                ),
+                streakDays = streakDays , onDismiss = { viewModel.onEvent(ScannerEvent.SetHideStreakDialogVisibility(true)) })
+        }
+        else if (streakHideUntil > System.currentTimeMillis()) {
+            OutlinedCard(
+                modifier = Modifier.fillMaxWidth() , shape = RoundedCornerShape(SizeConstants.ExtraLargeSize)
+            ) {
+                Text(
+                    modifier = Modifier.animateVisibility(
+                        visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
+                        index =
+                    ).fillMaxWidth()
+                            .padding(SizeConstants.LargeSize) , text = stringResource(id = R.string.streak_quiet_banner) , style = MaterialTheme.typography.bodyMedium
+                )
+            }
+        }
+
+        if (cleanerCardsCount > 0) {
+            val topAdConfig = if (cleanerCardsCount > 1) mediumRectAdsConfig else largeBannerAdsConfig
+            AdBanner(
+                modifier = Modifier.padding(bottom = SizeConstants.MediumSize) , adsConfig = topAdConfig
+            )
+        }
+
+        if (showWhatsAppCard) {
+            AnimatedVisibility(visible = showWhatsAppCard) {
+                WhatsAppCleanerCard(
+                    modifier = Modifier.animateVisibility(
+                        visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
+                        index =
+                    ),
+                    mediaSummary = whatsappSummary , onCleanClick = {
+                        IntentsHelper.openActivity(
+                            context = context , activityClass = WhatsAppCleanerActivity::class.java
+                        )
+                    })
+            }
+        }
+
+        if (showApkCard) {
+            AnimatedVisibility(visible = showApkCard) {
+                val isCleaningApks = uiState.data?.analyzeState?.state == CleaningState.Cleaning && uiState.data?.analyzeState?.cleaningType == CleaningType.DELETE && uiState.data?.analyzeState?.isAnalyzeScreenVisible == false
+                ApkCleanerCard(
+                    modifier = Modifier.animateVisibility(
+                        visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
+                        index =
+                    ),
+                    apkFiles = appManagerState.data?.apkFiles ?: emptyList() , isLoading = isCleaningApks , onCleanClick = { selected ->
+                        val files = selected.map { java.io.File(it.path) }
+                        viewModel.onCleanApks(files)
+                    })
+            }
+        }
+
+        if (showClipboardCard) {
+            AnimatedVisibility(visible = showClipboardCard) {
+                ClipboardCleanerCard(
+                    modifier = Modifier.animateVisibility(
+                        visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
+                        index =
+                    ),
+                    clipboardText = clipboardText , onCleanClick = { viewModel.onClipboardClear() })
+            }
+        }
+
+        if (cleanerCardsCount > 0) {
+            val midAdConfig = if (cleanerCardsCount >= 2) mediumRectAdsConfig else largeBannerAdsConfig
+            AdBanner(
+                modifier = Modifier.padding(bottom = SizeConstants.MediumSize) , adsConfig = midAdConfig
+            )
+        }
+
+        ImageOptimizerCard(
+            modifier = Modifier.animateVisibility(
+                visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
+                index =
+            ),
+            onOptimizeClick = {
+                IntentsHelper.openActivity(
+                    context = context , activityClass = ImagePickerActivity::class.java
+                )
+            })
+
+        CacheCleanerCard(
+            modifier = Modifier.animateVisibility(
+                visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
+                index =
+            ),
+            onScanClick = {
+                viewModel.onEvent(ScannerEvent.CleanCache)
+            })
+
+        promotedApp?.let { app ->
+            PromotedAppCard(modifier = Modifier.animateVisibility(
+                visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
+                index =
+            ),app = app)
+        }
+
+        if (promotedApp == null || cleanerCardsCount >= 1) {
+            val endAdConfig = if (promotedApp == null) bannerAdsConfig else leaderboard
+            AdBanner(
+                modifier = Modifier.padding(bottom = SizeConstants.MediumSize) , adsConfig = endAdConfig
+            )
+        }
+
+        LargeVerticalSpacer()
+    }
+}

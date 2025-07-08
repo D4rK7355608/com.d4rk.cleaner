@@ -37,6 +37,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.lazy.rememberLazyListState
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ads.AdsConfig
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.ads.AdBanner
@@ -72,24 +73,10 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
     val context: Context = LocalContext.current
     val view: View = LocalView.current
     val viewModel: ScannerViewModel = koinViewModel()
-    val appManagerViewModel: AppManagerViewModel = koinViewModel()
     val uiState: UiStateScreen<UiScannerModel> by viewModel.uiState.collectAsState()
-    val appManagerState: UiStateScreen<UiAppManagerModel> by appManagerViewModel.uiState.collectAsState()
-    val whatsappSummary by viewModel.whatsAppMediaSummary.collectAsState()
-    val clipboardText by viewModel.clipboardPreview.collectAsState()
-    val streakDays by viewModel.cleanStreak.collectAsState()
-    val showStreakCard by viewModel.showStreakCard.collectAsState()
-    val streakHideUntil by viewModel.streakHideUntil.collectAsState()
-    val streakDialogVisible = uiState.data?.isHideStreakDialogVisible == true
-    val promotedApp = uiState.data?.promotedApp
-    val mediumRectAdsConfig: AdsConfig = koinInject(qualifier = named(name = "banner_medium_rectangle"))
-    val largeBannerAdsConfig: AdsConfig = koinInject(qualifier = named(name = "large_banner"))
-    val leaderboard: AdsConfig = koinInject(qualifier = named(name = "leaderboard"))
-    val bannerAdsConfig: AdsConfig = koinInject()
 
-    val showApkCard = appManagerState.data?.apkFiles?.isNotEmpty() == true
-    val showWhatsAppCard = whatsappSummary.hasData
-    val showClipboardCard = !clipboardText.isNullOrBlank()
+    val streakDialogVisible = uiState.data?.isHideStreakDialogVisible == true
+
 
     LaunchedEffect(key1 = true) {
         if (!PermissionsHelper.hasStoragePermissions(context)) {
@@ -135,128 +122,7 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                         }
                     }
                 } else {
-                    val cleanerCardsCount = listOf(showWhatsAppCard, showApkCard, showClipboardCard).count { it }
 
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .verticalScroll(rememberScrollState()),
-                        verticalArrangement = Arrangement.spacedBy(SizeConstants.LargeSize),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-
-                        QuickScanSummaryCard(
-                            cleanedSize = uiState.data?.storageInfo?.cleanedSpace ?: "",
-                            freePercent = uiState.data?.storageInfo?.freeSpacePercentage ?: 0,
-                            usedPercent = ((uiState.data?.storageInfo?.storageUsageProgress ?: 0f) * 100).toInt(),
-                            progress = uiState.data?.storageInfo?.storageUsageProgress ?: 0f,
-                            onQuickScanClick = { viewModel.onEvent(event = ScannerEvent.ToggleAnalyzeScreen(visible = true)) }
-                        )
-
-                        if (showStreakCard) {
-                            WeeklyCleanStreakCard(
-                                streakDays = streakDays,
-                                onDismiss = { viewModel.onEvent(ScannerEvent.SetHideStreakDialogVisibility(true)) }
-                            )
-                        } else if (streakHideUntil > System.currentTimeMillis()) {
-                            OutlinedCard(
-                                modifier = Modifier.fillMaxWidth(),
-                                shape = RoundedCornerShape(SizeConstants.ExtraLargeSize)
-                            ) {
-                                Text(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(SizeConstants.LargeSize),
-                                    text = stringResource(id = R.string.streak_quiet_banner),
-                                    style = MaterialTheme.typography.bodyMedium
-                                )
-                            }
-                        }
-
-                        if (cleanerCardsCount > 0) {
-                            val topAdConfig = if (cleanerCardsCount > 1) mediumRectAdsConfig else largeBannerAdsConfig
-                            AdBanner(
-                                modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
-                                adsConfig = topAdConfig
-                            )
-                        }
-
-                        if (showWhatsAppCard) {
-                            AnimatedVisibility(visible = showWhatsAppCard) {
-                                WhatsAppCleanerCard(
-                                    mediaSummary = whatsappSummary,
-                                    onCleanClick = {
-                                        IntentsHelper.openActivity(
-                                            context = context,
-                                            activityClass = WhatsAppCleanerActivity::class.java
-                                        )
-                                    }
-                                )
-                            }
-                        }
-
-                        if (showApkCard) {
-                            AnimatedVisibility(visible = showApkCard) {
-                                val isCleaningApks = uiState.data?.analyzeState?.state == CleaningState.Cleaning &&
-                                        uiState.data?.analyzeState?.cleaningType == CleaningType.DELETE &&
-                                        uiState.data?.analyzeState?.isAnalyzeScreenVisible == false
-                                ApkCleanerCard(
-                                    apkFiles = appManagerState.data?.apkFiles ?: emptyList(),
-                                    isLoading = isCleaningApks,
-                                    onCleanClick = { selected ->
-                                        val files = selected.map { java.io.File(it.path) }
-                                        viewModel.onCleanApks(files)
-                                    }
-                                )
-                            }
-                        }
-
-                        if (showClipboardCard) {
-                            AnimatedVisibility(visible = showClipboardCard) {
-                                ClipboardCleanerCard(
-                                    clipboardText = clipboardText,
-                                    onCleanClick = { viewModel.onClipboardClear() }
-                                )
-                            }
-                        }
-
-                        if (cleanerCardsCount > 0) {
-                            val midAdConfig = if (cleanerCardsCount >= 2) mediumRectAdsConfig else largeBannerAdsConfig
-                            AdBanner(
-                                modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
-                                adsConfig = midAdConfig
-                            )
-                        }
-
-                        ImageOptimizerCard(
-                            onOptimizeClick = {
-                                IntentsHelper.openActivity(
-                                    context = context,
-                                    activityClass = ImagePickerActivity::class.java
-                                )
-                            }
-                        )
-
-                        CacheCleanerCard(
-                            onScanClick = {
-                                viewModel.onEvent(ScannerEvent.CleanCache)
-                            }
-                        )
-
-                        promotedApp?.let { app ->
-                            PromotedAppCard(app = app)
-                        }
-
-                        if (promotedApp == null || cleanerCardsCount >= 1) {
-                            val endAdConfig = if (promotedApp == null) bannerAdsConfig else leaderboard
-                            AdBanner(
-                                modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
-                                adsConfig = endAdConfig
-                            )
-                        }
-
-                        LargeVerticalSpacer()
-                    }
                 }
             }
         }
