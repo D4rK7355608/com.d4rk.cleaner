@@ -79,6 +79,9 @@ fun ScannerDashboardScreen(
 
     val listState = rememberLazyListState()
 
+    var itemIndex = 0
+    val nextIndex: () -> Int = { itemIndex++ }
+
     Column(
         modifier = Modifier
                 .fillMaxSize()
@@ -88,19 +91,18 @@ fun ScannerDashboardScreen(
         QuickScanSummaryCard(
             modifier = Modifier.animateVisibility(
                 visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                index =
+                index = nextIndex()
             ),
             cleanedSize = uiState.data?.storageInfo?.cleanedSpace ?: "" ,
             freePercent = uiState.data?.storageInfo?.freeSpacePercentage ?: 0 ,
             usedPercent = ((uiState.data?.storageInfo?.storageUsageProgress ?: 0f) * 100).toInt() ,
             progress = uiState.data?.storageInfo?.storageUsageProgress ?: 0f ,
             onQuickScanClick = { viewModel.onEvent(event = ScannerEvent.ToggleAnalyzeScreen(visible = true)) })
-
         if (showStreakCard) {
             WeeklyCleanStreakCard(
                 modifier = Modifier.animateVisibility(
                     visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                    index =
+                    index = nextIndex()
                 ),
                 streakDays = streakDays , onDismiss = { viewModel.onEvent(ScannerEvent.SetHideStreakDialogVisibility(true)) })
         }
@@ -111,7 +113,7 @@ fun ScannerDashboardScreen(
                 Text(
                     modifier = Modifier.animateVisibility(
                         visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                        index =
+                        index = nextIndex()
                     ).fillMaxWidth()
                             .padding(SizeConstants.LargeSize) , text = stringResource(id = R.string.streak_quiet_banner) , style = MaterialTheme.typography.bodyMedium
                 )
@@ -130,7 +132,7 @@ fun ScannerDashboardScreen(
                 WhatsAppCleanerCard(
                     modifier = Modifier.animateVisibility(
                         visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                        index =
+                        index = nextIndex()
                     ),
                     mediaSummary = whatsappSummary , onCleanClick = {
                         IntentsHelper.openActivity(
@@ -146,7 +148,7 @@ fun ScannerDashboardScreen(
                 ApkCleanerCard(
                     modifier = Modifier.animateVisibility(
                         visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                        index =
+                        index = nextIndex()
                     ),
                     apkFiles = appManagerState.data?.apkFiles ?: emptyList() , isLoading = isCleaningApks , onCleanClick = { selected ->
                         val files = selected.map { java.io.File(it.path) }
@@ -160,7 +162,7 @@ fun ScannerDashboardScreen(
                 ClipboardCleanerCard(
                     modifier = Modifier.animateVisibility(
                         visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                        index =
+                        index = nextIndex()
                     ),
                     clipboardText = clipboardText , onCleanClick = { viewModel.onClipboardClear() })
             }
@@ -176,7 +178,7 @@ fun ScannerDashboardScreen(
         ImageOptimizerCard(
             modifier = Modifier.animateVisibility(
                 visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                index =
+                index = nextIndex()
             ),
             onOptimizeClick = {
                 IntentsHelper.openActivity(
@@ -187,7 +189,7 @@ fun ScannerDashboardScreen(
         CacheCleanerCard(
             modifier = Modifier.animateVisibility(
                 visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                index =
+                index = nextIndex()
             ),
             onScanClick = {
                 viewModel.onEvent(ScannerEvent.CleanCache)
@@ -196,7 +198,7 @@ fun ScannerDashboardScreen(
         promotedApp?.let { app ->
             PromotedAppCard(modifier = Modifier.animateVisibility(
                 visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                index =
+                index = nextIndex()
             ),app = app)
         }
 
@@ -208,5 +210,4 @@ fun ScannerDashboardScreen(
         }
 
         LargeVerticalSpacer()
-    }
-}
+    }}
