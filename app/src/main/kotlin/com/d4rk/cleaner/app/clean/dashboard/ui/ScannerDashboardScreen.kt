@@ -105,10 +105,12 @@ fun ScannerDashboardScreen(
                 .verticalScroll(rememberScrollState()) , verticalArrangement = Arrangement.spacedBy(SizeConstants.LargeSize) , horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
+        val quickScanIndex = nextIndex()
         QuickScanSummaryCard(
             modifier = Modifier.animateVisibility(
-                visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                index = nextIndex()
+                visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false &&
+                        visibilityStates.getOrElse(index = quickScanIndex) { false },
+                index = quickScanIndex
             ),
             cleanedSize = uiState.data?.storageInfo?.cleanedSpace ?: "" ,
             freePercent = uiState.data?.storageInfo?.freeSpacePercentage ?: 0 ,
@@ -116,10 +118,12 @@ fun ScannerDashboardScreen(
             progress = uiState.data?.storageInfo?.storageUsageProgress ?: 0f ,
             onQuickScanClick = { viewModel.onEvent(event = ScannerEvent.ToggleAnalyzeScreen(visible = true)) })
         if (showStreakCard) {
+            val streakIndex = nextIndex()
             WeeklyCleanStreakCard(
                 modifier = Modifier.animateVisibility(
-                    visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                    index = nextIndex()
+                    visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false &&
+                            visibilityStates.getOrElse(index = streakIndex) { false },
+                    index = streakIndex
                 ),
                 streakDays = streakDays , onDismiss = { viewModel.onEvent(ScannerEvent.SetHideStreakDialogVisibility(true)) })
         }
@@ -127,10 +131,12 @@ fun ScannerDashboardScreen(
             OutlinedCard(
                 modifier = Modifier.fillMaxWidth() , shape = RoundedCornerShape(SizeConstants.ExtraLargeSize)
             ) {
+                val streakQuietIndex = nextIndex()
                 Text(
                     modifier = Modifier.animateVisibility(
-                        visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                        index = nextIndex()
+                        visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false &&
+                                visibilityStates.getOrElse(index = streakQuietIndex) { false },
+                        index = streakQuietIndex
                     ).fillMaxWidth()
                             .padding(SizeConstants.LargeSize) , text = stringResource(id = R.string.streak_quiet_banner) , style = MaterialTheme.typography.bodyMedium
                 )
@@ -146,10 +152,12 @@ fun ScannerDashboardScreen(
 
         if (showWhatsAppCard) {
             AnimatedVisibility(visible = showWhatsAppCard) {
+                val whatsappIndex = nextIndex()
                 WhatsAppCleanerCard(
                     modifier = Modifier.animateVisibility(
-                        visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                        index = nextIndex()
+                        visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false &&
+                                visibilityStates.getOrElse(index = whatsappIndex) { false },
+                        index = whatsappIndex
                     ),
                     mediaSummary = whatsappSummary , onCleanClick = {
                         IntentsHelper.openActivity(
@@ -162,10 +170,12 @@ fun ScannerDashboardScreen(
         if (showApkCard) {
             AnimatedVisibility(visible = showApkCard) {
                 val isCleaningApks = uiState.data?.analyzeState?.state == CleaningState.Cleaning && uiState.data?.analyzeState?.cleaningType == CleaningType.DELETE && uiState.data?.analyzeState?.isAnalyzeScreenVisible == false
+                val apkIndex = nextIndex()
                 ApkCleanerCard(
                     modifier = Modifier.animateVisibility(
-                        visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                        index = nextIndex()
+                        visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false &&
+                                visibilityStates.getOrElse(index = apkIndex) { false },
+                        index = apkIndex
                     ),
                     apkFiles = appManagerState.data?.apkFiles ?: emptyList() , isLoading = isCleaningApks , onCleanClick = { selected ->
                         val files = selected.map { File(it.path) }
@@ -176,10 +186,12 @@ fun ScannerDashboardScreen(
 
         if (showClipboardCard) {
             AnimatedVisibility(visible = showClipboardCard) {
+                val clipboardIndex = nextIndex()
                 ClipboardCleanerCard(
                     modifier = Modifier.animateVisibility(
-                        visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                        index = nextIndex()
+                        visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false &&
+                                visibilityStates.getOrElse(index = clipboardIndex) { false },
+                        index = clipboardIndex
                     ),
                     clipboardText = clipboardText , onCleanClick = { viewModel.onClipboardClear() })
             }
@@ -192,10 +204,12 @@ fun ScannerDashboardScreen(
             )
         }
 
+        val imageOptimizerIndex = nextIndex()
         ImageOptimizerCard(
             modifier = Modifier.animateVisibility(
-                visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                index = nextIndex()
+                visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false &&
+                        visibilityStates.getOrElse(index = imageOptimizerIndex) { false },
+                index = imageOptimizerIndex
             ),
             onOptimizeClick = {
                 IntentsHelper.openActivity(
@@ -203,19 +217,23 @@ fun ScannerDashboardScreen(
                 )
             })
 
+        val cacheIndex = nextIndex()
         CacheCleanerCard(
             modifier = Modifier.animateVisibility(
-                visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                index = nextIndex()
+                visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false &&
+                        visibilityStates.getOrElse(index = cacheIndex) { false },
+                index = cacheIndex
             ),
             onScanClick = {
                 viewModel.onEvent(ScannerEvent.CleanCache)
             })
 
         promotedApp?.let { app ->
+            val promotedIndex = nextIndex()
             PromotedAppCard(modifier = Modifier.animateVisibility(
-                visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                index = nextIndex()
+                visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false &&
+                        visibilityStates.getOrElse(index = promotedIndex) { false },
+                index = promotedIndex
             ),app = app)
         }
 
@@ -226,5 +244,4 @@ fun ScannerDashboardScreen(
             )
         }
 
-        LargeVerticalSpacer()
-    }}
+        LargeVerticalSpacer()    }}
