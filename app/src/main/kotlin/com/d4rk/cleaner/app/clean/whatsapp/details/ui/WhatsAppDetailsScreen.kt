@@ -160,22 +160,30 @@ fun DetailsScreen(
                 LaunchedEffect(files) { detailsViewModel.onEvent(WhatsAppDetailsEvent.SetFiles(files)) }
 
                 val receivedFiles = remember(sortedFiles) {
-                    sortedFiles.filterNot { it.path.contains("${File.separator}Sent") || it.path.contains("${File.separator}Private") }
+                    sortedFiles.filterNot {
+                        it.path.contains("${File.separator}Sent") ||
+                                it.path.contains("${File.separator}Private")
+                    }
                 }
-                val sentFiles = remember(sortedFiles) { sortedFiles.filter { it.path.contains("${File.separator}Sent") } }
-                val privateFiles = remember(sortedFiles) { sortedFiles.filter { it.path.contains("${File.separator}Private") } }
+                val sentFiles = remember(sortedFiles) {
+                    sortedFiles.filter { it.path.contains("${File.separator}Sent") }
+                }
+                val privateFiles = remember(sortedFiles) {
+                    sortedFiles.filter { it.path.contains("${File.separator}Private") }
+                }
 
+                val hasReceived = receivedFiles.isNotEmpty()
                 val hasSent = sentFiles.isNotEmpty()
                 val hasPrivate = privateFiles.isNotEmpty()
 
-                val tabs = listOfNotNull(
-                    stringResource(id = R.string.received),
-                    if (hasSent) stringResource(id = R.string.sent) else null,
-                    if (hasPrivate) stringResource(id = R.string.private_tab) else null,
-                )
+                val tabs = buildList {
+                    if (hasReceived) add(stringResource(id = R.string.received))
+                    if (hasSent) add(stringResource(id = R.string.sent))
+                    if (hasPrivate) add(stringResource(id = R.string.private_tab))
+                }
 
                 val tabFiles = buildList {
-                    add(receivedFiles)
+                    if (hasReceived) add(receivedFiles)
                     if (hasSent) add(sentFiles)
                     if (hasPrivate) add(privateFiles)
                 }
@@ -199,7 +207,7 @@ fun DetailsScreen(
                         )
                     }
 
-                    if (hasSent || hasPrivate) {
+                    if (tabs.size > 1) {
                         CustomTabLayout(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -229,11 +237,7 @@ fun DetailsScreen(
                             .weight(1f)
                             .fillMaxWidth(),
                     ) { page ->
-                        val list = when (page) {
-                            0 -> receivedFiles
-                            1 -> if (hasSent) sentFiles else privateFiles
-                            else -> privateFiles
-                        }
+                        val list = tabFiles.getOrNull(page) ?: emptyList()
 
                         DetailsScreenContent(
                             paddingValues = paddingValues,
