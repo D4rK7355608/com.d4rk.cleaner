@@ -20,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ads.AdsConfig
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
@@ -54,12 +55,11 @@ import java.io.File
 
 @Composable
 fun ScannerDashboardScreen(
-    context : Context ,
     uiState : UiStateScreen<UiScannerModel> ,
     viewModel : ScannerViewModel ,
 ) {
     val appManagerViewModel: AppManagerViewModel = koinViewModel()
-
+    val context : Context = LocalContext.current
 
     val promotedApp = uiState.data?.promotedApp
     val mediumRectAdsConfig: AdsConfig = koinInject(qualifier = named(name = "banner_medium_rectangle"))
@@ -89,8 +89,8 @@ fun ScannerDashboardScreen(
         showWhatsAppCard,
         showApkCard,
         showClipboardCard,
-        uiState.data?.analyzeState?.isAnalyzeScreenVisible == false, // ImageOptimizerCard
-        uiState.data?.analyzeState?.isAnalyzeScreenVisible == false, // CacheCleanerCard
+        uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
+        uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
         promotedApp != null
     ).count { it }
 

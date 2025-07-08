@@ -35,6 +35,7 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.snackbar.DefaultSnack
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.analyze.ui.AnalyzeScreen
+import com.d4rk.cleaner.app.clean.dashboard.ui.ScannerDashboardScreen
 import com.d4rk.cleaner.app.clean.scanner.domain.actions.ScannerEvent
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.UiScannerModel
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
@@ -94,7 +95,10 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
                         }
                     }
                 } else {
-
+                    ScannerDashboardScreen(
+                        uiState = uiState,
+                        viewModel = viewModel
+                    )
                 }
             }
         }
