@@ -18,6 +18,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.remember
+import kotlin.collections.buildList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -78,23 +80,70 @@ fun ScannerDashboardScreen(
     val showWhatsAppCard = whatsappSummary.hasData
     val showClipboardCard = !clipboardText.isNullOrBlank()
 
-    val cleanerCardsCount = listOf(showWhatsAppCard , showApkCard , showClipboardCard).count { it }
+    val cleanerCardsCount = listOf(showWhatsAppCard, showApkCard, showClipboardCard).count { it }
 
     val listState = rememberLazyListState()
 
-    val itemsSize = listOfNotNull(
-        uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
+    // Pre-compute ad configurations so they do not change while the UI is building
+    val topAdConfig = remember(cleanerCardsCount) {
+        if (cleanerCardsCount > 1) mediumRectAdsConfig else largeBannerAdsConfig
+    }
+    val midAdConfig = remember(cleanerCardsCount) {
+        if (cleanerCardsCount >= 2) mediumRectAdsConfig else largeBannerAdsConfig
+    }
+    val endAdConfig = remember(cleanerCardsCount, promotedApp) {
+        if (promotedApp == null) bannerAdsConfig else leaderboard
+    }
+
+    val showAdTop = cleanerCardsCount > 0
+    val showAdMid = cleanerCardsCount > 0
+    val showAdEnd = promotedApp == null || cleanerCardsCount >= 1
+
+    val itemsSize = remember(
+        showAdTop,
+        showAdMid,
+        showAdEnd,
         showStreakCard,
-        streakHideUntil > System.currentTimeMillis(),
+        streakHideUntil,
         showWhatsAppCard,
         showApkCard,
         showClipboardCard,
-        uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-        uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-        promotedApp != null
-    ).count { it }
+        promotedApp
+    ) {
+        buildList {
+            // Quick scan card
+            add(true)
 
-    val (visibilityStates : SnapshotStateList<Boolean>) = rememberAnimatedVisibilityState(listState = listState , itemCount = itemsSize)
+            // Streak card or quiet banner
+            if (showStreakCard || streakHideUntil > System.currentTimeMillis()) add(true)
+
+            // Top ad
+            if (showAdTop) add(true)
+
+            // Cleaner cards
+            if (showWhatsAppCard) add(true)
+            if (showApkCard) add(true)
+            if (showClipboardCard) add(true)
+
+            // Middle ad
+            if (showAdMid) add(true)
+
+            // Always visible cleaner options
+            add(true) // image optimizer
+            add(true) // cache cleaner
+
+            // Promoted app card
+            if (promotedApp != null) add(true)
+
+            // End ad
+            if (showAdEnd) add(true)
+        }.size
+    }
+
+    val visibilityStates: SnapshotStateList<Boolean> = rememberAnimatedVisibilityState(
+        listState = listState,
+        itemCount = itemsSize
+    )
 
     var itemIndex = 0
     val nextIndex: () -> Int = { itemIndex++ }
@@ -143,10 +192,10 @@ fun ScannerDashboardScreen(
             }
         }
 
-        if (cleanerCardsCount > 0) {
-            val topAdConfig = if (cleanerCardsCount > 1) mediumRectAdsConfig else largeBannerAdsConfig
+        if (showAdTop) {
             AdBanner(
-                modifier = Modifier.padding(bottom = SizeConstants.MediumSize) , adsConfig = topAdConfig
+                modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                adsConfig = topAdConfig
             )
         }
 
@@ -197,10 +246,10 @@ fun ScannerDashboardScreen(
             }
         }
 
-        if (cleanerCardsCount > 0) {
-            val midAdConfig = if (cleanerCardsCount >= 2) mediumRectAdsConfig else largeBannerAdsConfig
+        if (showAdMid) {
             AdBanner(
-                modifier = Modifier.padding(bottom = SizeConstants.MediumSize) , adsConfig = midAdConfig
+                modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                adsConfig = midAdConfig
             )
         }
 
@@ -237,11 +286,10 @@ fun ScannerDashboardScreen(
             ),app = app)
         }
 
-        if (promotedApp == null || cleanerCardsCount >= 1) {
-            val endAdConfig = if (promotedApp == null) bannerAdsConfig else leaderboard
+        if (showAdEnd) {
             AdBanner(
-                modifier = Modifier.padding(bottom = SizeConstants.MediumSize) , adsConfig = endAdConfig
+                modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+                adsConfig = endAdConfig
             )
         }
-
         LargeVerticalSpacer()    }}
