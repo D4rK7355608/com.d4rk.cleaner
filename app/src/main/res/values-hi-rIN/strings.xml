@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">आपके फ़ोन को शायद सफ़ाई की ज़रूरत है</string>
-    <string name="cleanup_notification_default">स्कैन करके जगह खाली करने के लिए टैप करें.</string>
     <string name="scan_now">अभी स्कैन करें</string>
     <string name="cleanup_title_variant1">बस एक त्वरित जाँच</string>
     <string name="cleanup_title_variant2">जगह कम लग रही है?</string>
@@ -115,10 +114,6 @@
     <string name="trash">ट्रैश</string>
     <string name="trash_is_empty">ट्रैश खाली है</string>
     <string name="restore">पुनर्स्थापित करें</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">अपना पसंदीदा स्टार्टअप पृष्ठ चुनें:</string>
-    <string name="dialog_info_startup">एप्लिकेशन लॉन्च करने पर उपयोगकर्ताओं को प्रस्तुत प्रारंभिक स्क्रीन को कॉन्फ़िगर करता है। यह सेटिंग ऐप के साथ उपयोगकर्ता की पहली बातचीत को प्रभावित करती है और इसे विशिष्ट उपयोगकर्ता खंडों या उत्पाद लक्ष्यों के अनुरूप बनाया जा सकता है।</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">सफाई</string>

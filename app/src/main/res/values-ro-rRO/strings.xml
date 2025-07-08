@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">Telefonul tău ar putea avea nevoie de curățare</string>
-    <string name="cleanup_notification_default">Atinge pentru a scana și elibera spațiu.</string>
     <string name="scan_now">Scanează acum</string>
     <string name="cleanup_title_variant1">Doar o verificare rapidă</string>
     <string name="cleanup_title_variant2">Spațiul e cam limitat?</string>
@@ -117,10 +116,6 @@
     <string name="trash">Coș</string>
     <string name="trash_is_empty">Coșul este gol</string>
     <string name="restore">Restaurează</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">Alegeți pagina de pornire preferată:</string>
-    <string name="dialog_info_startup">Configurează ecranul inițial prezentat utilizatorilor la lansarea aplicației. Această setare influențează prima interacțiune a utilizatorului cu aplicația și poate fi adaptată la segmente specifice de utilizatori sau la obiectivele produsului.</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Curățare</string>

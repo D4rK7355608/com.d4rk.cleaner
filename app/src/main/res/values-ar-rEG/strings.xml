@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">قد يحتاج هاتفك إلى تنظيف</string>
-    <string name="cleanup_notification_default">اضغط للفحص وتفريغ المساحة.</string>
     <string name="scan_now">افحص الآن</string>
     <string name="cleanup_title_variant1">فحص سريع بس</string>
     <string name="cleanup_title_variant2">حاسس المساحة ضيقة؟</string>
@@ -123,10 +122,6 @@
     <string name="trash">سلة المهملات</string>
     <string name="trash_is_empty">سلة المهملات فاضية</string>
     <string name="restore">استعادة</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">اختار صفحة البداية المفضلة عندك:</string>
-    <string name="dialog_info_startup">بتحدد الشاشة الأولانية اللي بتظهر للمستخدمين لما يفتحوا التطبيق. الإعداد ده بيأثر على أول تفاعل للمستخدم مع التطبيق وممكن يتخصص لشرائح مستخدمين معينة أو لأهداف المنتج.</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">التنظيف</string>

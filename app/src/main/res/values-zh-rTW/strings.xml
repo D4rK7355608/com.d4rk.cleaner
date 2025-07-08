@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">您的手機可能需要清理</string>
-    <string name="cleanup_notification_default">點擊掃描並釋放空間。</string>
     <string name="scan_now">立即掃描</string>
     <string name="cleanup_title_variant1">只是快速檢查一下</string>
     <string name="cleanup_title_variant2">空間不夠用了嗎？</string>
@@ -113,10 +112,6 @@
     <string name="trash">垃圾桶</string>
     <string name="trash_is_empty">垃圾桶是空的</string>
     <string name="restore">還原</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">選擇您偏好的啟動頁面：</string>
-    <string name="dialog_info_startup">設定應用程式啟動時向使用者呈現的初始畫面。此設定會影響使用者與應用程式的首次互動，並可針對特定使用者群組或產品目標進行調整。</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">清理</string>

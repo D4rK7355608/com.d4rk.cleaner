@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">آپ کے فون کو صفائی کی ضرورت ہو سکتی ہے</string>
-    <string name="cleanup_notification_default">اسپیس خالی کرنے کے لیے اسکین پر ٹیپ کریں۔</string>
     <string name="scan_now">ابھی اسکین کریں</string>
     <string name="cleanup_title_variant1">بس ایک جلدی سے چیک</string>
     <string name="cleanup_title_variant2">کیا جگہ کم محسوس ہو رہی ہے؟</string>
@@ -115,10 +114,6 @@
     <string name="trash">ردی کی ٹوکری</string>
     <string name="trash_is_empty">ردی کی ٹوکری خالی ہے</string>
     <string name="restore">بحال کریں</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">اپنا پسندیدہ اسٹارٹ اپ صفحہ منتخب کریں:</string>
-    <string name="dialog_info_startup">ایپلی کیشن شروع کرنے پر صارفین کو پیش کی جانے والی ابتدائی اسکرین کو ترتیب دیتا ہے۔ یہ ترتیب ایپ کے ساتھ صارف کے پہلے تعامل کو متاثر کرتی ہے اور اسے مخصوص صارف کے حصوں یا مصنوعات کے اہداف کے مطابق بنایا جا سکتا ہے۔</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">صفائی</string>

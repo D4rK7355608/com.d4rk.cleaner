@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">Возможно, вашему телефону требуется очистка</string>
-    <string name="cleanup_notification_default">Нажмите, чтобы просканировать и освободить место.</string>
     <string name="scan_now">Сканировать сейчас</string>
     <string name="cleanup_title_variant1">Быстрая проверка</string>
     <string name="cleanup_title_variant2">Мало места?</string>
@@ -119,10 +118,6 @@
     <string name="trash">Корзина</string>
     <string name="trash_is_empty">Корзина пуста</string>
     <string name="restore">Восстановить</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">Выберите предпочитаемую стартовую страницу:</string>
-    <string name="dialog_info_startup">Настраивает начальный экран, отображаемый пользователям при запуске приложения. Эта настройка влияет на первое взаимодействие пользователя с приложением и может быть адаптирована к конкретным сегментам пользователей или целям продукта.</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Очистка</string>

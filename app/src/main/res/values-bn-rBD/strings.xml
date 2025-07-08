@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">আপনার ফোনে হয়তো পরিষ্কার করা দরকার</string>
-    <string name="cleanup_notification_default">স্পেস খালি করতে স্ক্যান করতে ট্যাপ করুন।</string>
     <string name="scan_now">এখন স্ক্যান করুন</string>
     <string name="cleanup_title_variant1">একটি দ্রুত চেক-ইন মাত্র</string>
     <string name="cleanup_title_variant2">জায়গা টাইট লাগছে?</string>
@@ -115,10 +114,6 @@
     <string name="trash">ট্র্যাশ</string>
     <string name="trash_is_empty">ট্র্যাশ খালি</string>
     <string name="restore">পুনরুদ্ধার করুন</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">আপনার পছন্দের স্টার্টআপ পৃষ্ঠাটি বেছে নিন:</string>
-    <string name="dialog_info_startup">অ্যাপ্লিকেশন চালু করার সময় ব্যবহারকারীদের কাছে উপস্থাপিত প্রাথমিক স্ক্রিনটি কনফিগার করে। এই সেটিংটি অ্যাপের সাথে ব্যবহারকারীর প্রথম মিথস্ক্রিয়াকে প্রভাবিত করে এবং নির্দিষ্ট ব্যবহারকারী গোষ্ঠী বা পণ্যের লক্ষ্যের জন্য তৈরি করা যেতে পারে।</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">পরিষ্করণ</string>

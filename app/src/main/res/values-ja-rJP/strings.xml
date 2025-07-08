@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">お使いのスマートフォンはクリーニングが必要かもしれません</string>
-    <string name="cleanup_notification_default">タップしてスキャンし、空き容量を確保しましょう。</string>
     <string name="scan_now">今すぐスキャン</string>
     <string name="cleanup_title_variant1">ちょっとしたチェックです</string>
     <string name="cleanup_title_variant2">容量が足りないですか？</string>
@@ -113,10 +112,6 @@
     <string name="trash">ゴミ箱</string>
     <string name="trash_is_empty">ゴミ箱は空です</string>
     <string name="restore">復元</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">優先する起動ページを選択してください:</string>
-    <string name="dialog_info_startup">アプリケーション起動時にユーザーに表示される初期画面を設定します。この設定は、アプリとの最初のやり取りに影響し、特定のユーザーセグメントや製品目標に合わせて調整できます。</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">クリーニング</string>

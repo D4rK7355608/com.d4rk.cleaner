@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">Telefonunuzun temizliğe ihtiyacı olabilir</string>
-    <string name="cleanup_notification_default">Tarayıp yer açmak için dokunun.</string>
     <string name="scan_now">Şimdi tara</string>
     <string name="cleanup_title_variant1">Sadece hızlı bir kontrol</string>
     <string name="cleanup_title_variant2">Yer mi daralıyor?</string>
@@ -115,10 +114,6 @@
     <string name="trash">Çöp Kutusu</string>
     <string name="trash_is_empty">Çöp kutusu boş</string>
     <string name="restore">Geri Yükle</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">Tercih ettiğiniz başlangıç sayfasını seçin:</string>
-    <string name="dialog_info_startup">Uygulama başlatıldığında kullanıcılara sunulan ilk ekranı yapılandırır. Bu ayar, kullanıcının uygulamayla ilk etkileşimini etkiler ve belirli kullanıcı segmentlerine veya ürün hedeflerine göre uyarlanabilir.</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Temizlik</string>

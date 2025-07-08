@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">Baka kailangan linisin ang iyong telepono</string>
-    <string name="cleanup_notification_default">Tapikin para i-scan at magpalaya ng espasyo.</string>
     <string name="scan_now">I-scan ngayon</string>
     <string name="cleanup_title_variant1">Mabilisang check lang</string>
     <string name="cleanup_title_variant2">Mabigat ba ang espasyo?</string>
@@ -115,10 +114,6 @@
     <string name="trash">Trash</string>
     <string name="trash_is_empty">Walang laman ang trash</string>
     <string name="restore">Ibalik</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">Piliin ang iyong gustong startup page:</string>
-    <string name="dialog_info_startup">Kino-configure ang paunang screen na ipinapakita sa mga user sa paglunsad ng application. Nakakaimpluwensya ang setting na ito sa unang interaksyon ng user sa app at maaaring iakma sa mga partikular na segment ng user o layunin ng produkto.</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Paglilinis</string>

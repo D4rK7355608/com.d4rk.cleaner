@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">Ponsel Anda mungkin perlu dibersihkan</string>
-    <string name="cleanup_notification_default">Ketuk untuk memindai dan mengosongkan ruang.</string>
     <string name="scan_now">Pindai sekarang</string>
     <string name="cleanup_title_variant1">Hanya cek cepat</string>
     <string name="cleanup_title_variant2">Ruang terasa sempit?</string>
@@ -113,10 +112,6 @@
     <string name="trash">Sampah</string>
     <string name="trash_is_empty">Sampah kosong</string>
     <string name="restore">Pulihkan</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">Pilih halaman awal pilihan Anda:</string>
-    <string name="dialog_info_startup">Mengonfigurasi layar awal yang disajikan kepada pengguna saat meluncurkan aplikasi. Pengaturan ini memengaruhi interaksi pertama pengguna dengan aplikasi dan dapat disesuaikan dengan segmen pengguna atau tujuan produk tertentu.</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Pembersihan</string>

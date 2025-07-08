@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">Lehet, hogy a telefonodnak tisztításra van szüksége</string>
-    <string name="cleanup_notification_default">Érints rá a kereséshez és a hely felszabadításához.</string>
     <string name="scan_now">Most keresés</string>
     <string name="cleanup_title_variant1">Csak egy gyors ellenőrzés</string>
     <string name="cleanup_title_variant2">Kevés a hely?</string>
@@ -115,10 +114,6 @@
     <string name="trash">Kuka</string>
     <string name="trash_is_empty">A kuka üres</string>
     <string name="restore">Visszaállítás</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">Válaszd ki az előnyben részesített kezdőoldalt:</string>
-    <string name="dialog_info_startup">Beállítja a felhasználók számára az alkalmazás indításakor megjelenő kezdeti képernyőt. Ez a beállítás befolyásolja a felhasználó első interakcióját az alkalmazással, és testreszabható adott felhasználói szegmensekhez vagy termékcélokhoz.</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Tisztítás</string>

@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">Din telefon kan behöva städas</string>
-    <string name="cleanup_notification_default">Tryck för att skanna och frigöra utrymme.</string>
     <string name="scan_now">Skanna nu</string>
     <string name="cleanup_title_variant1">Bara en snabb koll</string>
     <string name="cleanup_title_variant2">Känns utrymmet trångt?</string>
@@ -115,10 +114,6 @@
     <string name="trash">Papperskorg</string>
     <string name="trash_is_empty">Papperskorgen är tom</string>
     <string name="restore">Återställ</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">Välj önskad startsida:</string>
-    <string name="dialog_info_startup">Konfigurerar den första skärmen som presenteras för användare när applikationen startas. Denna inställning påverkar användarens första interaktion med appen och kan skräddarsys för specifika användarsegment eller produktmål.</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Rensning</string>

@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">Twój telefon może potrzebować czyszczenia</string>
-    <string name="cleanup_notification_default">Stuknij, aby przeskanować i zwolnić miejsce.</string>
     <string name="scan_now">Skanuj teraz</string>
     <string name="cleanup_title_variant1">Tylko szybka kontrola</string>
     <string name="cleanup_title_variant2">Mało miejsca?</string>
@@ -119,10 +118,6 @@
     <string name="trash">Kosz</string>
     <string name="trash_is_empty">Kosz jest pusty</string>
     <string name="restore">Przywróć</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">Wybierz preferowaną stronę startową:</string>
-    <string name="dialog_info_startup">Konfiguruje początkowy ekran prezentowany użytkownikom po uruchomieniu aplikacji. To ustawienie wpływa na pierwszą interakcję użytkownika z aplikacją i może być dostosowane do określonych segmentów użytkowników lub celów produktu.</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Czyszczenie</string>

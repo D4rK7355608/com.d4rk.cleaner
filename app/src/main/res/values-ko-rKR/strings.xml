@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">휴대폰을 정리해야 할 수도 있어요</string>
-    <string name="cleanup_notification_default">탭하여 스캔하고 공간을 확보하세요.</string>
     <string name="scan_now">지금 스캔</string>
     <string name="cleanup_title_variant1">간단한 점검이에요</string>
     <string name="cleanup_title_variant2">공간이 부족한가요?</string>
@@ -113,10 +112,6 @@
     <string name="trash">휴지통</string>
     <string name="trash_is_empty">휴지통이 비어 있습니다.</string>
     <string name="restore">복원</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">선호하는 시작 페이지를 선택하세요:</string>
-    <string name="dialog_info_startup">애플리케이션 실행 시 사용자에게 표시되는 초기 화면을 구성합니다. 이 설정은 앱과의 첫 사용자 상호 작용에 영향을 미치며 특정 사용자 세그먼트 또는 제품 목표에 맞게 조정할 수 있습니다.</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">정리</string>

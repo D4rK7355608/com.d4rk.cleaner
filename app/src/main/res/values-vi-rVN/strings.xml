@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">Điện thoại của bạn có thể cần dọn dẹp</string>
-    <string name="cleanup_notification_default">Nhấn để quét và giải phóng dung lượng.</string>
     <string name="scan_now">Quét ngay</string>
     <string name="cleanup_title_variant1">Chỉ kiểm tra nhanh thôi</string>
     <string name="cleanup_title_variant2">Thiếu chỗ trống?</string>
@@ -113,10 +112,6 @@
     <string name="trash">Thùng rác</string>
     <string name="trash_is_empty">Thùng rác trống</string>
     <string name="restore">Khôi phục</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">Chọn trang khởi động ưa thích của bạn:</string>
-    <string name="dialog_info_startup">Cấu hình màn hình ban đầu hiển thị cho người dùng khi khởi chạy ứng dụng. Cài đặt này ảnh hưởng đến tương tác đầu tiên của người dùng với ứng dụng và có thể được tùy chỉnh cho các phân khúc người dùng hoặc mục tiêu sản phẩm cụ thể.</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Dọn dẹp</string>

@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">Dein Handy braucht vielleicht eine Reinigung</string>
-    <string name="cleanup_notification_default">Tippe zum Scannen und Speicher freigeben.</string>
     <string name="scan_now">Jetzt scannen</string>
     <string name="cleanup_title_variant1">Nur ein kurzer Check</string>
     <string name="cleanup_title_variant2">Wenig Platz übrig?</string>
@@ -115,10 +114,6 @@
     <string name="trash">Papierkorb</string>
     <string name="trash_is_empty">Papierkorb ist leer</string>
     <string name="restore">Wiederherstellen</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">Wählen Sie Ihre bevorzugte Startseite:</string>
-    <string name="dialog_info_startup">Konfiguriert den Startbildschirm, der Benutzern beim Starten der Anwendung angezeigt wird. Diese Einstellung beeinflusst die erste Interaktion des Benutzers mit der App und kann auf bestimmte Benutzersegmente oder Produktziele zugeschnitten werden.</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Bereinigung</string>
