@@ -9,6 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
+import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.AudioDirectoryCard
+import com.d4rk.cleaner.app.clean.whatsapp.utils.constants.WhatsAppMediaConstants
 
 @Composable
 fun DirectoryGrid(items: List<DirectoryItem>, onOpenDetails: (String) -> Unit) {
@@ -25,7 +27,12 @@ fun DirectoryGrid(items: List<DirectoryItem>, onOpenDetails: (String) -> Unit) {
                     .animateContentSize()
             ) {
                 for (item in chunk) {
-                    DirectoryCard(item = item, onOpenDetails = onOpenDetails, modifier = Modifier.weight(1f))
+                    val isAudio = item.type == WhatsAppMediaConstants.AUDIOS || item.type == WhatsAppMediaConstants.VOICE_NOTES
+                    if (isAudio) {
+                        AudioDirectoryCard(item = item, onOpenDetails = onOpenDetails, modifier = Modifier.weight(1f))
+                    } else {
+                        DirectoryCard(item = item, onOpenDetails = onOpenDetails, modifier = Modifier.weight(1f))
+                    }
                 }
                 if (chunk.size == 1) {
                     androidx.compose.foundation.layout.Spacer(modifier = Modifier.weight(1f))
