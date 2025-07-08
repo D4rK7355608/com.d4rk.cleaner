@@ -65,6 +65,7 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHa
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.scanner.ui.components.FilePreviewCard
+import com.d4rk.cleaner.app.clean.scanner.ui.components.FileListItem
 import com.d4rk.cleaner.app.clean.whatsapp.details.domain.actions.WhatsAppDetailsEvent
 import com.d4rk.cleaner.app.clean.whatsapp.details.domain.model.UiWhatsAppDetailsModel
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.CustomTabLayout
@@ -74,6 +75,7 @@ import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleane
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsappCleanerSummaryViewModel
 import com.d4rk.cleaner.app.clean.whatsapp.utils.constants.WhatsAppMediaConstants
 import com.d4rk.cleaner.app.clean.whatsapp.utils.helpers.openFile
+import com.google.common.io.Files.getFileExtension
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -355,6 +357,9 @@ fun DetailsScreenContent(
                 LazyColumn(modifier = Modifier.weight(1f)) {
                     items(files) { file ->
                         val checked = file in selected
+                        val fileExtension = remember(file.name) { getFileExtension(file.name) }
+                        val audioExt = remember { context.resources.getStringArray(R.array.audio_extensions).toList() }
+                        val isAudio = remember(fileExtension) { audioExt.any { it.equals(fileExtension, ignoreCase = true) } }
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -368,7 +373,11 @@ fun DetailsScreenContent(
                                     )
                                 }
                         ) {
-                            FilePreviewCard(file = file, modifier = Modifier.weight(1f))
+                            if (isAudio) {
+                                FileListItem(file = file, modifier = Modifier.weight(1f))
+                            } else {
+                                FilePreviewCard(file = file, modifier = Modifier.weight(1f))
+                            }
                             Checkbox(
                                 checked = checked,
                                 onCheckedChange = {
