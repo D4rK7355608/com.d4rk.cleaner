@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -82,7 +83,7 @@ fun ScannerDashboardScreen(
 
     val cleanerCardsCount = listOf(showWhatsAppCard, showApkCard, showClipboardCard).count { it }
 
-    val listState = rememberLazyListState()
+    val listState: LazyListState = rememberLazyListState()
 
     // Pre-compute ad configurations so they do not change while the UI is building
     val topAdConfig = remember(cleanerCardsCount) {
@@ -99,7 +100,7 @@ fun ScannerDashboardScreen(
     val showAdMid = cleanerCardsCount > 0
     val showAdEnd = promotedApp == null || cleanerCardsCount >= 1
 
-    val itemsSize = remember(
+    val itemsSize: Int = remember(
         showAdTop,
         showAdMid,
         showAdEnd,
@@ -140,7 +141,7 @@ fun ScannerDashboardScreen(
         }.size
     }
 
-    val visibilityStates: SnapshotStateList<Boolean> = rememberAnimatedVisibilityState(
+    val (visibilityStates: SnapshotStateList<Boolean>) = rememberAnimatedVisibilityState(
         listState = listState,
         itemCount = itemsSize
     )
