@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.clean.dashboard
+package com.d4rk.cleaner.app.clean.dashboard.ui
 
 import android.content.Context
 import androidx.compose.animation.AnimatedVisibility
@@ -17,12 +17,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ads.AdsConfig
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.ads.AdBanner
+import com.d4rk.android.libs.apptoolkit.core.ui.components.animations.rememberAnimatedVisibilityState
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.animateVisibility
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
@@ -48,6 +50,7 @@ import com.d4rk.cleaner.app.images.picker.ui.ImagePickerActivity
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.qualifier.named
+import java.io.File
 
 @Composable
 fun ScannerDashboardScreen(
@@ -78,6 +81,20 @@ fun ScannerDashboardScreen(
     val cleanerCardsCount = listOf(showWhatsAppCard , showApkCard , showClipboardCard).count { it }
 
     val listState = rememberLazyListState()
+
+    val itemsSize = listOfNotNull(
+        uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
+        showStreakCard,
+        streakHideUntil > System.currentTimeMillis(),
+        showWhatsAppCard,
+        showApkCard,
+        showClipboardCard,
+        uiState.data?.analyzeState?.isAnalyzeScreenVisible == false, // ImageOptimizerCard
+        uiState.data?.analyzeState?.isAnalyzeScreenVisible == false, // CacheCleanerCard
+        promotedApp != null
+    ).count { it }
+
+    val (visibilityStates : SnapshotStateList<Boolean>) = rememberAnimatedVisibilityState(listState = listState , itemCount = itemsSize)
 
     var itemIndex = 0
     val nextIndex: () -> Int = { itemIndex++ }
@@ -151,7 +168,7 @@ fun ScannerDashboardScreen(
                         index = nextIndex()
                     ),
                     apkFiles = appManagerState.data?.apkFiles ?: emptyList() , isLoading = isCleaningApks , onCleanClick = { selected ->
-                        val files = selected.map { java.io.File(it.path) }
+                        val files = selected.map { File(it.path) }
                         viewModel.onCleanApks(files)
                     })
             }
