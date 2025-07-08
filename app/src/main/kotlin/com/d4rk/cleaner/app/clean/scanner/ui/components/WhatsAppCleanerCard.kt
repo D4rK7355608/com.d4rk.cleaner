@@ -48,8 +48,6 @@ fun WhatsAppCleanerCard(
     modifier: Modifier = Modifier,
     onCleanClick: () -> Unit
 ) {
-    if (!mediaSummary.hasData) return
-
     OutlinedCard(
         modifier = modifier.fillMaxWidth() ,
         shape = RoundedCornerShape(SizeConstants.ExtraLargeSize) ,
