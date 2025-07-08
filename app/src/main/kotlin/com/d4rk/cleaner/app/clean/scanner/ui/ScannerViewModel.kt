@@ -3,6 +3,7 @@ package com.d4rk.cleaner.app.clean.scanner.ui
 import android.app.Application
 import android.content.ClipboardManager
 import android.content.Context
+import android.net.Uri
 import com.d4rk.android.libs.apptoolkit.core.di.DispatcherProvider
 import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.ScreenState
@@ -76,6 +77,10 @@ class ScannerViewModel(
 
     private val _whatsAppMediaSummary = MutableStateFlow(WhatsAppMediaSummary())
     val whatsAppMediaSummary: StateFlow<WhatsAppMediaSummary> = _whatsAppMediaSummary
+    private val _whatsAppMediaLoaded = MutableStateFlow(false)
+    val whatsAppMediaLoaded: StateFlow<Boolean> = _whatsAppMediaLoaded
+    private val _isWhatsAppInstalled = MutableStateFlow(false)
+    val isWhatsAppInstalled: StateFlow<Boolean> = _isWhatsAppInstalled
 
     private val _clipboardPreview = MutableStateFlow<String?>(null)
     val clipboardPreview: StateFlow<String?> = _clipboardPreview
@@ -97,6 +102,7 @@ class ScannerViewModel(
         clipboardManager.addPrimaryClipChangedListener(clipboardListener)
         onEvent(ScannerEvent.LoadInitialData)
         loadCleanedSpace()
+        checkWhatsAppInstalled()
         loadWhatsAppMedia()
         loadClipboardData()
         loadPromotedApp()
@@ -883,6 +889,7 @@ class ScannerViewModel(
     }
 
     private fun loadWhatsAppMedia() {
+        _whatsAppMediaLoaded.value = false
         launch(context = dispatchers.io) {
             val (images, videos, docs) = getWhatsAppMediaSummary()
             _whatsAppMediaSummary.value = WhatsAppMediaSummary(
@@ -890,6 +897,18 @@ class ScannerViewModel(
                 videos = videos,
                 documents = docs
             )
+            _whatsAppMediaLoaded.value = true
+        }
+    }
+
+    private fun checkWhatsAppInstalled() {
+        launch(context = dispatchers.io) {
+            val installed = runCatching {
+                val uri = Uri.parse("content://com.whatsapp.provider.media")
+                application.contentResolver.getType(uri)
+                true
+            }.getOrElse { false }
+            _isWhatsAppInstalled.value = installed
         }
     }
 

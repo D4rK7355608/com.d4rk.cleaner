@@ -72,16 +72,23 @@ fun ScannerDashboardScreen(
 
     val appManagerState: UiStateScreen<UiAppManagerModel> by appManagerViewModel.uiState.collectAsState()
     val whatsappSummary by viewModel.whatsAppMediaSummary.collectAsState()
+    val whatsappLoaded by viewModel.whatsAppMediaLoaded.collectAsState()
+    val whatsappInstalled by viewModel.isWhatsAppInstalled.collectAsState()
     val clipboardText by viewModel.clipboardPreview.collectAsState()
     val streakDays by viewModel.cleanStreak.collectAsState()
     val showStreakCard by viewModel.showStreakCard.collectAsState()
     val streakHideUntil by viewModel.streakHideUntil.collectAsState()
 
-    val showApkCard = appManagerState.data?.apkFiles?.isNotEmpty() == true
-    val showWhatsAppCard = whatsappSummary.hasData
+    val showApkCard =
+        appManagerState.data?.apkFilesLoading == false &&
+            appManagerState.data?.apkFiles?.isNotEmpty() == true
+    val showWhatsAppCard = whatsappLoaded && whatsappInstalled
     val showClipboardCard = !clipboardText.isNullOrBlank()
 
-    val cleanerCardsCount = listOf(showWhatsAppCard, showApkCard, showClipboardCard).count { it }
+    val dataLoaded = appManagerState.data?.apkFilesLoading == false && whatsappLoaded
+    val cleanerCardsCount = if (dataLoaded) {
+        listOf(showWhatsAppCard, showApkCard, showClipboardCard).count { it }
+    } else 0
 
     val listState: LazyListState = rememberLazyListState()
 
@@ -96,9 +103,9 @@ fun ScannerDashboardScreen(
         if (promotedApp == null) bannerAdsConfig else leaderboard
     }
 
-    val showAdTop = cleanerCardsCount > 0
-    val showAdMid = cleanerCardsCount > 0
-    val showAdEnd = promotedApp == null || cleanerCardsCount >= 1
+    val showAdTop = dataLoaded && cleanerCardsCount > 0
+    val showAdMid = dataLoaded && cleanerCardsCount > 0
+    val showAdEnd = dataLoaded && (promotedApp == null || cleanerCardsCount >= 1)
 
     val itemsSize: Int = remember(
         showAdTop,
