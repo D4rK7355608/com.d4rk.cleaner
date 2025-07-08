@@ -5,8 +5,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import coil3.imageLoader
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -21,7 +19,6 @@ fun FilesByDateSection(
     originals: Set<File> = emptySet(),
     view : View ,
 ) {
-    val imageLoader = LocalContext.current.imageLoader
     LazyColumn(
         modifier = modifier.fillMaxSize()
     ) {

@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalWindowInfo
-import coil3.imageLoader
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ScreenHelper
 import java.io.File
@@ -35,7 +34,6 @@ fun DuplicateGroupsSection(
     val context = LocalContext.current
     val windowInfo = LocalWindowInfo.current
     val density = LocalDensity.current
-    val imageLoader = LocalContext.current.imageLoader
     val columns = if (ScreenHelper.isTablet(context = context)) 6 else 3
     val containerWidth = with(density) { windowInfo.containerSize.width.toDp() }
     val cardSize = (containerWidth - SizeConstants.SmallSize * 2) / columns

@@ -48,7 +48,7 @@ fun ApkItem(apkPath : String , viewModel : AppManagerViewModel , modifier : Modi
     val context : Context = LocalContext.current
     val view : View = LocalView.current
     val apkFile = File(apkPath)
-    var showMenu : Boolean by remember { mutableStateOf<Boolean>(value = false) }
+    var showMenu : Boolean by remember { mutableStateOf(value = false) }
 
     val model = remember(apkPath) {
         context.packageManager.getPackageArchiveInfo(apkPath , 0)?.applicationInfo?.loadIcon(context.packageManager)

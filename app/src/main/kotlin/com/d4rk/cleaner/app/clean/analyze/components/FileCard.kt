@@ -36,7 +36,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import coil3.compose.AsyncImage
-import coil3.imageLoader
 import coil3.request.ImageRequest
 import coil3.request.crossfade
 import coil3.video.VideoFrameDecoder
@@ -58,7 +57,6 @@ fun FileCard(
     modifier : Modifier = Modifier ,
 ) {
     val isFolder : Boolean = file.isDirectory
-    val imageLoader = LocalContext.current.imageLoader
     val context : Context = LocalContext.current
     val fileExtension : String = remember(key1 = file.name) { getFileExtension(file.name) }
 

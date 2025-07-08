@@ -60,7 +60,6 @@ fun FileSizeTab(viewModel : ImageOptimizerViewModel) {
     }
 
     var expanded : Boolean by remember { mutableStateOf(value = false) }
-    var selectedPresetSize : String by remember { mutableStateOf(value = "") }
 
     Column(modifier = Modifier.padding(all = SizeConstants.LargeSize)) {
         ExposedDropdownMenuBox(expanded = expanded , onExpandedChange = { expanded = ! expanded }) {
@@ -85,7 +84,6 @@ fun FileSizeTab(viewModel : ImageOptimizerViewModel) {
             ExposedDropdownMenu(expanded = expanded , onDismissRequest = { expanded = false }) {
                 presetSizes.forEach { size ->
                     DropdownMenuItem(text = { Text(text = "$size KB") } , onClick = {
-                        selectedPresetSize = size
                         fileSizeText = size
                         coroutineScope.launch {
                             viewModel.setFileSize(size = size.toIntOrNull() ?: 0)

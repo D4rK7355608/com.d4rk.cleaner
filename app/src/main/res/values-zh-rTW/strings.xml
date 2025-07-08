@@ -52,7 +52,6 @@
     <string name="empty_folders">空資料夾</string>
     <string name="duplicates">重複檔案</string>
     <plurals name="status_selected_files">
-        <item quantity="one">狀態：已選取 %1$d 個檔案</item>
         <item quantity="other">狀態：已選取 %1$d 個檔案</item>
     </plurals>
     <string name="status_no_files_selected">狀態：未選取任何檔案</string>
@@ -61,7 +60,6 @@
     <string name="yesterday">昨天</string>
     <string name="a_year_ago">去年</string>
     <plurals name="years_ago">
-        <item quantity="one">%d 年前</item>
         <item quantity="other">%d 年前</item>
     </plurals>
     <string name="no_files_found">找不到任何檔案</string>

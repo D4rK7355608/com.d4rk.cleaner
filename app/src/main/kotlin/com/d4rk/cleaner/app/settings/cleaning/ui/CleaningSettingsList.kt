@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.app.settings.cleaning.ui
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -11,9 +12,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.platform.LocalContext
-import android.widget.Toast
+import androidx.compose.ui.res.stringResource
 import com.d4rk.android.libs.apptoolkit.core.ui.components.preferences.PreferenceCategoryItem
 import com.d4rk.android.libs.apptoolkit.core.ui.components.preferences.SwitchPreferenceItem
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ExtraTinyVerticalSpacer
@@ -271,7 +271,7 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
                     ExtraTinyVerticalSpacer()
                     SwitchPreferenceItem(
                         title = stringResource(id = R.string.preference_show_streak_card),
-                        checked = showStreakCardPref,
+                        checked = false,
                     ) { isChecked ->
                         CoroutineScope(Dispatchers.IO).launch {
                             dataStore.saveShowStreakCard(isChecked)

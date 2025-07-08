@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import coil3.imageLoader
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NonLazyGrid
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ScreenHelper
@@ -22,7 +21,6 @@ fun FilesGrid(
     view : View ,
 ) {
     val columns : Int = if (ScreenHelper.isTablet(context = LocalContext.current)) 6 else 3
-    val imageLoader = LocalContext.current.imageLoader
 
     Box(
         modifier = Modifier.fillMaxSize()

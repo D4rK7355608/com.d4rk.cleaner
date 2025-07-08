@@ -4,7 +4,6 @@
 
     <!-- Notifications -->
     <string name="cleanup_notification_title">Your phone might need a cleanup</string>
-    <string name="cleanup_notification_default">Tap to scan and free up space.</string>
     <string name="scan_now">Scan now</string>
     <string name="cleanup_title_variant1">Just a quick check-in</string>
     <string name="cleanup_title_variant2">Space feeling tight?</string>
@@ -73,9 +72,7 @@
     <string name="move_to_trash_title">Move to Trash</string>
     <string name="move_to_trash_message">Are you sure you want to move these files to the trash?</string>
     <string name="quick_scan">Quick Scan</string>
-    <string name="rescan">Scan Again</string>
     <string name="quick_scan_cleaned_format">You cleaned %1$s this week</string>
-    <string name="quick_scan_free_format">Storage: %1$d%% free • %2$d%% used</string>
     <string name="quick_scan_summary_tip">Looking good! Want to scan again for extra space?</string>
     <string name="quick_scan_summary_tip_2">All clear — but there\'s always room for more.</string>
     <string name="quick_scan_summary_tip_3">Feeling fresh? Let\'s double-check.</string>
@@ -120,7 +117,6 @@
     <string name="clean_whatsapp_warning_message">This will delete all WhatsApp media files. Continue?</string>
     <string name="cancel">Cancel</string>
     <string name="whatsapp_cleaner">WhatsApp Cleaner</string>
-    <string name="free_up_format">You can free up %1$s</string>
     <string name="total_files_format">%1$s files</string>
     <string name="delete_selected">Delete Selected</string>
     <string name="no_application_found">No application found to open this file.</string>
@@ -131,17 +127,13 @@
     <string name="clipboard_card_subtitle">Your clipboard may still hold private info.</string>
     <string name="clipboard_current_format">Current clipboard: %1$s</string>
     <string name="clean_clipboard">Clear Clipboard</string>
-    <string name="see_more">View Details</string>
-    <string name="learn_more">How It Works</string>
     <string name="cleaner_recommends">Cleaner Recommends</string>
     <string name="image_optimizer_card_title">Image Optimizer</string>
     <string name="image_optimizer_card_subtitle">Compress photos without losing quality.&#10;Save space with one tap.</string>
     <string name="image_optimizer_last_format">Last optimization: %1$s</string>
-    <string name="image_optimizer_card_footer">Supports JPEG • Custom quality &amp; size</string>
     <string name="cache_cleaner_card_title">Cache Cleaner</string>
     <string name="cache_cleaner_card_subtitle">Free up space from app cache</string>
     <string name="scan_cache">Scan Cache</string>
-    <string name="cache_cleaner">Cache Cleaner</string>
     <string name="apks">APKs</string>
     <string name="archives">Archives</string>
     <string name="fonts">Fonts</string>
@@ -167,7 +159,6 @@
     </plurals>
     <string name="status_no_files_selected">Status: No files selected</string>
     <string name="select_all">Select All</string>
-    <string name="deselect_all">Deselect All</string>
     <string name="delete_confirmation_title">Delete Selected</string>
     <plurals name="delete_confirmation_message">
         <item quantity="one">Delete %1$d item?</item>
@@ -232,10 +223,6 @@
     <string name="trash">Trash</string>
     <string name="trash_is_empty">Trash is empty</string>
     <string name="restore">Restore</string>
-
-    <!-- Display -->
-    <string name="dialog_startup_subtitle">Choose your preferred startup page:</string>
-    <string name="dialog_info_startup">Configures the initial screen presented to users upon launching the application. This setting influences the user\'s first interaction with the app and can be tailored to specific user segments or product goals.</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Cleaning</string>

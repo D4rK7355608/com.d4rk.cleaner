@@ -63,8 +63,6 @@ fun MemoryManagerShimmer(paddingValues: PaddingValues) {
             CarouselShimmerCard(pageOffset = pageOffset)
         }
 
-        if (false) HorizontalPager(state = pagerState) {}
-
         LargeVerticalSpacer()
 
         DotsIndicator(
