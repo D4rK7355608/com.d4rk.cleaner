@@ -123,6 +123,8 @@
     <string name="free_up_format">You can free up %1$s</string>
     <string name="total_files_format">%1$s files</string>
     <string name="delete_selected">Delete Selected</string>
+    <string name="no_application_found">No application found to open this file.</string>
+    <string name="something_went_wrong">Something went wrong…</string>
     <string name="smart_suggestions">Smart Suggestions</string>
     <string name="delete_all_suggested">Delete All Suggested</string>
     <string name="clipboard_card_title">Clipboard Content</string>
