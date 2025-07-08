@@ -28,7 +28,7 @@ fun SortDialog(
     onDismiss: () -> Unit,
     onApply: (SortType, Boolean, Long?, Long?) -> Unit
 ) {
-    val options = SortType.values().toList()
+    val options = SortType.entries
     val selected = remember { mutableStateOf(current) }
     val isDescending = remember { mutableStateOf(descending) }
     val dateState: DateRangePickerState = rememberDateRangePickerState(
