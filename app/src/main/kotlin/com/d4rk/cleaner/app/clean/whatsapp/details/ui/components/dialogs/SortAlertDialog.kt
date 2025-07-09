@@ -40,6 +40,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
+import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.SortType
 import java.text.DateFormat
 
@@ -74,8 +75,8 @@ fun SortAlertDialog(
             onDismiss()
         },
         icon = Icons.AutoMirrored.Filled.Sort,
-        title = "Sort options",
-        confirmButtonText = "Apply",
+        title = stringResource(id = R.string.sort_options),
+        confirmButtonText = stringResource(id = R.string.apply),
         content = {
             Column {
                 options.forEach { type ->
