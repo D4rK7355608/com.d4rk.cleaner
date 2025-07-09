@@ -26,6 +26,8 @@ data class UiAnalyzeModel(
     var groupedFiles : Map<String , List<File>> = emptyMap() ,
     /** Set of original files when duplicates are detected */
     var duplicateOriginals : Set<File> = emptySet() ,
+    /** Groups of duplicate files starting with the original */
+    var duplicateGroups: List<List<File>> = emptyList(),
     var fileTypesData : FileTypesData = FileTypesData() ,
     var isDeleteForeverConfirmationDialogVisible : Boolean = false ,
     var isMoveToTrashConfirmationDialogVisible : Boolean = false ,
@@ -41,5 +43,4 @@ data class FileTypesData(
     var fontExtensions : List<String> = emptyList() ,
     var windowsExtensions : List<String> = emptyList() ,
     var officeExtensions : List<String> = emptyList() ,
-    var otherExtensions : List<String> = emptyList() ,
-)
+    var otherExtensions : List<String> = emptyList() ,)

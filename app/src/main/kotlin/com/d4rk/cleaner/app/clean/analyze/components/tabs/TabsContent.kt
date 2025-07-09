@@ -33,7 +33,7 @@ import com.d4rk.cleaner.app.clean.analyze.components.FilesByDateSection
 import com.d4rk.cleaner.app.clean.scanner.domain.actions.ScannerEvent
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.UiScannerModel
 import com.d4rk.cleaner.app.clean.scanner.ui.ScannerViewModel
-import com.d4rk.cleaner.app.clean.scanner.utils.helpers.groupDuplicatesByOriginal
+import androidx.compose.runtime.remember
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.io.File
@@ -112,15 +112,19 @@ fun TabsContent(
     ) { page ->
         val filesForCurrentPage = groupedFiles[tabs[page]] ?: emptyList()
 
-        val filesByDateRaw = filesForCurrentPage.groupBy { file ->
-            SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(file.lastModified()))
+        val filesByDateRaw = remember(filesForCurrentPage) {
+            filesForCurrentPage.groupBy { file ->
+                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(file.lastModified()))
+            }
         }
 
         if (hasDuplicatesTab && tabs[page] == duplicatesTabTitle) {
-            val duplicateGroups = groupDuplicatesByOriginal(filesForCurrentPage)
-            val filesByDate = duplicateGroups.groupBy { group ->
-                val firstFile = group.first()
-                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(firstFile.lastModified()))
+            val duplicateGroups = data.analyzeState.duplicateGroups
+            val filesByDate = remember(duplicateGroups) {
+                duplicateGroups.groupBy { group ->
+                    val firstFile = group.first()
+                    SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(firstFile.lastModified()))
+                }
             }
 
             DuplicateGroupsSection(
@@ -143,5 +147,4 @@ fun TabsContent(
                 view = view
             )
         }
-    }
-}
+    }}

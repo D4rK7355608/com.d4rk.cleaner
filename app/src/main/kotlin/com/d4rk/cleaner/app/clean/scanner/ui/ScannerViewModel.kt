@@ -273,7 +273,7 @@ class ScannerViewModel(
                             )
 
                             val includeDuplicates = dataStore.deleteDuplicateFiles.first()
-                            val (groupedFiles, duplicateOriginals) =
+                            val (groupedFiles, duplicateOriginals, duplicateGroups) =
                                 withContext(dispatchers.default) {
                                     computeGroupedFiles(
                                         scannedFiles = result.data.first,
@@ -291,6 +291,7 @@ class ScannerViewModel(
                                         emptyFolderList = result.data.second,
                                         groupedFiles = groupedFiles,
                                         duplicateOriginals = duplicateOriginals,
+                                        duplicateGroups = duplicateGroups,
                                         // Files are ready for the user to review
                                         // before starting the cleaning step
                                         state = CleaningState.ReadyToClean,
@@ -325,7 +326,7 @@ class ScannerViewModel(
         fileTypesData: FileTypesData,
         preferences: Map<String, Boolean>,
         includeDuplicates: Boolean
-    ): Pair<Map<String, List<File>>, Set<File>> {
+    ): Triple<Map<String, List<File>>, Set<File>, List<List<File>>> {
         val knownExtensions: Set<String> =
             (fileTypesData.imageExtensions + fileTypesData.videoExtensions + fileTypesData.audioExtensions + fileTypesData.officeExtensions + fileTypesData.archiveExtensions + fileTypesData.apkExtensions + fileTypesData.fontExtensions + fileTypesData.windowsExtensions).toSet()
 
@@ -388,7 +389,7 @@ class ScannerViewModel(
             value.isNotEmpty() || (key == emptyFoldersTitle && preferences[ExtensionsConstants.EMPTY_FOLDERS] == true)
         }
 
-        return filteredMap to duplicateOriginals
+        return Triple(filteredMap, duplicateOriginals, duplicateGroups)
     }
 
     private fun findDuplicateGroups(files: List<File>): List<List<File>> {
@@ -441,7 +442,7 @@ class ScannerViewModel(
                     result = result,
                     errorMessage = UiTextHelper.StringResource(R.string.failed_to_delete_files)
                 ) { data, currentData ->
-                    val (groupedFilesUpdated, duplicateOriginals) = computeGroupedFiles(
+                    val (groupedFilesUpdated, duplicateOriginals, duplicateGroups) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot { files.contains(it) },
                         emptyFolders = currentData.analyzeState.emptyFolderList,
                         fileTypesData = currentData.analyzeState.fileTypesData,
@@ -455,6 +456,7 @@ class ScannerViewModel(
                         },
                         groupedFiles = groupedFilesUpdated,
                         duplicateOriginals = duplicateOriginals,
+                        duplicateGroups = duplicateGroups,
                         selectedFilesCount = 0,
                         areAllFilesSelected = false,
                         fileSelectionMap = emptyMap(),
@@ -508,7 +510,7 @@ class ScannerViewModel(
                     result = result,
                     errorMessage = UiTextHelper.StringResource(R.string.failed_to_move_files_to_trash)
                 ) { _: Unit, currentData: UiScannerModel ->
-                    val (groupedFilesUpdated2, duplicateOriginals2) = computeGroupedFiles(
+                    val (groupedFilesUpdated2, duplicateOriginals2, duplicateGroups2) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile: File ->
                             files.any { movedFile: File -> existingFile.absolutePath == movedFile.absolutePath }
                         },
@@ -525,6 +527,7 @@ class ScannerViewModel(
                             },
                             groupedFiles = groupedFilesUpdated2,
                             duplicateOriginals = duplicateOriginals2,
+                            duplicateGroups = duplicateGroups2,
                             selectedFilesCount = 0,
                             areAllFilesSelected = false,
                             isAnalyzeScreenVisible = false,
@@ -556,6 +559,7 @@ class ScannerViewModel(
                         scannedFileList = emptyList(),
                         emptyFolderList = emptyList(),
                         groupedFiles = emptyMap(),
+                        duplicateGroups = emptyList(),
                         fileSelectionMap = emptyMap(),
                         selectedFilesCount = 0,
                         areAllFilesSelected = false,
@@ -721,7 +725,7 @@ class ScannerViewModel(
                     result = result,
                     errorMessage = UiTextHelper.StringResource(R.string.failed_to_delete_files)
                 ) { _: Unit, currentData: UiScannerModel ->
-                    val (groupedFilesUpdated, duplicateOriginals) = computeGroupedFiles(
+                    val (groupedFilesUpdated, duplicateOriginals, duplicateGroups) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot {
                             filesToDelete.contains(it)
                         },
@@ -736,6 +740,7 @@ class ScannerViewModel(
                     },
                         groupedFiles = groupedFilesUpdated,
                         duplicateOriginals = duplicateOriginals,
+                        duplicateGroups = duplicateGroups,
                         selectedFilesCount = 0,
                         areAllFilesSelected = false,
                         fileSelectionMap = emptyMap(),
@@ -816,7 +821,7 @@ class ScannerViewModel(
                     result = result,
                     errorMessage = UiTextHelper.StringResource(R.string.failed_to_move_files_to_trash)
                 ) { _, currentData ->
-                    val (groupedFilesUpdated3, duplicateOriginals3) = computeGroupedFiles(
+                    val (groupedFilesUpdated3, duplicateOriginals3, duplicateGroups3) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile ->
                             filesToMove.any { movedFile -> existingFile.absolutePath == movedFile.absolutePath }
                         },
@@ -832,6 +837,7 @@ class ScannerViewModel(
 
                         groupedFiles = groupedFilesUpdated3,
                         duplicateOriginals = duplicateOriginals3,
+                        duplicateGroups = duplicateGroups3,
                         selectedFilesCount = 0,
                         areAllFilesSelected = false,
                         isAnalyzeScreenVisible = false,
@@ -969,6 +975,7 @@ class ScannerViewModel(
                                 scannedFileList = emptyList(),
                                 emptyFolderList = emptyList(),
                                 groupedFiles = emptyMap(),
+                                duplicateGroups = emptyList(),
                                 fileSelectionMap = emptyMap(),
                                 selectedFilesCount = 0,
                                 areAllFilesSelected = false,
@@ -987,6 +994,7 @@ class ScannerViewModel(
                         fileSelectionMap = emptyMap(),
                         selectedFilesCount = 0,
                         areAllFilesSelected = false,
+                        duplicateGroups = emptyList(),
                         isAnalyzeScreenVisible = false,
                         state = CleaningState.Idle,
                         cleaningType = CleaningType.NONE
