@@ -360,7 +360,6 @@ fun DetailsScreenContent(
                         val audioExt = remember { context.resources.getStringArray(R.array.audio_extensions).toList() }
                         val imageExt = remember { context.resources.getStringArray(R.array.image_extensions).toList() }
                         val videoExt = remember { context.resources.getStringArray(R.array.video_extensions).toList() }
-                        val isAudio = remember(fileExtension) { audioExt.any { it.equals(fileExtension, ignoreCase = true) } }
                         val isMedia = remember(fileExtension) {
                             imageExt.any { it.equals(fileExtension, ignoreCase = true) } ||
                                     videoExt.any { it.equals(fileExtension, ignoreCase = true) }
@@ -378,7 +377,7 @@ fun DetailsScreenContent(
                                     )
                                 }
                         ) {
-                            if (!isGrid) {
+                            if (isMedia) {
                                 FilePreviewCard(file = file, modifier = Modifier.weight(1f))
                             } else {
                                 FileListItem(file = file, modifier = Modifier.weight(1f))
