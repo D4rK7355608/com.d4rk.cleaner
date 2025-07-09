@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.ScrollableTabRow
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
@@ -27,10 +27,9 @@ fun CustomTabLayout(
     onTabSelected: (index: Int) -> Unit,
     onTabCheckedChange: (index: Int, checked: Boolean) -> Unit,
 ) {
-    ScrollableTabRow(
+    TabRow(
         modifier = modifier.fillMaxWidth(),
         selectedTabIndex = selectedItemIndex,
-        edgePadding = 0.dp,
         indicator = { tabPositions ->
             TabRowDefaults.PrimaryIndicator(
                 modifier = Modifier.tabIndicatorOffset(tabPositions[selectedItemIndex]),
