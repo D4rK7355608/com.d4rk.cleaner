@@ -21,6 +21,11 @@
     <string name="cleanup_title_variant14">Bersih-bersih bisa membantu ponsel tetap cepat</string>
     <string name="cleanup_title_variant15">Ponselmu pantas mendapatkan penyegaran</string>
     <string name="cleanup_storage_very_high">Penyimpanan sangat penuh. Ingin bersih-bersih?</string>
+    <string name="cleanup_storage_very_high_2">Hampir penuh! Bersih-bersih sekarang?</string>
+    <string name="cleanup_storage_very_high_3">Penyimpanan kritis. Mari bebaskan sedikit ruang.</string>
+    <string name="cleanup_storage_very_high_4">Ruang cepat habis!</string>
+    <string name="cleanup_storage_very_high_5">Peringatan: penyimpanan sangat rendah.</string>
+    <string name="cleanup_storage_very_high_6">Sudah penuh! Ayo bersihkan cepat.</string>
     <string name="cleanup_storage_high">Kamu di %1$d%% — ketuk untuk memindai jika perlu.</string>
     <string name="cleanup_storage_high_2">Kamu sudah memakai %1$d%% — pemindaian cepat bisa membantu.</string>
     <string name="cleanup_storage_high_3">%1$d%% terisi. Mulai terasa sempit.</string>

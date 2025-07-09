@@ -21,6 +21,11 @@
     <string name="cleanup_title_variant14">Очищення допоможе залишатися швидким</string>
     <string name="cleanup_title_variant15">Ваш телефон заслуговує на оновлення</string>
     <string name="cleanup_storage_very_high">Пам’ять майже заповнена. Хочете трохи почистити?</string>
+    <string name="cleanup_storage_very_high_2">Майже все заповнено! Почистити?</string>
+    <string name="cleanup_storage_very_high_3">Критичний рівень пам’яті. Давайте звільнимо місце.</string>
+    <string name="cleanup_storage_very_high_4">Місце швидко закінчується!</string>
+    <string name="cleanup_storage_very_high_5">Попередження: пам’ять небезпечно заповнена.</string>
+    <string name="cleanup_storage_very_high_6">Максимум! Почистимо швидко.</string>
     <string name="cleanup_storage_high">У вас %1$d%% — торкніться для сканування за потреби.</string>
     <string name="cleanup_storage_high_2">Ви використали %1$d%% — швидке сканування може допомогти.</string>
     <string name="cleanup_storage_high_3">%1$d%% заповнено. Тут стає тісно.</string>

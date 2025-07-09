@@ -21,6 +21,11 @@
     <string name="cleanup_title_variant14">การทำความสะอาดสามารถช่วยให้คุณอยู่ได้อย่างรวดเร็ว</string>
     <string name="cleanup_title_variant15">โทรศัพท์ของคุณสมควรได้รับการรีเฟรช</string>
     <string name="cleanup_storage_very_high">พื้นที่จัดเก็บแน่นมาก ต้องการล้างหน่อยไหม?</string>
+    <string name="cleanup_storage_very_high_2">เกือบเต็มแล้ว! ทำความสะอาดเลยไหม?</string>
+    <string name="cleanup_storage_very_high_3">พื้นที่จัดเก็บเข้าขั้นวิกฤต มาช่วยเคลียร์พื้นที่กันเถอะ</string>
+    <string name="cleanup_storage_very_high_4">พื้นที่กำลังจะหมดเร็วมาก!</string>
+    <string name="cleanup_storage_very_high_5">คำเตือน: พื้นที่จัดเก็บเหลือน้อยมาก</string>
+    <string name="cleanup_storage_very_high_6">เต็มความจุแล้ว! มาทำความสะอาดด่วน</string>
     <string name="cleanup_storage_high">คุณใช้ไปแล้ว %1$d%% — แตะเพื่อสแกนหากจำเป็น</string>
     <string name="cleanup_storage_high_2">คุณใช้ไปแล้ว %1$d%% — การสแกนด่วนอาจช่วยได้.</string>
     <string name="cleanup_storage_high_3">เต็มไปแล้ว %1$d%% เริ่มคับที่.</string>

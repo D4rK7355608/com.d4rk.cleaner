@@ -21,6 +21,11 @@
     <string name="cleanup_title_variant14">Ang paglilinis ay makakatulong sa iyo na manatiling mabilis</string>
     <string name="cleanup_title_variant15">Ang iyong telepono ay nararapat sa isang pag -refresh</string>
     <string name="cleanup_storage_very_high">Sobrang sikip ng storage. Gusto mo bang linisin ng kaunti?</string>
+    <string name="cleanup_storage_very_high_2">Halos puno na! Maglinis na tayo?</string>
+    <string name="cleanup_storage_very_high_3">Kritikal na ang storage. Bawiin natin ang ilang espasyo.</string>
+    <string name="cleanup_storage_very_high_4">Mabilis nauubos ang espasyo!</string>
+    <string name="cleanup_storage_very_high_5">Babala: sobrang baba ng storage.</string>
+    <string name="cleanup_storage_very_high_6">Punung-puno na! Maglinis agad tayo.</string>
     <string name="cleanup_storage_high">Nasa %1$d%% ka na — tapikin para mag-scan kung kailangan.</string>
     <string name="cleanup_storage_high_2">Nasa %1$d%% kang gamit — baka makatulong ang mabilisang scan.</string>
     <string name="cleanup_storage_high_3">%1$d%% na ang puno. Medyo masikip na rito.</string>

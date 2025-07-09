@@ -21,6 +21,11 @@
     <string name="cleanup_title_variant14">Temizlik hızlı kalmana yardımcı olur</string>
     <string name="cleanup_title_variant15">Telefonun bir yenilenmeyi hak ediyor</string>
     <string name="cleanup_storage_very_high">Depolama çok dolu. Biraz temizlemek ister misin?</string>
+    <string name="cleanup_storage_very_high_2">Neredeyse dolu! Temizlik zamanı mı?</string>
+    <string name="cleanup_storage_very_high_3">Depolama kritik. Biraz alan açalım.</string>
+    <string name="cleanup_storage_very_high_4">Yer çok hızlı tükeniyor!</string>
+    <string name="cleanup_storage_very_high_5">Uyarı: depolama tehlikeli derecede az.</string>
+    <string name="cleanup_storage_very_high_6">Tamamen dolu! Hızlıca temizleyelim.</string>
     <string name="cleanup_storage_high">%1$d%% dolu — gerekirse taramak için dokun.</string>
     <string name="cleanup_storage_high_2">%1$d%% kullanılmış — hızlı bir tarama yardımcı olabilir.</string>
     <string name="cleanup_storage_high_3">%1$d%% dolu. Burada biraz daralıyor.</string>

@@ -21,6 +21,11 @@
     <string name="cleanup_title_variant14">A takarítás segíthet abban, hogy gyorsan maradjon</string>
     <string name="cleanup_title_variant15">A telefonod megérdemel egy frissítést</string>
     <string name="cleanup_storage_very_high">Nagyon szűkös a tárhely. Szeretnél kicsit takarítani?</string>
+    <string name="cleanup_storage_very_high_2">Majdnem tele van! Ideje takarítani?</string>
+    <string name="cleanup_storage_very_high_3">Kritikus a tárhely. Szabadítsunk fel némi helyet.</string>
+    <string name="cleanup_storage_very_high_4">Gyorsan fogy a hely!</string>
+    <string name="cleanup_storage_very_high_5">Figyelem: a tárhely veszélyesen alacsony.</string>
+    <string name="cleanup_storage_very_high_6">Teljesen megtelt! Takarítsunk gyorsan.</string>
     <string name="cleanup_storage_high">Már %1$d%%-n állsz — érints rá a kereséshez, ha szükséges.</string>
     <string name="cleanup_storage_high_2">Már %1$d%%-ot használsz — egy gyors keresés segíthet.</string>
     <string name="cleanup_storage_high_3">%1$d%% betelt. Kezd szűkös lenni.</string>

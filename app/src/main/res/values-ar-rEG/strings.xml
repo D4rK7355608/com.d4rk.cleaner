@@ -21,6 +21,11 @@
     <string name="cleanup_title_variant14">يمكن أن يساعدك التنظيف على البقاء سريعًا</string>
     <string name="cleanup_title_variant15">هاتفك يستحق تحديث</string>
     <string name="cleanup_storage_very_high">المساحة ضيقة جدًا. عايز تنظف شوية؟</string>
+    <string name="cleanup_storage_very_high_2">المساحة قربت تتملي! وقت التنظيف؟</string>
+    <string name="cleanup_storage_very_high_3">المساحة حرجة. خلينا نسترجع شوية مساحة.</string>
+    <string name="cleanup_storage_very_high_4">المساحة بتخلص بسرعة!</string>
+    <string name="cleanup_storage_very_high_5">تحذير: المساحة منخفضة جدًا.</string>
+    <string name="cleanup_storage_very_high_6">وصلت للحد! خلينا ننضف بسرعة.</string>
     <string name="cleanup_storage_high">انت على %1$d%% — اضغط للفحص لو حبيت.</string>
     <string name="cleanup_storage_high_2">انت مستخدم %1$d%% — فحص سريع ممكن يساعد.</string>
     <string name="cleanup_storage_high_3">%1$d%% مليانة. المكان بيضيق شوي.</string>
