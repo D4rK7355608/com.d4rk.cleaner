@@ -1,7 +1,10 @@
 package com.d4rk.cleaner.app.onboarding.utils.interfaces.providers
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AutoDelete
 import androidx.compose.material.icons.outlined.CleaningServices
@@ -14,8 +17,17 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.main.ui.MainActivity
 import com.d4rk.cleaner.app.onboarding.ui.tabs.StoragePermissionOnboardingTab
 import com.d4rk.cleaner.app.onboarding.utils.constants.OnboardingKeys
+import com.d4rk.cleaner.core.data.datastore.DataStore
+import androidx.core.content.ContextCompat
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class AppOnboardingProvider : OnboardingProvider {
+class AppOnboardingProvider : OnboardingProvider, KoinComponent {
+
+    private val dataStore: DataStore by inject()
 
     override fun getOnboardingPages(context: Context): List<OnboardingPage> {
         return listOf(
@@ -65,6 +77,20 @@ class AppOnboardingProvider : OnboardingProvider {
     }
 
     override fun onOnboardingFinished(context: Context) {
+        val hasPermission =
+            Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
+                ContextCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED
+
+        if (hasPermission) {
+            CoroutineScope(Dispatchers.IO).launch {
+                if (!dataStore.isStreakReminderInitialized()) {
+                    dataStore.saveStreakReminderEnabled(true)
+                }
+            }
+        }
+
         context.startActivity(Intent(context, MainActivity::class.java))
-    }
-}
+    }}

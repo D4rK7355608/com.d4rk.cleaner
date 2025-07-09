@@ -3,6 +3,9 @@ package com.d4rk.cleaner.app.main.ui
 import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
@@ -14,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.d4rk.android.libs.apptoolkit.app.startup.ui.StartupActivity
 import com.d4rk.android.libs.apptoolkit.app.theme.style.AppTheme
@@ -73,6 +77,18 @@ class MainActivity : AppCompatActivity() {
     private fun handleStartup() {
         lifecycleScope.launch {
             val isFirstLaunch : Boolean = dataStore.startup.first()
+
+            if (!dataStore.isStreakReminderInitialized()) {
+                val hasPermission =
+                    Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
+                        ContextCompat.checkSelfPermission(
+                            this@MainActivity,
+                            Manifest.permission.POST_NOTIFICATIONS
+                        ) == PackageManager.PERMISSION_GRANTED
+                if (hasPermission) {
+                    dataStore.saveStreakReminderEnabled(true)
+                }
+            }
 
             val trashDir = File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash")
             val actualTrashSize = withContext(Dispatchers.IO) { calculateDirectorySize(trashDir) }

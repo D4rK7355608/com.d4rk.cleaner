@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
+import kotlinx.coroutines.flow.first
 import com.d4rk.android.libs.apptoolkit.data.datastore.CommonDataStore
 import com.d4rk.cleaner.core.utils.constants.datastore.AppDataStoreConstants
 import kotlinx.coroutines.flow.Flow
@@ -348,6 +349,11 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         dataStore.edit { prefs ->
             prefs[streakReminderEnabledKey] = enabled
         }
+    }
+
+    suspend fun isStreakReminderInitialized(): Boolean {
+        val prefs = dataStore.data.first()
+        return prefs.contains(streakReminderEnabledKey)
     }
 
     private val showStreakCardKey = booleanPreferencesKey(AppDataStoreConstants.DATA_STORE_SHOW_STREAK_CARD)
