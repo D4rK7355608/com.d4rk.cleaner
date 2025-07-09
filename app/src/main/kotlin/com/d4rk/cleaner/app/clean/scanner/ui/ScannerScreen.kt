@@ -5,18 +5,13 @@ import android.content.Context
 import android.view.View
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -26,18 +21,17 @@ import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.snackbar.DefaultSnackbarHandler
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
-import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.analyze.ui.AnalyzeScreen
 import com.d4rk.cleaner.app.clean.dashboard.ui.ScannerDashboardScreen
 import com.d4rk.cleaner.app.clean.scanner.domain.actions.ScannerEvent
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.UiScannerModel
+import com.d4rk.cleaner.app.clean.scanner.ui.components.dialogs.HideStreakAlertDialog
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -107,25 +101,10 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
     DefaultSnackbarHandler(screenState = uiState , snackbarHostState = snackbarHostState , getDismissEvent = { ScannerEvent.DismissSnackbar } , onEvent = { viewModel.onEvent(event = it) })
 
     if (streakDialogVisible) {
-        AlertDialog(
-            onDismissRequest = { viewModel.onEvent(ScannerEvent.SetHideStreakDialogVisibility(false)) },
-            confirmButton = {
-                Row(horizontalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize)) {
-                    TextButton(onClick = { viewModel.onEvent(ScannerEvent.HideStreakForNow) }) {
-                        Text(text = stringResource(id = R.string.hide_for_now))
-                    }
-                    TextButton(onClick = { viewModel.onEvent(ScannerEvent.HideStreakPermanently) }) {
-                        Text(text = stringResource(id = R.string.dont_show_again))
-                    }
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { viewModel.onEvent(ScannerEvent.SetHideStreakDialogVisibility(false)) }) {
-                    Text(text = stringResource(id = R.string.cancel))
-                }
-            },
-            title = { Text(text = stringResource(id = R.string.hide_clean_streak_title)) },
-            text = { Text(text = stringResource(id = R.string.hide_clean_streak_message)) }
+        HideStreakAlertDialog(
+            onHideForNow = { viewModel.onEvent(ScannerEvent.HideStreakForNow) },
+            onHidePermanently = { viewModel.onEvent(ScannerEvent.HideStreakPermanently) },
+            onDismiss = { viewModel.onEvent(ScannerEvent.SetHideStreakDialogVisibility(false)) }
         )
     }
 }

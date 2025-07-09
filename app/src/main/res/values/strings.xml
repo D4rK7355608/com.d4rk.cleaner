@@ -100,6 +100,7 @@
     <string name="streak_notification_milestone_format">🔥 You\'re on a %1$d-day streak! Great job!</string>
     <string name="preference_streak_reminder">Remind me to clean daily (helps maintain streak)</string>
     <string name="hide_clean_streak_title">Hide Clean Streak?</string>
+    <string name="hide_streak_action_hide">Hide</string>
     <string name="hide_clean_streak_message">Would you like to hide your Clean Streak card?</string>
     <string name="hide_for_now">Hide for now</string>
     <string name="dont_show_again">Don\'t show again</string>

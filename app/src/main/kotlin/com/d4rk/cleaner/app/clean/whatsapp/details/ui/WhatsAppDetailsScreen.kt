@@ -70,7 +70,7 @@ import com.d4rk.cleaner.app.clean.scanner.ui.components.FilePreviewCard
 import com.d4rk.cleaner.app.clean.whatsapp.details.domain.actions.WhatsAppDetailsEvent
 import com.d4rk.cleaner.app.clean.whatsapp.details.domain.model.UiWhatsAppDetailsModel
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.CustomTabLayout
-import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.SortDialog
+import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.dialogs.SortAlertDialog
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsappCleanerSummaryViewModel
@@ -270,7 +270,7 @@ fun DetailsScreen(
     }
 
     if (showSort) {
-        SortDialog(
+        SortAlertDialog(
             current = detailsState.data?.sortType ?: SortType.DATE,
             descending = detailsState.data?.descending ?: false,
             startDate = detailsState.data?.startDate,
