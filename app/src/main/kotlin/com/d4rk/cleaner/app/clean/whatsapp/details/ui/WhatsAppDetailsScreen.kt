@@ -213,7 +213,7 @@ fun DetailsScreen(
                         CustomTabLayout(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(horizontal = 16.dp, vertical = 8.dp),
+                                .padding(vertical = 8.dp),
                             selectedItemIndex = selectedTabIndex,
                             items = tabs,
                             filesPerTab = tabFiles,
@@ -258,6 +258,8 @@ fun DetailsScreen(
                             .align(Alignment.CenterHorizontally)
                             .padding(8.dp),
                     ) {
+                        Icon(imageVector = Icons.Outlined.Delete, contentDescription = null)
+                        Spacer(modifier = Modifier.width(4.dp))
                         Text(text = stringResource(id = R.string.delete_selected))
                     }
                 }
@@ -359,7 +361,13 @@ fun DetailsScreenContent(
                         val checked = file in selected
                         val fileExtension = remember(file.name) { getFileExtension(file.name) }
                         val audioExt = remember { context.resources.getStringArray(R.array.audio_extensions).toList() }
+                        val imageExt = remember { context.resources.getStringArray(R.array.image_extensions).toList() }
+                        val videoExt = remember { context.resources.getStringArray(R.array.video_extensions).toList() }
                         val isAudio = remember(fileExtension) { audioExt.any { it.equals(fileExtension, ignoreCase = true) } }
+                        val isMedia = remember(fileExtension) {
+                            imageExt.any { it.equals(fileExtension, ignoreCase = true) } ||
+                                    videoExt.any { it.equals(fileExtension, ignoreCase = true) }
+                        }
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -373,10 +381,10 @@ fun DetailsScreenContent(
                                     )
                                 }
                         ) {
-                            if (isAudio) {
-                                FileListItem(file = file, modifier = Modifier.weight(1f))
-                            } else {
+                            if (isMedia && !isAudio) {
                                 FilePreviewCard(file = file, modifier = Modifier.weight(1f))
+                            } else {
+                                FileListItem(file = file, modifier = Modifier.weight(1f))
                             }
                             Checkbox(
                                 checked = checked,
