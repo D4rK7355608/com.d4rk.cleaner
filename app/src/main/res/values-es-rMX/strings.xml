@@ -22,6 +22,11 @@
     <string name="cleanup_title_variant15">Tu teléfono merece un refresco</string>
     <string name="cleanup_storage_very_high">El almacenamiento está muy lleno. ¿Quieres limpiar un poco?</string>
     <string name="cleanup_storage_high">Estás al %1$d%% — toca para escanear si es necesario.</string>
+    <string name="cleanup_storage_high_2">Estás con %1$d%% usado — un escaneo rápido podría ayudar.</string>
+    <string name="cleanup_storage_high_3">%1$d%% ocupado. Esto empieza a apretarse.</string>
+    <string name="cleanup_storage_high_4">Se está llenando el espacio. %1$d%% usado ahora.</string>
+    <string name="cleanup_storage_high_5">%1$d%% usado. ¿Hora de limpiar?</string>
+    <string name="cleanup_storage_high_6">Te estás acercando al límite. %1$d%% en uso.</string>
     <string name="cleanup_storage_medium">Hay bastantes cosas aquí. Un escaneo podría ayudar.</string>
     <string name="cleanup_storage_ok">¡Tu almacenamiento se ve bien!</string>
     <string name="cleanup_notification_last_scan_format">Último escaneo: hace %1$d días. %2$s</string>

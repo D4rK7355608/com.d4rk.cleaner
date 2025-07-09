@@ -12,6 +12,11 @@
     <string name="cleanup_title_variant5">ได้เวลาล้างเครื่องเบา ๆ แล้วหรือยัง?</string>
     <string name="cleanup_storage_very_high">พื้นที่จัดเก็บแน่นมาก ต้องการล้างหน่อยไหม?</string>
     <string name="cleanup_storage_high">คุณใช้ไปแล้ว %1$d%% — แตะเพื่อสแกนหากจำเป็น</string>
+    <string name="cleanup_storage_high_2">คุณใช้ไปแล้ว %1$d%% — การสแกนด่วนอาจช่วยได้.</string>
+    <string name="cleanup_storage_high_3">เต็มไปแล้ว %1$d%% เริ่มคับที่.</string>
+    <string name="cleanup_storage_high_4">พื้นที่กำลังจะเต็ม ตอนนี้ใช้ไป %1$d%%.</string>
+    <string name="cleanup_storage_high_5">ใช้ไป %1$d%% แล้ว ล้างไหม?</string>
+    <string name="cleanup_storage_high_6">ใกล้เต็มแล้ว ใช้งาน %1$d%% อยู่.</string>
     <string name="cleanup_storage_medium">มีของเยอะมากที่นี่ การสแกนอาจช่วยได้</string>
     <string name="cleanup_storage_ok">พื้นที่จัดเก็บของคุณดูโอเค!</string>
     <string name="cleanup_notification_last_scan_format">สแกนครั้งล่าสุด: %1$d วันที่แล้ว %2$s</string>

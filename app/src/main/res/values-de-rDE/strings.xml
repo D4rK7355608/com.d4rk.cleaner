@@ -22,6 +22,11 @@
     <string name="cleanup_title_variant15">Dein Handy verdient eine Auffrischung</string>
     <string name="cleanup_storage_very_high">Speicher ist sehr knapp. Möchtest du ein bisschen aufräumen?</string>
     <string name="cleanup_storage_high">Du bist bei %1$d%% — tippe zum Scannen, wenn nötig.</string>
+    <string name="cleanup_storage_high_2">Du bist bei %1$d%% Auslastung — ein schneller Scan könnte helfen.</string>
+    <string name="cleanup_storage_high_3">%1$d%% belegt. Hier wird es langsam eng.</string>
+    <string name="cleanup_storage_high_4">Der Speicher füllt sich. Jetzt sind %1$d%% belegt.</string>
+    <string name="cleanup_storage_high_5">%1$d%% belegt. Zeit zum Aufräumen?</string>
+    <string name="cleanup_storage_high_6">Du bist fast voll. %1$d%% in Benutzung.</string>
     <string name="cleanup_storage_medium">Hier gibt es einiges. Ein Scan könnte helfen.</string>
     <string name="cleanup_storage_ok">Dein Speicher sieht gut aus!</string>
     <string name="cleanup_notification_last_scan_format">Letzter Scan: vor %1$d Tagen. %2$s</string>

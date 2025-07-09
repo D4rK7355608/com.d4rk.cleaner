@@ -22,6 +22,11 @@
     <string name="cleanup_title_variant15">Ваш телефон заслуживает обновления</string>
     <string name="cleanup_storage_very_high">Хранилище почти заполнено. Хотите немного почистить?</string>
     <string name="cleanup_storage_high">Вы используете %1$d%% — нажмите для сканирования при необходимости.</string>
+    <string name="cleanup_storage_high_2">Использовано %1$d%% — быстрый скан может помочь.</string>
+    <string name="cleanup_storage_high_3">%1$d%% занято. Здесь становится тесновато.</string>
+    <string name="cleanup_storage_high_4">Место заполняется. Сейчас занято %1$d%%.</string>
+    <string name="cleanup_storage_high_5">%1$d%% занято. Почистить?</string>
+    <string name="cleanup_storage_high_6">Почти заполнено. %1$d%% используется.</string>
     <string name="cleanup_storage_medium">Здесь много всего. Сканирование может помочь.</string>
     <string name="cleanup_storage_ok">Ваше хранилище в порядке!</string>
     <string name="cleanup_notification_last_scan_format">Последнее сканирование: %1$d дней назад. %2$s</string>

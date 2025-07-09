@@ -12,6 +12,11 @@
     <string name="cleanup_title_variant5">Време за леко освежаване?</string>
     <string name="cleanup_storage_very_high">Паметта е доста запълнена. Искате ли да почистите малко?</string>
     <string name="cleanup_storage_high">Вие сте на %1$d%% — докоснете за сканиране при нужда.</string>
+    <string name="cleanup_storage_high_2">Използвани са %1$d%% — бързо сканиране може да помогне.</string>
+    <string name="cleanup_storage_high_3">%1$d%% запълнени. Става малко тясно.</string>
+    <string name="cleanup_storage_high_4">Мястото се запълва. Сега са използвани %1$d%%.</string>
+    <string name="cleanup_storage_high_5">Използвани са %1$d%%. Време ли е за почистване?</string>
+    <string name="cleanup_storage_high_6">Приближавате се до пълно. %1$d%% заето.</string>
     <string name="cleanup_storage_medium">Има доста неща тук. Сканиране може да помогне.</string>
     <string name="cleanup_storage_ok">Паметта ви изглежда добре!</string>
     <string name="cleanup_notification_last_scan_format">Последно сканиране: преди %1$d дни. %2$s</string>

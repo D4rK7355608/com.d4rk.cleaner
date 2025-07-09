@@ -12,6 +12,11 @@
     <string name="cleanup_title_variant5">کیا ہلکی سی ریفریش کا وقت ہے؟</string>
     <string name="cleanup_storage_very_high">اسٹوریج بہت تنگ ہے۔ تھوڑا صاف کرنا چاہیں گے؟</string>
     <string name="cleanup_storage_high">آپ %1$d%% پر ہیں—ضرورت ہو تو اسکین کے لیے ٹیپ کریں۔</string>
+    <string name="cleanup_storage_high_2">آپ %1$d%% استعمال کرچکے ہیں—ایک فوری اسکین مددگار ہوسکتا ہے۔</string>
+    <string name="cleanup_storage_high_3">%1$d%% بھر چکا ہے۔ جگہ کچھ تنگ ہورہی ہے۔</string>
+    <string name="cleanup_storage_high_4">جگہ بھر رہی ہے۔ اب %1$d%% استعمال میں ہے۔</string>
+    <string name="cleanup_storage_high_5">%1$d%% استعمال ہے۔ صاف کریں؟</string>
+    <string name="cleanup_storage_high_6">تقریباً مکمل ہورہا ہے۔ %1$d%% زیرِ استعمال ہے۔</string>
     <string name="cleanup_storage_medium">یہاں کافی چیزیں ہیں۔ اسکین مددگار ہو سکتا ہے۔</string>
     <string name="cleanup_storage_ok">آپ کا اسٹوریج ٹھیک ہے!</string>
     <string name="cleanup_notification_last_scan_format">آخری اسکین: %1$d دن پہلے۔ %2$s</string>
