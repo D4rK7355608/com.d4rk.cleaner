@@ -21,6 +21,11 @@
     <string name="cleanup_title_variant14">정리하면 빠른 속도를 유지할 수 있어요</string>
     <string name="cleanup_title_variant15">휴대폰도 새 단장을 할 자격이 있죠</string>
     <string name="cleanup_storage_very_high">저장공간이 매우 부족합니다. 조금 정리해볼까요?</string>
+    <string name="cleanup_storage_very_high_2">거의 다 찼어요! 정리할까요?</string>
+    <string name="cleanup_storage_very_high_3">저장공간이 위급합니다. 공간을 좀 확보하죠.</string>
+    <string name="cleanup_storage_very_high_4">공간이 빠르게 줄어들고 있어요!</string>
+    <string name="cleanup_storage_very_high_5">경고: 저장공간이 위험할 정도로 부족합니다.</string>
+    <string name="cleanup_storage_very_high_6">최대치예요! 빨리 정리합시다.</string>
     <string name="cleanup_storage_high">%1$d%% 사용 중 — 필요하면 탭해서 스캔하세요.</string>
     <string name="cleanup_storage_high_2">%1$d%% 사용 중 — 빠른 스캔이 도움이 될 수 있어요.</string>
     <string name="cleanup_storage_high_3">%1$d%% 채워졌어요. 조금 비좁네요.</string>

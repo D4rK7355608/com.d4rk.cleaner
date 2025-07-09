@@ -21,6 +21,11 @@
     <string name="cleanup_title_variant14">Curățarea te ajută să rămâi rapid</string>
     <string name="cleanup_title_variant15">Telefonul tău merită o reîmprospătare</string>
     <string name="cleanup_storage_very_high">Spațiul de stocare e foarte aglomerat. Vrei să cureți puțin?</string>
+    <string name="cleanup_storage_very_high_2">Ești aproape plin! Facem curățenie?</string>
+    <string name="cleanup_storage_very_high_3">Stocarea e critică. Hai să eliberăm spațiu.</string>
+    <string name="cleanup_storage_very_high_4">Rămâi rapid fără spațiu!</string>
+    <string name="cleanup_storage_very_high_5">Avertisment: spațiu de stocare periculos de mic.</string>
+    <string name="cleanup_storage_very_high_6">La maximum! Să curățăm rapid.</string>
     <string name="cleanup_storage_high">Ești la %1$d%% — atinge pentru scanare dacă e nevoie.</string>
     <string name="cleanup_storage_high_2">Ești la %1$d%% folosit — o scanare rapidă ar putea ajuta.</string>
     <string name="cleanup_storage_high_3">%1$d%% ocupat. Începe să fie cam înghesuit.</string>

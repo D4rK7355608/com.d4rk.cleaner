@@ -21,6 +21,11 @@
     <string name="cleanup_title_variant14">ক্লিনআপ আপনাকে দ্রুত থাকতে সহায়তা করতে পারে</string>
     <string name="cleanup_title_variant15">আপনার ফোন একটি রিফ্রেশ প্রাপ্য</string>
     <string name="cleanup_storage_very_high">স্টোরেজ খুব টাইট। একটু পরিষ্কার করতে চান?</string>
+    <string name="cleanup_storage_very_high_2">প্রায় পুরো ভরেছে! একটু পরিষ্কার করবেন?</string>
+    <string name="cleanup_storage_very_high_3">স্টোরেজ সংকটাপন্ন। কিছু জায়গা উদ্ধার করি।</string>
+    <string name="cleanup_storage_very_high_4">দ্রুতই জায়গা ফুরিয়ে যাচ্ছে!</string>
+    <string name="cleanup_storage_very_high_5">সতর্কতা: স্টোরেজ বিপজ্জনকভাবে কম।</string>
+    <string name="cleanup_storage_very_high_6">ম্যাক্স হয়ে গেছে! দ্রুত পরিষ্কার করি।</string>
     <string name="cleanup_storage_high">আপনি %1$d%% এ আছেন — প্রয়োজনে স্ক্যান করতে ট্যাপ করুন।</string>
     <string name="cleanup_storage_high_2">আপনি %1$d%% ব্যবহার করছেন — দ্রুত স্ক্যান সাহায্য করতে পারে।</string>
     <string name="cleanup_storage_high_3">%1$d%% পূর্ণ হয়েছে। জায়গা একটু টাইট হয়ে যাচ্ছে।</string>

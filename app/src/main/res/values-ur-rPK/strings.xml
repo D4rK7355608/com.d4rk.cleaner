@@ -21,6 +21,11 @@
     <string name="cleanup_title_variant14">صفائی آپ کو تیز رہنے میں مدد فراہم کرسکتی ہے</string>
     <string name="cleanup_title_variant15">آپ کا فون ریفریش کا مستحق ہے</string>
     <string name="cleanup_storage_very_high">اسٹوریج بہت تنگ ہے۔ تھوڑا صاف کرنا چاہیں گے؟</string>
+    <string name="cleanup_storage_very_high_2">تقریباً بھر چکا ہے! صفائی کریں؟</string>
+    <string name="cleanup_storage_very_high_3">اسٹوریج نازک حالت میں ہے۔ کچھ جگہ واپس لیں۔</string>
+    <string name="cleanup_storage_very_high_4">جگہ تیزی سے ختم ہورہی ہے!</string>
+    <string name="cleanup_storage_very_high_5">انتباہ: اسٹوریج خطرناک حد تک کم ہے۔</string>
+    <string name="cleanup_storage_very_high_6">مکمل بھر گیا! جلدی سے صاف کرلیں۔</string>
     <string name="cleanup_storage_high">آپ %1$d%% پر ہیں—ضرورت ہو تو اسکین کے لیے ٹیپ کریں۔</string>
     <string name="cleanup_storage_high_2">آپ %1$d%% استعمال کرچکے ہیں—ایک فوری اسکین مددگار ہوسکتا ہے۔</string>
     <string name="cleanup_storage_high_3">%1$d%% بھر چکا ہے۔ جگہ کچھ تنگ ہورہی ہے۔</string>

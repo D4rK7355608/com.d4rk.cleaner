@@ -21,6 +21,11 @@
     <string name="cleanup_title_variant14">Dọn dẹp giúp máy luôn nhanh</string>
     <string name="cleanup_title_variant15">Điện thoại của bạn xứng đáng được làm mới</string>
     <string name="cleanup_storage_very_high">Bộ nhớ rất chật. Bạn muốn dọn dẹp chút không?</string>
+    <string name="cleanup_storage_very_high_2">Gần đầy rồi! Dọn dẹp ngay?</string>
+    <string name="cleanup_storage_very_high_3">Bộ nhớ nguy cấp. Hãy giải phóng chút không gian.</string>
+    <string name="cleanup_storage_very_high_4">Sắp hết chỗ rất nhanh!</string>
+    <string name="cleanup_storage_very_high_5">Cảnh báo: bộ nhớ còn lại quá ít.</string>
+    <string name="cleanup_storage_very_high_6">Đã đầy! Hãy dọn dẹp gấp.</string>
     <string name="cleanup_storage_high">Bạn đã dùng %1$d%% — nhấn để quét nếu cần.</string>
     <string name="cleanup_storage_high_2">Bạn đã dùng %1$d%% — quét nhanh có thể giúp đỡ.</string>
     <string name="cleanup_storage_high_3">Đã đầy %1$d%%. Bắt đầu hơi chật chội.</string>

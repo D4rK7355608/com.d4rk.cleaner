@@ -21,6 +21,11 @@
     <string name="cleanup_title_variant14">Почистването може да ви помогне да останете бързо</string>
     <string name="cleanup_title_variant15">Телефонът ви заслужава опресняване</string>
     <string name="cleanup_storage_very_high">Паметта е доста запълнена. Искате ли да почистите малко?</string>
+    <string name="cleanup_storage_very_high_2">Почти нямате място! Време за почистване?</string>
+    <string name="cleanup_storage_very_high_3">Критичен капацитет. Нека освободим малко място.</string>
+    <string name="cleanup_storage_very_high_4">Бързо свършва мястото!</string>
+    <string name="cleanup_storage_very_high_5">Предупреждение: мястото е опасно малко.</string>
+    <string name="cleanup_storage_very_high_6">Максимално запълнено! Нека почистим бързо.</string>
     <string name="cleanup_storage_high">Вие сте на %1$d%% — докоснете за сканиране при нужда.</string>
     <string name="cleanup_storage_high_2">Използвани са %1$d%% — бързо сканиране може да помогне.</string>
     <string name="cleanup_storage_high_3">%1$d%% запълнени. Става малко тясно.</string>
