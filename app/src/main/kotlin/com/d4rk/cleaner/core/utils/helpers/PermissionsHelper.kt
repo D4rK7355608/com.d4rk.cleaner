@@ -65,7 +65,20 @@ object PermissionsHelper {
                 val uri : Uri = Uri.fromParts("package" , activity.packageName , null)
                 intent.data = uri
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-                activity.startActivity(intent)
+
+                val packageManager : PackageManager = activity.packageManager
+                if (intent.resolveActivity(packageManager) != null) {
+                    runCatching { activity.startActivity(intent) }
+                }
+                else {
+                    val fallbackIntent = Intent(
+                        Settings.ACTION_APPLICATION_DETAILS_SETTINGS , uri
+                    )
+                    fallbackIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                    if (fallbackIntent.resolveActivity(packageManager) != null) {
+                        runCatching { activity.startActivity(fallbackIntent) }
+                    }
+                }
             }
 
         }
