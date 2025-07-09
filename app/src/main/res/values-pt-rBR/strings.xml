@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">O Cleaner está aqui se precisar</string>
     <string name="cleanup_title_variant4">Seu telefone esteve ocupado ultimamente</string>
     <string name="cleanup_title_variant5">Hora de uma leve renovada?</string>
+    <string name="cleanup_title_variant6">Precisa de uma limpeza rápida?</string>
+    <string name="cleanup_title_variant7">Uma varredura rápida nunca faz mal</string>
+    <string name="cleanup_title_variant8">O armazenamento está enchendo?</string>
+    <string name="cleanup_title_variant9">Talvez seja hora de uma limpeza completa</string>
+    <string name="cleanup_title_variant10">Quer dar um impulso ao seu telefone?</string>
+    <string name="cleanup_title_variant11">O Cleaner está a postos</string>
+    <string name="cleanup_title_variant12">Vamos fazer uma verificação rápida</string>
+    <string name="cleanup_title_variant13">Hora de conferir o espaço?</string>
+    <string name="cleanup_title_variant14">A limpeza ajuda você a manter a velocidade</string>
+    <string name="cleanup_title_variant15">Seu telefone merece um refresco</string>
     <string name="cleanup_storage_very_high">O armazenamento está bem cheio. Quer limpar um pouco?</string>
     <string name="cleanup_storage_high">Você está em %1$d%% — toque para escanear se necessário.</string>
     <string name="cleanup_storage_medium">Tem bastante coisa aqui. Um scan pode ajudar.</string>
@@ -220,5 +230,4 @@
     <string name="data_not_available">Dados não disponíveis.</string>
     <string name="no_files_selected_to_clean">Nenhum arquivo selecionado para limpar.</string>
     <string name="failed_to_update_trash_size">Falha ao atualizar o tamanho do lixo: %1$s</string>
-    <string name="no_cleaning_options_selected">Escolha suas preferências de limpeza nas configurações para prosseguir.</string>
-</resources>
+    <string name="no_cleaning_options_selected">Escolha suas preferências de limpeza nas configurações para prosseguir.</string></resources>

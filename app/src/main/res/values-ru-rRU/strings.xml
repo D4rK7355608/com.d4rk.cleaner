@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">Cleaner поможет, если нужно</string>
     <string name="cleanup_title_variant4">Ваш телефон был занят в последнее время</string>
     <string name="cleanup_title_variant5">Пора немного обновить?</string>
+    <string name="cleanup_title_variant6">Нужна быстрая очистка?</string>
+    <string name="cleanup_title_variant7">Быстрая проверка не помешает</string>
+    <string name="cleanup_title_variant8">Память заполняется?</string>
+    <string name="cleanup_title_variant9">Пора устроить генеральную уборку?</string>
+    <string name="cleanup_title_variant10">Хотите ускорить телефон?</string>
+    <string name="cleanup_title_variant11">Cleaner наготове</string>
+    <string name="cleanup_title_variant12">Давайте быстро проверим</string>
+    <string name="cleanup_title_variant13">Проверим свободное место?</string>
+    <string name="cleanup_title_variant14">Очистка поможет сохранить скорость</string>
+    <string name="cleanup_title_variant15">Ваш телефон заслуживает обновления</string>
     <string name="cleanup_storage_very_high">Хранилище почти заполнено. Хотите немного почистить?</string>
     <string name="cleanup_storage_high">Вы используете %1$d%% — нажмите для сканирования при необходимости.</string>
     <string name="cleanup_storage_medium">Здесь много всего. Сканирование может помочь.</string>
@@ -222,5 +232,4 @@
     <string name="data_not_available">Данные недоступны.</string>
     <string name="no_files_selected_to_clean">Нет файлов, выбранных для очистки.</string>
     <string name="failed_to_update_trash_size">Не удалось обновить размер мусора: %1$s</string>
-    <string name="no_cleaning_options_selected">Пожалуйста, выберите свои предпочтения в уборке в настройках, чтобы продолжить.</string>
-</resources>
+    <string name="no_cleaning_options_selected">Пожалуйста, выберите свои предпочтения в уборке в настройках, чтобы продолжить.</string></resources>

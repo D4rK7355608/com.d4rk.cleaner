@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">Cleaner e aici dacă ai nevoie</string>
     <string name="cleanup_title_variant4">Telefonul tău a fost ocupat în ultima vreme</string>
     <string name="cleanup_title_variant5">E timpul pentru o mică reîmprospătare?</string>
+    <string name="cleanup_title_variant6">Ai nevoie de o reîmprospătare rapidă?</string>
+    <string name="cleanup_title_variant7">O scanare rapidă nu strică niciodată</string>
+    <string name="cleanup_title_variant8">Spațiul de stocare se umple?</string>
+    <string name="cleanup_title_variant9">Poate că e timpul pentru o curățare completă</string>
+    <string name="cleanup_title_variant10">Vrei să dai un impuls telefonului?</string>
+    <string name="cleanup_title_variant11">Cleaner este pregătit</string>
+    <string name="cleanup_title_variant12">Hai să verificăm rapid</string>
+    <string name="cleanup_title_variant13">Verificăm spațiul?</string>
+    <string name="cleanup_title_variant14">Curățarea te ajută să rămâi rapid</string>
+    <string name="cleanup_title_variant15">Telefonul tău merită o reîmprospătare</string>
     <string name="cleanup_storage_very_high">Spațiul de stocare e foarte aglomerat. Vrei să cureți puțin?</string>
     <string name="cleanup_storage_high">Ești la %1$d%% — atinge pentru scanare dacă e nevoie.</string>
     <string name="cleanup_storage_medium">Sunt destule lucruri aici. Un scan ar putea ajuta.</string>
@@ -220,5 +230,4 @@
     <string name="data_not_available">Datele nu sunt disponibile.</string>
     <string name="no_files_selected_to_clean">Nu există fișiere selectate pentru a curăța.</string>
     <string name="failed_to_update_trash_size">Nu a reușit să actualizeze dimensiunea gunoiului: %1$s</string>
-    <string name="no_cleaning_options_selected">Vă rugăm să alegeți preferințele dvs. de curățare în setări pentru a continua.</string>
-</resources>
+    <string name="no_cleaning_options_selected">Vă rugăm să alegeți preferințele dvs. de curățare în setări pentru a continua.</string></resources>

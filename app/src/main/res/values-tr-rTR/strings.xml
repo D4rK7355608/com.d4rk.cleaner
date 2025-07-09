@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">İhtiyacın olursa Cleaner burada</string>
     <string name="cleanup_title_variant4">Telefonun son zamanlarda meşguldü</string>
     <string name="cleanup_title_variant5">Hafif bir yenileme zamanı mı?</string>
+    <string name="cleanup_title_variant6">Hızlı bir yenilemeye mi ihtiyacın var?</string>
+    <string name="cleanup_title_variant7">Hızlı bir tarama asla zarar vermez</string>
+    <string name="cleanup_title_variant8">Depolama dolmaya mı başladı?</string>
+    <string name="cleanup_title_variant9">Kapsamlı bir temizlik zamanı olabilir</string>
+    <string name="cleanup_title_variant10">Telefonuna bir destek vermek ister misin?</string>
+    <string name="cleanup_title_variant11">Cleaner hazır bekliyor</string>
+    <string name="cleanup_title_variant12">Hızlıca kontrol edelim</string>
+    <string name="cleanup_title_variant13">Alan kontrolü zamanı mı?</string>
+    <string name="cleanup_title_variant14">Temizlik hızlı kalmana yardımcı olur</string>
+    <string name="cleanup_title_variant15">Telefonun bir yenilenmeyi hak ediyor</string>
     <string name="cleanup_storage_very_high">Depolama çok dolu. Biraz temizlemek ister misin?</string>
     <string name="cleanup_storage_high">%1$d%% dolu — gerekirse taramak için dokun.</string>
     <string name="cleanup_storage_medium">Burada epey şey var. Tarama yardımcı olabilir.</string>
@@ -218,5 +228,4 @@
     <string name="data_not_available">Veriler mevcut değil.</string>
     <string name="no_files_selected_to_clean">Temizlemek için dosya seçilmedi.</string>
     <string name="failed_to_update_trash_size">Çöp Boyutunu Güncelleme: %1$s</string>
-    <string name="no_cleaning_options_selected">Lütfen devam etmek için ayarlarda temizlik tercihlerinizi seçin.</string>
-</resources>
+    <string name="no_cleaning_options_selected">Lütfen devam etmek için ayarlarda temizlik tercihlerinizi seçin.</string></resources>

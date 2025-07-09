@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">Cleaner jest tutaj, gdy potrzebujesz</string>
     <string name="cleanup_title_variant4">Twój telefon ostatnio był zajęty</string>
     <string name="cleanup_title_variant5">Czas na małe odświeżenie?</string>
+    <string name="cleanup_title_variant6">Potrzebujesz szybkiego odświeżenia?</string>
+    <string name="cleanup_title_variant7">Szybkie skanowanie nigdy nie zaszkodzi</string>
+    <string name="cleanup_title_variant8">Pamięć się zapełnia?</string>
+    <string name="cleanup_title_variant9">Może czas na generalne czyszczenie</string>
+    <string name="cleanup_title_variant10">Chcesz dodać telefonowi mocy?</string>
+    <string name="cleanup_title_variant11">Cleaner jest gotów</string>
+    <string name="cleanup_title_variant12">Zróbmy szybkie sprawdzenie</string>
+    <string name="cleanup_title_variant13">Czas sprawdzić miejsce?</string>
+    <string name="cleanup_title_variant14">Czyszczenie pomaga zachować szybkość</string>
+    <string name="cleanup_title_variant15">Twój telefon zasługuje na odświeżenie</string>
     <string name="cleanup_storage_very_high">Pamięć jest bardzo zapełniona. Chcesz trochę posprzątać?</string>
     <string name="cleanup_storage_high">Masz %1$d%% — stuknij, aby przeskanować w razie potrzeby.</string>
     <string name="cleanup_storage_medium">Jest tu całkiem sporo rzeczy. Skan może pomóc.</string>
@@ -222,5 +232,4 @@
     <string name="data_not_available">Dane niedostępne.</string>
     <string name="no_files_selected_to_clean">Brak plików do czyszczenia.</string>
     <string name="failed_to_update_trash_size">Nie udało się zaktualizować rozmiaru śmieci: %1$s</string>
-    <string name="no_cleaning_options_selected">Wybierz swoje preferencje czyszczące w ustawieniach, aby kontynuować.</string>
-</resources>
+    <string name="no_cleaning_options_selected">Wybierz swoje preferencje czyszczące w ustawieniach, aby kontynuować.</string></resources>

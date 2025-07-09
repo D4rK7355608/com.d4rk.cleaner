@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">Cleaner está aquí si lo necesitas</string>
     <string name="cleanup_title_variant4">Tu teléfono ha estado ocupado últimamente</string>
     <string name="cleanup_title_variant5">¿Hora de un ligero refresco?</string>
+    <string name="cleanup_title_variant6">¿Necesitas un refresco rápido?</string>
+    <string name="cleanup_title_variant7">Un escaneo rápido nunca viene mal</string>
+    <string name="cleanup_title_variant8">¿El almacenamiento se está llenando?</string>
+    <string name="cleanup_title_variant9">Podría ser momento de una limpieza completa</string>
+    <string name="cleanup_title_variant10">¿Quieres darle un impulso a tu teléfono?</string>
+    <string name="cleanup_title_variant11">Cleaner está listo</string>
+    <string name="cleanup_title_variant12">Echemos un vistazo rápido</string>
+    <string name="cleanup_title_variant13">¿Hora de revisar el espacio?</string>
+    <string name="cleanup_title_variant14">La limpieza puede ayudarte a mantener la velocidad</string>
+    <string name="cleanup_title_variant15">Tu teléfono merece un refresco</string>
     <string name="cleanup_storage_very_high">El almacenamiento está muy lleno. ¿Quieres limpiar un poco?</string>
     <string name="cleanup_storage_high">Estás al %1$d%% — toca para escanear si es necesario.</string>
     <string name="cleanup_storage_medium">Hay bastantes cosas aquí. Un escaneo podría ayudar.</string>

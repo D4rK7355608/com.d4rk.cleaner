@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">Cleaner finns här om du behöver</string>
     <string name="cleanup_title_variant4">Din telefon har varit upptagen på sistone</string>
     <string name="cleanup_title_variant5">Dags för en liten uppfräschning?</string>
+    <string name="cleanup_title_variant6">Behöver du en snabb uppfräschning?</string>
+    <string name="cleanup_title_variant7">En snabb skanning skadar aldrig</string>
+    <string name="cleanup_title_variant8">Är lagringen på väg att ta slut?</string>
+    <string name="cleanup_title_variant9">Dags för en rejäl städning?</string>
+    <string name="cleanup_title_variant10">Vill du ge telefonen lite extra kraft?</string>
+    <string name="cleanup_title_variant11">Cleaner står redo</string>
+    <string name="cleanup_title_variant12">Låt oss kolla snabbt</string>
+    <string name="cleanup_title_variant13">Dags att kolla utrymmet?</string>
+    <string name="cleanup_title_variant14">En rensning hjälper dig att hålla farten</string>
+    <string name="cleanup_title_variant15">Din telefon förtjänar en uppfräschning</string>
     <string name="cleanup_storage_very_high">Lagringen är riktigt full. Vill du städa lite?</string>
     <string name="cleanup_storage_high">Du är på %1$d%% — tryck för att skanna vid behov.</string>
     <string name="cleanup_storage_medium">Här finns mycket innehåll. En skanning kan hjälpa.</string>
@@ -218,5 +228,4 @@
     <string name="data_not_available">Data inte tillgängliga.</string>
     <string name="no_files_selected_to_clean">Inga filer valda för att rengöra.</string>
     <string name="failed_to_update_trash_size">Det gick inte att uppdatera skräpstorlek: %1$s</string>
-    <string name="no_cleaning_options_selected">Välj dina rengöringspreferenser i inställningar för att fortsätta.</string>
-</resources>
+    <string name="no_cleaning_options_selected">Välj dina rengöringspreferenser i inställningar för att fortsätta.</string></resources>
