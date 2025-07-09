@@ -68,7 +68,7 @@ class AppOnboardingProvider : OnboardingProvider, KoinComponent {
                 }
             ),
 
-        ).filter {
+            ).filter {
             when (it) {
                 is OnboardingPage.DefaultPage -> it.isEnabled
                 is OnboardingPage.CustomPage -> it.isEnabled
@@ -77,20 +77,22 @@ class AppOnboardingProvider : OnboardingProvider, KoinComponent {
     }
 
     override fun onOnboardingFinished(context: Context) {
-        val hasPermission =
-            Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
-                ContextCompat.checkSelfPermission(
-                    context,
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) == PackageManager.PERMISSION_GRANTED
+        CoroutineScope(Dispatchers.IO).launch {
+            if (!dataStore.isStreakReminderInitialized()) {
+                val hasPermission =
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        ContextCompat.checkSelfPermission(
+                            context,
+                            Manifest.permission.POST_NOTIFICATIONS
+                        ) == PackageManager.PERMISSION_GRANTED
+                    } else {
+                        true
+                    }
 
-        if (hasPermission) {
-            CoroutineScope(Dispatchers.IO).launch {
-                if (!dataStore.isStreakReminderInitialized()) {
-                    dataStore.saveStreakReminderEnabled(true)
-                }
+                dataStore.saveStreakReminderEnabled(hasPermission)
             }
         }
 
         context.startActivity(Intent(context, MainActivity::class.java))
-    }}
+    }
+}

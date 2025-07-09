@@ -244,8 +244,6 @@ fun DetailsScreen(
                         DetailsScreenContent(
                             selected = selected,
                             isGrid = isGrid,
-                            onShowConfirmChange = { showConfirm = it },
-                            detailsViewModel = detailsViewModel,
                             files = list
                         )
                     }
@@ -313,8 +311,6 @@ fun DetailsScreen(
 fun DetailsScreenContent(
     selected: MutableList<File>,
     isGrid: Boolean,
-    onShowConfirmChange: (Boolean) -> Unit, // FIXME: Parameter "onShowConfirmChange" is never used
-    detailsViewModel: DetailsViewModel, // FIXME: Parameter "detailsViewModel" is never used
     files: List<File>
 ) {
     val context : Context = LocalContext.current
