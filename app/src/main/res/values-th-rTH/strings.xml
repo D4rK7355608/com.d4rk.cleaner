@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">Cleaner พร้อมช่วยเมื่อคุณต้องการ</string>
     <string name="cleanup_title_variant4">ช่วงนี้โทรศัพท์คุณทำงานหนัก</string>
     <string name="cleanup_title_variant5">ได้เวลาล้างเครื่องเบา ๆ แล้วหรือยัง?</string>
+    <string name="cleanup_title_variant6">ต้องการรีเฟรชอย่างรวดเร็วหรือไม่?</string>
+    <string name="cleanup_title_variant7">การสแกนอย่างรวดเร็วไม่เคยเจ็บ</string>
+    <string name="cleanup_title_variant8">ที่เก็บข้อมูลคืบคลานเข้ามาหาคุณ?</string>
+    <string name="cleanup_title_variant9">อาจถึงเวลาสำหรับการกวาดที่สะอาด</string>
+    <string name="cleanup_title_variant10">ต้องการเพิ่มโทรศัพท์ของคุณหรือไม่?</string>
+    <string name="cleanup_title_variant11">ทำความสะอาดยืนอยู่ข้างๆ</string>
+    <string name="cleanup_title_variant12">มาตรวจสอบอย่างรวดเร็ว</string>
+    <string name="cleanup_title_variant13">เวลาตรวจสอบพื้นที่?</string>
+    <string name="cleanup_title_variant14">การทำความสะอาดสามารถช่วยให้คุณอยู่ได้อย่างรวดเร็ว</string>
+    <string name="cleanup_title_variant15">โทรศัพท์ของคุณสมควรได้รับการรีเฟรช</string>
     <string name="cleanup_storage_very_high">พื้นที่จัดเก็บแน่นมาก ต้องการล้างหน่อยไหม?</string>
     <string name="cleanup_storage_high">คุณใช้ไปแล้ว %1$d%% — แตะเพื่อสแกนหากจำเป็น</string>
     <string name="cleanup_storage_high_2">คุณใช้ไปแล้ว %1$d%% — การสแกนด่วนอาจช่วยได้.</string>

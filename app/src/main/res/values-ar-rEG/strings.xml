@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">المنظف هنا لو محتاجه</string>
     <string name="cleanup_title_variant4">تليفونك مشغول اليومين دول</string>
     <string name="cleanup_title_variant5">عايز انتعاشة خفيفة؟</string>
+    <string name="cleanup_title_variant6">هل تحتاج إلى تحديث سريع؟</string>
+    <string name="cleanup_title_variant7">فحص سريع لا يؤلم أبدًا</string>
+    <string name="cleanup_title_variant8">تخزين تزحف عليك؟</string>
+    <string name="cleanup_title_variant9">يمكن أن يكون الوقت لاكتساح نظيف</string>
+    <string name="cleanup_title_variant10">تريد أن تعطي هاتفك دفعة؟</string>
+    <string name="cleanup_title_variant11">منظف ​​يقف بجانب</string>
+    <string name="cleanup_title_variant12">لنقدم له فحصًا سريعًا</string>
+    <string name="cleanup_title_variant13">وقت فحص الفضاء؟</string>
+    <string name="cleanup_title_variant14">يمكن أن يساعدك التنظيف على البقاء سريعًا</string>
+    <string name="cleanup_title_variant15">هاتفك يستحق تحديث</string>
     <string name="cleanup_storage_very_high">المساحة ضيقة جدًا. عايز تنظف شوية؟</string>
     <string name="cleanup_storage_high">انت على %1$d%% — اضغط للفحص لو حبيت.</string>
     <string name="cleanup_storage_high_2">انت مستخدم %1$d%% — فحص سريع ممكن يساعد.</string>
