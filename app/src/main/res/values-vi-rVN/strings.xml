@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">Cleaner sẵn sàng nếu bạn cần</string>
     <string name="cleanup_title_variant4">Điện thoại của bạn gần đây bận rộn</string>
     <string name="cleanup_title_variant5">Đến lúc làm mới nhẹ?</string>
+    <string name="cleanup_title_variant6">Cần làm mới nhanh?</string>
+    <string name="cleanup_title_variant7">Quét nhanh chẳng bao giờ thừa</string>
+    <string name="cleanup_title_variant8">Bộ nhớ sắp đầy?</string>
+    <string name="cleanup_title_variant9">Có lẽ đã đến lúc dọn dẹp toàn diện</string>
+    <string name="cleanup_title_variant10">Muốn tăng lực cho điện thoại?</string>
+    <string name="cleanup_title_variant11">Cleaner đã sẵn sàng</string>
+    <string name="cleanup_title_variant12">Hãy kiểm tra nhanh</string>
+    <string name="cleanup_title_variant13">Kiểm tra dung lượng chứ?</string>
+    <string name="cleanup_title_variant14">Dọn dẹp giúp máy luôn nhanh</string>
+    <string name="cleanup_title_variant15">Điện thoại của bạn xứng đáng được làm mới</string>
     <string name="cleanup_storage_very_high">Bộ nhớ rất chật. Bạn muốn dọn dẹp chút không?</string>
     <string name="cleanup_storage_high">Bạn đã dùng %1$d%% — nhấn để quét nếu cần.</string>
     <string name="cleanup_storage_medium">Có khá nhiều thứ ở đây. Quét có thể giúp.</string>
@@ -216,5 +226,4 @@
     <string name="data_not_available">Dữ liệu không có sẵn.</string>
     <string name="no_files_selected_to_clean">Không có tệp được chọn để làm sạch.</string>
     <string name="failed_to_update_trash_size">Không cập nhật kích thước rác: %1$s</string>
-    <string name="no_cleaning_options_selected">Vui lòng chọn tùy chọn làm sạch của bạn trong cài đặt để tiếp tục.</string>
-</resources>
+    <string name="no_cleaning_options_selected">Vui lòng chọn tùy chọn làm sạch của bạn trong cài đặt để tiếp tục.</string></resources>

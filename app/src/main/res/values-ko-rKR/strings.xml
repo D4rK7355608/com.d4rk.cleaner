@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">필요하면 클리너가 도와드려요</string>
     <string name="cleanup_title_variant4">최근 휴대폰이 바빴네요</string>
     <string name="cleanup_title_variant5">가볍게 새로고침할까요?</string>
+    <string name="cleanup_title_variant6">빠른 새로 고침이 필요하신가요?</string>
+    <string name="cleanup_title_variant7">빠른 스캔은 나쁠 게 없죠</string>
+    <string name="cleanup_title_variant8">저장이 꽉 차가고 있나요?</string>
+    <string name="cleanup_title_variant9">대대적인 청소를 할 때일지도 몰라요</string>
+    <string name="cleanup_title_variant10">휴대폰에 힘을 실어주고 싶나요?</string>
+    <string name="cleanup_title_variant11">클리너가 대기 중입니다</string>
+    <string name="cleanup_title_variant12">빠르게 한번 살펴볼까요</string>
+    <string name="cleanup_title_variant13">공간 점검 시간인가요?</string>
+    <string name="cleanup_title_variant14">정리하면 빠른 속도를 유지할 수 있어요</string>
+    <string name="cleanup_title_variant15">휴대폰도 새 단장을 할 자격이 있죠</string>
     <string name="cleanup_storage_very_high">저장공간이 매우 부족합니다. 조금 정리해볼까요?</string>
     <string name="cleanup_storage_high">%1$d%% 사용 중 — 필요하면 탭해서 스캔하세요.</string>
     <string name="cleanup_storage_medium">여기에 내용이 많네요. 스캔이 도움이 될 수 있어요.</string>
@@ -216,5 +226,4 @@
     <string name="data_not_available">데이터를 사용할 수 없습니다.</string>
     <string name="no_files_selected_to_clean">청소할 파일이 없습니다.</string>
     <string name="failed_to_update_trash_size">쓰레기 크기를 업데이트하지 못했습니다 : %1$s</string>
-    <string name="no_cleaning_options_selected">진행할 설정에서 청소 환경 설정을 선택하십시오.</string>
-</resources>
+    <string name="no_cleaning_options_selected">진행할 설정에서 청소 환경 설정을 선택하십시오.</string></resources>

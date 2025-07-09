@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">Cleaner поруч, якщо потрібно</string>
     <string name="cleanup_title_variant4">Ваш телефон останнім часом був зайнятий</string>
     <string name="cleanup_title_variant5">Час трохи оновити?</string>
+    <string name="cleanup_title_variant6">Потрібне швидке оновлення?</string>
+    <string name="cleanup_title_variant7">Швидке сканування ніколи не завадить</string>
+    <string name="cleanup_title_variant8">Пам'ять заповнюється?</string>
+    <string name="cleanup_title_variant9">Можливо, час для повного очищення</string>
+    <string name="cleanup_title_variant10">Хочете підбадьорити телефон?</string>
+    <string name="cleanup_title_variant11">Cleaner напоготові</string>
+    <string name="cleanup_title_variant12">Давайте швидко перевіримо</string>
+    <string name="cleanup_title_variant13">Час перевірити місце?</string>
+    <string name="cleanup_title_variant14">Очищення допоможе залишатися швидким</string>
+    <string name="cleanup_title_variant15">Ваш телефон заслуговує на оновлення</string>
     <string name="cleanup_storage_very_high">Пам’ять майже заповнена. Хочете трохи почистити?</string>
     <string name="cleanup_storage_high">У вас %1$d%% — торкніться для сканування за потреби.</string>
     <string name="cleanup_storage_medium">Тут багато всього. Сканування може допомогти.</string>
@@ -222,5 +232,4 @@
     <string name="data_not_available">Дані недоступні.</string>
     <string name="no_files_selected_to_clean">Жодних файлів, вибраних для очищення.</string>
     <string name="failed_to_update_trash_size">Не вдалося оновити розмір сміття: %1$s</string>
-    <string name="no_cleaning_options_selected">Будь ласка, виберіть свої вподобання прибирання в налаштуваннях для продовження.</string>
-</resources>
+    <string name="no_cleaning_options_selected">Будь ласка, виберіть свої вподобання прибирання в налаштуваннях для продовження.</string></resources>

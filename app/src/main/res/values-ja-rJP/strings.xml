@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">必要ならCleanerがサポートします</string>
     <string name="cleanup_title_variant4">最近スマホがよく使われています</string>
     <string name="cleanup_title_variant5">軽くリフレッシュしませんか？</string>
+    <string name="cleanup_title_variant6">さっとリフレッシュしますか？</string>
+    <string name="cleanup_title_variant7">短時間のスキャンはしておいて損はありません</string>
+    <string name="cleanup_title_variant8">ストレージがいっぱいになりそうですか？</string>
+    <string name="cleanup_title_variant9">そろそろ徹底的に掃除する頃かも</string>
+    <string name="cleanup_title_variant10">スマホを少しブーストしますか？</string>
+    <string name="cleanup_title_variant11">Cleanerが待機しています</string>
+    <string name="cleanup_title_variant12">さっとチェックしましょう</string>
+    <string name="cleanup_title_variant13">容量チェックの時間？</string>
+    <string name="cleanup_title_variant14">クリーンアップで快適さを保てます</string>
+    <string name="cleanup_title_variant15">あなたのスマホにリフレッシュを</string>
     <string name="cleanup_storage_very_high">ストレージがかなり不足しています。少しクリーンアップしますか？</string>
     <string name="cleanup_storage_high">現在%1$d%%です—必要に応じてタップしてスキャンしてください。</string>
     <string name="cleanup_storage_medium">ここにはたくさんのものがあります。スキャンが役立つかもしれません。</string>
@@ -216,5 +226,4 @@
     <string name="data_not_available">データは利用できません。</string>
     <string name="no_files_selected_to_clean">クリーニングするために選択されたファイルはありません。</string>
     <string name="failed_to_update_trash_size">ゴミのサイズの更新に失敗しました：%1$s</string>
-    <string name="no_cleaning_options_selected">続行するには、設定のクリーニング設定を選択してください。</string>
-</resources>
+    <string name="no_cleaning_options_selected">続行するには、設定のクリーニング設定を選択してください。</string></resources>

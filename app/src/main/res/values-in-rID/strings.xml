@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">Cleaner siap jika diperlukan</string>
     <string name="cleanup_title_variant4">Ponsel Anda sibuk belakangan ini</string>
     <string name="cleanup_title_variant5">Saatnya menyegarkan sedikit?</string>
+    <string name="cleanup_title_variant6">Butuh penyegaran cepat?</string>
+    <string name="cleanup_title_variant7">Pemindaian cepat tidak ada salahnya</string>
+    <string name="cleanup_title_variant8">Penyimpanan mulai penuh?</string>
+    <string name="cleanup_title_variant9">Mungkin saatnya bersih-bersih total</string>
+    <string name="cleanup_title_variant10">Ingin memberi ponsel dorongan?</string>
+    <string name="cleanup_title_variant11">Cleaner siap sedia</string>
+    <string name="cleanup_title_variant12">Mari kita cek sebentar</string>
+    <string name="cleanup_title_variant13">Saatnya periksa ruang?</string>
+    <string name="cleanup_title_variant14">Bersih-bersih bisa membantu ponsel tetap cepat</string>
+    <string name="cleanup_title_variant15">Ponselmu pantas mendapatkan penyegaran</string>
     <string name="cleanup_storage_very_high">Penyimpanan sangat penuh. Ingin bersih-bersih?</string>
     <string name="cleanup_storage_high">Kamu di %1$d%% — ketuk untuk memindai jika perlu.</string>
     <string name="cleanup_storage_medium">Banyak sekali di sini. Pindai mungkin membantu.</string>
@@ -216,5 +226,4 @@
     <string name="data_not_available">Data tidak tersedia.</string>
     <string name="no_files_selected_to_clean">Tidak ada file yang dipilih untuk dibersihkan.</string>
     <string name="failed_to_update_trash_size">Gagal memperbarui ukuran sampah: %1$s</string>
-    <string name="no_cleaning_options_selected">Pilih preferensi pembersihan Anda dalam pengaturan untuk melanjutkan.</string>
-</resources>
+    <string name="no_cleaning_options_selected">Pilih preferensi pembersihan Anda dalam pengaturan untuk melanjutkan.</string></resources>

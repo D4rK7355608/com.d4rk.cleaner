@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">Cleaner è qui se ti serve</string>
     <string name="cleanup_title_variant4">Il tuo telefono è stato molto impegnato ultimamente</string>
     <string name="cleanup_title_variant5">È ora di un leggero refresh?</string>
+    <string name="cleanup_title_variant6">Hai bisogno di un rapido aggiornamento?</string>
+    <string name="cleanup_title_variant7">Una scansione veloce non fa mai male</string>
+    <string name="cleanup_title_variant8">Lo spazio di archiviazione si sta riempiendo?</string>
+    <string name="cleanup_title_variant9">Potrebbe essere il momento di una bella pulizia</string>
+    <string name="cleanup_title_variant10">Vuoi dare una spinta al telefono?</string>
+    <string name="cleanup_title_variant11">Cleaner è pronto</string>
+    <string name="cleanup_title_variant12">Facciamo un controllo veloce</string>
+    <string name="cleanup_title_variant13">Controllo dello spazio?</string>
+    <string name="cleanup_title_variant14">La pulizia può aiutarti a restare veloce</string>
+    <string name="cleanup_title_variant15">Il tuo telefono merita un rinnovamento</string>
     <string name="cleanup_storage_very_high">La memoria è davvero piena. Vuoi pulire un po’?</string>
     <string name="cleanup_storage_high">Sei al %1$d%% — tocca per scansionare se necessario.</string>
     <string name="cleanup_storage_medium">C’è un bel po’ di roba qui. Una scansione potrebbe aiutare.</string>
@@ -220,5 +230,4 @@
     <string name="data_not_available">Dati non disponibili.</string>
     <string name="no_files_selected_to_clean">Nessun file selezionato per pulire.</string>
     <string name="failed_to_update_trash_size">Impossibile aggiornare la dimensione della spazzatura: %1$s</string>
-    <string name="no_cleaning_options_selected">Scegli le tue preferenze di pulizia nelle impostazioni per procedere.</string>
-</resources>
+    <string name="no_cleaning_options_selected">Scegli le tue preferenze di pulizia nelle impostazioni per procedere.</string></resources>

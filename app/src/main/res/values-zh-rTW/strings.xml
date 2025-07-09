@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">需要時 Cleaner 在這裡</string>
     <string name="cleanup_title_variant4">您的手機最近很忙碌</string>
     <string name="cleanup_title_variant5">該輕鬆清理一下了嗎？</string>
+    <string name="cleanup_title_variant6">需要快速刷新一下嗎？</string>
+    <string name="cleanup_title_variant7">快速掃描總是無妨</string>
+    <string name="cleanup_title_variant8">儲存空間快滿了嗎？</string>
+    <string name="cleanup_title_variant9">也許該徹底清理一下了</string>
+    <string name="cleanup_title_variant10">想讓手機更有勁嗎？</string>
+    <string name="cleanup_title_variant11">Cleaner 已待命</string>
+    <string name="cleanup_title_variant12">讓我們快速檢查一下</string>
+    <string name="cleanup_title_variant13">要檢查空間嗎？</string>
+    <string name="cleanup_title_variant14">清理能幫助保持速度</string>
+    <string name="cleanup_title_variant15">你的手機值得煥然一新</string>
     <string name="cleanup_storage_very_high">儲存空間相當吃緊，要清一下嗎？</string>
     <string name="cleanup_storage_high">您已使用 %1$d%% — 如有需要點擊掃描。</string>
     <string name="cleanup_storage_medium">這裡有很多內容，掃描或許有幫助。</string>

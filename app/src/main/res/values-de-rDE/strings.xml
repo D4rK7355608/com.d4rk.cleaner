@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">Cleaner ist da, falls du ihn brauchst</string>
     <string name="cleanup_title_variant4">Dein Telefon war in letzter Zeit viel beschäftigt</string>
     <string name="cleanup_title_variant5">Zeit für ein kleines Auffrischen?</string>
+    <string name="cleanup_title_variant6">Braucht es eine schnelle Auffrischung?</string>
+    <string name="cleanup_title_variant7">Ein schneller Scan schadet nie</string>
+    <string name="cleanup_title_variant8">Wird der Speicher knapp?</string>
+    <string name="cleanup_title_variant9">Vielleicht Zeit für einen gründlichen Durchgang</string>
+    <string name="cleanup_title_variant10">Willst du deinem Handy einen Schub geben?</string>
+    <string name="cleanup_title_variant11">Cleaner steht bereit</string>
+    <string name="cleanup_title_variant12">Lass uns kurz nachsehen</string>
+    <string name="cleanup_title_variant13">Zeit für eine Speicherprüfung?</string>
+    <string name="cleanup_title_variant14">Aufräumen hilft dir, schnell zu bleiben</string>
+    <string name="cleanup_title_variant15">Dein Handy verdient eine Auffrischung</string>
     <string name="cleanup_storage_very_high">Speicher ist sehr knapp. Möchtest du ein bisschen aufräumen?</string>
     <string name="cleanup_storage_high">Du bist bei %1$d%% — tippe zum Scannen, wenn nötig.</string>
     <string name="cleanup_storage_medium">Hier gibt es einiges. Ein Scan könnte helfen.</string>
@@ -218,5 +228,4 @@
     <string name="data_not_available">Daten nicht verfügbar.</string>
     <string name="no_files_selected_to_clean">Keine zum Reinigen ausgewählten Dateien.</string>
     <string name="failed_to_update_trash_size">Die Müllgröße nicht aktualisieren: %1$s</string>
-    <string name="no_cleaning_options_selected">Bitte wählen Sie Ihre Reinigungseinstellungen in Einstellungen, um fortzufahren.</string>
-</resources>
+    <string name="no_cleaning_options_selected">Bitte wählen Sie Ihre Reinigungseinstellungen in Einstellungen, um fortzufahren.</string></resources>
