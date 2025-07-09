@@ -12,6 +12,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.Folder
 import androidx.compose.material.icons.outlined.PictureAsPdf
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -47,9 +49,13 @@ fun FilePreviewCard(file: File, modifier: Modifier = Modifier) {
     val imageExtensions = remember { context.resources.getStringArray(R.array.image_extensions).toList() }
     val videoExtensions = remember { context.resources.getStringArray(R.array.video_extensions).toList() }
     val officeExtensions = remember { context.resources.getStringArray(R.array.microsoft_office_extensions).toList() }
+    val apkExtensions = remember { context.resources.getStringArray(R.array.apk_extensions).toList() }
     val imageLoader = LocalContext.current.imageLoader
 
-    Card(modifier = modifier) {
+    Card(
+        modifier = modifier.aspectRatio(1f),
+        shape = RoundedCornerShape(SizeConstants.MediumSize)
+    ) {
         Box(modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.surfaceVariant)) {
@@ -85,6 +91,31 @@ fun FilePreviewCard(file: File, modifier: Modifier = Modifier) {
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
+                    }
+                    in apkExtensions -> {
+                        val icon = remember(file.path) {
+                            context.packageManager.getPackageArchiveInfo(file.path, 0)?.applicationInfo?.apply {
+                                sourceDir = file.path
+                                publicSourceDir = file.path
+                            }?.loadIcon(context.packageManager)
+                        }
+                        if (icon != null) {
+                            AsyncImage(
+                                model = icon,
+                                contentDescription = file.name,
+                                modifier = Modifier
+                                    .size(48.dp)
+                                    .align(Alignment.Center)
+                            )
+                        } else {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_apk_document),
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .size(24.dp)
+                                    .align(Alignment.Center)
+                            )
+                        }
                     }
                     in officeExtensions -> {
                         if (fileExtension.lowercase() == "pdf") {

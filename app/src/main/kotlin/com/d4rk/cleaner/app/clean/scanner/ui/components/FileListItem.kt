@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
+import coil3.compose.AsyncImage
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,7 +33,9 @@ fun FileListItem(file: File, modifier: Modifier = Modifier) {
     val fileExtension = remember(file.name) { getFileExtension(file.name) }
     val size = remember(file.length()) { Formatter.formatShortFileSize(context, file.length()) }
     val audioExtensions = remember { context.resources.getStringArray(R.array.audio_extensions).toList() }
+    val apkExtensions = remember { context.resources.getStringArray(R.array.apk_extensions).toList() }
     val isAudio = remember(fileExtension) { audioExtensions.any { it.equals(fileExtension, ignoreCase = true) } }
+    val isApk = remember(fileExtension) { apkExtensions.any { it.equals(fileExtension, ignoreCase = true) } }
     val fileIcon = if (isAudio) R.drawable.ic_audio_file else remember(fileExtension) { getFileIcon(fileExtension, context) }
 
     Row(
@@ -43,11 +46,29 @@ fun FileListItem(file: File, modifier: Modifier = Modifier) {
             .padding(SizeConstants.SmallSize),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Icon(
-            painter = painterResource(id = fileIcon),
-            contentDescription = null,
-            modifier = Modifier.size(40.dp)
-        )
+        if (isApk) {
+            val icon = remember(file.path) {
+                context.packageManager.getPackageArchiveInfo(file.path, 0)?.applicationInfo?.apply {
+                    sourceDir = file.path
+                    publicSourceDir = file.path
+                }?.loadIcon(context.packageManager)
+            }
+            if (icon != null) {
+                AsyncImage(model = icon, contentDescription = null, modifier = Modifier.size(40.dp))
+            } else {
+                Icon(
+                    painter = painterResource(id = fileIcon),
+                    contentDescription = null,
+                    modifier = Modifier.size(40.dp)
+                )
+            }
+        } else {
+            Icon(
+                painter = painterResource(id = fileIcon),
+                contentDescription = null,
+                modifier = Modifier.size(40.dp)
+            )
+        }
         Column(modifier = Modifier.padding(start = 8.dp).weight(1f)) {
             Text(
                 text = file.name,
