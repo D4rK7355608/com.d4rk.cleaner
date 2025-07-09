@@ -33,7 +33,17 @@
     <string name="cleanup_storage_high_5">%1$d%% usado. ¿Hora de limpiar?</string>
     <string name="cleanup_storage_high_6">Te estás acercando al límite. %1$d%% en uso.</string>
     <string name="cleanup_storage_medium">Hay bastantes cosas aquí. Un escaneo podría ayudar.</string>
+    <string name="cleanup_storage_medium_2">Tienes bastante contenido aquí.</string>
+    <string name="cleanup_storage_medium_3">Considera un escaneo — podrías sorprenderte.</string>
+    <string name="cleanup_storage_medium_4">Queda espacio, pero una limpieza no vendría mal.</string>
+    <string name="cleanup_storage_medium_5">Puede que sea momento de una limpieza ligera.</string>
+    <string name="cleanup_storage_medium_6">Hay un poco de desorden. ¿Quieres escanear?</string>
     <string name="cleanup_storage_ok">¡Tu almacenamiento se ve bien!</string>
+    <string name="cleanup_storage_ok_2">Estás en la zona segura. ¡Todo bien!</string>
+    <string name="cleanup_storage_ok_3">¡Genial! Tienes suficiente espacio libre.</string>
+    <string name="cleanup_storage_ok_4">Todo se ve bien — no hace falta hacer nada.</string>
+    <string name="cleanup_storage_ok_5">¡El almacenamiento está bajo control!</string>
+    <string name="cleanup_storage_ok_6">Limpio y despejado. ¡Bien hecho!</string>
     <string name="cleanup_notification_last_scan_format">Último escaneo: hace %1$d días. %2$s</string>
     <string name="cleanup_notification_never_scanned">Aún no has escaneado tu teléfono. Toca para empezar.</string>
 
@@ -240,5 +250,4 @@
     <string name="data_not_available">Datos no disponibles.</string>
     <string name="no_files_selected_to_clean">No hay archivos seleccionados para limpiar.</string>
     <string name="failed_to_update_trash_size">No se pudo actualizar el tamaño de la basura: %1$s</string>
-    <string name="no_cleaning_options_selected">Elija sus preferencias de limpieza en Configuración para continuar.</string>
-</resources>
+    <string name="no_cleaning_options_selected">Elija sus preferencias de limpieza en Configuración para continuar.</string></resources>
