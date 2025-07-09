@@ -28,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
+import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 
 @Composable
@@ -50,11 +51,7 @@ fun CleanerInfoCard(
     OutlinedCard(
         modifier = modifier
             .fillMaxWidth()
-            .padding(
-                top = 16.dp,
-                start = 16.dp,
-                end = 16.dp,
-            ),
+            .padding(horizontal = SizeConstants.MediumSize),
         shape = MaterialTheme.shapes.extraLarge,
     ) {
         Row(

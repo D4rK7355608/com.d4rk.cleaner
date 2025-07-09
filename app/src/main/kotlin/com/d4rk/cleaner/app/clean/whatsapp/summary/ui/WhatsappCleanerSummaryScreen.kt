@@ -2,15 +2,17 @@ package com.d4rk.cleaner.app.clean.whatsapp.summary.ui
 
 import android.app.Activity
 import android.content.Intent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DeleteSweep
 import androidx.compose.material.icons.outlined.FolderOff
-import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -34,10 +36,12 @@ import com.d4rk.android.libs.apptoolkit.core.domain.model.ads.AdsConfig
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.ads.AdBanner
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.fab.AnimatedExtendedFloatingActionButton
+import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.WhatsAppDetailsActivity
@@ -247,23 +251,27 @@ private fun WhatsappCleanerSummaryScreenContent(
     }
     val totalFiles = remember(directoryList) { directoryList.sumOf { it.count } }
 
-    LazyColumn(
-        modifier = Modifier.fillMaxSize().padding(paddingValues),
-        horizontalAlignment = Alignment.CenterHorizontally
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
+            .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(SizeConstants.MediumSize)
     ) {
-        item {
-            CleanerInfoCard(
-                freeUpSizeBytes = freeUpBytes,
-                totalSizeBytes = totalDeviceBytes,
-                filesCount = totalFiles
-            )
-        }
-        item {
-            AdBanner(
-                modifier = Modifier.padding(vertical = SizeConstants.MediumSize),
-                adsConfig = adsConfig
-            )
-        }
-        item { DirectoryGrid(items = directoryList, onOpenDetails = onOpenDetails) }
+        SmallVerticalSpacer()
+
+        CleanerInfoCard(
+            freeUpSizeBytes = freeUpBytes,
+            totalSizeBytes = totalDeviceBytes,
+            filesCount = totalFiles
+        )
+
+        AdBanner(
+            modifier = Modifier.padding(vertical = SizeConstants.MediumSize),
+            adsConfig = adsConfig
+        )
+
+        DirectoryGrid(items = directoryList, onOpenDetails = onOpenDetails)
     }
 }
