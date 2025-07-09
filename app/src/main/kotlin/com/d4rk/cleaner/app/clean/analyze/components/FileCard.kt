@@ -64,6 +64,7 @@ fun FileCard(
     val imageExtensions : List<String> = remember { context.resources.getStringArray(R.array.image_extensions).toList() }
     val videoExtensions : List<String> = remember { context.resources.getStringArray(R.array.video_extensions).toList() }
     val officeExtensions : List<String> = remember { context.resources.getStringArray(R.array.microsoft_office_extensions).toList() }
+    val apkExtensions : List<String> = remember { context.resources.getStringArray(R.array.apk_extensions).toList() }
 
     Card(
         modifier = modifier
@@ -108,6 +109,32 @@ fun FileCard(
                                 VideoFrameDecoder(source = result.source , options = options)
                             }.videoFramePercent(framePercent = 0.5).crossfade(enable = true).build()
                         } , contentDescription = file.name , contentScale = ContentScale.Crop , modifier = Modifier.fillMaxSize())
+                    }
+
+                    in apkExtensions -> {
+                        val icon = remember(file.path) {
+                            context.packageManager.getPackageArchiveInfo(file.path, 0)?.applicationInfo?.apply {
+                                sourceDir = file.path
+                                publicSourceDir = file.path
+                            }?.loadIcon(context.packageManager)
+                        }
+                        if (icon != null) {
+                            AsyncImage(
+                                model = icon,
+                                contentDescription = file.name,
+                                modifier = Modifier
+                                    .size(48.dp)
+                                    .align(Alignment.Center)
+                            )
+                        } else {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_apk_document),
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .size(24.dp)
+                                    .align(Alignment.Center)
+                            )
+                        }
                     }
 
                     in officeExtensions -> {
