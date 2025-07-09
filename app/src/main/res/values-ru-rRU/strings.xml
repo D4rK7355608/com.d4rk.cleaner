@@ -33,7 +33,17 @@
     <string name="cleanup_storage_high_5">%1$d%% занято. Почистить?</string>
     <string name="cleanup_storage_high_6">Почти заполнено. %1$d%% используется.</string>
     <string name="cleanup_storage_medium">Здесь много всего. Сканирование может помочь.</string>
+    <string name="cleanup_storage_medium_2">Здесь у вас достаточно много всего.</string>
+    <string name="cleanup_storage_medium_3">Подумайте о сканировании — результат может удивить.</string>
+    <string name="cleanup_storage_medium_4">Место ещё есть, но уборка не помешает.</string>
+    <string name="cleanup_storage_medium_5">Похоже, пора навести лёгкий порядок.</string>
+    <string name="cleanup_storage_medium_6">Немного беспорядка. Хотите просканировать?</string>
     <string name="cleanup_storage_ok">Ваше хранилище в порядке!</string>
+    <string name="cleanup_storage_ok_2">Вы в безопасной зоне. Всё хорошо!</string>
+    <string name="cleanup_storage_ok_3">Отлично! У вас достаточно свободного места.</string>
+    <string name="cleanup_storage_ok_4">Всё отлично — действий не требуется.</string>
+    <string name="cleanup_storage_ok_5">Хранилище под контролем!</string>
+    <string name="cleanup_storage_ok_6">Чисто и аккуратно. Молодцы!</string>
     <string name="cleanup_notification_last_scan_format">Последнее сканирование: %1$d дней назад. %2$s</string>
     <string name="cleanup_notification_never_scanned">Вы ещё не сканировали телефон. Нажмите, чтобы начать.</string>
 

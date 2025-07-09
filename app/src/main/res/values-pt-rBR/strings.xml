@@ -33,7 +33,17 @@
     <string name="cleanup_storage_high_5">%1$d%% usado. Hora de limpar?</string>
     <string name="cleanup_storage_high_6">Quase cheio. %1$d%% em uso.</string>
     <string name="cleanup_storage_medium">Tem bastante coisa aqui. Um scan pode ajudar.</string>
+    <string name="cleanup_storage_medium_2">Você tem bastante coisa aqui.</string>
+    <string name="cleanup_storage_medium_3">Considere uma análise — você pode se surpreender.</string>
+    <string name="cleanup_storage_medium_4">Ainda há espaço, mas uma limpeza não faria mal.</string>
+    <string name="cleanup_storage_medium_5">Talvez seja hora de uma limpeza leve.</string>
+    <string name="cleanup_storage_medium_6">Há um pouco de bagunça. Quer escanear?</string>
     <string name="cleanup_storage_ok">Seu armazenamento está ok!</string>
+    <string name="cleanup_storage_ok_2">Você está na zona segura. Tudo certo!</string>
+    <string name="cleanup_storage_ok_3">Ótimo! Você tem espaço livre suficiente.</string>
+    <string name="cleanup_storage_ok_4">Tudo parece bem — nenhuma ação necessária.</string>
+    <string name="cleanup_storage_ok_5">O armazenamento está sob controle!</string>
+    <string name="cleanup_storage_ok_6">Limpo e organizado. Muito bem!</string>
     <string name="cleanup_notification_last_scan_format">Última varredura: há %1$d dias. %2$s</string>
     <string name="cleanup_notification_never_scanned">Você ainda não escaneou o telefone. Toque para começar.</string>
 

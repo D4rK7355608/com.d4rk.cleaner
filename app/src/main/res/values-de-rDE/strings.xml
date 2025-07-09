@@ -33,7 +33,17 @@
     <string name="cleanup_storage_high_5">%1$d%% belegt. Zeit zum Aufräumen?</string>
     <string name="cleanup_storage_high_6">Du bist fast voll. %1$d%% in Benutzung.</string>
     <string name="cleanup_storage_medium">Hier gibt es einiges. Ein Scan könnte helfen.</string>
+    <string name="cleanup_storage_medium_2">Du hast hier schon einiges gesammelt.</string>
+    <string name="cleanup_storage_medium_3">Mach doch mal einen Scan — vielleicht wirst du überrascht sein.</string>
+    <string name="cleanup_storage_medium_4">Es ist noch Platz, aber aufräumen schadet nicht.</string>
+    <string name="cleanup_storage_medium_5">Vielleicht ist es Zeit für einen kurzen Rundgang.</string>
+    <string name="cleanup_storage_medium_6">Hier ist etwas Unordnung. Willst du scannen?</string>
     <string name="cleanup_storage_ok">Dein Speicher sieht gut aus!</string>
+    <string name="cleanup_storage_ok_2">Du bist im grünen Bereich. Alles gut!</string>
+    <string name="cleanup_storage_ok_3">Prima! Du hast genug freien Speicher.</string>
+    <string name="cleanup_storage_ok_4">Sieht gut aus — nichts zu tun.</string>
+    <string name="cleanup_storage_ok_5">Der Speicher ist unter Kontrolle!</string>
+    <string name="cleanup_storage_ok_6">Sauber und klar. Gut gemacht!</string>
     <string name="cleanup_notification_last_scan_format">Letzter Scan: vor %1$d Tagen. %2$s</string>
     <string name="cleanup_notification_never_scanned">Du hast dein Handy noch nicht gescannt. Tippe, um zu starten.</string>
 

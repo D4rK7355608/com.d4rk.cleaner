@@ -33,7 +33,17 @@
     <string name="cleanup_storage_high_5">已用 %1$d%%。 要清理嗎？</string>
     <string name="cleanup_storage_high_6">快滿了，%1$d%% 已在使用。</string>
     <string name="cleanup_storage_medium">這裡有很多內容，掃描或許有幫助。</string>
+    <string name="cleanup_storage_medium_2">這裡的內容不少。</string>
+    <string name="cleanup_storage_medium_3">建議掃描一下—可能會有驚喜。</string>
+    <string name="cleanup_storage_medium_4">還有空間，但清理一下也無妨。</string>
+    <string name="cleanup_storage_medium_5">也許是輕鬆清掃的時候了。</string>
+    <string name="cleanup_storage_medium_6">有點雜亂，要掃描一下嗎？</string>
     <string name="cleanup_storage_ok">您的儲存空間狀況良好！</string>
+    <string name="cleanup_storage_ok_2">目前安全無虞，一切正常！</string>
+    <string name="cleanup_storage_ok_3">太好了！你的空間還很充裕。</string>
+    <string name="cleanup_storage_ok_4">看起來不錯—無需任何操作。</string>
+    <string name="cleanup_storage_ok_5">儲存空間一切掌控！</string>
+    <string name="cleanup_storage_ok_6">乾淨清爽，做得好！</string>
     <string name="cleanup_notification_last_scan_format">上次掃描：%1$d 天前。%2$s</string>
     <string name="cleanup_notification_never_scanned">您尚未掃描手機，點擊即可開始。</string>
 

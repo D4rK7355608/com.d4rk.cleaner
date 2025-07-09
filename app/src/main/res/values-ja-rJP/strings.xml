@@ -33,7 +33,17 @@
     <string name="cleanup_storage_high_5">%1$d%%使用中。掃除しますか？</string>
     <string name="cleanup_storage_high_6">ほぼ満杯です。%1$d%%使用中。</string>
     <string name="cleanup_storage_medium">ここにはたくさんのものがあります。スキャンが役立つかもしれません。</string>
+    <string name="cleanup_storage_medium_2">ここにはなかなか多くのものがあります。</string>
+    <string name="cleanup_storage_medium_3">スキャンを検討してください — 意外な結果かもしれません。</string>
+    <string name="cleanup_storage_medium_4">まだ余裕はありますが、掃除しても損はありません。</string>
+    <string name="cleanup_storage_medium_5">軽く掃除する頃かもしれません。</string>
+    <string name="cleanup_storage_medium_6">少し散らかっています。スキャンしますか？</string>
     <string name="cleanup_storage_ok">ストレージは良好です！</string>
+    <string name="cleanup_storage_ok_2">安全圏内です。問題ありません！</string>
+    <string name="cleanup_storage_ok_3">いいですね！十分な空き容量があります。</string>
+    <string name="cleanup_storage_ok_4">順調です — 特に作業は不要です。</string>
+    <string name="cleanup_storage_ok_5">ストレージは管理されています！</string>
+    <string name="cleanup_storage_ok_6">すっきりクリーン。お見事！</string>
     <string name="cleanup_notification_last_scan_format">最終スキャン: %1$d日前。%2$s</string>
     <string name="cleanup_notification_never_scanned">まだスキャンしていません。タップして開始してください。</string>
 
