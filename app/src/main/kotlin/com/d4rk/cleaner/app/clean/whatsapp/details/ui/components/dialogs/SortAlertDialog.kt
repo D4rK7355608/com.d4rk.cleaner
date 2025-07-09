@@ -36,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
@@ -101,12 +102,12 @@ fun SortAlertDialog(
                         onDismissRequest = { showDatePicker = false },
                         confirmButton = {
                             TextButton(onClick = { showDatePicker = false }) {
-                                Text("OK")
+                                Text(stringResource(id = android.R.string.ok))
                             }
                         },
                         dismissButton = {
                             TextButton(onClick = { showDatePicker = false }) {
-                                Text("Cancel")
+                                Text(stringResource(id = android.R.string.cancel))
                             }
                         }
                     ) {
