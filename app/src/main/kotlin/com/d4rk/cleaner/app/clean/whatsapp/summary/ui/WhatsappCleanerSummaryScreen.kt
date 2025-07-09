@@ -132,6 +132,7 @@ fun WhatsappCleanerSummaryScreen(activity: Activity) {
                 showCleanDialog = false
                 viewModel.onEvent(WhatsAppCleanerEvent.CleanAll)
             },
+            icon = Icons.Outlined.DeleteSweep,
             onCancel = { showCleanDialog = false },
             title = stringResource(id = R.string.clean_whatsapp_warning_title),
             content = { Text(text = stringResource(id = R.string.clean_whatsapp_warning_message)) },
