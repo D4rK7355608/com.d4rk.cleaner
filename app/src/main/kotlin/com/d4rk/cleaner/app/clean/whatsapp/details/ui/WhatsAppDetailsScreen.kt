@@ -378,7 +378,7 @@ fun DetailsScreenContent(
                                     )
                                 }
                         ) {
-                            if (isMedia && !isAudio) {
+                            if (!isGrid) {
                                 FilePreviewCard(file = file, modifier = Modifier.weight(1f))
                             } else {
                                 FileListItem(file = file, modifier = Modifier.weight(1f))
