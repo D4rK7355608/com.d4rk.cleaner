@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
@@ -50,11 +51,11 @@ import java.io.File
 
 @Composable
 fun FileCard(
+    modifier : Modifier = Modifier ,
     file : File , onCheckedChange : (Boolean) -> Unit ,
     isChecked : Boolean ,
     isOriginal: Boolean = false,
     view : View ,
-    modifier : Modifier = Modifier ,
 ) {
     val isFolder : Boolean = file.isDirectory
     val context : Context = LocalContext.current
@@ -66,26 +67,26 @@ fun FileCard(
 
     Card(
         modifier = modifier
-                .aspectRatio(ratio = 1f)
-                .bounceClick()
-                .clickable {
-                    if (! file.isDirectory) {
-                        val intent = Intent(Intent.ACTION_VIEW)
-                        val uri : Uri = FileProvider.getUriForFile(
-                            context , "${context.packageName}.fileprovider" , file
-                        )
-                        intent.setDataAndType(uri , context.contentResolver.getType(uri))
-                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                        context.startActivity(intent)
-                    }
-                } ,
+            .aspectRatio(ratio = 1f)
+            .bounceClick()
+            .clickable {
+                if (!file.isDirectory) {
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    val uri: Uri = FileProvider.getUriForFile(
+                        context, "${context.packageName}.fileprovider", file
+                    )
+                    intent.setDataAndType(uri, context.contentResolver.getType(uri))
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    context.startActivity(intent)
+                }
+            } ,
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             if (isFolder) {
                 Icon(
                     imageVector = Icons.Outlined.Folder , contentDescription = null , modifier = Modifier
-                            .size(size = 24.dp)
-                            .align(alignment = Alignment.Center)
+                        .size(size = 24.dp)
+                        .align(alignment = Alignment.Center)
                 )
             }
             else {
@@ -145,8 +146,8 @@ fun FileCard(
                         }
                         Icon(
                             painter = painterResource(id = fileIcon) , contentDescription = null , modifier = Modifier
-                                    .size(size = 24.dp)
-                                    .align(alignment = Alignment.Center)
+                                .size(size = 24.dp)
+                                .align(alignment = Alignment.Center)
                         )
                     }
                 }
@@ -159,7 +160,7 @@ fun FileCard(
 
             if (isOriginal) {
                 Text(
-                    text = "Original",
+                    text = stringResource(id = R.string.original),
                     color = Color.White,
                     modifier = Modifier
                         .align(Alignment.TopStart)
@@ -170,16 +171,16 @@ fun FileCard(
 
             Box(
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .background(
-                            color = Color.Black.copy(alpha = 0.4f)
-                        )
-                        .align(alignment = Alignment.BottomCenter)
+                    .fillMaxWidth()
+                    .background(
+                        color = Color.Black.copy(alpha = 0.4f)
+                    )
+                    .align(alignment = Alignment.BottomCenter)
             ) {
                 Text(
                     text = file.name , maxLines = 1 , overflow = TextOverflow.Ellipsis , modifier = Modifier
-                            .basicMarquee()
-                            .padding(all = SizeConstants.SmallSize)
+                        .basicMarquee()
+                        .padding(all = SizeConstants.SmallSize)
                 )
             }
         }

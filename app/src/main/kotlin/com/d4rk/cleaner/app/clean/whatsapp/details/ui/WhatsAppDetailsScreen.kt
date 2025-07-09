@@ -304,7 +304,7 @@ fun DetailsScreen(
                 )
             },
             confirmButtonText = stringResource(id = R.string.delete),
-            dismissButtonText = "Cancel"
+            dismissButtonText = stringResource(id = android.R.string.cancel)
         )
     }
 }

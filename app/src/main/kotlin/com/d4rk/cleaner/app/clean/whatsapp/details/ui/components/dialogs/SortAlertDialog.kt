@@ -123,14 +123,14 @@ fun SortAlertDialog(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         ReadOnlyDateTextField(
-                            label = "From Date",
+                            label = stringResource(id = R.string.from_date),
                             value = dateState.selectedStartDateMillis,
                             modifier = Modifier.weight(1f),
                             onClick = { showDatePicker = true }
                         )
 
                         ReadOnlyDateTextField(
-                            label = "To Date",
+                            label = stringResource(id = R.string.to_date),
                             value = dateState.selectedEndDateMillis,
                             modifier = Modifier.weight(1f),
                             onClick = { showDatePicker = true }
@@ -150,7 +150,7 @@ fun SortAlertDialog(
                         ),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(text = "Descending", modifier = Modifier.weight(1f))
+                    Text(text = stringResource(id = R.string.descending), modifier = Modifier.weight(1f))
                     Switch(
                         checked = isDescending.value,
                         onCheckedChange = { isDescending.value = it }

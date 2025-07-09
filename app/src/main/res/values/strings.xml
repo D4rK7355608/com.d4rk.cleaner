@@ -122,6 +122,9 @@
     <string name="delete_selected">Delete Selected</string>
     <string name="sort_options">Sort options</string>
     <string name="apply">Apply</string>
+    <string name="descending">Descending</string>
+    <string name="from_date">From Date</string>
+    <string name="to_date">To Date</string>
     <string name="no_application_found">No application found to open this file.</string>
     <string name="something_went_wrong">Something went wrong…</string>
     <string name="smart_suggestions">Smart Suggestions</string>
@@ -168,6 +171,7 @@
         <item quantity="other">Delete %1$d items?</item>
     </plurals>
     <string name="delete">Delete</string>
+    <string name="original">Original</string>
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
     <string name="a_year_ago">Last Year</string>
