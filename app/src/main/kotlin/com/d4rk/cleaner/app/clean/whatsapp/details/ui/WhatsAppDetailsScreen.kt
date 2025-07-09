@@ -212,8 +212,7 @@ fun DetailsScreen(
                     if (tabs.size > 1) {
                         CustomTabLayout(
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 8.dp),
+                                .fillMaxWidth(),
                             selectedItemIndex = selectedTabIndex,
                             items = tabs,
                             filesPerTab = tabFiles,
