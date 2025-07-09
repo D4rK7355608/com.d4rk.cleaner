@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">Cleaner е тук, ако имате нужда</string>
     <string name="cleanup_title_variant4">Телефонът ви беше зает напоследък</string>
     <string name="cleanup_title_variant5">Време за леко освежаване?</string>
+    <string name="cleanup_title_variant6">Имате нужда от бързо опресняване?</string>
+    <string name="cleanup_title_variant7">Бързото сканиране никога не боли</string>
+    <string name="cleanup_title_variant8">Съхранението пълзи по вас?</string>
+    <string name="cleanup_title_variant9">Може да е време за чисто почистване</string>
+    <string name="cleanup_title_variant10">Искате ли да увеличите телефона си?</string>
+    <string name="cleanup_title_variant11">Почиствачът стои до</string>
+    <string name="cleanup_title_variant12">Нека да го направим бързо</string>
+    <string name="cleanup_title_variant13">Време за проверка на пространството?</string>
+    <string name="cleanup_title_variant14">Почистването може да ви помогне да останете бързо</string>
+    <string name="cleanup_title_variant15">Телефонът ви заслужава опресняване</string>
     <string name="cleanup_storage_very_high">Паметта е доста запълнена. Искате ли да почистите малко?</string>
     <string name="cleanup_storage_high">Вие сте на %1$d%% — докоснете за сканиране при нужда.</string>
     <string name="cleanup_storage_high_2">Използвани са %1$d%% — бързо сканиране може да помогне.</string>

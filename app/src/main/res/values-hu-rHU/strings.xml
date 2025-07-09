@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">A Cleaner itt van, ha szükséged van rá</string>
     <string name="cleanup_title_variant4">A telefonod mostanában elfoglalt volt</string>
     <string name="cleanup_title_variant5">Ideje egy kis felfrissítésnek?</string>
+    <string name="cleanup_title_variant6">Szüksége van egy gyors frissítésre?</string>
+    <string name="cleanup_title_variant7">A gyors beolvasás soha nem árt</string>
+    <string name="cleanup_title_variant8">A tárolás kúszik rajtad?</string>
+    <string name="cleanup_title_variant9">Lehet ideje egy tiszta seprőnek</string>
+    <string name="cleanup_title_variant10">Szeretné lendületet adni a telefonjának?</string>
+    <string name="cleanup_title_variant11">A tisztító mellette áll</string>
+    <string name="cleanup_title_variant12">Adjunk neki egy gyors ellenőrzést</string>
+    <string name="cleanup_title_variant13">Hely ellenőrzési idő?</string>
+    <string name="cleanup_title_variant14">A takarítás segíthet abban, hogy gyorsan maradjon</string>
+    <string name="cleanup_title_variant15">A telefonod megérdemel egy frissítést</string>
     <string name="cleanup_storage_very_high">Nagyon szűkös a tárhely. Szeretnél kicsit takarítani?</string>
     <string name="cleanup_storage_high">Már %1$d%%-n állsz — érints rá a kereséshez, ha szükséges.</string>
     <string name="cleanup_storage_high_2">Már %1$d%%-ot használsz — egy gyors keresés segíthet.</string>

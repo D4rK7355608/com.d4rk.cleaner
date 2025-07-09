@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">Nandito ang Cleaner kung kailangan mo</string>
     <string name="cleanup_title_variant4">Abala ang iyong telepono kamakailan</string>
     <string name="cleanup_title_variant5">Panahon na ba para sa light refresh?</string>
+    <string name="cleanup_title_variant6">Kailangan mo ng mabilis na pag -refresh?</string>
+    <string name="cleanup_title_variant7">Ang isang mabilis na pag -scan ay hindi kailanman nasasaktan</string>
+    <string name="cleanup_title_variant8">Ang pag -iimbak na gumagapang sa iyo?</string>
+    <string name="cleanup_title_variant9">Maaaring oras para sa isang malinis na walisin</string>
+    <string name="cleanup_title_variant10">Nais mong bigyan ng tulong ang iyong telepono?</string>
+    <string name="cleanup_title_variant11">Nakatayo ang malinis</string>
+    <string name="cleanup_title_variant12">Bigyan ito ng mabilis na tseke</string>
+    <string name="cleanup_title_variant13">Oras ng Space Check?</string>
+    <string name="cleanup_title_variant14">Ang paglilinis ay makakatulong sa iyo na manatiling mabilis</string>
+    <string name="cleanup_title_variant15">Ang iyong telepono ay nararapat sa isang pag -refresh</string>
     <string name="cleanup_storage_very_high">Sobrang sikip ng storage. Gusto mo bang linisin ng kaunti?</string>
     <string name="cleanup_storage_high">Nasa %1$d%% ka na — tapikin para mag-scan kung kailangan.</string>
     <string name="cleanup_storage_high_2">Nasa %1$d%% kang gamit — baka makatulong ang mabilisang scan.</string>

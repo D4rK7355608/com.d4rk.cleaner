@@ -10,6 +10,16 @@
     <string name="cleanup_title_variant3">जरूरत पड़े तो Cleaner यहीं है</string>
     <string name="cleanup_title_variant4">आपका फ़ोन हाल में व्यस्त रहा है</string>
     <string name="cleanup_title_variant5">थोड़ा रीफ़्रेश करने का समय?</string>
+    <string name="cleanup_title_variant6">एक त्वरित ताज़ा चाहिए?</string>
+    <string name="cleanup_title_variant7">एक त्वरित स्कैन कभी दर्द नहीं करता है</string>
+    <string name="cleanup_title_variant8">भंडारण आप पर रेंगना?</string>
+    <string name="cleanup_title_variant9">एक साफ स्वीप के लिए समय हो सकता है</string>
+    <string name="cleanup_title_variant10">अपने फोन को बढ़ावा देना चाहते हैं?</string>
+    <string name="cleanup_title_variant11">क्लीनर द्वारा खड़ा है</string>
+    <string name="cleanup_title_variant12">आइए इसे एक त्वरित चेक दें</string>
+    <string name="cleanup_title_variant13">अंतरिक्ष की जाँच समय?</string>
+    <string name="cleanup_title_variant14">क्लीनअप आपको तेजी से रहने में मदद कर सकता है</string>
+    <string name="cleanup_title_variant15">आपका फ़ोन एक रिफ्रेश का हकदार है</string>
     <string name="cleanup_storage_very_high">स्टोरेज बहुत कम है। थोड़ा साफ़ करना चाहेंगे?</string>
     <string name="cleanup_storage_high">आप %1$d%% पर हैं — ज़रूरत हो तो स्कैन करने के लिए टैप करें.</string>
     <string name="cleanup_storage_high_2">आप %1$d%% उपयोग कर चुके हैं — जल्दी से स्कैन कर लें तो मदद मिल सकती है।</string>
