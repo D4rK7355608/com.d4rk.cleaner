@@ -12,6 +12,11 @@
     <string name="cleanup_title_variant5">একটু হালকা রিফ্রেশ করবেন?</string>
     <string name="cleanup_storage_very_high">স্টোরেজ খুব টাইট। একটু পরিষ্কার করতে চান?</string>
     <string name="cleanup_storage_high">আপনি %1$d%% এ আছেন — প্রয়োজনে স্ক্যান করতে ট্যাপ করুন।</string>
+    <string name="cleanup_storage_high_2">আপনি %1$d%% ব্যবহার করছেন — দ্রুত স্ক্যান সাহায্য করতে পারে।</string>
+    <string name="cleanup_storage_high_3">%1$d%% পূর্ণ হয়েছে। জায়গা একটু টাইট হয়ে যাচ্ছে।</string>
+    <string name="cleanup_storage_high_4">জায়গা ভর্তি হয়ে যাচ্ছে। এখন %1$d%% ব্যবহার হয়েছে।</string>
+    <string name="cleanup_storage_high_5">%1$d%% ব্যবহার হয়েছে। পরিষ্কার করবেন?</string>
+    <string name="cleanup_storage_high_6">প্রায় পুরো হয়ে যাচ্ছে। %1$d%% ব্যবহৃত।</string>
     <string name="cleanup_storage_medium">এখানে অনেক কিছু আছে। একটি স্ক্যান সাহায্য করতে পারে।</string>
     <string name="cleanup_storage_ok">আপনার স্টোরেজ ঠিক আছে!</string>
     <string name="cleanup_notification_last_scan_format">সর্বশেষ স্ক্যান: %1$d দিন আগে। %2$s</string>

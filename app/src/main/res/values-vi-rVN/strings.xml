@@ -22,6 +22,11 @@
     <string name="cleanup_title_variant15">Điện thoại của bạn xứng đáng được làm mới</string>
     <string name="cleanup_storage_very_high">Bộ nhớ rất chật. Bạn muốn dọn dẹp chút không?</string>
     <string name="cleanup_storage_high">Bạn đã dùng %1$d%% — nhấn để quét nếu cần.</string>
+    <string name="cleanup_storage_high_2">Bạn đã dùng %1$d%% — quét nhanh có thể giúp đỡ.</string>
+    <string name="cleanup_storage_high_3">Đã đầy %1$d%%. Bắt đầu hơi chật chội.</string>
+    <string name="cleanup_storage_high_4">Dung lượng sắp đầy. Hiện dùng %1$d%%.</string>
+    <string name="cleanup_storage_high_5">%1$d%% đã dùng. Dọn dẹp chứ?</string>
+    <string name="cleanup_storage_high_6">Sắp đầy rồi. Đang dùng %1$d%%.</string>
     <string name="cleanup_storage_medium">Có khá nhiều thứ ở đây. Quét có thể giúp.</string>
     <string name="cleanup_storage_ok">Bộ nhớ của bạn vẫn ổn!</string>
     <string name="cleanup_notification_last_scan_format">Lần quét cuối: %1$d ngày trước. %2$s</string>

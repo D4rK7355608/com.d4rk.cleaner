@@ -12,6 +12,11 @@
     <string name="cleanup_title_variant5">Panahon na ba para sa light refresh?</string>
     <string name="cleanup_storage_very_high">Sobrang sikip ng storage. Gusto mo bang linisin ng kaunti?</string>
     <string name="cleanup_storage_high">Nasa %1$d%% ka na — tapikin para mag-scan kung kailangan.</string>
+    <string name="cleanup_storage_high_2">Nasa %1$d%% kang gamit — baka makatulong ang mabilisang scan.</string>
+    <string name="cleanup_storage_high_3">%1$d%% na ang puno. Medyo masikip na rito.</string>
+    <string name="cleanup_storage_high_4">Napupuno na ang espasyo. %1$d%% na ang nagagamit.</string>
+    <string name="cleanup_storage_high_5">%1$d%% na nagamit. Linisin na?</string>
+    <string name="cleanup_storage_high_6">Malapit nang mapuno. %1$d%% na ang gamit.</string>
     <string name="cleanup_storage_medium">Maraming laman dito. Puwedeng makatulong ang scan.</string>
     <string name="cleanup_storage_ok">Ayos naman ang storage mo!</string>
     <string name="cleanup_notification_last_scan_format">Huling scan: %1$d araw na ang nakalipas. %2$s</string>

@@ -22,6 +22,11 @@
     <string name="cleanup_title_variant15">Din telefon förtjänar en uppfräschning</string>
     <string name="cleanup_storage_very_high">Lagringen är riktigt full. Vill du städa lite?</string>
     <string name="cleanup_storage_high">Du är på %1$d%% — tryck för att skanna vid behov.</string>
+    <string name="cleanup_storage_high_2">Du har använt %1$d%% — en snabb skanning kan hjälpa.</string>
+    <string name="cleanup_storage_high_3">%1$d%% fyllt. Det börjar bli trångt här.</string>
+    <string name="cleanup_storage_high_4">Utrymmet fylls på. %1$d%% används nu.</string>
+    <string name="cleanup_storage_high_5">%1$d%% används. Dags att städa?</string>
+    <string name="cleanup_storage_high_6">Du börjar få slut på utrymme. %1$d%% i bruk.</string>
     <string name="cleanup_storage_medium">Här finns mycket innehåll. En skanning kan hjälpa.</string>
     <string name="cleanup_storage_ok">Ditt lagringsutrymme ser bra ut!</string>
     <string name="cleanup_notification_last_scan_format">Senaste skanning: för %1$d dagar sedan. %2$s</string>

@@ -22,6 +22,11 @@
     <string name="cleanup_title_variant15">Ponselmu pantas mendapatkan penyegaran</string>
     <string name="cleanup_storage_very_high">Penyimpanan sangat penuh. Ingin bersih-bersih?</string>
     <string name="cleanup_storage_high">Kamu di %1$d%% — ketuk untuk memindai jika perlu.</string>
+    <string name="cleanup_storage_high_2">Kamu sudah memakai %1$d%% — pemindaian cepat bisa membantu.</string>
+    <string name="cleanup_storage_high_3">%1$d%% terisi. Mulai terasa sempit.</string>
+    <string name="cleanup_storage_high_4">Ruang mulai penuh. %1$d%% sudah terpakai.</string>
+    <string name="cleanup_storage_high_5">%1$d%% terpakai. Saatnya bersih-bersih?</string>
+    <string name="cleanup_storage_high_6">Hampir penuh. %1$d%% terpakai.</string>
     <string name="cleanup_storage_medium">Banyak sekali di sini. Pindai mungkin membantu.</string>
     <string name="cleanup_storage_ok">Penyimpanan Anda terlihat baik!</string>
     <string name="cleanup_notification_last_scan_format">Pemindaian terakhir: %1$d hari lalu. %2$s</string>

@@ -12,6 +12,11 @@
     <string name="cleanup_title_variant5">Ideje egy kis felfrissítésnek?</string>
     <string name="cleanup_storage_very_high">Nagyon szűkös a tárhely. Szeretnél kicsit takarítani?</string>
     <string name="cleanup_storage_high">Már %1$d%%-n állsz — érints rá a kereséshez, ha szükséges.</string>
+    <string name="cleanup_storage_high_2">Már %1$d%%-ot használsz — egy gyors keresés segíthet.</string>
+    <string name="cleanup_storage_high_3">%1$d%% betelt. Kezd szűkös lenni.</string>
+    <string name="cleanup_storage_high_4">Fogy a hely. Most %1$d%% foglalt.</string>
+    <string name="cleanup_storage_high_5">%1$d%% foglalt. Ideje tisztítani?</string>
+    <string name="cleanup_storage_high_6">Közel a megtelt állapothoz. %1$d%% használatban.</string>
     <string name="cleanup_storage_medium">Elég sok minden van itt. Egy keresés segíthet.</string>
     <string name="cleanup_storage_ok">A tárhelyed rendben van!</string>
     <string name="cleanup_notification_last_scan_format">Utolsó keresés: %1$d napja. %2$s</string>

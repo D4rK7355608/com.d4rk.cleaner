@@ -22,6 +22,11 @@
     <string name="cleanup_title_variant15">你的手機值得煥然一新</string>
     <string name="cleanup_storage_very_high">儲存空間相當吃緊，要清一下嗎？</string>
     <string name="cleanup_storage_high">您已使用 %1$d%% — 如有需要點擊掃描。</string>
+    <string name="cleanup_storage_high_2">您已使用 %1$d%% — 快速掃描或許有幫助。</string>
+    <string name="cleanup_storage_high_3">%1$d%% 已滿。 空間有點吃緊。</string>
+    <string name="cleanup_storage_high_4">空間正在填滿，目前已用 %1$d%%。</string>
+    <string name="cleanup_storage_high_5">已用 %1$d%%。 要清理嗎？</string>
+    <string name="cleanup_storage_high_6">快滿了，%1$d%% 已在使用。</string>
     <string name="cleanup_storage_medium">這裡有很多內容，掃描或許有幫助。</string>
     <string name="cleanup_storage_ok">您的儲存空間狀況良好！</string>
     <string name="cleanup_notification_last_scan_format">上次掃描：%1$d 天前。%2$s</string>

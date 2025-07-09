@@ -22,6 +22,11 @@
     <string name="cleanup_title_variant15">あなたのスマホにリフレッシュを</string>
     <string name="cleanup_storage_very_high">ストレージがかなり不足しています。少しクリーンアップしますか？</string>
     <string name="cleanup_storage_high">現在%1$d%%です—必要に応じてタップしてスキャンしてください。</string>
+    <string name="cleanup_storage_high_2">%1$d%%使用中です — すばやくスキャンするとよいかもしれません。</string>
+    <string name="cleanup_storage_high_3">%1$d%%埋まっています。少し手狭になってきました。</string>
+    <string name="cleanup_storage_high_4">容量が埋まりつつあります。現在%1$d%%使用中です。</string>
+    <string name="cleanup_storage_high_5">%1$d%%使用中。掃除しますか？</string>
+    <string name="cleanup_storage_high_6">ほぼ満杯です。%1$d%%使用中。</string>
     <string name="cleanup_storage_medium">ここにはたくさんのものがあります。スキャンが役立つかもしれません。</string>
     <string name="cleanup_storage_ok">ストレージは良好です！</string>
     <string name="cleanup_notification_last_scan_format">最終スキャン: %1$d日前。%2$s</string>

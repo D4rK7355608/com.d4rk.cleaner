@@ -12,6 +12,11 @@
     <string name="cleanup_title_variant5">عايز انتعاشة خفيفة؟</string>
     <string name="cleanup_storage_very_high">المساحة ضيقة جدًا. عايز تنظف شوية؟</string>
     <string name="cleanup_storage_high">انت على %1$d%% — اضغط للفحص لو حبيت.</string>
+    <string name="cleanup_storage_high_2">انت مستخدم %1$d%% — فحص سريع ممكن يساعد.</string>
+    <string name="cleanup_storage_high_3">%1$d%% مليانة. المكان بيضيق شوي.</string>
+    <string name="cleanup_storage_high_4">المساحة بتتملي. دلوقتي %1$d%% مستخدم.</string>
+    <string name="cleanup_storage_high_5">%1$d%% مستخدم. ننضف؟</string>
+    <string name="cleanup_storage_high_6">قربت تتملي. %1$d%% مستخدم.</string>
     <string name="cleanup_storage_medium">فيه حاجات كتير هنا. الفحص ممكن يفيد.</string>
     <string name="cleanup_storage_ok">المساحة عندك تمام!</string>
     <string name="cleanup_notification_last_scan_format">آخر فحص: من %1$d يوم. %2$s</string>
