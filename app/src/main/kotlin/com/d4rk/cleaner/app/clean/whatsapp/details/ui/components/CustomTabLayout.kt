@@ -1,5 +1,6 @@
 package com.d4rk.cleaner.app.clean.whatsapp.details.ui.components
 
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -55,7 +56,10 @@ fun CustomTabLayout(
                             checked = isChecked,
                             onCheckedChange = { onTabCheckedChange(index, it) },
                         )
-                        Text(text)
+                        Text(
+                            modifier = Modifier.basicMarquee(),
+                            text = text
+                        )
                     }
                 }
             )

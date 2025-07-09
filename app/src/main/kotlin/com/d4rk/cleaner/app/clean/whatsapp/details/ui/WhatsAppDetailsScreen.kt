@@ -62,6 +62,8 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
+import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.scanner.ui.components.FileListItem
 import com.d4rk.cleaner.app.clean.scanner.ui.components.FilePreviewCard
@@ -255,8 +257,11 @@ fun DetailsScreen(
                             .align(Alignment.CenterHorizontally)
                             .padding(8.dp),
                     ) {
-                        Icon(imageVector = Icons.Outlined.Delete, contentDescription = null)
-                        Spacer(modifier = Modifier.width(4.dp))
+                        Icon(
+                            modifier = Modifier.size(size = SizeConstants.ButtonIconSize) ,
+                            imageVector = Icons.Outlined.Delete,
+                            contentDescription = null)
+                        ButtonIconSpacer()
                         Text(text = stringResource(id = R.string.delete_selected))
                     }
                 }
