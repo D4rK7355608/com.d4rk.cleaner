@@ -10,5 +10,5 @@ data class StorageInfo(
     val storageBreakdown : Map<String , Long> = emptyMap() ,
     val usedStorageFormatted : String = "" ,
     val totalStorageFormatted : String = "" ,
-    val cleanedSpace : String = "0 KB" ,
+    val cleanedSpace : String = "0 B" ,
 )

@@ -9,8 +9,7 @@ import android.os.storage.StorageManager
 import android.os.storage.StorageVolume
 import java.util.Locale
 import java.util.UUID
-import kotlin.math.log10
-import kotlin.math.pow
+import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 
 object StorageUtils {
 
@@ -49,29 +48,7 @@ object StorageUtils {
         callback(usedFormatted , totalFormatted , totalSize , usageProgress , freeSpacePercentage)
     }
 
-    fun formatSize(size : Long) : String {
-        if (size <= 0) return "0 B"
-        val units : Array<String> = arrayOf("B" , "KB" , "MB" , "GB" , "TB")
-        val digitGroups : Int = (log10(size.toDouble()) / log10(x = 1024.0)).toInt()
-        val value : Double = size / 1024.0.pow(digitGroups.toDouble())
+    fun formatSize(size: Long): String = FileSizeFormatter.format(size)
 
-        return String.format(Locale.US , "%.2f %s" , value , units[digitGroups])
-    }
-
-    fun formatSizeReadable(size: Long): String {
-        if (size < 1024) return "$size B"
-
-        val kb: Double = size / 1024.0
-        if (kb < 1024) {
-            return String.format(Locale.US, "%.1f KB", kb)
-        }
-
-        val mb: Double = kb / 1024.0
-        if (mb < 1024) {
-            return String.format(Locale.US, "%.1f MB", mb)
-        }
-
-        val gb: Double = mb / 1024.0
-        return String.format(Locale.US, "%.1f GB", gb)
-    }
+    fun formatSizeReadable(size: Long): String = FileSizeFormatter.format(size)
 }

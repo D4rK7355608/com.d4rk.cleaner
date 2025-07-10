@@ -36,7 +36,7 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVertical
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.apps.manager.domain.data.model.ApkInfo
-import com.d4rk.cleaner.app.clean.scanner.utils.helpers.StorageUtils
+import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 import java.io.File
 
 @Composable
@@ -100,7 +100,7 @@ fun ApkCleanerCard(
 
                         ApkPreviewItem(
                             name = appName,
-                            size = StorageUtils.formatSizeReadable(apk.size),
+                            size = FileSizeFormatter.format(apk.size),
                             icon = icon
                         )
                     }

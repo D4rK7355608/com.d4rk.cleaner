@@ -15,7 +15,7 @@ import com.d4rk.android.libs.apptoolkit.core.domain.model.network.Errors
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.successData
 import com.d4rk.android.libs.apptoolkit.core.ui.base.ScreenViewModel
-import com.d4rk.cleaner.app.clean.scanner.utils.helpers.StorageUtils
+import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashSizeUseCase
 import com.d4rk.cleaner.app.main.domain.actions.MainAction
 import com.d4rk.cleaner.app.main.domain.actions.MainEvent
@@ -46,7 +46,7 @@ class MainViewModel(
     private fun loadNavigationItems() {
         launch {
             val trashSize = getTrashSizeUseCase()
-            val trashBadge = if (trashSize > 0) StorageUtils.formatSizeReadable(trashSize) else ""
+            val trashBadge = if (trashSize > 0) FileSizeFormatter.format(trashSize) else ""
 
             screenState.successData {
                 copy(

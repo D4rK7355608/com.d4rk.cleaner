@@ -18,6 +18,7 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
@@ -191,7 +192,7 @@ fun ImageDisplay(viewModel : ImageOptimizerViewModel) {
             ) {
                 Text(
 
-                    text = "${state.value.compressedSizeKB} KB" ,
+                    text = FileSizeFormatter.format((state.value.compressedSizeKB * 1024).toLong()),
                     modifier = Modifier
                             .padding(all = SizeConstants.ExtraSmallSize)
                             .animateContentSize() ,
