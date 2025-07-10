@@ -16,14 +16,37 @@ object FileManagerHelper {
                 context.packageName + ".fileprovider",
                 folder
             )
-            val intent = Intent(Intent.ACTION_VIEW).setDataAndType(uri, "*/*")
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            val packageManager = context.packageManager
-            if (intent.resolveActivity(packageManager) != null) {
-                context.startActivity(intent)
-            } else {
+
+            val baseIntent = Intent(Intent.ACTION_VIEW).setDataAndType(uri, "*/*")
+            baseIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            val pm = context.packageManager
+
+            // Try common file explorer packages first (Files by Google, Samsung, Xiaomi)
+            val explorerPackages = listOf(
+                "com.google.android.apps.nbu.files", // Files by Google
+                "com.android.documentsui", // AOSP/Pixel
+                "com.sec.android.app.myfiles", // Samsung
+                "com.mi.android.fileexplorer" // Xiaomi
+            )
+
+            var started = false
+            for (pkg in explorerPackages) {
+                val intent = Intent(baseIntent).setPackage(pkg)
+                if (intent.resolveActivity(pm) != null) {
+                    context.startActivity(intent)
+                    started = true
+                    break
+                }
+            }
+
+            if (!started && baseIntent.resolveActivity(pm) != null) {
+                context.startActivity(baseIntent)
+                started = true
+            }
+
+            if (!started) {
                 val settingsIntent = Intent(Settings.ACTION_INTERNAL_STORAGE_SETTINGS)
-                if (settingsIntent.resolveActivity(packageManager) != null) {
+                if (settingsIntent.resolveActivity(pm) != null) {
                     context.startActivity(settingsIntent)
                 } else {
                     Toast.makeText(
