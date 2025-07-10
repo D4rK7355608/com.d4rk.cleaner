@@ -33,6 +33,11 @@
     <string name="cleanup_storage_high_5">%1$d%% folosit. Curățăm?</string>
     <string name="cleanup_storage_high_6">Aproape plin. %1$d%% utilizat.</string>
     <string name="cleanup_storage_medium">Sunt destule lucruri aici. Un scan ar putea ajuta.</string>
+    <string name="cleanup_storage_medium_2">Ai destul de multe lucruri aici.</string>
+    <string name="cleanup_storage_medium_3">Ia în calcul o scanare — s-ar putea să te surprindă.</string>
+    <string name="cleanup_storage_medium_4">Mai e loc, dar o curățare nu ar strica.</string>
+    <string name="cleanup_storage_medium_5">Poate e timpul pentru o mică curățenie.</string>
+    <string name="cleanup_storage_medium_6">E un pic de dezordine. Vrei să scanezi?</string>
     <string name="cleanup_storage_ok">Spațiul tău arată bine!</string>
     <string name="cleanup_notification_last_scan_format">Ultimul scan: acum %1$d zile. %2$s</string>
     <string name="cleanup_notification_never_scanned">Nu ți-ai scanat încă telefonul. Atinge pentru a începe.</string>

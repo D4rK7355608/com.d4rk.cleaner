@@ -33,6 +33,11 @@
     <string name="cleanup_storage_high_5">%1$d%% na nagamit. Linisin na?</string>
     <string name="cleanup_storage_high_6">Malapit nang mapuno. %1$d%% na ang gamit.</string>
     <string name="cleanup_storage_medium">Maraming laman dito. Puwedeng makatulong ang scan.</string>
+    <string name="cleanup_storage_medium_2">Marami-rami kang laman dito.</string>
+    <string name="cleanup_storage_medium_3">Subukan mong mag-scan — baka magulat ka.</string>
+    <string name="cleanup_storage_medium_4">May natitira pang espasyo, pero di masamang maglinis.</string>
+    <string name="cleanup_storage_medium_5">Mukhang oras na para sa magaan na paglilinis.</string>
+    <string name="cleanup_storage_medium_6">Medyo magulo. Gusto mo bang mag-scan?</string>
     <string name="cleanup_storage_ok">Ayos naman ang storage mo!</string>
     <string name="cleanup_notification_last_scan_format">Huling scan: %1$d araw na ang nakalipas. %2$s</string>
     <string name="cleanup_notification_never_scanned">Hindi mo pa na-scan ang iyong telepono. Tapikin para magsimula.</string>

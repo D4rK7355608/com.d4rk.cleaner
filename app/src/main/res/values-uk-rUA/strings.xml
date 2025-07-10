@@ -33,6 +33,11 @@
     <string name="cleanup_storage_high_5">%1$d%% використано. Час чистити?</string>
     <string name="cleanup_storage_high_6">Майже заповнено. Використано %1$d%%.</string>
     <string name="cleanup_storage_medium">Тут багато всього. Сканування може допомогти.</string>
+    <string name="cleanup_storage_medium_2">У вас тут чимало всього.</string>
+    <string name="cleanup_storage_medium_3">Розгляньте можливість сканування — можете здивуватися.</string>
+    <string name="cleanup_storage_medium_4">Місце ще є, але прибирання не зашкодить.</string>
+    <string name="cleanup_storage_medium_5">Може, час на легке прибирання.</string>
+    <string name="cleanup_storage_medium_6">Трохи безладу. Хочете сканувати?</string>
     <string name="cleanup_storage_ok">Пам’ять у хорошому стані!</string>
     <string name="cleanup_notification_last_scan_format">Останнє сканування: %1$d днів тому. %2$s</string>
     <string name="cleanup_notification_never_scanned">Ви ще не сканували телефон. Торкніться, щоб почати.</string>

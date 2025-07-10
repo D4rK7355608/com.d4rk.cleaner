@@ -33,6 +33,11 @@
     <string name="cleanup_storage_high_5">%1$d%% đã dùng. Dọn dẹp chứ?</string>
     <string name="cleanup_storage_high_6">Sắp đầy rồi. Đang dùng %1$d%%.</string>
     <string name="cleanup_storage_medium">Có khá nhiều thứ ở đây. Quét có thể giúp.</string>
+    <string name="cleanup_storage_medium_2">Bạn có khá nhiều thứ ở đây.</string>
+    <string name="cleanup_storage_medium_3">Hãy thử quét — có thể bạn sẽ bất ngờ.</string>
+    <string name="cleanup_storage_medium_4">Vẫn còn chỗ nhưng dọn dẹp cũng tốt.</string>
+    <string name="cleanup_storage_medium_5">Có lẽ đến lúc quét nhẹ nhàng.</string>
+    <string name="cleanup_storage_medium_6">Hơi bừa bộn. Muốn quét không?</string>
     <string name="cleanup_storage_ok">Bộ nhớ của bạn vẫn ổn!</string>
     <string name="cleanup_notification_last_scan_format">Lần quét cuối: %1$d ngày trước. %2$s</string>
     <string name="cleanup_notification_never_scanned">Bạn chưa quét điện thoại. Nhấn để bắt đầu.</string>

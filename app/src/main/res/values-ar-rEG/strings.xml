@@ -33,6 +33,11 @@
     <string name="cleanup_storage_high_5">%1$d%% مستخدم. ننضف؟</string>
     <string name="cleanup_storage_high_6">قربت تتملي. %1$d%% مستخدم.</string>
     <string name="cleanup_storage_medium">فيه حاجات كتير هنا. الفحص ممكن يفيد.</string>
+    <string name="cleanup_storage_medium_2">عندك كمية محترمة من الملفات هنا.</string>
+    <string name="cleanup_storage_medium_3">جرّب فحص — يمكن تتفاجئ.</string>
+    <string name="cleanup_storage_medium_4">في مساحة فاضية، لكن التنظيف مش هيضر.</string>
+    <string name="cleanup_storage_medium_5">يمكن يكون وقت تنظيف خفيف.</string>
+    <string name="cleanup_storage_medium_6">في شوية فوضى. عايز تفحص؟</string>
     <string name="cleanup_storage_ok">المساحة عندك تمام!</string>
     <string name="cleanup_notification_last_scan_format">آخر فحص: من %1$d يوم. %2$s</string>
     <string name="cleanup_notification_never_scanned">لسه ما فحصتش تليفونك. اضغط للبدء.</string>

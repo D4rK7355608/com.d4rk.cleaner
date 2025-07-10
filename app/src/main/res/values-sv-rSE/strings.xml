@@ -33,6 +33,11 @@
     <string name="cleanup_storage_high_5">%1$d%% används. Dags att städa?</string>
     <string name="cleanup_storage_high_6">Du börjar få slut på utrymme. %1$d%% i bruk.</string>
     <string name="cleanup_storage_medium">Här finns mycket innehåll. En skanning kan hjälpa.</string>
+    <string name="cleanup_storage_medium_2">Du har en hel del saker här.</string>
+    <string name="cleanup_storage_medium_3">Överväg en skanning — du kan bli överraskad.</string>
+    <string name="cleanup_storage_medium_4">Det finns plats kvar, men det skadar inte att städa.</string>
+    <string name="cleanup_storage_medium_5">Kanske dags för en lätt genomgång.</string>
+    <string name="cleanup_storage_medium_6">Det är lite rörigt. Vill du skanna?</string>
     <string name="cleanup_storage_ok">Ditt lagringsutrymme ser bra ut!</string>
     <string name="cleanup_notification_last_scan_format">Senaste skanning: för %1$d dagar sedan. %2$s</string>
     <string name="cleanup_notification_never_scanned">Du har inte skannat din telefon än. Tryck för att börja.</string>

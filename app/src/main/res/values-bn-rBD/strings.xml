@@ -33,6 +33,11 @@
     <string name="cleanup_storage_high_5">%1$d%% ব্যবহার হয়েছে। পরিষ্কার করবেন?</string>
     <string name="cleanup_storage_high_6">প্রায় পুরো হয়ে যাচ্ছে। %1$d%% ব্যবহৃত।</string>
     <string name="cleanup_storage_medium">এখানে অনেক কিছু আছে। একটি স্ক্যান সাহায্য করতে পারে।</string>
+    <string name="cleanup_storage_medium_2">আপনার এখানে ভালো পরিমাণ জিনিস আছে।</string>
+    <string name="cleanup_storage_medium_3">একটি স্ক্যান বিবেচনা করুন — অবাক হতে পারেন।</string>
+    <string name="cleanup_storage_medium_4">এখনও জায়গা আছে, তবে পরিষ্কার করলে মন্দ নয়।</string>
+    <string name="cleanup_storage_medium_5">হালকা একটা পরিষ্কার করার সময় হতে পারে।</string>
+    <string name="cleanup_storage_medium_6">একটু অগোছালো আছে। স্ক্যান করবেন?</string>
     <string name="cleanup_storage_ok">আপনার স্টোরেজ ঠিক আছে!</string>
     <string name="cleanup_notification_last_scan_format">সর্বশেষ স্ক্যান: %1$d দিন আগে। %2$s</string>
     <string name="cleanup_notification_never_scanned">আপনি এখনও ফোন স্ক্যান করেননি। শুরু করতে ট্যাপ করুন।</string>

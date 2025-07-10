@@ -33,6 +33,11 @@
     <string name="cleanup_storage_high_5">%1$d%% kullanılıyor. Temizleyelim mi?</string>
     <string name="cleanup_storage_high_6">Neredeyse dolu. %1$d%% kullanımda.</string>
     <string name="cleanup_storage_medium">Burada epey şey var. Tarama yardımcı olabilir.</string>
+    <string name="cleanup_storage_medium_2">Burada hatırı sayılır miktarda şeyin var.</string>
+    <string name="cleanup_storage_medium_3">Bir taramayı düşün — şaşırabilirsin.</string>
+    <string name="cleanup_storage_medium_4">Yer var ama temizlik fena olmaz.</string>
+    <string name="cleanup_storage_medium_5">Hafif bir süpürme zamanı olabilir.</string>
+    <string name="cleanup_storage_medium_6">Biraz dağınık. Tarama yapmak ister misin?</string>
     <string name="cleanup_storage_ok">Depolaman gayet iyi!</string>
     <string name="cleanup_notification_last_scan_format">Son tarama: %1$d gün önce. %2$s</string>
     <string name="cleanup_notification_never_scanned">Telefonunu henüz taramadın. Başlamak için dokun.</string>

@@ -33,6 +33,11 @@
     <string name="cleanup_storage_high_5">ใช้ไป %1$d%% แล้ว ล้างไหม?</string>
     <string name="cleanup_storage_high_6">ใกล้เต็มแล้ว ใช้งาน %1$d%% อยู่.</string>
     <string name="cleanup_storage_medium">มีของเยอะมากที่นี่ การสแกนอาจช่วยได้</string>
+    <string name="cleanup_storage_medium_2">คุณมีของอยู่ไม่น้อยที่นี่.</string>
+    <string name="cleanup_storage_medium_3">ลองสแกนดู—อาจจะเซอร์ไพรส์ก็ได้.</string>
+    <string name="cleanup_storage_medium_4">ยังมีที่เหลือ แต่ทำความสะอาดก็ดี.</string>
+    <string name="cleanup_storage_medium_5">อาจถึงเวลาปัดกวาดเบา ๆ.</string>
+    <string name="cleanup_storage_medium_6">มีของรกนิดหน่อย สแกนไหม?</string>
     <string name="cleanup_storage_ok">พื้นที่จัดเก็บของคุณดูโอเค!</string>
     <string name="cleanup_notification_last_scan_format">สแกนครั้งล่าสุด: %1$d วันที่แล้ว %2$s</string>
     <string name="cleanup_notification_never_scanned">คุณยังไม่ได้สแกนโทรศัพท์ แตะเพื่อเริ่มต้น</string>

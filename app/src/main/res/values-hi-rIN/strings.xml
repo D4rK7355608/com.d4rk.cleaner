@@ -33,6 +33,11 @@
     <string name="cleanup_storage_high_5">%1$d%% उपयोग में है। साफ़ करें?</string>
     <string name="cleanup_storage_high_6">लगभग भरने वाला है। %1$d%% इस्तेमाल में है।</string>
     <string name="cleanup_storage_medium">यहाँ काफी चीजें हैं। स्कैन मदद कर सकता है.</string>
+    <string name="cleanup_storage_medium_2">आपके पास यहाँ काफी सामान है।</string>
+    <string name="cleanup_storage_medium_3">एक बार स्कैन करके देखें — आपको हैरानी हो सकती है।</string>
+    <string name="cleanup_storage_medium_4">जगह बची है, लेकिन सफ़ाई करने में हर्ज़ नहीं.</string>
+    <string name="cleanup_storage_medium_5">हो सकता है हल्की-सी सफ़ाई का समय हो.</string>
+    <string name="cleanup_storage_medium_6">थोड़ा-सा सामान बिखरा है। स्कैन करना चाहेंगे?</string>
     <string name="cleanup_storage_ok">आपका स्टोरेज ठीक दिख रहा है!</string>
     <string name="cleanup_notification_last_scan_format">आख़िरी स्कैन: %1$d दिन पहले. %2$s</string>
     <string name="cleanup_notification_never_scanned">आपने अभी तक फ़ोन स्कैन नहीं किया है। शुरू करने के लिए टैप करें.</string>
