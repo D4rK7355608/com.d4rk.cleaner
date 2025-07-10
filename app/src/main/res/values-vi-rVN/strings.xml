@@ -93,6 +93,21 @@
     <string name="streak_reward_day1">Khởi đầu tốt!</string>
     <string name="streak_reward_day3">Bạn có biết có thể sắp xếp theo kích thước không?</string>
     <string name="streak_reward_day5">Ước tính rác hệ thống!</string>
+    <string name="streak_reward_day7">Tuần hoàn hảo 🏅</string>
+    <string name="streak_notification_title">Giữ vững chuỗi dọn dẹp của bạn!</string>
+    <string name="streak_notification_daily">Đã đến lúc dọn thiết bị để tiếp tục chuỗi.</string>
+    <string name="streak_notification_missed">Hôm qua bạn chưa dọn — dọn ngay để giữ 🔥!</string>
+    <string name="streak_notification_milestone_format">🔥 Bạn đã dọn liên tục %1$d ngày! Làm tốt lắm!</string>
+    <string name="preference_streak_reminder">Nhắc tôi dọn hàng ngày (giúp duy trì chuỗi)</string>
+    <string name="hide_clean_streak_title">Ẩn chuỗi dọn dẹp?</string>
+    <string name="hide_streak_action_hide">Ẩn</string>
+    <string name="hide_clean_streak_message">Bạn có muốn ẩn thẻ chuỗi dọn dẹp không?</string>
+    <string name="hide_for_now">Ẩn tạm thời</string>
+    <string name="dont_show_again">Không hiển thị lại</string>
+    <string name="preference_show_streak_card">Hiển thị thẻ chuỗi dọn dẹp</string>
+    <string name="streak_quiet_banner">Bạn đang ở chế độ yên lặng. Chuỗi dọn dẹp sẽ tiếp tục vào tuần sau.</string>
+    <string name="streak_return_toast">Chuỗi dọn dẹp sẽ trở lại lần dọn tiếp theo.</string>
+    <string name="apk_card_title">Tìm thấy trình cài đặt cũ</string>
     <string name="apks">Tệp APK</string>
     <string name="archives">Tệp nén</string>
     <string name="fonts">Phông chữ</string>

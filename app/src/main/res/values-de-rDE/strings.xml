@@ -101,6 +101,13 @@
     <string name="preference_streak_reminder">Täglich ans Reinigen erinnern (hält die Serie)</string>
     <string name="hide_clean_streak_title">Reinigungsserie ausblenden?</string>
     <string name="hide_streak_action_hide">Ausblenden</string>
+    <string name="hide_clean_streak_message">Möchtest du deine Reinigungsserien-Karte ausblenden?</string>
+    <string name="hide_for_now">Für jetzt ausblenden</string>
+    <string name="dont_show_again">Nicht mehr anzeigen</string>
+    <string name="preference_show_streak_card">Reinigungsserien-Karte anzeigen</string>
+    <string name="streak_quiet_banner">Du bist im Ruhemodus. Die Serie wird nächste Woche fortgesetzt.</string>
+    <string name="streak_return_toast">Die Reinigungsserie kehrt beim nächsten Reinigen zurück.</string>
+    <string name="apk_card_title">Alte Installer gefunden</string>
     <string name="apks">APKs</string>
     <string name="archives">Archive</string>
     <string name="fonts">Schriftarten</string>
