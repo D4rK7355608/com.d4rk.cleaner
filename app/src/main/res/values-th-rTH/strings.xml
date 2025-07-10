@@ -39,6 +39,11 @@
     <string name="cleanup_storage_medium_5">อาจถึงเวลาปัดกวาดเบา ๆ.</string>
     <string name="cleanup_storage_medium_6">มีของรกนิดหน่อย สแกนไหม?</string>
     <string name="cleanup_storage_ok">พื้นที่จัดเก็บของคุณดูโอเค!</string>
+    <string name="cleanup_storage_ok_2">คุณอยู่ในเขตปลอดภัย ดีทั้งหมด!</string>
+    <string name="cleanup_storage_ok_3">เยี่ยม! คุณมีพื้นที่ว่างพอแล้ว</string>
+    <string name="cleanup_storage_ok_4">ดูดี ไม่มีอะไรต้องทำ</string>
+    <string name="cleanup_storage_ok_5">ที่เก็บข้อมูลอยู่ภายใต้การควบคุม!</string>
+    <string name="cleanup_storage_ok_6">สะอาดและชัดเจน ทำได้ดี!</string>
     <string name="cleanup_notification_last_scan_format">สแกนครั้งล่าสุด: %1$d วันที่แล้ว %2$s</string>
     <string name="cleanup_notification_never_scanned">คุณยังไม่ได้สแกนโทรศัพท์ แตะเพื่อเริ่มต้น</string>
 

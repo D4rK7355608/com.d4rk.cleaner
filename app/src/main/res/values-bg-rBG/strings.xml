@@ -39,6 +39,11 @@
     <string name="cleanup_storage_medium_5">Може би е време за леко почистване.</string>
     <string name="cleanup_storage_medium_6">Има малко безпорядък. Искате ли да сканирате?</string>
     <string name="cleanup_storage_ok">Паметта ви изглежда добре!</string>
+    <string name="cleanup_storage_ok_2">Вие сте в безопасната зона. Всичко добре!</string>
+    <string name="cleanup_storage_ok_3">Хубаво! Имате достатъчно свободно пространство.</string>
+    <string name="cleanup_storage_ok_4">Изглежда добре — не са необходими действия.</string>
+    <string name="cleanup_storage_ok_5">Съхранението е под контрол!</string>
+    <string name="cleanup_storage_ok_6">Чисто и ясно. Браво!</string>
     <string name="cleanup_notification_last_scan_format">Последно сканиране: преди %1$d дни. %2$s</string>
     <string name="cleanup_notification_never_scanned">Все още не сте сканирали телефона си. Докоснете, за да започнете.</string>
 

@@ -39,6 +39,11 @@
     <string name="cleanup_storage_medium_5">يمكن يكون وقت تنظيف خفيف.</string>
     <string name="cleanup_storage_medium_6">في شوية فوضى. عايز تفحص؟</string>
     <string name="cleanup_storage_ok">المساحة عندك تمام!</string>
+    <string name="cleanup_storage_ok_2">أنت في المنطقة الآمنة. كل شيء جيد!</string>
+    <string name="cleanup_storage_ok_3">جميل! لديك مساحة حرة كافية.</string>
+    <string name="cleanup_storage_ok_4">تبدو جيدة — لا حاجة إلى أي إجراء.</string>
+    <string name="cleanup_storage_ok_5">التخزين تحت السيطرة!</string>
+    <string name="cleanup_storage_ok_6">نظيف وواضح. أحسنت!</string>
     <string name="cleanup_notification_last_scan_format">آخر فحص: من %1$d يوم. %2$s</string>
     <string name="cleanup_notification_never_scanned">لسه ما فحصتش تليفونك. اضغط للبدء.</string>
 

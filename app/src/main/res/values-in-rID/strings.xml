@@ -39,6 +39,11 @@
     <string name="cleanup_storage_medium_5">Sepertinya saatnya bersih-bersih ringan.</string>
     <string name="cleanup_storage_medium_6">Sedikit berantakan nih. Mau pindai?</string>
     <string name="cleanup_storage_ok">Penyimpanan Anda terlihat baik!</string>
+    <string name="cleanup_storage_ok_2">Anda berada di zona aman. Semua bagus!</string>
+    <string name="cleanup_storage_ok_3">Bagus! Anda memiliki ruang kosong yang cukup.</string>
+    <string name="cleanup_storage_ok_4">Terlihat baik — tidak perlu tindakan.</string>
+    <string name="cleanup_storage_ok_5">Penyimpanan terkendali!</string>
+    <string name="cleanup_storage_ok_6">Bersih dan jelas. Bagus sekali!</string>
     <string name="cleanup_notification_last_scan_format">Pemindaian terakhir: %1$d hari lalu. %2$s</string>
     <string name="cleanup_notification_never_scanned">Anda belum pernah memindai ponsel. Ketuk untuk mulai.</string>
 

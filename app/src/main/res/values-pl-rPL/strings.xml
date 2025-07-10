@@ -39,6 +39,11 @@
     <string name="cleanup_storage_medium_5">Może pora na szybkie sprzątanko.</string>
     <string name="cleanup_storage_medium_6">Jest tu trochę bałaganu. Zeskanować?</string>
     <string name="cleanup_storage_ok">Twoja pamięć wygląda dobrze!</string>
+    <string name="cleanup_storage_ok_2">Jesteś w bezpiecznej strefie. Wszystko dobrze!</string>
+    <string name="cleanup_storage_ok_3">Super! Masz wystarczająco dużo wolnej przestrzeni.</string>
+    <string name="cleanup_storage_ok_4">Wygląda dobrze — nic nie trzeba robić.</string>
+    <string name="cleanup_storage_ok_5">Przechowywanie jest pod kontrolą!</string>
+    <string name="cleanup_storage_ok_6">Czysto i przejrzyście. Dobra robota!</string>
     <string name="cleanup_notification_last_scan_format">Ostatnie skanowanie: %1$d dni temu. %2$s</string>
     <string name="cleanup_notification_never_scanned">Nie przeskanowałeś jeszcze telefonu. Stuknij, aby zacząć.</string>
 

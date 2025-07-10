@@ -39,6 +39,11 @@
     <string name="cleanup_storage_medium_5">Có lẽ đến lúc quét nhẹ nhàng.</string>
     <string name="cleanup_storage_medium_6">Hơi bừa bộn. Muốn quét không?</string>
     <string name="cleanup_storage_ok">Bộ nhớ của bạn vẫn ổn!</string>
+    <string name="cleanup_storage_ok_2">Bạn đang ở vùng an toàn. Mọi thứ ổn!</string>
+    <string name="cleanup_storage_ok_3">Đẹp! Bạn có đủ không gian trống.</string>
+    <string name="cleanup_storage_ok_4">Nhìn tốt — không cần hành động.</string>
+    <string name="cleanup_storage_ok_5">Lưu trữ đang được kiểm soát!</string>
+    <string name="cleanup_storage_ok_6">Sạch sẽ và rõ ràng. Làm tốt!</string>
     <string name="cleanup_notification_last_scan_format">Lần quét cuối: %1$d ngày trước. %2$s</string>
     <string name="cleanup_notification_never_scanned">Bạn chưa quét điện thoại. Nhấn để bắt đầu.</string>
 

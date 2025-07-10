@@ -39,6 +39,11 @@
     <string name="cleanup_storage_medium_5">Mukhang oras na para sa magaan na paglilinis.</string>
     <string name="cleanup_storage_medium_6">Medyo magulo. Gusto mo bang mag-scan?</string>
     <string name="cleanup_storage_ok">Ayos naman ang storage mo!</string>
+    <string name="cleanup_storage_ok_2">Nasa Safe Zone ka. Lahat ng mabuti!</string>
+    <string name="cleanup_storage_ok_3">Maganda! Mayroon kang sapat na libreng puwang.</string>
+    <string name="cleanup_storage_ok_4">Mukhang maayos — wala nang dapat gawin.</string>
+    <string name="cleanup_storage_ok_5">Nasa kontrol ang storage!</string>
+    <string name="cleanup_storage_ok_6">Malinis at malinaw. Magaling!</string>
     <string name="cleanup_notification_last_scan_format">Huling scan: %1$d araw na ang nakalipas. %2$s</string>
     <string name="cleanup_notification_never_scanned">Hindi mo pa na-scan ang iyong telepono. Tapikin para magsimula.</string>
 
