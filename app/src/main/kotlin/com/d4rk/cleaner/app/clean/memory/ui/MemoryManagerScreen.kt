@@ -95,6 +95,7 @@ fun MemoryManagerScreenContent(viewModel : MemoryManagerViewModel , screenData :
     val carouselItems = listOf(screenData.storageInfo , screenData.ramInfo)
     val pagerState : PagerState = rememberPagerState { carouselItems.size }
     val view : View = LocalView.current
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
