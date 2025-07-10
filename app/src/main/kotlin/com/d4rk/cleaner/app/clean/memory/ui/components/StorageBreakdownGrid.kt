@@ -10,7 +10,10 @@ import androidx.compose.ui.Modifier
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 
 @Composable
-fun StorageBreakdownGrid(storageBreakdown : Map<String , Long>) {
+fun StorageBreakdownGrid(
+    storageBreakdown: Map<String, Long>,
+    onItemClick: (String) -> Unit = {}
+) {
     Column(
         modifier = Modifier
                 .fillMaxWidth()
@@ -23,7 +26,12 @@ fun StorageBreakdownGrid(storageBreakdown : Map<String , Long>) {
                     .animateContentSize()) {
                 for (item : Map.Entry<String , Long> in chunk) {
                     val (icon : String , size : Long) = item
-                    StorageBreakdownItem(icon = icon, size = size, modifier = Modifier.weight(weight = 1f))
+                    StorageBreakdownItem(
+                        icon = icon,
+                        size = size,
+                        modifier = Modifier.weight(weight = 1f),
+                        onClick = { onItemClick(icon) }
+                    )
                 }
             }
         }

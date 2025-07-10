@@ -35,6 +35,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import android.os.Environment
+import android.provider.Settings
+import android.content.Intent
+import java.io.File
+import com.d4rk.cleaner.core.utils.helpers.FileManagerHelper
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ads.AdsConfig
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.ads.AdBanner
@@ -139,8 +144,49 @@ fun MemoryManagerScreenContent(viewModel : MemoryManagerViewModel , screenData :
 
         screenData.storageInfo?.storageBreakdown?.let { storageBreakdown ->
             if (screenData.listExpanded && storageBreakdown.isNotEmpty()) {
-                StorageBreakdownGrid(storageBreakdown = screenData.storageInfo.storageBreakdown)
+                StorageBreakdownGrid(
+                    storageBreakdown = screenData.storageInfo.storageBreakdown,
+                    onItemClick = { category -> handleStorageItemClick(context, category) }
+                )
             }
         }
+    }
+}
+
+private fun handleStorageItemClick(context: Context, category: String) {
+    val pm = context.packageManager
+    when (category) {
+        context.getString(R.string.installed_apps) -> {
+            val intent = Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS)
+            if (intent.resolveActivity(pm) != null) {
+                context.startActivity(intent)
+            }
+        }
+        context.getString(R.string.system) -> {
+            val intent = Intent(Settings.ACTION_INTERNAL_STORAGE_SETTINGS)
+            if (intent.resolveActivity(pm) != null) {
+                context.startActivity(intent)
+            }
+        }
+        context.getString(R.string.music) -> FileManagerHelper.openFolderOrSettings(
+            context,
+            File(Environment.getExternalStorageDirectory(), "Music")
+        )
+        context.getString(R.string.images) -> FileManagerHelper.openFolderOrSettings(
+            context,
+            File(Environment.getExternalStorageDirectory(), "DCIM")
+        )
+        context.getString(R.string.documents) -> FileManagerHelper.openFolderOrSettings(
+            context,
+            File(Environment.getExternalStorageDirectory(), "Documents")
+        )
+        context.getString(R.string.downloads) -> FileManagerHelper.openFolderOrSettings(
+            context,
+            File(Environment.getExternalStorageDirectory(), "Download")
+        )
+        context.getString(R.string.other_files) -> FileManagerHelper.openFolderOrSettings(
+            context,
+            Environment.getExternalStorageDirectory()
+        )
     }
 }
