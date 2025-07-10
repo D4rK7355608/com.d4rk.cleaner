@@ -133,6 +133,8 @@
     </plurals>
     <string name="status_no_files_selected">Състояние: Няма избрани файлове</string>
     <string name="select_all">Избери всички</string>
+    <string name="delete">Изтриване</string>
+    <string name="original">Оригинал</string>
     <string name="today">Днес</string>
     <string name="yesterday">Вчера</string>
     <string name="a_year_ago">Миналата година</string>

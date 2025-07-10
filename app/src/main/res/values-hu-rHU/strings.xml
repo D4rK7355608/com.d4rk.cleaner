@@ -150,6 +150,8 @@
     </plurals>
     <string name="status_no_files_selected">Állapot: Nincs kiválasztott fájl</string>
     <string name="select_all">Összes kijelölése</string>
+    <string name="delete">Törlés</string>
+    <string name="original">Eredeti</string>
     <string name="today">Ma</string>
     <string name="yesterday">Tegnap</string>
     <string name="a_year_ago">Tavaly</string>

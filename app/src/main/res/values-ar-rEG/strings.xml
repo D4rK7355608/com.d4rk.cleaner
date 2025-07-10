@@ -137,6 +137,8 @@
     </plurals>
     <string name="status_no_files_selected">الحالة: مفيش ملفات متحددة</string>
     <string name="select_all">تحديد الكل</string>
+    <string name="delete">حذف</string>
+    <string name="original">الأصلي</string>
     <string name="today">النهاردة</string>
     <string name="yesterday">امبارح</string>
     <string name="a_year_ago">السنة اللي فاتت</string>

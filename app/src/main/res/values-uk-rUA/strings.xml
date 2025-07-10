@@ -152,6 +152,8 @@
     </plurals>
     <string name="status_no_files_selected">Статус: Файли не вибрано</string>
     <string name="select_all">Вибрати все</string>
+    <string name="delete">Видалити</string>
+    <string name="original">Оригінал</string>
     <string name="today">Сьогодні</string>
     <string name="yesterday">Вчора</string>
     <string name="a_year_ago">Минулого року</string>

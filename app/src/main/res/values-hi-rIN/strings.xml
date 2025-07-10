@@ -133,6 +133,8 @@
     </plurals>
     <string name="status_no_files_selected">स्थिति: कोई फ़ाइल चयनित नहीं</string>
     <string name="select_all">सभी चुनें</string>
+    <string name="delete">हटाएं</string>
+    <string name="original">मूल</string>
     <string name="today">आज</string>
     <string name="yesterday">कल</string>
     <string name="a_year_ago">पिछले साल</string>

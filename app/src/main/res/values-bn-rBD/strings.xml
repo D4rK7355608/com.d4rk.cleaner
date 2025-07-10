@@ -133,6 +133,8 @@
     </plurals>
     <string name="status_no_files_selected">স্থিতি: কোনও ফাইল নির্বাচিত নেই</string>
     <string name="select_all">সব নির্বাচন করুন</string>
+    <string name="delete">মুছুন</string>
+    <string name="original">মূল</string>
     <string name="today">আজ</string>
     <string name="yesterday">গতকাল</string>
     <string name="a_year_ago">গত বছর</string>

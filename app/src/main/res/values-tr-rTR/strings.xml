@@ -150,6 +150,8 @@
     </plurals>
     <string name="status_no_files_selected">Durum: Hiçbir dosya seçilmedi</string>
     <string name="select_all">Tümünü Seç</string>
+    <string name="delete">Sil</string>
+    <string name="original">Orijinal</string>
     <string name="today">Bugün</string>
     <string name="yesterday">Dün</string>
     <string name="a_year_ago">Geçen Yıl</string>

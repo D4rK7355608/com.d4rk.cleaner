@@ -151,6 +151,8 @@
     </plurals>
     <string name="status_no_files_selected">Stare: Niciun fișier selectat</string>
     <string name="select_all">Selectează tot</string>
+    <string name="delete">Șterge</string>
+    <string name="original">Original</string>
     <string name="today">Astăzi</string>
     <string name="yesterday">Ieri</string>
     <string name="a_year_ago">Anul trecut</string>

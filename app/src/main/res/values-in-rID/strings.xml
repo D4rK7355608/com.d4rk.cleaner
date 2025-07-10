@@ -132,6 +132,8 @@
     </plurals>
     <string name="status_no_files_selected">Status: Tidak ada file yang dipilih</string>
     <string name="select_all">Pilih Semua</string>
+    <string name="delete">Hapus</string>
+    <string name="original">Asli</string>
     <string name="today">Hari ini</string>
     <string name="yesterday">Kemarin</string>
     <string name="a_year_ago">Tahun Lalu</string>

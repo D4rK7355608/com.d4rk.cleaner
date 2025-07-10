@@ -133,6 +133,8 @@
     </plurals>
     <string name="status_no_files_selected">حیثیت: کوئی فائل منتخب نہیں کی گئی</string>
     <string name="select_all">سب کو منتخب کریں</string>
+    <string name="delete">حذف کریں</string>
+    <string name="original">اصل</string>
     <string name="today">آج</string>
     <string name="yesterday">کل</string>
     <string name="a_year_ago">پچھلے سال</string>

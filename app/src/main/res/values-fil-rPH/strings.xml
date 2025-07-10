@@ -133,6 +133,8 @@
     </plurals>
     <string name="status_no_files_selected">Katayuan: Walang napiling file</string>
     <string name="select_all">Piliin Lahat</string>
+    <string name="delete">Burahin</string>
+    <string name="original">Orihinal</string>
     <string name="today">Ngayon</string>
     <string name="yesterday">Kahapon</string>
     <string name="a_year_ago">Noong Nakaraang Taon</string>

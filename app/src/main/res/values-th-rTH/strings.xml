@@ -132,6 +132,8 @@
     </plurals>
     <string name="status_no_files_selected">สถานะ: ไม่ได้เลือกไฟล์</string>
     <string name="select_all">เลือกทั้งหมด</string>
+    <string name="delete">ลบ</string>
+    <string name="original">ต้นฉบับ</string>
     <string name="today">วันนี้</string>
     <string name="yesterday">เมื่อวาน</string>
     <string name="a_year_ago">ปีที่แล้ว</string>
