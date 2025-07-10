@@ -150,6 +150,11 @@
     </plurals>
     <string name="status_no_files_selected">स्थिति: कोई फ़ाइल चयनित नहीं</string>
     <string name="select_all">सभी चुनें</string>
+    <string name="delete_confirmation_title">चयनित हटाएँ</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">%1$d आइटम हटाएँ?</item>
+        <item quantity="other">%1$d आइटम हटाएँ?</item>
+    </plurals>
     <string name="delete">हटाएं</string>
     <string name="original">मूल</string>
     <string name="today">आज</string>

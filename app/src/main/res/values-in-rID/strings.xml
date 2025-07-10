@@ -149,6 +149,11 @@
     </plurals>
     <string name="status_no_files_selected">Status: Tidak ada file yang dipilih</string>
     <string name="select_all">Pilih Semua</string>
+    <string name="delete_confirmation_title">Hapus yang Dipilih</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">Hapus %1$d item?</item>
+        <item quantity="other">Hapus %1$d item?</item>
+    </plurals>
     <string name="delete">Hapus</string>
     <string name="original">Asli</string>
     <string name="today">Hari ini</string>

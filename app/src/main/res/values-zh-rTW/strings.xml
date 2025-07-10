@@ -149,6 +149,11 @@
     </plurals>
     <string name="status_no_files_selected">狀態：未選取任何檔案</string>
     <string name="select_all">全選</string>
+    <string name="delete_confirmation_title">刪除所選</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">要刪除 %1$d 個項目嗎？</item>
+        <item quantity="other">要刪除 %1$d 個項目嗎？</item>
+    </plurals>
     <string name="delete">刪除</string>
     <string name="original">原始</string>
     <string name="today">今天</string>
