@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">Deine Zwischenablage enthält möglicherweise noch private Infos.</string>
     <string name="clipboard_current_format">Aktuelle Zwischenablage: %1$s</string>
     <string name="clean_clipboard">Zwischenablage leeren</string>
+    <string name="clipboard_cleaned">Die Zwischenablage wurde gereinigt</string>
     <string name="cleaner_recommends">Cleaner empfiehlt</string>
     <string name="image_optimizer_card_title">Bildoptimierer</string>
     <string name="image_optimizer_card_subtitle">Fotos ohne Qualitätsverlust komprimieren.&#10;Mit einem Tipp Speicher sparen.</string>

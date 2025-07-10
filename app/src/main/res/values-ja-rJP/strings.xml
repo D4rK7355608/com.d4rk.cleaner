@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">クリップボードに個人情報が残っている可能性があります。</string>
     <string name="clipboard_current_format">現在のクリップボード: %1$s</string>
     <string name="clean_clipboard">クリップボードを消去</string>
+    <string name="clipboard_cleaned">クリップボードが掃除されました</string>
     <string name="cleaner_recommends">Cleaner のおすすめ</string>
     <string name="image_optimizer_card_title">画像最適化</string>
     <string name="image_optimizer_card_subtitle">品質を落とさず写真を圧縮。&#10;ワンタップで容量節約。</string>

@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">Twój schowek może wciąż zawierać prywatne informacje.</string>
     <string name="clipboard_current_format">Aktualny schowek: %1$s</string>
     <string name="clean_clipboard">Wyczyść schowek</string>
+    <string name="clipboard_cleaned">Schowek został wyczyszczony</string>
     <string name="cleaner_recommends">Rekomendacje Cleaner</string>
     <string name="image_optimizer_card_title">Optymalizator obrazów</string>
     <string name="image_optimizer_card_subtitle">Kompresuj zdjęcia bez utraty jakości.&#10;Zaoszczędź miejsce jednym stuknięciem.</string>

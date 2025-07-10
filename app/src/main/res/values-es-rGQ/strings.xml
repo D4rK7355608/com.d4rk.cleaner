@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">Tu portapapeles podría contener información privada.</string>
     <string name="clipboard_current_format">Portapapeles actual: %1$s</string>
     <string name="clean_clipboard">Borrar portapapeles</string>
+    <string name="clipboard_cleaned">El portapapeles ha sido limpiado</string>
     <string name="cleaner_recommends">Cleaner recomienda</string>
     <string name="image_optimizer_card_title">Optimizador de imágenes</string>
     <string name="image_optimizer_card_subtitle">Comprime fotos sin perder calidad.&#10;Ahorra espacio con un toque.</string>

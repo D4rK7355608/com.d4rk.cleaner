@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">Maaaring may sensitibong impormasyon pa sa clipboard mo.</string>
     <string name="clipboard_current_format">Kasalukuyang clipboard: %1$s</string>
     <string name="clean_clipboard">I-clear ang Clipboard</string>
+    <string name="clipboard_cleaned">Ang clipboard ay nalinis</string>
     <string name="cleaner_recommends">Inirerekomenda ng Cleaner</string>
     <string name="image_optimizer_card_title">Tagapag-optimize ng Larawan</string>
     <string name="image_optimizer_card_subtitle">I-compress ang mga larawan nang hindi nawawala ang kalidad.&#10;Magtipid ng puwang sa isang tap.</string>

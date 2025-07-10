@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">Votre presse-papiers peut encore contenir des informations privées.</string>
     <string name="clipboard_current_format">Presse-papiers actuel : %1$s</string>
     <string name="clean_clipboard">Effacer le presse-papiers</string>
+    <string name="clipboard_cleaned">Le presse-papiers a été nettoyé</string>
     <string name="cleaner_recommends">Recommandations de Cleaner</string>
     <string name="image_optimizer_card_title">Optimiseur d’images</string>
     <string name="image_optimizer_card_subtitle">Compressez les photos sans perte de qualité.&#10;Gagnez de la place en un geste.</string>

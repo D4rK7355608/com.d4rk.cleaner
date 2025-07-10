@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">قد تحتوي الحافظة على معلومات خاصة.</string>
     <string name="clipboard_current_format">الحافظة الحالية: %1$s</string>
     <string name="clean_clipboard">مسح الحافظة</string>
+    <string name="clipboard_cleaned">تم تنظيف الحافظة</string>
     <string name="cleaner_recommends">يوصي Cleaner</string>
     <string name="image_optimizer_card_title">محسن الصور</string>
     <string name="image_optimizer_card_subtitle">ضغط الصور دون فقدان الجودة.&#10;وفر المساحة بلمسة واحدة.</string>

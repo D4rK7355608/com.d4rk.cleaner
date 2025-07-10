@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">आपके क्लिपबोर्ड में अब भी निजी जानकारी हो सकती है।</string>
     <string name="clipboard_current_format">वर्तमान क्लिपबोर्ड: %1$s</string>
     <string name="clean_clipboard">क्लिपबोर्ड साफ़ करें</string>
+    <string name="clipboard_cleaned">क्लिपबोर्ड को साफ किया गया है</string>
     <string name="cleaner_recommends">क्लीनर की सिफारिशें</string>
     <string name="image_optimizer_card_title">इमेज ऑप्टिमाइज़र</string>
     <string name="image_optimizer_card_subtitle">गुणवत्ता खोए बिना फोटो कंप्रेस करें।&#10;एक टैप में जगह बचाएं।</string>

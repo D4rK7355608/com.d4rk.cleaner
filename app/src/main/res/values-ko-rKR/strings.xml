@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">클립보드에 아직 개인 정보가 남아 있을 수 있습니다.</string>
     <string name="clipboard_current_format">현재 클립보드: %1$s</string>
     <string name="clean_clipboard">클립보드 지우기</string>
+    <string name="clipboard_cleaned">클립 보드가 청소되었습니다</string>
     <string name="cleaner_recommends">Cleaner 추천</string>
     <string name="image_optimizer_card_title">이미지 최적화</string>
     <string name="image_optimizer_card_subtitle">품질 저하 없이 사진을 압축합니다.&#10;한 번 탭으로 공간을 절약하세요.</string>

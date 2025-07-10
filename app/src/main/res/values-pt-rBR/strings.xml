@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">Sua área de transferência ainda pode conter informações privadas.</string>
     <string name="clipboard_current_format">Área de transferência atual: %1$s</string>
     <string name="clean_clipboard">Limpar área de transferência</string>
+    <string name="clipboard_cleaned">A área de transferência foi limpa</string>
     <string name="cleaner_recommends">Recomendações do Cleaner</string>
     <string name="image_optimizer_card_title">Otimizador de imagens</string>
     <string name="image_optimizer_card_subtitle">Comprime fotos sem perder qualidade.&#10;Economize espaço com um toque.</string>

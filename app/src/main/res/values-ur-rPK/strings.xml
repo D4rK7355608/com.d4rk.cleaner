@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">آپ کے کلپ بورڈ میں اب بھی نجی معلومات ہو سکتی ہیں۔</string>
     <string name="clipboard_current_format">موجودہ کلپ بورڈ: %1$s</string>
     <string name="clean_clipboard">کلپ بورڈ صاف کریں</string>
+    <string name="clipboard_cleaned">کلپ بورڈ صاف کیا گیا ہے</string>
     <string name="cleaner_recommends">Cleaner کی سفارشات</string>
     <string name="image_optimizer_card_title">امیج آپٹیمائزر</string>
     <string name="image_optimizer_card_subtitle">بغیر معیار کھوئے تصاویر کمپریس کریں۔&#10;ایک ٹیپ سے جگہ بچائیں۔</string>
