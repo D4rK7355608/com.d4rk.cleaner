@@ -33,6 +33,11 @@
     <string name="cleanup_storage_high_5">%1$d%% 사용 중. 청소할까요?</string>
     <string name="cleanup_storage_high_6">거의 가득 찼어요. %1$d%% 사용 중입니다.</string>
     <string name="cleanup_storage_medium">여기에 내용이 많네요. 스캔이 도움이 될 수 있어요.</string>
+    <string name="cleanup_storage_medium_2">여기에 꽤 많은 파일이 있네요.</string>
+    <string name="cleanup_storage_medium_3">스캔을 고려해보세요 — 의외일 수 있어요.</string>
+    <string name="cleanup_storage_medium_4">공간이 남긴 하지만 정리해도 나쁠 건 없죠.</string>
+    <string name="cleanup_storage_medium_5">가볍게 한번 쓸어낼 시간일지도 몰라요.</string>
+    <string name="cleanup_storage_medium_6">조금 어수선해요. 스캔해볼까요?</string>
     <string name="cleanup_storage_ok">저장공간은 괜찮아 보여요!</string>
     <string name="cleanup_notification_last_scan_format">마지막 스캔: %1$d일 전. %2$s</string>
     <string name="cleanup_notification_never_scanned">아직 휴대폰을 스캔하지 않았어요. 시작하려면 탭하세요.</string>

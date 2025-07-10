@@ -33,6 +33,11 @@
     <string name="cleanup_storage_high_5">%1$d%% terpakai. Saatnya bersih-bersih?</string>
     <string name="cleanup_storage_high_6">Hampir penuh. %1$d%% terpakai.</string>
     <string name="cleanup_storage_medium">Banyak sekali di sini. Pindai mungkin membantu.</string>
+    <string name="cleanup_storage_medium_2">Kamu punya cukup banyak barang di sini.</string>
+    <string name="cleanup_storage_medium_3">Coba pindai — mungkin kamu akan terkejut.</string>
+    <string name="cleanup_storage_medium_4">Masih ada ruang, tapi bersih-bersih tidak ada salahnya.</string>
+    <string name="cleanup_storage_medium_5">Sepertinya saatnya bersih-bersih ringan.</string>
+    <string name="cleanup_storage_medium_6">Sedikit berantakan nih. Mau pindai?</string>
     <string name="cleanup_storage_ok">Penyimpanan Anda terlihat baik!</string>
     <string name="cleanup_notification_last_scan_format">Pemindaian terakhir: %1$d hari lalu. %2$s</string>
     <string name="cleanup_notification_never_scanned">Anda belum pernah memindai ponsel. Ketuk untuk mulai.</string>

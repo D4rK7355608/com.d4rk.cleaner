@@ -33,6 +33,11 @@
     <string name="cleanup_storage_high_5">%1$d%% foglalt. Ideje tisztítani?</string>
     <string name="cleanup_storage_high_6">Közel a megtelt állapothoz. %1$d%% használatban.</string>
     <string name="cleanup_storage_medium">Elég sok minden van itt. Egy keresés segíthet.</string>
+    <string name="cleanup_storage_medium_2">Elég sok cuccod gyűlt össze itt.</string>
+    <string name="cleanup_storage_medium_3">Érdemes lenne egy keresés — lehet, hogy meglepődsz.</string>
+    <string name="cleanup_storage_medium_4">Van még hely, de egy takarítás nem ártana.</string>
+    <string name="cleanup_storage_medium_5">Lehet, hogy ideje egy gyors söprésnek.</string>
+    <string name="cleanup_storage_medium_6">Kicsit rendetlen. Szeretnél keresni?</string>
     <string name="cleanup_storage_ok">A tárhelyed rendben van!</string>
     <string name="cleanup_notification_last_scan_format">Utolsó keresés: %1$d napja. %2$s</string>
     <string name="cleanup_notification_never_scanned">Még nem vizsgáltad át a telefonod. Kezdéshez érints ide.</string>
