@@ -9,7 +9,7 @@
 - **Minor**: Applied visual polish and consistency fixes throughout the app.
 - **Patch**: The app now checks if it has permission to send notifications before trying to send one for cleanup reminders. This prevents potential crashes.
 - **Patch**: Various bug fixes and performance improvements to keep the app running smoothly.
-- 
+
 # Version 3.3.0:
 
 - **New**: We've added a helpful setup guide and made how we ask for your permission clearer.
