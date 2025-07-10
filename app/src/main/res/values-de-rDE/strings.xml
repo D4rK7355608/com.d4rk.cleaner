@@ -332,6 +332,7 @@
     <string name="no_files_selected_move_to_trash">Keine Dateien ausgewählt, um zum Müll zu wechseln.</string>
     <string name="failed_to_move_files_to_trash">Verschiebung von Dateien auf Müll nicht: %1$s</string>
     <string name="data_not_available">Daten nicht verfügbar.</string>
+    <string name="feature_not_available">Funktion noch nicht verfügbar.</string>
     <string name="no_files_selected_to_clean">Keine zum Reinigen ausgewählten Dateien.</string>
     <string name="failed_to_update_trash_size">Die Müllgröße nicht aktualisieren: %1$s</string>
     <string name="no_cleaning_options_selected">Bitte wählen Sie Ihre Reinigungseinstellungen in Einstellungen, um fortzufahren.</string></resources>

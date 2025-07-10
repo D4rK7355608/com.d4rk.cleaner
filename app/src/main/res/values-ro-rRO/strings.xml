@@ -166,6 +166,11 @@
     </plurals>
     <string name="status_no_files_selected">Stare: Niciun fișier selectat</string>
     <string name="select_all">Selectează tot</string>
+    <string name="delete_confirmation_title">Șterge selectate</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">Șterge %1$d element?</item>
+        <item quantity="other">Șterge %1$d elemente?</item>
+    </plurals>
     <string name="delete">Șterge</string>
     <string name="original">Original</string>
     <string name="today">Astăzi</string>
@@ -329,6 +334,7 @@
     <string name="no_files_selected_move_to_trash">Nu există fișiere selectate pentru a se muta la gunoi.</string>
     <string name="failed_to_move_files_to_trash">Nu a reușit să mute fișierele în gunoi: %1$s</string>
     <string name="data_not_available">Datele nu sunt disponibile.</string>
+    <string name="feature_not_available">Funcția nu este disponibilă încă.</string>
     <string name="no_files_selected_to_clean">Nu există fișiere selectate pentru a curăța.</string>
     <string name="failed_to_update_trash_size">Nu a reușit să actualizeze dimensiunea gunoiului: %1$s</string>
     <string name="no_cleaning_options_selected">Vă rugăm să alegeți preferințele dvs. de curățare în setări pentru a continua.</string></resources>

@@ -166,6 +166,11 @@
     </plurals>
     <string name="status_no_files_selected">Estado: No hay archivos seleccionados</string>
     <string name="select_all">Seleccionar todo</string>
+    <string name="delete_confirmation_title">Eliminar seleccionado</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">¿Eliminar %1$d elemento?</item>
+        <item quantity="other">¿Eliminar %1$d elementos?</item>
+    </plurals>
     <string name="delete">Eliminar</string>
     <string name="original">Original</string>
     <string name="today">Hoy</string>
@@ -329,6 +334,7 @@
     <string name="no_files_selected_move_to_trash">No hay archivos seleccionados para moverse a la basura.</string>
     <string name="failed_to_move_files_to_trash">No se pudo mover archivos a la basura: %1$s</string>
     <string name="data_not_available">Datos no disponibles.</string>
+    <string name="feature_not_available">Función aún no disponible.</string>
     <string name="no_files_selected_to_clean">No hay archivos seleccionados para limpiar.</string>
     <string name="failed_to_update_trash_size">No se pudo actualizar el tamaño de la basura: %1$s</string>
     <string name="no_cleaning_options_selected">Elija sus preferencias de limpieza en Configuración para continuar.</string>

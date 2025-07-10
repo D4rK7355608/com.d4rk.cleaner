@@ -165,6 +165,11 @@
     </plurals>
     <string name="status_no_files_selected">Katayuan: Walang napiling file</string>
     <string name="select_all">Piliin Lahat</string>
+    <string name="delete_confirmation_title">Tanggalin ang Napili</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">Tanggalin ang %1$d item?</item>
+        <item quantity="other">Tanggalin ang %1$d item?</item>
+    </plurals>
     <string name="delete">Burahin</string>
     <string name="original">Orihinal</string>
     <string name="today">Ngayon</string>
@@ -327,6 +332,7 @@
     <string name="no_files_selected_move_to_trash">Walang mga file na napili upang lumipat sa basurahan.</string>
     <string name="failed_to_move_files_to_trash">Nabigong ilipat ang mga file sa basurahan: %1$s</string>
     <string name="data_not_available">Hindi magagamit ang data.</string>
+    <string name="feature_not_available">Hindi pa magagamit ang tampok.</string>
     <string name="no_files_selected_to_clean">Walang mga file na napili upang linisin.</string>
     <string name="failed_to_update_trash_size">Nabigong i -update ang laki ng basurahan: %1$s</string>
     <string name="no_cleaning_options_selected">Mangyaring piliin ang iyong mga kagustuhan sa paglilinis sa mga setting upang magpatuloy.</string>

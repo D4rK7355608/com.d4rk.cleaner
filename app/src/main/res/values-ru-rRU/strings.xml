@@ -336,6 +336,7 @@
     <string name="no_files_selected_move_to_trash">Никаких файлов, выбранных для перемещения в мусор.</string>
     <string name="failed_to_move_files_to_trash">Не удалось перенести файлы в мусор: %1$s</string>
     <string name="data_not_available">Данные недоступны.</string>
+    <string name="feature_not_available">Функция пока недоступна.</string>
     <string name="no_files_selected_to_clean">Нет файлов, выбранных для очистки.</string>
     <string name="failed_to_update_trash_size">Не удалось обновить размер мусора: %1$s</string>
     <string name="no_cleaning_options_selected">Пожалуйста, выберите свои предпочтения в уборке в настройках, чтобы продолжить.</string></resources>

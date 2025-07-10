@@ -165,6 +165,11 @@
     </plurals>
     <string name="status_no_files_selected">Durum: Hiçbir dosya seçilmedi</string>
     <string name="select_all">Tümünü Seç</string>
+    <string name="delete_confirmation_title">Seçilenleri Sil</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">%1$d öğeyi sil?</item>
+        <item quantity="other">%1$d öğeyi sil?</item>
+    </plurals>
     <string name="delete">Sil</string>
     <string name="original">Orijinal</string>
     <string name="today">Bugün</string>
@@ -327,6 +332,7 @@
     <string name="no_files_selected_move_to_trash">Çöp kutusuna geçmek için hiçbir dosya seçilmedi.</string>
     <string name="failed_to_move_files_to_trash">Dosyaları çöpe taşıyamadı: %1$s</string>
     <string name="data_not_available">Veriler mevcut değil.</string>
+    <string name="feature_not_available">Özellik henüz kullanılamıyor.</string>
     <string name="no_files_selected_to_clean">Temizlemek için dosya seçilmedi.</string>
     <string name="failed_to_update_trash_size">Çöp Boyutunu Güncelleme: %1$s</string>
     <string name="no_cleaning_options_selected">Lütfen devam etmek için ayarlarda temizlik tercihlerinizi seçin.</string></resources>

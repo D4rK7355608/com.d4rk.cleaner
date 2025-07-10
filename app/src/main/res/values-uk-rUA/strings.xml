@@ -167,6 +167,13 @@
     </plurals>
     <string name="status_no_files_selected">Статус: Файли не вибрано</string>
     <string name="select_all">Вибрати все</string>
+    <string name="delete_confirmation_title">Видалити вибране</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">Видалити %1$d елемент?</item>
+        <item quantity="few">Видалити %1$d елементи?</item>
+        <item quantity="many">Видалити %1$d елементів?</item>
+        <item quantity="other">Видалити %1$d елементів?</item>
+    </plurals>
     <string name="delete">Видалити</string>
     <string name="original">Оригінал</string>
     <string name="today">Сьогодні</string>
@@ -331,6 +338,7 @@
     <string name="no_files_selected_move_to_trash">Жодних файлів, вибраних для переходу на сміття.</string>
     <string name="failed_to_move_files_to_trash">Не вдалося перемістити файли на сміття: %1$s</string>
     <string name="data_not_available">Дані недоступні.</string>
+    <string name="feature_not_available">Функція поки недоступна.</string>
     <string name="no_files_selected_to_clean">Жодних файлів, вибраних для очищення.</string>
     <string name="failed_to_update_trash_size">Не вдалося оновити розмір сміття: %1$s</string>
     <string name="no_cleaning_options_selected">Будь ласка, виберіть свої вподобання прибирання в налаштуваннях для продовження.</string></resources>

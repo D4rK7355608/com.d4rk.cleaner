@@ -164,6 +164,11 @@
     </plurals>
     <string name="status_no_files_selected">Trạng thái: Chưa chọn tệp nào</string>
     <string name="select_all">Chọn tất cả</string>
+    <string name="delete_confirmation_title">Xóa đã chọn</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">Xóa %1$d mục?</item>
+        <item quantity="other">Xóa %1$d mục?</item>
+    </plurals>
     <string name="delete">Xóa</string>
     <string name="original">Bản gốc</string>
     <string name="today">Hôm nay</string>
@@ -325,6 +330,7 @@
     <string name="no_files_selected_move_to_trash">Không có tập tin được chọn để chuyển sang rác.</string>
     <string name="failed_to_move_files_to_trash">Không thể chuyển các tập tin đến rác: %1$s</string>
     <string name="data_not_available">Dữ liệu không có sẵn.</string>
+    <string name="feature_not_available">Tính năng hiện chưa khả dụng.</string>
     <string name="no_files_selected_to_clean">Không có tệp được chọn để làm sạch.</string>
     <string name="failed_to_update_trash_size">Không cập nhật kích thước rác: %1$s</string>
     <string name="no_cleaning_options_selected">Vui lòng chọn tùy chọn làm sạch của bạn trong cài đặt để tiếp tục.</string></resources>

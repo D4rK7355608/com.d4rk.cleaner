@@ -165,6 +165,11 @@
     </plurals>
     <string name="status_no_files_selected">حیثیت: کوئی فائل منتخب نہیں کی گئی</string>
     <string name="select_all">سب کو منتخب کریں</string>
+    <string name="delete_confirmation_title">منتخب حذف کریں</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">کیا %1$d آئٹم حذف کریں؟</item>
+        <item quantity="other">کیا %1$d آئٹمز حذف کریں؟</item>
+    </plurals>
     <string name="delete">حذف کریں</string>
     <string name="original">اصل</string>
     <string name="today">آج</string>
@@ -327,6 +332,7 @@
     <string name="no_files_selected_move_to_trash">ردی کی ٹوکری میں جانے کے لئے کوئی فائلیں منتخب نہیں کی گئیں۔</string>
     <string name="failed_to_move_files_to_trash">فائلوں کو ردی کی ٹوکری میں منتقل کرنے میں ناکام: %1$s</string>
     <string name="data_not_available">ڈیٹا دستیاب نہیں ہے۔</string>
+    <string name="feature_not_available">فیچر ابھی دستیاب نہیں ہے۔</string>
     <string name="no_files_selected_to_clean">صاف کرنے کے لئے کوئی فائلیں منتخب نہیں کی گئیں۔</string>
     <string name="failed_to_update_trash_size">کوڑے دان کے سائز کو اپ ڈیٹ کرنے میں ناکام: %1$s</string>
     <string name="no_cleaning_options_selected">براہ کرم آگے بڑھنے کے لئے ترتیبات میں اپنی صفائی کی ترجیحات کا انتخاب کریں۔</string>
