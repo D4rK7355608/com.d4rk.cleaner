@@ -13,6 +13,7 @@ import com.d4rk.cleaner.core.utils.extensions.toError
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.io.File
+import com.d4rk.cleaner.core.utils.helpers.DirectoryScanner
 
 class ApkFileManagerImpl(private val application : Application) : ApkFileManager {
     override fun getApkFilesFromStorage() : Flow<DataState<List<ApkInfo> , Errors>> = flow {
@@ -43,20 +44,14 @@ class ApkFileManagerImpl(private val application : Application) : ApkFileManager
                 }
             }
 
-            fun scanDir(dir: File) {
-                dir.listFiles()?.forEach { file ->
-                    if (file.isDirectory) {
-                        scanDir(file)
-                    } else if (file.extension.equals("apk", ignoreCase = true)) {
-                        val path = file.absolutePath
-                        if (addedPaths.add(path)) {
-                            apkFiles.add(ApkInfo(file.hashCode().toLong(), path, file.length()))
-                        }
+            DirectoryScanner.scan(Environment.getExternalStorageDirectory()) { file ->
+                if (file.extension.equals("apk", ignoreCase = true)) {
+                    val path = file.absolutePath
+                    if (addedPaths.add(path)) {
+                        apkFiles.add(ApkInfo(file.hashCode().toLong(), path, file.length()))
                     }
                 }
             }
-
-            scanDir(Environment.getExternalStorageDirectory())
             apkFiles
         }.onSuccess { apkFiles : MutableList<ApkInfo> ->
             emit(value = DataState.Success(data = apkFiles))

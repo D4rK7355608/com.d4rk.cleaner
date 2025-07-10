@@ -18,6 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import java.io.File
+import com.d4rk.cleaner.core.utils.helpers.DirectoryScanner
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -63,20 +64,12 @@ class ScannerRepositoryImpl(
             }
 
             val allFoundExtensions : MutableSet<String> = mutableSetOf()
-            fun scanDir(dir : File) {
-                dir.listFiles()?.forEach { file ->
-                    if (file.isDirectory) {
-                        scanDir(file)
-                    }
-                    else {
-                        val ext : String = file.extension.lowercase()
-                        if (ext.isNotEmpty()) {
-                            allFoundExtensions.add(element = ext)
-                        }
-                    }
+            DirectoryScanner.scan(Environment.getExternalStorageDirectory()) { file ->
+                val ext : String = file.extension.lowercase()
+                if (ext.isNotEmpty()) {
+                    allFoundExtensions.add(ext)
                 }
             }
-            scanDir(Environment.getExternalStorageDirectory())
 
             val otherExtensions : List<String> = (allFoundExtensions - knownExtensions).toList().sorted()
 
