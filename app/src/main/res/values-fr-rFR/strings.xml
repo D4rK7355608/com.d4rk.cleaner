@@ -335,6 +335,7 @@
     <string name="no_files_selected_move_to_trash">Aucun fichier sélectionné pour passer à la poubelle.</string>
     <string name="failed_to_move_files_to_trash">Échec de déplacer des fichiers vers les déchets: %1$s</string>
     <string name="data_not_available">Données non disponibles.</string>
+    <string name="feature_not_available">Fonctionnalité pas encore disponible.</string>
     <string name="no_files_selected_to_clean">Aucun fichier sélectionné pour nettoyer.</string>
     <string name="failed_to_update_trash_size">Échec de la mise à jour de la taille des poubelles: %1$s</string>
     <string name="no_cleaning_options_selected">Veuillez choisir vos préférences de nettoyage dans les paramètres pour continuer.</string>

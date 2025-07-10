@@ -330,6 +330,7 @@
     <string name="no_files_selected_move_to_trash">未選取要移至垃圾桶的檔案。</string>
     <string name="failed_to_move_files_to_trash">將檔案移至垃圾桶失敗：%1$s</string>
     <string name="data_not_available">無可用資料。</string>
+    <string name="feature_not_available">功能尚未可用。</string>
     <string name="no_files_selected_to_clean">未選取要清理的檔案。</string>
     <string name="failed_to_update_trash_size">更新垃圾桶大小失敗：%1$s</string>
     <string name="no_cleaning_options_selected">請在設定中選擇您的清理偏好以繼續。</string>

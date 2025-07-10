@@ -330,6 +330,7 @@
     <string name="no_files_selected_move_to_trash">ゴミに移動するために選択されたファイルはありません。</string>
     <string name="failed_to_move_files_to_trash">ファイルをゴミに移動できませんでした：%1$s</string>
     <string name="data_not_available">データは利用できません。</string>
+    <string name="feature_not_available">機能はまだ利用できません。</string>
     <string name="no_files_selected_to_clean">クリーニングするために選択されたファイルはありません。</string>
     <string name="failed_to_update_trash_size">ゴミのサイズの更新に失敗しました：%1$s</string>
     <string name="no_cleaning_options_selected">続行するには、設定のクリーニング設定を選択してください。</string></resources>

@@ -165,6 +165,11 @@
     </plurals>
     <string name="status_no_files_selected">Status: Inga filer valda</string>
     <string name="select_all">Välj alla</string>
+    <string name="delete_confirmation_title">Ta bort markerade</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">Ta bort %1$d objekt?</item>
+        <item quantity="other">Ta bort %1$d objekt?</item>
+    </plurals>
     <string name="delete">Radera</string>
     <string name="original">Original</string>
     <string name="today">Idag</string>
@@ -327,6 +332,7 @@
     <string name="no_files_selected_move_to_trash">Inga filer som valts för att flytta till skräp.</string>
     <string name="failed_to_move_files_to_trash">Det gick inte att flytta filer till skräp: %1$s</string>
     <string name="data_not_available">Data inte tillgängliga.</string>
+    <string name="feature_not_available">Funktionen är inte tillgänglig än.</string>
     <string name="no_files_selected_to_clean">Inga filer valda för att rengöra.</string>
     <string name="failed_to_update_trash_size">Det gick inte att uppdatera skräpstorlek: %1$s</string>
     <string name="no_cleaning_options_selected">Välj dina rengöringspreferenser i inställningar för att fortsätta.</string></resources>

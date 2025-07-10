@@ -334,6 +334,7 @@
     <string name="no_files_selected_move_to_trash">Nenhum arquivo selecionado para se mover para o lixo.</string>
     <string name="failed_to_move_files_to_trash">Falha ao mover arquivos para o lixo: %1$s</string>
     <string name="data_not_available">Dados não disponíveis.</string>
+    <string name="feature_not_available">Recurso ainda não disponível.</string>
     <string name="no_files_selected_to_clean">Nenhum arquivo selecionado para limpar.</string>
     <string name="failed_to_update_trash_size">Falha ao atualizar o tamanho do lixo: %1$s</string>
     <string name="no_cleaning_options_selected">Escolha suas preferências de limpeza nas configurações para prosseguir.</string></resources>

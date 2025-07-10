@@ -165,6 +165,11 @@
     </plurals>
     <string name="status_no_files_selected">স্থিতি: কোনও ফাইল নির্বাচিত নেই</string>
     <string name="select_all">সব নির্বাচন করুন</string>
+    <string name="delete_confirmation_title">নির্বাচিত মুছে ফেলুন</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">কী %1$d আইটেম মুছে ফেলতে চান?</item>
+        <item quantity="other">কী %1$d আইটেম মুছে ফেলতে চান?</item>
+    </plurals>
     <string name="delete">মুছুন</string>
     <string name="original">মূল</string>
     <string name="today">আজ</string>
@@ -327,6 +332,7 @@
     <string name="no_files_selected_move_to_trash">ট্র্যাশে যাওয়ার জন্য কোনও ফাইল নির্বাচিত নয়।</string>
     <string name="failed_to_move_files_to_trash">ফাইলগুলি ট্র্যাশে সরাতে ব্যর্থ: %1$s</string>
     <string name="data_not_available">ডেটা উপলভ্য নয়।</string>
+    <string name="feature_not_available">ফিচারটি এখনও উপলভ্য নয়।</string>
     <string name="no_files_selected_to_clean">কোনও ফাইল পরিষ্কার করার জন্য নির্বাচিত নয়।</string>
     <string name="failed_to_update_trash_size">আবর্জনার আকার আপডেট করতে ব্যর্থ: %1$s</string>
     <string name="no_cleaning_options_selected">এগিয়ে যেতে সেটিংসে আপনার পরিষ্কারের পছন্দগুলি চয়ন করুন।</string>

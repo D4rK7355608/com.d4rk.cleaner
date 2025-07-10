@@ -164,6 +164,11 @@
     </plurals>
     <string name="status_no_files_selected">สถานะ: ไม่ได้เลือกไฟล์</string>
     <string name="select_all">เลือกทั้งหมด</string>
+    <string name="delete_confirmation_title">ลบที่เลือก</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">ลบ %1$d รายการหรือไม่?</item>
+        <item quantity="other">ลบ %1$d รายการหรือไม่?</item>
+    </plurals>
     <string name="delete">ลบ</string>
     <string name="original">ต้นฉบับ</string>
     <string name="today">วันนี้</string>
@@ -325,6 +330,7 @@
     <string name="no_files_selected_move_to_trash">ไม่มีการเลือกไฟล์เพื่อย้ายไปที่ถังขยะ</string>
     <string name="failed_to_move_files_to_trash">ไม่สามารถย้ายไฟล์ไปยังถังขยะ: %1$s</string>
     <string name="data_not_available">ข้อมูลไม่พร้อมใช้งาน</string>
+    <string name="feature_not_available">ฟีเจอร์ยังไม่พร้อมใช้งาน</string>
     <string name="no_files_selected_to_clean">ไม่มีไฟล์ที่เลือกเพื่อทำความสะอาด</string>
     <string name="failed_to_update_trash_size">ไม่สามารถอัปเดตขนาดถังขยะ: %1$s</string>
     <string name="no_cleaning_options_selected">โปรดเลือกการตั้งค่าการทำความสะอาดของคุณในการตั้งค่าเพื่อดำเนินการต่อ</string>

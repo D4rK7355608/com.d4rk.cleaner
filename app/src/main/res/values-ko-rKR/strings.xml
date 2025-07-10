@@ -164,6 +164,11 @@
     </plurals>
     <string name="status_no_files_selected">상태: 선택된 파일 없음</string>
     <string name="select_all">모두 선택</string>
+    <string name="delete_confirmation_title">선택 항목 삭제</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">%1$d개 항목을 삭제할까요?</item>
+        <item quantity="other">%1$d개 항목을 삭제할까요?</item>
+    </plurals>
     <string name="delete">삭제</string>
     <string name="original">원본</string>
     <string name="today">오늘</string>
@@ -325,6 +330,7 @@
     <string name="no_files_selected_move_to_trash">휴지통으로 이동하기 위해 선택된 파일이 없습니다.</string>
     <string name="failed_to_move_files_to_trash">파일을 쓰레기로 이동하지 못했습니다 : %1$s</string>
     <string name="data_not_available">데이터를 사용할 수 없습니다.</string>
+    <string name="feature_not_available">기능을 아직 사용할 수 없습니다.</string>
     <string name="no_files_selected_to_clean">청소할 파일이 없습니다.</string>
     <string name="failed_to_update_trash_size">쓰레기 크기를 업데이트하지 못했습니다 : %1$s</string>
     <string name="no_cleaning_options_selected">진행할 설정에서 청소 환경 설정을 선택하십시오.</string></resources>

@@ -165,6 +165,11 @@
     </plurals>
     <string name="status_no_files_selected">Състояние: Няма избрани файлове</string>
     <string name="select_all">Избери всички</string>
+    <string name="delete_confirmation_title">Изтриване на избраното</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">Да изтрия %1$d елемент?</item>
+        <item quantity="other">Да изтрия %1$d елемента?</item>
+    </plurals>
     <string name="delete">Изтриване</string>
     <string name="original">Оригинал</string>
     <string name="today">Днес</string>
@@ -327,6 +332,7 @@
     <string name="no_files_selected_move_to_trash">Не са избрани файлове, за да се преместят в боклук.</string>
     <string name="failed_to_move_files_to_trash">Неуспешно преместване на файлове в Trash: %1$s</string>
     <string name="data_not_available">Данните не са налични.</string>
+    <string name="feature_not_available">Функцията все още не е налична.</string>
     <string name="no_files_selected_to_clean">Не са избрани файлове за почистване.</string>
     <string name="failed_to_update_trash_size">Неуспешно актуализиране на размера на боклука: %1$s</string>
     <string name="no_cleaning_options_selected">Моля, изберете вашите предпочитания за почистване в настройките, за да продължите.</string>
