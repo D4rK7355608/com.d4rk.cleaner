@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">إخفاء سلسلة التنظيف؟</string>
     <string name="hide_streak_action_hide">إخفاء</string>
     <string name="hide_clean_streak_message">هل تود إخفاء بطاقة سلسلة التنظيف؟</string>
-    <string name="hide_for_now">إخفاء الآن</string>
     <string name="dont_show_again">لا تظهر مرة أخرى</string>
     <string name="preference_show_streak_card">إظهار بطاقة سلسلة التنظيف</string>
     <string name="streak_quiet_banner">أنت في الوضع الصامت. ستستأنف السلسلة الأسبوع القادم.</string>
@@ -171,8 +170,12 @@
     <string name="select_all">تحديد الكل</string>
     <string name="delete_confirmation_title">حذف المحدد</string>
     <plurals name="delete_confirmation_message">
-        <item quantity="one">تحذف %1$d ملف؟</item>
-        <item quantity="other">تحذف %1$d ملف؟</item>
+        <item quantity="zero">هل تريد حذف %1$d ملف؟</item>
+        <item quantity="one">هل تريد حذف ملف واحد؟</item>
+        <item quantity="two">هل تريد حذف ملفين (%1$d)؟</item>
+        <item quantity="few">هل تريد حذف %1$d ملفات؟</item>
+        <item quantity="many">هل تريد حذف %1$d ملفاً؟</item>
+        <item quantity="other">هل تريد حذف %1$d ملف؟</item>
     </plurals>
     <string name="delete">حذف</string>
     <string name="original">الأصلي</string>

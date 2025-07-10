@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">Nascondere la serie di pulizie?</string>
     <string name="hide_streak_action_hide">Nascondi</string>
     <string name="hide_clean_streak_message">Vuoi nascondere la scheda della serie di pulizie?</string>
-    <string name="hide_for_now">Nascondi per ora</string>
     <string name="dont_show_again">Non mostrare più</string>
     <string name="preference_show_streak_card">Mostra scheda della serie di pulizie</string>
     <string name="streak_quiet_banner">Sei in modalità silenziosa. La serie riprende la prossima settimana.</string>
@@ -169,6 +168,7 @@
     <string name="delete_confirmation_title">Elimina selezionati</string>
     <plurals name="delete_confirmation_message">
         <item quantity="one">Eliminare %1$d elemento?</item>
+        <item quantity="many">Eliminare %1$d elementi?</item>
         <item quantity="other">Eliminare %1$d elementi?</item>
     </plurals>
     <string name="delete">Elimina</string>

@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">Ẩn chuỗi dọn dẹp?</string>
     <string name="hide_streak_action_hide">Ẩn</string>
     <string name="hide_clean_streak_message">Bạn có muốn ẩn thẻ chuỗi dọn dẹp không?</string>
-    <string name="hide_for_now">Ẩn tạm thời</string>
     <string name="dont_show_again">Không hiển thị lại</string>
     <string name="preference_show_streak_card">Hiển thị thẻ chuỗi dọn dẹp</string>
     <string name="streak_quiet_banner">Bạn đang ở chế độ yên lặng. Chuỗi dọn dẹp sẽ tiếp tục vào tuần sau.</string>
@@ -166,7 +165,6 @@
     <string name="select_all">Chọn tất cả</string>
     <string name="delete_confirmation_title">Xóa đã chọn</string>
     <plurals name="delete_confirmation_message">
-        <item quantity="one">Xóa %1$d mục?</item>
         <item quantity="other">Xóa %1$d mục?</item>
     </plurals>
     <string name="delete">Xóa</string>

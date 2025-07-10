@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">ซ่อนสถิติการล้างไหม?</string>
     <string name="hide_streak_action_hide">ซ่อน</string>
     <string name="hide_clean_streak_message">คุณต้องการซ่อนการ์ดสถิติการล้างหรือไม่?</string>
-    <string name="hide_for_now">ซ่อนชั่วคราว</string>
     <string name="dont_show_again">ไม่ต้องแสดงอีก</string>
     <string name="preference_show_streak_card">แสดงการ์ดสถิติการล้าง</string>
     <string name="streak_quiet_banner">คุณอยู่ในโหมดเงียบ สถิติการล้างจะกลับมาในสัปดาห์หน้า</string>
@@ -166,7 +165,6 @@
     <string name="select_all">เลือกทั้งหมด</string>
     <string name="delete_confirmation_title">ลบที่เลือก</string>
     <plurals name="delete_confirmation_message">
-        <item quantity="one">ลบ %1$d รายการหรือไม่?</item>
         <item quantity="other">ลบ %1$d รายการหรือไม่?</item>
     </plurals>
     <string name="delete">ลบ</string>

@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">Приховати серію очищень?</string>
     <string name="hide_streak_action_hide">Приховати</string>
     <string name="hide_clean_streak_message">Бажаєте приховати картку серії очищень?</string>
-    <string name="hide_for_now">Приховати поки що</string>
     <string name="dont_show_again">Більше не показувати</string>
     <string name="preference_show_streak_card">Показувати картку серії очищень</string>
     <string name="streak_quiet_banner">У вас тихий режим. Серія відновиться наступного тижня.</string>

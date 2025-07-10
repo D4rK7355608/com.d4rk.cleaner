@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">Reinigungsserie ausblenden?</string>
     <string name="hide_streak_action_hide">Ausblenden</string>
     <string name="hide_clean_streak_message">Möchtest du deine Reinigungsserien-Karte ausblenden?</string>
-    <string name="hide_for_now">Für jetzt ausblenden</string>
     <string name="dont_show_again">Nicht mehr anzeigen</string>
     <string name="preference_show_streak_card">Reinigungsserien-Karte anzeigen</string>
     <string name="streak_quiet_banner">Du bist im Ruhemodus. Die Serie wird nächste Woche fortgesetzt.</string>

@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">Elrejtsük a tisztítási sorozatot?</string>
     <string name="hide_streak_action_hide">Elrejtés</string>
     <string name="hide_clean_streak_message">Szeretnéd elrejteni a Tisztítási Sorozat kártyát?</string>
-    <string name="hide_for_now">Elrejtés most</string>
     <string name="dont_show_again">Ne jelenjen meg újra</string>
     <string name="preference_show_streak_card">Tisztítási Sorozat kártya megjelenítése</string>
     <string name="streak_quiet_banner">Csendes módban vagy. A sorozat jövő héten folytatódik.</string>

@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">Ascunzi seria de curățare?</string>
     <string name="hide_streak_action_hide">Ascunde</string>
     <string name="hide_clean_streak_message">Dorești să ascunzi cardul Seriei de Curățare?</string>
-    <string name="hide_for_now">Ascunde pentru moment</string>
     <string name="dont_show_again">Nu mai afișa</string>
     <string name="preference_show_streak_card">Arată cardul Seriei de Curățare</string>
     <string name="streak_quiet_banner">Ești în modul silențios. Seria se reia săptămâna viitoare.</string>
@@ -169,6 +168,7 @@
     <string name="delete_confirmation_title">Șterge selectate</string>
     <plurals name="delete_confirmation_message">
         <item quantity="one">Șterge %1$d element?</item>
+        <item quantity="few">Șterge %1$d elemente?</item>
         <item quantity="other">Șterge %1$d elemente?</item>
     </plurals>
     <string name="delete">Șterge</string>

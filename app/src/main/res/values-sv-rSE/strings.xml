@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">Dölja städsviten?</string>
     <string name="hide_streak_action_hide">Dölj</string>
     <string name="hide_clean_streak_message">Vill du dölja kortet för städsviten?</string>
-    <string name="hide_for_now">Dölj för nu</string>
     <string name="dont_show_again">Visa inte igen</string>
     <string name="preference_show_streak_card">Visa kortet Städsvit</string>
     <string name="streak_quiet_banner">Du är i tyst läge. Städsviten återupptas nästa vecka.</string>

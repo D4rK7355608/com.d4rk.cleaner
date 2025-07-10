@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">क्लीन स्ट्रीक छिपाएँ?</string>
     <string name="hide_streak_action_hide">छिपाएँ</string>
     <string name="hide_clean_streak_message">क्या आप अपनी क्लीन स्ट्रीक कार्ड छिपाना चाहते हैं?</string>
-    <string name="hide_for_now">अभी के लिए छिपाएँ</string>
     <string name="dont_show_again">फिर से न दिखाएँ</string>
     <string name="preference_show_streak_card">क्लीन स्ट्रीक कार्ड दिखाएँ</string>
     <string name="streak_quiet_banner">आप शांत मोड में हैं. क्लीन स्ट्रीक अगले हफ्ते फिर शुरू होगी.</string>

@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">클린 연속 기록을 숨길까요?</string>
     <string name="hide_streak_action_hide">숨기기</string>
     <string name="hide_clean_streak_message">클린 연속 기록 카드를 숨기시겠습니까?</string>
-    <string name="hide_for_now">일단 숨기기</string>
     <string name="dont_show_again">다시 표시하지 않기</string>
     <string name="preference_show_streak_card">클린 연속 기록 카드 표시</string>
     <string name="streak_quiet_banner">조용한 모드입니다. 클린 연속 기록은 다음 주에 다시 시작됩니다.</string>
@@ -166,7 +165,6 @@
     <string name="select_all">모두 선택</string>
     <string name="delete_confirmation_title">선택 항목 삭제</string>
     <plurals name="delete_confirmation_message">
-        <item quantity="one">%1$d개 항목을 삭제할까요?</item>
         <item quantity="other">%1$d개 항목을 삭제할까요?</item>
     </plurals>
     <string name="delete">삭제</string>

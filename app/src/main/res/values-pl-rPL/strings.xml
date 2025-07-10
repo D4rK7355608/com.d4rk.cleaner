@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">Ukryć passę czyszczenia?</string>
     <string name="hide_streak_action_hide">Ukryj</string>
     <string name="hide_clean_streak_message">Chcesz ukryć kartę passy czyszczenia?</string>
-    <string name="hide_for_now">Ukryj teraz</string>
     <string name="dont_show_again">Nie pokazuj ponownie</string>
     <string name="preference_show_streak_card">Pokaż kartę passy czyszczenia</string>
     <string name="streak_quiet_banner">Jesteś w trybie cichym. Passa czyszczenia wróci w przyszłym tygodniu.</string>

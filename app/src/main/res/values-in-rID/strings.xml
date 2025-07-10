@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">Sembunyikan Rangkaian Bersih?</string>
     <string name="hide_streak_action_hide">Sembunyikan</string>
     <string name="hide_clean_streak_message">Ingin menyembunyikan kartu Rangkaian Bersih?</string>
-    <string name="hide_for_now">Sembunyikan dulu</string>
     <string name="dont_show_again">Jangan tampilkan lagi</string>
     <string name="preference_show_streak_card">Tampilkan Kartu Rangkaian Bersih</string>
     <string name="streak_quiet_banner">Kamu sedang dalam mode senyap. Rangkaian bersih dilanjutkan minggu depan.</string>
@@ -166,7 +165,6 @@
     <string name="select_all">Pilih Semua</string>
     <string name="delete_confirmation_title">Hapus yang Dipilih</string>
     <plurals name="delete_confirmation_message">
-        <item quantity="one">Hapus %1$d item?</item>
         <item quantity="other">Hapus %1$d item?</item>
     </plurals>
     <string name="delete">Hapus</string>

@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">Скрыть серию очисток?</string>
     <string name="hide_streak_action_hide">Скрыть</string>
     <string name="hide_clean_streak_message">Скрыть карточку серии очисток?</string>
-    <string name="hide_for_now">Скрыть пока</string>
     <string name="dont_show_again">Больше не показывать</string>
     <string name="preference_show_streak_card">Показывать карточку серии очисток</string>
     <string name="streak_quiet_banner">Вы в тихом режиме. Серия возобновится на следующей неделе.</string>
@@ -170,7 +169,9 @@
     <string name="delete_confirmation_title">Удалить выбранное</string>
     <plurals name="delete_confirmation_message">
         <item quantity="one">Удалить %1$d элемент?</item>
-        <item quantity="other">Удалить %1$d элементов?</item>
+        <item quantity="few">Удалить %1$d элемента?</item>
+        <item quantity="many">Удалить %1$d элементов?</item>
+        <item quantity="other">Удалить %1$d элемента?</item>
     </plurals>
     <string name="delete">Удалить</string>
     <string name="original">Оригинал</string>

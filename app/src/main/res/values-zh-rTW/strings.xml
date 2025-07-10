@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">隱藏清理連續？</string>
     <string name="hide_streak_action_hide">隱藏</string>
     <string name="hide_clean_streak_message">要隱藏清理連續卡片嗎？</string>
-    <string name="hide_for_now">暫時隱藏</string>
     <string name="dont_show_again">不再顯示</string>
     <string name="preference_show_streak_card">顯示清理連續卡片</string>
     <string name="streak_quiet_banner">你處於靜音模式。清理連續將在下週恢復。</string>
@@ -166,7 +165,6 @@
     <string name="select_all">全選</string>
     <string name="delete_confirmation_title">刪除所選</string>
     <plurals name="delete_confirmation_message">
-        <item quantity="one">要刪除 %1$d 個項目嗎？</item>
         <item quantity="other">要刪除 %1$d 個項目嗎？</item>
     </plurals>
     <string name="delete">刪除</string>

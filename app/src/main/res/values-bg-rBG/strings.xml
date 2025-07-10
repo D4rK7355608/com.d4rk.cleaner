@@ -102,7 +102,6 @@
     <string name="hide_clean_streak_title">Скриване на серията за почистване?</string>
     <string name="hide_streak_action_hide">Скрий</string>
     <string name="hide_clean_streak_message">Искате ли да скриете картата на серията за почистване?</string>
-    <string name="hide_for_now">Скрий засега</string>
     <string name="dont_show_again">Не показвай повече</string>
     <string name="preference_show_streak_card">Показвай картата на серията за почистване</string>
     <string name="streak_quiet_banner">В безшумен режим сте. Серията продължава следващата седмица.</string>
