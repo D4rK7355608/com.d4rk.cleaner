@@ -101,6 +101,13 @@
     <string name="preference_streak_reminder">Recordarme limpiar a diario (ayuda a mantener la racha)</string>
     <string name="hide_clean_streak_title">¿Ocultar Racha de Limpieza?</string>
     <string name="hide_streak_action_hide">Ocultar</string>
+    <string name="hide_clean_streak_message">¿Te gustaría ocultar tu tarjeta de Racha de Limpieza?</string>
+    <string name="hide_for_now">Ocultar por ahora</string>
+    <string name="dont_show_again">No mostrar de nuevo</string>
+    <string name="preference_show_streak_card">Mostrar Tarjeta de Racha de Limpieza</string>
+    <string name="streak_quiet_banner">Estás en modo silencioso. La racha se reanuda la próxima semana.</string>
+    <string name="streak_return_toast">La Racha de Limpieza volverá la próxima vez que limpies.</string>
+    <string name="apk_card_title">Instaladores Antiguos Encontrados</string>
     <string name="apks">APKs</string>
     <string name="archives">Archivos comprimidos</string>
     <string name="fonts">Fuentes</string>

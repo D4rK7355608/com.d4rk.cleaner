@@ -101,6 +101,13 @@
     <string name="preference_streak_reminder">Напоминать чистить ежедневно (поддерживает серию)</string>
     <string name="hide_clean_streak_title">Скрыть серию очисток?</string>
     <string name="hide_streak_action_hide">Скрыть</string>
+    <string name="hide_clean_streak_message">Скрыть карточку серии очисток?</string>
+    <string name="hide_for_now">Скрыть пока</string>
+    <string name="dont_show_again">Больше не показывать</string>
+    <string name="preference_show_streak_card">Показывать карточку серии очисток</string>
+    <string name="streak_quiet_banner">Вы в тихом режиме. Серия возобновится на следующей неделе.</string>
+    <string name="streak_return_toast">Серия очисток вернётся при следующей чистке.</string>
+    <string name="apk_card_title">Найдены старые установщики</string>
     <string name="apks">APK</string>
     <string name="archives">Архивы</string>
     <string name="fonts">Шрифты</string>

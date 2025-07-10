@@ -93,6 +93,21 @@
     <string name="streak_reward_day1">اچھا آغاز!</string>
     <string name="streak_reward_day3">کیا آپ جانتے ہیں کہ آپ سائز کے مطابق ترتیب دے سکتے ہیں؟</string>
     <string name="streak_reward_day5">سسٹم جنک کا اندازہ لگائیں!</string>
+    <string name="streak_reward_day7">کامل ہفتہ 🏅</string>
+    <string name="streak_notification_title">اپنا صفائی سلسلہ جاری رکھیں!</string>
+    <string name="streak_notification_daily">اپنا آلہ صاف کرنے اور سلسلہ برقرار رکھنے کا وقت۔</string>
+    <string name="streak_notification_missed">آپ نے کل صفائی نہیں کی — 🔥 برقرار رکھنے کے لیے ابھی صاف کریں!</string>
+    <string name="streak_notification_milestone_format">🔥 آپ %1$d دن کے سلسلے پر ہیں! شاندار!</string>
+    <string name="preference_streak_reminder">مجھے روزانہ صفائی کی یاددہانی کرائیں (سلسلہ برقرار رکھے)</string>
+    <string name="hide_clean_streak_title">صفائی سلسلہ چھپائیں؟</string>
+    <string name="hide_streak_action_hide">چھپائیں</string>
+    <string name="hide_clean_streak_message">کیا آپ صفائی سلسلہ کارڈ چھپانا چاہتے ہیں؟</string>
+    <string name="hide_for_now">فی الحال چھپائیں</string>
+    <string name="dont_show_again">دوبارہ نہ دکھائیں</string>
+    <string name="preference_show_streak_card">صفائی سلسلہ کارڈ دکھائیں</string>
+    <string name="streak_quiet_banner">آپ خاموش موڈ میں ہیں۔ صفائی سلسلہ اگلے ہفتے دوبارہ شروع ہوگا۔</string>
+    <string name="streak_return_toast">اگلی صفائی پر صفائی سلسلہ واپس آجائے گا۔</string>
+    <string name="apk_card_title">پرانے انسٹالر مل گئے</string>
     <string name="apks">APK فائلیں</string>
     <string name="archives">آرکائیوز</string>
     <string name="fonts">فونٹس</string>

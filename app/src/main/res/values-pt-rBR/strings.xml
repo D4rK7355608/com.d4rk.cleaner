@@ -101,6 +101,13 @@
     <string name="preference_streak_reminder">Lembrar de limpar diariamente (ajuda a manter a sequência)</string>
     <string name="hide_clean_streak_title">Ocultar sequência de limpeza?</string>
     <string name="hide_streak_action_hide">Ocultar</string>
+    <string name="hide_clean_streak_message">Deseja ocultar o cartão de sequência de limpeza?</string>
+    <string name="hide_for_now">Ocultar por enquanto</string>
+    <string name="dont_show_again">Não mostrar novamente</string>
+    <string name="preference_show_streak_card">Mostrar Cartão de Sequência de Limpeza</string>
+    <string name="streak_quiet_banner">Você está no modo silencioso. A sequência volta na próxima semana.</string>
+    <string name="streak_return_toast">A sequência de limpeza voltará na próxima limpeza.</string>
+    <string name="apk_card_title">Instaladores Antigos Encontrados</string>
     <string name="apks">APKs</string>
     <string name="archives">Arquivos Compactados</string>
     <string name="fonts">Fontes</string>

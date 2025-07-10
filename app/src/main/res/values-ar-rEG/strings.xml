@@ -93,6 +93,21 @@
     <string name="streak_reward_day1">بداية موفقة!</string>
     <string name="streak_reward_day3">هل تعلم أنه يمكنك الفرز حسب الحجم؟</string>
     <string name="streak_reward_day5">قم بتقدير نفايات النظام!</string>
+    <string name="streak_reward_day7">أسبوع مثالي 🏅</string>
+    <string name="streak_notification_title">واصل سلسلة التنظيف الخاصة بك!</string>
+    <string name="streak_notification_daily">حان وقت تنظيف جهازك للحفاظ على السلسلة.</string>
+    <string name="streak_notification_missed">لم تنظف بالأمس — نظف الآن لتحافظ على 🔥!</string>
+    <string name="streak_notification_milestone_format">🔥 أنت في سلسلة من %1$d يومًا! عمل رائع!</string>
+    <string name="preference_streak_reminder">ذكرني بالتنظيف يوميًا (يساعد في الحفاظ على السلسلة)</string>
+    <string name="hide_clean_streak_title">إخفاء سلسلة التنظيف؟</string>
+    <string name="hide_streak_action_hide">إخفاء</string>
+    <string name="hide_clean_streak_message">هل تود إخفاء بطاقة سلسلة التنظيف؟</string>
+    <string name="hide_for_now">إخفاء الآن</string>
+    <string name="dont_show_again">لا تظهر مرة أخرى</string>
+    <string name="preference_show_streak_card">إظهار بطاقة سلسلة التنظيف</string>
+    <string name="streak_quiet_banner">أنت في الوضع الصامت. ستستأنف السلسلة الأسبوع القادم.</string>
+    <string name="streak_return_toast">ستعود سلسلة التنظيف في المرة القادمة التي تنظف فيها.</string>
+    <string name="apk_card_title">تم العثور على مثبّتين قديمين</string>
     <string name="apks">ملفات APK</string>
     <string name="archives">الملفات المضغوطة</string>
     <string name="fonts">الخطوط</string>

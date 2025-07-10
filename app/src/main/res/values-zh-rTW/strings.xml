@@ -101,6 +101,13 @@
     <string name="preference_streak_reminder">每天提醒我清理（有助於維持連續）</string>
     <string name="hide_clean_streak_title">隱藏清理連續？</string>
     <string name="hide_streak_action_hide">隱藏</string>
+    <string name="hide_clean_streak_message">要隱藏清理連續卡片嗎？</string>
+    <string name="hide_for_now">暫時隱藏</string>
+    <string name="dont_show_again">不再顯示</string>
+    <string name="preference_show_streak_card">顯示清理連續卡片</string>
+    <string name="streak_quiet_banner">你處於靜音模式。清理連續將在下週恢復。</string>
+    <string name="streak_return_toast">下次清理時將恢復清理連續。</string>
+    <string name="apk_card_title">找到舊安裝程式</string>
     <string name="apks">APK</string>
     <string name="archives">壓縮檔</string>
     <string name="fonts">字型</string>
