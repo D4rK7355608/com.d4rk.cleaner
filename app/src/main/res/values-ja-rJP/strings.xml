@@ -114,6 +114,17 @@
     <string name="windows_files">Windowsファイル</string>
     <string name="videos">動画</string>
     <string name="audios">音声</string>
+    <string name="statuses">ステータス</string>
+    <string name="voice_notes">ボイスメモ</string>
+    <string name="video_notes">ビデオメモ</string>
+    <string name="gifs">GIF</string>
+    <string name="wallpapers">壁紙</string>
+    <string name="stickers">ステッカー</string>
+    <string name="profile_photos">プロフィール写真</string>
+    <string name="received">受信</string>
+    <string name="sent">送信</string>
+    <string name="private_tab">プライベート</string>
+    <string name="can_be_freed">解放可能</string>
     <string name="empty_folders">空のフォルダ</string>
     <string name="duplicates">ファイルの複製</string>
     <plurals name="status_selected_files">

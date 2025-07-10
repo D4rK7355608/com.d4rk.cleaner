@@ -114,6 +114,17 @@
     <string name="windows_files">ونڈوز فائلیں</string>
     <string name="videos">ویڈیوز</string>
     <string name="audios">آڈیوز</string>
+    <string name="statuses">اسٹیٹسز</string>
+    <string name="voice_notes">وائس نوٹس</string>
+    <string name="video_notes">ویڈیو نوٹس</string>
+    <string name="gifs">GIFs</string>
+    <string name="wallpapers">وال پیپرز</string>
+    <string name="stickers">اسٹیکرز</string>
+    <string name="profile_photos">پروفائل فوٹوز</string>
+    <string name="received">موصولہ</string>
+    <string name="sent">بھیجے گئے</string>
+    <string name="private_tab">نجی</string>
+    <string name="can_be_freed">خالی کیا جا سکتا ہے</string>
     <string name="empty_folders">خالی فولڈرز</string>
     <string name="duplicates">ڈپلیکیٹ فائلیں</string>
     <plurals name="status_selected_files">

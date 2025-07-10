@@ -114,6 +114,17 @@
     <string name="windows_files">File Windows</string>
     <string name="videos">Video</string>
     <string name="audios">Audio</string>
+    <string name="statuses">Status</string>
+    <string name="voice_notes">Catatan suara</string>
+    <string name="video_notes">Catatan video</string>
+    <string name="gifs">GIF</string>
+    <string name="wallpapers">Wallpaper</string>
+    <string name="stickers">Stiker</string>
+    <string name="profile_photos">Foto profil</string>
+    <string name="received">Diterima</string>
+    <string name="sent">Terkirim</string>
+    <string name="private_tab">Pribadi</string>
+    <string name="can_be_freed">Dapat dibebaskan</string>
     <string name="empty_folders">Folder Kosong</string>
     <string name="duplicates">Duplikat file</string>
     <plurals name="status_selected_files">

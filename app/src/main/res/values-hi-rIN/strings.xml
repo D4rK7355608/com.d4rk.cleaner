@@ -114,6 +114,17 @@
     <string name="windows_files">विंडोज फ़ाइलें</string>
     <string name="videos">वीडियो</string>
     <string name="audios">ऑडियो</string>
+    <string name="statuses">स्टेटस</string>
+    <string name="voice_notes">वॉयस नोट्स</string>
+    <string name="video_notes">वीडियो नोट्स</string>
+    <string name="gifs">GIFs</string>
+    <string name="wallpapers">वॉलपेपर</string>
+    <string name="stickers">स्टीकर</string>
+    <string name="profile_photos">प्रोफ़ाइल फ़ोटो</string>
+    <string name="received">प्राप्त</string>
+    <string name="sent">भेजे गए</string>
+    <string name="private_tab">निजी</string>
+    <string name="can_be_freed">खाली किया जा सकता है</string>
     <string name="empty_folders">खाली फ़ोल्डर</string>
     <string name="duplicates">डुप्लिकेट फ़ाइलें</string>
     <plurals name="status_selected_files">

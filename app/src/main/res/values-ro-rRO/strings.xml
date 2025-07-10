@@ -131,6 +131,17 @@
     <string name="windows_files">Fișiere Windows</string>
     <string name="videos">Videoclipuri</string>
     <string name="audios">Fișiere audio</string>
+    <string name="statuses">Stări</string>
+    <string name="voice_notes">Note vocale</string>
+    <string name="video_notes">Note video</string>
+    <string name="gifs">GIF-uri</string>
+    <string name="wallpapers">Fundaluri</string>
+    <string name="stickers">Stickere</string>
+    <string name="profile_photos">Fotografii de profil</string>
+    <string name="received">Primite</string>
+    <string name="sent">Trimise</string>
+    <string name="private_tab">Privat</string>
+    <string name="can_be_freed">Poate fi eliberat</string>
     <string name="empty_folders">Foldere goale</string>
     <string name="duplicates">Fișiere duplicate</string>
     <plurals name="status_selected_files">

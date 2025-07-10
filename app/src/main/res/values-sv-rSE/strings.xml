@@ -131,6 +131,17 @@
     <string name="windows_files">Windows-filer</string>
     <string name="videos">Videor</string>
     <string name="audios">Ljudfiler</string>
+    <string name="statuses">Statusar</string>
+    <string name="voice_notes">Röstanteckningar</string>
+    <string name="video_notes">Videoanteckningar</string>
+    <string name="gifs">GIF:ar</string>
+    <string name="wallpapers">Bakgrundsbilder</string>
+    <string name="stickers">Stickers</string>
+    <string name="profile_photos">Profilbilder</string>
+    <string name="received">Mottagna</string>
+    <string name="sent">Skickade</string>
+    <string name="private_tab">Privat</string>
+    <string name="can_be_freed">Kan frigöras</string>
     <string name="empty_folders">Tomma mappar</string>
     <string name="duplicates">Duplicerade filer</string>
     <plurals name="status_selected_files">
