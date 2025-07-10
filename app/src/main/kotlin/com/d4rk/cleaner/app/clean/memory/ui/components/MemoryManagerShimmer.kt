@@ -4,7 +4,6 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -20,7 +19,6 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -226,20 +224,12 @@ private fun StorageBreakdownItemShimmer(modifier: Modifier = Modifier) {
                 .padding(all = SizeConstants.LargeSize),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Card(
+            Spacer(
                 modifier = Modifier
-                    .size(48.dp),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
-            ) {
-                Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
-                    Spacer(
-                        modifier = Modifier
-                            .size(24.dp)
-                            .clip(RoundedCornerShape(SizeConstants.ExtraSmallSize))
-                            .shimmerEffect()
-                    )
-                }
-            }
+                    .size(48.dp)
+                    .clip(RoundedCornerShape(SizeConstants.MediumSize))
+                    .shimmerEffect()
+            )
 
             Spacer(modifier = Modifier.padding(horizontal = SizeConstants.ExtraSmallSize))
 
