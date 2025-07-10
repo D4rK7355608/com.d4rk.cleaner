@@ -72,6 +72,15 @@
     <string name="move_to_trash_title">Mover a la papelera</string>
     <string name="move_to_trash_message">¿Estás seguro de que quieres mover estos archivos a la papelera?</string>
     <string name="quick_scan">Análisis rápido</string>
+    <string name="quick_scan_cleaned_format">Has limpiado %1$s esta semana</string>
+    <string name="quick_scan_summary_tip">¡Todo se ve bien! ¿Quieres escanear de nuevo para liberar espacio?</string>
+    <string name="quick_scan_summary_tip_2">Todo limpio — pero siempre hay lugar para más.</string>
+    <string name="quick_scan_summary_tip_3">¿Te sientes fresco? Comprobemos de nuevo.</string>
+    <string name="quick_scan_summary_tip_4">Quizás puedas sacar un poco más de espacio.</string>
+    <string name="quick_scan_summary_tip_5">Aún hay margen para optimizar. ¿Escaneamos otra vez?</string>
+    <string name="quick_scan_summary_tip_6">¡Buen trabajo! ¿Listo para una segunda pasada?</string>
+    <string name="quick_scan_summary_tip_7">¡Cleaner cree que todavía queda trabajo por hacer!</string>
+    <string name="quick_scan_summary_tip_8">Cada espacio cuenta. Volvamos a escanear.</string>
     <string name="apks">APKs</string>
     <string name="archives">Archivos comprimidos</string>
     <string name="fonts">Fuentes</string>

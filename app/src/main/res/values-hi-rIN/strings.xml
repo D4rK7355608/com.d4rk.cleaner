@@ -72,6 +72,15 @@
     <string name="move_to_trash_title">ट्रैश में ले जाएं</string>
     <string name="move_to_trash_message">क्या आप वाकई इन फ़ाइलों को ट्रैश में ले जाना चाहते हैं?</string>
     <string name="quick_scan">त्वरित स्कैन</string>
+    <string name="quick_scan_cleaned_format">आपने इस हफ्ते %1$s साफ़ किया</string>
+    <string name="quick_scan_summary_tip">सब अच्छा लग रहा है! अतिरिक्त जगह के लिए फिर से स्कैन करना चाहेंगे?</string>
+    <string name="quick_scan_summary_tip_2">सब साफ़ है — लेकिन हमेशा और जगह की गुंजाइश रहती है।</string>
+    <string name="quick_scan_summary_tip_3">ताज़ा महसूस हो रहा है? आइए दोबारा जाँचें।</string>
+    <string name="quick_scan_summary_tip_4">शायद आप थोड़ी और जगह निकाल सकें।</string>
+    <string name="quick_scan_summary_tip_5">अभी भी ऑप्टिमाइज़ करने की जगह है। फिर से स्कैन करें?</string>
+    <string name="quick_scan_summary_tip_6">शानदार काम! दूसरी बार साफ़ करने के लिए तैयार हैं?</string>
+    <string name="quick_scan_summary_tip_7">Cleaner को लगता है कि अभी और काम बाकी है!</string>
+    <string name="quick_scan_summary_tip_8">हर हिस्सा मायने रखता है। फिर से स्कैन करें।</string>
     <string name="apks">एपीके</string>
     <string name="archives">अभिलेखागार</string>
     <string name="fonts">फ़ॉन्ट</string>

@@ -72,6 +72,15 @@
     <string name="move_to_trash_title">Flytta till papperskorgen</string>
     <string name="move_to_trash_message">Är du säker på att du vill flytta dessa filer till papperskorgen?</string>
     <string name="quick_scan">Snabbskanning</string>
+    <string name="quick_scan_cleaned_format">Du rensade %1$s den här veckan</string>
+    <string name="quick_scan_summary_tip">Ser bra ut! Vill du skanna igen för extra utrymme?</string>
+    <string name="quick_scan_summary_tip_2">Allt rent — men det finns alltid plats för mer.</string>
+    <string name="quick_scan_summary_tip_3">Känner du dig fräsch? Låt oss dubbelkolla.</string>
+    <string name="quick_scan_summary_tip_4">Du kan kanske pressa ut lite mer utrymme.</string>
+    <string name="quick_scan_summary_tip_5">Det finns fortfarande utrymme att optimera. Skanna igen?</string>
+    <string name="quick_scan_summary_tip_6">Bra jobbat! Redo för en andra omgång?</string>
+    <string name="quick_scan_summary_tip_7">Cleaner tror att det fortfarande finns mer att göra!</string>
+    <string name="quick_scan_summary_tip_8">Varje bit räknas. Låt oss skanna igen.</string>
     <string name="apks">APK:er</string>
     <string name="archives">Arkiv</string>
     <string name="fonts">Typsnitt</string>

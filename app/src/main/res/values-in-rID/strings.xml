@@ -72,6 +72,15 @@
     <string name="move_to_trash_title">Pindahkan ke Sampah</string>
     <string name="move_to_trash_message">Apakah Anda yakin ingin memindahkan file-file ini ke sampah?</string>
     <string name="quick_scan">Pindai Cepat</string>
+    <string name="quick_scan_cleaned_format">Kamu membersihkan %1$s minggu ini</string>
+    <string name="quick_scan_summary_tip">Kelihatan bagus! Ingin memindai lagi untuk ruang ekstra?</string>
+    <string name="quick_scan_summary_tip_2">Semua bersih — tapi selalu ada ruang untuk lebih.</string>
+    <string name="quick_scan_summary_tip_3">Merasa segar? Mari cek lagi.</string>
+    <string name="quick_scan_summary_tip_4">Kamu mungkin bisa menambah sedikit ruang lagi.</string>
+    <string name="quick_scan_summary_tip_5">Masih ada yang bisa dioptimalkan. Pindai lagi?</string>
+    <string name="quick_scan_summary_tip_6">Kerja bagus! Siap untuk putaran kedua?</string>
+    <string name="quick_scan_summary_tip_7">Cleaner berpikir masih ada yang perlu dilakukan!</string>
+    <string name="quick_scan_summary_tip_8">Setiap ruang berharga. Mari pindai lagi.</string>
     <string name="apks">APK</string>
     <string name="archives">Arsip</string>
     <string name="fonts">Font</string>

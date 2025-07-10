@@ -72,6 +72,15 @@
     <string name="move_to_trash_title">ردی کی ٹوکری میں منتقل کریں</string>
     <string name="move_to_trash_message">کیا آپ واقعی ان فائلوں کو ردی کی ٹوکری میں منتقل کرنا چاہتے ہیں؟</string>
     <string name="quick_scan">فوری اسکین</string>
+    <string name="quick_scan_cleaned_format">آپ نے اس ہفتے %1$s صاف کیا</string>
+    <string name="quick_scan_summary_tip">سب ٹھیک لگ رہا ہے! مزید جگہ کے لیے دوبارہ اسکین کرنا چاہیں؟</string>
+    <string name="quick_scan_summary_tip_2">سب صاف ہے — لیکن مزید کی گنجائش ہمیشہ رہتی ہے۔</string>
+    <string name="quick_scan_summary_tip_3">تازہ محسوس کر رہے ہیں؟ دوبارہ جانچ کر لیں۔</string>
+    <string name="quick_scan_summary_tip_4">شاید آپ تھوڑی مزید جگہ نکال سکیں۔</string>
+    <string name="quick_scan_summary_tip_5">ابھی مزید بہتر بنانے کی گنجائش ہے۔ دوبارہ اسکین کریں؟</string>
+    <string name="quick_scan_summary_tip_6">بہت خوب! دوسری جھاڑو کے لیے تیار ہیں؟</string>
+    <string name="quick_scan_summary_tip_7">Cleaner کا خیال ہے کہ ابھی کچھ اور باقی ہے!</string>
+    <string name="quick_scan_summary_tip_8">ہر تھوڑا سا اہم ہے۔ دوبارہ اسکین کریں۔</string>
     <string name="apks">APK فائلیں</string>
     <string name="archives">آرکائیوز</string>
     <string name="fonts">فونٹس</string>

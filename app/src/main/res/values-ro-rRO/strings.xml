@@ -72,6 +72,15 @@
     <string name="move_to_trash_title">Mută în coș</string>
     <string name="move_to_trash_message">Sigur doriți să mutați aceste fișiere în coș?</string>
     <string name="quick_scan">Scanare rapidă</string>
+    <string name="quick_scan_cleaned_format">Ai curățat %1$s în această săptămână</string>
+    <string name="quick_scan_summary_tip">Arată bine! Vrei să scanezi din nou pentru spațiu suplimentar?</string>
+    <string name="quick_scan_summary_tip_2">Totul e clar — dar întotdeauna e loc de mai bine.</string>
+    <string name="quick_scan_summary_tip_3">Te simți proaspăt? Hai să verificăm din nou.</string>
+    <string name="quick_scan_summary_tip_4">Poți poate elibera încă puțin spațiu.</string>
+    <string name="quick_scan_summary_tip_5">Mai este loc de optimizare. Scanăm din nou?</string>
+    <string name="quick_scan_summary_tip_6">Foarte bine! Pregătit pentru o a doua tură?</string>
+    <string name="quick_scan_summary_tip_7">Cleaner crede că mai e treabă de făcut!</string>
+    <string name="quick_scan_summary_tip_8">Orice spațiu contează. Să scanăm din nou.</string>
     <string name="apks">APK-uri</string>
     <string name="archives">Arhive</string>
     <string name="fonts">Fonturi</string>
