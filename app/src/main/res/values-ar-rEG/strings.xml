@@ -81,6 +81,18 @@
     <string name="quick_scan_summary_tip_6">عمل رائع! مستعد لجولة ثانية؟</string>
     <string name="quick_scan_summary_tip_7">يعتقد Cleaner أنه ما زال هناك المزيد للقيام به!</string>
     <string name="quick_scan_summary_tip_8">كل ميغابايت مهم. دعنا نفحص مجددًا.</string>
+    <string name="cleaner_recommends_icon_description">أيقونة التوصية</string>
+    <string name="promoted_app_icon_description">أيقونة لـ %1$s</string>
+    <string name="install_button_icon_description">أيقونة تثبيت التطبيق</string>
+    <string name="move_to_trash_icon_description">أيقونة نقل إلى المهملات</string>
+    <string name="delete_forever_icon_description">أيقونة حذف نهائيًا</string>
+    <string name="clean_streak_title">🧹 سلسلة التنظيف الأسبوعي</string>
+    <string name="clean_streak_start">ابدأ سلسلة التنظيف اليوم.</string>
+    <string name="clean_streak_in_progress">%1$d يومًا على التوالي — استمر!</string>
+    <string name="clean_streak_perfect_week_message">أسبوع مثالي! 💎 تستحق ذلك.</string>
+    <string name="streak_reward_day1">بداية موفقة!</string>
+    <string name="streak_reward_day3">هل تعلم أنه يمكنك الفرز حسب الحجم؟</string>
+    <string name="streak_reward_day5">قم بتقدير نفايات النظام!</string>
     <string name="apks">ملفات APK</string>
     <string name="archives">الملفات المضغوطة</string>
     <string name="fonts">الخطوط</string>

@@ -81,6 +81,18 @@
     <string name="quick_scan_summary_tip_6">بہت خوب! دوسری جھاڑو کے لیے تیار ہیں؟</string>
     <string name="quick_scan_summary_tip_7">Cleaner کا خیال ہے کہ ابھی کچھ اور باقی ہے!</string>
     <string name="quick_scan_summary_tip_8">ہر تھوڑا سا اہم ہے۔ دوبارہ اسکین کریں۔</string>
+    <string name="cleaner_recommends_icon_description">تجویز کا آئیکن</string>
+    <string name="promoted_app_icon_description">%1$s کا آئیکن</string>
+    <string name="install_button_icon_description">ایپ انسٹال آئیکن</string>
+    <string name="move_to_trash_icon_description">ردی میں منتقل کرنے کا آئیکن</string>
+    <string name="delete_forever_icon_description">ہمیشہ کے لیے حذف کرنے کا آئیکن</string>
+    <string name="clean_streak_title">🧹 ہفتہ وار صفائی سلسلہ</string>
+    <string name="clean_streak_start">اپنا صفائی سلسلہ آج ہی شروع کریں۔</string>
+    <string name="clean_streak_in_progress">%1$d دن مسلسل — جاری رکھیں!</string>
+    <string name="clean_streak_perfect_week_message">کامل ہفتہ! 💎 آپ نے حق دار ہو۔</string>
+    <string name="streak_reward_day1">اچھا آغاز!</string>
+    <string name="streak_reward_day3">کیا آپ جانتے ہیں کہ آپ سائز کے مطابق ترتیب دے سکتے ہیں؟</string>
+    <string name="streak_reward_day5">سسٹم جنک کا اندازہ لگائیں!</string>
     <string name="apks">APK فائلیں</string>
     <string name="archives">آرکائیوز</string>
     <string name="fonts">فونٹس</string>
