@@ -39,6 +39,11 @@
     <string name="cleanup_storage_medium_5">হালকা একটা পরিষ্কার করার সময় হতে পারে।</string>
     <string name="cleanup_storage_medium_6">একটু অগোছালো আছে। স্ক্যান করবেন?</string>
     <string name="cleanup_storage_ok">আপনার স্টোরেজ ঠিক আছে!</string>
+    <string name="cleanup_storage_ok_2">আপনি নিরাপদ অঞ্চলে রয়েছেন। সব ভাল!</string>
+    <string name="cleanup_storage_ok_3">ভাল! আপনি যথেষ্ট মুক্ত স্থান পেয়েছেন।</string>
+    <string name="cleanup_storage_ok_4">ভাল লাগছে — কোনও পদক্ষেপের প্রয়োজন নেই।</string>
+    <string name="cleanup_storage_ok_5">স্টোরেজ নিয়ন্ত্রণে আছে!</string>
+    <string name="cleanup_storage_ok_6">পরিষ্কার ও পরিষ্কার। ভাল!</string>
     <string name="cleanup_notification_last_scan_format">সর্বশেষ স্ক্যান: %1$d দিন আগে। %2$s</string>
     <string name="cleanup_notification_never_scanned">আপনি এখনও ফোন স্ক্যান করেননি। শুরু করতে ট্যাপ করুন।</string>
 

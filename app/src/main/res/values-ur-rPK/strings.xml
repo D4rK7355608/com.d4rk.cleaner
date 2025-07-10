@@ -39,6 +39,11 @@
     <string name="cleanup_storage_medium_5">ہو سکتا ہے ہلکی سی صفائی کا وقت ہو۔</string>
     <string name="cleanup_storage_medium_6">تھوڑا سا انتشار ہے۔ اسکین کرنا چاہیں گے؟</string>
     <string name="cleanup_storage_ok">آپ کا اسٹوریج ٹھیک ہے!</string>
+    <string name="cleanup_storage_ok_2">آپ محفوظ زون میں ہیں۔ سب اچھا!</string>
+    <string name="cleanup_storage_ok_3">اچھا! آپ کو کافی مفت جگہ مل گئی ہے۔</string>
+    <string name="cleanup_storage_ok_4">اچھا لگ رہا ہے — کسی کارروائی کی ضرورت نہیں۔</string>
+    <string name="cleanup_storage_ok_5">اسٹوریج کنٹرول میں ہے!</string>
+    <string name="cleanup_storage_ok_6">صاف ستھرا، شاباش!</string>
     <string name="cleanup_notification_last_scan_format">آخری اسکین: %1$d دن پہلے۔ %2$s</string>
     <string name="cleanup_notification_never_scanned">آپ نے ابھی تک فون اسکین نہیں کیا۔ شروع کرنے کے لیے ٹیپ کریں۔</string>
 

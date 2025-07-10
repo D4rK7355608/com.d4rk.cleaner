@@ -39,6 +39,11 @@
     <string name="cleanup_storage_medium_5">Poate e timpul pentru o mică curățenie.</string>
     <string name="cleanup_storage_medium_6">E un pic de dezordine. Vrei să scanezi?</string>
     <string name="cleanup_storage_ok">Spațiul tău arată bine!</string>
+    <string name="cleanup_storage_ok_2">Te afli în zona sigură. Bine!</string>
+    <string name="cleanup_storage_ok_3">Frumos! Aveți suficient spațiu liber.</string>
+    <string name="cleanup_storage_ok_4">Arată bine — nu e nevoie de acțiune.</string>
+    <string name="cleanup_storage_ok_5">Depozitarea este sub control!</string>
+    <string name="cleanup_storage_ok_6">Curat și limpede. Bine făcut!</string>
     <string name="cleanup_notification_last_scan_format">Ultimul scan: acum %1$d zile. %2$s</string>
     <string name="cleanup_notification_never_scanned">Nu ți-ai scanat încă telefonul. Atinge pentru a începe.</string>
 

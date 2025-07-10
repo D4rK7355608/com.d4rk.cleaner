@@ -39,6 +39,11 @@
     <string name="cleanup_storage_medium_5">가볍게 한번 쓸어낼 시간일지도 몰라요.</string>
     <string name="cleanup_storage_medium_6">조금 어수선해요. 스캔해볼까요?</string>
     <string name="cleanup_storage_ok">저장공간은 괜찮아 보여요!</string>
+    <string name="cleanup_storage_ok_2">안전 구역입니다. 문제 없어요!</string>
+    <string name="cleanup_storage_ok_3">멋진! 충분한 여유 공간이 있습니다.</string>
+    <string name="cleanup_storage_ok_4">좋아 보이네요 — 조치가 필요 없어요.</string>
+    <string name="cleanup_storage_ok_5">저장공간이 잘 관리되고 있어요!</string>
+    <string name="cleanup_storage_ok_6">깔끔하고 명확합니다. 잘하셨어요!</string>
     <string name="cleanup_notification_last_scan_format">마지막 스캔: %1$d일 전. %2$s</string>
     <string name="cleanup_notification_never_scanned">아직 휴대폰을 스캔하지 않았어요. 시작하려면 탭하세요.</string>
 

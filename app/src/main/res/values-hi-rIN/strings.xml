@@ -39,6 +39,11 @@
     <string name="cleanup_storage_medium_5">हो सकता है हल्की-सी सफ़ाई का समय हो.</string>
     <string name="cleanup_storage_medium_6">थोड़ा-सा सामान बिखरा है। स्कैन करना चाहेंगे?</string>
     <string name="cleanup_storage_ok">आपका स्टोरेज ठीक दिख रहा है!</string>
+    <string name="cleanup_storage_ok_2">आप सुरक्षित क्षेत्र में हैं। सब अच्छा!</string>
+    <string name="cleanup_storage_ok_3">अच्छा! आपको पर्याप्त खाली जगह मिली है।</string>
+    <string name="cleanup_storage_ok_4">अच्छा लग रहा है — कोई कार्रवाई की जरूरत नहीं।</string>
+    <string name="cleanup_storage_ok_5">भंडारण नियंत्रण में है!</string>
+    <string name="cleanup_storage_ok_6">साफ़-सुथरा है। शाबाश!</string>
     <string name="cleanup_notification_last_scan_format">आख़िरी स्कैन: %1$d दिन पहले. %2$s</string>
     <string name="cleanup_notification_never_scanned">आपने अभी तक फ़ोन स्कैन नहीं किया है। शुरू करने के लिए टैप करें.</string>
 

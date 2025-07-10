@@ -39,6 +39,11 @@
     <string name="cleanup_storage_medium_5">Kanske dags för en lätt genomgång.</string>
     <string name="cleanup_storage_medium_6">Det är lite rörigt. Vill du skanna?</string>
     <string name="cleanup_storage_ok">Ditt lagringsutrymme ser bra ut!</string>
+    <string name="cleanup_storage_ok_2">Du är i den säkra zonen. Allt bra!</string>
+    <string name="cleanup_storage_ok_3">Snyggt! Du har gott om ledigt utrymme.</string>
+    <string name="cleanup_storage_ok_4">Ser bra ut — ingen åtgärd behövs.</string>
+    <string name="cleanup_storage_ok_5">Lagring är under kontroll!</string>
+    <string name="cleanup_storage_ok_6">Rent och tydligt. Bra gjort!</string>
     <string name="cleanup_notification_last_scan_format">Senaste skanning: för %1$d dagar sedan. %2$s</string>
     <string name="cleanup_notification_never_scanned">Du har inte skannat din telefon än. Tryck för att börja.</string>
 

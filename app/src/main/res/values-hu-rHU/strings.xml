@@ -39,6 +39,11 @@
     <string name="cleanup_storage_medium_5">Lehet, hogy ideje egy gyors söprésnek.</string>
     <string name="cleanup_storage_medium_6">Kicsit rendetlen. Szeretnél keresni?</string>
     <string name="cleanup_storage_ok">A tárhelyed rendben van!</string>
+    <string name="cleanup_storage_ok_2">A biztonságos zónában vagy. Minden jó!</string>
+    <string name="cleanup_storage_ok_3">Szép! Van elég szabad helyed.</string>
+    <string name="cleanup_storage_ok_4">Jól néz ki — nincs szükség műveletre.</string>
+    <string name="cleanup_storage_ok_5">A tárolás ellenőrzés alatt áll!</string>
+    <string name="cleanup_storage_ok_6">Tiszta és átlátható. Szép munka!</string>
     <string name="cleanup_notification_last_scan_format">Utolsó keresés: %1$d napja. %2$s</string>
     <string name="cleanup_notification_never_scanned">Még nem vizsgáltad át a telefonod. Kezdéshez érints ide.</string>
 

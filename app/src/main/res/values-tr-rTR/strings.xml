@@ -39,6 +39,11 @@
     <string name="cleanup_storage_medium_5">Hafif bir süpürme zamanı olabilir.</string>
     <string name="cleanup_storage_medium_6">Biraz dağınık. Tarama yapmak ister misin?</string>
     <string name="cleanup_storage_ok">Depolaman gayet iyi!</string>
+    <string name="cleanup_storage_ok_2">Güvenli bölgedesiniz. Her şey iyi!</string>
+    <string name="cleanup_storage_ok_3">Güzel! Yeterince boş alanınız var.</string>
+    <string name="cleanup_storage_ok_4">Gayet iyi — bir işlem gerekmez.</string>
+    <string name="cleanup_storage_ok_5">Depolama kontrol altında!</string>
+    <string name="cleanup_storage_ok_6">Temiz ve net. Tebrikler!</string>
     <string name="cleanup_notification_last_scan_format">Son tarama: %1$d gün önce. %2$s</string>
     <string name="cleanup_notification_never_scanned">Telefonunu henüz taramadın. Başlamak için dokun.</string>
 
