@@ -32,7 +32,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -57,10 +56,12 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.AnimatedButtonDirection
 import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
+import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
@@ -118,16 +119,16 @@ fun DetailsScreen(
 
     LargeTopAppBarWithScaffold(
         actions = {
-            IconButton(onClick = { detailsViewModel.onEvent(WhatsAppDetailsEvent.ToggleView) }) {
-                Icon(
-                    imageVector = if (isGrid) Icons.AutoMirrored.Filled.ViewList else Icons.Filled.GridView,
-                    contentDescription = null
-                )
-            }
-            Spacer(Modifier.width(8.dp))
-            IconButton(onClick = { showSort = true }) {
-                Icon(imageVector = Icons.AutoMirrored.Filled.Sort, contentDescription = null)
-            }
+            AnimatedButtonDirection(
+                visible = true,
+                icon = if (isGrid) Icons.AutoMirrored.Filled.ViewList else Icons.Filled.GridView , contentDescription = null , onClick = {
+                detailsViewModel.onEvent(WhatsAppDetailsEvent.ToggleView)
+            } , fromRight = true)
+
+            AnimatedButtonDirection(  visible = true,icon = Icons.AutoMirrored.Filled.Sort , contentDescription = null , onClick = {
+                showSort = true
+            } , durationMillis = 400 , fromRight = true)
+
         },
         title = localizedTitle,
         onBackClicked = { activity.finish() },
@@ -160,6 +161,8 @@ fun DetailsScreen(
                     else -> emptyList()
                 }
 
+                val areFiles = files.isEmpty() // FIXME: Property "areFiles" is never used
+
                 LaunchedEffect(files) { detailsViewModel.onEvent(WhatsAppDetailsEvent.SetFiles(files)) }
 
                 val receivedFiles = remember(sortedFiles) {
@@ -191,76 +194,93 @@ fun DetailsScreen(
                     if (hasPrivate) add(privateFiles)
                 }
 
-                val pagerState = rememberPagerState { tabs.size }
-                var selectedTabIndex by remember { mutableIntStateOf(0) }
-                val scope = rememberCoroutineScope()
-
-                LaunchedEffect(pagerState.currentPage) { selectedTabIndex = pagerState.currentPage }
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues)
-                ) {
-                    if (suggested.isNotEmpty()) {
-                        SmartSuggestionsCard(
-                            selected = selected,
-                            suggested = suggested,
-                            onShowConfirmChange = { showConfirm = it }
-                        )
-                    }
-
-                    if (tabs.size > 1) {
-                        CustomTabLayout(
-                            modifier = Modifier
-                                .fillMaxWidth(),
-                            selectedItemIndex = selectedTabIndex,
-                            items = tabs,
-                            filesPerTab = tabFiles,
-                            selectedFiles = selected,
-                            onTabSelected = { index ->
-                                selectedTabIndex = index
-                                scope.launch { pagerState.animateScrollToPage(index) }
-                            },
-                            onTabCheckedChange = { index, checked ->
-                                val listFiles = tabFiles.getOrNull(index) ?: emptyList()
-                                if (checked) {
-                                    listFiles.filterNot { it in selected }.forEach { selected.add(it) }
-                                } else {
-                                    selected.removeAll(listFiles)
-                                }
-                            }
-                        )
-                    }
-
-                    HorizontalPager(
-                        state = pagerState,
+                if (tabFiles.isEmpty()) {
+                    Box(
                         modifier = Modifier
-                            .weight(1f)
-                            .fillMaxWidth(),
-                    ) { page ->
-                        val list = tabFiles.getOrNull(page) ?: emptyList()
-
-                        DetailsScreenContent(
-                            selected = selected,
-                            isGrid = isGrid,
-                            files = list
-                        )
-                    }
-
-                    Button(
-                        onClick = { showConfirm = true },
-                        enabled = selected.isNotEmpty(),
-                        modifier = Modifier
-                            .align(Alignment.CenterHorizontally)
-                            .padding(8.dp),
+                                .fillMaxSize()
+                                .padding(paddingValues),
+                        contentAlignment = Alignment.Center
                     ) {
-                        Icon(
-                            modifier = Modifier.size(size = SizeConstants.ButtonIconSize) ,
-                            imageVector = Icons.Outlined.Delete,
-                            contentDescription = null)
-                        ButtonIconSpacer()
-                        Text(text = stringResource(id = R.string.delete_selected))
+                        NoDataScreen(
+                            icon = Icons.Outlined.FolderOff,
+                            showRetry = true,
+                            onRetry = { viewModel.onEvent(WhatsAppCleanerEvent.LoadMedia) }
+                        )
+                    }
+                } else {
+
+                    val pagerState = rememberPagerState { tabs.size }
+                    var selectedTabIndex by remember { mutableIntStateOf(0) }
+                    val scope = rememberCoroutineScope()
+
+                    LaunchedEffect(pagerState.currentPage) { selectedTabIndex = pagerState.currentPage }
+
+                    Column(
+                        modifier = Modifier
+                                .fillMaxSize()
+                                .padding(paddingValues)
+                    ) {
+                        if (suggested.isNotEmpty()) {
+                            SmartSuggestionsCard(
+                                selected = selected,
+                                suggested = suggested,
+                                onShowConfirmChange = { showConfirm = it }
+                            )
+                        }
+
+                        if (tabs.size > 1) {
+                            CustomTabLayout(
+                                modifier = Modifier
+                                        .fillMaxWidth(),
+                                selectedItemIndex = selectedTabIndex,
+                                items = tabs,
+                                filesPerTab = tabFiles,
+                                selectedFiles = selected,
+                                onTabSelected = { index ->
+                                    selectedTabIndex = index
+                                    scope.launch { pagerState.animateScrollToPage(index) }
+                                },
+                                onTabCheckedChange = { index, checked ->
+                                    val listFiles = tabFiles.getOrNull(index) ?: emptyList()
+                                    if (checked) {
+                                        listFiles.filterNot { it in selected }.forEach { selected.add(it) }
+                                    } else {
+                                        selected.removeAll(listFiles)
+                                    }
+                                }
+                            )
+                        }
+
+                        HorizontalPager(
+                            state = pagerState,
+                            modifier = Modifier
+                                    .weight(1f)
+                                    .fillMaxWidth(),
+                        ) { page ->
+                            val list = tabFiles.getOrNull(page) ?: emptyList()
+
+                            DetailsScreenContent(
+                                selected = selected,
+                                isGrid = isGrid,
+                                files = list
+                            )
+                        }
+
+                        Button(
+                            onClick = { showConfirm = true },
+                            enabled = selected.isNotEmpty(),
+                            modifier = Modifier
+                                    .bounceClick()
+                                    .align(Alignment.CenterHorizontally)
+                                    .padding(8.dp),
+                        ) {
+                            Icon(
+                                modifier = Modifier.size(size = SizeConstants.ButtonIconSize) ,
+                                imageVector = Icons.Outlined.Delete,
+                                contentDescription = null)
+                            ButtonIconSpacer()
+                            Text(text = stringResource(id = R.string.delete_selected))
+                        }
                     }
                 }
             }
@@ -357,7 +377,6 @@ fun DetailsScreenContent(
                     items(files) { file ->
                         val checked = file in selected
                         val fileExtension = remember(file.name) { getFileExtension(file.name) }
-                        val audioExt = remember { context.resources.getStringArray(R.array.audio_extensions).toList() }
                         val imageExt = remember { context.resources.getStringArray(R.array.image_extensions).toList() }
                         val videoExt = remember { context.resources.getStringArray(R.array.video_extensions).toList() }
                         val isMedia = remember(fileExtension) {

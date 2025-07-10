@@ -97,7 +97,7 @@ class DetailsViewModel(
             SortType.SIZE -> list.sortedBy { it.length() }
         }
         if (state.sortType == SortType.DATE && state.startDate != null && state.endDate != null) {
-            sorted = sorted.filter { it.lastModified() in state.startDate!!..state.endDate!! }
+            sorted = sorted.filter { it.lastModified() in state.startDate..state.endDate }
         }
         if (state.descending) sorted = sorted.reversed()
         return sorted

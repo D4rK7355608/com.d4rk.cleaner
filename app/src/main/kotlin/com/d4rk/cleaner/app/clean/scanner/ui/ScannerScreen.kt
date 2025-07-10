@@ -44,7 +44,6 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
 
     val streakDialogVisible = uiState.data?.isHideStreakDialogVisible == true
 
-
     LaunchedEffect(key1 = true) {
         if (!PermissionsHelper.hasStoragePermissions(context)) {
             PermissionsHelper.requestStoragePermissions(context as Activity)
