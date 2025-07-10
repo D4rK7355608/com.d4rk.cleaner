@@ -1,9 +1,15 @@
 # Version 3.4.0:
 
 - **Patch**: The app now checks if it has permission to send notifications before trying to send one for cleanup reminders. This prevents potential crashes.
+- **Patch**: Various bug fixes and performance improvements to keep the app running smoothly.
 - **Minor**: The "Home" tab is now called "Scanner" and has a new icon, making it clearer what this section is for.
 - **Minor**: Cleanup reminder notifications are now available in more languages.
 - **Minor**: We've removed some unused code related to app permissions for better efficiency.
+- **Minor**: File sizes and memory usage are now formatted more accurately and consistently.
+- **Minor**: Applied visual polish and consistency fixes throughout the app.
+- **Minor**: A System Cache Cleaner is planned for a future release but isn't live yet.
+- **Major**: Added a new WhatsApp Cleaner screen to preview, sort, and delete your WhatsApp media.
+- **Major**: Added a Clipboard Cleaner item in the Scanner screen with a quick shortcut to clear your clipboard.
 
 # Version 3.3.0:
 
