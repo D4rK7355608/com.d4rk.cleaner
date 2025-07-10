@@ -52,7 +52,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
-import java.security.MessageDigest
+import com.d4rk.cleaner.core.utils.extensions.md5
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ScannerViewModel(
@@ -401,18 +401,6 @@ class ScannerViewModel(
         return hashMap.values.filter { it.size > 1 }
     }
 
-    private fun File.md5(): String? = runCatching {
-        val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
-        val md = MessageDigest.getInstance("MD5")
-        inputStream().use { stream ->
-            var read = stream.read(buffer)
-            while (read > 0) {
-                md.update(buffer, 0, read)
-                read = stream.read(buffer)
-            }
-        }
-        md.digest().joinToString("") { "%02x".format(it) }
-    }.getOrNull()
 
     private fun deleteFiles(files: Set<File>) {
         launch(context = dispatchers.io) {
