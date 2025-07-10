@@ -132,6 +132,8 @@
     </plurals>
     <string name="status_no_files_selected">Trạng thái: Chưa chọn tệp nào</string>
     <string name="select_all">Chọn tất cả</string>
+    <string name="delete">Xóa</string>
+    <string name="original">Bản gốc</string>
     <string name="today">Hôm nay</string>
     <string name="yesterday">Hôm qua</string>
     <string name="a_year_ago">Năm ngoái</string>

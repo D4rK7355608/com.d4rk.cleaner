@@ -150,6 +150,8 @@
     </plurals>
     <string name="status_no_files_selected">Status: Inga filer valda</string>
     <string name="select_all">Välj alla</string>
+    <string name="delete">Radera</string>
+    <string name="original">Original</string>
     <string name="today">Idag</string>
     <string name="yesterday">Igår</string>
     <string name="a_year_ago">Förra året</string>

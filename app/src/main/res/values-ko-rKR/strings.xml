@@ -132,6 +132,8 @@
     </plurals>
     <string name="status_no_files_selected">상태: 선택된 파일 없음</string>
     <string name="select_all">모두 선택</string>
+    <string name="delete">삭제</string>
+    <string name="original">원본</string>
     <string name="today">오늘</string>
     <string name="yesterday">어제</string>
     <string name="a_year_ago">작년</string>

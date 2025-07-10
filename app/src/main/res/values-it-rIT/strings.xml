@@ -151,6 +151,8 @@
     </plurals>
     <string name="status_no_files_selected">Stato: Nessun file selezionato</string>
     <string name="select_all">Seleziona tutto</string>
+    <string name="delete">Elimina</string>
+    <string name="original">Originale</string>
     <string name="today">Oggi</string>
     <string name="yesterday">Ieri</string>
     <string name="a_year_ago">L\'anno scorso</string>
