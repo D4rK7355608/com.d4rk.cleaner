@@ -102,7 +102,7 @@
     <string name="hide_clean_streak_title">Masquer la série de nettoyage ?</string>
     <string name="hide_streak_action_hide">Masquer</string>
     <string name="hide_clean_streak_message">Souhaitez-vous masquer votre carte de série de nettoyage ?</string>
-    <string name="hide_for_now">Masquer pour l'instant</string>
+    <string name="hide_for_now">Masquer pour l\'instant</string>
     <string name="dont_show_again">Ne plus afficher</string>
     <string name="preference_show_streak_card">Afficher la carte de série de nettoyage</string>
     <string name="streak_quiet_banner">Vous êtes en mode silencieux. La série reprendra la semaine prochaine.</string>

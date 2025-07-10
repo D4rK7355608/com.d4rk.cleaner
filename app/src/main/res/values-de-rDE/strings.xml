@@ -84,11 +84,11 @@
     <string name="cleaner_recommends_icon_description">Empfehlungsicon</string>
     <string name="promoted_app_icon_description">Icon für %1$s</string>
     <string name="install_button_icon_description">App-Installationsicon</string>
-    <string name="move_to_trash_icon_description">Icon 'In den Papierkorb'</string>
-    <string name="delete_forever_icon_description">Icon 'Endgültig löschen'</string>
+    <string name="move_to_trash_icon_description">Icon \'In den Papierkorb\'</string>
+    <string name="delete_forever_icon_description">Icon \'Endgültig löschen\'</string>
     <string name="clean_streak_title">🧹 Wöchentliche Reinigungsserie</string>
     <string name="clean_streak_start">Beginne deine Reinigungsserie heute.</string>
-    <string name="clean_streak_in_progress">%1$d Tage in Folge — weiter so!</string>
+    <string name="clean_streak_in_progress">%1$d Tage infolge — weiter so!</string>
     <string name="clean_streak_perfect_week_message">Perfekte Woche! 💎 Verdient.</string>
     <string name="streak_reward_day1">Guter Start!</string>
     <string name="streak_reward_day3">Wusstest du, dass du nach Größe sortieren kannst?</string>
