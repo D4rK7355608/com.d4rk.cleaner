@@ -34,7 +34,7 @@ import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetPromotedAppUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetStorageInfoUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.MoveToTrashUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.UpdateTrashSizeUseCase
-import com.d4rk.cleaner.app.clean.scanner.utils.helpers.StorageUtils
+import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 import com.d4rk.cleaner.app.clean.scanner.utils.helpers.getWhatsAppMediaSummary
 import com.d4rk.cleaner.app.settings.cleaning.utils.constants.ExtensionsConstants
 import com.d4rk.cleaner.core.data.datastore.DataStore
@@ -174,7 +174,7 @@ class ScannerViewModel(
                     val updatedStorageInfo: StorageInfo = currentData.storageInfo.copy(
                         isFreeSpaceLoading = storageState is DataState.Loading,
                         isCleanedSpaceLoading = false,
-                        cleanedSpace = StorageUtils.formatSizeReadable(cleanedSpaceValue)
+                        cleanedSpace = FileSizeFormatter.format(cleanedSpaceValue)
                     )
                     val finalStorageInfo = if (storageState is DataState.Success) {
                         storageState.data.storageInfo.copy(
@@ -874,7 +874,7 @@ class ScannerViewModel(
                 _uiState.successData {
                     copy(
                         storageInfo = storageInfo.copy(
-                            cleanedSpace = StorageUtils.formatSizeReadable(cleanedSpace)
+                            cleanedSpace = FileSizeFormatter.format(cleanedSpace)
                         )
                     )
                 }

@@ -41,6 +41,7 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.apps.manager.domain.actions.AppManagerEvent
 import com.d4rk.cleaner.app.apps.manager.domain.data.model.AppManagerItem
 import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
+import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 import java.io.File
 
 @Composable
@@ -75,7 +76,8 @@ fun ApkItem(apkPath : String , viewModel : AppManagerViewModel , modifier : Modi
                     style = MaterialTheme.typography.titleMedium ,
                 )
                 Text(
-                    text = "%.2f MB".format(apkFile.length() / 1024 / 1024.toFloat()) , style = MaterialTheme.typography.bodyMedium
+                    text = FileSizeFormatter.format(apkFile.length()),
+                    style = MaterialTheme.typography.bodyMedium
                 )
             }
 

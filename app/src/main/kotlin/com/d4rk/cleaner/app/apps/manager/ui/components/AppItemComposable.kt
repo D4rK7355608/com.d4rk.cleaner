@@ -46,6 +46,7 @@ import com.d4rk.cleaner.R.string
 import com.d4rk.cleaner.app.apps.manager.domain.actions.AppManagerEvent
 import com.d4rk.cleaner.app.apps.manager.domain.data.model.AppManagerItem
 import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
+import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 import java.io.File
 
 @Composable
@@ -60,9 +61,7 @@ fun AppItemComposable(
     val apkPath: String = app.publicSourceDir
     val apkFile = File(apkPath)
     val sizeInBytes: Long = apkFile.length()
-    val sizeInKB: Long = sizeInBytes / 1024
-    val sizeInMB: Long = sizeInKB / 1024
-    val appSize: String = "%.2f MB".format(sizeInMB.toFloat())
+    val appSize: String = FileSizeFormatter.format(sizeInBytes)
     var showMenu: Boolean by remember { mutableStateOf(value = false) }
     val model: Drawable = app.loadIcon(packageManager)
     OutlinedCard(modifier = modifier) {

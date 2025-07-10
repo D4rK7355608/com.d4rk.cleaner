@@ -1,8 +1,7 @@
 package com.d4rk.cleaner.app.clean.analyze.components
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
+import com.d4rk.cleaner.core.utils.helpers.FileManagerHelper
 import android.view.SoundEffectConstants
 import android.view.View
 import androidx.compose.foundation.Image
@@ -35,7 +34,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.core.content.FileProvider
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
@@ -72,13 +70,7 @@ fun FileCard(
             .bounceClick()
             .clickable {
                 if (!file.isDirectory) {
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    val uri: Uri = FileProvider.getUriForFile(
-                        context, "${context.packageName}.fileprovider", file
-                    )
-                    intent.setDataAndType(uri, context.contentResolver.getType(uri))
-                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    context.startActivity(intent)
+                    FileManagerHelper.openFile(context, file)
                 }
             } ,
     ) {

@@ -13,6 +13,7 @@ import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleane
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.DeleteWhatsAppMediaUseCase
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.GetWhatsAppMediaSummaryUseCase
 import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
+import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import java.io.File
@@ -86,7 +87,7 @@ class WhatsappCleanerSummaryViewModel(
                         WhatsAppCleanerAction.ShowSnackbar(
                             UiSnackbar(
                                 message = UiTextHelper.DynamicString(
-                                    "Cleaned ${freed / 1024 / 1024} MB"
+                                    "Cleaned ${FileSizeFormatter.format(freed)}"
                                 )
                             )
                         )
@@ -108,7 +109,7 @@ class WhatsappCleanerSummaryViewModel(
                         WhatsAppCleanerAction.ShowSnackbar(
                             UiSnackbar(
                                 message = UiTextHelper.DynamicString(
-                                    "Cleaned ${freed / 1024 / 1024} MB"
+                                    "Cleaned ${FileSizeFormatter.format(freed)}"
                                 )
                             )
                         )
