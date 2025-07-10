@@ -165,6 +165,11 @@
     </plurals>
     <string name="status_no_files_selected">Status: Keine Dateien ausgewählt</string>
     <string name="select_all">Alle auswählen</string>
+    <string name="delete_confirmation_title">Auswahl löschen</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">%1$d Element löschen?</item>
+        <item quantity="other">%1$d Elemente löschen?</item>
+    </plurals>
     <string name="delete">Löschen</string>
     <string name="original">Original</string>
     <string name="today">Heute</string>

@@ -154,6 +154,11 @@
     </plurals>
     <string name="status_no_files_selected">الحالة: مفيش ملفات متحددة</string>
     <string name="select_all">تحديد الكل</string>
+    <string name="delete_confirmation_title">حذف المحدد</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">تحذف %1$d ملف؟</item>
+        <item quantity="other">تحذف %1$d ملف؟</item>
+    </plurals>
     <string name="delete">حذف</string>
     <string name="original">الأصلي</string>
     <string name="today">النهاردة</string>

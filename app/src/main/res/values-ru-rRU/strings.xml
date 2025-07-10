@@ -167,6 +167,11 @@
     </plurals>
     <string name="status_no_files_selected">Статус: Файлы не выбраны</string>
     <string name="select_all">Выбрать все</string>
+    <string name="delete_confirmation_title">Удалить выбранное</string>
+    <plurals name="delete_confirmation_message">
+        <item quantity="one">Удалить %1$d элемент?</item>
+        <item quantity="other">Удалить %1$d элементов?</item>
+    </plurals>
     <string name="delete">Удалить</string>
     <string name="original">Оригинал</string>
     <string name="today">Сегодня</string>
