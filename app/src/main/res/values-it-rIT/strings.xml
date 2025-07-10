@@ -35,9 +35,9 @@
     <string name="cleanup_storage_medium">C’è un bel po’ di roba qui. Una scansione potrebbe aiutare.</string>
     <string name="cleanup_storage_medium_2">Hai parecchia roba qui.</string>
     <string name="cleanup_storage_medium_3">Fai una scansione — potresti rimanere sorpreso.</string>
-    <string name="cleanup_storage_medium_4">C'e spazio, ma una pulizia non guasterebbe.</string>
+    <string name="cleanup_storage_medium_4">C\'e spazio, ma una pulizia non guasterebbe.</string>
     <string name="cleanup_storage_medium_5">Potrebbe essere il momento di una pulizia veloce.</string>
-    <string name="cleanup_storage_medium_6">C'e un po' di disordine. Vuoi scansionare?</string>
+    <string name="cleanup_storage_medium_6">C\'e un po' di disordine. Vuoi scansionare?</string>
     <string name="cleanup_storage_ok">La tua memoria sembra a posto!</string>
     <string name="cleanup_storage_ok_2">Sei nella zona sicura. Tutto ok!</string>
     <string name="cleanup_storage_ok_3">Ottimo! Hai abbastanza spazio libero.</string>
