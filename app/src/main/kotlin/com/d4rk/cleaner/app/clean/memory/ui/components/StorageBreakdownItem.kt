@@ -24,6 +24,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.foundation.clickable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -36,7 +37,12 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.scanner.utils.helpers.StorageUtils.formatSize
 
 @Composable
-fun StorageBreakdownItem(icon : String , size : Long , modifier : Modifier = Modifier) {
+fun StorageBreakdownItem(
+    icon: String,
+    size: Long,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
+) {
     val storageIcons : Map<String , ImageVector> = mapOf(
         stringResource(id = R.string.installed_apps) to Icons.Outlined.Apps ,
         stringResource(id = R.string.system) to Icons.Outlined.Android ,
@@ -48,8 +54,10 @@ fun StorageBreakdownItem(icon : String , size : Long , modifier : Modifier = Mod
     )
     Card(
         modifier = modifier
-                .padding(all = SizeConstants.ExtraSmallSize)
-                .animateContentSize()
+            .padding(all = SizeConstants.ExtraSmallSize)
+            .animateContentSize()
+            .bounceClick()
+            .clickable { onClick() }
     ) {
         Row(
             modifier = Modifier
