@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">Your clipboard may still hold private info.</string>
     <string name="clipboard_current_format">Current clipboard: %1$s</string>
     <string name="clean_clipboard">Clear Clipboard</string>
+    <string name="clipboard_cleaned">Clipboard cleaned</string>
     <string name="cleaner_recommends">Cleaner Recommends</string>
     <string name="image_optimizer_card_title">Image Optimizer</string>
     <string name="image_optimizer_card_subtitle">Compress photos without losing quality.&#10;Save space with one tap.</string>

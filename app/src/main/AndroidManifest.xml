@@ -98,6 +98,12 @@
             android:label="@string/clean_whatsapp"
             android:parentActivityName=".app.clean.whatsapp.summary.ui.WhatsAppCleanerActivity" />
 
+        <activity
+            android:name=".app.clean.clipboard.ui.ClipboardCleanerActivity"
+            android:exported="true"
+            android:label="@string/clipboard_clean"
+            android:parentActivityName=".app.main.ui.MainActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -120,6 +126,18 @@
             <meta-data
                 android:name="photopicker_activity:0:required"
                 android:value="" />
+        </service>
+
+        <service
+            android:name=".app.clean.clipboard.services.ClipboardNotificationListenerService"
+            android:exported="true"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.notification.disabled_filter_types"
+                android:value="alerting|conversations|ongoing|silent" />
         </service>
 
         <service

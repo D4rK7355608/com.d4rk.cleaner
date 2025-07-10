@@ -11,4 +11,16 @@
             android:targetPackage="com.d4rk.cleaner" />
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_shortcut_clipboard_cleaner"
+        android:shortcutId="clipboard"
+        android:shortcutShortLabel="@string/clipboard_clean">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.d4rk.cleaner.app.clean.clipboard.ui.ClipboardCleanerActivity"
+            android:targetPackage="com.d4rk.cleaner" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
 </shortcuts>

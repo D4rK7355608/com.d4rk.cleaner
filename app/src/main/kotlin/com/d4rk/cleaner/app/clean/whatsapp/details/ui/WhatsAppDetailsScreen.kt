@@ -2,6 +2,7 @@ package com.d4rk.cleaner.app.clean.whatsapp.details.ui
 
 import android.app.Activity
 import android.content.Context
+import android.view.View
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
@@ -51,6 +52,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -71,6 +73,7 @@ import com.d4rk.cleaner.app.clean.scanner.ui.components.FilePreviewCard
 import com.d4rk.cleaner.app.clean.whatsapp.details.domain.actions.WhatsAppDetailsEvent
 import com.d4rk.cleaner.app.clean.whatsapp.details.domain.model.UiWhatsAppDetailsModel
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.CustomTabLayout
+import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.DetailsStatusRow
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.dialogs.SortAlertDialog
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleanerEvent
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
@@ -117,16 +120,20 @@ fun DetailsScreen(
     val sortedFiles = detailsState.data?.files ?: emptyList()
     val suggested = detailsState.data?.suggested ?: emptyList()
 
+    val view: View = LocalView.current
+
+    val hasFiles = sortedFiles.isNotEmpty()
+
     LargeTopAppBarWithScaffold(
         actions = {
             AnimatedButtonDirection(
-                visible = true,
+                visible = hasFiles,
                 icon = if (isGrid) Icons.AutoMirrored.Filled.ViewList else Icons.Filled.GridView , contentDescription = null , onClick = {
                 detailsViewModel.onEvent(WhatsAppDetailsEvent.ToggleView)
             } , fromRight = true)
 
             AnimatedButtonDirection(  visible = true,icon = Icons.AutoMirrored.Filled.Sort , contentDescription = null , onClick = {
-                showSort = true
+                showSort = hasFiles
             } , durationMillis = 400 , fromRight = true)
 
         },
@@ -160,8 +167,6 @@ fun DetailsScreen(
                     WhatsAppMediaConstants.PROFILE_PHOTOS -> summary.profilePhotos.files
                     else -> emptyList()
                 }
-
-                val areFiles = files.isEmpty() // FIXME: Property "areFiles" is never used
 
                 LaunchedEffect(files) { detailsViewModel.onEvent(WhatsAppDetailsEvent.SetFiles(files)) }
 
@@ -263,6 +268,23 @@ fun DetailsScreen(
                                 selected = selected,
                                 isGrid = isGrid,
                                 files = list
+                            )
+                        }
+
+                        if (tabs.size <= 1) {
+                            DetailsStatusRow(
+                                modifier = Modifier.padding(horizontal = 8.dp),
+                                selectedCount = selected.size,
+                                allSelected = selected.size == sortedFiles.size && sortedFiles.isNotEmpty(),
+                                view = view,
+                                onClickSelectAll = {
+                                    if (selected.size == sortedFiles.size && sortedFiles.isNotEmpty()) {
+                                        selected.clear()
+                                    } else {
+                                        selected.clear()
+                                        selected.addAll(sortedFiles)
+                                    }
+                                }
                             )
                         }
 
