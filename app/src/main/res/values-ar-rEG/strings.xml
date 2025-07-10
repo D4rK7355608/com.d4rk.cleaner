@@ -114,6 +114,17 @@
     <string name="windows_files">ملفات ويندوز</string>
     <string name="videos">الفيديوهات</string>
     <string name="audios">الصوتيات</string>
+    <string name="statuses">الحالات</string>
+    <string name="voice_notes">ملاحظات صوتية</string>
+    <string name="video_notes">ملاحظات فيديو</string>
+    <string name="gifs">ملفات GIF</string>
+    <string name="wallpapers">الخلفيات</string>
+    <string name="stickers">الملصقات</string>
+    <string name="profile_photos">صور الملف الشخصي</string>
+    <string name="received">الواردة</string>
+    <string name="sent">المرسلة</string>
+    <string name="private_tab">خاص</string>
+    <string name="can_be_freed">يمكن تفريغه</string>
     <string name="empty_folders">مجلدات فاضية</string>
     <string name="duplicates">ملفات مكررة</string>
     <plurals name="status_selected_files">

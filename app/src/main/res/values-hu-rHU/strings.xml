@@ -131,6 +131,17 @@
     <string name="windows_files">Windows fájlok</string>
     <string name="videos">Videók</string>
     <string name="audios">Hangfájlok</string>
+    <string name="statuses">Állapotok</string>
+    <string name="voice_notes">Hangjegyzetek</string>
+    <string name="video_notes">Videójegyzetek</string>
+    <string name="gifs">GIF-ek</string>
+    <string name="wallpapers">Háttérképek</string>
+    <string name="stickers">Matricák</string>
+    <string name="profile_photos">Profilképek</string>
+    <string name="received">Fogadott</string>
+    <string name="sent">Elküldött</string>
+    <string name="private_tab">Privát</string>
+    <string name="can_be_freed">Felszabadítható</string>
     <string name="empty_folders">Üres mappák</string>
     <string name="duplicates">Másolatú fájlok</string>
     <plurals name="status_selected_files">

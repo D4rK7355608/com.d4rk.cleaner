@@ -114,6 +114,17 @@
     <string name="windows_files">Файлове на Windows</string>
     <string name="videos">Видеоклипове</string>
     <string name="audios">Аудио файлове</string>
+    <string name="statuses">Статуси</string>
+    <string name="voice_notes">Гласови бележки</string>
+    <string name="video_notes">Видео бележки</string>
+    <string name="gifs">GIF файлове</string>
+    <string name="wallpapers">Тапети</string>
+    <string name="stickers">Стикери</string>
+    <string name="profile_photos">Профилни снимки</string>
+    <string name="received">Получени</string>
+    <string name="sent">Изпратени</string>
+    <string name="private_tab">Лични</string>
+    <string name="can_be_freed">Може да се освободи</string>
     <string name="empty_folders">Празни папки</string>
     <string name="duplicates">Дублиращи файлове</string>
     <plurals name="status_selected_files">

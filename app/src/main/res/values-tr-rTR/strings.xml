@@ -131,6 +131,17 @@
     <string name="windows_files">Windows Dosyaları</string>
     <string name="videos">Videolar</string>
     <string name="audios">Ses Dosyaları</string>
+    <string name="statuses">Durumlar</string>
+    <string name="voice_notes">Sesli notlar</string>
+    <string name="video_notes">Video notlar</string>
+    <string name="gifs">GIF'ler</string>
+    <string name="wallpapers">Duvar kağıtları</string>
+    <string name="stickers">Çıkartmalar</string>
+    <string name="profile_photos">Profil fotoğrafları</string>
+    <string name="received">Alınan</string>
+    <string name="sent">Gönderilen</string>
+    <string name="private_tab">Özel</string>
+    <string name="can_be_freed">Boşaltılabilir</string>
     <string name="empty_folders">Boş Klasörler</string>
     <string name="duplicates">Yinelenen dosyalar</string>
     <plurals name="status_selected_files">

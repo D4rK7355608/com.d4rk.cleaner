@@ -114,6 +114,17 @@
     <string name="windows_files">উইন্ডোজ ফাইলসমূহ</string>
     <string name="videos">ভিডিওসমূহ</string>
     <string name="audios">অডিওসমূহ</string>
+    <string name="statuses">স্ট্যাটাসসমূহ</string>
+    <string name="voice_notes">ভয়েস নোটসমূহ</string>
+    <string name="video_notes">ভিডিও নোটসমূহ</string>
+    <string name="gifs">GIF সমূহ</string>
+    <string name="wallpapers">ওয়ালপেপারসমূহ</string>
+    <string name="stickers">স্টিকারসমূহ</string>
+    <string name="profile_photos">প্রোফাইল ফটোসমূহ</string>
+    <string name="received">প্রাপ্ত</string>
+    <string name="sent">প্রেরিত</string>
+    <string name="private_tab">ব্যক্তিগত</string>
+    <string name="can_be_freed">মুক্ত করা যাবে</string>
     <string name="empty_folders">খালি ফোল্ডারসমূহ</string>
     <string name="duplicates">সদৃশ ফাইল</string>
     <plurals name="status_selected_files">

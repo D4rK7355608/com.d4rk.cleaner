@@ -114,6 +114,17 @@
     <string name="windows_files">ไฟล์ Windows</string>
     <string name="videos">วิดีโอ</string>
     <string name="audios">ไฟล์เสียง</string>
+    <string name="statuses">สถานะ</string>
+    <string name="voice_notes">บันทึกเสียง</string>
+    <string name="video_notes">บันทึกวิดีโอ</string>
+    <string name="gifs">GIF</string>
+    <string name="wallpapers">วอลเปเปอร์</string>
+    <string name="stickers">สติกเกอร์</string>
+    <string name="profile_photos">รูปโปรไฟล์</string>
+    <string name="received">ที่ได้รับ</string>
+    <string name="sent">ที่ส่ง</string>
+    <string name="private_tab">ส่วนตัว</string>
+    <string name="can_be_freed">สามารถล้างได้</string>
     <string name="empty_folders">โฟลเดอร์ว่าง</string>
     <string name="duplicates">ไฟล์ที่ซ้ำกัน</string>
     <plurals name="status_selected_files">

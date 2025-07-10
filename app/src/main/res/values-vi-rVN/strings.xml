@@ -114,6 +114,17 @@
     <string name="windows_files">Tệp Windows</string>
     <string name="videos">Video</string>
     <string name="audios">Âm thanh</string>
+    <string name="statuses">Trạng thái</string>
+    <string name="voice_notes">Ghi chú thoại</string>
+    <string name="video_notes">Ghi chú video</string>
+    <string name="gifs">GIF</string>
+    <string name="wallpapers">Hình nền</string>
+    <string name="stickers">Nhãn dán</string>
+    <string name="profile_photos">Ảnh hồ sơ</string>
+    <string name="received">Đã nhận</string>
+    <string name="sent">Đã gửi</string>
+    <string name="private_tab">Riêng tư</string>
+    <string name="can_be_freed">Có thể giải phóng</string>
     <string name="empty_folders">Thư mục trống</string>
     <string name="duplicates">Các tập tin trùng lặp</string>
     <plurals name="status_selected_files">

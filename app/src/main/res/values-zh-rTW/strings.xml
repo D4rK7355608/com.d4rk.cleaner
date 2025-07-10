@@ -114,6 +114,17 @@
     <string name="windows_files">Windows 檔案</string>
     <string name="videos">影片</string>
     <string name="audios">音訊</string>
+    <string name="statuses">狀態</string>
+    <string name="voice_notes">語音筆記</string>
+    <string name="video_notes">影片筆記</string>
+    <string name="gifs">GIF</string>
+    <string name="wallpapers">桌布</string>
+    <string name="stickers">貼圖</string>
+    <string name="profile_photos">大頭貼照</string>
+    <string name="received">已接收</string>
+    <string name="sent">已傳送</string>
+    <string name="private_tab">私人</string>
+    <string name="can_be_freed">可釋出</string>
     <string name="empty_folders">空資料夾</string>
     <string name="duplicates">重複檔案</string>
     <plurals name="status_selected_files">

@@ -114,6 +114,17 @@
     <string name="windows_files">Mga Windows File</string>
     <string name="videos">Mga Video</string>
     <string name="audios">Mga Audio</string>
+    <string name="statuses">Mga Status</string>
+    <string name="voice_notes">Mga Voice Note</string>
+    <string name="video_notes">Mga Video Note</string>
+    <string name="gifs">Mga GIF</string>
+    <string name="wallpapers">Mga Wallpaper</string>
+    <string name="stickers">Mga Sticker</string>
+    <string name="profile_photos">Mga Larawan ng Profile</string>
+    <string name="received">Natanggap</string>
+    <string name="sent">Naipadala</string>
+    <string name="private_tab">Pribado</string>
+    <string name="can_be_freed">Maaaring i-free</string>
     <string name="empty_folders">Mga Walang Lamang Folder</string>
     <string name="duplicates">Dobleng mga file</string>
     <plurals name="status_selected_files">

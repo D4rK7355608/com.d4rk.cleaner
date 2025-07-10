@@ -131,6 +131,17 @@
     <string name="windows_files">Archivos de Windows</string>
     <string name="videos">Videos</string>
     <string name="audios">Audios</string>
+    <string name="statuses">Estados</string>
+    <string name="voice_notes">Notas de voz</string>
+    <string name="video_notes">Notas de video</string>
+    <string name="gifs">GIFs</string>
+    <string name="wallpapers">Fondos de pantalla</string>
+    <string name="stickers">Stickers</string>
+    <string name="profile_photos">Fotos de perfil</string>
+    <string name="received">Recibidos</string>
+    <string name="sent">Enviados</string>
+    <string name="private_tab">Privado</string>
+    <string name="can_be_freed">Se puede liberar</string>
     <string name="empty_folders">Carpetas vacías</string>
     <string name="duplicates">Archivos duplicados</string>
     <plurals name="status_selected_files">

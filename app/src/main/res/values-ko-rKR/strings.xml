@@ -114,6 +114,17 @@
     <string name="windows_files">Windows 파일</string>
     <string name="videos">동영상</string>
     <string name="audios">오디오</string>
+    <string name="statuses">상태</string>
+    <string name="voice_notes">음성 노트</string>
+    <string name="video_notes">비디오 노트</string>
+    <string name="gifs">GIF</string>
+    <string name="wallpapers">배경화면</string>
+    <string name="stickers">스티커</string>
+    <string name="profile_photos">프로필 사진</string>
+    <string name="received">받은</string>
+    <string name="sent">보낸</string>
+    <string name="private_tab">비공개</string>
+    <string name="can_be_freed">해제 가능</string>
     <string name="empty_folders">빈 폴더</string>
     <string name="duplicates">중복 파일</string>
     <plurals name="status_selected_files">
