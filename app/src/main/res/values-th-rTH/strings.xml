@@ -72,6 +72,15 @@
     <string name="move_to_trash_title">ย้ายไปที่ถังขยะ</string>
     <string name="move_to_trash_message">คุณแน่ใจหรือไม่ว่าต้องการย้ายไฟล์เหล่านี้ไปที่ถังขยะ?</string>
     <string name="quick_scan">สแกนด่วน</string>
+    <string name="quick_scan_cleaned_format">คุณทำความสะอาด %1$s ในสัปดาห์นี้</string>
+    <string name="quick_scan_summary_tip">ดูดีมาก! ต้องการสแกนอีกครั้งเพื่อเพิ่มพื้นที่ไหม?</string>
+    <string name="quick_scan_summary_tip_2">ทุกอย่างเรียบร้อย — แต่ยังมีพื้นที่ให้ทำได้มากกว่านี้เสมอ</string>
+    <string name="quick_scan_summary_tip_3">รู้สึกสดชื่นไหม? มาตรวจสอบอีกครั้ง</string>
+    <string name="quick_scan_summary_tip_4">อาจบีบพื้นที่เพิ่มได้อีกนิดหน่อย</string>
+    <string name="quick_scan_summary_tip_5">ยังมีพื้นที่ให้ปรับแต่ง ต้องการสแกนอีกไหม?</string>
+    <string name="quick_scan_summary_tip_6">เยี่ยมมาก! พร้อมสำหรับการกวาดรอบสองหรือยัง?</string>
+    <string name="quick_scan_summary_tip_7">Cleaner คิดว่ายังมีอะไรให้ทำอีก!</string>
+    <string name="quick_scan_summary_tip_8">ทุกๆ พื้นที่มีค่า มาสแกนอีกครั้งกันเถอะ</string>
     <string name="apks">ไฟล์ APK</string>
     <string name="archives">ไฟล์เก็บถาวร</string>
     <string name="fonts">แบบอักษร</string>

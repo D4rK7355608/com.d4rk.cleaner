@@ -72,6 +72,15 @@
     <string name="move_to_trash_title">ゴミ箱に移動</string>
     <string name="move_to_trash_message">これらのファイルをゴミ箱に移動しますか？</string>
     <string name="quick_scan">クイックスキャン</string>
+    <string name="quick_scan_cleaned_format">今週は %1$s をクリーンしました</string>
+    <string name="quick_scan_summary_tip">いい感じです！ さらに空き容量を探してもう一度スキャンしますか？</string>
+    <string name="quick_scan_summary_tip_2">問題なし — でもまだ余地があります。</string>
+    <string name="quick_scan_summary_tip_3">すっきりしましたか？ もう一度確認しましょう。</string>
+    <string name="quick_scan_summary_tip_4">もう少し空き容量を絞り出せるかもしれません。</string>
+    <string name="quick_scan_summary_tip_5">最適化の余地がまだあります。もう一度スキャンしますか？</string>
+    <string name="quick_scan_summary_tip_6">素晴らしい！ 二回目のスキャンの準備はできましたか？</string>
+    <string name="quick_scan_summary_tip_7">Cleaner はまだやることがあると思っています！</string>
+    <string name="quick_scan_summary_tip_8">わずかな容量も大切です。もう一度スキャンしましょう。</string>
     <string name="apks">APK</string>
     <string name="archives">アーカイブ</string>
     <string name="fonts">フォント</string>

@@ -72,6 +72,15 @@
     <string name="move_to_trash_title">Ilipat sa Trash</string>
     <string name="move_to_trash_message">Sigurado ka bang gusto mong ilipat ang mga file na ito sa trash?</string>
     <string name="quick_scan">Mabilisang Scan</string>
+    <string name="quick_scan_cleaned_format">Nilinis mo ang %1$s ngayong linggo</string>
+    <string name="quick_scan_summary_tip">Mukhang maayos! Gusto mo bang mag-scan ulit para sa dagdag na espasyo?</string>
+    <string name="quick_scan_summary_tip_2">Walang natira — pero laging may puwang pa.</string>
+    <string name="quick_scan_summary_tip_3">Feeling fresh? Double-check natin.</string>
+    <string name="quick_scan_summary_tip_4">Baka makadagdag ka pa ng kaunting espasyo.</string>
+    <string name="quick_scan_summary_tip_5">May puwang pa para i-optimize. Gusto mo bang mag-scan muli?</string>
+    <string name="quick_scan_summary_tip_6">Galing! Handa na ba para sa pangalawang pasada?</string>
+    <string name="quick_scan_summary_tip_7">Sa tingin ni Cleaner may magagawa pa!</string>
+    <string name="quick_scan_summary_tip_8">Bawat espasyo mahalaga. Scan tayo ulit.</string>
     <string name="apks">Mga APK</string>
     <string name="archives">Mga Archive</string>
     <string name="fonts">Mga Font</string>

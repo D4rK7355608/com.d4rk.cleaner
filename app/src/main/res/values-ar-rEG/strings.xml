@@ -72,6 +72,15 @@
     <string name="move_to_trash_title">نقل لسلة المهملات</string>
     <string name="move_to_trash_message">متأكد إنك عايز تنقل الملفات دي لسلة المهملات؟</string>
     <string name="quick_scan">فحص سريع</string>
+    <string name="quick_scan_cleaned_format">لقد نظفت %1$s هذا الأسبوع</string>
+    <string name="quick_scan_summary_tip">تبدو الأمور جيدة! هل تريد الفحص مجددًا للمزيد من المساحة؟</string>
+    <string name="quick_scan_summary_tip_2">كل شيء نظيف — لكن هناك دائمًا مجال للمزيد.</string>
+    <string name="quick_scan_summary_tip_3">تشعر بالانتعاش؟ دعنا نتحقق مرة أخرى.</string>
+    <string name="quick_scan_summary_tip_4">قد تتمكن من توفير بعض المساحة الإضافية.</string>
+    <string name="quick_scan_summary_tip_5">ما زال هناك مجال للتحسين. هل تريد الفحص مرة أخرى؟</string>
+    <string name="quick_scan_summary_tip_6">عمل رائع! مستعد لجولة ثانية؟</string>
+    <string name="quick_scan_summary_tip_7">يعتقد Cleaner أنه ما زال هناك المزيد للقيام به!</string>
+    <string name="quick_scan_summary_tip_8">كل ميغابايت مهم. دعنا نفحص مجددًا.</string>
     <string name="apks">ملفات APK</string>
     <string name="archives">الملفات المضغوطة</string>
     <string name="fonts">الخطوط</string>

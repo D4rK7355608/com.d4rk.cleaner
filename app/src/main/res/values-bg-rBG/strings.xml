@@ -72,6 +72,15 @@
     <string name="move_to_trash_title">Преместване в кошчето</string>
     <string name="move_to_trash_message">Сигурни ли сте, че искате да преместите тези файлове в кошчето?</string>
     <string name="quick_scan">Бързо сканиране</string>
+    <string name="quick_scan_cleaned_format">Изчистихте %1$s тази седмица</string>
+    <string name="quick_scan_summary_tip">Изглежда добре! Искате ли да сканирате отново за още място?</string>
+    <string name="quick_scan_summary_tip_2">Всичко е чисто — но винаги има място за още.</string>
+    <string name="quick_scan_summary_tip_3">Чувствате се освежени? Нека проверим отново.</string>
+    <string name="quick_scan_summary_tip_4">Може би ще успеете да освободите още малко място.</string>
+    <string name="quick_scan_summary_tip_5">Има още какво да се оптимизира. Да сканираме пак?</string>
+    <string name="quick_scan_summary_tip_6">Страхотна работа! Готови ли сте за втори кръг?</string>
+    <string name="quick_scan_summary_tip_7">Cleaner смята, че има още работа!</string>
+    <string name="quick_scan_summary_tip_8">Всяко място е от значение. Нека сканираме отново.</string>
     <string name="apks">APK файлове</string>
     <string name="archives">Архиви</string>
     <string name="fonts">Шрифтове</string>

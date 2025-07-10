@@ -72,6 +72,15 @@
     <string name="move_to_trash_title">휴지통으로 이동</string>
     <string name="move_to_trash_message">이 파일을 휴지통으로 이동하시겠습니까?</string>
     <string name="quick_scan">빠른 검사</string>
+    <string name="quick_scan_cleaned_format">이번 주에 %1$s을(를) 정리했어요</string>
+    <string name="quick_scan_summary_tip">좋아 보이네요! 공간 확보를 위해 다시 스캔할까요?</string>
+    <string name="quick_scan_summary_tip_2">모두 깔끔합니다 — 하지만 더 여유를 만들 수 있어요.</string>
+    <string name="quick_scan_summary_tip_3">상쾌한 기분인가요? 다시 한번 확인해봅시다.</string>
+    <string name="quick_scan_summary_tip_4">조금 더 공간을 짜낼 수 있을지도 몰라요.</string>
+    <string name="quick_scan_summary_tip_5">아직 최적화할 여지가 있습니다. 다시 스캔할까요?</string>
+    <string name="quick_scan_summary_tip_6">잘하셨어요! 두 번째 스윕 준비되셨나요?</string>
+    <string name="quick_scan_summary_tip_7">Cleaner는 아직 할 일이 더 있다고 생각해요!</string>
+    <string name="quick_scan_summary_tip_8">작은 공간도 소중합니다. 다시 스캔해요.</string>
     <string name="apks">APK</string>
     <string name="archives">압축 파일</string>
     <string name="fonts">글꼴</string>

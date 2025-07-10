@@ -72,6 +72,15 @@
     <string name="move_to_trash_title">Chuyển vào thùng rác</string>
     <string name="move_to_trash_message">Bạn có chắc chắn muốn chuyển các tệp này vào thùng rác không?</string>
     <string name="quick_scan">Quét nhanh</string>
+    <string name="quick_scan_cleaned_format">Bạn đã dọn %1$s tuần này</string>
+    <string name="quick_scan_summary_tip">Trông ổn! Quét lại để có thêm dung lượng nhé?</string>
+    <string name="quick_scan_summary_tip_2">Đã sạch sẽ — nhưng luôn có chỗ để làm thêm.</string>
+    <string name="quick_scan_summary_tip_3">Cảm thấy tươi mới? Hãy kiểm tra lại.</string>
+    <string name="quick_scan_summary_tip_4">Bạn có thể lấy thêm chút dung lượng nữa.</string>
+    <string name="quick_scan_summary_tip_5">Vẫn còn chỗ để tối ưu. Quét lại nhé?</string>
+    <string name="quick_scan_summary_tip_6">Làm tốt lắm! Sẵn sàng quét lần hai chứ?</string>
+    <string name="quick_scan_summary_tip_7">Cleaner nghĩ vẫn còn việc phải làm!</string>
+    <string name="quick_scan_summary_tip_8">Mỗi chút đều quý. Quét lại thôi.</string>
     <string name="apks">Tệp APK</string>
     <string name="archives">Tệp nén</string>
     <string name="fonts">Phông chữ</string>
