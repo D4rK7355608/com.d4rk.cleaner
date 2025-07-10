@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">剪貼簿仍可能含有私人資訊。</string>
     <string name="clipboard_current_format">目前剪貼簿：%1$s</string>
     <string name="clean_clipboard">清除剪貼簿</string>
+    <string name="clipboard_cleaned">剪貼板已清潔</string>
     <string name="cleaner_recommends">Cleaner 推薦</string>
     <string name="image_optimizer_card_title">影像最佳化</string>
     <string name="image_optimizer_card_subtitle">壓縮照片而不失去品質。&#10;一鍵釋放空間。</string>

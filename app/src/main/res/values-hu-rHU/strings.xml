@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">A vágólapon még lehetnek bizalmas adatok.</string>
     <string name="clipboard_current_format">Aktuális vágólap: %1$s</string>
     <string name="clean_clipboard">Vágólap törlése</string>
+    <string name="clipboard_cleaned">A vágólapot megtisztították</string>
     <string name="cleaner_recommends">A Cleaner ajánlja</string>
     <string name="image_optimizer_card_title">Képoptimalizáló</string>
     <string name="image_optimizer_card_subtitle">Tömörítsd a fotókat minőségromlás nélkül.&#10;Takaríts meg helyet egyetlen érintéssel.</string>

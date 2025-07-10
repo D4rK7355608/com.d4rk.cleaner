@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">Ditt urklipp kan fortfarande innehålla privat info.</string>
     <string name="clipboard_current_format">Aktuellt urklipp: %1$s</string>
     <string name="clean_clipboard">Rensa urklipp</string>
+    <string name="clipboard_cleaned">Urklipp har rengjorts</string>
     <string name="cleaner_recommends">Cleaner rekommenderar</string>
     <string name="image_optimizer_card_title">Bildoptimerare</string>
     <string name="image_optimizer_card_subtitle">Komprimera foton utan kvalitetsförlust.&#10;Spara utrymme med ett tryck.</string>

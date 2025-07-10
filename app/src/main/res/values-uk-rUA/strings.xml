@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">У вашому буфері можуть залишатися приватні дані.</string>
     <string name="clipboard_current_format">Поточний буфер: %1$s</string>
     <string name="clean_clipboard">Очистити буфер обміну</string>
+    <string name="clipboard_cleaned">Буфер обміну був очищений</string>
     <string name="cleaner_recommends">Рекомендації Cleaner</string>
     <string name="image_optimizer_card_title">Оптимізатор зображень</string>
     <string name="image_optimizer_card_subtitle">Стискайте фото без втрати якості.&#10;Заощаджуйте місце одним дотиком.</string>

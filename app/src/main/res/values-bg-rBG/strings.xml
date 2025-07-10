@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">В клипборда може да има поверителна информация.</string>
     <string name="clipboard_current_format">Текущ клипборд: %1$s</string>
     <string name="clean_clipboard">Изчисти клипборда</string>
+    <string name="clipboard_cleaned">Клипбордът е почистен</string>
     <string name="cleaner_recommends">Cleaner препоръчва</string>
     <string name="image_optimizer_card_title">Оптимизатор на изображения</string>
     <string name="image_optimizer_card_subtitle">Компресирайте снимки без загуба на качество.&#10;Спестете място с едно докосване.</string>

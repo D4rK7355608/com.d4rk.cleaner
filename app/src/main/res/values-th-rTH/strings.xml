@@ -132,6 +132,7 @@
     <string name="clipboard_card_subtitle">คลิปบอร์ดของคุณอาจยังมีข้อมูลส่วนตัวอยู่</string>
     <string name="clipboard_current_format">คลิปบอร์ดปัจจุบัน: %1$s</string>
     <string name="clean_clipboard">ล้างคลิปบอร์ด</string>
+    <string name="clipboard_cleaned">คลิปบอร์ดได้รับการทำความสะอาด</string>
     <string name="cleaner_recommends">คำแนะนำจาก Cleaner</string>
     <string name="image_optimizer_card_title">ตัวเพิ่มประสิทธิภาพรูปภาพ</string>
     <string name="image_optimizer_card_subtitle">บีบอัดรูปภาพโดยไม่ลดคุณภาพ&#10;ประหยัดพื้นที่ด้วยการแตะครั้งเดียว</string>
