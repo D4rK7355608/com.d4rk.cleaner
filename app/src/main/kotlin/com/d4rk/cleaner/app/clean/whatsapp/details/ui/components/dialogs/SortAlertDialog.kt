@@ -12,7 +12,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Sort
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.RadioButton
-import androidx.compose.material3.Switch
+import com.d4rk.android.libs.apptoolkit.core.ui.components.switches.CustomSwitch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import com.d4rk.android.libs.apptoolkit.core.ui.components.fields.DatePickerTextField
@@ -117,7 +117,7 @@ fun SortAlertDialog(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(text = stringResource(id = R.string.descending), modifier = Modifier.weight(1f))
-                    Switch(
+                    CustomSwitch(
                         checked = isDescending.value,
                         onCheckedChange = { isDescending.value = it }
                     )
