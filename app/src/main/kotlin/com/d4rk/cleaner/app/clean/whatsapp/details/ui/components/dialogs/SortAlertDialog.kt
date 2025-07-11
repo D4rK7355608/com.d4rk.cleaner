@@ -32,6 +32,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.SortType
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.ReadOnlyDateTextField
@@ -109,7 +111,7 @@ fun SortAlertDialog(
                 }
 
                 if (selected.value == SortType.DATE) {
-                    Spacer(modifier = Modifier.height(8.dp))
+                    SmallVerticalSpacer()
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalAlignment = Alignment.CenterVertically
@@ -130,7 +132,7 @@ fun SortAlertDialog(
                     }
                 }
 
-                Spacer(modifier = Modifier.height(16.dp))
+                LargeVerticalSpacer()
 
                 Row(
                     modifier = Modifier

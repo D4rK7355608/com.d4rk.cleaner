@@ -32,8 +32,11 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.carousel.DotsIndicato
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.hapticPagerSwipe
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.shimmerEffect
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.MediumVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallHorizontalSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ExtraSmallHorizontalSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ExtraTinyVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import kotlin.math.absoluteValue
 
@@ -140,7 +143,7 @@ private fun CarouselShimmerCard(pageOffset: Float) {
                     .shimmerEffect()
             )
 
-            Spacer(modifier = Modifier.height(SizeConstants.MediumSize))
+            MediumVerticalSpacer()
 
             Spacer(
                 modifier = Modifier
@@ -150,7 +153,7 @@ private fun CarouselShimmerCard(pageOffset: Float) {
                     .shimmerEffect()
             )
 
-            Spacer(modifier = Modifier.height(SizeConstants.MediumSize))
+            MediumVerticalSpacer()
 
             Spacer(
                 modifier = Modifier
@@ -160,7 +163,7 @@ private fun CarouselShimmerCard(pageOffset: Float) {
                     .shimmerEffect()
             )
 
-            Spacer(modifier = Modifier.height(SizeConstants.SmallSize))
+            SmallVerticalSpacer()
 
             Spacer(
                 modifier = Modifier
@@ -170,7 +173,7 @@ private fun CarouselShimmerCard(pageOffset: Float) {
                     .shimmerEffect()
             )
 
-            Spacer(modifier = Modifier.height(SizeConstants.SmallSize))
+            SmallVerticalSpacer()
 
             Spacer(
                 modifier = Modifier
@@ -231,7 +234,7 @@ private fun StorageBreakdownItemShimmer(modifier: Modifier = Modifier) {
                     .shimmerEffect()
             )
 
-            Spacer(modifier = Modifier.padding(horizontal = SizeConstants.ExtraSmallSize))
+            ExtraSmallHorizontalSpacer()
 
             Column {
                 Spacer(
@@ -241,7 +244,7 @@ private fun StorageBreakdownItemShimmer(modifier: Modifier = Modifier) {
                         .clip(RoundedCornerShape(SizeConstants.ExtraSmallSize))
                         .shimmerEffect()
                 )
-                Spacer(modifier = Modifier.padding(vertical = SizeConstants.ExtraTinySize))
+                ExtraTinyVerticalSpacer()
                 Spacer(
                     modifier = Modifier
                         .fillMaxWidth(0.6f)

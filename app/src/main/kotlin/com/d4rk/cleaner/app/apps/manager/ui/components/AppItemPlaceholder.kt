@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ExtraSmallVerticalSpacer
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -55,7 +56,7 @@ fun AppItemPlaceholder(modifier: Modifier = Modifier) {
                             .shimmerEffect()
                     )
 
-                    Spacer(modifier = Modifier.height(SizeConstants.SmallSize / 2))
+                    ExtraSmallVerticalSpacer()
 
                     Box(
                         modifier = Modifier

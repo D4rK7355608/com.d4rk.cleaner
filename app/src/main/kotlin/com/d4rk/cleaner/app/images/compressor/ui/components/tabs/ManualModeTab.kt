@@ -30,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ExtraSmallVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.images.compressor.domain.data.model.ui.UiImageOptimizerState
@@ -100,7 +101,7 @@ fun ManualModeTab(viewModel : ImageOptimizerViewModel) {
         Text(
             text = stringResource(id = R.string.quality) , style = MaterialTheme.typography.bodyLarge
         )
-        Spacer(modifier = Modifier.height(height = SizeConstants.ExtraSmallSize))
+        ExtraSmallVerticalSpacer()
         Row(
             modifier = Modifier.fillMaxWidth() , verticalAlignment = Alignment.CenterVertically
         ) {
