@@ -9,6 +9,7 @@ plugins {
     alias(notation= libs.plugins.googleFirebase)
     alias(notation= libs.plugins.compose.compiler)
     alias(notation= libs.plugins.about.libraries)
+    alias(notation= libs.plugins.mannodermaus)
 }
 
 android {
@@ -111,6 +112,12 @@ android {
             enable = true
         }
     }
+
+    testOptions {
+        unitTests.all {
+            it.useJUnitPlatform()
+        }
+    }
 }
 
 dependencies {
@@ -126,4 +133,8 @@ dependencies {
     implementation(dependencyNotation = libs.compressor)
     implementation(dependencyNotation = libs.coil3.coil.video)
     implementation(dependencyNotation = libs.lottie.compose)
+
+    testImplementation(dependencyNotation = libs.bundles.testing)
+    debugImplementation(dependencyNotation = libs.androidx.ui.test.manifest)
+    androidTestImplementation(dependencyNotation = libs.bundles.androidTesting)
 }

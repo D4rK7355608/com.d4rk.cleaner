@@ -8,12 +8,49 @@ coilVideoVersion = "3.2.0"
 compressor = "3.0.1"
 constraintlayoutCompose = "1.1.1"
 lottie = "6.6.7"
+junit = "4.13.2"
+testRunner = "1.6.2"
+junitVersion = "1.2.1"
+junittest = "3.6.1"
+mannodermaus = "1.13.1.0"
+willow = "0.28.1"
+mockk = "1.14.4"
+jupiter = "5.13.2"
+testCorutines = "1.10.2"
+testTurbine = "1.2.1"
+testManifestTestJunit4Android = "1.8.3"
+truth = "1.6.0"
+koin = "3.5.3"
 
 [libraries]
 androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
 coil3-coil-video = { module = "io.coil-kt.coil3:coil-video", version.ref = "coilVideoVersion" }
 compressor = { module = "id.zelory:compressor", version.ref = "compressor" }
 lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
+
+# Testing
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "testRunner" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "junittest" }
+jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "jupiter" }
+jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "jupiter" }
+jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "jupiter" }
+mockk-api = { module = "io.mockk:mockk", version.ref = "mockk" }
+test-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "testCorutines" }
+instrumentation-koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+instrumentation-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "testManifestTestJunit4Android" }
+willow-assert = { module = "com.willowtreeapps.assertk:assertk", version.ref = "willow" }
+test-turbine = { module = "app.cash.turbine:turbine", version.ref = "testTurbine" }
+mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
+test-koin = { module = "io.insert-koin:koin-test", version.ref = "koin" }
+test-koin-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koin" }
+test-koin-junit5 = { module = "io.insert-koin:koin-test-junit5", version.ref = "koin" }
+androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitVersion" }
+androidx-ui-test-junit4-android = { group = "androidx.compose.ui", name = "ui-test-junit4-android", version.ref = "testManifestTestJunit4Android" }
+androidx-truth = { module = "androidx.test.ext:truth", version.ref = "truth" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -23,3 +60,38 @@ googlePlayServices = { id = "com.google.gms.google-services", version.ref = "goo
 googleFirebase = { id = "com.google.firebase.crashlytics", version.ref = "google-firebase-crashlytics" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 about-libraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutlibraries" }
+mannodermaus = { id = "de.mannodermaus.android-junit5", version.ref = "mannodermaus" }
+
+[bundles]
+androidTesting = [
+    "androidx-espresso-core",
+    "androidx-junit",
+    "androidx-junit-ktx",
+    "androidx-truth",
+    "androidx-test-runner",
+    "mockk-api",
+    "test-kotlin-coroutines",
+    "instrumentation-koin-compose",
+    "test-koin",
+    "willow-assert",
+    "test-turbine",
+    "instrumentation-test-manifest",
+    "androidx-ui-test-junit4-android",
+    "androidx-ui-test-junit4",
+]
+
+testing = [
+    "junit",
+    "jupiter-api",
+    "jupiter-engine",
+    "jupiter-params",
+    "willow-assert",
+    "mockk-api",
+    "mockk-android",
+    "test-kotlin-coroutines",
+    "test-turbine",
+    "test-koin",
+    "test-koin-junit4",
+    "test-koin-junit5"
+]
+
