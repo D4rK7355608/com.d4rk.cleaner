@@ -24,7 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
-import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 
@@ -67,14 +66,10 @@ fun WeeklyCleanStreakCard(
                 )
                 IconButton(
                     modifier = Modifier.align(Alignment.CenterEnd),
-                    onClick = onDismiss
-                ) {
-                    Icon(
-                        modifier = Modifier.size(SizeConstants.ButtonIconSize),
-                        imageVector = Icons.Outlined.Close,
-                        contentDescription = null
-                    )
-                }
+                    onClick = onDismiss,
+                    icon = Icons.Outlined.Close,
+                    iconContentDescription = null
+                )
             }
             Text(
                 text = message,

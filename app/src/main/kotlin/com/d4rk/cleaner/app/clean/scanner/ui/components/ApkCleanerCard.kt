@@ -17,6 +17,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Android
 import androidx.compose.material.icons.outlined.DeleteSweep
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
@@ -117,7 +118,7 @@ fun ApkCleanerCard(
             if (isLoading) {
                 FilledTonalButton(
                     onClick = { onCleanClick(apkFiles) },
-                    modifier = Modifier.align(Alignment.End).bounceClick(),
+                    modifier = Modifier.align(Alignment.End),
                     enabled = false,
                 ) {
                     CircularProgressIndicator(
