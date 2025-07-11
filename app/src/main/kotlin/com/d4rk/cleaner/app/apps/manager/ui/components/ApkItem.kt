@@ -17,7 +17,6 @@ import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -35,6 +34,7 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.IconButton
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
@@ -82,12 +82,11 @@ fun ApkItem(apkPath : String , viewModel : AppManagerViewModel , modifier : Modi
             }
 
             Box {
-                IconButton(modifier = Modifier.bounceClick() , onClick = {
-                    view.playSoundEffect(SoundEffectConstants.CLICK)
-                    showMenu = true
-                }) {
-                    Icon(modifier = Modifier.size(SizeConstants.ButtonIconSize), imageVector = Icons.Outlined.MoreVert, contentDescription = null)
-                }
+                IconButton(
+                    icon = Icons.Outlined.MoreVert,
+                    onClick = {
+                        showMenu = true
+                    })
 
                 DropdownMenu(expanded = showMenu , onDismissRequest = {
                     showMenu = false

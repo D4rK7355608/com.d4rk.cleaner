@@ -58,15 +58,13 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
-import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.AnimatedButtonDirection
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.AnimatedIconButtonDirection
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.IconButtonWithText
 import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
-import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
-import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
-import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.scanner.ui.components.FileListItem
 import com.d4rk.cleaner.app.clean.scanner.ui.components.FilePreviewCard
@@ -126,13 +124,13 @@ fun DetailsScreen(
 
     LargeTopAppBarWithScaffold(
         actions = {
-            AnimatedButtonDirection(
+            AnimatedIconButtonDirection(
                 visible = hasFiles,
                 icon = if (isGrid) Icons.AutoMirrored.Filled.ViewList else Icons.Filled.GridView , contentDescription = null , onClick = {
                 detailsViewModel.onEvent(WhatsAppDetailsEvent.ToggleView)
             } , fromRight = true)
 
-            AnimatedButtonDirection(  visible = true,icon = Icons.AutoMirrored.Filled.Sort , contentDescription = null , onClick = {
+            AnimatedIconButtonDirection(  visible = true,icon = Icons.AutoMirrored.Filled.Sort , contentDescription = null , onClick = {
                 showSort = hasFiles
             } , durationMillis = 400 , fromRight = true)
 
@@ -288,21 +286,16 @@ fun DetailsScreen(
                             )
                         }
 
-                        Button(
-                            onClick = { showConfirm = true },
-                            enabled = selected.isNotEmpty(),
+                        IconButtonWithText(
                             modifier = Modifier
-                                    .bounceClick()
                                     .align(Alignment.CenterHorizontally)
                                     .padding(8.dp),
-                        ) {
-                            Icon(
-                                modifier = Modifier.size(size = SizeConstants.ButtonIconSize) ,
-                                imageVector = Icons.Outlined.Delete,
-                                contentDescription = null)
-                            ButtonIconSpacer()
-                            Text(text = stringResource(id = R.string.delete_selected))
-                        }
+                            onClick = { showConfirm = true },
+                            enabled = selected.isNotEmpty(),
+                            iconContentDescription = null,
+                            label = stringResource(id = R.string.delete_selected),
+                            icon = Icons.Outlined.Delete
+                        )
                     }
                 }
             }

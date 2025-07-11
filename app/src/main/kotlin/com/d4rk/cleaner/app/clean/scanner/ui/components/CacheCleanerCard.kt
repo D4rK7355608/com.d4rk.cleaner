@@ -5,11 +5,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DeleteSweep
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
@@ -19,8 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
-import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.TonalIconButtonWithText
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 
@@ -60,19 +57,12 @@ fun CacheCleanerCard(
                 }
             }
 
-            FilledTonalButton(
+            TonalIconButtonWithText(
+                label = stringResource(id = R.string.scan_cache),
+                painter = painterResource(id = R.drawable.ic_folder_search),
                 onClick = onScanClick,
-                modifier = Modifier.align(Alignment.End).bounceClick()
-            ) {
-                Icon(
-                    modifier = Modifier.size(SizeConstants.ButtonIconSize),
-                    painter = painterResource(id = R.drawable.ic_folder_search),
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary
-                )
-                ButtonIconSpacer()
-                Text(text = stringResource(id = R.string.scan_cache))
-            }
+                modifier = Modifier.align(Alignment.End),
+            )
         }
     }
 }

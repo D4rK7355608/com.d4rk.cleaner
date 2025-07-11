@@ -16,6 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Android
 import androidx.compose.material.icons.outlined.DeleteSweep
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -119,7 +120,7 @@ fun ApkCleanerCard(
                 enabled = !isLoading,
             ) {
                 if (isLoading) {
-                    androidx.compose.material3.CircularProgressIndicator(
+                    CircularProgressIndicator(
                         modifier = Modifier.size(SizeConstants.ButtonIconSize)
                     )
                 } else {
@@ -127,7 +128,6 @@ fun ApkCleanerCard(
                         modifier = Modifier.size(SizeConstants.ButtonIconSize),
                         imageVector = Icons.Outlined.DeleteSweep,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary
                     )
                     ButtonIconSpacer()
                     Text(text = stringResource(id = R.string.clean_apks))

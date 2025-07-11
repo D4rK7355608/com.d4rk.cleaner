@@ -2,8 +2,9 @@ package com.d4rk.cleaner.app.clean.memory.ui
 
 import android.app.Activity
 import android.content.Context
-import android.view.SoundEffectConstants
-import android.view.View
+import android.content.Intent
+import android.os.Environment
+import android.provider.Settings
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
@@ -12,7 +13,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
@@ -21,8 +21,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowLeft
 import androidx.compose.material.icons.outlined.ArrowDropDown
 import androidx.compose.material.icons.outlined.Memory
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,21 +30,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import android.os.Environment
-import android.provider.Settings
-import android.content.Intent
-import java.io.File
-import com.d4rk.cleaner.core.utils.helpers.FileManagerHelper
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ads.AdsConfig
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.ads.AdBanner
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.IconButton
 import com.d4rk.android.libs.apptoolkit.core.ui.components.carousel.CustomCarousel
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
-import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallHorizontalSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
@@ -60,10 +52,12 @@ import com.d4rk.cleaner.app.clean.memory.ui.components.MemoryManagerShimmer
 import com.d4rk.cleaner.app.clean.memory.ui.components.RamInfoCard
 import com.d4rk.cleaner.app.clean.memory.ui.components.StorageBreakdownGrid
 import com.d4rk.cleaner.app.clean.memory.ui.components.StorageInfoCard
+import com.d4rk.cleaner.core.utils.helpers.FileManagerHelper
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.qualifier.named
+import java.io.File
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -94,7 +88,6 @@ fun MemoryManagerComposable(paddingValues : PaddingValues) {
 fun MemoryManagerScreenContent(viewModel : MemoryManagerViewModel , screenData : UiMemoryManagerScreen , paddingValues : PaddingValues , adsConfig : AdsConfig = koinInject(qualifier = named(name = "large_banner"))) {
     val carouselItems = listOf(screenData.storageInfo , screenData.ramInfo)
     val pagerState : PagerState = rememberPagerState { carouselItems.size }
-    val view : View = LocalView.current
     val context = LocalContext.current
 
     Column(
@@ -128,17 +121,12 @@ fun MemoryManagerScreenContent(viewModel : MemoryManagerViewModel , screenData :
             )
 
             SmallHorizontalSpacer()
+
             IconButton(
-                modifier = Modifier.bounceClick() , onClick = {
-                    view.playSoundEffect(SoundEffectConstants.CLICK)
+                icon = if (screenData.listExpanded) Icons.Outlined.ArrowDropDown else Icons.AutoMirrored.Filled.ArrowLeft,
+                onClick = {
                     viewModel.onEvent(MemoryEvent.ToggleListExpanded)
-                }) {
-                Icon(
-                    modifier = Modifier.size(SizeConstants.ButtonIconSize),
-                    imageVector = if (screenData.listExpanded) Icons.Outlined.ArrowDropDown else Icons.AutoMirrored.Filled.ArrowLeft ,
-                    contentDescription = if (screenData.listExpanded) "Collapse" else "Expand"
-                )
-            }
+                })
         }
 
         SmallVerticalSpacer()

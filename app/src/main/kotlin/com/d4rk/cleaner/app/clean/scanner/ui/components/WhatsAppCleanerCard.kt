@@ -20,7 +20,6 @@ import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material.icons.outlined.Videocam
 import androidx.compose.material3.Card
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
@@ -34,8 +33,7 @@ import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
-import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.TonalIconButtonWithText
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
@@ -99,19 +97,12 @@ fun WhatsAppCleanerCard(
                 )
             }
 
-            FilledTonalButton(
+            TonalIconButtonWithText(
+                label = stringResource(id = R.string.clean_whatsapp),
+                painter = painterResource(id = R.drawable.ic_folder_search),
                 onClick = onCleanClick,
-                modifier = Modifier.align(Alignment.End).bounceClick(),
-            ) {
-                Icon(
-                    modifier = Modifier.size(size = SizeConstants.ButtonIconSize),
-                    painter = painterResource(id = R.drawable.ic_folder_search),
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary
-                )
-                ButtonIconSpacer()
-                Text(text = stringResource(id = R.string.clean_whatsapp))
-            }
+                modifier = Modifier.align(Alignment.End),
+            )
         }
     }
 }
