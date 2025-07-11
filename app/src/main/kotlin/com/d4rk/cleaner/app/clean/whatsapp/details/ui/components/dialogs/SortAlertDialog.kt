@@ -5,22 +5,17 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Sort
-import androidx.compose.material3.DatePickerDialog
-import androidx.compose.material3.DateRangePicker
-import androidx.compose.material3.DateRangePickerState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.rememberDateRangePickerState
+import com.d4rk.android.libs.apptoolkit.core.ui.components.fields.DatePickerTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,9 +27,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.whatsapp.details.ui.SortType
-import com.d4rk.cleaner.app.clean.whatsapp.details.ui.components.ReadOnlyDateTextField
+import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,13 +44,10 @@ fun SortAlertDialog(
     onApply: (SortType, Boolean, Long?, Long?) -> Unit
 ) {
     val options = SortType.entries
-    var showDatePicker by remember { mutableStateOf(false) }
     val selected = remember { mutableStateOf(current) }
     val isDescending = remember { mutableStateOf(descending) }
-    val dateState: DateRangePickerState = rememberDateRangePickerState(
-        initialSelectedStartDateMillis = startDate,
-        initialSelectedEndDateMillis = endDate
-    )
+    var start by remember { mutableStateOf(startDate?.let { Date(it) } ?: Date()) }
+    var end by remember { mutableStateOf(endDate?.let { Date(it) } ?: Date()) }
 
     BasicAlertDialog(
         onDismiss = onDismiss,
@@ -61,8 +55,8 @@ fun SortAlertDialog(
             onApply(
                 selected.value,
                 isDescending.value,
-                dateState.selectedStartDateMillis,
-                dateState.selectedEndDateMillis
+                start.time,
+                end.time
             )
             onDismiss()
         },
@@ -90,47 +84,27 @@ fun SortAlertDialog(
                     }
                 }
 
-                if (showDatePicker) {
-                    DatePickerDialog(
-                        onDismissRequest = { showDatePicker = false },
-                        confirmButton = {
-                            TextButton(onClick = { showDatePicker = false }) {
-                                Text(stringResource(id = android.R.string.ok))
-                            }
-                        },
-                        dismissButton = {
-                            TextButton(onClick = { showDatePicker = false }) {
-                                Text(stringResource(id = android.R.string.cancel))
-                            }
-                        }
-                    ) {
-                        DateRangePicker(state = dateState)
-                    }
-                }
-
                 if (selected.value == SortType.DATE) {
-                    Spacer(modifier = Modifier.height(8.dp))
+                    SmallVerticalSpacer()
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        ReadOnlyDateTextField(
-                            label = stringResource(id = R.string.from_date),
-                            value = dateState.selectedStartDateMillis,
-                            modifier = Modifier.weight(1f),
-                            onClick = { showDatePicker = true }
-                        )
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(text = stringResource(id = R.string.from_date))
+                            SmallVerticalSpacer()
+                            DatePickerTextField(date = start) { start = it }
+                        }
 
-                        ReadOnlyDateTextField(
-                            label = stringResource(id = R.string.to_date),
-                            value = dateState.selectedEndDateMillis,
-                            modifier = Modifier.weight(1f),
-                            onClick = { showDatePicker = true }
-                        )
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(text = stringResource(id = R.string.to_date))
+                            SmallVerticalSpacer()
+                            DatePickerTextField(date = end) { end = it }
+                        }
                     }
                 }
 
-                Spacer(modifier = Modifier.height(16.dp))
+                LargeVerticalSpacer()
 
                 Row(
                     modifier = Modifier

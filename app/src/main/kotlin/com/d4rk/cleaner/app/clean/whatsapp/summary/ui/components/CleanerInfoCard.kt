@@ -28,6 +28,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ExtraSmallVerticalSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ExtraLargeIncreasedHorizontalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 
@@ -66,7 +68,7 @@ fun CleanerInfoCard(
                 size = 100.dp
             )
 
-            Spacer(modifier = Modifier.width(24.dp))
+            ExtraLargeIncreasedHorizontalSpacer()
 
             Column(verticalArrangement = Arrangement.Center) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -92,7 +94,7 @@ fun CleanerInfoCard(
                     lineHeight = 42.sp
                 )
 
-                Spacer(modifier = Modifier.height(4.dp))
+                ExtraSmallVerticalSpacer()
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(

@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ExtraSmallHorizontalSpacer
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -449,7 +450,7 @@ private fun SmartSuggestionsCard(
                     painter = painterResource(id = R.drawable.ic_auto_fix_high),
                     contentDescription = null
                 )
-                Spacer(modifier = Modifier.width(4.dp))
+                ExtraSmallHorizontalSpacer()
                 Text(
                     text = stringResource(id = R.string.smart_suggestions),
                     style = MaterialTheme.typography.titleMedium
@@ -491,7 +492,7 @@ private fun SmartSuggestionsCard(
                 modifier = Modifier.align(Alignment.End)
             ) {
                 Icon(imageVector = Icons.Outlined.Delete, contentDescription = null)
-                Spacer(modifier = Modifier.width(4.dp))
+                ExtraSmallHorizontalSpacer()
                 Text(text = stringResource(id = R.string.delete_all_suggested))
             }
         }
