@@ -16,6 +16,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.shimmerEffect
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ExtraSmallVerticalSpacer
 
 @Composable
 fun InfoColumn(
@@ -32,7 +33,7 @@ fun InfoColumn(
                     .height(MaterialTheme.typography.bodySmall.lineHeight.value.dp)
                     .shimmerEffect()
             )
-            Spacer(modifier = Modifier.height(SizeConstants.ExtraSmallSize))
+            ExtraSmallVerticalSpacer()
             Spacer(
                 modifier = Modifier
                     .fillMaxWidth(0.9f)

@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallHorizontalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.app.images.compressor.domain.data.model.CompressionLevel
 import com.d4rk.cleaner.app.images.compressor.ui.ImageOptimizerViewModel
@@ -52,7 +53,7 @@ fun QuickCompressTab(viewModel : ImageOptimizerViewModel) {
                 )) {
                     Text(text = stringResource(compressionLevel.stringRes))
                 }
-                Spacer(modifier = Modifier.width(8.dp))
+                SmallHorizontalSpacer()
             }
         }
 

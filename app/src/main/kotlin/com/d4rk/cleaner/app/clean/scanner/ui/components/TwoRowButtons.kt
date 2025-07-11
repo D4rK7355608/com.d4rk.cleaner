@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallHorizontalSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.IconButtonWithText
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.OutlinedIconButtonWithText
 import androidx.compose.runtime.Composable
@@ -39,7 +40,7 @@ fun TwoRowButtons(
             label = stringResource(id = onStartButtonText)
         )
 
-        Spacer(Modifier.width(width = SizeConstants.SmallSize))
+        SmallHorizontalSpacer()
 
         IconButtonWithText(
             modifier = Modifier.weight(1f),
