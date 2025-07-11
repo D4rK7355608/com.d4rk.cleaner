@@ -18,7 +18,6 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -28,8 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.compose.LocalLifecycleOwner
+import com.d4rk.android.libs.apptoolkit.core.ui.effects.LifecycleEventsEffect
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
@@ -45,7 +43,6 @@ fun StoragePermissionOnboardingTab() {
     val context = LocalContext.current
     val dataStore: DataStore = koinInject()
     val coroutineScope = rememberCoroutineScope()
-    val lifecycleOwner = LocalLifecycleOwner.current
 
     val storageGranted by dataStore.storagePermissionGranted.collectAsState(initial = false)
     val usageGranted by dataStore.usagePermissionGranted.collectAsState(initial = false)
@@ -56,21 +53,15 @@ fun StoragePermissionOnboardingTab() {
         dataStore.saveUsagePermissionGranted(PermissionsHelper.hasUsageAccessPermissions(context))
     }
 
-    DisposableEffect(lifecycleOwner) {
-        val observer = LifecycleEventObserver { _, event ->
-            if (event == Lifecycle.Event.ON_RESUME) {
-                coroutineScope.launch {
-                    dataStore.saveStoragePermissionGranted(
-                        PermissionsHelper.hasStoragePermissions(context)
-                    )
-                    dataStore.saveUsagePermissionGranted(
-                        PermissionsHelper.hasUsageAccessPermissions(context)
-                    )
-                }
-            }
+    LifecycleEventsEffect(Lifecycle.Event.ON_RESUME) {
+        coroutineScope.launch {
+            dataStore.saveStoragePermissionGranted(
+                PermissionsHelper.hasStoragePermissions(context)
+            )
+            dataStore.saveUsagePermissionGranted(
+                PermissionsHelper.hasUsageAccessPermissions(context)
+            )
         }
-        lifecycleOwner.lifecycle.addObserver(observer)
-        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
     }
 
     Column(
