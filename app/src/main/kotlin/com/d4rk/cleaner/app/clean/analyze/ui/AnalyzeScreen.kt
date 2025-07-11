@@ -100,7 +100,7 @@ fun AnalyzeScreen(
             },
             onEndButtonIcon = Icons.Outlined.DeleteForever,
             onEndButtonText = R.string.delete_forever,
-            view = view)
+        )
 
         if (data.analyzeState.isDeleteForeverConfirmationDialogVisible || data.analyzeState.isMoveToTrashConfirmationDialogVisible) {
             DeleteOrTrashConfirmation(data = data, viewModel = viewModel)

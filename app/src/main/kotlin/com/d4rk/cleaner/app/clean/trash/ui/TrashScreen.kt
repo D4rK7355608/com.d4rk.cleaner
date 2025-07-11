@@ -93,7 +93,6 @@ fun TrashScreen(activity : TrashActivity) {
                     } ,
                     onEndButtonIcon = Icons.Outlined.DeleteForever ,
                     onEndButtonText = R.string.delete_forever ,
-                    view = view ,
                 )
             }
         })
