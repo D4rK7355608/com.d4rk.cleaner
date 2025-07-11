@@ -15,7 +15,7 @@ import androidx.compose.material.icons.outlined.AutoAwesome
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -66,10 +66,14 @@ fun WeeklyCleanStreakCard(
                     modifier = Modifier.align(Alignment.Center)
                 )
                 IconButton(
-                    modifier = Modifier.align(Alignment.CenterEnd).bounceClick(),
+                    modifier = Modifier.align(Alignment.CenterEnd),
                     onClick = onDismiss
                 ) {
-                    Icon(modifier = Modifier.size(SizeConstants.ButtonIconSize), imageVector = Icons.Outlined.Close, contentDescription = null)
+                    Icon(
+                        modifier = Modifier.size(SizeConstants.ButtonIconSize),
+                        imageVector = Icons.Outlined.Close,
+                        contentDescription = null
+                    )
                 }
             }
             Text(

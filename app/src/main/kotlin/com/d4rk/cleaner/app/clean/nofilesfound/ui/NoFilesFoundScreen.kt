@@ -9,15 +9,13 @@ import androidx.compose.material.icons.outlined.FolderOff
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
-import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.OutlinedIconButtonWithText
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
@@ -36,15 +34,13 @@ fun NoFilesFoundScreen(viewModel : ScannerViewModel) {
                 text = stringResource(id = R.string.no_files_found) , style = MaterialTheme.typography.bodyLarge , color = MaterialTheme.colorScheme.onSurface
             )
 
-            OutlinedButton(modifier = Modifier.bounceClick() , onClick = {
-                viewModel.onEvent(ScannerEvent.ToggleAnalyzeScreen(true))
-            }) {
-                Icon(
-                    modifier = Modifier.size(size = SizeConstants.ButtonIconSize) , imageVector = Icons.Outlined.Refresh , contentDescription = null
-                )
-                ButtonIconSpacer()
-                Text(text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.try_again))
-            }
+            OutlinedIconButtonWithText(
+                onClick = { viewModel.onEvent(ScannerEvent.ToggleAnalyzeScreen(true)) },
+                modifier = Modifier,
+                icon = Icons.Outlined.Refresh,
+                iconContentDescription = null,
+                label = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.try_again)
+            )
         }
     }
 }

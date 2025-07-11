@@ -17,7 +17,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Android
 import androidx.compose.material.icons.outlined.DeleteSweep
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
@@ -31,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.TonalIconButtonWithText
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ButtonIconSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
@@ -114,24 +114,24 @@ fun ApkCleanerCard(
                 }
             }
 
-            FilledTonalButton(
-                onClick = { onCleanClick(apkFiles) },
-                modifier = Modifier.align(Alignment.End).bounceClick(),
-                enabled = !isLoading,
-            ) {
-                if (isLoading) {
+            if (isLoading) {
+                FilledTonalButton(
+                    onClick = { onCleanClick(apkFiles) },
+                    modifier = Modifier.align(Alignment.End).bounceClick(),
+                    enabled = false,
+                ) {
                     CircularProgressIndicator(
                         modifier = Modifier.size(SizeConstants.ButtonIconSize)
                     )
-                } else {
-                    Icon(
-                        modifier = Modifier.size(SizeConstants.ButtonIconSize),
-                        imageVector = Icons.Outlined.DeleteSweep,
-                        contentDescription = null,
-                    )
-                    ButtonIconSpacer()
-                    Text(text = stringResource(id = R.string.clean_apks))
                 }
+            } else {
+                TonalIconButtonWithText(
+                    modifier = Modifier.align(Alignment.End),
+                    onClick = { onCleanClick(apkFiles) },
+                    label = stringResource(id = R.string.clean_apks),
+                    icon = Icons.Outlined.DeleteSweep,
+                    enabled = true,
+                )
             }
         }
     }
