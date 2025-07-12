@@ -16,11 +16,15 @@ import com.d4rk.android.libs.apptoolkit.data.core.BaseCoreManager
 import com.d4rk.android.libs.apptoolkit.data.core.ads.AdsCoreManager
 import com.d4rk.cleaner.app.notifications.work.CleanupReminderScheduler
 import com.d4rk.cleaner.app.notifications.work.StreakReminderScheduler
+import com.d4rk.cleaner.app.auto.AutoCleanScheduler
 import com.d4rk.cleaner.core.di.initializeKoin
 import com.d4rk.cleaner.core.utils.constants.ads.AdsConstants
 import com.d4rk.cleaner.core.utils.helpers.StreakTracker
+import com.d4rk.cleaner.core.data.datastore.DataStore
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.supervisorScope
 import org.koin.android.ext.android.getKoin
 
@@ -36,6 +40,14 @@ class Cleaner : BaseCoreManager(), SingletonImageLoader.Factory {
         super.onCreate()
         CleanupReminderScheduler.schedule(this)
         StreakReminderScheduler.schedule(this)
+        runBlocking {
+            val ds = DataStore(this@Cleaner)
+            if (ds.autoCleanEnabled.first()) {
+                AutoCleanScheduler.schedule(this@Cleaner)
+            } else {
+                AutoCleanScheduler.cancel(this@Cleaner)
+            }
+        }
         registerActivityLifecycleCallbacks(this)
         ProcessLifecycleOwner.get().lifecycle.addObserver(observer = this)
     }
