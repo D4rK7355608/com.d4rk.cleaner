@@ -36,4 +36,6 @@ object AppDataStoreConstants : DataStoreNamesConstants() {
     const val DATA_STORE_STREAK_REMINDER_ENABLED = "streak_reminder_enabled"
     const val DATA_STORE_SHOW_STREAK_CARD = "show_streak_card"
     const val DATA_STORE_STREAK_HIDE_UNTIL = "streak_hide_until"
+    const val DATA_STORE_AUTO_CLEAN_ENABLED = "auto_clean_enabled"
+    const val DATA_STORE_AUTO_CLEAN_FREQUENCY_DAYS = "auto_clean_frequency_days"
 }
