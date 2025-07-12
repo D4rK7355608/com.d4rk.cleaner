@@ -1,3 +1,7 @@
+# Version 3.5.0:
+
+- **Minor**: Added suggestions for uninstalling rarely used apps using UsageStats.
+
 # Version 3.4.0:
 
 - **Major**: Added a new WhatsApp Cleaner screen to preview, sort, and delete your WhatsApp media.
