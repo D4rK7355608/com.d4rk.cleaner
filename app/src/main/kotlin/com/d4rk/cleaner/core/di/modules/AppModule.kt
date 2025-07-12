@@ -11,6 +11,7 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.apps.manager.data.ApkFileManagerImpl
 import com.d4rk.cleaner.app.apps.manager.data.AppPackageManagerImpl
 import com.d4rk.cleaner.app.apps.manager.data.PackageManagerFacadeImpl
+import com.d4rk.cleaner.app.apps.manager.data.AppUsageStatsManagerImpl
 import com.d4rk.cleaner.app.apps.manager.domain.interfaces.ApkFileManager
 import com.d4rk.cleaner.app.apps.manager.domain.interfaces.ApkInstaller
 import com.d4rk.cleaner.app.apps.manager.domain.interfaces.ApkSharer
@@ -18,8 +19,10 @@ import com.d4rk.cleaner.app.apps.manager.domain.interfaces.AppInfoOpener
 import com.d4rk.cleaner.app.apps.manager.domain.interfaces.AppSharer
 import com.d4rk.cleaner.app.apps.manager.domain.interfaces.AppUninstaller
 import com.d4rk.cleaner.app.apps.manager.domain.interfaces.PackageManagerFacade
+import com.d4rk.cleaner.app.apps.manager.domain.interfaces.AppUsageStatsManager
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.GetApkFilesFromStorageUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.GetInstalledAppsUseCase
+import com.d4rk.cleaner.app.apps.manager.domain.usecases.GetAppsLastUsedUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.InstallApkUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.OpenAppInfoUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.ShareApkUseCase
@@ -114,6 +117,8 @@ val appModule : Module = module {
 
     single<PackageManagerFacade> { PackageManagerFacadeImpl(application = get()) }
     single<GetInstalledAppsUseCase> { GetInstalledAppsUseCase(packageManagerFacade = get()) }
+    single<AppUsageStatsManager> { AppUsageStatsManagerImpl(application = get()) }
+    single<GetAppsLastUsedUseCase> { GetAppsLastUsedUseCase(usageStatsManager = get()) }
     single<ApkFileManager> { ApkFileManagerImpl(application = get()) }
     single<GetApkFilesFromStorageUseCase> { GetApkFilesFromStorageUseCase(apkFileManager = get()) }
     single<AppPackageManagerImpl> { AppPackageManagerImpl(application = get()) }
@@ -129,7 +134,18 @@ val appModule : Module = module {
     single<UninstallAppUseCase> { UninstallAppUseCase(appUninstaller = get()) }
 
     viewModel<AppManagerViewModel> {
-        AppManagerViewModel(application = get() , getInstalledAppsUseCase = get() , getApkFilesFromStorageUseCase = get() , installApkUseCase = get() , shareApkUseCase = get() , shareAppUseCase = get() , openAppInfoUseCase = get() , uninstallAppUseCase = get() , dispatchers = get())
+        AppManagerViewModel(
+            application = get(),
+            getInstalledAppsUseCase = get(),
+            getApkFilesFromStorageUseCase = get(),
+            getAppsLastUsedUseCase = get(),
+            installApkUseCase = get(),
+            shareApkUseCase = get(),
+            shareAppUseCase = get(),
+            openAppInfoUseCase = get(),
+            uninstallAppUseCase = get(),
+            dispatchers = get()
+        )
     }
 
     single<MemoryRepository> { MemoryRepositoryImpl(application = get()) }

@@ -19,7 +19,13 @@ import com.d4rk.cleaner.app.apps.manager.ui.components.AppItemComposable
 import com.d4rk.cleaner.app.apps.manager.ui.components.ShimmerLoadingScreen
 
 @Composable
-fun AppsTab(apps : List<ApplicationInfo> , isLoading : Boolean , viewModel : AppManagerViewModel , paddingValues : PaddingValues = PaddingValues()) {
+fun AppsTab(
+    apps: List<ApplicationInfo>,
+    isLoading: Boolean,
+    usageStats: Map<String, Long>,
+    viewModel: AppManagerViewModel,
+    paddingValues: PaddingValues = PaddingValues(),
+) {
     Crossfade(targetState = isLoading , label = "AppsTabCrossfade") { isLoadingState ->
         when {
             isLoadingState -> {
@@ -34,12 +40,20 @@ fun AppsTab(apps : List<ApplicationInfo> , isLoading : Boolean , viewModel : App
             }
 
             else -> {
-                LazyColumn(contentPadding = PaddingValues(horizontal = SizeConstants.ExtraTinySize) , verticalArrangement = Arrangement.spacedBy(space = SizeConstants.ExtraTinySize) , modifier = Modifier.fillMaxSize()) {
-                    itemsIndexed(items = apps , key = { _ : Int , app : ApplicationInfo -> app.packageName }) { _ : Int , app : ApplicationInfo ->
+                val sorted = apps.sortedBy { usageStats[it.packageName] ?: 0L }
+                LazyColumn(
+                    contentPadding = PaddingValues(horizontal = SizeConstants.ExtraTinySize),
+                    verticalArrangement = Arrangement.spacedBy(space = SizeConstants.ExtraTinySize),
+                    modifier = Modifier.fillMaxSize(),
+                ) {
+                    itemsIndexed(items = sorted, key = { _: Int, app: ApplicationInfo -> app.packageName }) { _: Int, app: ApplicationInfo ->
                         AppItemComposable(
-                            app , viewModel = viewModel , modifier = Modifier
-                                    .animateItem()
-                                    .padding(start = SizeConstants.SmallSize , end = SizeConstants.SmallSize , top = SizeConstants.SmallSize)
+                            app = app,
+                            lastUsed = usageStats[app.packageName],
+                            viewModel = viewModel,
+                            modifier = Modifier
+                                .animateItem()
+                                .padding(start = SizeConstants.SmallSize, end = SizeConstants.SmallSize, top = SizeConstants.SmallSize)
                         )
                     }
                 }
