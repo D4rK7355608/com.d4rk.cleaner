@@ -2,6 +2,7 @@ package com.d4rk.cleaner.app.clean.scanner.domain.actions
 
 import com.d4rk.android.libs.apptoolkit.core.ui.base.handling.UiEvent
 import java.io.File
+import android.net.Uri
 
 sealed class ScannerEvent : UiEvent {
     object LoadInitialData : ScannerEvent()
@@ -18,6 +19,8 @@ sealed class ScannerEvent : UiEvent {
     object CleanWhatsAppFiles : ScannerEvent()
     object CleanCache : ScannerEvent()
     object MoveSelectedToTrash : ScannerEvent()
+    object BackupSelectedFiles : ScannerEvent()
+    data class SetBackupUri(val uri: android.net.Uri) : ScannerEvent()
     data class SetDeleteForeverConfirmationDialogVisibility(val isVisible : Boolean) : ScannerEvent()
     data class SetMoveToTrashConfirmationDialogVisibility(val isVisible : Boolean) : ScannerEvent()
     data class SetHideStreakDialogVisibility(val isVisible: Boolean) : ScannerEvent()

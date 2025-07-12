@@ -14,4 +14,5 @@ interface ScannerRepositoryInterface {
     suspend fun restoreFromTrash(filesToRestore : Set<File>)
     suspend fun addTrashSize(size : Long)
     suspend fun subtractTrashSize(size : Long)
+    suspend fun backupFiles(files: List<File>, destinationUri: android.net.Uri)
 }

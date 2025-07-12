@@ -1,6 +1,8 @@
 package com.d4rk.cleaner.app.clean.analyze.ui
 
 import android.view.View
+import android.content.Intent
+import android.content.Context
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Column
@@ -9,12 +11,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.DeleteForever
+import androidx.compose.material.icons.outlined.CloudUpload
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.IconButtonWithText
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.analyze.components.StatusRowSelectAll
@@ -36,6 +42,7 @@ fun AnalyzeScreen(
     data: UiScannerModel ,
 ) {
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
+    val context: Context = LocalContext.current
     val hasSelectedFiles: Boolean = data.analyzeState.selectedFilesCount > 0
     val groupedFiles: Map<String, List<File>> = data.analyzeState.groupedFiles
 
@@ -100,6 +107,22 @@ fun AnalyzeScreen(
             },
             onEndButtonIcon = Icons.Outlined.DeleteForever,
             onEndButtonText = R.string.delete_forever,
+        )
+
+        IconButtonWithText(
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(top = SizeConstants.LargeSize),
+            onClick = {
+                val selected = data.analyzeState.fileSelectionMap.filter { it.value }.keys.map { it.absolutePath }
+                val intent = android.content.Intent(context, com.d4rk.cleaner.app.backup.ui.BackupActivity::class.java)
+                intent.putStringArrayListExtra(com.d4rk.cleaner.app.backup.ui.BackupActivity.EXTRA_FILES, java.util.ArrayList(selected))
+                context.startActivity(intent)
+            },
+            enabled = hasSelectedFiles,
+            icon = Icons.Outlined.CloudUpload,
+            iconContentDescription = stringResource(id = R.string.backup_icon_description),
+            label = stringResource(id = R.string.backup_to_cloud)
         )
 
         if (data.analyzeState.isDeleteForeverConfirmationDialogVisible || data.analyzeState.isMoveToTrashConfirmationDialogVisible) {

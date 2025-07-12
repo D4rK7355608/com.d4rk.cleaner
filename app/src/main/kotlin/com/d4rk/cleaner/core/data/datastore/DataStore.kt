@@ -378,4 +378,15 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         }
     }
 
+    private val backupUriKey = stringPreferencesKey(AppDataStoreConstants.DATA_STORE_BACKUP_URI)
+    val backupUri: Flow<String?> = dataStore.data.map { prefs ->
+        prefs[backupUriKey]
+    }
+
+    suspend fun saveBackupUri(uri: String) {
+        dataStore.edit { prefs ->
+            prefs[backupUriKey] = uri
+        }
+    }
+
 }

@@ -34,6 +34,7 @@ import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetPromotedAppUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetStorageInfoUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.MoveToTrashUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.UpdateTrashSizeUseCase
+import com.d4rk.cleaner.app.clean.scanner.domain.usecases.BackupFilesUseCase
 import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 import com.d4rk.cleaner.app.clean.scanner.utils.helpers.getWhatsAppMediaSummary
 import com.d4rk.cleaner.app.settings.cleaning.utils.constants.ExtensionsConstants
@@ -63,6 +64,7 @@ class ScannerViewModel(
     private val deleteFilesUseCase: DeleteFilesUseCase,
     private val moveToTrashUseCase: MoveToTrashUseCase,
     private val updateTrashSizeUseCase: UpdateTrashSizeUseCase,
+    private val backupFilesUseCase: BackupFilesUseCase,
     private val getPromotedAppUseCase: GetPromotedAppUseCase,
     private val dispatchers: DispatcherProvider,
     private val dataStore: DataStore
@@ -97,6 +99,8 @@ class ScannerViewModel(
     val showStreakCardPref: StateFlow<Boolean> = _showStreakCardPref
     private val _streakHideUntil = MutableStateFlow(0L)
     val streakHideUntil: StateFlow<Long> = _streakHideUntil
+    private val _backupUri = MutableStateFlow<String?>(null)
+    val backupUri: StateFlow<String?> = _backupUri
 
     init {
         clipboardManager.addPrimaryClipChangedListener(clipboardListener)
@@ -108,6 +112,11 @@ class ScannerViewModel(
         loadPromotedApp()
         loadCleanStreak()
         loadStreakCardVisibility()
+        launch(dispatchers.io) {
+            dataStore.backupUri.collect { uri ->
+                _backupUri.value = uri
+            }
+        }
         launch(dispatchers.io) {
             CleaningEventBus.events.collectLatest {
                 onEvent(ScannerEvent.RefreshData)
@@ -135,6 +144,8 @@ class ScannerViewModel(
             is ScannerEvent.CleanWhatsAppFiles -> onCleanWhatsAppFiles()
             is ScannerEvent.CleanCache -> onCleanCache()
             is ScannerEvent.MoveSelectedToTrash -> moveSelectedToTrash()
+            is ScannerEvent.BackupSelectedFiles -> backupSelectedFiles()
+            is ScannerEvent.SetBackupUri -> saveBackupUri(event.uri)
             is ScannerEvent.SetDeleteForeverConfirmationDialogVisibility -> setDeleteForeverConfirmationDialogVisibility(
                 isVisible = event.isVisible
             )
@@ -1088,6 +1099,32 @@ class ScannerViewModel(
         val emailPattern = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")
         val pwdPattern = Regex("(?i)password")
         return urlPattern.containsMatchIn(text) || emailPattern.containsMatchIn(text) || pwdPattern.containsMatchIn(text)
+    }
+
+    private fun saveBackupUri(uri: android.net.Uri) {
+        launch(dispatchers.io) { dataStore.saveBackupUri(uri.toString()) }
+    }
+
+    private fun backupSelectedFiles() {
+        if (_uiState.value.data?.analyzeState?.state != CleaningState.ReadyToClean) return
+
+        launch(dispatchers.io) {
+            val current = screenData ?: return@launch
+            val files = current.analyzeState.fileSelectionMap.filter { it.value }.keys.toList()
+            if (files.isEmpty()) {
+                postSnackbar(UiTextHelper.StringResource(R.string.no_files_selected_to_backup), false)
+                return@launch
+            }
+            val uriStr = backupUri.first()
+            if (uriStr == null) {
+                sendAction(ScannerAction.RequestBackupUri)
+                return@launch
+            }
+            val uri = android.net.Uri.parse(uriStr)
+            backupFilesUseCase(files, uri).collectLatest { result ->
+                screenState.applyResult(result, UiTextHelper.StringResource(R.string.failed_to_backup_files)) { _, data -> data }
+            }
+        }
     }
 
     private fun postSnackbar(message : UiTextHelper , isError : Boolean) {

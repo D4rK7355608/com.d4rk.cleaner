@@ -81,6 +81,11 @@
             android:parentActivityName=".app.images.compressor.ui.ImageOptimizerActivity" />
 
         <activity
+            android:name=".app.backup.ui.BackupActivity"
+            android:exported="false"
+            android:label="Backup" />
+
+        <activity
             android:name=".app.clean.trash.ui.TrashActivity"
             android:exported="false"
             android:label="@string/trash"

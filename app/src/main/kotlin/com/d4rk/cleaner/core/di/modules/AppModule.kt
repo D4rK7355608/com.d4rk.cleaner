@@ -94,6 +94,7 @@ val appModule : Module = module {
     single<DeleteFilesUseCase> { DeleteFilesUseCase(homeRepository = get()) }
     single<MoveToTrashUseCase> { MoveToTrashUseCase(homeRepository = get()) }
     single<UpdateTrashSizeUseCase> { UpdateTrashSizeUseCase(homeRepository = get()) }
+    single<BackupFilesUseCase> { BackupFilesUseCase(repository = get()) }
     single<GetPromotedAppUseCase> { GetPromotedAppUseCase() }
     single<GetTrashSizeUseCase> { GetTrashSizeUseCase(dataStore = get()) }
 
@@ -106,6 +107,7 @@ val appModule : Module = module {
             deleteFilesUseCase = get(),
             moveToTrashUseCase = get(),
             updateTrashSizeUseCase = get(),
+            backupFilesUseCase = get(),
             getPromotedAppUseCase = get(),
             dispatchers = get(),
             dataStore = get()
