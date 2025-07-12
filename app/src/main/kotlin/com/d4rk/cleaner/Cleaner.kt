@@ -41,7 +41,7 @@ class Cleaner : BaseCoreManager(), SingletonImageLoader.Factory {
         CleanupReminderScheduler.schedule(this)
         StreakReminderScheduler.schedule(this)
         runBlocking {
-            val ds = DataStore(this@Cleaner)
+            val ds = getKoin().get<DataStore>()
             if (ds.autoCleanEnabled.first()) {
                 AutoCleanScheduler.schedule(this@Cleaner)
             } else {
