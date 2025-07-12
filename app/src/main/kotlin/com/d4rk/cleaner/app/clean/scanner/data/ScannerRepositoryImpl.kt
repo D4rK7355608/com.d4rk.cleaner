@@ -220,4 +220,17 @@ class ScannerRepositoryImpl(
     override suspend fun subtractTrashSize(size : Long) {
         dataStore.subtractTrashSize(size = size)
     }
+
+    override suspend fun getLargestFiles(limit: Int): List<File> {
+        return withContext(Dispatchers.IO) {
+            val allFiles = mutableListOf<File>()
+            DirectoryScanner.scan(
+                root = Environment.getExternalStorageDirectory(),
+                skipDir = { dir -> dir.absolutePath.startsWith(trashDir.absolutePath) }
+            ) { file ->
+                allFiles.add(file)
+            }
+            allFiles.sortedByDescending { it.length() }.take(limit)
+        }
+    }
 }

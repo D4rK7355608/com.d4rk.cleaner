@@ -44,6 +44,8 @@ import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashFilesUseCase
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashSizeUseCase
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.RestoreFromTrashUseCase
 import com.d4rk.cleaner.app.clean.trash.ui.TrashViewModel
+import com.d4rk.cleaner.app.clean.largefiles.ui.LargeFilesViewModel
+import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetLargestFilesUseCase
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.CompressImageUseCase
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.GetImageDimensionsUseCase
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.GetOptimizedDestinationFileUseCase
@@ -142,6 +144,7 @@ val appModule : Module = module {
 
     single<GetTrashFilesUseCase> { GetTrashFilesUseCase(repository = get()) }
     single<RestoreFromTrashUseCase> { RestoreFromTrashUseCase(repository = get()) }
+    single<GetLargestFilesUseCase> { GetLargestFilesUseCase(repository = get()) }
     viewModel<TrashViewModel> {
         TrashViewModel(
             getTrashFilesUseCase = get(),
@@ -150,6 +153,14 @@ val appModule : Module = module {
             restoreFromTrashUseCase = get(),
             dispatchers = get(),
             dataStore = get()
+        )
+    }
+
+    viewModel<LargeFilesViewModel> {
+        LargeFilesViewModel(
+            getLargestFilesUseCase = get(),
+            deleteFilesUseCase = get(),
+            dispatchers = get()
         )
     }
 

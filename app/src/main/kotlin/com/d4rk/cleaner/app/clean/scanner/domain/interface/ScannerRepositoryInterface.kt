@@ -9,6 +9,7 @@ interface ScannerRepositoryInterface {
     suspend fun getFileTypes() : FileTypesData
     suspend fun getAllFiles() : Pair<List<File> , List<File>>
     suspend fun getTrashFiles() : List<File>
+    suspend fun getLargestFiles(limit: Int): List<File>
     suspend fun deleteFiles(filesToDelete : Set<File>)
     suspend fun moveToTrash(filesToMove : List<File>)
     suspend fun restoreFromTrash(filesToRestore : Set<File>)
