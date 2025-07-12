@@ -233,6 +233,7 @@
     <!-- Trash -->
     <string name="trash">Trash</string>
     <string name="trash_is_empty">Trash is empty</string>
+    <string name="cloud_backup">Cloud Backup</string>
     <string name="restore">Restore</string>
 
     <!-- Cleaning settings -->

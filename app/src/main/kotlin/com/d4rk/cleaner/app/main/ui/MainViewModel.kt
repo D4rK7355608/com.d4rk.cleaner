@@ -59,6 +59,9 @@ class MainViewModel(
                             selectedIcon = Icons.Outlined.Delete ,
                             badgeText = trashBadge ,
                         ) , NavigationDrawerItem(
+                            title = com.d4rk.cleaner.R.string.cloud_backup ,
+                            selectedIcon = Icons.Outlined.CloudUpload ,
+                        ) , NavigationDrawerItem(
                             title = R.string.settings ,
                             selectedIcon = Icons.Outlined.Settings ,
                         ) , NavigationDrawerItem(

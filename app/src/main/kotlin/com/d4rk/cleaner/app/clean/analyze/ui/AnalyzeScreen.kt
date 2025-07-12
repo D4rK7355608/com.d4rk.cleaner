@@ -115,8 +115,8 @@ fun AnalyzeScreen(
                 .padding(top = SizeConstants.LargeSize),
             onClick = {
                 val selected = data.analyzeState.fileSelectionMap.filter { it.value }.keys.map { it.absolutePath }
-                val intent = android.content.Intent(context, com.d4rk.cleaner.app.backup.ui.BackupActivity::class.java)
-                intent.putStringArrayListExtra(com.d4rk.cleaner.app.backup.ui.BackupActivity.EXTRA_FILES, java.util.ArrayList(selected))
+                val intent = android.content.Intent(context, com.d4rk.cleaner.app.backup.ui.CloudBackupActivity::class.java)
+                intent.putStringArrayListExtra(com.d4rk.cleaner.app.backup.ui.CloudBackupActivity.EXTRA_FILES, java.util.ArrayList(selected))
                 context.startActivity(intent)
             },
             enabled = hasSelectedFiles,

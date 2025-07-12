@@ -4,9 +4,17 @@ import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.Modifier
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.lifecycleScope
+import com.d4rk.android.libs.apptoolkit.app.theme.style.AppTheme
+import com.d4rk.cleaner.app.backup.ui.CloudBackupScreen
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -14,7 +22,7 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import java.io.File
 
-class BackupActivity : AppCompatActivity() {
+class CloudBackupActivity : AppCompatActivity() {
     private val dataStore: DataStore by inject()
     private val files: ArrayList<String> by lazy {
         intent.getStringArrayListExtra(EXTRA_FILES) ?: arrayListOf()
@@ -36,6 +44,14 @@ class BackupActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            AppTheme {
+                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                    CloudBackupScreen(onBack = { finish() })
+                }
+            }
+        }
         lifecycleScope.launch(Dispatchers.IO) {
             val savedUri = dataStore.backupUri.first()
             if (savedUri == null) {
