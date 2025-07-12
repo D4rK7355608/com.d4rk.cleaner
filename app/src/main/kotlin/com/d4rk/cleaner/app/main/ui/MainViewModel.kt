@@ -59,6 +59,9 @@ class MainViewModel(
                             selectedIcon = Icons.Outlined.Delete ,
                             badgeText = trashBadge ,
                         ) , NavigationDrawerItem(
+                            title = com.d4rk.cleaner.R.string.large_files ,
+                            selectedIcon = Icons.Outlined.Folder ,
+                        ) , NavigationDrawerItem(
                             title = R.string.settings ,
                             selectedIcon = Icons.Outlined.Settings ,
                         ) , NavigationDrawerItem(
