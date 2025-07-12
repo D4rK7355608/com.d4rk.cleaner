@@ -39,6 +39,7 @@ import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetFileTypesUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetPromotedAppUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.MoveToTrashUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.UpdateTrashSizeUseCase
+import com.d4rk.cleaner.app.clean.scanner.domain.usecases.BackupFilesUseCase
 import com.d4rk.cleaner.app.clean.scanner.ui.ScannerViewModel
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashFilesUseCase
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashSizeUseCase
@@ -94,6 +95,7 @@ val appModule : Module = module {
     single<DeleteFilesUseCase> { DeleteFilesUseCase(homeRepository = get()) }
     single<MoveToTrashUseCase> { MoveToTrashUseCase(homeRepository = get()) }
     single<UpdateTrashSizeUseCase> { UpdateTrashSizeUseCase(homeRepository = get()) }
+    single<BackupFilesUseCase> { BackupFilesUseCase(repository = get()) }
     single<GetPromotedAppUseCase> { GetPromotedAppUseCase() }
     single<GetTrashSizeUseCase> { GetTrashSizeUseCase(dataStore = get()) }
 
@@ -106,6 +108,7 @@ val appModule : Module = module {
             deleteFilesUseCase = get(),
             moveToTrashUseCase = get(),
             updateTrashSizeUseCase = get(),
+            backupFilesUseCase = get(),
             getPromotedAppUseCase = get(),
             dispatchers = get(),
             dataStore = get()

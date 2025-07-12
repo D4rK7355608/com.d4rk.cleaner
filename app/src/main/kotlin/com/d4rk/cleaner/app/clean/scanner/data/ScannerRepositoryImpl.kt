@@ -220,4 +220,23 @@ class ScannerRepositoryImpl(
     override suspend fun subtractTrashSize(size : Long) {
         dataStore.subtractTrashSize(size = size)
     }
+
+    override suspend fun backupFiles(files: List<File>, destinationUri: android.net.Uri) {
+        val resolver = application.contentResolver
+        val tree = androidx.documentfile.provider.DocumentFile.fromTreeUri(application, destinationUri)
+            ?: return
+        files.forEach { file ->
+            if (file.exists()) {
+                val mime = resolver.getType(android.net.Uri.fromFile(file)) ?: "application/octet-stream"
+                val target = tree.createFile(mime, file.name)
+                if (target != null) {
+                    resolver.openOutputStream(target.uri)?.use { output ->
+                        file.inputStream().use { input ->
+                            input.copyTo(output)
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

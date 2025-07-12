@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import kotlinx.coroutines.flow.first
 import com.d4rk.android.libs.apptoolkit.data.datastore.CommonDataStore
@@ -375,6 +376,17 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
     suspend fun saveStreakHideUntil(timestamp: Long) {
         dataStore.edit { prefs ->
             prefs[streakHideUntilKey] = timestamp
+        }
+    }
+
+    private val backupUriKey = stringPreferencesKey(AppDataStoreConstants.DATA_STORE_BACKUP_URI)
+    val backupUri: Flow<String?> = dataStore.data.map { prefs ->
+        prefs[backupUriKey]
+    }
+
+    suspend fun saveBackupUri(uri: String) {
+        dataStore.edit { prefs ->
+            prefs[backupUriKey] = uri
         }
     }
 
