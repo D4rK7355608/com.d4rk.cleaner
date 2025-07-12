@@ -43,7 +43,7 @@ class Cleaner : BaseCoreManager(), SingletonImageLoader.Factory {
         runBlocking {
             val ds = getKoin().get<DataStore>()
             if (ds.autoCleanEnabled.first()) {
-                AutoCleanScheduler.schedule(this@Cleaner)
+                AutoCleanScheduler.schedule(this@Cleaner, ds)
             } else {
                 AutoCleanScheduler.cancel(this@Cleaner)
             }

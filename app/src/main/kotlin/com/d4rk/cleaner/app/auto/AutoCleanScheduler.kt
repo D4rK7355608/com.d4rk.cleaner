@@ -8,14 +8,12 @@ import androidx.work.WorkManager
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.flow.first
-import org.koin.android.ext.android.getKoin
 import java.util.concurrent.TimeUnit
 
 object AutoCleanScheduler {
     private const val WORK_NAME = "auto_clean_work"
 
-    fun schedule(context: Context) {
-        val dataStore = context.getKoin().get<DataStore>()
+    fun schedule(context: Context, dataStore: DataStore) {
         val frequency = runBlocking { dataStore.autoCleanFrequencyDays.first() }
         val constraints = Constraints.Builder()
             .setRequiresCharging(true)
