@@ -1,6 +1,7 @@
 package com.d4rk.cleaner.app.clean.largefiles.ui
 
 import android.view.View
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DeleteForever
 import androidx.compose.material.icons.outlined.Folder
@@ -37,7 +38,11 @@ fun LargeFilesScreen(activity: LargeFilesActivity) {
     val view: View = LocalView.current
 
     LargeTopAppBarWithScaffold(title = stringResource(id = R.string.large_files), onBackClicked = { activity.finish() }) { padding ->
-        ScreenStateHandler(screenState = uiState) { data: UiLargeFilesModel ->
+        ScreenStateHandler(
+            screenState = uiState,
+            onLoading = { LoadingScreen() },
+            onEmpty = { NoDataScreen(textMessage = R.string.no_large_files, icon = Icons.Outlined.Folder) },
+            onSuccess = { data: UiLargeFilesModel ->
             ConstraintLayout(modifier = Modifier.padding(padding)) {
                 val (list, buttons) = createRefs()
                 val enabled = data.selectedFileCount > 0
@@ -84,6 +89,6 @@ fun LargeFilesScreen(activity: LargeFilesActivity) {
                     onEndButtonText = R.string.empty_folders
                 )
             }
-        }
+        })
     }
 }
