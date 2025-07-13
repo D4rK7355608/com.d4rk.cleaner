@@ -236,6 +236,8 @@
     <string name="trash">Corbeille</string>
     <string name="trash_is_empty">La corbeille est vide</string>
     <string name="restore">Restaurer</string>
+    <string name="large_files">Fichiers volumineux</string>
+    <string name="no_large_files">Aucun fichier volumineux trouvé</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Nettoyage</string>

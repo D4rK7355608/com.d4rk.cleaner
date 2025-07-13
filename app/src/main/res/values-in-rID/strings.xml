@@ -229,6 +229,8 @@
     <string name="trash">Sampah</string>
     <string name="trash_is_empty">Sampah kosong</string>
     <string name="restore">Pulihkan</string>
+    <string name="large_files">File besar</string>
+    <string name="no_large_files">Tidak ada file besar yang ditemukan</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Pembersihan</string>

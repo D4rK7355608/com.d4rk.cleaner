@@ -235,6 +235,8 @@
     <string name="trash">Papelera</string>
     <string name="trash_is_empty">La papelera está vacía</string>
     <string name="restore">Restaurar</string>
+    <string name="large_files">Archivos grandes</string>
+    <string name="no_large_files">No se encontraron archivos grandes</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Limpieza</string>

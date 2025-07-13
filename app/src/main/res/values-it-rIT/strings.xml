@@ -235,6 +235,8 @@
     <string name="trash">Cestino</string>
     <string name="trash_is_empty">Il cestino è vuoto</string>
     <string name="restore">Ripristina</string>
+    <string name="large_files">File di grandi dimensioni</string>
+    <string name="no_large_files">Nessun file di grandi dimensioni trovato</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Pulizia</string>

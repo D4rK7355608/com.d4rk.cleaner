@@ -235,6 +235,8 @@
     <string name="trash">Coș</string>
     <string name="trash_is_empty">Coșul este gol</string>
     <string name="restore">Restaurează</string>
+    <string name="large_files">Fișiere mari</string>
+    <string name="no_large_files">Nu s-au găsit fișiere mari</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Curățare</string>

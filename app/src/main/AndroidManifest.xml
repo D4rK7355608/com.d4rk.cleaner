@@ -99,6 +99,12 @@
             android:parentActivityName=".app.clean.whatsapp.summary.ui.WhatsAppCleanerActivity" />
 
         <activity
+            android:name=".app.clean.largefiles.ui.LargeFilesActivity"
+            android:exported="false"
+            android:label="@string/large_files"
+            android:parentActivityName=".app.main.ui.MainActivity" />
+
+        <activity
             android:name=".app.clean.clipboard.ui.ClipboardCleanerActivity"
             android:exported="true"
             android:label="@string/clipboard_clean"

@@ -232,6 +232,8 @@
     <string name="trash">Çöp Kutusu</string>
     <string name="trash_is_empty">Çöp kutusu boş</string>
     <string name="restore">Geri Yükle</string>
+    <string name="large_files">Büyük dosyalar</string>
+    <string name="no_large_files">Büyük dosya bulunamadı</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Temizlik</string>

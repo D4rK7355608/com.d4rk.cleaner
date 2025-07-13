@@ -238,6 +238,8 @@
     <string name="trash">Кошик</string>
     <string name="trash_is_empty">Кошик порожній</string>
     <string name="restore">Відновити</string>
+    <string name="large_files">Великі файли</string>
+    <string name="no_large_files">Великі файли не знайдено</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Очищення</string>

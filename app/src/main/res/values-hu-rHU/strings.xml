@@ -232,6 +232,8 @@
     <string name="trash">Kuka</string>
     <string name="trash_is_empty">A kuka üres</string>
     <string name="restore">Visszaállítás</string>
+    <string name="large_files">Nagy fájlok</string>
+    <string name="no_large_files">Nincsenek nagy fájlok</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Tisztítás</string>

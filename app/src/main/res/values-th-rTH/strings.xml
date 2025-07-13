@@ -229,6 +229,8 @@
     <string name="trash">ถังขยะ</string>
     <string name="trash_is_empty">ถังขยะว่างเปล่า</string>
     <string name="restore">กู้คืน</string>
+    <string name="large_files">ไฟล์ขนาดใหญ่</string>
+    <string name="no_large_files">ไม่พบไฟล์ขนาดใหญ่</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">การทำความสะอาด</string>

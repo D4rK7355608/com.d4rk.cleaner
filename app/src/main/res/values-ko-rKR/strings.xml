@@ -229,6 +229,8 @@
     <string name="trash">휴지통</string>
     <string name="trash_is_empty">휴지통이 비어 있습니다.</string>
     <string name="restore">복원</string>
+    <string name="large_files">큰 파일</string>
+    <string name="no_large_files">큰 파일이 없습니다</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">정리</string>

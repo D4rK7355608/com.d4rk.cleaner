@@ -232,6 +232,8 @@
     <string name="trash">ردی کی ٹوکری</string>
     <string name="trash_is_empty">ردی کی ٹوکری خالی ہے</string>
     <string name="restore">بحال کریں</string>
+    <string name="large_files">بڑی فائلیں</string>
+    <string name="no_large_files">کوئی بڑی فائلیں نہیں ملیں</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">صفائی</string>

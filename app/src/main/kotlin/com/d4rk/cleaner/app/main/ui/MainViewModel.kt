@@ -7,6 +7,7 @@ import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Photo
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Share
+import androidx.compose.material.icons.outlined.Folder
 import com.d4rk.android.libs.apptoolkit.R
 import com.d4rk.android.libs.apptoolkit.app.main.domain.usecases.PerformInAppUpdateUseCase
 import com.d4rk.android.libs.apptoolkit.core.domain.model.navigation.NavigationDrawerItem
@@ -58,6 +59,9 @@ class MainViewModel(
                             title = com.d4rk.cleaner.R.string.trash ,
                             selectedIcon = Icons.Outlined.Delete ,
                             badgeText = trashBadge ,
+                        ) , NavigationDrawerItem(
+                            title = com.d4rk.cleaner.R.string.large_files ,
+                            selectedIcon = Icons.Outlined.Folder ,
                         ) , NavigationDrawerItem(
                             title = R.string.settings ,
                             selectedIcon = Icons.Outlined.Settings ,

@@ -232,6 +232,8 @@
     <string name="trash">Trash</string>
     <string name="trash_is_empty">Trash is empty</string>
     <string name="restore">Restore</string>
+    <string name="large_files">Large Files</string>
+    <string name="no_large_files">No large files found</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Cleaning</string>

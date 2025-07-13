@@ -20,6 +20,7 @@ import com.d4rk.cleaner.app.apps.manager.ui.AppManagerScreen
 import com.d4rk.cleaner.app.clean.memory.ui.MemoryManagerComposable
 import com.d4rk.cleaner.app.clean.scanner.ui.ScannerScreen
 import com.d4rk.cleaner.app.clean.trash.ui.TrashActivity
+import com.d4rk.cleaner.app.clean.largefiles.ui.LargeFilesActivity
 import com.d4rk.cleaner.app.images.picker.ui.ImagePickerActivity
 import com.d4rk.cleaner.app.main.utils.constants.NavigationRoutes
 import com.d4rk.cleaner.core.data.datastore.DataStore
@@ -54,6 +55,7 @@ fun handleNavigationItemClick(context : Context , item : NavigationDrawerItem , 
         com.d4rk.android.libs.apptoolkit.R.string.share -> IntentsHelper.shareApp(context = context , shareMessageFormat = com.d4rk.android.libs.apptoolkit.R.string.summary_share_message)
         R.string.image_optimizer -> IntentsHelper.openActivity(context = context , activityClass = ImagePickerActivity::class.java)
         R.string.trash -> IntentsHelper.openActivity(context = context , activityClass = TrashActivity::class.java)
+        R.string.large_files -> IntentsHelper.openActivity(context = context , activityClass = LargeFilesActivity::class.java)
     }
     drawerState?.let { drawerState : DrawerState ->
         coroutineScope?.let { scope : CoroutineScope ->
