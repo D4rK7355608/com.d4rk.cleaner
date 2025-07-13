@@ -42,6 +42,7 @@ import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.domain.model.network.Errors
 import com.d4rk.cleaner.core.utils.extensions.clearClipboardCompat
 import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -54,6 +55,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 import com.d4rk.cleaner.core.utils.extensions.md5
+
+private const val RESULT_DELAY_MS = 2000L
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ScannerViewModel(
@@ -526,14 +529,18 @@ class ScannerViewModel(
                             selectedFilesCount = 0,
                             areAllFilesSelected = false,
                             isAnalyzeScreenVisible = false,
-                            fileSelectionMap = emptyMap(),
-                            state = CleaningState.Result
+                            fileSelectionMap = emptyMap()
                         )
                     )
 
                 }
 
                 if (result is DataState.Success) {
+                    delay(RESULT_DELAY_MS)
+                    _uiState.update { state ->
+                        val current = state.data ?: UiScannerModel()
+                        state.copy(data = current.copy(analyzeState = current.analyzeState.copy(state = CleaningState.Result)))
+                    }
                     updateTrashSize(sizeChange = totalFileSizeToMove)
                     loadInitialData()
                     loadWhatsAppMedia()
@@ -739,8 +746,7 @@ class ScannerViewModel(
                         selectedFilesCount = 0,
                         areAllFilesSelected = false,
                         fileSelectionMap = emptyMap(),
-                        isAnalyzeScreenVisible = false,
-                        state = CleaningState.Result),
+                        isAnalyzeScreenVisible = false),
                         storageInfo = currentData.storageInfo.copy(
                             isFreeSpaceLoading = true,
                             isCleanedSpaceLoading = true
@@ -748,6 +754,11 @@ class ScannerViewModel(
                 }
 
                 if (result is DataState.Success) {
+                    delay(RESULT_DELAY_MS)
+                    _uiState.update { state ->
+                        val current = state.data ?: UiScannerModel()
+                        state.copy(data = current.copy(analyzeState = current.analyzeState.copy(state = CleaningState.Result)))
+                    }
                     launch {
                         dataStore.saveLastScanTimestamp(timestamp = System.currentTimeMillis())
                     }
@@ -836,11 +847,15 @@ class ScannerViewModel(
                         selectedFilesCount = 0,
                         areAllFilesSelected = false,
                         isAnalyzeScreenVisible = false,
-                        fileSelectionMap = emptyMap(),
-                        state = CleaningState.Result))
+                        fileSelectionMap = emptyMap()))
                 }
 
                 if (result is DataState.Success) {
+                    delay(RESULT_DELAY_MS)
+                    _uiState.update { state ->
+                        val current = state.data ?: UiScannerModel()
+                        state.copy(data = current.copy(analyzeState = current.analyzeState.copy(state = CleaningState.Result)))
+                    }
                     updateTrashSize(totalFileSizeToMove)
                     loadInitialData()
                     loadWhatsAppMedia()

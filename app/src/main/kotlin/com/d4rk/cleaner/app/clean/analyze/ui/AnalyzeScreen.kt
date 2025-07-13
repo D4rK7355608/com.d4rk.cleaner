@@ -52,8 +52,12 @@ fun AnalyzeScreen(
         ) {
             when (data.analyzeState.state) {
 
-                CleaningState.Analyzing, CleaningState.Cleaning -> {
+                CleaningState.Analyzing -> {
                     LoadingScreen()
+                }
+
+                CleaningState.Cleaning -> {
+                    CleaningAnimationScreen()
                 }
 
                 CleaningState.ReadyToClean -> {
