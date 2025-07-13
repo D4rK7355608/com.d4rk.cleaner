@@ -126,6 +126,7 @@
     <string name="clean_whatsapp_warning_message">Ez törli az összes WhatsApp médiát. Folytatja?</string>
     <string name="cancel">Mégse</string>
     <string name="whatsapp_cleaner">WhatsApp Tisztító</string>
+    <string name="whatsapp_cleaner_empty_message">A WhatsApp-od makulátlan! Nincs mit törölni. Szép napot!</string>
     <string name="total_files_format">%1$s fájl</string>
     <string name="delete_selected">Kijelöltek törlése</string>
     <string name="sort_options">Rendezési beállítások</string>
