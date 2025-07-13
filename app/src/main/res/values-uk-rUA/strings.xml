@@ -154,6 +154,9 @@
     <string name="image_optimizer_last_format">Остання оптимізація: %1$s</string>
     <string name="cache_cleaner_card_title">Очищення кешу</string>
     <string name="cache_cleaner_card_subtitle">Звільніть місце, видаливши кеш додатків</string>
+    <string name="large_files_card_title">Великі файли</string>
+    <string name="large_files_card_subtitle">Перегляньте та видаліть свої найбільші файли.</string>
+    <string name="open_large_files">Переглянути великі файли</string>
     <string name="scan_cache">Сканувати кеш</string>
     <string name="apks">APK-файли</string>
     <string name="archives">Архіви</string>

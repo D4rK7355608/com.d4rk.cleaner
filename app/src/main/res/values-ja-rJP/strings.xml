@@ -145,6 +145,9 @@
     <string name="image_optimizer_last_format">最後の最適化: %1$s</string>
     <string name="cache_cleaner_card_title">キャッシュクリーナー</string>
     <string name="cache_cleaner_card_subtitle">アプリのキャッシュを削除して空き容量を確保</string>
+    <string name="large_files_card_title">大きなファイル</string>
+    <string name="large_files_card_subtitle">最も大きなファイルを確認して削除しましょう。</string>
+    <string name="open_large_files">大きなファイルを表示</string>
     <string name="scan_cache">キャッシュをスキャン</string>
     <string name="apks">APK</string>
     <string name="archives">アーカイブ</string>

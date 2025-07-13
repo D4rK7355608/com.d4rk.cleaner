@@ -55,8 +55,10 @@ import com.d4rk.cleaner.app.clean.scanner.ui.components.PromotedAppCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.QuickScanSummaryCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.WeeklyCleanStreakCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.WhatsAppCleanerCard
+import com.d4rk.cleaner.app.clean.scanner.ui.components.LargeFilesCard
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsAppCleanerActivity
 import com.d4rk.cleaner.app.images.picker.ui.ImagePickerActivity
+import com.d4rk.cleaner.app.clean.largefiles.ui.LargeFilesActivity
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.qualifier.named
@@ -81,6 +83,7 @@ fun ScannerDashboardScreen(
     val whatsappLoaded by viewModel.whatsAppMediaLoaded.collectAsState()
     val whatsappInstalled by viewModel.isWhatsAppInstalled.collectAsState()
     val clipboardText by viewModel.clipboardPreview.collectAsState()
+    val largeFiles by viewModel.largestFiles.collectAsState()
     val streakDays by viewModel.cleanStreak.collectAsState()
     val showStreakCard by viewModel.showStreakCard.collectAsState()
     val streakHideUntil by viewModel.streakHideUntil.collectAsState()
@@ -99,10 +102,13 @@ fun ScannerDashboardScreen(
     val showClipboardCard by remember(clipboardText) {
         derivedStateOf { !clipboardText.isNullOrBlank() }
     }
+    val showLargeFilesCard by remember(largeFiles) {
+        derivedStateOf { largeFiles.isNotEmpty() }
+    }
 
     val dataLoaded = appManagerState.data?.apkFilesLoading == false && whatsappLoaded
     val cleanerCardsCount = if (dataLoaded) {
-        listOf(showWhatsAppCard, showApkCard, showClipboardCard).count { it }
+        listOf(showWhatsAppCard, showApkCard, showClipboardCard, showLargeFilesCard).count { it }
     } else 0
 
     val listState: LazyListState = rememberLazyListState()
@@ -147,6 +153,7 @@ fun ScannerDashboardScreen(
             if (showWhatsAppCard) add(true)
             if (showApkCard) add(true)
             if (showClipboardCard) add(true)
+            if (showLargeFilesCard) add(true)
 
             // Middle ad
             if (showAdMid) add(true)
@@ -297,6 +304,30 @@ fun ScannerDashboardScreen(
                         index = clipboardIndex
                     ).animateContentSize(),
                     clipboardText = clipboardText , onCleanClick = { viewModel.onClipboardClear() })
+            }
+        }
+
+        if (showLargeFilesCard) {
+            AnimatedVisibility(
+                visible = showLargeFilesCard,
+                enter = fadeIn() + expandVertically(),
+                exit = fadeOut() + shrinkVertically()
+            ) {
+                val largeFilesIndex = nextIndex()
+                LargeFilesCard(
+                    modifier = Modifier.animateVisibility(
+                        visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false &&
+                                visibilityStates.getOrElse(index = largeFilesIndex) { false },
+                        index = largeFilesIndex
+                    ).animateContentSize(),
+                    files = largeFiles,
+                    onOpenClick = {
+                        IntentsHelper.openActivity(
+                            context = context,
+                            activityClass = LargeFilesActivity::class.java
+                        )
+                    }
+                )
             }
         }
 

@@ -151,6 +151,9 @@
     <string name="image_optimizer_last_format">Ultima ottimizzazione: %1$s</string>
     <string name="cache_cleaner_card_title">Pulitore cache</string>
     <string name="cache_cleaner_card_subtitle">Libera spazio dalla cache delle app</string>
+    <string name="large_files_card_title">File di grandi dimensioni</string>
+    <string name="large_files_card_subtitle">Esamina e rimuovi i file più grandi.</string>
+    <string name="open_large_files">Visualizza file di grandi dimensioni</string>
     <string name="scan_cache">Scansione cache</string>
     <string name="apks">APK</string>
     <string name="archives">Archivi</string>

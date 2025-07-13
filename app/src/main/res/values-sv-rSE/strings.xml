@@ -148,6 +148,9 @@
     <string name="image_optimizer_last_format">Senaste optimering: %1$s</string>
     <string name="cache_cleaner_card_title">Cache-rensare</string>
     <string name="cache_cleaner_card_subtitle">Frigör utrymme från appcache</string>
+    <string name="large_files_card_title">Stora filer</string>
+    <string name="large_files_card_subtitle">Granska och ta bort dina största filer.</string>
+    <string name="open_large_files">Visa stora filer</string>
     <string name="scan_cache">Skanna cache</string>
     <string name="apks">APK:er</string>
     <string name="archives">Arkiv</string>

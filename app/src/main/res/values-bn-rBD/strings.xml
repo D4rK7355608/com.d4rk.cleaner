@@ -148,6 +148,9 @@
     <string name="image_optimizer_last_format">সর্বশেষ অপটিমাইজেশন: %1$s</string>
     <string name="cache_cleaner_card_title">ক্যাশে ক্লিনার</string>
     <string name="cache_cleaner_card_subtitle">অ্যাপ ক্যাশে থেকে জায়গা খালি করুন</string>
+    <string name="large_files_card_title">বড় ফাইল</string>
+    <string name="large_files_card_subtitle">আপনার সবচেয়ে বড় ফাইলগুলো পর্যালোচনা করে মুছে ফেলুন।</string>
+    <string name="open_large_files">বড় ফাইল দেখুন</string>
     <string name="scan_cache">ক্যাশে স্ক্যান করুন</string>
     <string name="apks">এপিকে ফাইল</string>
     <string name="archives">আর্কাইভসমূহ</string>

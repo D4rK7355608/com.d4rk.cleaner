@@ -30,6 +30,7 @@ import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.WhatsAppMediaSumm
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.AnalyzeFilesUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.DeleteFilesUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetFileTypesUseCase
+import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetLargestFilesUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetPromotedAppUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetStorageInfoUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.MoveToTrashUseCase
@@ -64,6 +65,7 @@ class ScannerViewModel(
     private val moveToTrashUseCase: MoveToTrashUseCase,
     private val updateTrashSizeUseCase: UpdateTrashSizeUseCase,
     private val getPromotedAppUseCase: GetPromotedAppUseCase,
+    private val getLargestFilesUseCase: GetLargestFilesUseCase,
     private val dispatchers: DispatcherProvider,
     private val dataStore: DataStore
 ) : ScreenViewModel<UiScannerModel, ScannerEvent, ScannerAction>(
@@ -98,6 +100,9 @@ class ScannerViewModel(
     private val _streakHideUntil = MutableStateFlow(0L)
     val streakHideUntil: StateFlow<Long> = _streakHideUntil
 
+    private val _largestFiles = MutableStateFlow<List<File>>(emptyList())
+    val largestFiles: StateFlow<List<File>> = _largestFiles
+
     init {
         clipboardManager.addPrimaryClipChangedListener(clipboardListener)
         onEvent(ScannerEvent.LoadInitialData)
@@ -106,6 +111,7 @@ class ScannerViewModel(
         loadWhatsAppMedia()
         loadClipboardData()
         loadPromotedApp()
+        loadLargestFilesPreview()
         loadCleanStreak()
         loadStreakCardVisibility()
         launch(dispatchers.io) {
@@ -231,6 +237,7 @@ class ScannerViewModel(
         loadInitialData()
         loadWhatsAppMedia()
         loadClipboardData()
+        loadLargestFilesPreview()
         if (screenData?.analyzeState?.isAnalyzeScreenVisible == true) {
             analyzeFiles()
         }
@@ -921,6 +928,16 @@ class ScannerViewModel(
         launch(dispatchers.io) {
             dataStore.streakCount.collect { streak ->
                 _cleanStreak.value = streak
+            }
+        }
+    }
+
+    private fun loadLargestFilesPreview() {
+        launch(dispatchers.io) {
+            getLargestFilesUseCase(5).collectLatest { result ->
+                if (result is DataState.Success) {
+                    _largestFiles.value = result.data
+                }
             }
         }
     }

@@ -148,6 +148,9 @@
     <string name="image_optimizer_last_format">Huling pag-optimize: %1$s</string>
     <string name="cache_cleaner_card_title">Panglinis ng Cache</string>
     <string name="cache_cleaner_card_subtitle">Magbakante ng puwang mula sa cache ng app</string>
+    <string name="large_files_card_title">Malalaking file</string>
+    <string name="large_files_card_subtitle">Suriin at alisin ang pinakamalalaking file mo.</string>
+    <string name="open_large_files">Tingnan ang malalaking file</string>
     <string name="scan_cache">I-scan ang Cache</string>
     <string name="apks">Mga APK</string>
     <string name="archives">Mga Archive</string>

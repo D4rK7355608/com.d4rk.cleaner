@@ -30,7 +30,7 @@ fun NavigationDrawerItemContent(item : NavigationDrawerItem , handleNavigationIt
             .padding(paddingValues = NavigationDrawerItemDefaults.ItemPadding)
             .bounceClick())
 
-    if (item.title == R.string.large_files) {
+    if (item.title == R.string.trash) {
         HorizontalDivider(modifier = Modifier.padding(all = SizeConstants.SmallSize))
     }
 }
