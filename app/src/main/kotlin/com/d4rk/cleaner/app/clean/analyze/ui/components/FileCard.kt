@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.clean.analyze.components
+package com.d4rk.cleaner.app.clean.analyze.ui.components
 
 import android.content.Context
 import com.d4rk.cleaner.core.utils.helpers.FileManagerHelper

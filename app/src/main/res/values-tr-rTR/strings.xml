@@ -204,8 +204,6 @@
     <string name="app_info">Uygulama bilgisi</string>
     <string name="install">Yükle</string>
     <string name="no_app_installed">Yüklü uygulama yok</string>
-    <string name="last_used_format">Son kullanılan: %1$s</string>
-    <string name="never_used">Asla kullanılmadı</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">Bellek Yöneticisi</string>

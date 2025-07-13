@@ -228,8 +228,6 @@
     <string name="app_info">معلومات التطبيق</string>
     <string name="install">تثبيت</string>
     <string name="no_app_installed">مفيش تطبيقات متثبتة</string>
-    <string name="last_used_format">آخر استخدام: %1$s</string>
-    <string name="never_used">لم تستخدم</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">مدير الذاكرة</string>

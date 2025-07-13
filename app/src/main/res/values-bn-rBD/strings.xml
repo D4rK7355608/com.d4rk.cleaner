@@ -204,9 +204,6 @@
     <string name="app_info">অ্যাপের তথ্য</string>
     <string name="install">ইনস্টল করুন</string>
     <string name="no_app_installed">কোনও অ্যাপ ইনস্টল করা নেই</string>
-    <string name="last_used_format">সর্বশেষ ব্যবহৃত: %1$s</string>
-    <string name="never_used">কখনও ব্যবহার করা হয়নি</string>
-
     <!-- Memory Manager -->
     <string name="memory_manager">মেমরি ম্যানেজার</string>
     <string name="storage_information">স্টোরেজ তথ্য</string>

@@ -204,8 +204,6 @@
     <string name="app_info">ऐप जानकारी</string>
     <string name="install">इंस्टॉल करें</string>
     <string name="no_app_installed">कोई ऐप इंस्टॉल नहीं है</string>
-    <string name="last_used_format">अंतिम उपयोग: %1$s</string>
-    <string name="never_used">कभी भी इस्तेमाल नहीं किया</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">मेमोरी मैनेजर</string>

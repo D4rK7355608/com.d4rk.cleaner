@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.clean.analyze.components.tabs
+package com.d4rk.cleaner.app.clean.analyze.ui.components.tabs
 
 import android.view.SoundEffectConstants
 import android.view.View
@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.IconButton
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.hapticPagerSwipe
-import com.d4rk.cleaner.app.clean.analyze.components.DuplicateGroupsSection
-import com.d4rk.cleaner.app.clean.analyze.components.FilesByDateSection
+import com.d4rk.cleaner.app.clean.analyze.ui.components.DuplicateGroupsSection
+import com.d4rk.cleaner.app.clean.analyze.ui.components.FilesByDateSection
 import com.d4rk.cleaner.app.clean.scanner.domain.actions.ScannerEvent
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.UiScannerModel
 import com.d4rk.cleaner.app.clean.scanner.ui.ScannerViewModel

@@ -210,8 +210,6 @@
     <string name="app_info">Informații aplicație</string>
     <string name="install">Instalează</string>
     <string name="no_app_installed">Nicio aplicație instalată</string>
-    <string name="last_used_format">Ultima folosire: %1$s</string>
-    <string name="never_used">Nu a fost folosit niciodată</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">Manager memorie</string>

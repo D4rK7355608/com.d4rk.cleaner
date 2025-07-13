@@ -198,8 +198,6 @@
     <string name="app_info">앱 정보</string>
     <string name="install">설치</string>
     <string name="no_app_installed">설치된 앱 없음</string>
-    <string name="last_used_format">마지막 사용 : %1$s</string>
-    <string name="never_used">사용하지 않았습니다</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">메모리 관리자</string>

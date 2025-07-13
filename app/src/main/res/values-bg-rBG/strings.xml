@@ -204,9 +204,6 @@
     <string name="app_info">Информация за приложението</string>
     <string name="install">Инсталиране</string>
     <string name="no_app_installed">Няма инсталирани приложения</string>
-    <string name="last_used_format">Последно използвано: %1$s</string>
-    <string name="never_used">Никога не се използва</string>
-
     <!-- Memory Manager -->
     <string name="memory_manager">Мениджър на паметта</string>
     <string name="storage_information">Информация за хранилището</string>

@@ -204,8 +204,6 @@
     <string name="app_info">Appinformation</string>
     <string name="install">Installera</string>
     <string name="no_app_installed">Inga appar installerade</string>
-    <string name="last_used_format">Senast använt: %1$s</string>
-    <string name="never_used">ALDRIG ANVÄNDA</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">Minneshanterare</string>

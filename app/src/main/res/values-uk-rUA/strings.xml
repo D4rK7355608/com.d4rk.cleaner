@@ -216,8 +216,6 @@
     <string name="app_info">Про додаток</string>
     <string name="install">Встановити</string>
     <string name="no_app_installed">Немає встановлених додатків</string>
-    <string name="last_used_format">Востаннє використаний: %1$s</string>
-    <string name="never_used">Ніколи не використовувався</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">Менеджер пам\'яті</string>

@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.app.clean.analyze.components.SelectAllComposable
+import com.d4rk.cleaner.app.clean.analyze.ui.components.SelectAllComposable
 
 @Composable
 fun DetailsStatusRow(

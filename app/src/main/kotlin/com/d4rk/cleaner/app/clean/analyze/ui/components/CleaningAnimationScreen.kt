@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.clean.analyze.ui
+package com.d4rk.cleaner.app.clean.analyze.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -38,4 +38,3 @@ fun CleaningAnimationScreen() {
         )
     }
 }
-

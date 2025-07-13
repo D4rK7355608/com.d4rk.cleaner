@@ -17,9 +17,10 @@ import androidx.compose.ui.Modifier
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.app.clean.analyze.components.StatusRowSelectAll
-import com.d4rk.cleaner.app.clean.analyze.components.dialogs.DeleteOrTrashConfirmation
-import com.d4rk.cleaner.app.clean.analyze.components.tabs.TabsContent
+import com.d4rk.cleaner.app.clean.analyze.ui.components.CleaningAnimationScreen
+import com.d4rk.cleaner.app.clean.analyze.ui.components.StatusRowSelectAll
+import com.d4rk.cleaner.app.clean.analyze.ui.components.dialogs.DeleteOrTrashConfirmation
+import com.d4rk.cleaner.app.clean.analyze.ui.components.tabs.TabsContent
 import com.d4rk.cleaner.app.clean.nofilesfound.ui.NoFilesFoundScreen
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.CleaningState
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.UiScannerModel

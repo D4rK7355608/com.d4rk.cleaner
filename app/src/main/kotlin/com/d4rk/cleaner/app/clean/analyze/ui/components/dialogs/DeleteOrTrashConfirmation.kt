@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.clean.analyze.components.dialogs
+package com.d4rk.cleaner.app.clean.analyze.ui.components.dialogs
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth

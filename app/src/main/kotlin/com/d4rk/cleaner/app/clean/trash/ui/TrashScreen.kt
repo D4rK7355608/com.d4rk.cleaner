@@ -24,7 +24,7 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHa
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.app.clean.analyze.components.FilesByDateSection
+import com.d4rk.cleaner.app.clean.analyze.ui.components.FilesByDateSection
 import com.d4rk.cleaner.app.clean.scanner.ui.components.TwoRowButtons
 import com.d4rk.cleaner.app.clean.trash.domain.actions.TrashEvent
 import com.d4rk.cleaner.app.clean.trash.domain.data.model.ui.UiTrashModel

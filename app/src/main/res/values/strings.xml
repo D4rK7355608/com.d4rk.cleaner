@@ -204,8 +204,6 @@
     <string name="app_info">App info</string>
     <string name="install">Install"</string>
     <string name="no_app_installed">No apps installed</string>
-    <string name="last_used_format">Last used: %1$s</string>
-    <string name="never_used">Never used</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">Memory Manager</string>

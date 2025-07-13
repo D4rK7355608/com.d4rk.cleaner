@@ -2,6 +2,7 @@ package com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -33,13 +34,14 @@ import org.koin.core.qualifier.named
 
 @Composable
 fun WhatsAppEmptyState(
+    paddingValues : PaddingValues,
     adsConfig: AdsConfig = koinInject(qualifier = named(name = "banner_medium_rectangle"))
 ) {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.finish_anim))
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(SizeConstants.ExtraExtraLargeSize)
+            .padding(paddingValues)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -68,7 +70,8 @@ fun WhatsAppEmptyState(
         LottieAnimation(
             composition = composition,
             iterations = 1,
-            contentScale = ContentScale.Crop,
+            speed = 1.2f,
+            contentScale = ContentScale.FillHeight,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(SizeConstants.ExtraExtraLargeSize.times(6))

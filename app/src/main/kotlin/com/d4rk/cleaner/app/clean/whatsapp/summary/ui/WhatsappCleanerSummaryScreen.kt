@@ -74,7 +74,7 @@ fun WhatsappCleanerSummaryScreen(activity: Activity) {
         scrollBehavior = scrollBehavior,
         floatingActionButton = {
             AnimatedExtendedFloatingActionButton(
-                visible = true,
+                visible = state.data?.mediaSummary?.totalBytes != 0L,
                 onClick = { showCleanDialog = true },
                 icon = {
                     Icon(
@@ -94,7 +94,7 @@ fun WhatsappCleanerSummaryScreen(activity: Activity) {
                 LoadingScreen()
             },
             onEmpty = {
-                WhatsAppEmptyState()
+                WhatsAppEmptyState(paddingValues)
             },
             onSuccess = { data ->
                 WhatsappCleanerSummaryScreenContent(

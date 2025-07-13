@@ -210,8 +210,6 @@
     <string name="app_info">Info app</string>
     <string name="install">Installa</string>
     <string name="no_app_installed">Nessuna app installata</string>
-    <string name="last_used_format">Ultimo usato: %1$s</string>
-    <string name="never_used">Mai usato</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">Gestione memoria</string>

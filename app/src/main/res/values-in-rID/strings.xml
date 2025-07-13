@@ -198,8 +198,6 @@
     <string name="app_info">Info aplikasi</string>
     <string name="install">Instal</string>
     <string name="no_app_installed">Tidak ada aplikasi yang terinstal</string>
-    <string name="last_used_format">Terakhir digunakan: %1$s</string>
-    <string name="never_used">Tidak pernah digunakan</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">Manajer Memori</string>

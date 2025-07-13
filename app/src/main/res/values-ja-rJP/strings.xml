@@ -198,8 +198,6 @@
     <string name="app_info">アプリ情報</string>
     <string name="install">インストール</string>
     <string name="no_app_installed">インストールされているアプリはありません</string>
-    <string name="last_used_format">最終使用：%1$s</string>
-    <string name="never_used">使用しないでください</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">メモリマネージャー</string>

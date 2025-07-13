@@ -204,8 +204,6 @@
     <string name="app_info">Alkalmazásinformáció</string>
     <string name="install">Telepítés</string>
     <string name="no_app_installed">Nincsenek telepített alkalmazások</string>
-    <string name="last_used_format">Utoljára használták: %1$s</string>
-    <string name="never_used">Soha nem használt</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">Memóriakezelő</string>
