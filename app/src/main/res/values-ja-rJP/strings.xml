@@ -123,6 +123,7 @@
     <string name="clean_whatsapp_warning_message">すべてのWhatsAppメディアファイルを削除します。続けますか？</string>
     <string name="cancel">キャンセル</string>
     <string name="whatsapp_cleaner">WhatsAppクリーナー</string>
+    <string name="whatsapp_cleaner_empty_message">WhatsAppがきれいになりました！もう掃除するものはありません。良い一日を！</string>
     <string name="total_files_format">%1$s 件のファイル</string>
     <string name="delete_selected">選択したものを削除</string>
     <string name="sort_options">並び替えオプション</string>

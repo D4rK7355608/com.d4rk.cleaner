@@ -129,6 +129,7 @@
     <string name="clean_whatsapp_warning_message">Aceasta va șterge toate fișierele media WhatsApp. Continui?</string>
     <string name="cancel">Anulează</string>
     <string name="whatsapp_cleaner">Curățător WhatsApp</string>
+    <string name="whatsapp_cleaner_empty_message">WhatsApp-ul tău este impecabil! Nu mai ai ce curăța. Bucură-te de zi!</string>
     <string name="total_files_format">%1$s fișiere</string>
     <string name="delete_selected">Șterge selecția</string>
     <string name="sort_options">Opțiuni de sortare</string>

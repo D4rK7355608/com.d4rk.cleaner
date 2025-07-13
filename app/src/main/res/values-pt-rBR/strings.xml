@@ -129,6 +129,7 @@
     <string name="clean_whatsapp_warning_message">Isso excluirá todos os arquivos de mídia do WhatsApp. Continuar?</string>
     <string name="cancel">Cancelar</string>
     <string name="whatsapp_cleaner">Limpador do WhatsApp</string>
+    <string name="whatsapp_cleaner_empty_message">Seu WhatsApp está limpo! Não há mais nada para limpar. Aproveite o seu dia!</string>
     <string name="total_files_format">%1$s arquivos</string>
     <string name="delete_selected">Excluir selecionados</string>
     <string name="sort_options">Opções de ordenação</string>

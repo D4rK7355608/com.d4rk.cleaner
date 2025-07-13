@@ -126,6 +126,7 @@
     <string name="clean_whatsapp_warning_message">اس سے تمام واٹس ایپ میڈیا فائلیں حذف ہو جائیں گی۔ کیا جاری رکھیں؟</string>
     <string name="cancel">منسوخ کریں</string>
     <string name="whatsapp_cleaner">واٹس ایپ کلینر</string>
+    <string name="whatsapp_cleaner_empty_message">آپ کا واٹس ایپ بالکل صاف ہے! اب کچھ بھی صاف نہیں کرنا۔ اپنا دن اچھا گزاریں!</string>
     <string name="total_files_format">%1$s فائلیں</string>
     <string name="delete_selected">منتخب حذف کریں</string>
     <string name="sort_options">ترتیب کے اختیارات</string>

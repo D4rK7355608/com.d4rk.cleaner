@@ -11,7 +11,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DeleteSweep
-import androidx.compose.material.icons.outlined.FolderOff
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -35,7 +34,6 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.ads.AdBanner
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.fab.AnimatedExtendedFloatingActionButton
 import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
-import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
@@ -47,6 +45,7 @@ import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.CleanerInfoCard
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.DirectoryGrid
+import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.components.WhatsAppEmptyState
 import com.d4rk.cleaner.app.clean.whatsapp.utils.constants.WhatsAppMediaConstants
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
@@ -94,11 +93,7 @@ fun WhatsappCleanerSummaryScreen(activity: Activity) {
                 LoadingScreen()
             },
             onEmpty = {
-                NoDataScreen(
-                    icon = Icons.Outlined.FolderOff,
-                    showRetry = true,
-                    onRetry = { viewModel.onEvent(WhatsAppCleanerEvent.LoadMedia) },
-                )
+                WhatsAppEmptyState()
             },
             onSuccess = { data ->
                 WhatsappCleanerSummaryScreenContent(
