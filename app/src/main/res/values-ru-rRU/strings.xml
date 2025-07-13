@@ -196,6 +196,8 @@
     <string name="app_info">Информация о приложении</string>
     <string name="install">Установить</string>
     <string name="no_app_installed">Нет установленных приложений</string>
+    <string name="last_used_format">Последнее использовано: %1$s</string>
+    <string name="never_used">Никогда не использовался</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">Менеджер памяти</string>

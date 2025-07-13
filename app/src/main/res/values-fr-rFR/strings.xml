@@ -194,6 +194,8 @@
     <string name="app_info">Infos sur l\'application</string>
     <string name="install">Installer</string>
     <string name="no_app_installed">Aucune application installée</string>
+    <string name="last_used_format">Dernier utilisé: %1$s</string>
+    <string name="never_used">Jamais utilisé</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">Gestionnaire de mémoire</string>

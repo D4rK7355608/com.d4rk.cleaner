@@ -127,17 +127,22 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
         ) { page ->
             when (page) {
                 0 -> AppsTab(
-                    apps = screenData.installedApps.filter { app : ApplicationInfo ->
+                    apps = screenData.installedApps.filter { app: ApplicationInfo ->
                         app.flags and ApplicationInfo.FLAG_SYSTEM == 0
-                    } ,
-                    isLoading = screenData.userAppsLoading ,
-                    viewModel = viewModel ,
+                    },
+                    isLoading = screenData.userAppsLoading,
+                    usageStats = screenData.appUsageStats,
+                    viewModel = viewModel,
                     paddingValues = paddingValues
                 )
 
-                1 -> AppsTab(apps = screenData.installedApps.filter { app : ApplicationInfo ->
-                    app.flags and ApplicationInfo.FLAG_SYSTEM != 0
-                } , isLoading = screenData.systemAppsLoading , viewModel = viewModel,
+                1 -> AppsTab(
+                    apps = screenData.installedApps.filter { app: ApplicationInfo ->
+                        app.flags and ApplicationInfo.FLAG_SYSTEM != 0
+                    },
+                    isLoading = screenData.systemAppsLoading,
+                    usageStats = screenData.appUsageStats,
+                    viewModel = viewModel,
                     paddingValues = paddingValues
                 )
 

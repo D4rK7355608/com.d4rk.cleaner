@@ -47,11 +47,15 @@ import com.d4rk.cleaner.app.apps.manager.domain.actions.AppManagerEvent
 import com.d4rk.cleaner.app.apps.manager.domain.data.model.AppManagerItem
 import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
 import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
+import com.d4rk.cleaner.app.clean.analyze.utils.helpers.TimeHelper
 import java.io.File
 
 @Composable
 fun AppItemComposable(
-    app: ApplicationInfo, viewModel: AppManagerViewModel, modifier: Modifier
+    app: ApplicationInfo,
+    lastUsed: Long?,
+    viewModel: AppManagerViewModel,
+    modifier: Modifier,
 ) {
     val context: Context = LocalContext.current
 
@@ -88,8 +92,15 @@ fun AppItemComposable(
                     style = MaterialTheme.typography.titleMedium,
                 )
                 Text(
-                    text = appSize, style = MaterialTheme.typography.bodyMedium
+                    text = appSize,
+                    style = MaterialTheme.typography.bodyMedium
                 )
+                lastUsed?.takeIf { it > 0 }?.let { used ->
+                    Text(
+                        text = TimeHelper.formatDate(context, java.util.Date(used)),
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
             }
 
             Box {

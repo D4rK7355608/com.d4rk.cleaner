@@ -23,6 +23,7 @@ import com.d4rk.cleaner.app.apps.manager.domain.usecases.GetApkFilesFromStorageU
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.GetInstalledAppsUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.InstallApkUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.OpenAppInfoUseCase
+import com.d4rk.cleaner.app.apps.manager.domain.usecases.GetAppsLastUsedUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.ShareApkUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.ShareAppUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.UninstallAppUseCase
@@ -37,6 +38,7 @@ class AppManagerViewModel(
     application : Application ,
     private val getInstalledAppsUseCase : GetInstalledAppsUseCase ,
     private val getApkFilesFromStorageUseCase : GetApkFilesFromStorageUseCase ,
+    private val getAppsLastUsedUseCase: GetAppsLastUsedUseCase,
     private val installApkUseCase : InstallApkUseCase ,
     private val shareApkUseCase : ShareApkUseCase ,
     private val shareAppUseCase : ShareAppUseCase ,
@@ -124,8 +126,18 @@ class AppManagerViewModel(
                 }
             }
 
+            val usageStatsFlow = getAppsLastUsedUseCase().flowOn(dispatchers.default).onEach { result ->
+                _uiState.update { currentState ->
+                    when (result) {
+                        is DataState.Success -> currentState.copy(data = currentState.data?.copy(appUsageStats = result.data))
+                        else -> currentState
+                    }
+                }
+            }
+
             launch(dispatchers.io) { installedAppsFlow.collectLatest {} }
             launch(dispatchers.io) { apkFilesFlow.collectLatest {} }
+            launch(dispatchers.io) { usageStatsFlow.collectLatest {} }
         }
     }
 
@@ -187,6 +199,10 @@ class AppManagerViewModel(
                 }
             }
         }
+    }
+
+    fun getLastUsedTime(packageName: String): Long? {
+        return _uiState.value.data?.appUsageStats?.get(packageName)
     }
 
     private fun postSnackbar(message : UiTextHelper , isError : Boolean) {
