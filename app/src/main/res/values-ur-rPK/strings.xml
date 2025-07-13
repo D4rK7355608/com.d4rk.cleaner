@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">ایپ انسٹال آئیکن</string>
     <string name="move_to_trash_icon_description">ردی میں منتقل کرنے کا آئیکن</string>
     <string name="delete_forever_icon_description">ہمیشہ کے لیے حذف کرنے کا آئیکن</string>
+<string name="backup_icon_description">                                                                  ﻦﮑﯿﺋﺁ ﭖﺍ ﮏﯿﺑ</string>
+    <string name="backup_to_cloud">                                                                ﭖﺍ ﮏﯿﺑ ﺎﮐ ﻝﺩﺎﺑ</string>
+    <string name="no_files_selected_to_backup">                                 ۔ﮟﯿﺌﮔ ﯽﮐ ﮟﯿﮩﻧ ﺐﺨﺘﻨﻣ ﮟﯿﻠﺋﺎﻓ ﯽﺋﻮﮐ ﮯﺌﻟ ﮯﮐ ﭖﺍ ﮏﯿﺑ</string>
+    <string name="failed_to_backup_files">                                               ﻡﺎﮐﺎﻧ ﮟﯿﻣ ﮯﻧﺮﮐ ﭖﺍ ﮏﯿﺑ ﺎﮐ ﮞﻮﻠﺋﺎﻓ</string>
     <string name="clean_streak_title">🧹 ہفتہ وار صفائی سلسلہ</string>
     <string name="clean_streak_start">اپنا صفائی سلسلہ آج ہی شروع کریں۔</string>
     <string name="clean_streak_in_progress">%1$d دن مسلسل — جاری رکھیں!</string>
@@ -229,6 +233,7 @@
     <!-- Trash -->
     <string name="trash">ردی کی ٹوکری</string>
     <string name="trash_is_empty">ردی کی ٹوکری خالی ہے</string>
+<string name="cloud_backup">                                                                ﭖﺍ ﮏﯿﺑ ﺎﮐ ﻝﺩﺎﺑ</string>
     <string name="restore">بحال کریں</string>
 
     <!-- Cleaning settings -->

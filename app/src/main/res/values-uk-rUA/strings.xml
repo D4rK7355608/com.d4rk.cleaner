@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">Піктограма встановлення</string>
     <string name="move_to_trash_icon_description">Піктограма переміщення в кошик</string>
     <string name="delete_forever_icon_description">Піктограма остаточного видалення</string>
+<string name="backup_icon_description">Резервна значка</string>
+    <string name="backup_to_cloud">Резервне копіювання до хмари</string>
+    <string name="no_files_selected_to_backup">Жодних файлів, вибраних для резервного копіювання.</string>
+    <string name="failed_to_backup_files">Не вдалося створити резервну копію файлів</string>
     <string name="clean_streak_title">🧹 Щотижнева серія очищень</string>
     <string name="clean_streak_start">Почніть свою серію очищень сьогодні.</string>
     <string name="clean_streak_in_progress">%1$d днів поспіль — так тримайте!</string>
@@ -235,6 +239,7 @@
     <!-- Trash -->
     <string name="trash">Кошик</string>
     <string name="trash_is_empty">Кошик порожній</string>
+<string name="cloud_backup">Резервне копіювання хмари</string>
     <string name="restore">Відновити</string>
 
     <!-- Cleaning settings -->

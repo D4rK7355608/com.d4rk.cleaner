@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">Значок установки приложения</string>
     <string name="move_to_trash_icon_description">Значок перемещения в корзину</string>
     <string name="delete_forever_icon_description">Значок безвозвратного удаления</string>
+<string name="backup_icon_description">Значок резервного копирования</string>
+    <string name="backup_to_cloud">Резервное копирование в облаке</string>
+    <string name="no_files_selected_to_backup">Нет файлов, выбранных для резервного копирования.</string>
+    <string name="failed_to_backup_files">Не удалось сделать резервное копирование файлов</string>
     <string name="clean_streak_title">🧹 Серия еженедельных очисток</string>
     <string name="clean_streak_start">Начните свою серию очисток сегодня.</string>
     <string name="clean_streak_in_progress">%1$d дней подряд — так держать!</string>
@@ -235,6 +239,7 @@
     <!-- Trash -->
     <string name="trash">Корзина</string>
     <string name="trash_is_empty">Корзина пуста</string>
+<string name="cloud_backup">Облачная резервная копия</string>
     <string name="restore">Восстановить</string>
 
     <!-- Cleaning settings -->

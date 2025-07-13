@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">安裝應用程式圖示</string>
     <string name="move_to_trash_icon_description">移至垃圾桶圖示</string>
     <string name="delete_forever_icon_description">永久刪除圖示</string>
+<string name="backup_icon_description">備份圖標</string>
+    <string name="backup_to_cloud">備份到雲</string>
+    <string name="no_files_selected_to_backup">未選擇備份的文件。</string>
+    <string name="failed_to_backup_files">無法備份文件</string>
     <string name="clean_streak_title">🧹 每週清理連擊</string>
     <string name="clean_streak_start">今天就開始你的清理連擊。</string>
     <string name="clean_streak_in_progress">%1$d 天連續清理 — 保持下去！</string>
@@ -226,6 +230,7 @@
     <!-- Trash -->
     <string name="trash">垃圾桶</string>
     <string name="trash_is_empty">垃圾桶是空的</string>
+<string name="cloud_backup">雲備份</string>
     <string name="restore">還原</string>
 
     <!-- Cleaning settings -->

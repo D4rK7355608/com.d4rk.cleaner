@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">ไอคอนติดตั้งแอป</string>
     <string name="move_to_trash_icon_description">ไอคอนย้ายไปถังขยะ</string>
     <string name="delete_forever_icon_description">ไอคอนลบถาวร</string>
+<string name="backup_icon_description">ไอคอนสำรอง</string>
+    <string name="backup_to_cloud">สำรองข้อมูลคลาวด์</string>
+    <string name="no_files_selected_to_backup">ไม่มีไฟล์ที่เลือกสำหรับการสำรองข้อมูล</string>
+    <string name="failed_to_backup_files">ไม่สามารถสำรองไฟล์ได้</string>
     <string name="clean_streak_title">🧹 สถิติการล้างประจำสัปดาห์</string>
     <string name="clean_streak_start">เริ่มสถิติการล้างของคุณวันนี้</string>
     <string name="clean_streak_in_progress">%1$d วันติดต่อกัน — ทำต่อไป!</string>
@@ -226,6 +230,7 @@
     <!-- Trash -->
     <string name="trash">ถังขยะ</string>
     <string name="trash_is_empty">ถังขยะว่างเปล่า</string>
+<string name="cloud_backup">การสำรองคลาวด์</string>
     <string name="restore">กู้คืน</string>
 
     <!-- Cleaning settings -->

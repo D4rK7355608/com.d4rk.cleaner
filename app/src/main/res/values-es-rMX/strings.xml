@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">Icono de instalar aplicación</string>
     <string name="move_to_trash_icon_description">Icono de mover a la papelera</string>
     <string name="delete_forever_icon_description">Icono de borrar para siempre</string>
+<string name="backup_icon_description">Icono de respaldo</string>
+    <string name="backup_to_cloud">Copia de seguridad de la nube</string>
+    <string name="no_files_selected_to_backup">No hay archivos seleccionados para hacer una copia de seguridad.</string>
+    <string name="failed_to_backup_files">No se pudo hacer una copia de seguridad de los archivos</string>
     <string name="clean_streak_title">🧹 Racha Semanal de Limpieza</string>
     <string name="clean_streak_start">Comienza tu racha de limpieza hoy.</string>
     <string name="clean_streak_in_progress">%1$d días seguidos — ¡sigue así!</string>
@@ -232,6 +236,7 @@
     <!-- Trash -->
     <string name="trash">Papelera</string>
     <string name="trash_is_empty">La papelera está vacía</string>
+<string name="cloud_backup">Copia de seguridad de la nube</string>
     <string name="restore">Restaurar</string>
 
     <!-- Cleaning settings -->

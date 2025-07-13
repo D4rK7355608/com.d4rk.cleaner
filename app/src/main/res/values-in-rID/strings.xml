@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">Ikon instal aplikasi</string>
     <string name="move_to_trash_icon_description">Ikon pindahkan ke sampah</string>
     <string name="delete_forever_icon_description">Ikon hapus permanen</string>
+<string name="backup_icon_description">Ikon Cadangan</string>
+    <string name="backup_to_cloud">Cadangan ke Cloud</string>
+    <string name="no_files_selected_to_backup">Tidak ada file yang dipilih untuk dicadangkan.</string>
+    <string name="failed_to_backup_files">Gagal membuat cadangan file</string>
     <string name="clean_streak_title">🧹 Rangkaian Bersih Mingguan</string>
     <string name="clean_streak_start">Mulai rangkaian bersihmu hari ini.</string>
     <string name="clean_streak_in_progress">%1$d hari berturut-turut — teruskan!</string>
@@ -226,6 +230,7 @@
     <!-- Trash -->
     <string name="trash">Sampah</string>
     <string name="trash_is_empty">Sampah kosong</string>
+<string name="cloud_backup">Cloud Backup</string>
     <string name="restore">Pulihkan</string>
 
     <!-- Cleaning settings -->

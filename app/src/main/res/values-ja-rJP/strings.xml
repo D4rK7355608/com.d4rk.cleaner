@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">アプリインストールのアイコン</string>
     <string name="move_to_trash_icon_description">ゴミ箱へ移動のアイコン</string>
     <string name="delete_forever_icon_description">完全削除のアイコン</string>
+<string name="backup_icon_description">バックアップアイコン</string>
+    <string name="backup_to_cloud">クラウドへのバックアップ</string>
+    <string name="no_files_selected_to_backup">バックアップに選択されたファイルはありません。</string>
+    <string name="failed_to_backup_files">ファイルをバックアップできませんでした</string>
     <string name="clean_streak_title">🧹 週間クリーン記録</string>
     <string name="clean_streak_start">今日からクリーン記録を始めましょう。</string>
     <string name="clean_streak_in_progress">%1$d日連続 — この調子！</string>
@@ -226,6 +230,7 @@
     <!-- Trash -->
     <string name="trash">ゴミ箱</string>
     <string name="trash_is_empty">ゴミ箱は空です</string>
+<string name="cloud_backup">クラウドバックアップ</string>
     <string name="restore">復元</string>
 
     <!-- Cleaning settings -->

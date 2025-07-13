@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">أيقونة تثبيت التطبيق</string>
     <string name="move_to_trash_icon_description">أيقونة نقل إلى المهملات</string>
     <string name="delete_forever_icon_description">أيقونة حذف نهائيًا</string>
+<string name="backup_icon_description">                                                         ﻲﻃﺎﻴﺘﺣﻻ﻿ﺍ ﺦﺴﻨﻟﺍ ﺔﻧﻮﻘﻳﺃ</string>
+    <string name="backup_to_cloud">                                                    ﺔﺑﺎﺤﺴﻟﺍ ﻰﻟﺇ ﻲﻃﺎﻴﺘﺣﻻ﻿ﺍ ﺦﺴﻨﻟﺍ</string>
+    <string name="no_files_selected_to_backup">                                            .ﻲﻃﺎﻴﺘﺣﻻ﻿ﺍ ﺦﺴﻨﻠﻟ ﺓﺩﺪﺤﻣ ﺕﺎﻔﻠﻣ ﺪﺟﻮﺗ ﻻ﻿</string>
+    <string name="failed_to_backup_files">                                                      ﺔﻴﻃﺎﻴﺘﺣﻻ﻿ﺍ ﺕﺎﻔﻠﻤﻟﺍ ﻲﻓ ﻞﺸﻓ</string>
     <string name="clean_streak_title">🧹 سلسلة التنظيف الأسبوعي</string>
     <string name="clean_streak_start">ابدأ سلسلة التنظيف اليوم.</string>
     <string name="clean_streak_in_progress">%1$d يومًا على التوالي — استمر!</string>
@@ -241,6 +245,7 @@
     <!-- Trash -->
     <string name="trash">سلة المهملات</string>
     <string name="trash_is_empty">سلة المهملات فاضية</string>
+<string name="cloud_backup">                                                           ﺔﺑﺎﺤﺳ ﺔﻴﻃﺎﻴﺘﺣﺍ ﺔﺨﺴﻧ</string>
     <string name="restore">استعادة</string>
 
     <!-- Cleaning settings -->

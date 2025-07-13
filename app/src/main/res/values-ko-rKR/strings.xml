@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">앱 설치 아이콘</string>
     <string name="move_to_trash_icon_description">휴지통으로 이동 아이콘</string>
     <string name="delete_forever_icon_description">완전 삭제 아이콘</string>
+<string name="backup_icon_description">백업 아이콘</string>
+    <string name="backup_to_cloud">클라우드로 백업</string>
+    <string name="no_files_selected_to_backup">백업을 선택한 파일이 없습니다.</string>
+    <string name="failed_to_backup_files">파일을 백업하지 못했습니다</string>
     <string name="clean_streak_title">🧹 주간 클린 연속 기록</string>
     <string name="clean_streak_start">오늘부터 클린 연속 기록을 시작하세요.</string>
     <string name="clean_streak_in_progress">%1$d일 연속 — 계속 유지하세요!</string>
@@ -226,6 +230,7 @@
     <!-- Trash -->
     <string name="trash">휴지통</string>
     <string name="trash_is_empty">휴지통이 비어 있습니다.</string>
+<string name="cloud_backup">클라우드 백업</string>
     <string name="restore">복원</string>
 
     <!-- Cleaning settings -->

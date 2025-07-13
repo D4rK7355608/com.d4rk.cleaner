@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">App-Installationsicon</string>
     <string name="move_to_trash_icon_description">Icon \'In den Papierkorb\'</string>
     <string name="delete_forever_icon_description">Icon \'Endgültig löschen\'</string>
+<string name="backup_icon_description">Sicherungssymbol</string>
+    <string name="backup_to_cloud">Backup in Cloud</string>
+    <string name="no_files_selected_to_backup">Keine Dateien, die zur Sicherung ausgewählt wurden.</string>
+    <string name="failed_to_backup_files">Fehlgeschlagene Sicherungsdateien</string>
     <string name="clean_streak_title">🧹 Wöchentliche Reinigungsserie</string>
     <string name="clean_streak_start">Beginne deine Reinigungsserie heute.</string>
     <string name="clean_streak_in_progress">%1$d Tage infolge — weiter so!</string>
@@ -229,6 +233,7 @@
     <!-- Trash -->
     <string name="trash">Papierkorb</string>
     <string name="trash_is_empty">Papierkorb ist leer</string>
+<string name="cloud_backup">Wolkensicherung</string>
     <string name="restore">Wiederherstellen</string>
 
     <!-- Cleaning settings -->

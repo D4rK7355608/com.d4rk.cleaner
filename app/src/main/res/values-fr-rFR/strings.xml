@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">Icône d\'installation</string>
     <string name="move_to_trash_icon_description">Icône de mise à la corbeille</string>
     <string name="delete_forever_icon_description">Icône de suppression définitive</string>
+<string name="backup_icon_description">Icône de sauvegarde</string>
+    <string name="backup_to_cloud">Sauvegarde vers le cloud</string>
+    <string name="no_files_selected_to_backup">Aucun fichier sélectionné pour sauvegarder.</string>
+    <string name="failed_to_backup_files">Échec de la sauvegarde des fichiers</string>
     <string name="clean_streak_title">🧹 Série de Nettoyage Hebdomadaire</string>
     <string name="clean_streak_start">Commencez votre série de nettoyage dès aujourd\'hui.</string>
     <string name="clean_streak_in_progress">%1$d jours d\'affilée — continuez comme ça !</string>
@@ -233,6 +237,7 @@
     <!-- Trash -->
     <string name="trash">Corbeille</string>
     <string name="trash_is_empty">La corbeille est vide</string>
+<string name="cloud_backup">Sauvegarde des nuages</string>
     <string name="restore">Restaurer</string>
 
     <!-- Cleaning settings -->

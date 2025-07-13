@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">Pictograma instalare aplicație</string>
     <string name="move_to_trash_icon_description">Pictograma mutare la gunoi</string>
     <string name="delete_forever_icon_description">Pictograma ștergere definitivă</string>
+<string name="backup_icon_description">Pictogramă de rezervă</string>
+    <string name="backup_to_cloud">Backup to Cloud</string>
+    <string name="no_files_selected_to_backup">Nu există fișiere selectate pentru a face backup.</string>
+    <string name="failed_to_backup_files">Nu a reușit să facă backup fișierelor</string>
     <string name="clean_streak_title">🧹 Serie Săptămânală de Curățare</string>
     <string name="clean_streak_start">Începe seria de curățare chiar azi.</string>
     <string name="clean_streak_in_progress">%1$d zile la rând — continuă așa!</string>
@@ -232,6 +236,7 @@
     <!-- Trash -->
     <string name="trash">Coș</string>
     <string name="trash_is_empty">Coșul este gol</string>
+<string name="cloud_backup">Backup în cloud</string>
     <string name="restore">Restaurează</string>
 
     <!-- Cleaning settings -->

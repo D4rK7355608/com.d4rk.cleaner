@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">Icon ng pag-install ng app</string>
     <string name="move_to_trash_icon_description">Icon ng paglipat sa basurahan</string>
     <string name="delete_forever_icon_description">Icon ng permanenteng pagtanggal</string>
+<string name="backup_icon_description">Icon ng backup</string>
+    <string name="backup_to_cloud">Backup sa ulap</string>
+    <string name="no_files_selected_to_backup">Walang mga file na napili upang mag -backup.</string>
+    <string name="failed_to_backup_files">Nabigong mag -backup ng mga file</string>
     <string name="clean_streak_title">🧹 Lingguhang Clean Streak</string>
     <string name="clean_streak_start">Simulan ang Clean Streak mo ngayon.</string>
     <string name="clean_streak_in_progress">%1$d araw nang sunod-sunod — tuloy lang!</string>
@@ -229,6 +233,7 @@
     <!-- Trash -->
     <string name="trash">Trash</string>
     <string name="trash_is_empty">Walang laman ang trash</string>
+<string name="cloud_backup">Cloud Backup</string>
     <string name="restore">Ibalik</string>
 
     <!-- Cleaning settings -->

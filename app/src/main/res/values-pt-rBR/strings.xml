@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">Ícone de instalar app</string>
     <string name="move_to_trash_icon_description">Ícone mover para lixeira</string>
     <string name="delete_forever_icon_description">Ícone excluir para sempre</string>
+<string name="backup_icon_description">Ícone de backup</string>
+    <string name="backup_to_cloud">Backup para a nuvem</string>
+    <string name="no_files_selected_to_backup">Nenhum arquivo selecionado para fazer backup.</string>
+    <string name="failed_to_backup_files">Falha ao fazer backup de arquivos</string>
     <string name="clean_streak_title">🧹 Sequência Semanal de Limpeza</string>
     <string name="clean_streak_start">Comece sua sequência de limpeza hoje.</string>
     <string name="clean_streak_in_progress">%1$d dias seguidos — continue assim!</string>
@@ -232,6 +236,7 @@
     <!-- Trash -->
     <string name="trash">Lixeira</string>
     <string name="trash_is_empty">A lixeira está vazia</string>
+<string name="cloud_backup">Backup em nuvem</string>
     <string name="restore">Restaurar</string>
 
     <!-- Cleaning settings -->

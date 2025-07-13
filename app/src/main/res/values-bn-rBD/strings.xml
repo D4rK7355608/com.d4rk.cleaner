@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">ইনস্টল অ্যাপ আইকন</string>
     <string name="move_to_trash_icon_description">ট্র্যাশে সরানোর আইকন</string>
     <string name="delete_forever_icon_description">স্থায়ীভাবে মুছে ফেলার আইকন</string>
+<string name="backup_icon_description">ব্যাকআপ আইকন</string>
+    <string name="backup_to_cloud">মেঘে ব্যাকআপ</string>
+    <string name="no_files_selected_to_backup">কোনও ফাইল ব্যাকআপে নির্বাচিত নয়।</string>
+    <string name="failed_to_backup_files">ফাইলগুলি ব্যাকআপ করতে ব্যর্থ</string>
     <string name="clean_streak_title">🧹 সাপ্তাহিক পরিষ্কার অভ্যাস</string>
     <string name="clean_streak_start">আজই আপনার পরিষ্কার অভ্যাস শুরু করুন।</string>
     <string name="clean_streak_in_progress">%1$d দিন পরপর — চালিয়ে যান!</string>
@@ -229,6 +233,7 @@
     <!-- Trash -->
     <string name="trash">ট্র্যাশ</string>
     <string name="trash_is_empty">ট্র্যাশ খালি</string>
+<string name="cloud_backup">ক্লাউড ব্যাকআপ</string>
     <string name="restore">পুনরুদ্ধার করুন</string>
 
     <!-- Cleaning settings -->

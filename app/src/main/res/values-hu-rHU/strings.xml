@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">Telepítés ikon</string>
     <string name="move_to_trash_icon_description">Kukába helyezés ikon</string>
     <string name="delete_forever_icon_description">Végleges törlés ikon</string>
+<string name="backup_icon_description">Biztonsági mentési ikon</string>
+    <string name="backup_to_cloud">Biztonsági másolat a felhőbe</string>
+    <string name="no_files_selected_to_backup">Nincs kiválasztva a biztonsági másolatra.</string>
+    <string name="failed_to_backup_files">Nem sikerült biztonsági másolatot készíteni a fájloknak</string>
     <string name="clean_streak_title">🧹 Heti tisztítási sorozat</string>
     <string name="clean_streak_start">Kezdd el a tisztítási sorozatot még ma.</string>
     <string name="clean_streak_in_progress">%1$d nap egymás után — csak így tovább!</string>
@@ -229,6 +233,7 @@
     <!-- Trash -->
     <string name="trash">Kuka</string>
     <string name="trash_is_empty">A kuka üres</string>
+<string name="cloud_backup">Felhőalapú biztonsági mentés</string>
     <string name="restore">Visszaállítás</string>
 
     <!-- Cleaning settings -->

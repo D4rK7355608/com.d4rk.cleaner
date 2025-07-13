@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">Икона за инсталиране</string>
     <string name="move_to_trash_icon_description">Икона за преместване в кошчето</string>
     <string name="delete_forever_icon_description">Икона за изтриване завинаги</string>
+<string name="backup_icon_description">Резервна икона</string>
+    <string name="backup_to_cloud">Резервно копие в облак</string>
+    <string name="no_files_selected_to_backup">Няма файлове, избрани за архивиране.</string>
+    <string name="failed_to_backup_files">Неуспешно архивиране на файлове</string>
     <string name="clean_streak_title">🧹 Седмична серия за почистване</string>
     <string name="clean_streak_start">Започнете серията за почистване днес.</string>
     <string name="clean_streak_in_progress">%1$d дни подред — продължавайте така!</string>
@@ -229,6 +233,7 @@
     <!-- Trash -->
     <string name="trash">Кошче</string>
     <string name="trash_is_empty">Кошчето е празно</string>
+<string name="cloud_backup">Облачно архивиране</string>
     <string name="restore">Възстановяване</string>
 
     <!-- Cleaning settings -->

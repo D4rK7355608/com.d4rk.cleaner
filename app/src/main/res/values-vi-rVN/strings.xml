@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">Biểu tượng cài đặt ứng dụng</string>
     <string name="move_to_trash_icon_description">Biểu tượng chuyển vào thùng rác</string>
     <string name="delete_forever_icon_description">Biểu tượng xóa vĩnh viễn</string>
+<string name="backup_icon_description">Biểu tượng sao lưu</string>
+    <string name="backup_to_cloud">Sao lưu lên đám mây</string>
+    <string name="no_files_selected_to_backup">Không có tệp được chọn để sao lưu.</string>
+    <string name="failed_to_backup_files">Không thể sao lưu các tệp</string>
     <string name="clean_streak_title">🧹 Chuỗi dọn dẹp hàng tuần</string>
     <string name="clean_streak_start">Bắt đầu chuỗi dọn dẹp của bạn ngay hôm nay.</string>
     <string name="clean_streak_in_progress">%1$d ngày liên tiếp — tiếp tục nhé!</string>
@@ -226,6 +230,7 @@
     <!-- Trash -->
     <string name="trash">Thùng rác</string>
     <string name="trash_is_empty">Thùng rác trống</string>
+<string name="cloud_backup">Sao lưu đám mây</string>
     <string name="restore">Khôi phục</string>
 
     <!-- Cleaning settings -->

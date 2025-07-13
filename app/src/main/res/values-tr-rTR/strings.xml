@@ -86,6 +86,10 @@
     <string name="install_button_icon_description">Uygulama yükleme simgesi</string>
     <string name="move_to_trash_icon_description">Çöpe taşıma simgesi</string>
     <string name="delete_forever_icon_description">Kalıcı silme simgesi</string>
+<string name="backup_icon_description">Yedek simge</string>
+    <string name="backup_to_cloud">Buluta Yedekleme</string>
+    <string name="no_files_selected_to_backup">Yedekleme için dosya seçilmedi.</string>
+    <string name="failed_to_backup_files">Dosyaları yedeklemedi</string>
     <string name="clean_streak_title">🧹 Haftalık Temizlik Serisi</string>
     <string name="clean_streak_start">Temizlik serini bugün başlat.</string>
     <string name="clean_streak_in_progress">%1$d gün üst üste — devam et!</string>
@@ -229,6 +233,7 @@
     <!-- Trash -->
     <string name="trash">Çöp Kutusu</string>
     <string name="trash_is_empty">Çöp kutusu boş</string>
+<string name="cloud_backup">Bulut yedekleme</string>
     <string name="restore">Geri Yükle</string>
 
     <!-- Cleaning settings -->
