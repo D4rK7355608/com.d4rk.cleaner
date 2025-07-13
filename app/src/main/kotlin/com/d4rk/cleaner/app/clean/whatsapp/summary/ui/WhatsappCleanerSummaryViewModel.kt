@@ -43,7 +43,7 @@ class WhatsappCleanerSummaryViewModel(
                     when (result) {
                         is DataState.Loading -> current.copy(screenState = ScreenState.IsLoading())
                         is DataState.Success -> current.copy(
-                            screenState = if (result.data.hasData) ScreenState.Success() else ScreenState.NoData(),
+                            screenState = if (result.data.totalBytes != 0L) ScreenState.Success() else ScreenState.NoData(),
                             data = current.data?.copy(
                                 mediaSummary = result.data,
                                 totalSize = result.data.formattedTotalSize

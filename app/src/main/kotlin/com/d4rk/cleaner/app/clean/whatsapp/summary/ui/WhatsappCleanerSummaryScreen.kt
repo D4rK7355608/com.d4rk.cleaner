@@ -74,6 +74,7 @@ fun WhatsappCleanerSummaryScreen(activity: Activity) {
         scrollBehavior = scrollBehavior,
         floatingActionButton = {
             AnimatedExtendedFloatingActionButton(
+                visible = true,
                 onClick = { showCleanDialog = true },
                 icon = {
                     Icon(
