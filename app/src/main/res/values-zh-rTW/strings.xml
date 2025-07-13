@@ -187,6 +187,8 @@
     <string name="app_info">應用程式資訊</string>
     <string name="install">安裝</string>
     <string name="no_app_installed">沒有已安裝的應用程式</string>
+    <string name="last_used_format">最後使用：%1$s</string>
+    <string name="never_used">從未使用過</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">記憶體管理員</string>

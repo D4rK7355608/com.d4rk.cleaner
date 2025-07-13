@@ -187,6 +187,8 @@
     <string name="app_info">ข้อมูลแอป</string>
     <string name="install">ติดตั้ง</string>
     <string name="no_app_installed">ไม่มีแอปที่ติดตั้ง</string>
+    <string name="last_used_format">ใช้ครั้งล่าสุด: %1$s</string>
+    <string name="never_used">ไม่เคยใช้</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">ตัวจัดการหน่วยความจำ</string>

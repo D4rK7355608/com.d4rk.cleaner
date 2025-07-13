@@ -187,6 +187,8 @@
     <string name="app_info">Thông tin ứng dụng</string>
     <string name="install">Cài đặt</string>
     <string name="no_app_installed">Không có ứng dụng nào được cài đặt</string>
+    <string name="last_used_format">Được sử dụng lần cuối: %1$s</string>
+    <string name="never_used">Không bao giờ được sử dụng</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">Quản lý bộ nhớ</string>

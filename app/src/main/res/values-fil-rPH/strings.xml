@@ -190,6 +190,8 @@
     <string name="app_info">Impormasyon ng app</string>
     <string name="install">I-install</string>
     <string name="no_app_installed">Walang naka-install na app</string>
+    <string name="last_used_format">Huling ginamit: %1$s</string>
+    <string name="never_used">Hindi kailanman ginamit</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">Tagapamahala ng Memorya</string>

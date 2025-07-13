@@ -190,6 +190,8 @@
     <string name="app_info">ایپ کی معلومات</string>
     <string name="install">انسٹال کریں</string>
     <string name="no_app_installed">کوئی ایپ انسٹال نہیں ہے</string>
+    <string name="last_used_format">آخری استعمال: %1$s</string>
+    <string name="never_used">کبھی استعمال نہیں ہوا</string>
 
     <!-- Memory Manager -->
     <string name="memory_manager">میموری مینیجر</string>
