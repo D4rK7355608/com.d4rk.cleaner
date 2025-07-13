@@ -243,7 +243,6 @@ fun ScannerDashboardScreen(
             exit = fadeOut() + shrinkVertically()
         ) {
             AdBanner(
-                modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
                 adsConfig = topAdConfig
             )
         }
@@ -337,7 +336,6 @@ fun ScannerDashboardScreen(
             exit = fadeOut() + shrinkVertically()
         ) {
             AdBanner(
-                modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
                 adsConfig = midAdConfig
             )
         }
@@ -396,7 +394,6 @@ fun ScannerDashboardScreen(
             exit = fadeOut() + shrinkVertically()
         ) {
             AdBanner(
-                modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
                 adsConfig = endAdConfig
             )
         }

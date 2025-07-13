@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Folder
+import androidx.compose.material.icons.outlined.DonutLarge
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
@@ -50,7 +50,7 @@ fun LargeFilesCard(
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
-                    imageVector = Icons.Outlined.Folder,
+                    imageVector = Icons.Outlined.DonutLarge,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
                 )
