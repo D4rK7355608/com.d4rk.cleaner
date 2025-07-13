@@ -1,7 +1,5 @@
 package com.d4rk.cleaner.app.clean.scanner.ui
 
-private const val RESULT_DELAY_MS = 2000L
-
 import android.app.Application
 import android.content.ClipboardManager
 import android.content.Context
@@ -57,6 +55,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 import com.d4rk.cleaner.core.utils.extensions.md5
+
+private const val RESULT_DELAY_MS = 2000L
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ScannerViewModel(
