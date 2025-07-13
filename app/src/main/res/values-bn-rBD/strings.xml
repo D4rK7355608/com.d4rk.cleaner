@@ -269,6 +269,8 @@
     <string name="clipboard_clean">ক্লিপবোর্ড পরিষ্কার করুন</string>
     <string name="summary_preference_settings_delete_duplicates">পরিষ্কারের সময় সদৃশ ফাইলগুলি মুছুন</string>
 
+    <string name="automatic_cleanup">স্বয়ংক্রিয় ক্লিনআপ</string>
+    <string name="enable_automatic_cleaning">স্বয়ংক্রিয় পরিষ্কার সক্ষম করুন</string>
     <!-- Permissions -->
     <string name="request_delete_packages">প্যাকেজ মোছার অনুরোধ [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">অ্যাপটিকে প্যাকেজ মোছার অনুরোধ করার অনুমতি দেয়। এটি ডিভাইস থেকে অন্যান্য অ্যাপ আনইনস্টল করতে ব্যবহার করা যেতে পারে</string>

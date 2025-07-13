@@ -266,6 +266,8 @@
     <string name="clipboard_clean">クリップボードをクリア</string>
     <string name="summary_preference_settings_delete_duplicates">クリーニング中に複製ファイルを削除します</string>
 
+    <string name="automatic_cleanup">自動クリーンアップ</string>
+    <string name="enable_automatic_cleaning">自動クリーニングを有効にします</string>
     <!-- Permissions -->
     <string name="request_delete_packages">パッケージ削除のリクエスト [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">アプリがパッケージの削除をリクエストできるようにします。これにより、デバイスから他のアプリをアンインストールできます</string>

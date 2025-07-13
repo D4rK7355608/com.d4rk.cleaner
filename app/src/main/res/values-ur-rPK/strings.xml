@@ -269,6 +269,8 @@
     <string name="clipboard_clean">کلپ بورڈ صاف کریں</string>
     <string name="summary_preference_settings_delete_duplicates">صفائی کے دوران ڈپلیکیٹ فائلوں کو حذف کریں</string>
 
+    <string name="automatic_cleanup">خودکار صفائی</string>
+    <string name="enable_automatic_cleaning">خودکار صفائی کو فعال کریں</string>
     <!-- Permissions -->
     <string name="request_delete_packages">پیکیجز حذف کرنے کی درخواست کریں [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">ایپ کو پیکیجز کو حذف کرنے کی درخواست کرنے کی اجازت دیتا ہے۔ اسے آلے سے دیگر ایپس کو ان انسٹال کرنے کے لیے استعمال کیا جا سکتا ہے۔</string>

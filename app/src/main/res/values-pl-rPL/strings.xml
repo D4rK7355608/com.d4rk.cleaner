@@ -275,6 +275,8 @@
     <string name="clipboard_clean">Wyczyść schowek</string>
     <string name="summary_preference_settings_delete_duplicates">Usuń zduplikowane pliki podczas czyszczenia</string>
 
+    <string name="automatic_cleanup">Automatyczne czyszczenie</string>
+    <string name="enable_automatic_cleaning">Włącz automatyczne czyszczenie</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Żądanie usunięcia pakietów [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Pozwala aplikacji żądać usunięcia pakietów. Może to być użyte do odinstalowania innych aplikacji z urządzenia</string>

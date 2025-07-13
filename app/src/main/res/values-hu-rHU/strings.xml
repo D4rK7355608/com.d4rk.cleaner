@@ -269,6 +269,8 @@
     <string name="clipboard_clean">Vágólap tisztítása</string>
     <string name="summary_preference_settings_delete_duplicates">Törölje a duplikált fájlokat a tisztítás során</string>
 
+    <string name="automatic_cleanup">Automatikus takarítás</string>
+    <string name="enable_automatic_cleaning">Engedélyezze az automatikus tisztítást</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Csomagok törlésének kérése [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Lehetővé teszi az alkalmazás számára, hogy csomagok törlését kérje. Ezzel más alkalmazásokat is el lehet távolítani az eszközről</string>

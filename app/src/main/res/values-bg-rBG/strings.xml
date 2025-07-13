@@ -269,6 +269,8 @@
     <string name="clipboard_clean">Почистване на клипборда</string>
     <string name="summary_preference_settings_delete_duplicates">Изтрийте дублиращи се файлове по време на почистване</string>
 
+    <string name="automatic_cleanup">Автоматично почистване</string>
+    <string name="enable_automatic_cleaning">Активирайте автоматичното почистване</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Заявка за изтриване на пакети [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Позволява на приложението да изисква изтриването на пакети. Това може да се използва за деинсталиране на други приложения от устройството.</string>

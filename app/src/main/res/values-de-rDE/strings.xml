@@ -269,6 +269,8 @@
     <string name="clipboard_clean">Zwischenablage bereinigen</string>
     <string name="summary_preference_settings_delete_duplicates">Löschen Sie doppelte Dateien während der Reinigung</string>
 
+    <string name="automatic_cleanup">Automatische Aufräumarbeiten</string>
+    <string name="enable_automatic_cleaning">Aktivieren Sie die automatische Reinigung</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Löschen von Paketen anfordern [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Ermöglicht der App, das Löschen von Paketen anzufordern. Dies kann verwendet werden, um andere Apps vom Gerät zu deinstallieren</string>

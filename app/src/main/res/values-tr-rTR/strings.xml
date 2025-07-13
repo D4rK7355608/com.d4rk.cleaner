@@ -269,6 +269,8 @@
     <string name="clipboard_clean">Panoyu temizle</string>
     <string name="summary_preference_settings_delete_duplicates">Temizlik sırasında yinelenen dosyaları silin</string>
 
+    <string name="automatic_cleanup">Otomatik temizlik</string>
+    <string name="enable_automatic_cleaning">Otomatik temizliği etkinleştirin</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Paket silme isteği [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Uygulamanın paketlerin silinmesini istemesine izin verir. Bu, cihazdan diğer uygulamaları kaldırmak için kullanılabilir</string>

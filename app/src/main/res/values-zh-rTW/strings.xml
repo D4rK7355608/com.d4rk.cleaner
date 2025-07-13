@@ -266,6 +266,8 @@
     <string name="clipboard_clean">清理剪貼簿</string>
     <string name="summary_preference_settings_delete_duplicates">清理過程中刪除重複檔案</string>
 
+    <string name="automatic_cleanup">自動清理</string>
+    <string name="enable_automatic_cleaning">啟用自動清潔</string>
     <!-- Permissions -->
     <string name="request_delete_packages">請求刪除套件 [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">允許應用程式請求刪除套件。這可用於從裝置解除安裝其他應用程式</string>
