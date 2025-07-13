@@ -93,7 +93,7 @@
     <string name="clean_streak_title">🧹 Série de Nettoyage Hebdomadaire</string>
     <string name="clean_streak_start">Commencez votre série de nettoyage dès aujourd\'hui.</string>
         <plurals name="clean_streak_in_progress">
-        <item quantity="one">%1$d jour d'affilée — continuez comme ça !</item>
+        <item quantity="one">%1$d jour d\'affilée — continuez comme ça !</item>
         <item quantity="many">%1$d jours d\'affilée — continuez comme ça !</item>
         <item quantity="other">%1$d jours d\'affilée — continuez comme ça !</item>
     </plurals>
