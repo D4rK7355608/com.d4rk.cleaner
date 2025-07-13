@@ -145,6 +145,9 @@
     <string name="image_optimizer_last_format">上次最佳化：%1$s</string>
     <string name="cache_cleaner_card_title">快取清理</string>
     <string name="cache_cleaner_card_subtitle">清除應用程式快取以釋出空間</string>
+    <string name="large_files_card_title">大型檔案</string>
+    <string name="large_files_card_subtitle">檢視並移除最大的檔案。</string>
+    <string name="open_large_files">查看大型檔案</string>
     <string name="scan_cache">掃描快取</string>
     <string name="apks">APK</string>
     <string name="archives">壓縮檔</string>

@@ -151,6 +151,9 @@
     <string name="image_optimizer_last_format">Ultima optimizare: %1$s</string>
     <string name="cache_cleaner_card_title">Curățător de cache</string>
     <string name="cache_cleaner_card_subtitle">Eliberează spațiu din cache-ul aplicațiilor</string>
+    <string name="large_files_card_title">Fișiere mari</string>
+    <string name="large_files_card_subtitle">Examinează și elimină cele mai mari fișiere.</string>
+    <string name="open_large_files">Vezi fișierele mari</string>
     <string name="scan_cache">Scanează cache-ul</string>
     <string name="apks">APK-uri</string>
     <string name="archives">Arhive</string>

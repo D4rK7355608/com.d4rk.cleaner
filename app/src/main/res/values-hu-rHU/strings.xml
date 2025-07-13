@@ -148,6 +148,9 @@
     <string name="image_optimizer_last_format">Utolsó optimalizálás: %1$s</string>
     <string name="cache_cleaner_card_title">Gyorsítótár-tisztító</string>
     <string name="cache_cleaner_card_subtitle">Szabadíts fel helyet az alkalmazások gyorsítótárából</string>
+    <string name="large_files_card_title">Nagy fájlok</string>
+    <string name="large_files_card_subtitle">Tekintse át és távolítsa el legnagyobb fájljait.</string>
+    <string name="open_large_files">Nagy fájlok megtekintése</string>
     <string name="scan_cache">Gyorsítótár vizsgálata</string>
     <string name="apks">APK-k</string>
     <string name="archives">Archívumok</string>

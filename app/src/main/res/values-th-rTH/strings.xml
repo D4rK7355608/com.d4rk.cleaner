@@ -145,6 +145,9 @@
     <string name="image_optimizer_last_format">การเพิ่มประสิทธิภาพล่าสุด: %1$s</string>
     <string name="cache_cleaner_card_title">ตัวล้างแคช</string>
     <string name="cache_cleaner_card_subtitle">เพิ่มพื้นที่ว่างจากแคชของแอป</string>
+    <string name="large_files_card_title">ไฟล์ขนาดใหญ่</string>
+    <string name="large_files_card_subtitle">ตรวจสอบและลบไฟล์ที่ใหญ่ที่สุดของคุณ</string>
+    <string name="open_large_files">ดูไฟล์ขนาดใหญ่</string>
     <string name="scan_cache">สแกนแคช</string>
     <string name="apks">ไฟล์ APK</string>
     <string name="archives">ไฟล์เก็บถาวร</string>

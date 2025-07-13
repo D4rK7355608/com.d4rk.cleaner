@@ -112,6 +112,7 @@ val appModule : Module = module {
             moveToTrashUseCase = get(),
             updateTrashSizeUseCase = get(),
             getPromotedAppUseCase = get(),
+            getLargestFilesUseCase = get(),
             dispatchers = get(),
             dataStore = get()
         )

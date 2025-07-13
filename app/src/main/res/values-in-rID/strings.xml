@@ -145,6 +145,9 @@
     <string name="image_optimizer_last_format">Optimisasi terakhir: %1$s</string>
     <string name="cache_cleaner_card_title">Pembersih Cache</string>
     <string name="cache_cleaner_card_subtitle">Kosongkan ruang dari cache aplikasi</string>
+    <string name="large_files_card_title">File besar</string>
+    <string name="large_files_card_subtitle">Tinjau dan hapus file terbesar Anda.</string>
+    <string name="open_large_files">Lihat file besar</string>
     <string name="scan_cache">Pindai Cache</string>
     <string name="apks">APK</string>
     <string name="archives">Arsip</string>

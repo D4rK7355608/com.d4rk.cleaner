@@ -154,6 +154,9 @@
     <string name="image_optimizer_last_format">Ostatnia optymalizacja: %1$s</string>
     <string name="cache_cleaner_card_title">Czyszczenie pamięci podręcznej</string>
     <string name="cache_cleaner_card_subtitle">Zwolnij miejsce usuwając pamięć podręczną aplikacji</string>
+    <string name="large_files_card_title">Duże pliki</string>
+    <string name="large_files_card_subtitle">Przejrzyj i usuń swoje największe pliki.</string>
+    <string name="open_large_files">Zobacz duże pliki</string>
     <string name="scan_cache">Skanuj pamięć podręczną</string>
     <string name="apks">Pliki APK</string>
     <string name="archives">Archiwa</string>

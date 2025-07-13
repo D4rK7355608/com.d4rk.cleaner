@@ -151,6 +151,9 @@
     <string name="image_optimizer_last_format">Última optimización: %1$s</string>
     <string name="cache_cleaner_card_title">Limpiador de caché</string>
     <string name="cache_cleaner_card_subtitle">Libera espacio del caché de apps</string>
+    <string name="large_files_card_title">Archivos grandes</string>
+    <string name="large_files_card_subtitle">Revisa y elimina tus archivos más grandes.</string>
+    <string name="open_large_files">Ver archivos grandes</string>
     <string name="scan_cache">Escanear caché</string>
     <string name="apks">APKs</string>
     <string name="archives">Archivos comprimidos</string>

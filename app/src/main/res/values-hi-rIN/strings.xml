@@ -148,6 +148,9 @@
     <string name="image_optimizer_last_format">अंतिम ऑप्टिमाइजेशन: %1$s</string>
     <string name="cache_cleaner_card_title">कैश क्लीनर</string>
     <string name="cache_cleaner_card_subtitle">ऐप कैश से जगह खाली करें</string>
+    <string name="large_files_card_title">बड़ी फ़ाइलें</string>
+    <string name="large_files_card_subtitle">अपनी सबसे बड़ी फ़ाइलों की समीक्षा करें और उन्हें हटाएँ।</string>
+    <string name="open_large_files">बड़ी फ़ाइलें देखें</string>
     <string name="scan_cache">कैश स्कैन करें</string>
     <string name="apks">एपीके</string>
     <string name="archives">अभिलेखागार</string>

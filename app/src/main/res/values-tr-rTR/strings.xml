@@ -148,6 +148,9 @@
     <string name="image_optimizer_last_format">Son optimizasyon: %1$s</string>
     <string name="cache_cleaner_card_title">Önbellek Temizleyici</string>
     <string name="cache_cleaner_card_subtitle">Uygulama önbelleğinden alan boşaltın</string>
+    <string name="large_files_card_title">Büyük dosyalar</string>
+    <string name="large_files_card_subtitle">En büyük dosyalarınızı gözden geçirip silin.</string>
+    <string name="open_large_files">Büyük dosyaları görüntüle</string>
     <string name="scan_cache">Önbelleği Tara</string>
     <string name="apks">APK\'lar</string>
     <string name="archives">Arşivler</string>

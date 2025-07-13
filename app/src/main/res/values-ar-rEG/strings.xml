@@ -160,6 +160,9 @@
     <string name="image_optimizer_last_format">آخر تحسين: %1$s</string>
     <string name="cache_cleaner_card_title">منظف الكاش</string>
     <string name="cache_cleaner_card_subtitle">حرر المساحة من ذاكرة التطبيقات المؤقتة</string>
+    <string name="large_files_card_title">ملفات كبيرة</string>
+    <string name="large_files_card_subtitle">راجع واحذف أكبر ملفاتك.</string>
+    <string name="open_large_files">عرض الملفات الكبيرة</string>
     <string name="scan_cache">فحص الكاش</string>
     <string name="apks">ملفات APK</string>
     <string name="archives">الملفات المضغوطة</string>

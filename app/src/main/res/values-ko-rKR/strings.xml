@@ -145,6 +145,9 @@
     <string name="image_optimizer_last_format">마지막 최적화: %1$s</string>
     <string name="cache_cleaner_card_title">캐시 클리너</string>
     <string name="cache_cleaner_card_subtitle">앱 캐시에서 공간 확보</string>
+    <string name="large_files_card_title">큰 파일</string>
+    <string name="large_files_card_subtitle">가장 큰 파일을 검토하고 삭제하세요.</string>
+    <string name="open_large_files">큰 파일 보기</string>
     <string name="scan_cache">캐시 스캔</string>
     <string name="apks">APK</string>
     <string name="archives">압축 파일</string>
