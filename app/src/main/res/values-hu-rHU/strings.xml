@@ -44,7 +44,10 @@
     <string name="cleanup_storage_ok_4">Jól néz ki — nincs szükség műveletre.</string>
     <string name="cleanup_storage_ok_5">A tárolás ellenőrzés alatt áll!</string>
     <string name="cleanup_storage_ok_6">Tiszta és átlátható. Szép munka!</string>
-    <string name="cleanup_notification_last_scan_format">Utolsó keresés: %1$d napja. %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="one">Utolsó keresés: %1$d napja. %2$s</item>
+        <item quantity="other">Utolsó keresés: %1$d napja. %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">Még nem vizsgáltad át a telefonod. Kezdéshez érints ide.</string>
 
     <!-- Onboarding -->
@@ -88,7 +91,10 @@
     <string name="delete_forever_icon_description">Végleges törlés ikon</string>
     <string name="clean_streak_title">🧹 Heti tisztítási sorozat</string>
     <string name="clean_streak_start">Kezdd el a tisztítási sorozatot még ma.</string>
-    <string name="clean_streak_in_progress">%1$d nap egymás után — csak így tovább!</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="one">%1$d nap egymás után — csak így tovább!</item>
+        <item quantity="other">%1$d nap egymás után — csak így tovább!</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">Tökéletes hét! 💎 Megérdemelted.</string>
     <string name="streak_reward_day1">Szép kezdet!</string>
     <string name="streak_reward_day3">Tudtad, hogy méret szerint is rendezhetsz?</string>
@@ -108,7 +114,10 @@
     <string name="streak_return_toast">A tisztítási sorozat a következő tisztításkor visszatér.</string>
     <string name="apk_card_title">Régi telepítők találhatók</string>
     <string name="apk_card_subtitle">Távolítsa el a megmaradt telepítőfájlokat, és szabadítson fel helyet.</string>
-    <string name="apk_card_more_format">+%1$d további</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="one">+%1$d további</item>
+        <item quantity="other">+%1$d további</item>
+    </plurals>
     <string name="clean_apks">Telepítők törlése</string>
     <string name="whatsapp_card_title">WhatsApp fájlok</string>
     <string name="whatsapp_card_subtitle">Törölje a már nem szükséges médiát.</string>

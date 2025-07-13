@@ -44,7 +44,9 @@
     <string name="cleanup_storage_ok_4">Terlihat baik — tidak perlu tindakan.</string>
     <string name="cleanup_storage_ok_5">Penyimpanan terkendali!</string>
     <string name="cleanup_storage_ok_6">Bersih dan jelas. Bagus sekali!</string>
-    <string name="cleanup_notification_last_scan_format">Pemindaian terakhir: %1$d hari lalu. %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="other">Pemindaian terakhir: %1$d hari lalu. %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">Anda belum pernah memindai ponsel. Ketuk untuk mulai.</string>
 
     <!-- Onboarding -->
@@ -88,7 +90,9 @@
     <string name="delete_forever_icon_description">Ikon hapus permanen</string>
     <string name="clean_streak_title">🧹 Rangkaian Bersih Mingguan</string>
     <string name="clean_streak_start">Mulai rangkaian bersihmu hari ini.</string>
-    <string name="clean_streak_in_progress">%1$d hari berturut-turut — teruskan!</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="other">%1$d hari berturut-turut — teruskan!</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">Minggu sempurna! 💎 Kamu pantas mendapatkannya.</string>
     <string name="streak_reward_day1">Awalan yang bagus!</string>
     <string name="streak_reward_day3">Tahukah kamu bisa mengurutkan berdasarkan ukuran?</string>
@@ -108,7 +112,9 @@
     <string name="streak_return_toast">Rangkaian bersih akan kembali saat kamu membersihkan lagi.</string>
     <string name="apk_card_title">Pemasang Lama Ditemukan</string>
     <string name="apk_card_subtitle">Hapus file pemasang yang tersisa dan kosongkan ruang.</string>
-    <string name="apk_card_more_format">+%1$d lagi</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="other">+%1$d lagi</item>
+    </plurals>
     <string name="clean_apks">Hapus Pemasang</string>
     <string name="whatsapp_card_title">File WhatsApp</string>
     <string name="whatsapp_card_subtitle">Bersihkan media yang tidak lagi dibutuhkan.</string>

@@ -44,7 +44,10 @@
     <string name="cleanup_storage_ok_4">Gayet iyi — bir işlem gerekmez.</string>
     <string name="cleanup_storage_ok_5">Depolama kontrol altında!</string>
     <string name="cleanup_storage_ok_6">Temiz ve net. Tebrikler!</string>
-    <string name="cleanup_notification_last_scan_format">Son tarama: %1$d gün önce. %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="one">Son tarama: %1$d gün önce. %2$s</item>
+        <item quantity="other">Son tarama: %1$d gün önce. %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">Telefonunu henüz taramadın. Başlamak için dokun.</string>
 
     <!-- Onboarding -->
@@ -88,7 +91,10 @@
     <string name="delete_forever_icon_description">Kalıcı silme simgesi</string>
     <string name="clean_streak_title">🧹 Haftalık Temizlik Serisi</string>
     <string name="clean_streak_start">Temizlik serini bugün başlat.</string>
-    <string name="clean_streak_in_progress">%1$d gün üst üste — devam et!</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="one">%1$d gün üst üste — devam et!</item>
+        <item quantity="other">%1$d gün üst üste — devam et!</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">Mükemmel hafta! 💎 Hak ettin.</string>
     <string name="streak_reward_day1">Güzel başlangıç!</string>
     <string name="streak_reward_day3">Boyuta göre sıralayabileceğini biliyor muydun?</string>
@@ -108,7 +114,10 @@
     <string name="streak_return_toast">Temizlik Serisi bir sonraki temizlemende geri döner.</string>
     <string name="apk_card_title">Eski Yükleyiciler Bulundu</string>
     <string name="apk_card_subtitle">Artık kalan yükleyici dosyalarını sil ve alan kazan.</string>
-    <string name="apk_card_more_format">+%1$d daha</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="one">+%1$d daha</item>
+        <item quantity="other">+%1$d daha</item>
+    </plurals>
     <string name="clean_apks">Yükleyicileri Sil</string>
     <string name="whatsapp_card_title">WhatsApp Dosyaları</string>
     <string name="whatsapp_card_subtitle">Artık ihtiyaç duymadığın medyaları temizle.</string>

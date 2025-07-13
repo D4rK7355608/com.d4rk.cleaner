@@ -44,7 +44,10 @@
     <string name="cleanup_storage_ok_4">اچھا لگ رہا ہے — کسی کارروائی کی ضرورت نہیں۔</string>
     <string name="cleanup_storage_ok_5">اسٹوریج کنٹرول میں ہے!</string>
     <string name="cleanup_storage_ok_6">صاف ستھرا، شاباش!</string>
-    <string name="cleanup_notification_last_scan_format">آخری اسکین: %1$d دن پہلے۔ %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="one">آخری اسکین: %1$d دن پہلے۔ %2$s</item>
+        <item quantity="other">آخری اسکین: %1$d دن پہلے۔ %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">آپ نے ابھی تک فون اسکین نہیں کیا۔ شروع کرنے کے لیے ٹیپ کریں۔</string>
 
     <!-- Onboarding -->
@@ -88,7 +91,10 @@
     <string name="delete_forever_icon_description">ہمیشہ کے لیے حذف کرنے کا آئیکن</string>
     <string name="clean_streak_title">🧹 ہفتہ وار صفائی سلسلہ</string>
     <string name="clean_streak_start">اپنا صفائی سلسلہ آج ہی شروع کریں۔</string>
-    <string name="clean_streak_in_progress">%1$d دن مسلسل — جاری رکھیں!</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="one">%1$d دن مسلسل — جاری رکھیں!</item>
+        <item quantity="other">%1$d دن مسلسل — جاری رکھیں!</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">کامل ہفتہ! 💎 آپ نے حق دار ہو۔</string>
     <string name="streak_reward_day1">اچھا آغاز!</string>
     <string name="streak_reward_day3">کیا آپ جانتے ہیں کہ آپ سائز کے مطابق ترتیب دے سکتے ہیں؟</string>
@@ -108,7 +114,10 @@
     <string name="streak_return_toast">اگلی صفائی پر صفائی سلسلہ واپس آجائے گا۔</string>
     <string name="apk_card_title">پرانے انسٹالر مل گئے</string>
     <string name="apk_card_subtitle">باقی رہ جانے والی انسٹالر فائلیں ہٹا کر جگہ خالی کریں۔</string>
-    <string name="apk_card_more_format">+%1$d مزید</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="one">+%1$d مزید</item>
+        <item quantity="other">+%1$d مزید</item>
+    </plurals>
     <string name="clean_apks">انسٹالرز حذف کریں</string>
     <string name="whatsapp_card_title">واٹس ایپ فائلیں</string>
     <string name="whatsapp_card_subtitle">وہ میڈیا صاف کریں جس کی آپ کو ضرورت نہیں۔</string>

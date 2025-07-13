@@ -44,7 +44,9 @@
     <string name="cleanup_storage_ok_4">Nhìn tốt — không cần hành động.</string>
     <string name="cleanup_storage_ok_5">Lưu trữ đang được kiểm soát!</string>
     <string name="cleanup_storage_ok_6">Sạch sẽ và rõ ràng. Làm tốt!</string>
-    <string name="cleanup_notification_last_scan_format">Lần quét cuối: %1$d ngày trước. %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="other">Lần quét cuối: %1$d ngày trước. %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">Bạn chưa quét điện thoại. Nhấn để bắt đầu.</string>
 
     <!-- Onboarding -->
@@ -88,7 +90,9 @@
     <string name="delete_forever_icon_description">Biểu tượng xóa vĩnh viễn</string>
     <string name="clean_streak_title">🧹 Chuỗi dọn dẹp hàng tuần</string>
     <string name="clean_streak_start">Bắt đầu chuỗi dọn dẹp của bạn ngay hôm nay.</string>
-    <string name="clean_streak_in_progress">%1$d ngày liên tiếp — tiếp tục nhé!</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="other">%1$d ngày liên tiếp — tiếp tục nhé!</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">Tuần hoàn hảo! 💎 Bạn xứng đáng.</string>
     <string name="streak_reward_day1">Khởi đầu tốt!</string>
     <string name="streak_reward_day3">Bạn có biết có thể sắp xếp theo kích thước không?</string>
@@ -108,7 +112,9 @@
     <string name="streak_return_toast">Chuỗi dọn dẹp sẽ trở lại lần dọn tiếp theo.</string>
     <string name="apk_card_title">Tìm thấy trình cài đặt cũ</string>
     <string name="apk_card_subtitle">Xóa tệp cài đặt còn sót lại để lấy lại dung lượng.</string>
-    <string name="apk_card_more_format">+%1$d thêm</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="other">+%1$d thêm</item>
+    </plurals>
     <string name="clean_apks">Xóa bộ cài</string>
     <string name="whatsapp_card_title">Tệp WhatsApp</string>
     <string name="whatsapp_card_subtitle">Dọn dẹp phương tiện bạn không cần nữa.</string>

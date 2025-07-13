@@ -44,7 +44,11 @@
     <string name="cleanup_storage_ok_4">Arată bine — nu e nevoie de acțiune.</string>
     <string name="cleanup_storage_ok_5">Depozitarea este sub control!</string>
     <string name="cleanup_storage_ok_6">Curat și limpede. Bine făcut!</string>
-    <string name="cleanup_notification_last_scan_format">Ultimul scan: acum %1$d zile. %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="one">Ultimul scan: acum %1$d zi. %2$s</item>
+        <item quantity="few">Ultimul scan: acum %1$d zile. %2$s</item>
+        <item quantity="other">Ultimul scan: acum %1$d zile. %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">Nu ți-ai scanat încă telefonul. Atinge pentru a începe.</string>
 
     <!-- Onboarding -->
@@ -88,7 +92,11 @@
     <string name="delete_forever_icon_description">Pictograma ștergere definitivă</string>
     <string name="clean_streak_title">🧹 Serie Săptămânală de Curățare</string>
     <string name="clean_streak_start">Începe seria de curățare chiar azi.</string>
-    <string name="clean_streak_in_progress">%1$d zile la rând — continuă așa!</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="one">%1$d zi la rând — continuă așa!</item>
+        <item quantity="few">%1$d zile la rând — continuă așa!</item>
+        <item quantity="other">%1$d zile la rând — continuă așa!</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">Săptămână perfectă! 💎 Meriți asta.</string>
     <string name="streak_reward_day1">Un început bun!</string>
     <string name="streak_reward_day3">Știai că poți sorta după mărime?</string>
@@ -108,7 +116,11 @@
     <string name="streak_return_toast">Seria de curățare va reveni la următoarea curățare.</string>
     <string name="apk_card_title">Instalatoare vechi găsite</string>
     <string name="apk_card_subtitle">Elimină fișierele de instalare rămase și recuperează spațiu.</string>
-    <string name="apk_card_more_format">+%1$d în plus</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="one">+%1$d în plus</item>
+        <item quantity="few">+%1$d în plus</item>
+        <item quantity="other">+%1$d în plus</item>
+    </plurals>
     <string name="clean_apks">Șterge instalatoarele</string>
     <string name="whatsapp_card_title">Fișiere WhatsApp</string>
     <string name="whatsapp_card_subtitle">Curăță fișierele media de care nu mai ai nevoie.</string>

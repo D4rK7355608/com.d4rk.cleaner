@@ -44,7 +44,10 @@
     <string name="cleanup_storage_ok_4">Ser bra ut — ingen åtgärd behövs.</string>
     <string name="cleanup_storage_ok_5">Lagring är under kontroll!</string>
     <string name="cleanup_storage_ok_6">Rent och tydligt. Bra gjort!</string>
-    <string name="cleanup_notification_last_scan_format">Senaste skanning: för %1$d dagar sedan. %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="one">Senaste skanning: för %1$d dag sedan. %2$s</item>
+        <item quantity="other">Senaste skanning: för %1$d dagar sedan. %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">Du har inte skannat din telefon än. Tryck för att börja.</string>
 
     <!-- Onboarding -->
@@ -88,7 +91,10 @@
     <string name="delete_forever_icon_description">Ikon för ta bort permanent</string>
     <string name="clean_streak_title">🧹 Veckovis städsvit</string>
     <string name="clean_streak_start">Starta din städsvit idag.</string>
-    <string name="clean_streak_in_progress">%1$d dagar i rad — fortsätt så!</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="one">%1$d dag i rad — fortsätt så!</item>
+        <item quantity="other">%1$d dagar i rad — fortsätt så!</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">Perfekt vecka! 💎 Det har du förtjänat.</string>
     <string name="streak_reward_day1">Bra start!</string>
     <string name="streak_reward_day3">Visste du att du kan sortera efter storlek?</string>
@@ -108,7 +114,10 @@
     <string name="streak_return_toast">Städsviten återkommer nästa gång du städar.</string>
     <string name="apk_card_title">Gamla installerare hittades</string>
     <string name="apk_card_subtitle">Ta bort kvarvarande installationsfiler och frigör utrymme.</string>
-    <string name="apk_card_more_format">+%1$d till</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="one">+%1$d till</item>
+        <item quantity="other">+%1$d till</item>
+    </plurals>
     <string name="clean_apks">Ta bort installerare</string>
     <string name="whatsapp_card_title">WhatsApp-filer</string>
     <string name="whatsapp_card_subtitle">Rensa bort media du inte längre behöver.</string>

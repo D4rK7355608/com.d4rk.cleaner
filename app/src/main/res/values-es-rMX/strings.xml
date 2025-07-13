@@ -44,7 +44,11 @@
     <string name="cleanup_storage_ok_4">Todo se ve bien — no hace falta hacer nada.</string>
     <string name="cleanup_storage_ok_5">¡El almacenamiento está bajo control!</string>
     <string name="cleanup_storage_ok_6">Limpio y despejado. ¡Bien hecho!</string>
-    <string name="cleanup_notification_last_scan_format">Último escaneo: hace %1$d días. %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="one">Último escaneo: hace %1$d día. %2$s</item>
+        <item quantity="many">Último escaneo: hace %1$d días. %2$s</item>
+        <item quantity="other">Último escaneo: hace %1$d días. %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">Aún no has escaneado tu teléfono. Toca para empezar.</string>
 
     <!-- Onboarding -->
@@ -88,7 +92,11 @@
     <string name="delete_forever_icon_description">Icono de borrar para siempre</string>
     <string name="clean_streak_title">🧹 Racha Semanal de Limpieza</string>
     <string name="clean_streak_start">Comienza tu racha de limpieza hoy.</string>
-    <string name="clean_streak_in_progress">%1$d días seguidos — ¡sigue así!</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="one">%1$d día seguido — ¡sigue así!</item>
+        <item quantity="many">%1$d días seguidos — ¡sigue así!</item>
+        <item quantity="other">%1$d días seguidos — ¡sigue así!</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">¡Semana perfecta! 💎 Te lo ganaste.</string>
     <string name="streak_reward_day1">¡Buen comienzo!</string>
     <string name="streak_reward_day3">¿Sabías que puedes ordenar por tamaño?</string>
@@ -108,7 +116,11 @@
     <string name="streak_return_toast">La Racha de Limpieza volverá la próxima vez que limpies.</string>
     <string name="apk_card_title">Instaladores Antiguos Encontrados</string>
     <string name="apk_card_subtitle">Elimina los instaladores sobrantes y recupera espacio.</string>
-    <string name="apk_card_more_format">+%1$d más</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="one">+%1$d más</item>
+        <item quantity="many">+%1$d más</item>
+        <item quantity="other">+%1$d más</item>
+    </plurals>
     <string name="clean_apks">Eliminar instaladores</string>
     <string name="whatsapp_card_title">Archivos de WhatsApp</string>
     <string name="whatsapp_card_subtitle">Elimina los archivos que ya no necesites.</string>
