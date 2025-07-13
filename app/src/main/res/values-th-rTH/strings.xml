@@ -264,6 +264,8 @@
     <string name="clipboard_clean">ล้างคลิปบอร์ด</string>
     <string name="summary_preference_settings_delete_duplicates">ลบไฟล์ที่ซ้ำกันระหว่างการทำความสะอาด</string>
 
+    <string name="automatic_cleanup">การล้างข้อมูลอัตโนมัติ</string>
+    <string name="enable_automatic_cleaning">เปิดใช้งานการทำความสะอาดอัตโนมัติ</string>
     <!-- Permissions -->
     <string name="request_delete_packages">ร้องขอการลบแพ็คเกจ [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">อนุญาตให้แอปสามารถร้องขอการลบแพ็คเกจได้ ซึ่งสามารถใช้เพื่อถอนการติดตั้งแอปอื่นๆ ออกจากอุปกรณ์</string>

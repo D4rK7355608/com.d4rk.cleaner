@@ -271,6 +271,8 @@
     <string name="clipboard_clean">Nettoyer le presse-papiers</string>
     <string name="summary_preference_settings_delete_duplicates">Supprimer les fichiers en double pendant le nettoyage</string>
 
+    <string name="automatic_cleanup">Nettoyage automatique</string>
+    <string name="enable_automatic_cleaning">Activer le nettoyage automatique</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Demander la suppression de paquets [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Permet à l\'application de demander la suppression de paquets. Peut être utilisé pour désinstaller d\'autres applications de l\'appareil.</string>

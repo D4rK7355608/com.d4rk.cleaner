@@ -273,6 +273,8 @@
     <string name="clipboard_clean">Очистить буфер обмена</string>
     <string name="summary_preference_settings_delete_duplicates">Удалить дубликаты файлов во время очистки</string>
 
+    <string name="automatic_cleanup">Автоматическая очистка</string>
+    <string name="enable_automatic_cleaning">Включить автоматическую очистку</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Запросить удаление пакетов [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Позволяет приложению запрашивать удаление пакетов. Это можно использовать для удаления других приложений с устройства</string>

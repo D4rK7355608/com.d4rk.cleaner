@@ -270,6 +270,8 @@
     <string name="clipboard_clean">Limpiar portapapeles</string>
     <string name="summary_preference_settings_delete_duplicates">Eliminar archivos duplicados durante la limpieza</string>
 
+    <string name="automatic_cleanup">Limpieza automática</string>
+    <string name="enable_automatic_cleaning">Habilitar la limpieza automática</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Solicitar eliminación de paquetes [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Permite que la app solicite la eliminación de paquetes. Esto se puede usar para desinstalar otras apps del dispositivo.</string>

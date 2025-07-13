@@ -267,6 +267,8 @@
     <string name="clipboard_clean">क्लिपबोर्ड साफ़ करें</string>
     <string name="summary_preference_settings_delete_duplicates">सफाई के दौरान डुप्लिकेट फ़ाइलों को हटाएं</string>
 
+    <string name="automatic_cleanup">स्वत: सफाई</string>
+    <string name="enable_automatic_cleaning">स्वचालित सफाई सक्षम करें</string>
     <!-- Permissions -->
     <string name="request_delete_packages">पैकेज हटाने का अनुरोध करें [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">ऐप को पैकेज हटाने का अनुरोध करने की अनुमति देता है। इसका उपयोग डिवाइस से अन्य ऐप्स को अनइंस्टॉल करने के लिए किया जा सकता है</string>

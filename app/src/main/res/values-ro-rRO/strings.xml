@@ -270,6 +270,8 @@
     <string name="clipboard_clean">Curăță clipboard</string>
     <string name="summary_preference_settings_delete_duplicates">Ștergeți fișierele duplicate în timpul curățării</string>
 
+    <string name="automatic_cleanup">Curățare automată</string>
+    <string name="enable_automatic_cleaning">Activați curățarea automată</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Solicită ștergerea pachetelor [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Permite aplicației să solicite ștergerea pachetelor. Aceasta poate fi utilizată pentru a dezinstala alte aplicații de pe dispozitiv</string>

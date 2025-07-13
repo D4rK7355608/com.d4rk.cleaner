@@ -264,6 +264,8 @@
     <string name="clipboard_clean">Dọn dẹp bảng tạm</string>
     <string name="summary_preference_settings_delete_duplicates">Xóa các tệp trùng lặp trong khi làm sạch</string>
 
+    <string name="automatic_cleanup">Tự động dọn dẹp</string>
+    <string name="enable_automatic_cleaning">Bật làm sạch tự động</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Yêu cầu xóa gói [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Cho phép ứng dụng yêu cầu xóa các gói. Điều này có thể được sử dụng để gỡ cài đặt các ứng dụng khác khỏi thiết bị</string>

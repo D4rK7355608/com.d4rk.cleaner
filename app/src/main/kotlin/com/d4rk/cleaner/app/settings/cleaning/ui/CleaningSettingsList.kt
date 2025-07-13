@@ -21,6 +21,7 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVertical
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.core.data.datastore.DataStore
+import com.d4rk.cleaner.app.auto.AutoCleanScheduler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -47,6 +48,7 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
     val clipboardClean : Boolean by dataStore.clipboardClean.collectAsState(initial = false)
     val streakReminderEnabled: Boolean by dataStore.streakReminderEnabled.collectAsState(initial = false)
     val showStreakCardPref: Boolean by dataStore.showStreakCard.collectAsState(initial = true)
+    val autoCleanEnabled: Boolean by dataStore.autoCleanEnabled.collectAsState(initial = false)
 
     LazyColumn(
         modifier = Modifier
@@ -280,6 +282,27 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
                         if (isChecked) {
                             Toast.makeText(context, context.getString(R.string.streak_return_toast), Toast.LENGTH_SHORT).show()
                         }
+                    }
+                }
+            }
+        }
+
+        item {
+            PreferenceCategoryItem(title = stringResource(id = R.string.automatic_cleanup))
+            SmallVerticalSpacer()
+
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = SizeConstants.LargeSize)
+                    .clip(shape = RoundedCornerShape(size = SizeConstants.LargeSize))
+            ) {
+                SwitchPreferenceItem(
+                    title = stringResource(id = R.string.enable_automatic_cleaning),
+                    checked = autoCleanEnabled,
+                ) { isChecked ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        dataStore.saveAutoCleanEnabled(isChecked)
+                        if (isChecked) AutoCleanScheduler.schedule(context, dataStore) else AutoCleanScheduler.cancel(context)
                     }
                 }
             }

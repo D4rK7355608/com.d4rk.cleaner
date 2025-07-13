@@ -273,6 +273,8 @@
     <string name="clipboard_clean">Очищення буфера обміну</string>
     <string name="summary_preference_settings_delete_duplicates">Видалити повторювані файли під час очищення</string>
 
+    <string name="automatic_cleanup">Автоматичне очищення</string>
+    <string name="enable_automatic_cleaning">Увімкнути автоматичне очищення</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Запит на видалення пакетів [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Дозволяє додатку запитувати видалення пакетів. Це може використовуватися для видалення інших додатків з пристрою</string>

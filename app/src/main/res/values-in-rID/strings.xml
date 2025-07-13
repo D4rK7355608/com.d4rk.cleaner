@@ -264,6 +264,8 @@
     <string name="clipboard_clean">Bersihkan clipboard</string>
     <string name="summary_preference_settings_delete_duplicates">Hapus file duplikat selama pembersihan</string>
 
+    <string name="automatic_cleanup">Pembersihan Otomatis</string>
+    <string name="enable_automatic_cleaning">Aktifkan pembersihan otomatis</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Minta hapus paket [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Mengizinkan aplikasi untuk meminta penghapusan paket. Ini dapat digunakan untuk mencopot pemasangan aplikasi lain dari perangkat</string>
