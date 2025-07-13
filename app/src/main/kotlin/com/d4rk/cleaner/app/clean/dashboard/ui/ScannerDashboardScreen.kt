@@ -2,6 +2,7 @@ package com.d4rk.cleaner.app.clean.dashboard.ui
 
 import android.content.Context
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -186,7 +187,7 @@ fun ScannerDashboardScreen(
                 modifier = Modifier.animateVisibility(
                     visible = visibilityStates.getOrElse(index = quickScanIndex) { false },
                     index = quickScanIndex
-                ),
+                ).animateContentSize(),
                 cleanedSize = uiState.data?.storageInfo?.cleanedSpace ?: "" ,
                 freePercent = uiState.data?.storageInfo?.freeSpacePercentage ?: 0 ,
                 usedPercent = ((uiState.data?.storageInfo?.storageUsageProgress ?: 0f) * 100).toInt() ,
@@ -204,7 +205,7 @@ fun ScannerDashboardScreen(
                     modifier = Modifier.animateVisibility(
                         visible = visibilityStates.getOrElse(index = streakIndex) { false },
                         index = streakIndex
-                    ),
+                    ).animateContentSize(),
                     streakDays = streakDays , onDismiss = { viewModel.onEvent(ScannerEvent.SetHideStreakDialogVisibility(true)) })
             }
         }
@@ -252,7 +253,7 @@ fun ScannerDashboardScreen(
                         visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false &&
                                 visibilityStates.getOrElse(index = whatsappIndex) { false },
                         index = whatsappIndex
-                    ),
+                    ).animateContentSize(),
                     mediaSummary = whatsappSummary , onCleanClick = {
                         IntentsHelper.openActivity(
                             context = context , activityClass = WhatsAppCleanerActivity::class.java
@@ -274,7 +275,7 @@ fun ScannerDashboardScreen(
                         visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false &&
                                 visibilityStates.getOrElse(index = apkIndex) { false },
                         index = apkIndex
-                    ),
+                    ).animateContentSize(),
                     apkFiles = appManagerState.data?.apkFiles ?: emptyList() , isLoading = isCleaningApks , onCleanClick = { selected ->
                         val files = selected.map { File(it.path) }
                         viewModel.onCleanApks(files)
@@ -294,7 +295,7 @@ fun ScannerDashboardScreen(
                         visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false &&
                                 visibilityStates.getOrElse(index = clipboardIndex) { false },
                         index = clipboardIndex
-                    ),
+                    ).animateContentSize(),
                     clipboardText = clipboardText , onCleanClick = { viewModel.onClipboardClear() })
             }
         }
@@ -320,7 +321,7 @@ fun ScannerDashboardScreen(
                 modifier = Modifier.animateVisibility(
                     visible = visibilityStates.getOrElse(index = imageOptimizerIndex) { false },
                     index = imageOptimizerIndex
-                ),
+                ).animateContentSize(),
                 onOptimizeClick = {
                     IntentsHelper.openActivity(
                         context = context , activityClass = ImagePickerActivity::class.java
@@ -338,7 +339,7 @@ fun ScannerDashboardScreen(
                 modifier = Modifier.animateVisibility(
                     visible = visibilityStates.getOrElse(index = cacheIndex) { false },
                     index = cacheIndex
-                ),
+                ).animateContentSize(),
                 onScanClick = {
                     viewModel.onEvent(ScannerEvent.CleanCache)
                 })
@@ -354,7 +355,7 @@ fun ScannerDashboardScreen(
                 PromotedAppCard(modifier = Modifier.animateVisibility(
                     visible = visibilityStates.getOrElse(index = promotedIndex) { false },
                     index = promotedIndex
-                ),app = app)
+                ).animateContentSize(),app = app)
             }
         }
 
