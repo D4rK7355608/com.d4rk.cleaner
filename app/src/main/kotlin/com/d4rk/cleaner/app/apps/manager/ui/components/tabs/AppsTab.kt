@@ -43,10 +43,7 @@ fun AppsTab(
             else -> {
                 val context = LocalContext.current
                 val packageManager = context.packageManager
-                val sorted = apps.sortedWith(
-                    compareByDescending<ApplicationInfo> { usageStats[it.packageName] ?: 0L }
-                        .thenBy { packageManager.getApplicationLabel(it).toString().lowercase() }
-                )
+                val sorted = apps.sortedBy { packageManager.getApplicationLabel(it).toString().lowercase() }
                 LazyColumn(
                     contentPadding = PaddingValues(horizontal = SizeConstants.ExtraTinySize),
                     verticalArrangement = Arrangement.spacedBy(space = SizeConstants.ExtraTinySize),
