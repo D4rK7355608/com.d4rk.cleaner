@@ -28,6 +28,8 @@ import com.d4rk.cleaner.app.apps.manager.domain.usecases.ShareApkUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.ShareAppUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.UninstallAppUseCase
 import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onEach
@@ -48,6 +50,13 @@ class AppManagerViewModel(
 ) : ScreenViewModel<UiAppManagerModel , AppManagerEvent , AppManagerAction>(initialState = UiStateScreen(data = UiAppManagerModel())) {
 
     private val applicationContext : Context = application.applicationContext
+
+    private val _searchQuery = MutableStateFlow("")
+    val searchQuery = _searchQuery.asStateFlow()
+
+    fun onSearchQueryChange(query: String) {
+        _searchQuery.value = query
+    }
 
     private val packageRemovedReceiver = object : BroadcastReceiver() {
         override fun onReceive(context : Context? , intent : Intent?) {

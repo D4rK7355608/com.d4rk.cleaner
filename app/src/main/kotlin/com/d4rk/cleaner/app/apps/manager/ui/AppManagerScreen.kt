@@ -14,12 +14,16 @@ import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -31,6 +35,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.hapticPagerSwipe
@@ -86,12 +91,24 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
 
     val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
+    val searchQuery by viewModel.searchQuery.collectAsState()
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
     ) {
+        OutlinedTextField(
+            value = searchQuery,
+            onValueChange = viewModel::onSearchQueryChange,
+            leadingIcon = { Icon(imageVector = Icons.Outlined.Search, contentDescription = null) },
+            placeholder = { Text(text = stringResource(id = R.string.search)) },
+            singleLine = true,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = SizeConstants.LargeSize, vertical = SizeConstants.SmallSize)
+        )
         TabRow(
             selectedTabIndex = pagerState.currentPage ,
             indicator = { tabPositions ->
@@ -128,7 +145,8 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
             when (page) {
                 0 -> AppsTab(
                     apps = screenData.installedApps.filter { app: ApplicationInfo ->
-                        app.flags and ApplicationInfo.FLAG_SYSTEM == 0
+                        app.flags and ApplicationInfo.FLAG_SYSTEM == 0 &&
+                            context.packageManager.getApplicationLabel(app).toString().contains(searchQuery, ignoreCase = true)
                     },
                     isLoading = screenData.userAppsLoading,
                     usageStats = screenData.appUsageStats,
@@ -138,7 +156,8 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
 
                 1 -> AppsTab(
                     apps = screenData.installedApps.filter { app: ApplicationInfo ->
-                        app.flags and ApplicationInfo.FLAG_SYSTEM != 0
+                        app.flags and ApplicationInfo.FLAG_SYSTEM != 0 &&
+                            context.packageManager.getApplicationLabel(app).toString().contains(searchQuery, ignoreCase = true)
                     },
                     isLoading = screenData.systemAppsLoading,
                     usageStats = screenData.appUsageStats,
@@ -147,7 +166,9 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
                 )
 
                 2 -> ApksTab(
-                    apkFiles = screenData.apkFiles ,
+                    apkFiles = screenData.apkFiles.filter { apk ->
+                        apk.path.substringAfterLast('/').contains(searchQuery, ignoreCase = true)
+                    } ,
                     isLoading = screenData.apkFilesLoading ,
                     viewModel = viewModel ,
                     paddingValues = paddingValues
