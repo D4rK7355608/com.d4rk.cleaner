@@ -46,8 +46,8 @@ import com.d4rk.cleaner.R.string
 import com.d4rk.cleaner.app.apps.manager.domain.actions.AppManagerEvent
 import com.d4rk.cleaner.app.apps.manager.domain.data.model.AppManagerItem
 import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
-import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 import com.d4rk.cleaner.app.clean.analyze.utils.helpers.TimeHelper
+import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 import java.io.File
 
 @Composable
@@ -91,18 +91,20 @@ fun AppItemComposable(
                     text = appName,
                     style = MaterialTheme.typography.titleMedium,
                 )
-                Text(
-                    text = appSize,
-                    style = MaterialTheme.typography.bodyMedium
-                )
-                lastUsed?.takeIf { it > 0 }?.let { used ->
+                Row {
                     Text(
-                        text = TimeHelper.formatDate(context, java.util.Date(used)),
-                        style = MaterialTheme.typography.bodySmall
+                        text = appSize,
+                        style = MaterialTheme.typography.bodyMedium,
                     )
+                    lastUsed?.takeIf { it > 0 }?.let { used ->
+                        Text(
+                            text = " • ${TimeHelper.formatDate(context, java.util.Date(used))}",
+                            style = MaterialTheme.typography.bodySmall,
+                            modifier = Modifier.align(Alignment.CenterVertically)
+                        )
+                    }
                 }
             }
-
             Box {
                 IconButton(
                     icon = Icons.Outlined.MoreVert,

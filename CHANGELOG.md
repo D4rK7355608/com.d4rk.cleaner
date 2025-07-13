@@ -1,9 +1,9 @@
 # Version 3.5.0:
 
-- **New**: Added automatic schedule for daily clean.
-- **New**: Added suggestions for uninstalling rarely used apps using UsageStats.
-- **New**: Added large files recognition in the analyze tabs screen.
-- **Minor**: Improved animations in scanner screen.
+- **New**: Implemented an automatic scheduling feature for daily cleaning routines.
+- **New**: Introduced functionality to suggest uninstallation of rarely used applications, utilizing UsageStats for analysis.
+- **New**: Enhanced the "Analyze" tabs screen with the capability to recognize and identify large files.
+- **Minor**: Refined animations within the scanner screen for a smoother user experience.
 
 # Version 3.4.0:
 
