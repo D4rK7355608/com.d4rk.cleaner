@@ -14,6 +14,7 @@ import com.d4rk.cleaner.app.clean.scanner.domain.`interface`.ScannerRepositoryIn
 import com.d4rk.cleaner.app.clean.scanner.utils.helpers.StorageUtils
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.utils.extensions.clearClipboardCompat
+import com.d4rk.cleaner.core.utils.extensions.md5
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
@@ -223,14 +224,66 @@ class ScannerRepositoryImpl(
 
     override suspend fun getLargestFiles(limit: Int): List<File> {
         return withContext(Dispatchers.IO) {
-            val allFiles = mutableListOf<File>()
-            DirectoryScanner.scan(
-                root = Environment.getExternalStorageDirectory(),
-                skipDir = { dir -> dir.absolutePath.startsWith(trashDir.absolutePath) }
-            ) { file ->
-                allFiles.add(file)
+            val root = Environment.getExternalStorageDirectory()
+            val minSize = 100L * 1024 * 1024 // 100MB threshold
+            val trashed = dataStore.trashFileOriginalPaths.first()
+
+            // Load extension lists for basic type detection
+            val apkExt = application.resources.getStringArray(R.array.apk_extensions).map { it.lowercase() }
+            val videoExt = application.resources.getStringArray(R.array.video_extensions).map { it.lowercase() }
+            val imageExt = application.resources.getStringArray(R.array.image_extensions).map { it.lowercase() }
+            val audioExt = application.resources.getStringArray(R.array.audio_extensions).map { it.lowercase() }
+            val archiveExt = application.resources.getStringArray(R.array.archive_extensions).map { it.lowercase() }
+            val officeExt = application.resources.getStringArray(R.array.microsoft_office_extensions).map { it.lowercase() }
+
+            fun fileType(file: File): String = when (file.extension.lowercase()) {
+                in videoExt -> "video"
+                in archiveExt -> "archive"
+                in apkExt -> "apk"
+                in imageExt -> "image"
+                in audioExt -> "audio"
+                in officeExt -> "doc"
+                else -> "other"
             }
-            allFiles.sortedByDescending { it.length() }.take(limit)
+
+            val groups = mutableMapOf<String, MutableList<File>>()
+            val seenHashes = mutableSetOf<String>()
+
+            DirectoryScanner.scan(
+                root = root,
+                skipDir = { dir ->
+                    dir.absolutePath.startsWith(trashDir.absolutePath) ||
+                        dir.absolutePath.startsWith(File(root, "Android").absolutePath) ||
+                        dir.isHidden
+                }
+            ) { file ->
+                if (file.length() >= minSize && file.absolutePath !in trashed) {
+                    val hash = file.md5() ?: return@scan
+                    if (seenHashes.add(hash)) {
+                        val type = fileType(file)
+                        groups.getOrPut(type) { mutableListOf() }.add(file)
+                    }
+                }
+            }
+
+            groups.values.forEach { list ->
+                list.sortWith(compareByDescending<File> { it.length() }.thenByDescending { it.lastModified() })
+            }
+
+            val result = mutableListOf<File>()
+            var index = 0
+            while (result.size < limit) {
+                var added = false
+                for (list in groups.values) {
+                    if (index < list.size && result.size < limit) {
+                        result.add(list[index])
+                        added = true
+                    }
+                }
+                if (!added) break
+                index++
+            }
+            result
         }
     }
 }
