@@ -378,4 +378,26 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         }
     }
 
+    private val autoCleanEnabledKey = booleanPreferencesKey(AppDataStoreConstants.DATA_STORE_AUTO_CLEAN_ENABLED)
+    val autoCleanEnabled: Flow<Boolean> = dataStore.data.map { prefs ->
+        prefs[autoCleanEnabledKey] ?: false
+    }
+
+    suspend fun saveAutoCleanEnabled(enabled: Boolean) {
+        dataStore.edit { prefs ->
+            prefs[autoCleanEnabledKey] = enabled
+        }
+    }
+
+    private val autoCleanFrequencyDaysKey = intPreferencesKey(AppDataStoreConstants.DATA_STORE_AUTO_CLEAN_FREQUENCY_DAYS)
+    val autoCleanFrequencyDays: Flow<Int> = dataStore.data.map { prefs ->
+        prefs[autoCleanFrequencyDaysKey] ?: 7
+    }
+
+    suspend fun saveAutoCleanFrequencyDays(days: Int) {
+        dataStore.edit { prefs ->
+            prefs[autoCleanFrequencyDaysKey] = days
+        }
+    }
+
 }
