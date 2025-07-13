@@ -44,7 +44,9 @@
     <string name="cleanup_storage_ok_4">看起來不錯—無需任何操作。</string>
     <string name="cleanup_storage_ok_5">儲存空間一切掌控！</string>
     <string name="cleanup_storage_ok_6">乾淨清爽，做得好！</string>
-    <string name="cleanup_notification_last_scan_format">上次掃描：%1$d 天前。%2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="other">上次掃描：%1$d 天前。%2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">您尚未掃描手機，點擊即可開始。</string>
 
     <!-- Onboarding -->
@@ -88,7 +90,9 @@
     <string name="delete_forever_icon_description">永久刪除圖示</string>
     <string name="clean_streak_title">🧹 每週清理連擊</string>
     <string name="clean_streak_start">今天就開始你的清理連擊。</string>
-    <string name="clean_streak_in_progress">%1$d 天連續清理 — 保持下去！</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="other">%1$d 天連續清理 — 保持下去！</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">完美的一周！ 💎 你值得擁有。</string>
     <string name="streak_reward_day1">不錯的開始！</string>
     <string name="streak_reward_day3">你知道可以按大小排序嗎？</string>
@@ -108,7 +112,9 @@
     <string name="streak_return_toast">下次清理時將恢復清理連續。</string>
     <string name="apk_card_title">找到舊安裝程式</string>
     <string name="apk_card_subtitle">移除遺留的安裝檔並釋放空間。</string>
-    <string name="apk_card_more_format">+%1$d 個以上</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="other">+%1$d 個以上</item>
+    </plurals>
     <string name="clean_apks">刪除安裝檔</string>
     <string name="whatsapp_card_title">WhatsApp 檔案</string>
     <string name="whatsapp_card_subtitle">清除不需要的媒體。</string>

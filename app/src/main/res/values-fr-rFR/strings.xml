@@ -44,7 +44,11 @@
     <string name="cleanup_storage_ok_4">Tout semble bon — aucune action nécessaire.</string>
     <string name="cleanup_storage_ok_5">Le stockage est sous contrôle !</string>
     <string name="cleanup_storage_ok_6">Propre et net. Bien joué !</string>
-    <string name="cleanup_notification_last_scan_format">Dernière analyse : il y a %1$d jours. %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="one">Dernière analyse : il y a %1$d jour. %2$s</item>
+        <item quantity="many">Dernière analyse : il y a %1$d jours. %2$s</item>
+        <item quantity="other">Dernière analyse : il y a %1$d jours. %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">Vous n’avez pas encore analysé votre téléphone. Appuyez pour commencer.</string>
 
     <!-- Onboarding -->
@@ -88,7 +92,11 @@
     <string name="delete_forever_icon_description">Icône de suppression définitive</string>
     <string name="clean_streak_title">🧹 Série de Nettoyage Hebdomadaire</string>
     <string name="clean_streak_start">Commencez votre série de nettoyage dès aujourd\'hui.</string>
-    <string name="clean_streak_in_progress">%1$d jours d\'affilée — continuez comme ça !</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="one">%1$d jour d'affilée — continuez comme ça !</item>
+        <item quantity="many">%1$d jours d\'affilée — continuez comme ça !</item>
+        <item quantity="other">%1$d jours d\'affilée — continuez comme ça !</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">Semaine parfaite ! 💎 Vous l\'avez méritée.</string>
     <string name="streak_reward_day1">Bon début !</string>
     <string name="streak_reward_day3">Saviez-vous que vous pouvez trier par taille ?</string>
@@ -108,7 +116,11 @@
     <string name="streak_return_toast">La série de nettoyage reviendra la prochaine fois que vous nettoierez.</string>
     <string name="apk_card_title">Anciens installateurs trouvés</string>
     <string name="apk_card_subtitle">Supprimez les fichiers d’installation restants et récupérez de l’espace.</string>
-    <string name="apk_card_more_format">+%1$d de plus</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="one">+%1$d de plus</item>
+        <item quantity="many">+%1$d de plus</item>
+        <item quantity="other">+%1$d de plus</item>
+    </plurals>
     <string name="clean_apks">Supprimer les installateurs</string>
     <string name="whatsapp_card_title">Fichiers WhatsApp</string>
     <string name="whatsapp_card_subtitle">Nettoyez les médias dont vous n’avez plus besoin.</string>

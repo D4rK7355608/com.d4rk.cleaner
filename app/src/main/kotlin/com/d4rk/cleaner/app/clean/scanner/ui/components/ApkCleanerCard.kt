@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
@@ -108,7 +109,11 @@ fun ApkCleanerCard(
                     }
                     if (apkFiles.size > preview.size) {
                         Text(
-                            text = stringResource(id = R.string.apk_card_more_format, apkFiles.size - preview.size),
+                            text = pluralStringResource(
+                                id = R.plurals.apk_card_more_format,
+                                count = apkFiles.size - preview.size,
+                                apkFiles.size - preview.size
+                            ),
                             style = MaterialTheme.typography.bodySmall
                         )
                     }

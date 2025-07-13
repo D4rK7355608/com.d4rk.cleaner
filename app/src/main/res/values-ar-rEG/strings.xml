@@ -44,7 +44,14 @@
     <string name="cleanup_storage_ok_4">تبدو جيدة — لا حاجة إلى أي إجراء.</string>
     <string name="cleanup_storage_ok_5">التخزين تحت السيطرة!</string>
     <string name="cleanup_storage_ok_6">نظيف وواضح. أحسنت!</string>
-    <string name="cleanup_notification_last_scan_format">آخر فحص: من %1$d يوم. %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="zero">آخر فحص: من %1$d يوم. %2$s</item>
+        <item quantity="one">آخر فحص: من %1$d يوم. %2$s</item>
+        <item quantity="two">آخر فحص: من %1$d يوم. %2$s</item>
+        <item quantity="few">آخر فحص: من %1$d يوم. %2$s</item>
+        <item quantity="many">آخر فحص: من %1$d يوم. %2$s</item>
+        <item quantity="other">آخر فحص: من %1$d يوم. %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">لسه ما فحصتش تليفونك. اضغط للبدء.</string>
 
     <!-- Onboarding -->
@@ -88,7 +95,14 @@
     <string name="delete_forever_icon_description">أيقونة حذف نهائيًا</string>
     <string name="clean_streak_title">🧹 سلسلة التنظيف الأسبوعي</string>
     <string name="clean_streak_start">ابدأ سلسلة التنظيف اليوم.</string>
-    <string name="clean_streak_in_progress">%1$d يومًا على التوالي — استمر!</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="zero">%1$d يومًا على التوالي — استمر!</item>
+        <item quantity="one">%1$d يومًا على التوالي — استمر!</item>
+        <item quantity="two">%1$d يومًا على التوالي — استمر!</item>
+        <item quantity="few">%1$d يومًا على التوالي — استمر!</item>
+        <item quantity="many">%1$d يومًا على التوالي — استمر!</item>
+        <item quantity="other">%1$d يومًا على التوالي — استمر!</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">أسبوع مثالي! 💎 تستحق ذلك.</string>
     <string name="streak_reward_day1">بداية موفقة!</string>
     <string name="streak_reward_day3">هل تعلم أنه يمكنك الفرز حسب الحجم؟</string>
@@ -108,7 +122,14 @@
     <string name="streak_return_toast">ستعود سلسلة التنظيف في المرة القادمة التي تنظف فيها.</string>
     <string name="apk_card_title">تم العثور على مثبّتين قديمين</string>
     <string name="apk_card_subtitle">إزالة ملفات التثبيت المتبقية واستعادة المساحة.</string>
-    <string name="apk_card_more_format">+%1$d إضافية</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="zero">+%1$d إضافية</item>
+        <item quantity="one">+%1$d إضافية</item>
+        <item quantity="two">+%1$d إضافية</item>
+        <item quantity="few">+%1$d إضافية</item>
+        <item quantity="many">+%1$d إضافية</item>
+        <item quantity="other">+%1$d إضافية</item>
+    </plurals>
     <string name="clean_apks">حذف المثبتات</string>
     <string name="whatsapp_card_title">ملفات واتساب</string>
     <string name="whatsapp_card_subtitle">امسح الوسائط التي لم تعد تحتاجها.</string>

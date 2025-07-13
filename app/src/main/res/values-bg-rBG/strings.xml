@@ -44,7 +44,10 @@
     <string name="cleanup_storage_ok_4">Изглежда добре — не са необходими действия.</string>
     <string name="cleanup_storage_ok_5">Съхранението е под контрол!</string>
     <string name="cleanup_storage_ok_6">Чисто и ясно. Браво!</string>
-    <string name="cleanup_notification_last_scan_format">Последно сканиране: преди %1$d дни. %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="one">Последно сканиране: преди %1$d ден. %2$s</item>
+        <item quantity="other">Последно сканиране: преди %1$d дни. %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">Все още не сте сканирали телефона си. Докоснете, за да започнете.</string>
 
     <!-- Onboarding -->
@@ -88,7 +91,10 @@
     <string name="delete_forever_icon_description">Икона за изтриване завинаги</string>
     <string name="clean_streak_title">🧹 Седмична серия за почистване</string>
     <string name="clean_streak_start">Започнете серията за почистване днес.</string>
-    <string name="clean_streak_in_progress">%1$d дни подред — продължавайте така!</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="one">%1$d ден подред — продължавайте така!</item>
+        <item quantity="other">%1$d дни подред — продължавайте така!</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">Перфектна седмица! 💎 Заслужихте го.</string>
     <string name="streak_reward_day1">Добро начало!</string>
     <string name="streak_reward_day3">Знаете ли, че можете да сортирате по размер?</string>
@@ -108,7 +114,10 @@
     <string name="streak_return_toast">Серията за почистване ще се върне при следващото ви почистване.</string>
     <string name="apk_card_title">Намерени стари инсталатори</string>
     <string name="apk_card_subtitle">Премахнете останалите инсталационни файлове и освободете място.</string>
-    <string name="apk_card_more_format">+%1$d още</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="one">+%1$d още</item>
+        <item quantity="other">+%1$d още</item>
+    </plurals>
     <string name="clean_apks">Изтрий инсталаторите</string>
     <string name="whatsapp_card_title">Файлове от WhatsApp</string>
     <string name="whatsapp_card_subtitle">Изчистете медията, която вече не ви трябва.</string>

@@ -44,7 +44,10 @@
     <string name="cleanup_storage_ok_4">ভাল লাগছে — কোনও পদক্ষেপের প্রয়োজন নেই।</string>
     <string name="cleanup_storage_ok_5">স্টোরেজ নিয়ন্ত্রণে আছে!</string>
     <string name="cleanup_storage_ok_6">পরিষ্কার ও পরিষ্কার। ভাল!</string>
-    <string name="cleanup_notification_last_scan_format">সর্বশেষ স্ক্যান: %1$d দিন আগে। %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="one">সর্বশেষ স্ক্যান: %1$d দিন আগে। %2$s</item>
+        <item quantity="other">সর্বশেষ স্ক্যান: %1$d দিন আগে। %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">আপনি এখনও ফোন স্ক্যান করেননি। শুরু করতে ট্যাপ করুন।</string>
 
     <!-- Onboarding -->
@@ -88,7 +91,10 @@
     <string name="delete_forever_icon_description">স্থায়ীভাবে মুছে ফেলার আইকন</string>
     <string name="clean_streak_title">🧹 সাপ্তাহিক পরিষ্কার অভ্যাস</string>
     <string name="clean_streak_start">আজই আপনার পরিষ্কার অভ্যাস শুরু করুন।</string>
-    <string name="clean_streak_in_progress">%1$d দিন পরপর — চালিয়ে যান!</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="one">%1$d দিন পরপর — চালিয়ে যান!</item>
+        <item quantity="other">%1$d দিন পরপর — চালিয়ে যান!</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">পারফেক্ট সপ্তাহ! 💎 আপনি প্রাপ্য।</string>
     <string name="streak_reward_day1">চমৎকার শুরু!</string>
     <string name="streak_reward_day3">আপনি কি জানেন আকার অনুযায়ী বাছাই করা যায়?</string>
@@ -108,7 +114,10 @@
     <string name="streak_return_toast">পরেরবার পরিষ্কার করলে অভ্যাস ফিরে আসবে।</string>
     <string name="apk_card_title">পুরোনো ইনস্টলার পাওয়া গেছে</string>
     <string name="apk_card_subtitle">অবশিষ্ট ইনস্টলার ফাইল মুছে জায়গা উদ্ধার করুন।</string>
-    <string name="apk_card_more_format">+%1$d আরও</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="one">+%1$d আরও</item>
+        <item quantity="other">+%1$d আরও</item>
+    </plurals>
     <string name="clean_apks">ইনস্টলার ডিলিট করুন</string>
     <string name="whatsapp_card_title">হোয়াটসঅ্যাপ ফাইল</string>
     <string name="whatsapp_card_subtitle">আপনার দরকার নেই এমন মিডিয়া সরান।</string>

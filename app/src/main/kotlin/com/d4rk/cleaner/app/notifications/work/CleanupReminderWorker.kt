@@ -71,8 +71,9 @@ class CleanupReminderWorker(
         val message = if (days == null) {
             applicationContext.getString(R.string.cleanup_notification_never_scanned)
         } else {
-            applicationContext.getString(
-                R.string.cleanup_notification_last_scan_format,
+            applicationContext.resources.getQuantityString(
+                R.plurals.cleanup_notification_last_scan_format,
+                days,
                 days,
                 base
             )

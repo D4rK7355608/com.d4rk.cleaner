@@ -44,7 +44,9 @@
     <string name="cleanup_storage_ok_4">ดูดี ไม่มีอะไรต้องทำ</string>
     <string name="cleanup_storage_ok_5">ที่เก็บข้อมูลอยู่ภายใต้การควบคุม!</string>
     <string name="cleanup_storage_ok_6">สะอาดและชัดเจน ทำได้ดี!</string>
-    <string name="cleanup_notification_last_scan_format">สแกนครั้งล่าสุด: %1$d วันที่แล้ว %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="other">สแกนครั้งล่าสุด: %1$d วันที่แล้ว %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">คุณยังไม่ได้สแกนโทรศัพท์ แตะเพื่อเริ่มต้น</string>
 
     <!-- Onboarding -->
@@ -88,7 +90,9 @@
     <string name="delete_forever_icon_description">ไอคอนลบถาวร</string>
     <string name="clean_streak_title">🧹 สถิติการล้างประจำสัปดาห์</string>
     <string name="clean_streak_start">เริ่มสถิติการล้างของคุณวันนี้</string>
-    <string name="clean_streak_in_progress">%1$d วันติดต่อกัน — ทำต่อไป!</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="other">%1$d วันติดต่อกัน — ทำต่อไป!</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">สัปดาห์สมบูรณ์แบบ! 💎 คุณคู่ควร</string>
     <string name="streak_reward_day1">เริ่มต้นได้ดี!</string>
     <string name="streak_reward_day3">คุณรู้ไหมว่าจัดเรียงตามขนาดได้?</string>
@@ -108,7 +112,9 @@
     <string name="streak_return_toast">สถิติการล้างจะกลับมาเมื่อคุณล้างครั้งถัดไป</string>
     <string name="apk_card_title">พบตัวติดตั้งเก่า</string>
     <string name="apk_card_subtitle">ลบไฟล์ติดตั้งที่เหลือและคืนพื้นที่</string>
-    <string name="apk_card_more_format">+%1$d เพิ่มเติม</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="other">+%1$d เพิ่มเติม</item>
+    </plurals>
     <string name="clean_apks">ลบตัวติดตั้ง</string>
     <string name="whatsapp_card_title">ไฟล์ WhatsApp</string>
     <string name="whatsapp_card_subtitle">ล้างสื่อที่คุณไม่ต้องการแล้ว</string>

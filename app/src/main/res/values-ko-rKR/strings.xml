@@ -44,7 +44,9 @@
     <string name="cleanup_storage_ok_4">좋아 보이네요 — 조치가 필요 없어요.</string>
     <string name="cleanup_storage_ok_5">저장공간이 잘 관리되고 있어요!</string>
     <string name="cleanup_storage_ok_6">깔끔하고 명확합니다. 잘하셨어요!</string>
-    <string name="cleanup_notification_last_scan_format">마지막 스캔: %1$d일 전. %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="other">마지막 스캔: %1$d일 전. %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">아직 휴대폰을 스캔하지 않았어요. 시작하려면 탭하세요.</string>
 
     <!-- Onboarding -->
@@ -88,7 +90,9 @@
     <string name="delete_forever_icon_description">완전 삭제 아이콘</string>
     <string name="clean_streak_title">🧹 주간 클린 연속 기록</string>
     <string name="clean_streak_start">오늘부터 클린 연속 기록을 시작하세요.</string>
-    <string name="clean_streak_in_progress">%1$d일 연속 — 계속 유지하세요!</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="other">%1$d일 연속 — 계속 유지하세요!</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">완벽한 한 주! 💎 자격이 있습니다.</string>
     <string name="streak_reward_day1">좋은 시작이에요!</string>
     <string name="streak_reward_day3">크기별로 정렬할 수 있다는 사실, 알고 계셨나요?</string>
@@ -108,7 +112,9 @@
     <string name="streak_return_toast">다음 청소 시 클린 연속 기록이 돌아옵니다.</string>
     <string name="apk_card_title">오래된 설치 프로그램 발견</string>
     <string name="apk_card_subtitle">남은 설치 파일을 삭제하여 공간을 확보하세요.</string>
-    <string name="apk_card_more_format">+%1$d개 더</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="other">+%1$d개 더</item>
+    </plurals>
     <string name="clean_apks">설치 프로그램 삭제</string>
     <string name="whatsapp_card_title">WhatsApp 파일</string>
     <string name="whatsapp_card_subtitle">더 이상 필요 없는 미디어를 정리하세요.</string>

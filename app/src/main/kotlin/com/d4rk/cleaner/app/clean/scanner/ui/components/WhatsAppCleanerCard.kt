@@ -32,6 +32,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.TonalIconButtonWithText
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
@@ -170,7 +171,11 @@ private fun MorePreviewTile(count: Int) {
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = stringResource(id = R.string.apk_card_more_format, count),
+                text = pluralStringResource(
+                    id = R.plurals.apk_card_more_format,
+                    count = count,
+                    count
+                ),
                 style = MaterialTheme.typography.bodySmall
             )
         }

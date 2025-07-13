@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.pluralStringResource
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 
@@ -43,7 +44,11 @@ fun WeeklyCleanStreakCard(
 
     val message = when (streakDays) {
         0 -> stringResource(id = R.string.clean_streak_start)
-        in 1..6 -> stringResource(id = R.string.clean_streak_in_progress, streakDays)
+        in 1..6 -> pluralStringResource(
+            id = R.plurals.clean_streak_in_progress,
+            count = streakDays,
+            streakDays
+        )
         else -> stringResource(id = R.string.clean_streak_perfect_week_message)
     }
 

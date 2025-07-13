@@ -44,7 +44,11 @@
     <string name="cleanup_storage_ok_4">Sembra tutto a posto — nessuna azione necessaria.</string>
     <string name="cleanup_storage_ok_5">Lo spazio è sotto controllo!</string>
     <string name="cleanup_storage_ok_6">Pulito e ordinato. Ben fatto!</string>
-    <string name="cleanup_notification_last_scan_format">Ultima scansione: %1$d giorni fa. %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="one">Ultima scansione: %1$d giorno fa. %2$s</item>
+        <item quantity="many">Ultima scansione: %1$d giorni fa. %2$s</item>
+        <item quantity="other">Ultima scansione: %1$d giorni fa. %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">Non hai ancora scansionato il telefono. Tocca per iniziare.</string>
 
     <!-- Onboarding -->
@@ -88,7 +92,11 @@
     <string name="delete_forever_icon_description">Icona elimina per sempre</string>
     <string name="clean_streak_title">🧹 Serie di Pulizia Settimanale</string>
     <string name="clean_streak_start">Inizia la tua serie di pulizia oggi.</string>
-    <string name="clean_streak_in_progress">%1$d giorni di fila — continua così!</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="one">%1$d giorno di fila — continua così!</item>
+        <item quantity="many">%1$d giorni di fila — continua così!</item>
+        <item quantity="other">%1$d giorni di fila — continua così!</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">Settimana perfetta! 💎 Te la sei meritata.</string>
     <string name="streak_reward_day1">Buon inizio!</string>
     <string name="streak_reward_day3">Lo sapevi che puoi ordinare per dimensione?</string>
@@ -108,7 +116,11 @@
     <string name="streak_return_toast">La serie di pulizie tornerà la prossima volta che pulirai.</string>
     <string name="apk_card_title">Vecchi installer trovati</string>
     <string name="apk_card_subtitle">Rimuovi i file di installazione residui e recupera spazio.</string>
-    <string name="apk_card_more_format">+%1$d in più</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="one">+%1$d in più</item>
+        <item quantity="many">+%1$d in più</item>
+        <item quantity="other">+%1$d in più</item>
+    </plurals>
     <string name="clean_apks">Elimina installatori</string>
     <string name="whatsapp_card_title">File WhatsApp</string>
     <string name="whatsapp_card_subtitle">Elimina i media di cui non hai più bisogno.</string>

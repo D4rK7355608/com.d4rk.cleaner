@@ -44,7 +44,12 @@
     <string name="cleanup_storage_ok_4">Всё отлично — действий не требуется.</string>
     <string name="cleanup_storage_ok_5">Хранилище под контролем!</string>
     <string name="cleanup_storage_ok_6">Чисто и аккуратно. Молодцы!</string>
-    <string name="cleanup_notification_last_scan_format">Последнее сканирование: %1$d дней назад. %2$s</string>
+        <plurals name="cleanup_notification_last_scan_format">
+        <item quantity="one">Последнее сканирование: %1$d день назад. %2$s</item>
+        <item quantity="few">Последнее сканирование: %1$d дня назад. %2$s</item>
+        <item quantity="many">Последнее сканирование: %1$d дней назад. %2$s</item>
+        <item quantity="other">Последнее сканирование: %1$d дней назад. %2$s</item>
+    </plurals>
     <string name="cleanup_notification_never_scanned">Вы ещё не сканировали телефон. Нажмите, чтобы начать.</string>
 
     <!-- Onboarding -->
@@ -88,7 +93,12 @@
     <string name="delete_forever_icon_description">Значок безвозвратного удаления</string>
     <string name="clean_streak_title">🧹 Серия еженедельных очисток</string>
     <string name="clean_streak_start">Начните свою серию очисток сегодня.</string>
-    <string name="clean_streak_in_progress">%1$d дней подряд — так держать!</string>
+        <plurals name="clean_streak_in_progress">
+        <item quantity="one">%1$d день подряд — так держать!</item>
+        <item quantity="few">%1$d дня подряд — так держать!</item>
+        <item quantity="many">%1$d дней подряд — так держать!</item>
+        <item quantity="other">%1$d дней подряд — так держать!</item>
+    </plurals>
     <string name="clean_streak_perfect_week_message">Идеальная неделя! 💎 Вы это заслужили.</string>
     <string name="streak_reward_day1">Хорошее начало!</string>
     <string name="streak_reward_day3">Знаете, что можно сортировать по размеру?</string>
@@ -108,7 +118,12 @@
     <string name="streak_return_toast">Серия очисток вернётся при следующей чистке.</string>
     <string name="apk_card_title">Найдены старые установщики</string>
     <string name="apk_card_subtitle">Удалите оставшиеся установочные файлы и освободите место.</string>
-    <string name="apk_card_more_format">+%1$d ещё</string>
+        <plurals name="apk_card_more_format">
+        <item quantity="one">+%1$d ещё</item>
+        <item quantity="few">+%1$d ещё</item>
+        <item quantity="many">+%1$d ещё</item>
+        <item quantity="other">+%1$d ещё</item>
+    </plurals>
     <string name="clean_apks">Удалить установщики</string>
     <string name="whatsapp_card_title">Файлы WhatsApp</string>
     <string name="whatsapp_card_subtitle">Очистите медиа, которые вам больше не нужны.</string>
