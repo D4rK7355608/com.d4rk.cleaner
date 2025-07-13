@@ -230,6 +230,7 @@
     <string name="trash">Papperskorg</string>
     <string name="trash_is_empty">Papperskorgen är tom</string>
     <string name="restore">Återställ</string>
+    <string name="no_large_files">Inga stora filer hittades</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Rensning</string>

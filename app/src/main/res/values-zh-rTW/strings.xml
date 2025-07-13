@@ -227,6 +227,7 @@
     <string name="trash">垃圾桶</string>
     <string name="trash_is_empty">垃圾桶是空的</string>
     <string name="restore">還原</string>
+    <string name="no_large_files">找不到大型檔案</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">清理</string>

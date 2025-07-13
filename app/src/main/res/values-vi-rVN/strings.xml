@@ -227,6 +227,7 @@
     <string name="trash">Thùng rác</string>
     <string name="trash_is_empty">Thùng rác trống</string>
     <string name="restore">Khôi phục</string>
+    <string name="no_large_files">Không tìm thấy tệp lớn</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Dọn dẹp</string>

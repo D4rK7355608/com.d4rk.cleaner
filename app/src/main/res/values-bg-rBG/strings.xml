@@ -230,6 +230,7 @@
     <string name="trash">Кошче</string>
     <string name="trash_is_empty">Кошчето е празно</string>
     <string name="restore">Възстановяване</string>
+    <string name="no_large_files">Няма големи файлове</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Почистване</string>

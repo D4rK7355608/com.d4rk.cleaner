@@ -242,6 +242,7 @@
     <string name="trash">سلة المهملات</string>
     <string name="trash_is_empty">سلة المهملات فاضية</string>
     <string name="restore">استعادة</string>
+    <string name="no_large_files">لا توجد ملفات كبيرة</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">التنظيف</string>

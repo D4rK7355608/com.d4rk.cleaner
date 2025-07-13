@@ -233,6 +233,7 @@
     <string name="trash">Lixeira</string>
     <string name="trash_is_empty">A lixeira está vazia</string>
     <string name="restore">Restaurar</string>
+    <string name="no_large_files">Nenhum arquivo grande encontrado</string>
 
     <!-- Cleaning settings -->
     <string name="cleaning">Limpeza</string>
