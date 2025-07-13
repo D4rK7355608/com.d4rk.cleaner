@@ -126,6 +126,7 @@
     <string name="clean_whatsapp_warning_message">Detta tar bort alla WhatsApp-mediefiler. Fortsätta?</string>
     <string name="cancel">Avbryt</string>
     <string name="whatsapp_cleaner">WhatsApp-rensare</string>
+    <string name="all_clean">Allt rent</string>
     <string name="whatsapp_cleaner_empty_message">Din WhatsApp är helt ren! Det finns inget mer att rensa. Ha en bra dag!</string>
     <string name="total_files_format">%1$s filer</string>
     <string name="delete_selected">Ta bort valda</string>

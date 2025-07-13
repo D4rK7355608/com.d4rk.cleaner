@@ -123,6 +123,7 @@
     <string name="clean_whatsapp_warning_message">Thao tác này sẽ xóa tất cả tệp phương tiện WhatsApp. Tiếp tục?</string>
     <string name="cancel">Hủy</string>
     <string name="whatsapp_cleaner">Trình dọn WhatsApp</string>
+    <string name="all_clean">Tất cả đều sạch sẽ</string>
     <string name="whatsapp_cleaner_empty_message">WhatsApp của bạn sạch bóng! Không còn gì để dọn. Chúc bạn một ngày vui vẻ!</string>
     <string name="total_files_format">%1$s tệp</string>
     <string name="delete_selected">Xóa mục đã chọn</string>
