@@ -24,6 +24,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.derivedStateOf
 import kotlin.collections.buildList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -83,11 +84,20 @@ fun ScannerDashboardScreen(
     val showStreakCard by viewModel.showStreakCard.collectAsState()
     val streakHideUntil by viewModel.streakHideUntil.collectAsState()
 
-    val showApkCard =
-        appManagerState.data?.apkFilesLoading == false &&
-            appManagerState.data?.apkFiles?.isNotEmpty() == true
-    val showWhatsAppCard = whatsappLoaded && whatsappInstalled
-    val showClipboardCard = !clipboardText.isNullOrBlank()
+    val showApkCard by remember(appManagerState) {
+        derivedStateOf {
+            appManagerState.data?.apkFilesLoading == false &&
+                    appManagerState.data?.apkFiles?.isNotEmpty() == true
+        }
+    }
+    val showWhatsAppCard by remember(whatsappLoaded, whatsappInstalled, whatsappSummary) {
+        derivedStateOf {
+            whatsappLoaded && whatsappInstalled && whatsappSummary.hasData
+        }
+    }
+    val showClipboardCard by remember(clipboardText) {
+        derivedStateOf { !clipboardText.isNullOrBlank() }
+    }
 
     val dataLoaded = appManagerState.data?.apkFilesLoading == false && whatsappLoaded
     val cleanerCardsCount = if (dataLoaded) {
