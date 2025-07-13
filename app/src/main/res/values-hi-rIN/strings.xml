@@ -126,6 +126,7 @@
     <string name="clean_whatsapp_warning_message">इससे सभी व्हाट्सएप मीडिया फ़ाइलें हट जाएँगी। आगे बढ़ें?</string>
     <string name="cancel">रद्द करें</string>
     <string name="whatsapp_cleaner">व्हाट्सएप क्लीनर</string>
+    <string name="all_clean">सभी साफ</string>
     <string name="whatsapp_cleaner_empty_message">आपका WhatsApp एकदम साफ है! अब कुछ भी साफ़ नहीं करना है। अपना दिन आनंद से बिताएँ!</string>
     <string name="total_files_format">%1$s फ़ाइलें</string>
     <string name="delete_selected">चयनित हटाएँ</string>

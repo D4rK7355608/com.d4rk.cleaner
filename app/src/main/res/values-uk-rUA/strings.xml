@@ -132,6 +132,7 @@
     <string name="clean_whatsapp_warning_message">Це видалить усі медіафайли WhatsApp. Продовжити?</string>
     <string name="cancel">Скасувати</string>
     <string name="whatsapp_cleaner">Очищувач WhatsApp</string>
+    <string name="all_clean">Всі чисті</string>
     <string name="whatsapp_cleaner_empty_message">Ваш WhatsApp бездоганно чистий! Немає чого прибирати. Гарного дня!</string>
     <string name="total_files_format">%1$s файлів</string>
     <string name="delete_selected">Видалити вибране</string>
