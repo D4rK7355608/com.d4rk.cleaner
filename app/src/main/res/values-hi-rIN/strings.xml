@@ -230,6 +230,7 @@
     <string name="trash">ट्रैश</string>
     <string name="trash_is_empty">ट्रैश खाली है</string>
     <string name="restore">पुनर्स्थापित करें</string>
+    <string name="large_files">बड़ी फ़ाइलें</string>
     <string name="no_large_files">कोई बड़े फ़ाइल नहीं मिली</string>
 
     <!-- Cleaning settings -->

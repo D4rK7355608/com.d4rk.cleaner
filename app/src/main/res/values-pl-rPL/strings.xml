@@ -236,6 +236,7 @@
     <string name="trash">Kosz</string>
     <string name="trash_is_empty">Kosz jest pusty</string>
     <string name="restore">Przywróć</string>
+    <string name="large_files">Duże pliki</string>
     <string name="no_large_files">Nie znaleziono dużych plików</string>
 
     <!-- Cleaning settings -->

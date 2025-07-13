@@ -230,6 +230,7 @@
     <string name="trash">Papierkorb</string>
     <string name="trash_is_empty">Papierkorb ist leer</string>
     <string name="restore">Wiederherstellen</string>
+    <string name="large_files">Große Dateien</string>
     <string name="no_large_files">Keine großen Dateien gefunden</string>
 
     <!-- Cleaning settings -->

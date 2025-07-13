@@ -227,6 +227,7 @@
     <string name="trash">ゴミ箱</string>
     <string name="trash_is_empty">ゴミ箱は空です</string>
     <string name="restore">復元</string>
+    <string name="large_files">大きなファイル</string>
     <string name="no_large_files">大きなファイルが見つかりません</string>
 
     <!-- Cleaning settings -->

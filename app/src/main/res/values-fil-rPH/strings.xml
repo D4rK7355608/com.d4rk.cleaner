@@ -230,6 +230,7 @@
     <string name="trash">Trash</string>
     <string name="trash_is_empty">Walang laman ang trash</string>
     <string name="restore">Ibalik</string>
+    <string name="large_files">Malalaking file</string>
     <string name="no_large_files">Walang malalaking file na nakita</string>
 
     <!-- Cleaning settings -->
