@@ -195,7 +195,8 @@
     </plurals>
     <string name="no_files_found">No files found</string>
 
-    <!-- App manager -->
+<!-- App manager -->
+    <string name="search">Search</string>
     <string name="app_manager">App Manager</string>
     <string name="installed_apps">Installed apps</string>
     <string name="system_apps">System apps</string>
@@ -354,5 +355,4 @@
     <string name="no_files_selected_to_clean">No files selected to clean.</string>
     <string name="failed_to_update_trash_size">Failed to update trash size: %1$s</string>
     <string name="no_cleaning_options_selected">Please choose your cleaning preferences in settings to proceed.</string>
-    <string name="search">Search</string>
 </resources>

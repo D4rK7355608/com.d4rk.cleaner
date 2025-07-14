@@ -203,6 +203,7 @@
     <string name="no_files_found">Aucun fichier trouvé</string>
 
     <!-- App manager -->
+    <string name="search">Rechercher</string>
     <string name="app_manager">Gestionnaire d\'applications</string>
     <string name="installed_apps">Applications installées</string>
     <string name="system_apps">Applications système</string>

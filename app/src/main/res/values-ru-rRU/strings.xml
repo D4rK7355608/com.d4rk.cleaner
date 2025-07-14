@@ -208,6 +208,7 @@
     <string name="no_files_found">Файлы не найдены</string>
 
     <!-- App manager -->
+    <string name="search">Поиск</string>
     <string name="app_manager">Менеджер приложений</string>
     <string name="installed_apps">Установленные приложения</string>
     <string name="system_apps">Системные приложения</string>

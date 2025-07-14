@@ -196,6 +196,7 @@
     <string name="no_files_found">কোনও ফাইল পাওয়া যায়নি</string>
 
     <!-- App manager -->
+    <string name="search">অনুসন্ধান</string>
     <string name="app_manager">অ্যাপ ম্যানেজার</string>
     <string name="installed_apps">ইনস্টল করা অ্যাপসমূহ</string>
     <string name="system_apps">সিস্টেম অ্যাপসমূহ</string>

@@ -196,6 +196,7 @@
     <string name="no_files_found">Няма намерени файлове</string>
 
     <!-- App manager -->
+    <string name="search">Търсене</string>
     <string name="app_manager">Мениджър на приложения</string>
     <string name="installed_apps">Инсталирани приложения</string>
     <string name="system_apps">Системни приложения</string>

@@ -196,6 +196,7 @@
     <string name="no_files_found">Nem található fájl</string>
 
     <!-- App manager -->
+    <string name="search">Keresés</string>
     <string name="app_manager">Alkalmazáskezelő</string>
     <string name="installed_apps">Telepített alkalmazások</string>
     <string name="system_apps">Rendszeralkalmazások</string>

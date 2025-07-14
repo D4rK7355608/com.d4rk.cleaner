@@ -196,6 +196,7 @@
     <string name="no_files_found">Inga filer hittades</string>
 
     <!-- App manager -->
+    <string name="search">Sök</string>
     <string name="app_manager">Apphanterare</string>
     <string name="installed_apps">Installerade appar</string>
     <string name="system_apps">Systemappar</string>

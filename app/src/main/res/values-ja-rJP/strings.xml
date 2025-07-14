@@ -190,6 +190,7 @@
     <string name="no_files_found">ファイルが見つかりません</string>
 
     <!-- App manager -->
+    <string name="search">検索</string>
     <string name="app_manager">アプリマネージャー</string>
     <string name="installed_apps">インストール済みアプリ</string>
     <string name="system_apps">システムアプリ</string>

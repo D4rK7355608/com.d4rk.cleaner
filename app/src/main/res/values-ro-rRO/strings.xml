@@ -202,6 +202,7 @@
     <string name="no_files_found">Niciun fișier găsit</string>
 
     <!-- App manager -->
+    <string name="search">Caută</string>
     <string name="app_manager">Manager aplicații</string>
     <string name="installed_apps">Aplicații instalate</string>
     <string name="system_apps">Aplicații de sistem</string>

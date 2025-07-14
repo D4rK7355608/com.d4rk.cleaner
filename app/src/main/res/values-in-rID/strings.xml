@@ -190,6 +190,7 @@
     <string name="no_files_found">Tidak ada file yang ditemukan</string>
 
     <!-- App manager -->
+    <string name="search">Cari</string>
     <string name="app_manager">Manajer Aplikasi</string>
     <string name="installed_apps">Aplikasi terinstal</string>
     <string name="system_apps">Aplikasi sistem</string>
