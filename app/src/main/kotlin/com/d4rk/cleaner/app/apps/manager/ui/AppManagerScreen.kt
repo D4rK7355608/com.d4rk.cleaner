@@ -14,16 +14,12 @@ import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -35,7 +31,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.hapticPagerSwipe
@@ -99,16 +94,6 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
                 .fillMaxSize()
                 .padding(paddingValues)
     ) {
-        OutlinedTextField(
-            value = searchQuery,
-            onValueChange = viewModel::onSearchQueryChange,
-            leadingIcon = { Icon(imageVector = Icons.Outlined.Search, contentDescription = null) },
-            placeholder = { Text(text = stringResource(id = R.string.search)) },
-            singleLine = true,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = SizeConstants.LargeSize, vertical = SizeConstants.SmallSize)
-        )
         TabRow(
             selectedTabIndex = pagerState.currentPage ,
             indicator = { tabPositions ->

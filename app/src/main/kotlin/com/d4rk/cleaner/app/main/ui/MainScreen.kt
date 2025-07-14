@@ -35,7 +35,8 @@ import androidx.navigation.compose.rememberNavController
 import com.d4rk.android.libs.apptoolkit.app.main.domain.model.BottomBarItem
 import com.d4rk.android.libs.apptoolkit.app.main.ui.components.navigation.BottomNavigationBar
 import com.d4rk.android.libs.apptoolkit.app.main.ui.components.navigation.LeftNavigationRail
-import com.d4rk.android.libs.apptoolkit.app.main.ui.components.navigation.MainTopAppBar
+import com.d4rk.cleaner.app.main.ui.components.navigation.CleanerTopAppBar
+import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
 import com.d4rk.android.libs.apptoolkit.core.domain.model.navigation.NavigationDrawerItem
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.snackbar.DefaultSnackbarHost
@@ -73,6 +74,15 @@ fun MainScaffoldContent(drawerState : DrawerState) {
 
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     val navController : NavHostController = rememberNavController()
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = backStackEntry?.destination?.route
+    val appManagerEntry = remember(backStackEntry) {
+        backStackEntry?.let { navController.getBackStackEntry(NavigationRoutes.ROUTE_APP_MANAGER) }
+    }
+    val appManagerViewModel : AppManagerViewModel? = appManagerEntry?.let { entry ->
+        koinViewModel(owner = { entry })
+    }
+    val searchQuery by appManagerViewModel?.searchQuery?.collectAsState() ?: remember { mutableStateOf("") }
     val bottomItems = listOf(
         BottomBarItem(
             route = NavigationRoutes.ROUTE_HOME , icon = Icons.Outlined.CleaningServices , selectedIcon = Icons.Filled.CleaningServices , title = R.string.scanner
@@ -86,7 +96,14 @@ fun MainScaffoldContent(drawerState : DrawerState) {
     )
 
     Scaffold(modifier = Modifier.imePadding() , topBar = {
-        MainTopAppBar(navigationIcon = if (drawerState.isOpen) Icons.AutoMirrored.Outlined.MenuOpen else Icons.Default.Menu , onNavigationIconClick = { coroutineScope.launch { drawerState.open() } } , scrollBehavior = scrollBehavior)
+        CleanerTopAppBar(
+            navigationIcon = if (drawerState.isOpen) Icons.AutoMirrored.Outlined.MenuOpen else Icons.Default.Menu,
+            onNavigationIconClick = { coroutineScope.launch { drawerState.open() } },
+            scrollBehavior = scrollBehavior,
+            showSearch = currentRoute == NavigationRoutes.ROUTE_APP_MANAGER,
+            searchQuery = searchQuery,
+            onSearchQueryChange = { query -> appManagerViewModel?.onSearchQueryChange(query) }
+        )
     } , snackbarHost = {
         DefaultSnackbarHost(snackbarState = snackBarHostState)
     } , bottomBar = {
@@ -112,6 +129,13 @@ fun MainScaffoldTabletContent() {
 
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route ?: navController.currentDestination?.route
+    val appManagerEntry = remember(backStackEntry) {
+        backStackEntry?.let { navController.getBackStackEntry(NavigationRoutes.ROUTE_APP_MANAGER) }
+    }
+    val appManagerViewModel: AppManagerViewModel? = appManagerEntry?.let { entry ->
+        koinViewModel(owner = { entry })
+    }
+    val searchQuery by appManagerViewModel?.searchQuery?.collectAsState() ?: remember { mutableStateOf("") }
 
     val bottomItems = listOf(
         BottomBarItem(
@@ -127,14 +151,18 @@ fun MainScaffoldTabletContent() {
 
     Scaffold(
         topBar = {
-            MainTopAppBar(
+            CleanerTopAppBar(
                 navigationIcon = if (isRailExpanded) Icons.AutoMirrored.Outlined.MenuOpen else Icons.Default.Menu,
                 onNavigationIconClick = {
                     coroutineScope.launch {
                         isRailExpanded = !isRailExpanded
                     }
                 },
-                scrollBehavior = scrollBehavior)
+                scrollBehavior = scrollBehavior,
+                showSearch = currentRoute == NavigationRoutes.ROUTE_APP_MANAGER,
+                searchQuery = searchQuery,
+                onSearchQueryChange = { query -> appManagerViewModel?.onSearchQueryChange(query) }
+            )
         }) { paddingValues ->
         LeftNavigationRail(
             drawerItems = uiState.navigationDrawerItems,
