@@ -8,6 +8,10 @@ import androidx.compose.animation.scaleOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import android.content.Context
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.TweenSpec
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
@@ -59,8 +63,8 @@ fun CleanerTopAppBar(
         title = {
             AnimatedVisibility(
                 visible = showSearch,
-                enter = slideInHorizontally { it } + fadeIn() + scaleIn(),
-                exit = slideOutHorizontally { it } + fadeOut() + scaleOut()
+                enter = TopAppBarTransitions.titleEnter,
+                exit = TopAppBarTransitions.titleExit
             ) {
                 OutlinedTextField(
                     modifier = Modifier
@@ -90,8 +94,8 @@ fun CleanerTopAppBar(
             }
             AnimatedVisibility(
                 visible = !showSearch,
-                enter = slideInHorizontally { -it } + fadeIn() + scaleIn(),
-                exit = slideOutHorizontally { -it } + fadeOut() + scaleOut()
+                enter = TopAppBarTransitions.searchEnter,
+                exit = TopAppBarTransitions.searchExit
             ) {
                 Text(text = stringResource(id = R.string.app_name))
             }
@@ -131,4 +135,47 @@ fun CleanerTopAppBar(
         },
         scrollBehavior = scrollBehavior
     )
+}
+
+
+object TopAppBarTransitions {
+    private val slideFadeScaleSpec: TweenSpec<Float> =
+        tween(durationMillis = 300)
+
+    val searchEnter: EnterTransition by lazy {
+        slideInHorizontally(
+            initialOffsetX = { it },
+            animationSpec = tween()
+        ) + fadeIn(animationSpec = slideFadeScaleSpec) + scaleIn(
+            animationSpec = slideFadeScaleSpec,
+            initialScale = 0.8f
+        )
+    }
+
+    val searchExit: ExitTransition by lazy {
+        slideOutHorizontally(
+            targetOffsetX = { it },
+            animationSpec = tween()
+        ) + fadeOut(animationSpec = slideFadeScaleSpec) + scaleOut(animationSpec = slideFadeScaleSpec)
+    }
+
+    val titleEnter: EnterTransition by lazy {
+        slideInHorizontally(
+            initialOffsetX = { -it },
+            animationSpec = tween()
+        ) + fadeIn(animationSpec = slideFadeScaleSpec) + scaleIn(
+            animationSpec = slideFadeScaleSpec,
+            initialScale = 0.8f
+        )
+    }
+
+    val titleExit: ExitTransition by lazy {
+        slideOutHorizontally(
+            targetOffsetX = { -it },
+            animationSpec = tween()
+        ) + fadeOut(animationSpec = slideFadeScaleSpec) + scaleOut(
+            animationSpec = slideFadeScaleSpec,
+            targetScale = 0.8f
+        )
+    }
 }
