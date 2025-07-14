@@ -11,6 +11,7 @@ import com.d4rk.cleaner.app.settings.cleaning.utils.constants.ExtensionsConstant
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
 import com.d4rk.cleaner.core.utils.extensions.md5
+import com.d4rk.cleaner.app.images.utils.ImageHashUtils
 import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
 import kotlinx.coroutines.flow.first
 import org.koin.core.component.KoinComponent
@@ -58,8 +59,8 @@ class AutoCleanWorker(
             ExtensionsConstants.OTHER_EXTENSIONS to dataStore.deleteOtherFiles.first()
         )
         val includeDuplicates = dataStore.deleteDuplicateFiles.first()
-
-        val toDelete = computeFilesToClean(files, emptyFolders, types, prefs, includeDuplicates)
+        val deepDuplicateSearch = dataStore.deepDuplicateSearch.first()
+        val toDelete = computeFilesToClean(files, emptyFolders, types, prefs, includeDuplicates, deepDuplicateSearch)
         if (toDelete.isEmpty()) return Result.success()
 
         deleteFiles(filesToDelete = toDelete.toSet()).collect {}
@@ -73,14 +74,15 @@ class AutoCleanWorker(
         emptyFolders: List<File>,
         fileTypesData: FileTypesData,
         preferences: Map<String, Boolean>,
-        includeDuplicates: Boolean
+        includeDuplicates: Boolean,
+        deepDuplicateSearch: Boolean
     ): List<File> {
         val knownExtensions = (fileTypesData.imageExtensions + fileTypesData.videoExtensions +
             fileTypesData.audioExtensions + fileTypesData.officeExtensions + fileTypesData.archiveExtensions +
             fileTypesData.apkExtensions + fileTypesData.fontExtensions + fileTypesData.windowsExtensions).toSet()
         val result = mutableListOf<File>()
 
-        val duplicateGroups = if (includeDuplicates) findDuplicateGroups(scannedFiles) else emptyList()
+        val duplicateGroups = if (includeDuplicates) findDuplicateGroups(scannedFiles, deepDuplicateSearch, fileTypesData.imageExtensions) else emptyList()
         val duplicateFiles = if (includeDuplicates) duplicateGroups.flatten().toSet() else emptySet()
 
         scannedFiles.forEach { file ->
@@ -108,10 +110,19 @@ class AutoCleanWorker(
         return result
     }
 
-    private fun findDuplicateGroups(files: List<File>): List<List<File>> {
+    private fun findDuplicateGroups(
+        files: List<File>,
+        deepSearch: Boolean,
+        imageExtensions: List<String>
+    ): List<List<File>> {
         val hashMap = mutableMapOf<String, MutableList<File>>()
         files.filter { it.isFile }.forEach { file ->
-            val hash = file.md5() ?: return@forEach
+            val extension = file.extension.lowercase()
+            val hash = if (deepSearch && extension in imageExtensions) {
+                ImageHashUtils.perceptualHash(file)
+            } else {
+                file.md5()
+            } ?: return@forEach
             hashMap.getOrPut(hash) { mutableListOf() }.add(file)
         }
         return hashMap.values.filter { it.size > 1 }
