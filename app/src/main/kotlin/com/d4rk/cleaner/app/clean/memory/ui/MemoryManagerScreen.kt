@@ -159,19 +159,19 @@ private fun handleStorageItemClick(context: Context, category: String) {
         }
         context.getString(R.string.music) -> FileManagerHelper.openFolderOrSettings(
             context,
-            File(Environment.getExternalStorageDirectory(), "Music")
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC)
         )
         context.getString(R.string.images) -> FileManagerHelper.openFolderOrSettings(
             context,
-            File(Environment.getExternalStorageDirectory(), "DCIM")
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
         )
         context.getString(R.string.documents) -> FileManagerHelper.openFolderOrSettings(
             context,
-            File(Environment.getExternalStorageDirectory(), "Documents")
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
         )
         context.getString(R.string.downloads) -> FileManagerHelper.openFolderOrSettings(
             context,
-            File(Environment.getExternalStorageDirectory(), "Download")
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
         )
         context.getString(R.string.other_files) -> FileManagerHelper.openFolderOrSettings(
             context,
