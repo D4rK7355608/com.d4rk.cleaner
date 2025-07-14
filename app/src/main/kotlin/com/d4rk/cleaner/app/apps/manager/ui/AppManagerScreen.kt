@@ -9,11 +9,21 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.core.tween
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Badge
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -25,6 +35,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
@@ -35,6 +47,7 @@ import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.hapticPagerSwipe
 import com.d4rk.android.libs.apptoolkit.core.ui.components.snackbar.DefaultSnackbarHandler
+import com.d4rk.cleaner.core.ui.digits.AnimatedDigit
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.apps.manager.domain.actions.AppManagerAction
 import com.d4rk.cleaner.app.apps.manager.domain.actions.AppManagerEvent
@@ -89,6 +102,23 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
     val searchQuery by viewModel.searchQuery.collectAsState()
     val context = LocalContext.current
 
+    val userApps = screenData.installedApps.filter { app: ApplicationInfo ->
+        app.flags and ApplicationInfo.FLAG_SYSTEM == 0 &&
+                context.packageManager.getApplicationLabel(app).toString().contains(searchQuery, ignoreCase = true)
+    }
+
+    val systemApps = screenData.installedApps.filter { app: ApplicationInfo ->
+        app.flags and ApplicationInfo.FLAG_SYSTEM != 0 &&
+                context.packageManager.getApplicationLabel(app).toString().contains(searchQuery, ignoreCase = true)
+    }
+
+    val apkFilesFiltered = screenData.apkFiles.filter { apk ->
+        apk.path.substringAfterLast('/').contains(searchQuery, ignoreCase = true)
+    }
+
+    val badgeVisible = remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { badgeVisible.value = true }
+
     Column(
         modifier = Modifier
                 .fillMaxSize()
@@ -109,17 +139,52 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
             } ,
         ) {
             tabs.forEachIndexed { index , title ->
-                Tab(modifier = Modifier
+                val count = when (index) {
+                    0 -> userApps.size
+                    1 -> systemApps.size
+                    else -> apkFilesFiltered.size
+                }
+
+                Tab(
+                    modifier = Modifier
                         .bounceClick()
-                        .clip(RoundedCornerShape(50)) , text = {
-                    Text(
-                        text = title , maxLines = 1 , overflow = TextOverflow.Ellipsis , color = MaterialTheme.colorScheme.onSurface
-                    )
-                } , selected = pagerState.currentPage == index , onClick = {
-                    coroutineScope.launch {
-                        pagerState.animateScrollToPage(index)
+                        .clip(RoundedCornerShape(50)),
+                    selected = pagerState.currentPage == index,
+                    onClick = {
+                        coroutineScope.launch {
+                            pagerState.animateScrollToPage(index)
+                        }
+                    },
+                    text = {
+                        Row {
+                            Text(
+                                text = title,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            AnimatedVisibility(
+                                visible = badgeVisible.value,
+                                enter = fadeIn(animationSpec = tween(durationMillis = 500)) +
+                                    scaleIn(animationSpec = tween(durationMillis = 500)),
+                                exit = fadeOut() + scaleOut()
+                            ) {
+                                Badge {
+                                    Row {
+                                        count.toString().forEach { digit ->
+                                            AnimatedDigit(
+                                                digit = digit,
+                                                textStyle = MaterialTheme.typography.labelSmall,
+                                                color = MaterialTheme.colorScheme.onPrimary
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
-                })
+                )
             }
         }
 
@@ -129,10 +194,7 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
         ) { page ->
             when (page) {
                 0 -> AppsTab(
-                    apps = screenData.installedApps.filter { app: ApplicationInfo ->
-                        app.flags and ApplicationInfo.FLAG_SYSTEM == 0 &&
-                            context.packageManager.getApplicationLabel(app).toString().contains(searchQuery, ignoreCase = true)
-                    },
+                    apps = userApps,
                     isLoading = screenData.userAppsLoading,
                     usageStats = screenData.appUsageStats,
                     viewModel = viewModel,
@@ -140,10 +202,7 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
                 )
 
                 1 -> AppsTab(
-                    apps = screenData.installedApps.filter { app: ApplicationInfo ->
-                        app.flags and ApplicationInfo.FLAG_SYSTEM != 0 &&
-                            context.packageManager.getApplicationLabel(app).toString().contains(searchQuery, ignoreCase = true)
-                    },
+                    apps = systemApps,
                     isLoading = screenData.systemAppsLoading,
                     usageStats = screenData.appUsageStats,
                     viewModel = viewModel,
@@ -151,11 +210,9 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
                 )
 
                 2 -> ApksTab(
-                    apkFiles = screenData.apkFiles.filter { apk ->
-                        apk.path.substringAfterLast('/').contains(searchQuery, ignoreCase = true)
-                    } ,
-                    isLoading = screenData.apkFilesLoading ,
-                    viewModel = viewModel ,
+                    apkFiles = apkFilesFiltered,
+                    isLoading = screenData.apkFilesLoading,
+                    viewModel = viewModel,
                     paddingValues = paddingValues
                 )
             }
