@@ -54,21 +54,52 @@ class AppManagerViewModel(
     private val _searchQuery = MutableStateFlow("")
     val searchQuery = _searchQuery.asStateFlow()
 
+    private var pendingUninstallPackage: String? = null
+    private var pendingInstallPackage: String? = null
+
     fun onSearchQueryChange(query: String) {
         _searchQuery.value = query
     }
 
     private val packageRemovedReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context : Context? , intent : Intent?) {
+        override fun onReceive(context: Context?, intent: Intent?) {
             if (intent?.action == Intent.ACTION_PACKAGE_REMOVED) {
                 val packageName = intent.data?.schemeSpecificPart
+                val replacing = intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)
                 packageName?.let {
                     _uiState.update { currentState ->
                         val updatedInstalledApps = currentState.data?.installedApps?.filterNot { it.packageName == packageName } ?: emptyList()
                         currentState.copy(data = currentState.data?.copy(installedApps = updatedInstalledApps))
                     }
 
-                    postSnackbar(message = UiTextHelper.StringResource(R.string.app_uninstalled_successfully) , isError = false)
+                    if (packageName == pendingUninstallPackage && !replacing) {
+                        pendingUninstallPackage = null
+                        postSnackbar(
+                            message = UiTextHelper.StringResource(R.string.app_uninstalled_successfully),
+                            isError = false
+                        )
+                    }
+
+                    onEvent(AppManagerEvent.LoadAppData)
+                }
+            }
+        }
+    }
+
+    private val packageAddedReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.action == Intent.ACTION_PACKAGE_ADDED) {
+                val packageName = intent.data?.schemeSpecificPart
+                val replacing = intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)
+                packageName?.let {
+                    if (packageName == pendingInstallPackage && !replacing) {
+                        pendingInstallPackage = null
+                        postSnackbar(
+                            message = UiTextHelper.StringResource(R.string.apk_installed_successfully),
+                            isError = false
+                        )
+                    }
+                    onEvent(AppManagerEvent.LoadAppData)
                 }
             }
         }
@@ -77,6 +108,7 @@ class AppManagerViewModel(
     init {
         onEvent(AppManagerEvent.LoadAppData)
         registerPackageRemovedReceiver()
+        registerPackageAddedReceiver()
         launch(dispatchers.io) {
             CleaningEventBus.events.collectLatest {
                 onEvent(AppManagerEvent.LoadAppData)
@@ -98,8 +130,15 @@ class AppManagerViewModel(
         applicationContext.registerReceiver(packageRemovedReceiver , filter)
     }
 
+    private fun registerPackageAddedReceiver() {
+        val filter = IntentFilter(Intent.ACTION_PACKAGE_ADDED)
+        filter.addDataScheme("package")
+        applicationContext.registerReceiver(packageAddedReceiver, filter)
+    }
+
     override fun onCleared() {
         applicationContext.unregisterReceiver(packageRemovedReceiver)
+        applicationContext.unregisterReceiver(packageAddedReceiver)
         super.onCleared()
     }
 
@@ -152,10 +191,14 @@ class AppManagerViewModel(
 
     fun installApk(apkPath : String) {
         launch(context = dispatchers.io) {
+            val packageName = applicationContext.packageManager.getPackageArchiveInfo(apkPath, 0)?.packageName
+            pendingInstallPackage = packageName
             installApkUseCase(apkPath).collectLatest { result ->
                 when (result) {
-                    is DataState.Success -> postSnackbar(message = UiTextHelper.StringResource(R.string.apk_installed_successfully) , isError = false)
-                    is DataState.Error -> postSnackbar(message = UiTextHelper.StringResource(R.string.failed_to_install_apk) , isError = true)
+                    is DataState.Error -> {
+                        pendingInstallPackage = null
+                        postSnackbar(message = UiTextHelper.StringResource(R.string.failed_to_install_apk) , isError = true)
+                    }
                     else -> {}
                 }
             }
@@ -201,9 +244,13 @@ class AppManagerViewModel(
 
     fun uninstallApp(packageName : String) {
         launch(context = dispatchers.io) {
+            pendingUninstallPackage = packageName
             uninstallAppUseCase(packageName).collectLatest { result ->
                 when (result) {
-                    is DataState.Error -> postSnackbar(message = UiTextHelper.StringResource(R.string.failed_to_uninstall_app) , isError = true)
+                    is DataState.Error -> {
+                        pendingUninstallPackage = null
+                        postSnackbar(message = UiTextHelper.StringResource(R.string.failed_to_uninstall_app) , isError = true)
+                    }
                     else -> {}
                 }
             }
