@@ -120,6 +120,7 @@ dependencies {
     }
 
     implementation(dependencyNotation = libs.androidx.constraintlayout.compose)
+    implementation(dependencyNotation = libs.glance)
     implementation(dependencyNotation = libs.glance.appwidget)
 
     // Image Compression
