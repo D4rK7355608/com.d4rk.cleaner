@@ -1087,16 +1087,24 @@ class ScannerViewModel(
     }
 
     private fun startOfNextWeek(): Long {
-        val cal = java.util.Calendar.getInstance()
-        val dayOfWeek = cal.get(java.util.Calendar.DAY_OF_WEEK)
-        var daysUntilMonday = (java.util.Calendar.MONDAY - dayOfWeek + 7) % 7
-        if (daysUntilMonday == 0) daysUntilMonday = 7
-        cal.add(java.util.Calendar.DAY_OF_YEAR, daysUntilMonday)
-        cal.set(java.util.Calendar.HOUR_OF_DAY, 0)
-        cal.set(java.util.Calendar.MINUTE, 0)
-        cal.set(java.util.Calendar.SECOND, 0)
-        cal.set(java.util.Calendar.MILLISECOND, 0)
-        return cal.timeInMillis
+        return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            java.time.LocalDate.now()
+                .with(java.time.temporal.TemporalAdjusters.next(java.time.DayOfWeek.MONDAY))
+                .atStartOfDay(java.time.ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli()
+        } else {
+            val cal = java.util.Calendar.getInstance()
+            val dayOfWeek = cal.get(java.util.Calendar.DAY_OF_WEEK)
+            var daysUntilMonday = (java.util.Calendar.MONDAY - dayOfWeek + 7) % 7
+            if (daysUntilMonday == 0) daysUntilMonday = 7
+            cal.add(java.util.Calendar.DAY_OF_YEAR, daysUntilMonday)
+            cal.set(java.util.Calendar.HOUR_OF_DAY, 0)
+            cal.set(java.util.Calendar.MINUTE, 0)
+            cal.set(java.util.Calendar.SECOND, 0)
+            cal.set(java.util.Calendar.MILLISECOND, 0)
+            cal.timeInMillis
+        }
     }
 
     fun onClipboardClear() {
