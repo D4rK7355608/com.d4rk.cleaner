@@ -196,6 +196,7 @@
     <string name="no_files_found">کوئی فائل نہیں ملی</string>
 
     <!-- App manager -->
+    <string name="search">تلاش</string>
     <string name="app_manager">ایپ مینیجر</string>
     <string name="installed_apps">انسٹال شدہ ایپس</string>
     <string name="system_apps">سسٹم ایپس</string>

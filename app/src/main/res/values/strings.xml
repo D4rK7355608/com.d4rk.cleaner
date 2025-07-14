@@ -195,7 +195,8 @@
     </plurals>
     <string name="no_files_found">No files found</string>
 
-    <!-- App manager -->
+<!-- App manager -->
+    <string name="search">Search</string>
     <string name="app_manager">App Manager</string>
     <string name="installed_apps">Installed apps</string>
     <string name="system_apps">System apps</string>

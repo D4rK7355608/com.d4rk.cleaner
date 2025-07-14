@@ -190,6 +190,7 @@
     <string name="no_files_found">파일을 찾을 수 없습니다.</string>
 
     <!-- App manager -->
+    <string name="search">검색</string>
     <string name="app_manager">앱 관리자</string>
     <string name="installed_apps">설치된 앱</string>
     <string name="system_apps">시스템 앱</string>

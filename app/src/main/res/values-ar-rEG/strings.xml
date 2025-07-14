@@ -220,6 +220,7 @@
     <string name="no_files_found">مفيش ملفات</string>
 
     <!-- App manager -->
+    <string name="search">بحث</string>
     <string name="app_manager">مدير التطبيقات</string>
     <string name="installed_apps">التطبيقات المثبتة</string>
     <string name="system_apps">تطبيقات النظام</string>

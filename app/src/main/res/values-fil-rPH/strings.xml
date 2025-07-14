@@ -196,6 +196,7 @@
     <string name="no_files_found">Walang nahanap na file</string>
 
     <!-- App manager -->
+    <string name="search">Maghanap</string>
     <string name="app_manager">Tagapamahala ng App</string>
     <string name="installed_apps">Mga naka-install na app</string>
     <string name="system_apps">Mga system app</string>

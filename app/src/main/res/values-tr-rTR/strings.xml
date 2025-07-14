@@ -196,6 +196,7 @@
     <string name="no_files_found">Dosya bulunamadı</string>
 
     <!-- App manager -->
+    <string name="search">Ara</string>
     <string name="app_manager">Uygulama Yöneticisi</string>
     <string name="installed_apps">Yüklü uygulamalar</string>
     <string name="system_apps">Sistem uygulamaları</string>

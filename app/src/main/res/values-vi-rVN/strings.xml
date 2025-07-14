@@ -190,6 +190,7 @@
     <string name="no_files_found">Không tìm thấy tệp nào</string>
 
     <!-- App manager -->
+    <string name="search">Tìm kiếm</string>
     <string name="app_manager">Quản lý ứng dụng</string>
     <string name="installed_apps">Ứng dụng đã cài đặt</string>
     <string name="system_apps">Ứng dụng hệ thống</string>

@@ -86,6 +86,8 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
 
     val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
+    val searchQuery by viewModel.searchQuery.collectAsState()
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -128,7 +130,8 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
             when (page) {
                 0 -> AppsTab(
                     apps = screenData.installedApps.filter { app: ApplicationInfo ->
-                        app.flags and ApplicationInfo.FLAG_SYSTEM == 0
+                        app.flags and ApplicationInfo.FLAG_SYSTEM == 0 &&
+                            context.packageManager.getApplicationLabel(app).toString().contains(searchQuery, ignoreCase = true)
                     },
                     isLoading = screenData.userAppsLoading,
                     usageStats = screenData.appUsageStats,
@@ -138,7 +141,8 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
 
                 1 -> AppsTab(
                     apps = screenData.installedApps.filter { app: ApplicationInfo ->
-                        app.flags and ApplicationInfo.FLAG_SYSTEM != 0
+                        app.flags and ApplicationInfo.FLAG_SYSTEM != 0 &&
+                            context.packageManager.getApplicationLabel(app).toString().contains(searchQuery, ignoreCase = true)
                     },
                     isLoading = screenData.systemAppsLoading,
                     usageStats = screenData.appUsageStats,
@@ -147,7 +151,9 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
                 )
 
                 2 -> ApksTab(
-                    apkFiles = screenData.apkFiles ,
+                    apkFiles = screenData.apkFiles.filter { apk ->
+                        apk.path.substringAfterLast('/').contains(searchQuery, ignoreCase = true)
+                    } ,
                     isLoading = screenData.apkFilesLoading ,
                     viewModel = viewModel ,
                     paddingValues = paddingValues
