@@ -9,6 +9,7 @@ import androidx.work.WorkerParameters
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.notifications.notifications.StreakNotifier
 import com.d4rk.cleaner.core.data.datastore.DataStore
+import com.d4rk.cleaner.core.utils.constants.TimeConstants
 import kotlinx.coroutines.flow.first
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -27,8 +28,8 @@ class StreakReminderWorker(
 
         val lastClean = dataStore.lastCleanDay.first()
         val streak = dataStore.streakCount.first()
-        val today = System.currentTimeMillis() / DAY_MS
-        val lastDay = lastClean / DAY_MS
+        val today = System.currentTimeMillis() / TimeConstants.DAY_MS
+        val lastDay = lastClean / TimeConstants.DAY_MS
         val diff = today - lastDay
 
         val message = when {
@@ -54,7 +55,4 @@ class StreakReminderWorker(
         return Result.success()
     }
 
-    companion object {
-        private const val DAY_MS = 86_400_000L
-    }
 }
