@@ -56,7 +56,7 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import com.d4rk.cleaner.core.utils.extensions.md5
 
-private const val RESULT_DELAY_MS = 2000L
+private const val RESULT_DELAY_MS = 3600L
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ScannerViewModel(

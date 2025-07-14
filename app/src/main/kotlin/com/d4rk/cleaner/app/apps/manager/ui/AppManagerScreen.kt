@@ -3,27 +3,26 @@ package com.d4rk.cleaner.app.apps.manager.ui
 import android.app.Activity
 import android.content.Context
 import android.content.pm.ApplicationInfo
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.PagerState
-import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
-import androidx.compose.animation.core.tween
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Badge
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -34,9 +33,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
@@ -47,13 +47,14 @@ import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.hapticPagerSwipe
 import com.d4rk.android.libs.apptoolkit.core.ui.components.snackbar.DefaultSnackbarHandler
-import com.d4rk.cleaner.core.ui.digits.AnimatedDigit
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ExtraTinyHorizontalSpacer
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.apps.manager.domain.actions.AppManagerAction
 import com.d4rk.cleaner.app.apps.manager.domain.actions.AppManagerEvent
 import com.d4rk.cleaner.app.apps.manager.domain.data.model.ui.UiAppManagerModel
 import com.d4rk.cleaner.app.apps.manager.ui.components.tabs.ApksTab
 import com.d4rk.cleaner.app.apps.manager.ui.components.tabs.AppsTab
+import com.d4rk.cleaner.core.ui.digits.AnimatedDigit
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collectLatest
@@ -156,21 +157,30 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
                         }
                     },
                     text = {
-                        Row {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
                             Text(
                                 text = title,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
-                                color = MaterialTheme.colorScheme.onSurface
+                                color = MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier.weight(1f)
                             )
-                            Spacer(modifier = Modifier.width(4.dp))
+                            // (Optional) Add a horizontal space if you want separation
+                            if (badgeVisible.value) {
+                                ExtraTinyHorizontalSpacer()
+                            }
                             AnimatedVisibility(
                                 visible = badgeVisible.value,
                                 enter = fadeIn(animationSpec = tween(durationMillis = 500)) +
-                                    scaleIn(animationSpec = tween(durationMillis = 500)),
+                                        scaleIn(animationSpec = tween(durationMillis = 500)),
                                 exit = fadeOut() + scaleOut()
                             ) {
-                                Badge {
+                                Badge(
+                                    modifier = Modifier.animateContentSize()
+                                ) {
                                     Row {
                                         count.toString().forEach { digit ->
                                             AnimatedDigit(
