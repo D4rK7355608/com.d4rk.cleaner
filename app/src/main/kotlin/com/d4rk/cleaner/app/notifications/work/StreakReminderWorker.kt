@@ -28,12 +28,10 @@ class StreakReminderWorker(
 
         val lastClean = dataStore.lastCleanDay.first()
         val streak = dataStore.streakCount.first()
-        val today = System.currentTimeMillis() / TimeConstants.DAY_MS
-        val lastDay = lastClean / TimeConstants.DAY_MS
-        val diff = today - lastDay
+        val diffMs = System.currentTimeMillis() - lastClean
 
         val message = when {
-            diff >= 1 -> applicationContext.getString(R.string.streak_notification_missed)
+            diffMs >= TimeConstants.DAY_MS -> applicationContext.getString(R.string.streak_notification_missed)
             streak >= 3 && streak <= 7 -> applicationContext.getString(
                 R.string.streak_notification_milestone_format,
                 streak
