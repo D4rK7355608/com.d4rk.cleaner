@@ -7,6 +7,7 @@
 - **Minor**: Small UI/UX improvements over the entire app.
 - **Minor**: The Smart Cleaner now features a refreshed icon for improved visual clarity.
 - **Minor**: Refined animations within the scanner screen for a smoother user experience.
+- **Minor**: Tapping storage categories in Memory Manager now opens the corresponding folders.
 
 # Version 3.4.0:
 
