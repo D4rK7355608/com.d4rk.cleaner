@@ -77,10 +77,10 @@ fun MainScaffoldContent(drawerState : DrawerState) {
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
     val appManagerEntry = remember(backStackEntry) {
-        backStackEntry?.let { navController.getBackStackEntry(NavigationRoutes.ROUTE_APP_MANAGER) }
+        runCatching { navController.getBackStackEntry(NavigationRoutes.ROUTE_APP_MANAGER) }.getOrNull()
     }
-    val appManagerViewModel : AppManagerViewModel? = appManagerEntry?.let { entry ->
-        koinViewModel(owner = { entry })
+    val appManagerViewModel: AppManagerViewModel? = appManagerEntry?.let { entry ->
+        koinViewModel(viewModelStoreOwner = entry)
     }
     val searchQuery by appManagerViewModel?.searchQuery?.collectAsState() ?: remember { mutableStateOf("") }
     val bottomItems = listOf(
@@ -130,10 +130,10 @@ fun MainScaffoldTabletContent() {
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route ?: navController.currentDestination?.route
     val appManagerEntry = remember(backStackEntry) {
-        backStackEntry?.let { navController.getBackStackEntry(NavigationRoutes.ROUTE_APP_MANAGER) }
+        runCatching { navController.getBackStackEntry(NavigationRoutes.ROUTE_APP_MANAGER) }.getOrNull()
     }
     val appManagerViewModel: AppManagerViewModel? = appManagerEntry?.let { entry ->
-        koinViewModel(owner = { entry })
+        koinViewModel(viewModelStoreOwner = entry)
     }
     val searchQuery by appManagerViewModel?.searchQuery?.collectAsState() ?: remember { mutableStateOf("") }
 

@@ -27,6 +27,7 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.AnimatedIconB
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.IntentsHelper
 import com.d4rk.cleaner.R
+import com.d4rk.android.libs.apptoolkit.R as ToolkitR
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -57,7 +58,7 @@ fun CleanerTopAppBar(
         navigationIcon = {
             AnimatedIconButtonDirection(
                 icon = navigationIcon,
-                contentDescription = stringResource(id = R.string.go_back),
+                contentDescription = stringResource(id = ToolkitR.string.go_back),
                 onClick = { onNavigationIconClick() },
             )
         },
@@ -67,14 +68,14 @@ fun CleanerTopAppBar(
             AnimatedIconButtonDirection(
                 fromRight = true,
                 icon = Icons.Outlined.MoreVert,
-                contentDescription = stringResource(id = R.string.content_description_more_options),
+                contentDescription = stringResource(id = ToolkitR.string.content_description_more_options),
                 onClick = { expandedMenu = true },
             )
 
             DropdownMenu(expanded = expandedMenu, onDismissRequest = { expandedMenu = false }) {
                 DropdownMenuItem(
                     modifier = Modifier.bounceClick(),
-                    text = { Text(stringResource(id = R.string.support_us)) },
+                    text = { Text(stringResource(id = ToolkitR.string.support_us)) },
                     onClick = {
                         expandedMenu = false
                         IntentsHelper.openActivity(context, SupportActivity::class.java)
@@ -82,7 +83,7 @@ fun CleanerTopAppBar(
                     leadingIcon = {
                         Icon(
                             Icons.Outlined.VolunteerActivism,
-                            contentDescription = stringResource(id = R.string.support_us)
+                            contentDescription = stringResource(id = ToolkitR.string.support_us)
                         )
                     })
             }
