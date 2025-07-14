@@ -14,6 +14,7 @@ androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constr
 coil3-coil-video = { module = "io.coil-kt.coil3:coil-video", version.ref = "coilVideoVersion" }
 compressor = { module = "id.zelory:compressor", version.ref = "compressor" }
 lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
+glance-appwidget = { module = "androidx.glance:glance-appwidget", version = "1.1.1" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

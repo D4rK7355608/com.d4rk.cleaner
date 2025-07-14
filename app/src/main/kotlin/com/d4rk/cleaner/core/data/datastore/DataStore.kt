@@ -400,4 +400,14 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         }
     }
 
+    private val widgetActionsEnabledKey = booleanPreferencesKey(AppDataStoreConstants.DATA_STORE_WIDGET_ACTIONS_ENABLED)
+    val widgetActionsEnabled: Flow<Boolean> = dataStore.data.map { prefs ->
+        prefs[widgetActionsEnabledKey] ?: true
+    }
+
+    suspend fun saveWidgetActionsEnabled(enabled: Boolean) {
+        dataStore.edit { prefs ->
+            prefs[widgetActionsEnabledKey] = enabled
+        }
+    }
 }

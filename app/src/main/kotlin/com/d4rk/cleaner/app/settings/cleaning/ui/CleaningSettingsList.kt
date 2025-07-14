@@ -49,6 +49,7 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
     val streakReminderEnabled: Boolean by dataStore.streakReminderEnabled.collectAsState(initial = false)
     val showStreakCardPref: Boolean by dataStore.showStreakCard.collectAsState(initial = true)
     val autoCleanEnabled: Boolean by dataStore.autoCleanEnabled.collectAsState(initial = false)
+    val widgetActionsEnabled: Boolean by dataStore.widgetActionsEnabled.collectAsState(initial = true)
 
     LazyColumn(
         modifier = Modifier
@@ -303,6 +304,26 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
                     CoroutineScope(Dispatchers.IO).launch {
                         dataStore.saveAutoCleanEnabled(isChecked)
                         if (isChecked) AutoCleanScheduler.schedule(context, dataStore) else AutoCleanScheduler.cancel(context)
+                    }
+                }
+            }
+        }
+
+        item {
+            PreferenceCategoryItem(title = stringResource(id = R.string.widget_settings_title))
+            SmallVerticalSpacer()
+
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = SizeConstants.LargeSize)
+                    .clip(shape = RoundedCornerShape(size = SizeConstants.LargeSize))
+            ) {
+                SwitchPreferenceItem(
+                    title = stringResource(id = R.string.enable_widget_actions),
+                    checked = widgetActionsEnabled,
+                ) { isChecked ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        dataStore.saveWidgetActionsEnabled(isChecked)
                     }
                 }
             }
