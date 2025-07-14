@@ -24,6 +24,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -53,16 +54,16 @@ fun QuickScanSummaryCard(
     val context = LocalContext.current
     val tip: String = remember { CleanerMessageProvider.getRandomQuickScanTip(context = context) }
 
-    val startAnimation = remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { startAnimation.value = true }
+    var startAnimation by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { startAnimation = true }
 
     val animatedFreePercent by animateIntAsState(
-        targetValue = if (startAnimation.value) freePercent else 0,
+        targetValue = if (startAnimation) freePercent else 0,
         animationSpec = tween(durationMillis = 1000),
         label = "FreePercentAnimation"
     )
     val animatedUsedPercent by animateIntAsState(
-        targetValue = if (startAnimation.value) usedPercent else 0,
+        targetValue = if (startAnimation) usedPercent else 0,
         animationSpec = tween(durationMillis = 1000),
         label = "UsedPercentAnimation"
     )
