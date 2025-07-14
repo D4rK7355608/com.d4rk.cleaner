@@ -1,6 +1,8 @@
 package com.d4rk.cleaner.app.clean.scanner.ui.components
 
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.animateIntAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,16 +20,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallHorizontalSpacer
@@ -35,6 +36,7 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVertical
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.notifications.notifications.CleanerMessageProvider
+import com.d4rk.cleaner.core.ui.digits.AnimatedDigit
 
 @Composable
 fun QuickScanSummaryCard(
@@ -49,6 +51,20 @@ fun QuickScanSummaryCard(
 
     val context = LocalContext.current
     val tip: String = remember { CleanerMessageProvider.getRandomQuickScanTip(context = context) }
+
+    val startAnimation = remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { startAnimation.value = true }
+
+    val animatedFreePercent by animateIntAsState(
+        targetValue = if (startAnimation.value) freePercent else 0,
+        animationSpec = tween(durationMillis = 1000),
+        label = "FreePercentAnimation"
+    )
+    val animatedUsedPercent by animateIntAsState(
+        targetValue = if (startAnimation.value) usedPercent else 0,
+        animationSpec = tween(durationMillis = 1000),
+        label = "UsedPercentAnimation"
+    )
 
     OutlinedCard(
         modifier = modifier.fillMaxWidth() ,
@@ -104,21 +120,39 @@ fun QuickScanSummaryCard(
                         else -> MaterialTheme.colorScheme.onSurfaceVariant
                     }
 
-                    Text(
-                        text = buildAnnotatedString {
-                            append(stringResource(id = R.string.free) + " ")
-                            withStyle(SpanStyle(color = freeColor)) {
-                                append("$freePercent%")
-                            }
-                            append(" • ")
-                            append(stringResource(id = R.string.used) + " ")
-                            withStyle(SpanStyle(color = usedColor)) {
-                                append("$usedPercent%")
-                            }
-                        },
-                        style = MaterialTheme.typography.bodyMedium,
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.animateContentSize()
-                    )
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.free) + " ",
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Row {
+                            animatedFreePercent.toString().forEach { digit ->
+                                AnimatedDigit(
+                                    digit = digit,
+                                    color = freeColor,
+                                    textStyle = MaterialTheme.typography.bodyMedium
+                                )
+                            }
+                        }
+                        Text(text = "% • ", style = MaterialTheme.typography.bodyMedium)
+                        Text(
+                            text = stringResource(id = R.string.used) + " ",
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Row {
+                            animatedUsedPercent.toString().forEach { digit ->
+                                AnimatedDigit(
+                                    digit = digit,
+                                    color = usedColor,
+                                    textStyle = MaterialTheme.typography.bodyMedium
+                                )
+                            }
+                        }
+                        Text(text = "%", style = MaterialTheme.typography.bodyMedium)
+                    }
                 }
 
                 SmallVerticalSpacer()
