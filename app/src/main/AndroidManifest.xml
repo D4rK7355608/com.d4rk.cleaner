@@ -202,7 +202,7 @@
 
         <receiver android:name=".app.notifications.notifications.CleanupDismissReceiver" android:exported="false" />
         <receiver
-            android:name=".app.widgets.CleanerWidgetReceiver"
+            android:name=".app.widgets.StorageWidgetReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
