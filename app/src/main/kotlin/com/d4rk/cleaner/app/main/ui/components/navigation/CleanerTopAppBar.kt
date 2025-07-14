@@ -76,6 +76,7 @@ fun CleanerTopAppBar(
                             contentDescription = null,
                             modifier = Modifier.size(SizeConstants.ButtonIconSize)
                         )
+
                     },
                     placeholder = {
                         Text(
@@ -83,6 +84,7 @@ fun CleanerTopAppBar(
                             style = MaterialTheme.typography.labelLarge
                         )
                     },
+                    textStyle = MaterialTheme.typography.labelLarge,
                     singleLine = true,
                 )
             }
