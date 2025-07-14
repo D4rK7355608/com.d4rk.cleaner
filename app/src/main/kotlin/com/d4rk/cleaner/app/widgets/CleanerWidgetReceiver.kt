@@ -58,7 +58,7 @@ class CleanerWidget : GlanceAppWidget() {
 }
 
 class OpenScanAction : ActionCallback {
-    override suspend fun onRun(context: Context, glanceId: GlanceId, parameters: ActionParameters) {
+    override suspend fun onAction(context: Context, glanceId: GlanceId, parameters: ActionParameters) {
         if (context.isWidgetActionsEnabled()) {
             val intent = Intent(context, MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -70,7 +70,7 @@ class OpenScanAction : ActionCallback {
 }
 
 class RunCleanAction : ActionCallback {
-    override suspend fun onRun(context: Context, glanceId: GlanceId, parameters: ActionParameters) {
+    override suspend fun onAction(context: Context, glanceId: GlanceId, parameters: ActionParameters) {
         if (context.isWidgetActionsEnabled()) {
             AutoCleanScheduler.runOnce(context)
         }
