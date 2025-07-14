@@ -35,8 +35,8 @@ free and open-source software
 # Benefits
 
 - Free up space on your device
-- Improve performance
-- Keep your device organized and running smoothly
+- Reduce clutter on your device
+- Keep your device organized
 - Protect your privacy by removing sensitive data
 
 # Screenshots
@@ -56,9 +56,7 @@ the option to remove these files or to move them to the trash.
 
 # Get started today
 
-Download Smart Cleaner from the Google Play Store today and start freeing up space and improving the
-performance of your Android device. It's free and easy to use, and it's the perfect way to keep your
-device running at its best.
+Download Smart Cleaner from the Google Play Store today to efficiently remove clutter and free up storage. A device with more available space can often feel more responsive. Smart Cleaner is a free and easy-to-use tool, making it simple to keep your phone's storage in good order.
 
 # Feedback
 

@@ -10,8 +10,11 @@ import androidx.compose.animation.slideOutHorizontally
 import android.content.Context
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.TweenSpec
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
@@ -30,10 +33,13 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -59,45 +65,55 @@ fun CleanerTopAppBar(
     onSearchQueryChange: (String) -> Unit
 ) {
     val context: Context = LocalContext.current
+    val animatedTitleVisible = rememberSaveable { mutableStateOf(false) }
+
+    LaunchedEffect(key1 = Unit) {
+        if (!showSearch) animatedTitleVisible.value = true
+    }
+
     TopAppBar(
         title = {
-            AnimatedVisibility(
-                visible = showSearch,
-                enter = TopAppBarTransitions.titleEnter,
-                exit = TopAppBarTransitions.titleExit
+            Box(
+                modifier = Modifier.fillMaxSize().animateContentSize(), contentAlignment = Alignment.CenterStart
             ) {
-                OutlinedTextField(
-                    modifier = Modifier
-                        .height(48.dp)
-                        .clip(CircleShape)
-                        .fillMaxWidth(),
-                    shape = CircleShape,
-                    value = searchQuery,
-                    onValueChange = onSearchQueryChange,
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.Search,
-                            contentDescription = null,
-                            modifier = Modifier.size(SizeConstants.ButtonIconSize)
-                        )
+                AnimatedVisibility(
+                    visible = showSearch,
+                    enter = TopAppBarTransitions.titleEnter,
+                    exit = TopAppBarTransitions.titleExit
+                ) {
+                    OutlinedTextField(
+                        modifier = Modifier
+                                .height(48.dp)
+                                .clip(CircleShape)
+                                .fillMaxWidth(),
+                        shape = CircleShape,
+                        value = searchQuery,
+                        onValueChange = onSearchQueryChange,
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Outlined.Search,
+                                contentDescription = null,
+                                modifier = Modifier.size(SizeConstants.ButtonIconSize)
+                            )
 
-                    },
-                    placeholder = {
-                        Text(
-                            text = stringResource(id = R.string.search),
-                            style = MaterialTheme.typography.labelLarge
-                        )
-                    },
-                    textStyle = MaterialTheme.typography.labelLarge,
-                    singleLine = true,
-                )
-            }
-            AnimatedVisibility(
-                visible = !showSearch,
-                enter = TopAppBarTransitions.searchEnter,
-                exit = TopAppBarTransitions.searchExit
-            ) {
-                Text(text = stringResource(id = R.string.app_name))
+                        },
+                        placeholder = {
+                            Text(
+                                text = stringResource(id = R.string.search),
+                                style = MaterialTheme.typography.labelLarge
+                            )
+                        },
+                        textStyle = MaterialTheme.typography.labelLarge,
+                        singleLine = true,
+                    )
+                }
+                AnimatedVisibility(
+                    visible = !showSearch && animatedTitleVisible.value,
+                    enter = TopAppBarTransitions.searchEnter,
+                    exit = TopAppBarTransitions.searchExit
+                ) {
+                    Text(text = stringResource(id = R.string.app_name))
+                }
             }
         },
         navigationIcon = {
@@ -140,7 +156,7 @@ fun CleanerTopAppBar(
 
 object TopAppBarTransitions {
     private val slideFadeScaleSpec: TweenSpec<Float> =
-        tween(durationMillis = 300)
+        tween(durationMillis = 500)
 
     val searchEnter: EnterTransition by lazy {
         slideInHorizontally(
@@ -148,7 +164,6 @@ object TopAppBarTransitions {
             animationSpec = tween()
         ) + fadeIn(animationSpec = slideFadeScaleSpec) + scaleIn(
             animationSpec = slideFadeScaleSpec,
-            initialScale = 0.8f
         )
     }
 
@@ -165,7 +180,6 @@ object TopAppBarTransitions {
             animationSpec = tween()
         ) + fadeIn(animationSpec = slideFadeScaleSpec) + scaleIn(
             animationSpec = slideFadeScaleSpec,
-            initialScale = 0.8f
         )
     }
 
@@ -175,7 +189,6 @@ object TopAppBarTransitions {
             animationSpec = tween()
         ) + fadeOut(animationSpec = slideFadeScaleSpec) + scaleOut(
             animationSpec = slideFadeScaleSpec,
-            targetScale = 0.8f
         )
     }
 }

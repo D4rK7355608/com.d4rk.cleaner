@@ -65,6 +65,7 @@ fun WhatsAppEmptyState(
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center,
+            modifier = Modifier.padding(horizontal = SizeConstants.MediumSize)
         )
 
         LottieAnimation(
