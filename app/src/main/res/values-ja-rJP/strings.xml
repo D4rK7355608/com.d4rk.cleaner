@@ -278,6 +278,13 @@
 
     <string name="automatic_cleanup">自動クリーンアップ</string>
     <string name="enable_automatic_cleaning">自動クリーニングを有効にします</string>
+    <string name="widget_settings_title">ホーム画面ウィジェット</string>
+    <string name="enable_widget_actions">ウィジェットの操作を有効にする</string>
+    <string name="widget_storage_title">ストレージ概要</string>
+    <string name="widget_storage_used">使用済み</string>
+    <string name="widget_storage_free">空き</string>
+    <string name="widget_storage_total">合計</string>
+    <string name="widget_clean_up">クリーンアップ</string>
     <!-- Permissions -->
     <string name="request_delete_packages">パッケージ削除のリクエスト [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">アプリがパッケージの削除をリクエストできるようにします。これにより、デバイスから他のアプリをアンインストールできます</string>

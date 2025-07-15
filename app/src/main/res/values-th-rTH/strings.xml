@@ -278,6 +278,13 @@
 
     <string name="automatic_cleanup">การล้างข้อมูลอัตโนมัติ</string>
     <string name="enable_automatic_cleaning">เปิดใช้งานการทำความสะอาดอัตโนมัติ</string>
+    <string name="widget_settings_title">วิดเจ็ตหน้าจอหลัก</string>
+    <string name="enable_widget_actions">เปิดใช้การทำงานของวิดเจ็ต</string>
+    <string name="widget_storage_title">ข้อมูลการจัดเก็บ</string>
+    <string name="widget_storage_used">ใช้ไป</string>
+    <string name="widget_storage_free">ว่าง</string>
+    <string name="widget_storage_total">รวม</string>
+    <string name="widget_clean_up">ล้างข้อมูล</string>
     <!-- Permissions -->
     <string name="request_delete_packages">ร้องขอการลบแพ็คเกจ [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">อนุญาตให้แอปสามารถร้องขอการลบแพ็คเกจได้ ซึ่งสามารถใช้เพื่อถอนการติดตั้งแอปอื่นๆ ออกจากอุปกรณ์</string>

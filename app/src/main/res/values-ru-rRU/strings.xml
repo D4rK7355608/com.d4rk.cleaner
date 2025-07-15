@@ -296,6 +296,13 @@
 
     <string name="automatic_cleanup">Автоматическая очистка</string>
     <string name="enable_automatic_cleaning">Включить автоматическую очистку</string>
+    <string name="widget_settings_title">Виджет главного экрана</string>
+    <string name="enable_widget_actions">Включить действия виджета</string>
+    <string name="widget_storage_title">Состояние хранилища</string>
+    <string name="widget_storage_used">Использовано</string>
+    <string name="widget_storage_free">Свободно</string>
+    <string name="widget_storage_total">Всего</string>
+    <string name="widget_clean_up">Очистить</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Запросить удаление пакетов [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Позволяет приложению запрашивать удаление пакетов. Это можно использовать для удаления других приложений с устройства</string>

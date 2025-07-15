@@ -278,6 +278,13 @@
 
     <string name="automatic_cleanup">自動清理</string>
     <string name="enable_automatic_cleaning">啟用自動清潔</string>
+    <string name="widget_settings_title">主畫面小工具</string>
+    <string name="enable_widget_actions">啟用小工具操作</string>
+    <string name="widget_storage_title">儲存空間資訊</string>
+    <string name="widget_storage_used">已用</string>
+    <string name="widget_storage_free">可用</string>
+    <string name="widget_storage_total">總計</string>
+    <string name="widget_clean_up">清理</string>
     <!-- Permissions -->
     <string name="request_delete_packages">請求刪除套件 [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">允許應用程式請求刪除套件。這可用於從裝置解除安裝其他應用程式</string>

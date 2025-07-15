@@ -278,6 +278,13 @@
 
     <string name="automatic_cleanup">자동 정리</string>
     <string name="enable_automatic_cleaning">자동 청소를 활성화합니다</string>
+    <string name="widget_settings_title">홈 화면 위젯</string>
+    <string name="enable_widget_actions">위젯 동작 활성화</string>
+    <string name="widget_storage_title">저장소 정보</string>
+    <string name="widget_storage_used">사용됨</string>
+    <string name="widget_storage_free">여유</string>
+    <string name="widget_storage_total">전체</string>
+    <string name="widget_clean_up">정리하기</string>
     <!-- Permissions -->
     <string name="request_delete_packages">패키지 삭제 요청 [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">앱이 패키지 삭제를 요청할 수 있도록 허용합니다. 이를 사용하여 기기에서 다른 앱을 제거할 수 있습니다.</string>

@@ -284,6 +284,13 @@
 
     <string name="automatic_cleanup">Awtomatikong paglilinis</string>
     <string name="enable_automatic_cleaning">Paganahin ang awtomatikong paglilinis</string>
+    <string name="widget_settings_title">Widget sa Home Screen</string>
+    <string name="enable_widget_actions">Paganahin ang mga aksyon ng widget</string>
+    <string name="widget_storage_title">Impormasyon sa storage</string>
+    <string name="widget_storage_used">Nagamit</string>
+    <string name="widget_storage_free">Libre</string>
+    <string name="widget_storage_total">Kabuuan</string>
+    <string name="widget_clean_up">Linisin</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Humiling ng pagbura ng mga package [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Pinapayagan ang app na humiling ng pagbura ng mga package. Maaari itong gamitin para i-uninstall ang iba pang mga app mula sa device</string>

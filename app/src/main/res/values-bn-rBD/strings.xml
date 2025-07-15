@@ -283,6 +283,13 @@
 
     <string name="automatic_cleanup">স্বয়ংক্রিয় ক্লিনআপ</string>
     <string name="enable_automatic_cleaning">স্বয়ংক্রিয় পরিষ্কার সক্ষম করুন</string>
+    <string name="widget_settings_title">হোম স্ক্রিন উইজেট</string>
+    <string name="enable_widget_actions">উইজেট অ্যাকশন সক্রিয় করুন</string>
+    <string name="widget_storage_title">স্টোরেজ পরিসংখ্যান</string>
+    <string name="widget_storage_used">ব্যবহৃত</string>
+    <string name="widget_storage_free">ফাঁকা</string>
+    <string name="widget_storage_total">মোট</string>
+    <string name="widget_clean_up">পরিষ্কার করুন</string>
     <!-- Permissions -->
     <string name="request_delete_packages">প্যাকেজ মোছার অনুরোধ [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">অ্যাপটিকে প্যাকেজ মোছার অনুরোধ করার অনুমতি দেয়। এটি ডিভাইস থেকে অন্যান্য অ্যাপ আনইনস্টল করতে ব্যবহার করা যেতে পারে</string>

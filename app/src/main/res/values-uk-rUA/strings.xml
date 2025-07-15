@@ -296,6 +296,13 @@
 
     <string name="automatic_cleanup">Автоматичне очищення</string>
     <string name="enable_automatic_cleaning">Увімкнути автоматичне очищення</string>
+    <string name="widget_settings_title">Віджет головного екрану</string>
+    <string name="enable_widget_actions">Увімкнути дії віджета</string>
+    <string name="widget_storage_title">Інформація про сховище</string>
+    <string name="widget_storage_used">Використано</string>
+    <string name="widget_storage_free">Вільно</string>
+    <string name="widget_storage_total">Всього</string>
+    <string name="widget_clean_up">Очистити</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Запит на видалення пакетів [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Дозволяє додатку запитувати видалення пакетів. Це може використовуватися для видалення інших додатків з пристрою</string>

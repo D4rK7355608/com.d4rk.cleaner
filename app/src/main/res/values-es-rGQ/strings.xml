@@ -290,6 +290,13 @@
 
     <string name="automatic_cleanup">Limpieza automática</string>
     <string name="enable_automatic_cleaning">Habilitar la limpieza automática</string>
+    <string name="widget_settings_title">Widget de inicio</string>
+    <string name="enable_widget_actions">Habilitar acciones del widget</string>
+    <string name="widget_storage_title">Información de almacenamiento</string>
+    <string name="widget_storage_used">Usado</string>
+    <string name="widget_storage_free">Libre</string>
+    <string name="widget_storage_total">Total</string>
+    <string name="widget_clean_up">Limpiar</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Solicitar eliminación de paquetes [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Permite que la app solicite la eliminación de paquetes. Esto se puede usar para desinstalar otras apps del dispositivo.</string>

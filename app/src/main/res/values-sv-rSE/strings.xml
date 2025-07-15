@@ -284,6 +284,13 @@
 
     <string name="automatic_cleanup">Automatisk sanering</string>
     <string name="enable_automatic_cleaning">Aktivera automatisk rengöring</string>
+    <string name="widget_settings_title">Startskärmswidget</string>
+    <string name="enable_widget_actions">Aktivera widgetåtgärder</string>
+    <string name="widget_storage_title">Lagringsinformation</string>
+    <string name="widget_storage_used">Använt</string>
+    <string name="widget_storage_free">Ledigt</string>
+    <string name="widget_storage_total">Totalt</string>
+    <string name="widget_clean_up">Rensa</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Begär radering av paket [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Tillåter appen att begära radering av paket. Detta kan användas för att avinstallera andra appar från enheten</string>

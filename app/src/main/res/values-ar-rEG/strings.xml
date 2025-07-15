@@ -308,6 +308,13 @@
 
     <string name="automatic_cleanup">التنظيف التلقائي</string>
     <string name="enable_automatic_cleaning">تمكين التنظيف التلقائي</string>
+    <string name="widget_settings_title">أداة الشاشة الرئيسية</string>
+    <string name="enable_widget_actions">تمكين إجراءات الأداة</string>
+    <string name="widget_storage_title">نظرة على التخزين</string>
+    <string name="widget_storage_used">المستخدم</string>
+    <string name="widget_storage_free">المتاح</string>
+    <string name="widget_storage_total">الإجمالي</string>
+    <string name="widget_clean_up">تنظيف</string>
     <!-- Permissions -->
     <string name="request_delete_packages">طلب حذف الحزم [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">بيسمح للتطبيق يطلب حذف الحزم. ده ممكن يستخدم لإلغاء تثبيت تطبيقات تانية من الجهاز.</string>

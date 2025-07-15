@@ -290,6 +290,13 @@
 
     <string name="automatic_cleanup">Curățare automată</string>
     <string name="enable_automatic_cleaning">Activați curățarea automată</string>
+    <string name="widget_settings_title">Widget ecran principal</string>
+    <string name="enable_widget_actions">Activează acțiunile widgetului</string>
+    <string name="widget_storage_title">Informații stocare</string>
+    <string name="widget_storage_used">Folosit</string>
+    <string name="widget_storage_free">Liber</string>
+    <string name="widget_storage_total">Total</string>
+    <string name="widget_clean_up">Curățare</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Solicită ștergerea pachetelor [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Permite aplicației să solicite ștergerea pachetelor. Aceasta poate fi utilizată pentru a dezinstala alte aplicații de pe dispozitiv</string>

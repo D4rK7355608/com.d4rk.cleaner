@@ -278,6 +278,13 @@
 
     <string name="automatic_cleanup">Pembersihan Otomatis</string>
     <string name="enable_automatic_cleaning">Aktifkan pembersihan otomatis</string>
+    <string name="widget_settings_title">Widget Layar Utama</string>
+    <string name="enable_widget_actions">Aktifkan aksi widget</string>
+    <string name="widget_storage_title">Informasi penyimpanan</string>
+    <string name="widget_storage_used">Terpakai</string>
+    <string name="widget_storage_free">Tersedia</string>
+    <string name="widget_storage_total">Total</string>
+    <string name="widget_clean_up">Bersihkan</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Minta hapus paket [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Mengizinkan aplikasi untuk meminta penghapusan paket. Ini dapat digunakan untuk mencopot pemasangan aplikasi lain dari perangkat</string>
