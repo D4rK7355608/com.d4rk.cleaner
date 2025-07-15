@@ -291,7 +291,7 @@
     <string name="widget_storage_free">Szabad</string>
     <string name="widget_storage_total">Összesen</string>
     <string name="widget_clean_up">Tisztítás</string>
-    <string name="widget_error_generic">Can't display widget content</string>
+    <string name="widget_error_generic">Can\'t display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Csomagok törlésének kérése [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Lehetővé teszi az alkalmazás számára, hogy csomagok törlését kérje. Ezzel más alkalmazásokat is el lehet távolítani az eszközről</string>

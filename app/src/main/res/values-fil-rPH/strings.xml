@@ -291,7 +291,7 @@
     <string name="widget_storage_free">Libre</string>
     <string name="widget_storage_total">Kabuuan</string>
     <string name="widget_clean_up">Linisin</string>
-    <string name="widget_error_generic">Can't display widget content</string>
+    <string name="widget_error_generic">Can\'t display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Humiling ng pagbura ng mga package [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Pinapayagan ang app na humiling ng pagbura ng mga package. Maaari itong gamitin para i-uninstall ang iba pang mga app mula sa device</string>

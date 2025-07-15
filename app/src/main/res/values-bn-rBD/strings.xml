@@ -290,7 +290,7 @@
     <string name="widget_storage_free">ফাঁকা</string>
     <string name="widget_storage_total">মোট</string>
     <string name="widget_clean_up">পরিষ্কার করুন</string>
-    <string name="widget_error_generic">Can't display widget content</string>
+    <string name="widget_error_generic">Can\'t display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">প্যাকেজ মোছার অনুরোধ [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">অ্যাপটিকে প্যাকেজ মোছার অনুরোধ করার অনুমতি দেয়। এটি ডিভাইস থেকে অন্যান্য অ্যাপ আনইনস্টল করতে ব্যবহার করা যেতে পারে</string>

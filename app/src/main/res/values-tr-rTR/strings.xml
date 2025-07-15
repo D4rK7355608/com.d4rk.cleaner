@@ -284,14 +284,14 @@
 
     <string name="automatic_cleanup">Otomatik temizlik</string>
     <string name="enable_automatic_cleaning">Otomatik temizliği etkinleştirin</string>
-    <string name="widget_settings_title">Ana ekran widget'i</string>
+    <string name="widget_settings_title">Ana ekran widget\'i</string>
     <string name="enable_widget_actions">Widget işlemlerini etkinleştir</string>
     <string name="widget_storage_title">Depolama bilgileri</string>
     <string name="widget_storage_used">Kullanılan</string>
     <string name="widget_storage_free">Boş</string>
     <string name="widget_storage_total">Toplam</string>
     <string name="widget_clean_up">Temizle</string>
-    <string name="widget_error_generic">Can't display widget content</string>
+    <string name="widget_error_generic">Can\'t display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Paket silme isteği [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Uygulamanın paketlerin silinmesini istemesine izin verir. Bu, cihazdan diğer uygulamaları kaldırmak için kullanılabilir</string>

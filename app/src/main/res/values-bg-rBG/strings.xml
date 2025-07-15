@@ -290,7 +290,7 @@
     <string name="widget_storage_free">Свободно</string>
     <string name="widget_storage_total">Общо</string>
     <string name="widget_clean_up">Почистване</string>
-    <string name="widget_error_generic">Can't display widget content</string>
+    <string name="widget_error_generic">Can\'t display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Заявка за изтриване на пакети [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Позволява на приложението да изисква изтриването на пакети. Това може да се използва за деинсталиране на други приложения от устройството.</string>

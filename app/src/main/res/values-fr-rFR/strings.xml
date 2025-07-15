@@ -291,14 +291,14 @@
 
     <string name="automatic_cleanup">Nettoyage automatique</string>
     <string name="enable_automatic_cleaning">Activer le nettoyage automatique</string>
-    <string name="widget_settings_title">Widget d'écran d'accueil</string>
+    <string name="widget_settings_title">Widget d\'écran d\'accueil</string>
     <string name="enable_widget_actions">Activer les actions du widget</string>
     <string name="widget_storage_title">Aperçu du stockage</string>
     <string name="widget_storage_used">Utilisé</string>
     <string name="widget_storage_free">Libre</string>
     <string name="widget_storage_total">Total</string>
     <string name="widget_clean_up">Nettoyer</string>
-    <string name="widget_error_generic">Can't display widget content</string>
+    <string name="widget_error_generic">Can\'t display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Demander la suppression de paquets [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Permet à l\'application de demander la suppression de paquets. Peut être utilisé pour désinstaller d\'autres applications de l\'appareil.</string>

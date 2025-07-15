@@ -315,7 +315,7 @@
     <string name="widget_storage_free">المتاح</string>
     <string name="widget_storage_total">الإجمالي</string>
     <string name="widget_clean_up">تنظيف</string>
-    <string name="widget_error_generic">Can't display widget content</string>
+    <string name="widget_error_generic">Can\'t display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">طلب حذف الحزم [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">بيسمح للتطبيق يطلب حذف الحزم. ده ممكن يستخدم لإلغاء تثبيت تطبيقات تانية من الجهاز.</string>

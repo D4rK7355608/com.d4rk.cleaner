@@ -291,7 +291,7 @@
     <string name="widget_storage_free">خالی</string>
     <string name="widget_storage_total">کل</string>
     <string name="widget_clean_up">صفائی کریں</string>
-    <string name="widget_error_generic">Can't display widget content</string>
+    <string name="widget_error_generic">Can\'t display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">پیکیجز حذف کرنے کی درخواست کریں [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">ایپ کو پیکیجز کو حذف کرنے کی درخواست کرنے کی اجازت دیتا ہے۔ اسے آلے سے دیگر ایپس کو ان انسٹال کرنے کے لیے استعمال کیا جا سکتا ہے۔</string>

@@ -291,7 +291,7 @@
     <string name="widget_storage_free">खाली</string>
     <string name="widget_storage_total">कुल</string>
     <string name="widget_clean_up">साफ करें</string>
-    <string name="widget_error_generic">Can't display widget content</string>
+    <string name="widget_error_generic">Can\'t display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">पैकेज हटाने का अनुरोध करें [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">ऐप को पैकेज हटाने का अनुरोध करने की अनुमति देता है। इसका उपयोग डिवाइस से अन्य ऐप्स को अनइंस्टॉल करने के लिए किया जा सकता है</string>

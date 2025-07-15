@@ -291,7 +291,7 @@
     <string name="widget_storage_free">Ledigt</string>
     <string name="widget_storage_total">Totalt</string>
     <string name="widget_clean_up">Rensa</string>
-    <string name="widget_error_generic">Can't display widget content</string>
+    <string name="widget_error_generic">Can\'t display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Begär radering av paket [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Tillåter appen att begära radering av paket. Detta kan användas för att avinstallera andra appar från enheten</string>
