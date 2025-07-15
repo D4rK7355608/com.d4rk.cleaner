@@ -1,10 +1,9 @@
 package com.d4rk.cleaner.app.widgets.ui
 
-import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -16,6 +15,7 @@ import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.LinearProgressIndicator
 import androidx.glance.appwidget.SizeMode
 import androidx.glance.appwidget.provideContent
+import androidx.glance.color.ColorProvider
 import androidx.glance.layout.Alignment
 import androidx.glance.layout.Box
 import androidx.glance.layout.Column
@@ -29,13 +29,13 @@ import androidx.glance.layout.width
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
-import androidx.glance.unit.ColorProvider
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
 import com.d4rk.cleaner.app.widgets.data.StorageStatsRepository
 import com.d4rk.cleaner.app.widgets.domain.actions.cleanAction
 import com.d4rk.cleaner.app.widgets.domain.actions.scanAction
 import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
+
 
 class StorageStatsWidget : GlanceAppWidget() {
 
@@ -48,9 +48,17 @@ class StorageStatsWidget : GlanceAppWidget() {
     }
 }
 
-@SuppressLint("RestrictedApi")
 @Composable
 private fun StorageStatsContent(storageInfo: StorageInfo) {
+
+    val storageColorProvider = ColorProvider(day = Color(0xFF2196F3), night = Color(0xFF90CAF9)) // Blue
+    val progressBarBackgroundColorProvider = ColorProvider(day = Color(0xFFE3F2FD), night = Color(0xFF1A237E)) // Light blue / Dark blue
+    val primaryTextColor = ColorProvider(day = Color(0xFFFFFFFF), night = Color(0xFF212121)) // White / Dark text
+    val widgetSurfaceVariantColor = ColorProvider(day = Color(0xFF757575), night = Color(0xFFBDBDBD)) // Grey
+
+    val widgetTitleColorProvider = widgetSurfaceVariantColor
+    val widgetContentColorProvider = progressBarBackgroundColorProvider
+
     Column(
         modifier = GlanceModifier
             .fillMaxSize()
@@ -72,7 +80,7 @@ private fun StorageStatsContent(storageInfo: StorageInfo) {
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
-                    color = ColorProvider(MaterialTheme.colorScheme.onSurfaceVariant)
+                    color = widgetTitleColorProvider
                 )
             )
         }
@@ -84,15 +92,15 @@ private fun StorageStatsContent(storageInfo: StorageInfo) {
             LinearProgressIndicator(
                 progress = progress,
                 modifier = GlanceModifier.fillMaxWidth().height(10.dp),
-                color = ColorProvider(MaterialTheme.colorScheme.primary),
-                backgroundColor = ColorProvider(MaterialTheme.colorScheme.secondaryContainer)
+                color = storageColorProvider,
+                backgroundColor = widgetContentColorProvider
             )
             Text(
                 text = "${(progress * 100).toInt()}% ${stringResource(id = R.string.used)}",
                 style = TextStyle(
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Medium,
-                    color = ColorProvider(MaterialTheme.colorScheme.onPrimary)
+                    color = primaryTextColor
                 ),
                 modifier = GlanceModifier.padding(horizontal = 4.dp)
             )
@@ -135,21 +143,26 @@ private fun StorageStatsContent(storageInfo: StorageInfo) {
 
 @Composable
 private fun StorageDetailItem(label: String, value: String) {
+    val labelColor = ColorProvider(day = Color(0xFF757575), night = Color(0xFFBDBDBD))
+    val valueColor = ColorProvider(day = Color(0xFF212121), night = Color(0xFFFFFFFF))
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
             text = label,
-            style = TextStyle(fontSize = 12.sp, color = ColorProvider(MaterialTheme.colorScheme.onSurfaceVariant))
+            style = TextStyle(fontSize = 12.sp, color = labelColor)
         )
         Text(
             text = value,
-            style = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Medium, color = ColorProvider(MaterialTheme.colorScheme.onSurface))
+            style = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Medium, color = valueColor)
         )
     }
 }
 
 @Composable
 private fun ActionButton(text: String, action: GlanceModifier, icon: Int) {
+    val textColor = ColorProvider(day = Color(0xFF2196F3), night = Color(0xFF90CAF9))
+
     Row(
+
         modifier = action.padding(vertical = 8.dp, horizontal = 12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -163,9 +176,8 @@ private fun ActionButton(text: String, action: GlanceModifier, icon: Int) {
             style = TextStyle(
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
-                color = ColorProvider(MaterialTheme.colorScheme.primary)
+                color = textColor
             )
         )
     }
 }
-
