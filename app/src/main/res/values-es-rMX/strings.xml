@@ -297,6 +297,7 @@
     <string name="widget_storage_free">Libre</string>
     <string name="widget_storage_total">Total</string>
     <string name="widget_clean_up">Limpiar</string>
+    <string name="widget_error_generic">Can't display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Solicitar eliminación de paquetes [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Permite que la aplicación solicite la eliminación de paquetes. Esto se puede usar para desinstalar otras aplicaciones del dispositivo.</string>

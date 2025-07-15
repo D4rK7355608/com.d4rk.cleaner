@@ -285,6 +285,7 @@
     <string name="widget_storage_free">可用</string>
     <string name="widget_storage_total">總計</string>
     <string name="widget_clean_up">清理</string>
+    <string name="widget_error_generic">Can't display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">請求刪除套件 [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">允許應用程式請求刪除套件。這可用於從裝置解除安裝其他應用程式</string>

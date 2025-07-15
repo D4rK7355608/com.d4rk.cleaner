@@ -285,6 +285,7 @@
     <string name="widget_storage_free">Tersedia</string>
     <string name="widget_storage_total">Total</string>
     <string name="widget_clean_up">Bersihkan</string>
+    <string name="widget_error_generic">Can't display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Minta hapus paket [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Mengizinkan aplikasi untuk meminta penghapusan paket. Ini dapat digunakan untuk mencopot pemasangan aplikasi lain dari perangkat</string>

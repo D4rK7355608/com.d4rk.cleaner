@@ -298,6 +298,7 @@
     <string name="widget_storage_free">Libre</string>
     <string name="widget_storage_total">Total</string>
     <string name="widget_clean_up">Nettoyer</string>
+    <string name="widget_error_generic">Can't display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Demander la suppression de paquets [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Permet à l\'application de demander la suppression de paquets. Peut être utilisé pour désinstaller d\'autres applications de l\'appareil.</string>

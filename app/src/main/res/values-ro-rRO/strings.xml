@@ -297,6 +297,7 @@
     <string name="widget_storage_free">Liber</string>
     <string name="widget_storage_total">Total</string>
     <string name="widget_clean_up">Curățare</string>
+    <string name="widget_error_generic">Can't display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Solicită ștergerea pachetelor [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Permite aplicației să solicite ștergerea pachetelor. Aceasta poate fi utilizată pentru a dezinstala alte aplicații de pe dispozitiv</string>

@@ -285,6 +285,7 @@
     <string name="widget_storage_free">ว่าง</string>
     <string name="widget_storage_total">รวม</string>
     <string name="widget_clean_up">ล้างข้อมูล</string>
+    <string name="widget_error_generic">Can't display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">ร้องขอการลบแพ็คเกจ [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">อนุญาตให้แอปสามารถร้องขอการลบแพ็คเกจได้ ซึ่งสามารถใช้เพื่อถอนการติดตั้งแอปอื่นๆ ออกจากอุปกรณ์</string>

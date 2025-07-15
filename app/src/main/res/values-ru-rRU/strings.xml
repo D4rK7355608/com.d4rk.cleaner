@@ -303,6 +303,7 @@
     <string name="widget_storage_free">Свободно</string>
     <string name="widget_storage_total">Всего</string>
     <string name="widget_clean_up">Очистить</string>
+    <string name="widget_error_generic">Can't display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Запросить удаление пакетов [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Позволяет приложению запрашивать удаление пакетов. Это можно использовать для удаления других приложений с устройства</string>

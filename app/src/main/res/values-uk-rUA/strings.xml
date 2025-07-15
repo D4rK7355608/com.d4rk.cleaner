@@ -303,6 +303,7 @@
     <string name="widget_storage_free">Вільно</string>
     <string name="widget_storage_total">Всього</string>
     <string name="widget_clean_up">Очистити</string>
+    <string name="widget_error_generic">Can't display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Запит на видалення пакетів [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Дозволяє додатку запитувати видалення пакетів. Це може використовуватися для видалення інших додатків з пристрою</string>

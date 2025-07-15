@@ -285,6 +285,7 @@
     <string name="widget_storage_free">Còn trống</string>
     <string name="widget_storage_total">Tổng cộng</string>
     <string name="widget_clean_up">Dọn dẹp</string>
+    <string name="widget_error_generic">Can't display widget content</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Yêu cầu xóa gói [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Cho phép ứng dụng yêu cầu xóa các gói. Điều này có thể được sử dụng để gỡ cài đặt các ứng dụng khác khỏi thiết bị</string>

@@ -35,15 +35,17 @@ import com.d4rk.cleaner.app.widgets.data.StorageStatsRepository
 import com.d4rk.cleaner.app.widgets.domain.actions.cleanAction
 import com.d4rk.cleaner.app.widgets.domain.actions.scanAction
 import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 
-class StorageStatsWidget : GlanceAppWidget() {
+class StorageStatsWidget : GlanceAppWidget(errorUiLayout = R.layout.widget_error) {
 
     override val sizeMode = SizeMode.Exact
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         val repository = StorageStatsRepository(context.applicationContext as Application)
-        val info = repository.getStorageInfo()
+        val info = withContext(Dispatchers.IO) { repository.getStorageInfo() }
         provideContent { StorageStatsContent(info) }
     }
 }
