@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -60,6 +62,18 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
+
+object AppManagerBadgeTransitions {
+    private val fadeScaleSpec = tween<Float>(durationMillis = 500)
+
+    val enter: EnterTransition by lazy {
+        fadeIn(animationSpec = fadeScaleSpec) + scaleIn(animationSpec = fadeScaleSpec)
+    }
+
+    val exit: ExitTransition by lazy {
+        fadeOut() + scaleOut()
+    }
+}
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -174,9 +188,8 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
                             }
                             AnimatedVisibility(
                                 visible = badgeVisible.value,
-                                enter = fadeIn(animationSpec = tween(durationMillis = 500)) +
-                                        scaleIn(animationSpec = tween(durationMillis = 500)),
-                                exit = fadeOut() + scaleOut()
+                                enter = AppManagerBadgeTransitions.enter,
+                                exit = AppManagerBadgeTransitions.exit
                             ) {
                                 Badge(
                                     modifier = Modifier.animateContentSize()
