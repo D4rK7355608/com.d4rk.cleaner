@@ -286,6 +286,11 @@
     <string name="enable_automatic_cleaning">Enable automatic cleaning</string>
     <string name="widget_settings_title">Home Screen Widget</string>
     <string name="enable_widget_actions">Enable widget actions</string>
+    <string name="widget_storage_title">Storage Insights</string>
+    <string name="widget_storage_used">Used</string>
+    <string name="widget_storage_free">Free</string>
+    <string name="widget_storage_total">Total</string>
+    <string name="widget_clean_up">Clean Up</string>
     <!-- Permissions -->
     <string name="request_delete_packages">Request delete packages [REQUEST_DELETE_PACKAGES]</string>
     <string name="summary_preference_permissions_request_delete_packages">Allows the app to request the deletion of packages. This can be used to uninstall other apps from the device</string>
