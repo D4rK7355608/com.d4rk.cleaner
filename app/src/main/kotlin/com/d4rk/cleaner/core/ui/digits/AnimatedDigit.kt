@@ -1,6 +1,7 @@
 package com.d4rk.cleaner.core.ui.digits
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.SizeTransform
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -16,6 +17,26 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.material3.LocalContentColor
 
+object AnimatedDigitTransitions {
+    private val animationSpec = tween<Int>(durationMillis = 400)
+
+    val increase: ContentTransform by lazy {
+        (slideInVertically(animationSpec = animationSpec) { fullHeight: Int -> -fullHeight } +
+            fadeIn(animationSpec = animationSpec)).togetherWith(
+            slideOutVertically(animationSpec = animationSpec) { fullHeight: Int -> fullHeight } +
+                fadeOut(animationSpec = animationSpec)
+        ).using(SizeTransform(clip = false))
+    }
+
+    val decrease: ContentTransform by lazy {
+        (slideInVertically(animationSpec = animationSpec) { fullHeight: Int -> fullHeight } +
+            fadeIn(animationSpec = animationSpec)).togetherWith(
+            slideOutVertically(animationSpec = animationSpec) { fullHeight: Int -> -fullHeight } +
+                fadeOut(animationSpec = animationSpec)
+        ).using(SizeTransform(clip = false))
+    }
+}
+
 @Composable
 fun AnimatedDigit(
     digit: Char,
@@ -26,26 +47,10 @@ fun AnimatedDigit(
         targetState = digit,
         transitionSpec = {
             if (targetState > initialState) {
-                (slideInVertically(
-                    animationSpec = tween(durationMillis = 400),
-                    initialOffsetY = { fullHeight: Int -> -fullHeight }
-                ) + fadeIn(animationSpec = tween(durationMillis = 400))).togetherWith(
-                    slideOutVertically(
-                        animationSpec = tween(durationMillis = 400),
-                        targetOffsetY = { fullHeight: Int -> fullHeight }
-                    ) + fadeOut(animationSpec = tween(durationMillis = 400))
-                )
+                AnimatedDigitTransitions.increase
             } else {
-                (slideInVertically(
-                    animationSpec = tween(durationMillis = 400),
-                    initialOffsetY = { fullHeight: Int -> fullHeight }
-                ) + fadeIn(animationSpec = tween(durationMillis = 400))).togetherWith(
-                    slideOutVertically(
-                        animationSpec = tween(durationMillis = 400),
-                        targetOffsetY = { fullHeight: Int -> -fullHeight }
-                    ) + fadeOut(animationSpec = tween(durationMillis = 400))
-                )
-            }.using(sizeTransform = SizeTransform(clip = false))
+                AnimatedDigitTransitions.decrease
+            }
         }
     ) { targetDigit: Char ->
         CompositionLocalProvider(LocalContentColor provides color) {
