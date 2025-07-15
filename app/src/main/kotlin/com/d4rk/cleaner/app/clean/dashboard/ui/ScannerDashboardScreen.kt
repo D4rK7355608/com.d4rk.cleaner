@@ -3,10 +3,6 @@ package com.d4rk.cleaner.app.clean.dashboard.ui
 import android.content.Context
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -42,6 +38,7 @@ import com.d4rk.android.libs.apptoolkit.core.utils.helpers.IntentsHelper
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.apps.manager.domain.data.model.ui.UiAppManagerModel
 import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
+import com.d4rk.cleaner.app.clean.dashboard.ui.DashboardTransitions
 import com.d4rk.cleaner.app.clean.scanner.domain.actions.ScannerEvent
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.CleaningState
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.CleaningType
@@ -187,8 +184,8 @@ fun ScannerDashboardScreen(
         val quickScanIndex = nextIndex()
         AnimatedVisibility(
             visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-            enter = fadeIn() + expandVertically(),
-            exit = fadeOut() + shrinkVertically()
+            enter = DashboardTransitions.enter,
+            exit = DashboardTransitions.exit
         ) {
             QuickScanSummaryCard(
                 modifier = Modifier.animateVisibility(
@@ -204,8 +201,8 @@ fun ScannerDashboardScreen(
         if (showStreakCard) {
             AnimatedVisibility(
                 visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                enter = fadeIn() + expandVertically(),
-                exit = fadeOut() + shrinkVertically()
+                enter = DashboardTransitions.enter,
+                exit = DashboardTransitions.exit
             ) {
                 val streakIndex = nextIndex()
                 WeeklyCleanStreakCard(
@@ -219,8 +216,8 @@ fun ScannerDashboardScreen(
         else if (streakHideUntil > System.currentTimeMillis()) {
             AnimatedVisibility(
                 visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                enter = fadeIn() + expandVertically(),
-                exit = fadeOut() + shrinkVertically()
+                enter = DashboardTransitions.enter,
+                exit = DashboardTransitions.exit
             ) {
                 OutlinedCard(
                     modifier = Modifier.fillMaxWidth() , shape = RoundedCornerShape(SizeConstants.ExtraLargeSize)
@@ -239,8 +236,8 @@ fun ScannerDashboardScreen(
 
         AnimatedVisibility(
             visible = showAdTop,
-            enter = fadeIn() + expandVertically(),
-            exit = fadeOut() + shrinkVertically()
+            enter = DashboardTransitions.enter,
+            exit = DashboardTransitions.exit
         ) {
             AdBanner(
                 adsConfig = topAdConfig
@@ -250,8 +247,8 @@ fun ScannerDashboardScreen(
         if (showWhatsAppCard) {
             AnimatedVisibility(
                 visible = showWhatsAppCard,
-                enter = fadeIn() + expandVertically(),
-                exit = fadeOut() + shrinkVertically()
+                enter = DashboardTransitions.enter,
+                exit = DashboardTransitions.exit
             ) {
                 val whatsappIndex = nextIndex()
                 WhatsAppCleanerCard(
@@ -271,8 +268,8 @@ fun ScannerDashboardScreen(
         if (showApkCard) {
             AnimatedVisibility(
                 visible = showApkCard,
-                enter = fadeIn() + expandVertically(),
-                exit = fadeOut() + shrinkVertically()
+                enter = DashboardTransitions.enter,
+                exit = DashboardTransitions.exit
             ) {
                 val isCleaningApks = uiState.data?.analyzeState?.state == CleaningState.Cleaning && uiState.data?.analyzeState?.cleaningType == CleaningType.DELETE && uiState.data?.analyzeState?.isAnalyzeScreenVisible == false
                 val apkIndex = nextIndex()
@@ -292,8 +289,8 @@ fun ScannerDashboardScreen(
         if (showClipboardCard) {
             AnimatedVisibility(
                 visible = showClipboardCard,
-                enter = fadeIn() + expandVertically(),
-                exit = fadeOut() + shrinkVertically()
+                enter = DashboardTransitions.enter,
+                exit = DashboardTransitions.exit
             ) {
                 val clipboardIndex = nextIndex()
                 ClipboardCleanerCard(
@@ -309,8 +306,8 @@ fun ScannerDashboardScreen(
         if (showLargeFilesCard) {
             AnimatedVisibility(
                 visible = showLargeFilesCard,
-                enter = fadeIn() + expandVertically(),
-                exit = fadeOut() + shrinkVertically()
+                enter = DashboardTransitions.enter,
+                exit = DashboardTransitions.exit
             ) {
                 val largeFilesIndex = nextIndex()
                 LargeFilesCard(
@@ -332,8 +329,8 @@ fun ScannerDashboardScreen(
 
         AnimatedVisibility(
             visible = showAdMid,
-            enter = fadeIn() + expandVertically(),
-            exit = fadeOut() + shrinkVertically()
+            enter = DashboardTransitions.enter,
+            exit = DashboardTransitions.exit
         ) {
             AdBanner(
                 adsConfig = midAdConfig
@@ -343,8 +340,8 @@ fun ScannerDashboardScreen(
         val imageOptimizerIndex = nextIndex()
         AnimatedVisibility(
             visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-            enter = fadeIn() + expandVertically(),
-            exit = fadeOut() + shrinkVertically()
+            enter = DashboardTransitions.enter,
+            exit = DashboardTransitions.exit
         ) {
             ImageOptimizerCard(
                 modifier = Modifier.animateVisibility(
@@ -361,8 +358,8 @@ fun ScannerDashboardScreen(
         val cacheIndex = nextIndex()
         AnimatedVisibility(
             visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-            enter = fadeIn() + expandVertically(),
-            exit = fadeOut() + shrinkVertically()
+            enter = DashboardTransitions.enter,
+            exit = DashboardTransitions.exit
         ) {
             CacheCleanerCard(
                 modifier = Modifier.animateVisibility(
@@ -377,8 +374,8 @@ fun ScannerDashboardScreen(
         promotedApp?.let { app ->
             AnimatedVisibility(
                 visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false,
-                enter = fadeIn() + expandVertically(),
-                exit = fadeOut() + shrinkVertically()
+                enter = DashboardTransitions.enter,
+                exit = DashboardTransitions.exit
             ) {
                 val promotedIndex = nextIndex()
                 PromotedAppCard(modifier = Modifier.animateVisibility(
@@ -390,8 +387,8 @@ fun ScannerDashboardScreen(
 
         AnimatedVisibility(
             visible = showAdEnd,
-            enter = fadeIn() + expandVertically(),
-            exit = fadeOut() + shrinkVertically()
+            enter = DashboardTransitions.enter,
+            exit = DashboardTransitions.exit
         ) {
             AdBanner(
                 adsConfig = endAdConfig
