@@ -13,8 +13,6 @@ object AppDataStoreConstants : DataStoreNamesConstants() {
     const val DATA_STORE_CLEANUP_REMINDER_FREQUENCY_DAYS = "cleanup_reminder_frequency_days"
     const val DATA_STORE_PERMISSION_STORAGE_GRANTED = "permission_storage_granted"
     const val DATA_STORE_PERMISSION_USAGE_STATS_GRANTED = "permission_usage_stats_granted"
-    const val DATA_STORE_STARTUP_PAGE = "startup_page"
-    const val DATA_STORE_SHOW_BOTTOM_BAR_LABELS = "show_bottom_bar_labels"
     const val DATA_STORE_GENERIC_FILTER = "generic_filter"
     const val DATA_STORE_DELETE_EMPTY_FOLDERS = "delete_empty_folders"
     const val DATA_STORE_DELETE_ARCHIVES = "delete_archives"

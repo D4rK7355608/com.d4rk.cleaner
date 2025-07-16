@@ -180,9 +180,8 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
                                 color = MaterialTheme.colorScheme.onSurface,
-                                modifier = Modifier.weight(1f)
+                                modifier = Modifier.weight(1f).animateContentSize()
                             )
-                            // (Optional) Add a horizontal space if you want separation
                             if (badgeVisible.value) {
                                 ExtraTinyHorizontalSpacer()
                             }

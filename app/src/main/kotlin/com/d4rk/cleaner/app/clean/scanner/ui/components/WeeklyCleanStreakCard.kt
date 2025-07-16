@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AutoAwesome
@@ -25,6 +24,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.pluralStringResource
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.MediumVerticalSpacer
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 
@@ -60,7 +61,6 @@ fun WeeklyCleanStreakCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(SizeConstants.LargeSize),
-            verticalArrangement = Arrangement.spacedBy(SizeConstants.MediumSize),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Box(modifier = Modifier.fillMaxWidth()) {
@@ -76,10 +76,14 @@ fun WeeklyCleanStreakCard(
                     iconContentDescription = null
                 )
             }
+
             Text(
                 text = message,
                 style = MaterialTheme.typography.bodyMedium
             )
+
+            MediumVerticalSpacer()
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
@@ -102,6 +106,9 @@ fun WeeklyCleanStreakCard(
                     )
                 }
             }
+
+            MediumVerticalSpacer()
+
             if (streakDays >= 7) {
                 Text(
                     text = stringResource(id = R.string.clean_streak_perfect_week_message),
@@ -113,6 +120,8 @@ fun WeeklyCleanStreakCard(
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
+
+            SmallVerticalSpacer()
         }
     }
 }

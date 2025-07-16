@@ -9,7 +9,6 @@ import android.os.storage.StorageManager
 import android.os.storage.StorageVolume
 import java.util.Locale
 import java.util.UUID
-import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 
 object StorageUtils {
 
@@ -47,8 +46,4 @@ object StorageUtils {
         val freeSpacePercentage : Int = ((freeSize.toDouble() / totalSize.toDouble()) * 100).toInt()
         callback(usedFormatted , totalFormatted , totalSize , usageProgress , freeSpacePercentage)
     }
-
-    fun formatSize(size: Long): String = FileSizeFormatter.format(size)
-
-    fun formatSizeReadable(size: Long): String = FileSizeFormatter.format(size)
 }

@@ -57,7 +57,6 @@ import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.qualifier.named
-import java.io.File
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

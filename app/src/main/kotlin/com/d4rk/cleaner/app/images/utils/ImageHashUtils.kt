@@ -3,11 +3,12 @@ package com.d4rk.cleaner.app.images.utils
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import java.io.File
+import androidx.core.graphics.scale
 
 object ImageHashUtils {
     fun perceptualHash(file: File): String? = runCatching {
         val bitmap = BitmapFactory.decodeFile(file.absolutePath) ?: return null
-        val resized = Bitmap.createScaledBitmap(bitmap, 8, 8, true)
+        val resized = bitmap.scale(8, 8)
         val pixels = IntArray(64)
         resized.getPixels(pixels, 0, 8, 0, 0, 8, 8)
         var sum = 0

@@ -15,7 +15,6 @@ import com.d4rk.cleaner.app.clean.scanner.domain.usecases.DeleteFilesUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetLargestFilesUseCase
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import java.io.File
 
 class LargeFilesViewModel(

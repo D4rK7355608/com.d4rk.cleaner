@@ -38,7 +38,6 @@ import com.d4rk.android.libs.apptoolkit.core.utils.helpers.IntentsHelper
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.apps.manager.domain.data.model.ui.UiAppManagerModel
 import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
-import com.d4rk.cleaner.app.clean.dashboard.ui.DashboardTransitions
 import com.d4rk.cleaner.app.clean.scanner.domain.actions.ScannerEvent
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.CleaningState
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.CleaningType

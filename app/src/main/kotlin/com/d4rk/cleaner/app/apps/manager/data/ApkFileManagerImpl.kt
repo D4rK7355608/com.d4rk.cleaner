@@ -12,7 +12,6 @@ import com.d4rk.cleaner.core.domain.model.network.Errors
 import com.d4rk.cleaner.core.utils.extensions.toError
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.io.File
 import com.d4rk.cleaner.core.utils.helpers.DirectoryScanner
 
 class ApkFileManagerImpl(private val application : Application) : ApkFileManager {
