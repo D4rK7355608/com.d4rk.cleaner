@@ -75,6 +75,8 @@
     <string name="delete_forever_message">¿Estás seguro/a de que quieres eliminar estos archivos para siempre? Esta acción no se puede deshacer.</string>
     <string name="move_to_trash_title">Mover a la papelera</string>
     <string name="move_to_trash_message">¿Estás seguro/a de que quieres mover estos archivos a la papelera?</string>
+    <string name="moving">Mover</string>
+    <string name="clean_all">Limpiar todo</string>
     <string name="quick_scan">Escaneo rápido</string>
     <string name="quick_scan_cleaned_format">Limpiaste %1$s esta semana</string>
     <string name="quick_scan_summary_tip">¡Se ve bien! ¿Quieres escanear de nuevo para liberar más espacio?</string>

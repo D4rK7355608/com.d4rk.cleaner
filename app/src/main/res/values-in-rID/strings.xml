@@ -73,6 +73,8 @@
     <string name="delete_forever_message">Apakah Anda yakin ingin menghapus file-file ini selamanya? Tindakan ini tidak dapat dibatalkan.</string>
     <string name="move_to_trash_title">Pindahkan ke Sampah</string>
     <string name="move_to_trash_message">Apakah Anda yakin ingin memindahkan file-file ini ke sampah?</string>
+    <string name="moving">Pindahkan</string>
+    <string name="clean_all">Bersihkan Semua</string>
     <string name="quick_scan">Pindai Cepat</string>
     <string name="quick_scan_cleaned_format">Kamu membersihkan %1$s minggu ini</string>
     <string name="quick_scan_summary_tip">Kelihatan bagus! Ingin memindai lagi untuk ruang ekstra?</string>

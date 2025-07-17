@@ -76,6 +76,8 @@
     <string name="delete_forever_message">Ви впевнені, що хочете видалити ці файли назавжди? Цю дію неможливо скасувати.</string>
     <string name="move_to_trash_title">Перемістити до кошика</string>
     <string name="move_to_trash_message">Ви впевнені, що хочете перемістити ці файли до кошика?</string>
+    <string name="moving">Перемістити</string>
+    <string name="clean_all">Очистити все</string>
     <string name="quick_scan">Швидке сканування</string>
     <string name="quick_scan_cleaned_format">Ви очистили %1$s цього тижня</string>
     <string name="quick_scan_summary_tip">Все виглядає добре! Бажаєте просканувати ще раз для додаткового місця?</string>

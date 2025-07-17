@@ -73,6 +73,8 @@
     <string name="delete_forever_message">これらのファイルを完全に削除しますか？この操作は元に戻せません。</string>
     <string name="move_to_trash_title">ゴミ箱に移動</string>
     <string name="move_to_trash_message">これらのファイルをゴミ箱に移動しますか？</string>
+    <string name="moving">移動</string>
+    <string name="clean_all">すべてクリーン</string>
     <string name="quick_scan">クイックスキャン</string>
     <string name="quick_scan_cleaned_format">今週は %1$s をクリーンしました</string>
     <string name="quick_scan_summary_tip">いい感じです！ さらに空き容量を探してもう一度スキャンしますか？</string>

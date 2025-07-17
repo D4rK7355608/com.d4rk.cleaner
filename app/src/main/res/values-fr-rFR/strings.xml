@@ -75,6 +75,8 @@
     <string name="delete_forever_message">Êtes-vous sûr de vouloir supprimer définitivement ces fichiers ? Cette action est irréversible.</string>
     <string name="move_to_trash_title">Mettre à la corbeille</string>
     <string name="move_to_trash_message">Êtes-vous sûr de vouloir mettre ces fichiers à la corbeille ?</string>
+    <string name="moving">Déplacer</string>
+    <string name="clean_all">Tout nettoyer</string>
     <string name="quick_scan">Analyse rapide</string>
     <string name="quick_scan_cleaned_format">Vous avez nettoyé %1$s cette semaine</string>
     <string name="quick_scan_summary_tip">C\'est bien ! Vous voulez scanner à nouveau pour gagner plus d\'espace ?</string>

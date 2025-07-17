@@ -73,6 +73,8 @@
     <string name="delete_forever_message">이 파일을 영구적으로 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.</string>
     <string name="move_to_trash_title">휴지통으로 이동</string>
     <string name="move_to_trash_message">이 파일을 휴지통으로 이동하시겠습니까?</string>
+    <string name="moving">이동</string>
+    <string name="clean_all">모두 정리</string>
     <string name="quick_scan">빠른 검사</string>
     <string name="quick_scan_cleaned_format">이번 주에 %1$s을(를) 정리했어요</string>
     <string name="quick_scan_summary_tip">좋아 보이네요! 공간 확보를 위해 다시 스캔할까요?</string>

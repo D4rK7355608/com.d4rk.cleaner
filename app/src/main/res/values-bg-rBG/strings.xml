@@ -74,6 +74,8 @@
     <string name="delete_forever_message">Сигурни ли сте, че искате да изтриете тези файлове завинаги? Това действие не може да бъде отменено.</string>
     <string name="move_to_trash_title">Преместване в кошчето</string>
     <string name="move_to_trash_message">Сигурни ли сте, че искате да преместите тези файлове в кошчето?</string>
+    <string name="moving">Премести</string>
+    <string name="clean_all">Изчисти всичко</string>
     <string name="quick_scan">Бързо сканиране</string>
     <string name="quick_scan_cleaned_format">Изчистихте %1$s тази седмица</string>
     <string name="quick_scan_summary_tip">Изглежда добре! Искате ли да сканирате отново за още място?</string>

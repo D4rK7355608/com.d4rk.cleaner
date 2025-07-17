@@ -76,6 +76,8 @@
     <string name="delete_forever_message">Czy na pewno chcesz usunąć te pliki na zawsze? Tej czynności nie można cofnąć.</string>
     <string name="move_to_trash_title">Przenieś do kosza</string>
     <string name="move_to_trash_message">Czy na pewno chcesz przenieść te pliki do kosza?</string>
+    <string name="moving">Przenieś</string>
+    <string name="clean_all">Wyczyść wszystko</string>
     <string name="quick_scan">Szybkie skanowanie</string>
     <string name="quick_scan_cleaned_format">Wyczyściłeś %1$s w tym tygodniu</string>
     <string name="quick_scan_summary_tip">Wygląda dobrze! Zeskanować ponownie, by zwolnić więcej miejsca?</string>

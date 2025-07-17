@@ -74,6 +74,8 @@
     <string name="delete_forever_message">আপনি কি নিশ্চিত যে এই ফাইলগুলি চিরতরে মুছতে চান? এই কাজটি আর ফেরানো যাবে না।</string>
     <string name="move_to_trash_title">ট্র্যাশে সরান</string>
     <string name="move_to_trash_message">আপনি কি নিশ্চিত যে এই ফাইলগুলি ট্র্যাশে সরাতে চান?</string>
+    <string name="moving">সরান</string>
+    <string name="clean_all">সব পরিষ্কার করুন</string>
     <string name="quick_scan">দ্রুত স্ক্যান</string>
     <string name="quick_scan_cleaned_format">আপনি এই সপ্তাহে %1$s পরিষ্কার করেছেন</string>
     <string name="quick_scan_summary_tip">দারুন দেখাচ্ছে! আরও জায়গা পাওয়ার জন্য আবার স্ক্যান করবেন?</string>

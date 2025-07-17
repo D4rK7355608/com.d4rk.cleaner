@@ -75,6 +75,8 @@
     <string name="delete_forever_message">Sei sicuro di voler eliminare questi file definitivamente? Questa azione non può essere annullata.</string>
     <string name="move_to_trash_title">Sposta nel cestino</string>
     <string name="move_to_trash_message">Sei sicuro di voler spostare questi file nel cestino?</string>
+    <string name="moving">Sposta</string>
+    <string name="clean_all">Pulisci tutto</string>
     <string name="quick_scan">Scansione rapida</string>
     <string name="quick_scan_cleaned_format">Hai pulito %1$s questa settimana</string>
     <string name="quick_scan_summary_tip">Tutto bene! Vuoi scansionare di nuovo per liberare spazio?</string>

@@ -75,6 +75,8 @@
     <string name="delete_forever_message">Sigur doriți să ștergeți aceste fișiere definitiv? Această acțiune nu poate fi anulată.</string>
     <string name="move_to_trash_title">Mută în coș</string>
     <string name="move_to_trash_message">Sigur doriți să mutați aceste fișiere în coș?</string>
+    <string name="moving">Mută</string>
+    <string name="clean_all">Curăță tot</string>
     <string name="quick_scan">Scanare rapidă</string>
     <string name="quick_scan_cleaned_format">Ai curățat %1$s în această săptămână</string>
     <string name="quick_scan_summary_tip">Arată bine! Vrei să scanezi din nou pentru spațiu suplimentar?</string>

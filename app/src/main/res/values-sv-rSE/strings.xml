@@ -74,6 +74,8 @@
     <string name="delete_forever_message">Är du säker på att du vill radera dessa filer permanent? Denna åtgärd kan inte ångras.</string>
     <string name="move_to_trash_title">Flytta till papperskorgen</string>
     <string name="move_to_trash_message">Är du säker på att du vill flytta dessa filer till papperskorgen?</string>
+    <string name="moving">Flytta</string>
+    <string name="clean_all">Rensa allt</string>
     <string name="quick_scan">Snabbskanning</string>
     <string name="quick_scan_cleaned_format">Du rensade %1$s den här veckan</string>
     <string name="quick_scan_summary_tip">Ser bra ut! Vill du skanna igen för extra utrymme?</string>

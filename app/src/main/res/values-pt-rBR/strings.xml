@@ -75,6 +75,8 @@
     <string name="delete_forever_message">Tem certeza de que deseja excluir esses arquivos para sempre? Esta ação não pode ser desfeita.</string>
     <string name="move_to_trash_title">Mover para a Lixeira</string>
     <string name="move_to_trash_message">Tem certeza de que deseja mover esses arquivos para a lixeira?</string>
+    <string name="moving">Mover</string>
+    <string name="clean_all">Limpar Tudo</string>
     <string name="quick_scan">Verificação Rápida</string>
     <string name="quick_scan_cleaned_format">Você limpou %1$s esta semana</string>
     <string name="quick_scan_summary_tip">Tudo certo! Quer escanear de novo para liberar espaço?</string>
