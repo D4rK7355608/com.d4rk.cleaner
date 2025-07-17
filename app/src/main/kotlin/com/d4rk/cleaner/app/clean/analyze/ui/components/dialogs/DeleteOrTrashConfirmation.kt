@@ -26,6 +26,7 @@ fun DeleteOrTrashConfirmation(data: UiScannerModel , viewModel: ScannerViewModel
         if (isDeleteDialog) R.string.delete_forever_title else R.string.move_to_trash_title
     val messageRes =
         if (isDeleteDialog) R.string.delete_forever_message else R.string.move_to_trash_message
+    val confirmButtonText = if (isDeleteDialog) R.string.clean_all else R.string.moving
 
     BasicAlertDialog(
         title = stringResource(id = titleRes), content = {
@@ -47,7 +48,10 @@ fun DeleteOrTrashConfirmation(data: UiScannerModel , viewModel: ScannerViewModel
                 viewModel.onEvent(ScannerEvent.MoveSelectedToTrash)
                 viewModel.onEvent(ScannerEvent.SetMoveToTrashConfirmationDialogVisibility(false))
             }
-        }, onDismiss = {
+        },
+
+        confirmButtonText = stringResource(id = confirmButtonText),
+        onDismiss = {
             if (isDeleteDialog) {
                 viewModel.onEvent(ScannerEvent.SetDeleteForeverConfirmationDialogVisibility(false))
             } else {
