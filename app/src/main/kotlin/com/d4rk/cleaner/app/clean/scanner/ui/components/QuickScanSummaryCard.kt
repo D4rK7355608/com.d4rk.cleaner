@@ -33,12 +33,12 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.d4rk.android.libs.apptoolkit.core.ui.components.digits.AnimatedDigit
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallHorizontalSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.notifications.notifications.CleanerMessageProvider
-import com.d4rk.cleaner.core.ui.digits.AnimatedDigit
 
 @Composable
 fun QuickScanSummaryCard(

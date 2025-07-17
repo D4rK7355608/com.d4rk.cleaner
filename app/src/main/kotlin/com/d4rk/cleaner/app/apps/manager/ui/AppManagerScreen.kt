@@ -46,6 +46,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
+import com.d4rk.android.libs.apptoolkit.core.ui.components.digits.AnimatedDigit
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.hapticPagerSwipe
 import com.d4rk.android.libs.apptoolkit.core.ui.components.snackbar.DefaultSnackbarHandler
@@ -56,7 +57,6 @@ import com.d4rk.cleaner.app.apps.manager.domain.actions.AppManagerEvent
 import com.d4rk.cleaner.app.apps.manager.domain.data.model.ui.UiAppManagerModel
 import com.d4rk.cleaner.app.apps.manager.ui.components.tabs.ApksTab
 import com.d4rk.cleaner.app.apps.manager.ui.components.tabs.AppsTab
-import com.d4rk.cleaner.core.ui.digits.AnimatedDigit
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collectLatest

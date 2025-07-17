@@ -17,7 +17,7 @@ android {
         applicationId = "com.d4rk.cleaner"
         minSdk = 23
         targetSdk = 36
-        versionCode = 202
+        versionCode = 203
         versionName = "3.5.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         @Suppress("UnstableApiUsage")
@@ -116,7 +116,7 @@ android {
 dependencies {
 
     // App Core
-    implementation(dependencyNotation = "com.github.D4rK7355608:AppToolkit:1.0.37") {
+    implementation(dependencyNotation = "com.github.D4rK7355608:AppToolkit:1.0.38") {
         isTransitive = true
     }
 
