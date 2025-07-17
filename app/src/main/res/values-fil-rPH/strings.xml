@@ -74,6 +74,8 @@
     <string name="delete_forever_message">Sigurado ka bang gusto mong burahin ang mga file na ito nang tuluyan? Hindi na maibabalik ang aksyong ito.</string>
     <string name="move_to_trash_title">Ilipat sa Trash</string>
     <string name="move_to_trash_message">Sigurado ka bang gusto mong ilipat ang mga file na ito sa trash?</string>
+    <string name="moving">Ilipat</string>
+    <string name="clean_all">I-clear Lahat</string>
     <string name="quick_scan">Mabilisang Scan</string>
     <string name="quick_scan_cleaned_format">Nilinis mo ang %1$s ngayong linggo</string>
     <string name="quick_scan_summary_tip">Mukhang maayos! Gusto mo bang mag-scan ulit para sa dagdag na espasyo?</string>

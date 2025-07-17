@@ -73,6 +73,8 @@
     <string name="delete_forever_message">คุณแน่ใจหรือไม่ว่าต้องการลบไฟล์เหล่านี้อย่างถาวร? การกระทำนี้ไม่สามารถเลิกทำได้</string>
     <string name="move_to_trash_title">ย้ายไปที่ถังขยะ</string>
     <string name="move_to_trash_message">คุณแน่ใจหรือไม่ว่าต้องการย้ายไฟล์เหล่านี้ไปที่ถังขยะ?</string>
+    <string name="moving">ย้าย</string>
+    <string name="clean_all">ล้างทั้งหมด</string>
     <string name="quick_scan">สแกนด่วน</string>
     <string name="quick_scan_cleaned_format">คุณทำความสะอาด %1$s ในสัปดาห์นี้</string>
     <string name="quick_scan_summary_tip">ดูดีมาก! ต้องการสแกนอีกครั้งเพื่อเพิ่มพื้นที่ไหม?</string>

@@ -74,6 +74,8 @@
     <string name="delete_forever_message">Bu dosyaları kalıcı olarak silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</string>
     <string name="move_to_trash_title">Çöp Kutusuna Taşı</string>
     <string name="move_to_trash_message">Bu dosyaları çöp kutusuna taşımak istediğinizden emin misiniz?</string>
+    <string name="moving">Taşı</string>
+    <string name="clean_all">Hepsini Temizle</string>
     <string name="quick_scan">Hızlı Tarama</string>
     <string name="quick_scan_cleaned_format">Bu hafta %1$s temizledin</string>
     <string name="quick_scan_summary_tip">İyi görünüyor! Daha fazla alan için tekrar taramak ister misin?</string>

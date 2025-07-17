@@ -73,6 +73,8 @@
     <string name="delete_forever_message">Bạn có chắc chắn muốn xóa vĩnh viễn các tệp này không? Hành động này không thể hoàn tác.</string>
     <string name="move_to_trash_title">Chuyển vào thùng rác</string>
     <string name="move_to_trash_message">Bạn có chắc chắn muốn chuyển các tệp này vào thùng rác không?</string>
+    <string name="moving">Di chuyển</string>
+    <string name="clean_all">Dọn sạch tất cả</string>
     <string name="quick_scan">Quét nhanh</string>
     <string name="quick_scan_cleaned_format">Bạn đã dọn %1$s tuần này</string>
     <string name="quick_scan_summary_tip">Trông ổn! Quét lại để có thêm dung lượng nhé?</string>

@@ -74,6 +74,8 @@
     <string name="delete_forever_message">کیا آپ واقعی ان فائلوں کو ہمیشہ کے لیے حذف کرنا چاہتے ہیں؟ اس کارروائی کو واپس نہیں کیا جا سکتا۔</string>
     <string name="move_to_trash_title">ردی کی ٹوکری میں منتقل کریں</string>
     <string name="move_to_trash_message">کیا آپ واقعی ان فائلوں کو ردی کی ٹوکری میں منتقل کرنا چاہتے ہیں؟</string>
+    <string name="moving">منتقل کریں</string>
+    <string name="clean_all">سب صاف کریں</string>
     <string name="quick_scan">فوری اسکین</string>
     <string name="quick_scan_cleaned_format">آپ نے اس ہفتے %1$s صاف کیا</string>
     <string name="quick_scan_summary_tip">سب ٹھیک لگ رہا ہے! مزید جگہ کے لیے دوبارہ اسکین کرنا چاہیں؟</string>

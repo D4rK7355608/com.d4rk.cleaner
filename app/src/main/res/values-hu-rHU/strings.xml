@@ -74,6 +74,8 @@
     <string name="delete_forever_message">Biztosan véglegesen törölni szeretnéd ezeket a fájlokat? Ez a művelet nem vonható vissza.</string>
     <string name="move_to_trash_title">Áthelyezés a kukába</string>
     <string name="move_to_trash_message">Biztosan át szeretnéd helyezni ezeket a fájlokat a kukába?</string>
+    <string name="moving">Áthelyezés</string>
+    <string name="clean_all">Mindent tisztíts</string>
     <string name="quick_scan">Gyors vizsgálat</string>
     <string name="quick_scan_cleaned_format">Ezen a héten %1$s-t tisztítottál</string>
     <string name="quick_scan_summary_tip">Jól néz ki! Újraszkenneljük extra helyért?</string>

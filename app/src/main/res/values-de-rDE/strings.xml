@@ -74,6 +74,8 @@
     <string name="delete_forever_message">Sind Sie sicher, dass Sie diese Dateien endgültig löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.</string>
     <string name="move_to_trash_title">In den Papierkorb verschieben</string>
     <string name="move_to_trash_message">Möchten Sie diese Dateien wirklich in den Papierkorb verschieben?</string>
+    <string name="moving">Verschieben</string>
+    <string name="clean_all">Alles bereinigen</string>
     <string name="quick_scan">Schnellscan</string>
     <string name="quick_scan_cleaned_format">Du hast diese Woche %1$s bereinigt</string>
     <string name="quick_scan_summary_tip">Sieht gut aus! Nochmals scannen für mehr Platz?</string>

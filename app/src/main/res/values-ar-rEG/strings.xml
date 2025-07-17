@@ -78,6 +78,8 @@
     <string name="delete_forever_message">متأكد إنك عايز تحذف الملفات دي بشكل نهائي؟ الخطوة دي مش هينفع ترجع فيها.</string>
     <string name="move_to_trash_title">نقل لسلة المهملات</string>
     <string name="move_to_trash_message">متأكد إنك عايز تنقل الملفات دي لسلة المهملات؟</string>
+    <string name="moving">نقل</string>
+    <string name="clean_all">تنظيف الكل</string>
     <string name="quick_scan">فحص سريع</string>
     <string name="quick_scan_cleaned_format">لقد نظفت %1$s هذا الأسبوع</string>
     <string name="quick_scan_summary_tip">تبدو الأمور جيدة! هل تريد الفحص مجددًا للمزيد من المساحة؟</string>
