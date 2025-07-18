@@ -6,10 +6,8 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.MenuOpen
 import androidx.compose.material.icons.filled.CleaningServices
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.outlined.CleaningServices
-import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.rounded.AppRegistration
 import androidx.compose.material.icons.rounded.Storage
 import androidx.compose.material.icons.sharp.AppRegistration
@@ -35,15 +33,15 @@ import androidx.navigation.compose.rememberNavController
 import com.d4rk.android.libs.apptoolkit.app.main.domain.model.BottomBarItem
 import com.d4rk.android.libs.apptoolkit.app.main.ui.components.navigation.BottomNavigationBar
 import com.d4rk.android.libs.apptoolkit.app.main.ui.components.navigation.LeftNavigationRail
-import com.d4rk.cleaner.app.main.ui.components.navigation.CleanerTopAppBar
-import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
 import com.d4rk.android.libs.apptoolkit.core.domain.model.navigation.NavigationDrawerItem
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.snackbar.DefaultSnackbarHost
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ScreenHelper
 import com.d4rk.cleaner.R
+import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
 import com.d4rk.cleaner.app.main.domain.model.UiMainScreen
 import com.d4rk.cleaner.app.main.ui.components.navigation.AppNavigationHost
+import com.d4rk.cleaner.app.main.ui.components.navigation.CleanerTopAppBar
 import com.d4rk.cleaner.app.main.ui.components.navigation.NavigationDrawer
 import com.d4rk.cleaner.app.main.ui.components.navigation.handleNavigationItemClick
 import com.d4rk.cleaner.app.main.utils.constants.NavigationRoutes
@@ -139,7 +137,7 @@ fun MainScaffoldTabletContent() {
 
     val bottomItems = listOf(
         BottomBarItem(
-            route = NavigationRoutes.ROUTE_HOME , icon = Icons.Outlined.Home , selectedIcon = Icons.Filled.Home , title = R.string.scanner
+            route = NavigationRoutes.ROUTE_HOME , icon = Icons.Outlined.CleaningServices , selectedIcon = Icons.Filled.CleaningServices , title = R.string.scanner
         ) ,
         BottomBarItem(
             route = NavigationRoutes.ROUTE_APP_MANAGER , icon = Icons.Sharp.AppRegistration , selectedIcon = Icons.Rounded.AppRegistration , title = R.string.app_manager
