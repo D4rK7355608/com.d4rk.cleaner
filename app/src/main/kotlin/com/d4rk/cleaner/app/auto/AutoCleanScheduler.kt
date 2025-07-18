@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import kotlinx.coroutines.runBlocking
@@ -31,5 +32,11 @@ object AutoCleanScheduler {
 
     fun cancel(context: Context) {
         WorkManager.getInstance(context).cancelUniqueWork(WORK_NAME)
+    }
+
+    fun runOnce(context: Context) {
+        val request = OneTimeWorkRequestBuilder<AutoCleanWorker>()
+            .build()
+        WorkManager.getInstance(context).enqueue(request)
     }
 }
