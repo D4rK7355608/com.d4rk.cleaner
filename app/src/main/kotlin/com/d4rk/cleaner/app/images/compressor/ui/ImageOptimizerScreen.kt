@@ -2,7 +2,10 @@ package com.d4rk.cleaner.app.images.compressor.ui
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -31,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -40,6 +44,7 @@ import com.d4rk.android.libs.apptoolkit.core.domain.model.ads.AdsConfig
 import com.d4rk.android.libs.apptoolkit.core.ui.components.ads.AdBanner
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
+import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ScreenHelper
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.images.compressor.domain.data.model.ui.UiImageOptimizerState
 import com.d4rk.cleaner.app.images.compressor.ui.components.tabs.FileSizeTab
@@ -59,6 +64,8 @@ fun ImageOptimizerScreen(
     val coroutineScope : CoroutineScope = rememberCoroutineScope()
     val dataStore : DataStore = koinInject()
     val adsState : Boolean by remember { dataStore.ads(default = true) }.collectAsState(initial = true)
+    val context = LocalContext.current
+    val isTabletOrLandscape : Boolean = ScreenHelper.isLandscapeOrTablet(context = context)
     val tabs : List<String> = listOf(
         stringResource(id = R.string.quick_compress) ,
         stringResource(id = R.string.file_size) ,
@@ -71,85 +78,138 @@ fun ImageOptimizerScreen(
     }
 
     LargeTopAppBarWithScaffold(title = stringResource(id = R.string.image_optimizer) , onBackClicked = { activity.finish() }) { paddingValues ->
-        ConstraintLayout(
-            modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues = paddingValues)
-        ) {
-            val (imageCardView : ConstrainedLayoutReference , tabLayout : ConstrainedLayoutReference , viewPager : ConstrainedLayoutReference , compressButton : ConstrainedLayoutReference , adView : ConstrainedLayoutReference) = createRefs()
-
-            Card(
+        if (isTabletOrLandscape) {
+            Row(
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .constrainAs(imageCardView) {
-                            top.linkTo(anchor = parent.top)
-                            start.linkTo(anchor = parent.start)
-                            end.linkTo(anchor = parent.end)
-                            bottom.linkTo(anchor = tabLayout.top)
-                        }
-                        .padding(all = 24.dp) ,
+                        .fillMaxSize()
+                        .padding(paddingValues)
             ) {
-                ImageDisplay(viewModel)
-            }
-
-            TabRow(selectedTabIndex = pagerState.currentPage , modifier = Modifier.constrainAs(ref = tabLayout) {
-                top.linkTo(anchor = imageCardView.bottom)
-                start.linkTo(anchor = parent.start)
-                end.linkTo(anchor = parent.end)
-            }) {
-                tabs.forEachIndexed { index , title ->
-                    Tab(text = { Text(text = title) } , selected = pagerState.currentPage == index , onClick = {
-                        coroutineScope.launch {
-                            pagerState.animateScrollToPage(page = index)
-                        }
-                    })
-                }
-            }
-
-            HorizontalPager(state = pagerState , modifier = Modifier.constrainAs(ref = viewPager) {
-                top.linkTo(anchor = tabLayout.bottom)
-                start.linkTo(anchor = parent.start)
-                end.linkTo(anchor = parent.end)
-                bottom.linkTo(anchor = compressButton.top)
-                height = Dimension.fillToConstraints
-            }) { page ->
-                when (page) {
-                    0 -> QuickCompressTab(viewModel = viewModel)
-                    1 -> FileSizeTab(viewModel = viewModel)
-                    2 -> ManualModeTab(viewModel = viewModel)
-                }
-            }
-
-            OutlinedButton(onClick = {
-                coroutineScope.launch {
-                    viewModel.optimizeImage()
-                }
-            } , enabled = if (pagerState.currentPage == 1) {
-                uiState.fileSizeKB != 0
-            }
-            else {
-                true
-            } , modifier = Modifier
-                    .constrainAs(ref = compressButton) {
-                        start.linkTo(anchor = parent.start)
-                        end.linkTo(anchor = parent.end)
-                        if (adsState) {
-                            bottom.linkTo(anchor = adView.top)
-                        }
-                        else {
-                            bottom.linkTo(anchor = parent.bottom)
+                Column(
+                    modifier = Modifier
+                            .weight(1f)
+                            .fillMaxHeight()
+                ) {
+                    TabRow(selectedTabIndex = pagerState.currentPage) {
+                        tabs.forEachIndexed { index, title ->
+                            Tab(text = { Text(text = title) }, selected = pagerState.currentPage == index, onClick = {
+                                coroutineScope.launch { pagerState.animateScrollToPage(page = index) }
+                            })
                         }
                     }
-                    .padding(all = SizeConstants.MediumSize)) {
-                Text(text = stringResource(id = R.string.optimize_image))
-            }
 
-            if (adsState) {
-                AdBanner(modifier = Modifier.constrainAs(ref = adView) {
-                    bottom.linkTo(anchor = parent.bottom)
+                    HorizontalPager(state = pagerState, modifier = Modifier.weight(1f)) { page ->
+                        when (page) {
+                            0 -> QuickCompressTab(viewModel = viewModel)
+                            1 -> FileSizeTab(viewModel = viewModel)
+                            2 -> ManualModeTab(viewModel = viewModel)
+                        }
+                    }
+
+                    OutlinedButton(onClick = {
+                        coroutineScope.launch { viewModel.optimizeImage() }
+                    }, enabled = if (pagerState.currentPage == 1) {
+                        uiState.fileSizeKB != 0
+                    } else { true }, modifier = Modifier
+                            .padding(all = SizeConstants.MediumSize)
+                            .align(Alignment.CenterHorizontally)) {
+                        Text(text = stringResource(id = R.string.optimize_image))
+                    }
+
+                    if (adsState) {
+                        AdBanner(modifier = Modifier.align(Alignment.CenterHorizontally), adsConfig = adsConfig)
+                    }
+                }
+
+                Card(
+                    modifier = Modifier
+                            .weight(1f)
+                            .fillMaxHeight()
+                            .padding(24.dp)
+                ) {
+                    ImageDisplay(viewModel)
+                }
+            }
+        } else {
+            ConstraintLayout(
+                modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues = paddingValues)
+            ) {
+                val (imageCardView : ConstrainedLayoutReference , tabLayout : ConstrainedLayoutReference , viewPager : ConstrainedLayoutReference , compressButton : ConstrainedLayoutReference , adView : ConstrainedLayoutReference) = createRefs()
+
+                Card(
+                    modifier = Modifier
+                            .fillMaxWidth()
+                            .constrainAs(imageCardView) {
+                                top.linkTo(anchor = parent.top)
+                                start.linkTo(anchor = parent.start)
+                                end.linkTo(anchor = parent.end)
+                                bottom.linkTo(anchor = tabLayout.top)
+                            }
+                            .padding(all = 24.dp) ,
+                ) {
+                    ImageDisplay(viewModel)
+                }
+
+                TabRow(selectedTabIndex = pagerState.currentPage , modifier = Modifier.constrainAs(ref = tabLayout) {
+                    top.linkTo(anchor = imageCardView.bottom)
                     start.linkTo(anchor = parent.start)
                     end.linkTo(anchor = parent.end)
-                } , adsConfig = adsConfig)
+                }) {
+                    tabs.forEachIndexed { index , title ->
+                        Tab(text = { Text(text = title) } , selected = pagerState.currentPage == index , onClick = {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(page = index)
+                            }
+                        })
+                    }
+                }
+
+                HorizontalPager(state = pagerState , modifier = Modifier.constrainAs(ref = viewPager) {
+                    top.linkTo(anchor = tabLayout.bottom)
+                    start.linkTo(anchor = parent.start)
+                    end.linkTo(anchor = parent.end)
+                    bottom.linkTo(anchor = compressButton.top)
+                    height = Dimension.fillToConstraints
+                }) { page ->
+                    when (page) {
+                        0 -> QuickCompressTab(viewModel = viewModel)
+                        1 -> FileSizeTab(viewModel = viewModel)
+                        2 -> ManualModeTab(viewModel = viewModel)
+                    }
+                }
+
+                OutlinedButton(onClick = {
+                    coroutineScope.launch {
+                        viewModel.optimizeImage()
+                    }
+                } , enabled = if (pagerState.currentPage == 1) {
+                    uiState.fileSizeKB != 0
+                }
+                else {
+                    true
+                } , modifier = Modifier
+                        .constrainAs(ref = compressButton) {
+                            start.linkTo(anchor = parent.start)
+                            end.linkTo(anchor = parent.end)
+                            if (adsState) {
+                                bottom.linkTo(anchor = adView.top)
+                            }
+                            else {
+                                bottom.linkTo(anchor = parent.bottom)
+                            }
+                        }
+                        .padding(all = SizeConstants.MediumSize)) {
+                    Text(text = stringResource(id = R.string.optimize_image))
+                }
+
+                if (adsState) {
+                    AdBanner(modifier = Modifier.constrainAs(ref = adView) {
+                        bottom.linkTo(anchor = parent.bottom)
+                        start.linkTo(anchor = parent.start)
+                        end.linkTo(anchor = parent.end)
+                    } , adsConfig = adsConfig)
+                }
             }
         }
         //  Snackbar(message = stringResource(id = R.string.image_saved) + " " + (uiState.compressedImageUri?.path ?: "") , showSnackbar = uiState.showSaveSnackbar , onDismiss = { coroutineScope.launch { viewModel.updateShowSaveSnackbar(false) } })
