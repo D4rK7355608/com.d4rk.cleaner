@@ -36,6 +36,7 @@ class ContactsCleanerViewModel(
 
             runCatching { repository.findDuplicates() }
                 .onSuccess { groups ->
+                    println("groups.isEmpty() = ${groups.isEmpty()}")
                     _uiState.update {
                         it.copy(
                             screenState = if (groups.isEmpty()) ScreenState.NoData() else ScreenState.Success(),

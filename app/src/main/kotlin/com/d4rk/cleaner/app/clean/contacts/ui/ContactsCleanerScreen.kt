@@ -124,9 +124,16 @@ fun ContactsCleanerScreen(activity: Activity) {
             ) { paddingValues ->
                 ScreenStateHandler(
                     screenState = state,
-                    onLoading = { LoadingScreen() },
-                    onEmpty = { NoDataScreen(textMessage = R.string.no_duplicates_found) },
+                    onLoading = {
+                        println("ContactsCleanerScreen: Loading state")
+                        LoadingScreen()
+                    },
+                    onEmpty = {
+                        println("ContactsCleanerScreen: Empty state")
+                        NoDataScreen(textMessage = R.string.no_duplicates_found)
+                    },
                     onSuccess = { data: UiContactsCleanerModel ->
+                        println("ContactsCleanerScreen: Success state")
                         ContactsCleanerContent(
                             data = data,
                             viewModel = viewModel,
