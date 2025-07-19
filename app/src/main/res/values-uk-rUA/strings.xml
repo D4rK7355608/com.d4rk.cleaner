@@ -161,6 +161,9 @@
     <string name="large_files_card_title">Великі файли</string>
     <string name="large_files_card_subtitle">Перегляньте та видаліть свої найбільші файли.</string>
     <string name="open_large_files">Переглянути великі файли</string>
+    <string name="contacts_cleaner_card_title">Очищення контактів</string>
+    <string name="contacts_cleaner_card_subtitle">Знаходить і об'єднує дублікати контактів</string>
+    <string name="open_contacts_cleaner">Відкрити очищення контактів</string>
     <string name="scan_cache">Сканувати кеш</string>
     <string name="apks">APK-файли</string>
     <string name="archives">Архіви</string>
@@ -208,6 +211,13 @@
         <item quantity="other">%d років тому</item>
     </plurals>
     <string name="no_files_found">Файлів не знайдено</string>
+    <string name="contacts_cleaner_title">Очищення контактів</string>
+    <string name="no_duplicates_found">Дублікатів не знайдено</string>
+    <string name="contacts_loading">Сканування контактів…</string>
+    <string name="contacts_permission_rationale">Нам потрібен доступ до ваших контактів, щоб знаходити та об'єднувати дублікати. Дані ніколи не залишають ваш пристрій.</string>
+    <string name="keep_newest_remove_older">Зберегти новий &amp; видалити старі</string>
+    <string name="merge_all_duplicates">Об'єднати всі дублікати</string>
+    <string name="contacts_permission_denied">Доступ заборонено. Ви можете увімкнути його в налаштуваннях системи.</string>
 
     <!-- App manager -->
     <string name="search">Пошук</string>

@@ -152,6 +152,9 @@
     <string name="large_files_card_title">Tệp lớn</string>
     <string name="large_files_card_subtitle">Xem lại và xóa các tệp lớn nhất của bạn.</string>
     <string name="open_large_files">Xem tệp lớn</string>
+    <string name="contacts_cleaner_card_title">Trình dọn liên hệ</string>
+    <string name="contacts_cleaner_card_subtitle">Tìm và gộp các liên hệ trùng</string>
+    <string name="open_contacts_cleaner">Mở Trình dọn liên hệ</string>
     <string name="scan_cache">Quét bộ nhớ đệm</string>
     <string name="apks">Tệp APK</string>
     <string name="archives">Tệp nén</string>
@@ -190,6 +193,13 @@
         <item quantity="other">%d năm trước</item>
     </plurals>
     <string name="no_files_found">Không tìm thấy tệp nào</string>
+    <string name="contacts_cleaner_title">Trình dọn liên hệ</string>
+    <string name="no_duplicates_found">Không tìm thấy liên hệ trùng</string>
+    <string name="contacts_loading">Đang quét liên hệ…</string>
+    <string name="contacts_permission_rationale">Chúng tôi cần quyền truy cập danh bạ để tìm và gộp các bản trùng. Dữ liệu của bạn không bao giờ rời khỏi thiết bị.</string>
+    <string name="keep_newest_remove_older">Giữ mới nhất &amp; xóa bản cũ</string>
+    <string name="merge_all_duplicates">Gộp tất cả bản trùng</string>
+    <string name="contacts_permission_denied">Quyền bị từ chối. Bạn có thể bật lại trong cài đặt hệ thống.</string>
 
     <!-- App manager -->
     <string name="search">Tìm kiếm</string>

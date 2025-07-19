@@ -152,6 +152,9 @@
     <string name="large_files_card_title">큰 파일</string>
     <string name="large_files_card_subtitle">가장 큰 파일을 검토하고 삭제하세요.</string>
     <string name="open_large_files">큰 파일 보기</string>
+    <string name="contacts_cleaner_card_title">연락처 클리너</string>
+    <string name="contacts_cleaner_card_subtitle">중복 연락처 찾기 및 병합</string>
+    <string name="open_contacts_cleaner">연락처 클리너 열기</string>
     <string name="scan_cache">캐시 스캔</string>
     <string name="apks">APK</string>
     <string name="archives">압축 파일</string>
@@ -190,6 +193,13 @@
         <item quantity="other">%d년 전</item>
     </plurals>
     <string name="no_files_found">파일을 찾을 수 없습니다.</string>
+    <string name="contacts_cleaner_title">연락처 클리너</string>
+    <string name="no_duplicates_found">중복된 연락처가 없습니다</string>
+    <string name="contacts_loading">연락처를 스캔하는 중…</string>
+    <string name="contacts_permission_rationale">중복을 찾고 병합하려면 연락처 접근 권한이 필요합니다. 데이터는 절대 기기를 벗어나지 않습니다.</string>
+    <string name="keep_newest_remove_older">최신만 남기고 나머지 삭제</string>
+    <string name="merge_all_duplicates">모든 중복 병합</string>
+    <string name="contacts_permission_denied">권한이 거부되었습니다. 시스템 설정에서 활성화할 수 있습니다.</string>
 
     <!-- App manager -->
     <string name="search">검색</string>

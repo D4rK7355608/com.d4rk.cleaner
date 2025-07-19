@@ -152,6 +152,9 @@
     <string name="large_files_card_title">大きなファイル</string>
     <string name="large_files_card_subtitle">最も大きなファイルを確認して削除しましょう。</string>
     <string name="open_large_files">大きなファイルを表示</string>
+    <string name="contacts_cleaner_card_title">連絡先クリーナー</string>
+    <string name="contacts_cleaner_card_subtitle">重複した連絡先を検出して統合</string>
+    <string name="open_contacts_cleaner">連絡先クリーナーを開く</string>
     <string name="scan_cache">キャッシュをスキャン</string>
     <string name="apks">APK</string>
     <string name="archives">アーカイブ</string>
@@ -190,6 +193,13 @@
         <item quantity="other">%1$d 件を削除しますか？</item>
     </plurals>
     <string name="no_files_found">ファイルが見つかりません</string>
+    <string name="contacts_cleaner_title">連絡先クリーナー</string>
+    <string name="no_duplicates_found">重複は見つかりませんでした</string>
+    <string name="contacts_loading">連絡先をスキャン中…</string>
+    <string name="contacts_permission_rationale">重複を探して統合するために連絡先へのアクセスが必要です。データが端末の外に送信されることはありません。</string>
+    <string name="keep_newest_remove_older">最新を残して古いものを削除</string>
+    <string name="merge_all_duplicates">すべての重複を統合</string>
+    <string name="contacts_permission_denied">権限が拒否されました。システム設定で有効にできます。</string>
 
     <!-- App manager -->
     <string name="search">検索</string>

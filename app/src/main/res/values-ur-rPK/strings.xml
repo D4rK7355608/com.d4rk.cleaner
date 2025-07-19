@@ -155,6 +155,9 @@
     <string name="large_files_card_title">بڑی فائلیں</string>
     <string name="large_files_card_subtitle">اپنی سب سے بڑی فائلوں کو دیکھیں اور حذف کریں۔</string>
     <string name="open_large_files">بڑی فائلیں دیکھیں</string>
+    <string name="contacts_cleaner_card_title">کانٹیکٹ کلینر</string>
+    <string name="contacts_cleaner_card_subtitle">ڈپلیکیٹ کانٹیکٹس تلاش کریں اور ملائیں</string>
+    <string name="open_contacts_cleaner">کانٹیکٹ کلینر کھولیں</string>
     <string name="scan_cache">کیچ اسکین کریں</string>
     <string name="apks">APK فائلیں</string>
     <string name="archives">آرکائیوز</string>
@@ -196,6 +199,13 @@
         <item quantity="other">%d سال پہلے</item>
     </plurals>
     <string name="no_files_found">کوئی فائل نہیں ملی</string>
+    <string name="contacts_cleaner_title">کانٹیکٹ کلینر</string>
+    <string name="no_duplicates_found">کوئی ڈپلیکیٹ نہیں ملا</string>
+    <string name="contacts_loading">کانٹیکٹس اسکین ہو رہے ہیں…</string>
+    <string name="contacts_permission_rationale">ڈپلیکیٹ تلاش کرنے اور ملانے کے لیے ہمیں آپ کے کانٹیکٹس تک رسائی چاہیے۔ آپ کا ڈیٹا کبھی بھی آپ کی ڈیوائس سے باہر نہیں جاتا۔</string>
+    <string name="keep_newest_remove_older">جدید کو رکھیں اور پرانے حذف کریں</string>
+    <string name="merge_all_duplicates">تمام ڈپلیکیٹ ملائیں</string>
+    <string name="contacts_permission_denied">اجازت مسترد کر دی گئی۔ آپ اسے سسٹم سیٹنگز میں فعال کر سکتے ہیں.</string>
 
     <!-- App manager -->
     <string name="search">تلاش</string>

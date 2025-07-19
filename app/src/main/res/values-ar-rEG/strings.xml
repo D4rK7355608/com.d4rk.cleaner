@@ -167,6 +167,9 @@
     <string name="large_files_card_title">ملفات كبيرة</string>
     <string name="large_files_card_subtitle">راجع واحذف أكبر ملفاتك.</string>
     <string name="open_large_files">عرض الملفات الكبيرة</string>
+    <string name="contacts_cleaner_card_title">منظف جهات الاتصال</string>
+    <string name="contacts_cleaner_card_subtitle">اعثر على جهات الاتصال المكررة وادمجها</string>
+    <string name="open_contacts_cleaner">افتح منظف جهات الاتصال</string>
     <string name="scan_cache">فحص الكاش</string>
     <string name="apks">ملفات APK</string>
     <string name="archives">الملفات المضغوطة</string>
@@ -220,6 +223,13 @@
         <item quantity="other">منذ %d سنة</item>
     </plurals>
     <string name="no_files_found">مفيش ملفات</string>
+    <string name="contacts_cleaner_title">منظف جهات الاتصال</string>
+    <string name="no_duplicates_found">لم يتم العثور على نسخ مكررة</string>
+    <string name="contacts_loading">يتم فحص جهات الاتصال…</string>
+    <string name="contacts_permission_rationale">نحتاج للوصول إلى جهات الاتصال للعثور على المكررات ودمجها. لا تغادر بياناتك جهازك.</string>
+    <string name="keep_newest_remove_older">احتفظ بالأحدث واحذف الأقدم</string>
+    <string name="merge_all_duplicates">دمج كل المكررات</string>
+    <string name="contacts_permission_denied">تم رفض الإذن. يمكنك تمكينه من إعدادات النظام.</string>
 
     <!-- App manager -->
     <string name="search">بحث</string>
