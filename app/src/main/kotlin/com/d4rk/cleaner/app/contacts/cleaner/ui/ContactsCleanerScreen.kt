@@ -35,8 +35,6 @@ fun ContactsCleanerScreen(activity: Activity) {
     val viewModel: ContactsCleanerViewModel = koinViewModel()
     val uiState = viewModel.uiState.collectAsState().value
     val scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
-    val context = LocalContext.current
-
     LargeTopAppBarWithScaffold(
         title = stringResource(id = R.string.contacts_cleaner_title),
         onBackClicked = { activity.finish() },
@@ -46,26 +44,40 @@ fun ContactsCleanerScreen(activity: Activity) {
             screenState = uiState,
             onLoading = { LoadingScreen() },
             onEmpty = { NoDataScreen(textMessage = R.string.no_duplicates_found) },
-            onSuccess = { data: UiContactsCleanerModel ->
-                Column(
-                modifier = Modifier
-                    .padding(padding)
-                    .fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(SizeConstants.LargeSize)
-            ) {
-                data.duplicates.forEach { group ->
-                    ContactGroupItem(
-                        group = group,
-                        onDelete = { viewModel.onEvent(ContactsCleanerEvent.DeleteOlder(group)) },
-                        onMerge = { viewModel.onEvent(ContactsCleanerEvent.MergeAll(group)) }
-                    )
-                }
+            onSuccess = @Composable { data: UiContactsCleanerModel ->
+                ContactsCleanerContent(
+                    data = data,
+                    viewModel = viewModel,
+                    modifier = Modifier
+                        .padding(padding)
+                        .fillMaxSize()
+                )
             }
         )
     }
 
     LaunchedEffect(Unit) {
         viewModel.onEvent(ContactsCleanerEvent.LoadDuplicates)
+    }
+}
+
+@Composable
+private fun ContactsCleanerContent(
+    data: UiContactsCleanerModel,
+    viewModel: ContactsCleanerViewModel,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(SizeConstants.LargeSize)
+    ) {
+        data.duplicates.forEach { group ->
+            ContactGroupItem(
+                group = group,
+                onDelete = { viewModel.onEvent(ContactsCleanerEvent.DeleteOlder(group)) },
+                onMerge = { viewModel.onEvent(ContactsCleanerEvent.MergeAll(group)) }
+            )
+        }
     }
 }
 
