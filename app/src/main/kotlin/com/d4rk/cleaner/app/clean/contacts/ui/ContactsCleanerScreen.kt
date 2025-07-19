@@ -1,6 +1,24 @@
 package com.d4rk.cleaner.app.clean.contacts.ui
 
 import android.app.Activity
+import android.Manifest
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Contacts
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.app.ActivityCompat
+import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
+import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -32,6 +50,16 @@ import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
 import com.d4rk.cleaner.app.clean.contacts.domain.data.model.UiContactsCleanerModel
 import org.koin.compose.viewmodel.koinViewModel
 
+private enum class ContactsPermissionState { CHECKING, GRANTED, RATIONALE, DENIED }
+
+private fun openAppSettings(activity: Activity) {
+    val intent = Intent(
+        Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+        Uri.fromParts("package", activity.packageName, null)
+    )
+    activity.startActivity(intent)
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ContactsCleanerScreen(activity: Activity) {
@@ -40,29 +68,95 @@ fun ContactsCleanerScreen(activity: Activity) {
     val scrollBehavior: TopAppBarScrollBehavior =
         TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
-    println("Cleaning data is : ${state.data?.duplicates?.size}")
+    val context = LocalContext.current
+    var permissionState by remember { mutableStateOf(ContactsPermissionState.CHECKING) }
 
-    LargeTopAppBarWithScaffold(
-        title = stringResource(id = R.string.contacts_cleaner_title),
-        onBackClicked = { activity.finish() },
-        scrollBehavior = scrollBehavior
-    ) { paddingValues ->
-        ScreenStateHandler(
-            screenState = state,
-            onLoading = { LoadingScreen() },
-            onEmpty = { NoDataScreen(textMessage = R.string.no_duplicates_found) },
-            onSuccess = { data: UiContactsCleanerModel ->
-                ContactsCleanerContent(
-                    data = data,
-                    viewModel = viewModel,
-                    paddingValues = paddingValues
-                )
-            }
-        )
+    val permissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { result ->
+        val granted = result.values.all { it }
+        permissionState = if (granted) {
+            ContactsPermissionState.GRANTED
+        } else {
+            val showRationale = ActivityCompat.shouldShowRequestPermissionRationale(
+                activity,
+                Manifest.permission.READ_CONTACTS
+            ) || ActivityCompat.shouldShowRequestPermissionRationale(
+                activity,
+                Manifest.permission.WRITE_CONTACTS
+            )
+            if (showRationale) ContactsPermissionState.RATIONALE else ContactsPermissionState.DENIED
+        }
     }
 
-    LifecycleEventsEffect(Lifecycle.Event.ON_RESUME) {
-        viewModel.onEvent(ContactsCleanerEvent.LoadDuplicates)
+    LaunchedEffect(Unit) {
+        if (PermissionsHelper.hasContactsPermissions(context)) {
+            permissionState = ContactsPermissionState.GRANTED
+        } else {
+            val showRationale = ActivityCompat.shouldShowRequestPermissionRationale(
+                activity,
+                Manifest.permission.READ_CONTACTS
+            ) || ActivityCompat.shouldShowRequestPermissionRationale(
+                activity,
+                Manifest.permission.WRITE_CONTACTS
+            )
+            if (showRationale) {
+                permissionState = ContactsPermissionState.RATIONALE
+            } else {
+                permissionLauncher.launch(
+                    arrayOf(
+                        Manifest.permission.READ_CONTACTS,
+                        Manifest.permission.WRITE_CONTACTS
+                    )
+                )
+            }
+        }
+    }
+
+    when (permissionState) {
+        ContactsPermissionState.GRANTED -> {
+            LargeTopAppBarWithScaffold(
+                title = stringResource(id = R.string.contacts_cleaner_title),
+                onBackClicked = { activity.finish() },
+                scrollBehavior = scrollBehavior
+            ) { paddingValues ->
+                ScreenStateHandler(
+                    screenState = state,
+                    onLoading = { LoadingScreen() },
+                    onEmpty = { NoDataScreen(textMessage = R.string.no_duplicates_found) },
+                    onSuccess = { data: UiContactsCleanerModel ->
+                        ContactsCleanerContent(
+                            data = data,
+                            viewModel = viewModel,
+                            paddingValues = paddingValues
+                        )
+                    }
+                )
+            }
+
+            LifecycleEventsEffect(Lifecycle.Event.ON_RESUME) {
+                viewModel.onEvent(ContactsCleanerEvent.LoadDuplicates)
+            }
+        }
+
+        ContactsPermissionState.RATIONALE -> {
+            PermissionRationaleDialog(onRequest = {
+                permissionLauncher.launch(
+                    arrayOf(
+                        Manifest.permission.READ_CONTACTS,
+                        Manifest.permission.WRITE_CONTACTS
+                    )
+                )
+            }) {
+                permissionState = ContactsPermissionState.DENIED
+            }
+        }
+
+        ContactsPermissionState.DENIED -> {
+            PermissionDeniedScreen(onOpenSettings = { openAppSettings(activity) })
+        }
+
+        ContactsPermissionState.CHECKING -> Unit
     }
 }
 
@@ -114,6 +208,43 @@ private fun RowActions(onDelete: () -> Unit, onMerge: () -> Unit) {
         }
         Button(onClick = onMerge, modifier = Modifier.fillMaxWidth()) {
             Text(text = stringResource(id = R.string.merge_all_duplicates))
+        }
+    }
+}
+
+@Composable
+private fun PermissionRationaleDialog(onRequest: () -> Unit, onDismiss: () -> Unit) {
+    BasicAlertDialog(
+        onDismiss = onDismiss,
+        onConfirm = onRequest,
+        onCancel = onDismiss,
+        icon = Icons.Outlined.Contacts,
+        title = stringResource(id = R.string.contacts_cleaner_title),
+        confirmButtonText = stringResource(id = R.string.button_grant_permission),
+        content = { Text(text = stringResource(id = R.string.contacts_permission_rationale)) },
+    )
+}
+
+@Composable
+private fun PermissionDeniedScreen(onOpenSettings: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(SizeConstants.LargeSize),
+        verticalArrangement = Arrangement.spacedBy(SizeConstants.LargeSize),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Icon(
+            imageVector = Icons.Outlined.Contacts,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.primary
+        )
+        Text(
+            text = stringResource(id = R.string.contacts_permission_denied),
+            style = MaterialTheme.typography.bodyMedium
+        )
+        Button(onClick = onOpenSettings) {
+            Text(text = stringResource(id = R.string.open_settings))
         }
     }
 }
