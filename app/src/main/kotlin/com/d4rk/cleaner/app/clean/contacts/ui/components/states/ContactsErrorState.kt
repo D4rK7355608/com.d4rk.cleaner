@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.clean.contacts.ui.components
+package com.d4rk.cleaner.app.clean.contacts.ui.components.states
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -42,6 +42,7 @@ fun ContactsErrorState(paddingValues: PaddingValues, onRetry: () -> Unit) {
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurface
             )
+            LargeVerticalSpacer()
             OutlinedIconButtonWithText(
                 onClick = onRetry,
                 icon = Icons.Outlined.Refresh,

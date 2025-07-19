@@ -49,8 +49,8 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.contacts.domain.actions.ContactsCleanerEvent
 import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
 import com.d4rk.cleaner.app.clean.contacts.domain.data.model.UiContactsCleanerModel
-import com.d4rk.cleaner.app.clean.contacts.ui.components.ContactsEmptyState
-import com.d4rk.cleaner.app.clean.contacts.ui.components.ContactsErrorState
+import com.d4rk.cleaner.app.clean.contacts.ui.components.states.ContactsEmptyState
+import com.d4rk.cleaner.app.clean.contacts.ui.components.states.ContactsErrorState
 import org.koin.compose.viewmodel.koinViewModel
 
 private enum class ContactsPermissionState { CHECKING, GRANTED, RATIONALE, DENIED }

@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.clean.contacts.ui.components
+package com.d4rk.cleaner.app.clean.contacts.ui.components.states
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
