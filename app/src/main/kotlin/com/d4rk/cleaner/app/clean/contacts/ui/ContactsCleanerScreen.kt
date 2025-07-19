@@ -139,6 +139,9 @@ fun ContactsCleanerScreen(activity: Activity) {
                             viewModel = viewModel,
                             paddingValues = paddingValues
                         )
+                    },
+                    onError = {
+                        NoDataScreen(textMessage = R.string.no_duplicates_found)
                     }
                 )
             }
