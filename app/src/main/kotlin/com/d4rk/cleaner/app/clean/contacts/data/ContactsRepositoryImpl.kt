@@ -4,15 +4,12 @@ import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Context
 import android.provider.ContactsContract
-import android.os.Build
-import androidx.annotation.RequiresApi
 import android.telephony.PhoneNumberUtils
+import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
 
-@RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-class ContactsRepositoryImpl(private val context: Context) : ContactsRepository {
+class ContactsRepositoryImpl(context: Context) : ContactsRepository {
     private val resolver = context.contentResolver
 
     override suspend fun findDuplicates(): List<List<RawContactInfo>> = withContext(Dispatchers.IO) {
