@@ -107,7 +107,7 @@
             android:parentActivityName=".app.main.ui.MainActivity" />
 
         <activity
-            android:name=".app.contacts.cleaner.ui.ContactsCleanerActivity"
+            android:name="com.d4rk.cleaner.app.clean.contacts.ui.ContactsCleanerActivity"
             android:exported="false"
             android:label="@string/contacts_cleaner_title"
             android:parentActivityName=".app.main.ui.MainActivity" />

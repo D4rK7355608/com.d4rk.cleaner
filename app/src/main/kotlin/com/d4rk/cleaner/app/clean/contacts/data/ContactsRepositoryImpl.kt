@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.contacts.cleaner.data
+package com.d4rk.cleaner.app.clean.contacts.data
 
 import android.content.ContentUris
 import android.content.ContentValues
@@ -9,7 +9,7 @@ import androidx.annotation.RequiresApi
 import android.telephony.PhoneNumberUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import com.d4rk.cleaner.app.contacts.cleaner.domain.data.model.RawContactInfo
+import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
 
 @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 class ContactsRepositoryImpl(private val context: Context) : ContactsRepository {

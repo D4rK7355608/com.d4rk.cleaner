@@ -1,6 +1,6 @@
-package com.d4rk.cleaner.app.contacts.cleaner.data
+package com.d4rk.cleaner.app.clean.contacts.data
 
-import com.d4rk.cleaner.app.contacts.cleaner.domain.data.model.RawContactInfo
+import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
 
 interface ContactsRepository {
     suspend fun findDuplicates(): List<List<RawContactInfo>>

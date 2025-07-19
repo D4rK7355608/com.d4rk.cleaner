@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.contacts.cleaner.ui
+package com.d4rk.cleaner.app.clean.contacts.ui
 
 import android.os.Bundle
 import androidx.activity.compose.setContent

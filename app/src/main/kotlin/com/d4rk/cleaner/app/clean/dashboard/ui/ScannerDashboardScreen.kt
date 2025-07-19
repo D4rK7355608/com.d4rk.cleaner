@@ -52,8 +52,8 @@ import com.d4rk.cleaner.app.clean.scanner.ui.components.QuickScanSummaryCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.WeeklyCleanStreakCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.WhatsAppCleanerCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.LargeFilesCard
-import com.d4rk.cleaner.app.contacts.cleaner.ui.ContactsCleanerCard
-import com.d4rk.cleaner.app.contacts.cleaner.ui.ContactsCleanerActivity
+import com.d4rk.cleaner.app.clean.contacts.ui.components.ContactsCleanerCard
+import com.d4rk.cleaner.app.clean.contacts.ui.ContactsCleanerActivity
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsAppCleanerActivity
 import com.d4rk.cleaner.app.images.picker.ui.ImagePickerActivity
 import com.d4rk.cleaner.app.clean.largefiles.ui.LargeFilesActivity

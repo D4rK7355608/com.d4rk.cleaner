@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.contacts.cleaner.ui
+package com.d4rk.cleaner.app.clean.contacts.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Contacts
+import androidx.compose.material.icons.outlined.PersonSearch
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
@@ -51,7 +52,7 @@ fun ContactsCleanerCard(modifier: Modifier = Modifier, onOpen: () -> Unit) {
             }
             TonalIconButtonWithText(
                 label = stringResource(id = R.string.open_contacts_cleaner),
-                icon = Icons.Outlined.Contacts,
+                icon = Icons.Outlined.PersonSearch,
                 onClick = onOpen,
                 modifier = Modifier.align(Alignment.End)
             )

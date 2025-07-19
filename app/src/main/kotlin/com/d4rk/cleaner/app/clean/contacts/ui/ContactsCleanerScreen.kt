@@ -1,4 +1,4 @@
-package com.d4rk.cleaner.app.contacts.cleaner.ui
+package com.d4rk.cleaner.app.clean.contacts.ui
 
 import android.app.Activity
 import androidx.compose.foundation.layout.Arrangement
@@ -24,9 +24,9 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHa
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.app.contacts.cleaner.domain.actions.ContactsCleanerEvent
-import com.d4rk.cleaner.app.contacts.cleaner.domain.data.model.RawContactInfo
-import com.d4rk.cleaner.app.contacts.cleaner.domain.data.model.UiContactsCleanerModel
+import com.d4rk.cleaner.app.clean.contacts.domain.actions.ContactsCleanerEvent
+import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
+import com.d4rk.cleaner.app.clean.contacts.domain.data.model.UiContactsCleanerModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

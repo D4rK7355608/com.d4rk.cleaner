@@ -1,7 +1,7 @@
-package com.d4rk.cleaner.app.contacts.cleaner.domain.actions
+package com.d4rk.cleaner.app.clean.contacts.domain.actions
 
 import com.d4rk.android.libs.apptoolkit.core.ui.base.handling.UiEvent
-import com.d4rk.cleaner.app.contacts.cleaner.domain.data.model.RawContactInfo
+import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
 
 sealed interface ContactsCleanerEvent : UiEvent {
     data object LoadDuplicates : ContactsCleanerEvent

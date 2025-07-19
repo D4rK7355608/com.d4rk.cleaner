@@ -1,19 +1,17 @@
-package com.d4rk.cleaner.app.contacts.cleaner.ui
+package com.d4rk.cleaner.app.clean.contacts.ui
 
 import com.d4rk.android.libs.apptoolkit.core.di.DispatcherProvider
-import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.ScreenState
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiSnackbar
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.base.ScreenViewModel
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.UiTextHelper
-import com.d4rk.cleaner.app.contacts.cleaner.data.ContactsRepository
-import com.d4rk.cleaner.app.contacts.cleaner.domain.actions.ContactsCleanerAction
-import com.d4rk.cleaner.app.contacts.cleaner.domain.actions.ContactsCleanerEvent
-import com.d4rk.cleaner.app.contacts.cleaner.domain.data.model.RawContactInfo
-import com.d4rk.cleaner.app.contacts.cleaner.domain.data.model.UiContactsCleanerModel
+import com.d4rk.cleaner.app.clean.contacts.data.ContactsRepository
+import com.d4rk.cleaner.app.clean.contacts.domain.actions.ContactsCleanerAction
+import com.d4rk.cleaner.app.clean.contacts.domain.actions.ContactsCleanerEvent
+import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
+import com.d4rk.cleaner.app.clean.contacts.domain.data.model.UiContactsCleanerModel
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 
 class ContactsCleanerViewModel(
     private val repository: ContactsRepository,
