@@ -127,6 +127,7 @@
     <string name="whatsapp_cleaner">Trình dọn WhatsApp</string>
     <string name="all_clean">Tất cả đều sạch sẽ</string>
     <string name="whatsapp_cleaner_empty_message">WhatsApp của bạn sạch bóng! Không còn gì để dọn. Chúc bạn một ngày vui vẻ!</string>
+    <string name="contacts_cleaner_empty_message">Danh bạ của bạn đã được sắp xếp! Không còn gì để dọn.</string>
     <string name="total_files_format">%1$s tệp</string>
     <string name="delete_selected">Xóa mục đã chọn</string>
     <string name="sort_options">Tùy chọn sắp xếp</string>

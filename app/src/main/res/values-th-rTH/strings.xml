@@ -127,6 +127,7 @@
     <string name="whatsapp_cleaner">ตัวล้าง WhatsApp</string>
     <string name="all_clean">สะอาดทั้งหมด</string>
     <string name="whatsapp_cleaner_empty_message">WhatsApp ของคุณสะอาดหมดจด! ไม่มีอะไรให้ลบแล้ว ขอให้เป็นวันดีๆ!</string>
+    <string name="contacts_cleaner_empty_message">รายชื่อติดต่อของคุณจัดเรียบร้อยแล้ว! ไม่มีอะไรให้ลบ</string>
     <string name="total_files_format">%1$s ไฟล์</string>
     <string name="delete_selected">ลบที่เลือก</string>
     <string name="sort_options">ตัวเลือกการจัดเรียง</string>

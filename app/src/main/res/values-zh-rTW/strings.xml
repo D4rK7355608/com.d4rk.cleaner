@@ -127,6 +127,7 @@
     <string name="whatsapp_cleaner">WhatsApp 清理工具</string>
     <string name="all_clean">全部乾淨</string>
     <string name="whatsapp_cleaner_empty_message">你的 WhatsApp 乾淨如新！沒有東西可清理。祝你有美好的一天！</string>
+    <string name="contacts_cleaner_empty_message">你的聯絡人已經整理好了！沒有需要清理的。</string>
     <string name="total_files_format">%1$s 個檔案</string>
     <string name="delete_selected">刪除已選</string>
     <string name="sort_options">排序選項</string>

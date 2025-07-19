@@ -42,7 +42,6 @@ import com.d4rk.android.libs.apptoolkit.core.ui.effects.LifecycleEventsEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
-import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
 import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
@@ -50,6 +49,8 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.contacts.domain.actions.ContactsCleanerEvent
 import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
 import com.d4rk.cleaner.app.clean.contacts.domain.data.model.UiContactsCleanerModel
+import com.d4rk.cleaner.app.clean.contacts.ui.components.ContactsEmptyState
+import com.d4rk.cleaner.app.clean.contacts.ui.components.ContactsErrorState
 import org.koin.compose.viewmodel.koinViewModel
 
 private enum class ContactsPermissionState { CHECKING, GRANTED, RATIONALE, DENIED }
@@ -125,15 +126,12 @@ fun ContactsCleanerScreen(activity: Activity) {
                 ScreenStateHandler(
                     screenState = state,
                     onLoading = {
-                        println("ContactsCleanerScreen: Loading state")
                         LoadingScreen()
                     },
                     onEmpty = {
-                        println("ContactsCleanerScreen: Empty state")
-                        NoDataScreen(textMessage = R.string.no_duplicates_found)
+                        ContactsEmptyState(paddingValues = paddingValues)
                     },
                     onSuccess = { data: UiContactsCleanerModel ->
-                        println("ContactsCleanerScreen: Success state")
                         ContactsCleanerContent(
                             data = data,
                             viewModel = viewModel,
@@ -141,7 +139,9 @@ fun ContactsCleanerScreen(activity: Activity) {
                         )
                     },
                     onError = {
-                        NoDataScreen(textMessage = R.string.no_duplicates_found)
+                        ContactsErrorState(paddingValues = paddingValues) {
+                            viewModel.onEvent(ContactsCleanerEvent.LoadDuplicates)
+                        }
                     }
                 )
             }

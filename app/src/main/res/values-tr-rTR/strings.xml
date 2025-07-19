@@ -130,6 +130,7 @@
     <string name="whatsapp_cleaner">WhatsApp Temizleyici</string>
     <string name="all_clean">Hepsi temiz</string>
     <string name="whatsapp_cleaner_empty_message">WhatsApp\'ınız tertemiz! Temizlenecek bir şey kalmadı. İyi günler!</string>
+    <string name="contacts_cleaner_empty_message">Kişileriniz zaten düzenli! Temizlenecek bir şey yok.</string>
     <string name="total_files_format">%1$s dosya</string>
     <string name="delete_selected">Seçilenleri Sil</string>
     <string name="sort_options">Sıralama seçenekleri</string>

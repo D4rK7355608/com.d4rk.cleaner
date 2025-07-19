@@ -130,6 +130,7 @@
     <string name="whatsapp_cleaner">WhatsApp-rensare</string>
     <string name="all_clean">Allt rent</string>
     <string name="whatsapp_cleaner_empty_message">Din WhatsApp är helt ren! Det finns inget mer att rensa. Ha en bra dag!</string>
+    <string name="contacts_cleaner_empty_message">Dina kontakter är redan organiserade! Inget att rensa.</string>
     <string name="total_files_format">%1$s filer</string>
     <string name="delete_selected">Ta bort valda</string>
     <string name="sort_options">Sorteringsalternativ</string>

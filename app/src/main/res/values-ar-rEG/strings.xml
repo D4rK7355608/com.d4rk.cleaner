@@ -142,6 +142,7 @@
     <string name="whatsapp_cleaner">منظف واتساب</string>
     <string name="all_clean">كل شيء نظيف</string>
     <string name="whatsapp_cleaner_empty_message">واتسابك نظيف تمامًا! لا شيء للتنظيف. استمتع بيومك!</string>
+    <string name="contacts_cleaner_empty_message">جهات الاتصال منظمة بالفعل! لا يوجد ما يمكن تنظيفه.</string>
     <string name="total_files_format">%1$s ملفات</string>
     <string name="delete_selected">حذف المحدد</string>
     <string name="sort_options">خيارات الفرز</string>

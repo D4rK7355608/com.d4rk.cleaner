@@ -130,6 +130,7 @@
     <string name="whatsapp_cleaner">व्हाट्सएप क्लीनर</string>
     <string name="all_clean">सभी साफ</string>
     <string name="whatsapp_cleaner_empty_message">आपका WhatsApp एकदम साफ है! अब कुछ भी साफ़ नहीं करना है। अपना दिन आनंद से बिताएँ!</string>
+    <string name="contacts_cleaner_empty_message">आपके कॉन्टैक्ट पहले से व्यवस्थित हैं! कुछ भी साफ़ करने की ज़रूरत नहीं।</string>
     <string name="total_files_format">%1$s फ़ाइलें</string>
     <string name="delete_selected">चयनित हटाएँ</string>
     <string name="sort_options">क्रमबद्ध विकल्प</string>

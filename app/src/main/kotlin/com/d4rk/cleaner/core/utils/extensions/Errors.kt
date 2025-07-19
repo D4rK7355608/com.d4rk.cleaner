@@ -34,7 +34,6 @@ fun Throwable.toError(default : Errors = Errors.UseCase.NO_DATA) : Errors {
             else -> Errors.UseCase.FAILED_TO_ENCRYPT_CART
         }
 
-        is IllegalArgumentException -> Errors.UseCase.FAILED_TO_DECRYPT_CART
         else -> default
     }
 }

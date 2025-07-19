@@ -133,6 +133,7 @@
     <string name="whatsapp_cleaner">Nettoyeur WhatsApp</string>
     <string name="all_clean">Tout propre</string>
     <string name="whatsapp_cleaner_empty_message">Votre WhatsApp est impeccable! Il n’y a plus rien à nettoyer. Bonne journée!</string>
+    <string name="contacts_cleaner_empty_message">Vos contacts sont déjà organisés ! Rien à nettoyer.</string>
     <string name="total_files_format">%1$s fichiers</string>
     <string name="delete_selected">Supprimer la sélection</string>
     <string name="sort_options">Options de tri</string>

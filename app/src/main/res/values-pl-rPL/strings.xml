@@ -136,6 +136,7 @@
     <string name="whatsapp_cleaner">Czyścik WhatsApp</string>
     <string name="all_clean">Wszystkie czyste</string>
     <string name="whatsapp_cleaner_empty_message">Twój WhatsApp jest czysty! Nie ma już nic do czyszczenia. Miłego dnia!</string>
+    <string name="contacts_cleaner_empty_message">Twoje kontakty są już uporządkowane! Nie ma nic do czyszczenia.</string>
     <string name="total_files_format">%1$s plików</string>
     <string name="delete_selected">Usuń zaznaczone</string>
     <string name="sort_options">Opcje sortowania</string>
