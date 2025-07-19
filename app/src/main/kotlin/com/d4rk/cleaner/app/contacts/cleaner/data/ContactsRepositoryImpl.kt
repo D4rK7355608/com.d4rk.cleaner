@@ -21,7 +21,7 @@ class ContactsRepositoryImpl(private val context: Context) : ContactsRepository 
             ContactsContract.RawContacts._ID,
             ContactsContract.RawContacts.CONTACT_ID,
             ContactsContract.RawContacts.DISPLAY_NAME_PRIMARY,
-            ContactsContract.ContactsColumns.CONTACT_LAST_UPDATED_TIMESTAMP,
+            ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP,
             ContactsContract.RawContacts.ACCOUNT_TYPE,
             ContactsContract.RawContacts.ACCOUNT_NAME
         )
@@ -29,7 +29,7 @@ class ContactsRepositoryImpl(private val context: Context) : ContactsRepository 
             val idIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts._ID)
             val contactIdIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.CONTACT_ID)
             val nameIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.DISPLAY_NAME_PRIMARY)
-            val updatedIdx = cursor.getColumnIndexOrThrow(ContactsContract.ContactsColumns.CONTACT_LAST_UPDATED_TIMESTAMP)
+            val updatedIdx = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP)
             val typeIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.ACCOUNT_TYPE)
             val accIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.ACCOUNT_NAME)
             while (cursor.moveToNext()) {
