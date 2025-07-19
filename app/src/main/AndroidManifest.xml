@@ -15,6 +15,8 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
     <uses-permission android:name="android.permission.ACTION_OPEN_DOCUMENT_TREE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
@@ -102,6 +104,12 @@
             android:name=".app.clean.largefiles.ui.LargeFilesActivity"
             android:exported="false"
             android:label="@string/large_files"
+            android:parentActivityName=".app.main.ui.MainActivity" />
+
+        <activity
+            android:name=".app.contacts.cleaner.ui.ContactsCleanerActivity"
+            android:exported="false"
+            android:label="@string/contacts_cleaner_title"
             android:parentActivityName=".app.main.ui.MainActivity" />
 
         <activity

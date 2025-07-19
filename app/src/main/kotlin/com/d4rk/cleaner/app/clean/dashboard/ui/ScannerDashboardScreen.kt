@@ -52,6 +52,8 @@ import com.d4rk.cleaner.app.clean.scanner.ui.components.QuickScanSummaryCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.WeeklyCleanStreakCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.WhatsAppCleanerCard
 import com.d4rk.cleaner.app.clean.scanner.ui.components.LargeFilesCard
+import com.d4rk.cleaner.app.contacts.cleaner.ui.ContactsCleanerCard
+import com.d4rk.cleaner.app.contacts.cleaner.ui.ContactsCleanerActivity
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsAppCleanerActivity
 import com.d4rk.cleaner.app.images.picker.ui.ImagePickerActivity
 import com.d4rk.cleaner.app.clean.largefiles.ui.LargeFilesActivity
@@ -101,10 +103,11 @@ fun ScannerDashboardScreen(
     val showLargeFilesCard by remember(largeFiles) {
         derivedStateOf { largeFiles.isNotEmpty() }
     }
+    val showContactsCard = true
 
     val dataLoaded = appManagerState.data?.apkFilesLoading == false && whatsappLoaded
     val cleanerCardsCount = if (dataLoaded) {
-        listOf(showWhatsAppCard, showApkCard, showClipboardCard, showLargeFilesCard).count { it }
+        listOf(showWhatsAppCard, showApkCard, showClipboardCard, showLargeFilesCard, showContactsCard).count { it }
     } else 0
 
     val listState: LazyListState = rememberLazyListState()
@@ -133,6 +136,7 @@ fun ScannerDashboardScreen(
         showWhatsAppCard,
         showApkCard,
         showClipboardCard,
+        showContactsCard,
         promotedApp
     ) {
         buildList {
@@ -150,6 +154,7 @@ fun ScannerDashboardScreen(
             if (showApkCard) add(true)
             if (showClipboardCard) add(true)
             if (showLargeFilesCard) add(true)
+            if (showContactsCard) add(true)
 
             // Middle ad
             if (showAdMid) add(true)
@@ -320,6 +325,29 @@ fun ScannerDashboardScreen(
                         IntentsHelper.openActivity(
                             context = context,
                             activityClass = LargeFilesActivity::class.java
+                        )
+                    }
+                )
+            }
+        }
+
+        if (showContactsCard) {
+            AnimatedVisibility(
+                visible = showContactsCard,
+                enter = DashboardTransitions.enter,
+                exit = DashboardTransitions.exit
+            ) {
+                val contactsIndex = nextIndex()
+                ContactsCleanerCard(
+                    modifier = Modifier.animateVisibility(
+                        visible = uiState.data?.analyzeState?.isAnalyzeScreenVisible == false &&
+                                visibilityStates.getOrElse(index = contactsIndex) { false },
+                        index = contactsIndex
+                    ).animateContentSize(),
+                    onOpen = {
+                        IntentsHelper.openActivity(
+                            context = context,
+                            activityClass = ContactsCleanerActivity::class.java
                         )
                     }
                 )
