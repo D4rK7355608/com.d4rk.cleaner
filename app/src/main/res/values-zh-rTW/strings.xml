@@ -200,6 +200,7 @@
     <string name="keep_newest_remove_older">保留最新 &amp; 刪除較舊</string>
     <string name="merge_all_duplicates">合併所有重複項</string>
     <string name="contacts_permission_denied">權限被拒。你可以在系統設定中啟用它。</string>
+    <string name="open_settings">開啟設定</string>
 
     <!-- App manager -->
     <string name="search">搜尋</string>

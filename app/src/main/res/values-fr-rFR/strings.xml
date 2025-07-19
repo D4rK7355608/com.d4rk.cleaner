@@ -213,6 +213,7 @@
     <string name="keep_newest_remove_older">Garder le plus récent &amp; supprimer les anciens</string>
     <string name="merge_all_duplicates">Fusionner tous les doublons</string>
     <string name="contacts_permission_denied">Permission refusée. Vous pouvez l\'activer dans les paramètres système.</string>
+    <string name="open_settings">Ouvrir les paramètres</string>
 
     <!-- App manager -->
     <string name="search">Rechercher</string>

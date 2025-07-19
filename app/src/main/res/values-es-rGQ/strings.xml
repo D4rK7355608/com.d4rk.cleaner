@@ -212,6 +212,7 @@
     <string name="keep_newest_remove_older">Conservar el más reciente y borrar los demás</string>
     <string name="merge_all_duplicates">Combinar todos los duplicados</string>
     <string name="contacts_permission_denied">Permiso denegado. Puedes activarlo en los ajustes del sistema.</string>
+    <string name="open_settings">Abrir ajustes</string>
 
     <!-- App manager -->
     <string name="search">Buscar</string>

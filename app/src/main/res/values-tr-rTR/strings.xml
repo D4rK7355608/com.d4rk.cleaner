@@ -206,6 +206,7 @@
     <string name="keep_newest_remove_older">En yeniyi tut, eskileri sil</string>
     <string name="merge_all_duplicates">Tüm yinelenenleri birleştir</string>
     <string name="contacts_permission_denied">İzin reddedildi. Sistem ayarlarından etkinleştirebilirsiniz.</string>
+    <string name="open_settings">Ayarları aç</string>
 
     <!-- App manager -->
     <string name="search">Ara</string>

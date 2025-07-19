@@ -230,6 +230,7 @@
     <string name="keep_newest_remove_older">احتفظ بالأحدث واحذف الأقدم</string>
     <string name="merge_all_duplicates">دمج كل المكررات</string>
     <string name="contacts_permission_denied">تم رفض الإذن. يمكنك تمكينه من إعدادات النظام.</string>
+    <string name="open_settings">افتح الإعدادات</string>
 
     <!-- App manager -->
     <string name="search">بحث</string>
