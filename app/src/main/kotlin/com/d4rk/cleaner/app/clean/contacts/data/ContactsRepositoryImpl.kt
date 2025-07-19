@@ -26,6 +26,23 @@ class ContactsRepositoryImpl(context: Context) : ContactsRepository {
         return da == db || da.endsWith(db) || db.endsWith(da)
     }
 
+    private fun getContactLastUpdated(contactId: Long): Long {
+        val projection = arrayOf(ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP)
+        resolver.query(
+            ContactsContract.Contacts.CONTENT_URI,
+            projection,
+            "${ContactsContract.Contacts._ID}=?",
+            arrayOf(contactId.toString()),
+            null
+        )?.use { c ->
+            if (c.moveToFirst()) {
+                val idx = c.getColumnIndexOrThrow(ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP)
+                return c.getLong(idx)
+            }
+        }
+        return 0L
+    }
+
     override suspend fun findDuplicates(): List<List<RawContactInfo>> {
         val contacts = withContext(Dispatchers.IO) {
             val list = mutableListOf<RawContactInfo>()
@@ -33,7 +50,6 @@ class ContactsRepositoryImpl(context: Context) : ContactsRepository {
                 ContactsContract.RawContacts._ID,
                 ContactsContract.RawContacts.CONTACT_ID,
                 ContactsContract.RawContacts.DISPLAY_NAME_PRIMARY,
-                ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP,
                 ContactsContract.RawContacts.ACCOUNT_TYPE,
                 ContactsContract.RawContacts.ACCOUNT_NAME
             )
@@ -42,7 +58,6 @@ class ContactsRepositoryImpl(context: Context) : ContactsRepository {
                 val idIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts._ID)
                 val contactIdIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.CONTACT_ID)
                 val nameIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.DISPLAY_NAME_PRIMARY)
-                val updatedIdx = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP)
                 val typeIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.ACCOUNT_TYPE)
                 val accIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.ACCOUNT_NAME)
 
@@ -50,7 +65,7 @@ class ContactsRepositoryImpl(context: Context) : ContactsRepository {
                     val rawId = cursor.getLong(idIdx)
                     val contactId = cursor.getLong(contactIdIdx)
                     val name = cursor.getString(nameIdx) ?: ""
-                    val updated = cursor.getLong(updatedIdx)
+                    val updated = getContactLastUpdated(contactId)
                     val accountType = cursor.getString(typeIdx)
                     val accountName = cursor.getString(accIdx)
 
