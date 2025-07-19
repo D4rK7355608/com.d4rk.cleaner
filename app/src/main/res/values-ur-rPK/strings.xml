@@ -206,6 +206,7 @@
     <string name="keep_newest_remove_older">جدید کو رکھیں اور پرانے حذف کریں</string>
     <string name="merge_all_duplicates">تمام ڈپلیکیٹ ملائیں</string>
     <string name="contacts_permission_denied">اجازت مسترد کر دی گئی۔ آپ اسے سسٹم سیٹنگز میں فعال کر سکتے ہیں.</string>
+    <string name="open_settings">سیٹنگز کھولیں</string>
 
     <!-- App manager -->
     <string name="search">تلاش</string>

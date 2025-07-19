@@ -218,6 +218,7 @@
     <string name="keep_newest_remove_older">Зберегти новий &amp; видалити старі</string>
     <string name="merge_all_duplicates">Об\'єднати всі дублікати</string>
     <string name="contacts_permission_denied">Доступ заборонено. Ви можете увімкнути його в налаштуваннях системи.</string>
+    <string name="open_settings">Відкрити налаштування</string>
 
     <!-- App manager -->
     <string name="search">Пошук</string>

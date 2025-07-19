@@ -200,6 +200,7 @@
     <string name="keep_newest_remove_older">最新を残して古いものを削除</string>
     <string name="merge_all_duplicates">すべての重複を統合</string>
     <string name="contacts_permission_denied">権限が拒否されました。システム設定で有効にできます。</string>
+    <string name="open_settings">設定を開く</string>
 
     <!-- App manager -->
     <string name="search">検索</string>

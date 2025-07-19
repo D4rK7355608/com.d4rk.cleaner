@@ -218,6 +218,7 @@
     <string name="keep_newest_remove_older">Сохранить новый &amp; удалить старые</string>
     <string name="merge_all_duplicates">Объединить все дубликаты</string>
     <string name="contacts_permission_denied">Доступ запрещён. Вы можете включить его в настройках системы.</string>
+    <string name="open_settings">Открыть настройки</string>
 
     <!-- App manager -->
     <string name="search">Поиск</string>

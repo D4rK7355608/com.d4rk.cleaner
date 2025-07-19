@@ -200,6 +200,7 @@
     <string name="keep_newest_remove_older">เก็บรายการใหม่สุดและลบรายการเก่า</string>
     <string name="merge_all_duplicates">รวมรายการที่ซ้ำทั้งหมด</string>
     <string name="contacts_permission_denied">ปฏิเสธการอนุญาต คุณสามารถเปิดได้ในตั้งค่าระบบ</string>
+    <string name="open_settings">เปิดการตั้งค่า</string>
 
     <!-- App manager -->
     <string name="search">ค้นหา</string>

@@ -212,6 +212,7 @@
     <string name="keep_newest_remove_older">Păstrează cel mai nou și șterge-le pe cele vechi</string>
     <string name="merge_all_duplicates">Combină toate duplicatele</string>
     <string name="contacts_permission_denied">Permisiune refuzată. O poți activa din setările sistemului.</string>
+    <string name="open_settings">Deschide setările</string>
 
     <!-- App manager -->
     <string name="search">Caută</string>

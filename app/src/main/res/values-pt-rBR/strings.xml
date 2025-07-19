@@ -212,6 +212,7 @@
     <string name="keep_newest_remove_older">Manter o mais recente &amp; remover os antigos</string>
     <string name="merge_all_duplicates">Mesclar todos os duplicados</string>
     <string name="contacts_permission_denied">Permissão negada. Você pode ativá-la nas configurações do sistema.</string>
+    <string name="open_settings">Abrir configurações</string>
 
     <!-- App manager -->
     <string name="search">Pesquisar</string>
