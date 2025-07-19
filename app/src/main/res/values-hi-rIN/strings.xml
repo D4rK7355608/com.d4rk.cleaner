@@ -155,6 +155,9 @@
     <string name="large_files_card_title">बड़ी फ़ाइलें</string>
     <string name="large_files_card_subtitle">अपनी सबसे बड़ी फ़ाइलों की समीक्षा करें और उन्हें हटाएँ।</string>
     <string name="open_large_files">बड़ी फ़ाइलें देखें</string>
+    <string name="contacts_cleaner_card_title">संपर्क क्लीनर</string>
+    <string name="contacts_cleaner_card_subtitle">डुप्लीकेट संपर्क खोजें और मिलाएँ</string>
+    <string name="open_contacts_cleaner">संपर्क क्लीनर खोलें</string>
     <string name="scan_cache">कैश स्कैन करें</string>
     <string name="apks">एपीके</string>
     <string name="archives">अभिलेखागार</string>
@@ -196,6 +199,13 @@
         <item quantity="other">%d वर्ष पहले</item>
     </plurals>
     <string name="no_files_found">कोई फ़ाइल नहीं मिली</string>
+    <string name="contacts_cleaner_title">संपर्क क्लीनर</string>
+    <string name="no_duplicates_found">कोई डुप्लीकेट नहीं मिला</string>
+    <string name="contacts_loading">संपर्क स्कैन किए जा रहे हैं…</string>
+    <string name="contacts_permission_rationale">डुप्लीकेट खोजने और मिलाने के लिए हमें आपके संपर्कों की अनुमति चाहिए। डेटा कभी भी आपके डिवाइस से बाहर नहीं जाता।</string>
+    <string name="keep_newest_remove_older">नवीनतम रखें और पुराने हटाएँ</string>
+    <string name="merge_all_duplicates">सभी डुप्लीकेट मिलाएँ</string>
+    <string name="contacts_permission_denied">अनुमति अस्वीकृत। आप इसे सिस्टम सेटिंग में सक्षम कर सकते हैं।</string>
 
     <!-- App manager -->
     <string name="search">खोजें</string>

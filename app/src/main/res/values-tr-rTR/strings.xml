@@ -155,6 +155,9 @@
     <string name="large_files_card_title">Büyük dosyalar</string>
     <string name="large_files_card_subtitle">En büyük dosyalarınızı gözden geçirip silin.</string>
     <string name="open_large_files">Büyük dosyaları görüntüle</string>
+    <string name="contacts_cleaner_card_title">Kişi Temizleyici</string>
+    <string name="contacts_cleaner_card_subtitle">Yinelenen kişileri bulup birleştirin</string>
+    <string name="open_contacts_cleaner">Kişi Temizleyici\'yi aç</string>
     <string name="scan_cache">Önbelleği Tara</string>
     <string name="apks">APK\'lar</string>
     <string name="archives">Arşivler</string>
@@ -196,6 +199,13 @@
         <item quantity="other">%d yıl önce</item>
     </plurals>
     <string name="no_files_found">Dosya bulunamadı</string>
+    <string name="contacts_cleaner_title">Kişi Temizleyici</string>
+    <string name="no_duplicates_found">Yinelenen kişi bulunamadı</string>
+    <string name="contacts_loading">Kişiler taranıyor…</string>
+    <string name="contacts_permission_rationale">Yinelenenleri bulup birleştirmek için kişilerinizin erişimine ihtiyacımız var. Veriler cihazınızdan dışarı çıkmaz.</string>
+    <string name="keep_newest_remove_older">En yeniyi tut, eskileri sil</string>
+    <string name="merge_all_duplicates">Tüm yinelenenleri birleştir</string>
+    <string name="contacts_permission_denied">İzin reddedildi. Sistem ayarlarından etkinleştirebilirsiniz.</string>
 
     <!-- App manager -->
     <string name="search">Ara</string>

@@ -158,6 +158,9 @@
     <string name="large_files_card_title">Fichiers volumineux</string>
     <string name="large_files_card_subtitle">Examinez et supprimez vos plus gros fichiers.</string>
     <string name="open_large_files">Voir les fichiers volumineux</string>
+    <string name="contacts_cleaner_card_title">Nettoyeur de contacts</string>
+    <string name="contacts_cleaner_card_subtitle">Trouver et fusionner les contacts en double</string>
+    <string name="open_contacts_cleaner">Ouvrir le Nettoyeur de contacts</string>
     <string name="scan_cache">Analyser le cache</string>
     <string name="apks">APK</string>
     <string name="archives">Archives</string>
@@ -203,6 +206,13 @@
         <item quantity="other">Il y a %d ans</item>
     </plurals>
     <string name="no_files_found">Aucun fichier trouvé</string>
+    <string name="contacts_cleaner_title">Nettoyeur de contacts</string>
+    <string name="no_duplicates_found">Aucun doublon trouvé</string>
+    <string name="contacts_loading">Analyse des contacts…</string>
+    <string name="contacts_permission_rationale">Nous avons besoin d\'accéder à vos contacts pour trouver et fusionner les doublons. Les données ne quittent jamais votre appareil.</string>
+    <string name="keep_newest_remove_older">Garder le plus récent &amp; supprimer les anciens</string>
+    <string name="merge_all_duplicates">Fusionner tous les doublons</string>
+    <string name="contacts_permission_denied">Permission refusée. Vous pouvez l\'activer dans les paramètres système.</string>
 
     <!-- App manager -->
     <string name="search">Rechercher</string>

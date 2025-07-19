@@ -161,6 +161,9 @@
     <string name="large_files_card_title">Duże pliki</string>
     <string name="large_files_card_subtitle">Przejrzyj i usuń swoje największe pliki.</string>
     <string name="open_large_files">Zobacz duże pliki</string>
+    <string name="contacts_cleaner_card_title">Czyszczenie kontaktów</string>
+    <string name="contacts_cleaner_card_subtitle">Znajdź i połącz zduplikowane kontakty</string>
+    <string name="open_contacts_cleaner">Otwórz czyszczenie kontaktów</string>
     <string name="scan_cache">Skanuj pamięć podręczną</string>
     <string name="apks">Pliki APK</string>
     <string name="archives">Archiwa</string>
@@ -208,6 +211,13 @@
         <item quantity="other">%d lat temu</item>
     </plurals>
     <string name="no_files_found">Nie znaleziono plików</string>
+    <string name="contacts_cleaner_title">Czyszczenie kontaktów</string>
+    <string name="no_duplicates_found">Brak duplikatów</string>
+    <string name="contacts_loading">Skanowanie kontaktów…</string>
+    <string name="contacts_permission_rationale">Potrzebujemy dostępu do twoich kontaktów, aby znaleźć i połączyć duplikaty. Dane nigdy nie opuszczą twojego urządzenia.</string>
+    <string name="keep_newest_remove_older">Zachowaj najnowszy i usuń starsze</string>
+    <string name="merge_all_duplicates">Połącz wszystkie duplikaty</string>
+    <string name="contacts_permission_denied">Odmowa uprawnień. Możesz je włączyć w ustawieniach systemu.</string>
 
     <!-- App manager -->
     <string name="search">Szukaj</string>

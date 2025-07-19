@@ -152,6 +152,9 @@
     <string name="large_files_card_title">File besar</string>
     <string name="large_files_card_subtitle">Tinjau dan hapus file terbesar Anda.</string>
     <string name="open_large_files">Lihat file besar</string>
+    <string name="contacts_cleaner_card_title">Pembersih Kontak</string>
+    <string name="contacts_cleaner_card_subtitle">Temukan dan gabungkan kontak ganda</string>
+    <string name="open_contacts_cleaner">Buka Pembersih Kontak</string>
     <string name="scan_cache">Pindai Cache</string>
     <string name="apks">APK</string>
     <string name="archives">Arsip</string>
@@ -190,6 +193,13 @@
         <item quantity="other">%d tahun yang lalu</item>
     </plurals>
     <string name="no_files_found">Tidak ada file yang ditemukan</string>
+    <string name="contacts_cleaner_title">Pembersih Kontak</string>
+    <string name="no_duplicates_found">Tidak ada duplikat ditemukan</string>
+    <string name="contacts_loading">Memindai kontak…</string>
+    <string name="contacts_permission_rationale">Kami memerlukan akses ke kontak Anda untuk menemukan dan menggabungkan duplikat. Data tidak pernah meninggalkan perangkat Anda.</string>
+    <string name="keep_newest_remove_older">Simpan yang terbaru &amp; hapus yang lama</string>
+    <string name="merge_all_duplicates">Gabungkan semua duplikat</string>
+    <string name="contacts_permission_denied">Izin ditolak. Anda dapat mengaktifkannya di pengaturan sistem.</string>
 
     <!-- App manager -->
     <string name="search">Cari</string>

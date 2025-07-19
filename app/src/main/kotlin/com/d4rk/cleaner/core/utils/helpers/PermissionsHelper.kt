@@ -124,4 +124,27 @@ object PermissionsHelper {
         )
         return mode == AppOpsManager.MODE_ALLOWED
     }.getOrElse { false }
+
+    fun hasContactsPermissions(context: Context): Boolean {
+        val readGranted = ContextCompat.checkSelfPermission(
+            context,
+            Manifest.permission.READ_CONTACTS
+        ) == PackageManager.PERMISSION_GRANTED
+        val writeGranted = ContextCompat.checkSelfPermission(
+            context,
+            Manifest.permission.WRITE_CONTACTS
+        ) == PackageManager.PERMISSION_GRANTED
+        return readGranted && writeGranted
+    }
+
+    fun requestContactsPermissions(activity: Activity) {
+        ActivityCompat.requestPermissions(
+            activity,
+            arrayOf(
+                Manifest.permission.READ_CONTACTS,
+                Manifest.permission.WRITE_CONTACTS
+            ),
+            AppPermissionsConstants.REQUEST_CODE_CONTACTS_PERMISSIONS
+        )
+    }
 }

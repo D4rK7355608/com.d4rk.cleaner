@@ -152,6 +152,9 @@
     <string name="large_files_card_title">大型檔案</string>
     <string name="large_files_card_subtitle">檢視並移除最大的檔案。</string>
     <string name="open_large_files">查看大型檔案</string>
+    <string name="contacts_cleaner_card_title">聯絡人清理</string>
+    <string name="contacts_cleaner_card_subtitle">尋找並合併重複的聯絡人</string>
+    <string name="open_contacts_cleaner">開啟聯絡人清理</string>
     <string name="scan_cache">掃描快取</string>
     <string name="apks">APK</string>
     <string name="archives">壓縮檔</string>
@@ -190,6 +193,13 @@
         <item quantity="other">%d 年前</item>
     </plurals>
     <string name="no_files_found">找不到任何檔案</string>
+    <string name="contacts_cleaner_title">聯絡人清理</string>
+    <string name="no_duplicates_found">未找到重複聯絡人</string>
+    <string name="contacts_loading">正在掃描聯絡人…</string>
+    <string name="contacts_permission_rationale">我們需要存取你的聯絡人以找出並合併重複項。資料不會離開你的裝置。</string>
+    <string name="keep_newest_remove_older">保留最新 &amp; 刪除較舊</string>
+    <string name="merge_all_duplicates">合併所有重複項</string>
+    <string name="contacts_permission_denied">權限被拒。你可以在系統設定中啟用它。</string>
 
     <!-- App manager -->
     <string name="search">搜尋</string>

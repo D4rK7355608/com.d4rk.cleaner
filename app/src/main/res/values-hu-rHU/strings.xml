@@ -155,6 +155,9 @@
     <string name="large_files_card_title">Nagy fájlok</string>
     <string name="large_files_card_subtitle">Tekintse át és távolítsa el legnagyobb fájljait.</string>
     <string name="open_large_files">Nagy fájlok megtekintése</string>
+    <string name="contacts_cleaner_card_title">Névjegytisztító</string>
+    <string name="contacts_cleaner_card_subtitle">Keresse meg és egyesítse a duplikált névjegyeket</string>
+    <string name="open_contacts_cleaner">Névjegytisztító megnyitása</string>
     <string name="scan_cache">Gyorsítótár vizsgálata</string>
     <string name="apks">APK-k</string>
     <string name="archives">Archívumok</string>
@@ -196,6 +199,13 @@
         <item quantity="other">%d éve</item>
     </plurals>
     <string name="no_files_found">Nem található fájl</string>
+    <string name="contacts_cleaner_title">Névjegytisztító</string>
+    <string name="no_duplicates_found">Nem találhatók duplikátumok</string>
+    <string name="contacts_loading">Névjegyek vizsgálata…</string>
+    <string name="contacts_permission_rationale">Duplikált névjegyek kereséséhez és egyesítéséhez hozzáférésre van szükségünk a névjegyekhez. Az adatok nem hagyják el a készüléket.</string>
+    <string name="keep_newest_remove_older">Legújabb megtartása és a régiek törlése</string>
+    <string name="merge_all_duplicates">Minden duplikátum egyesítése</string>
+    <string name="contacts_permission_denied">Hozzáférés megtagadva. A rendszerbeállításokban engedélyezhető.</string>
 
     <!-- App manager -->
     <string name="search">Keresés</string>

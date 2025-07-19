@@ -155,6 +155,9 @@
     <string name="large_files_card_title">Malalaking file</string>
     <string name="large_files_card_subtitle">Suriin at alisin ang pinakamalalaking file mo.</string>
     <string name="open_large_files">Tingnan ang malalaking file</string>
+    <string name="contacts_cleaner_card_title">Panglinis ng Contacts</string>
+    <string name="contacts_cleaner_card_subtitle">Hanapin at pagsamahin ang mga dobleng contact</string>
+    <string name="open_contacts_cleaner">Buksan ang Contacts Cleaner</string>
     <string name="scan_cache">I-scan ang Cache</string>
     <string name="apks">Mga APK</string>
     <string name="archives">Mga Archive</string>
@@ -196,6 +199,13 @@
         <item quantity="other">%d (na) taon na ang nakalipas</item>
     </plurals>
     <string name="no_files_found">Walang nahanap na file</string>
+    <string name="contacts_cleaner_title">Panglinis ng Contacts</string>
+    <string name="no_duplicates_found">Walang nakitang dobleng contact</string>
+    <string name="contacts_loading">Sinusuri ang mga contact…</string>
+    <string name="contacts_permission_rationale">Kailangan naming ma-access ang iyong mga contact para mahanap at pagsamahin ang mga dobleng entry. Hindi umaalis ang datos sa iyong device.</string>
+    <string name="keep_newest_remove_older">Panatilihin ang pinakabago at alisin ang luma</string>
+    <string name="merge_all_duplicates">Pagsamahin lahat ng dobleng contact</string>
+    <string name="contacts_permission_denied">Tinanggihan ang permiso. Maaari mo itong paganahin sa mga setting ng system.</string>
 
     <!-- App manager -->
     <string name="search">Maghanap</string>

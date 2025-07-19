@@ -152,6 +152,9 @@
     <string name="large_files_card_title">ไฟล์ขนาดใหญ่</string>
     <string name="large_files_card_subtitle">ตรวจสอบและลบไฟล์ที่ใหญ่ที่สุดของคุณ</string>
     <string name="open_large_files">ดูไฟล์ขนาดใหญ่</string>
+    <string name="contacts_cleaner_card_title">ตัวล้างรายชื่อ</string>
+    <string name="contacts_cleaner_card_subtitle">ค้นหาและรวมรายชื่อที่ซ้ำกัน</string>
+    <string name="open_contacts_cleaner">เปิดตัวล้างรายชื่อ</string>
     <string name="scan_cache">สแกนแคช</string>
     <string name="apks">ไฟล์ APK</string>
     <string name="archives">ไฟล์เก็บถาวร</string>
@@ -190,6 +193,13 @@
         <item quantity="other">เมื่อ %d ปีที่แล้ว</item>
     </plurals>
     <string name="no_files_found">ไม่พบไฟล์</string>
+    <string name="contacts_cleaner_title">ตัวล้างรายชื่อ</string>
+    <string name="no_duplicates_found">ไม่พบรายชื่อซ้ำ</string>
+    <string name="contacts_loading">กำลังสแกนรายชื่อ…</string>
+    <string name="contacts_permission_rationale">เราต้องการสิทธิ์เข้าถึงรายชื่อของคุณเพื่อค้นหาและรวมรายการซ้ำ ข้อมูลจะไม่ออกจากอุปกรณ์ของคุณ</string>
+    <string name="keep_newest_remove_older">เก็บรายการใหม่สุดและลบรายการเก่า</string>
+    <string name="merge_all_duplicates">รวมรายการที่ซ้ำทั้งหมด</string>
+    <string name="contacts_permission_denied">ปฏิเสธการอนุญาต คุณสามารถเปิดได้ในตั้งค่าระบบ</string>
 
     <!-- App manager -->
     <string name="search">ค้นหา</string>

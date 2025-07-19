@@ -4,4 +4,5 @@ import com.d4rk.android.libs.apptoolkit.core.utils.constants.permissions.Permiss
 
 object AppPermissionsConstants : PermissionsConstants() {
     const val REQUEST_CODE_STORAGE_PERMISSIONS = 2
+    const val REQUEST_CODE_CONTACTS_PERMISSIONS = 3
 }
