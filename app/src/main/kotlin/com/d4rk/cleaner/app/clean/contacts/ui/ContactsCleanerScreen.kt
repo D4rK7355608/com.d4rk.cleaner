@@ -3,9 +3,12 @@ package com.d4rk.cleaner.app.clean.contacts.ui
 import android.app.Activity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -34,23 +37,25 @@ import org.koin.compose.viewmodel.koinViewModel
 fun ContactsCleanerScreen(activity: Activity) {
     val viewModel: ContactsCleanerViewModel = koinViewModel()
     val state = viewModel.uiState.collectAsState().value
-    val scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
+    val scrollBehavior: TopAppBarScrollBehavior =
+        TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
+
+    println("Cleaning data is : ${state.data?.duplicates?.size}")
+
     LargeTopAppBarWithScaffold(
         title = stringResource(id = R.string.contacts_cleaner_title),
         onBackClicked = { activity.finish() },
         scrollBehavior = scrollBehavior
-    ) { padding ->
+    ) { paddingValues ->
         ScreenStateHandler(
             screenState = state,
             onLoading = { LoadingScreen() },
             onEmpty = { NoDataScreen(textMessage = R.string.no_duplicates_found) },
-            onSuccess = @Composable { data: UiContactsCleanerModel ->
+            onSuccess = { data: UiContactsCleanerModel ->
                 ContactsCleanerContent(
                     data = data,
                     viewModel = viewModel,
-                    modifier = Modifier
-                        .padding(padding)
-                        .fillMaxSize()
+                    paddingValues = paddingValues
                 )
             }
         )
@@ -65,10 +70,13 @@ fun ContactsCleanerScreen(activity: Activity) {
 private fun ContactsCleanerContent(
     data: UiContactsCleanerModel,
     viewModel: ContactsCleanerViewModel,
-    modifier: Modifier = Modifier
+    paddingValues: PaddingValues,
 ) {
     Column(
-        modifier = modifier,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
+            .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(SizeConstants.LargeSize)
     ) {
         data.duplicates.forEach { group ->
