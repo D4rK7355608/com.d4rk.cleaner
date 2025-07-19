@@ -10,25 +10,32 @@ import com.d4rk.android.libs.apptoolkit.data.core.ads.AdsCoreManager
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.apps.manager.data.ApkFileManagerImpl
 import com.d4rk.cleaner.app.apps.manager.data.AppPackageManagerImpl
-import com.d4rk.cleaner.app.apps.manager.data.PackageManagerFacadeImpl
 import com.d4rk.cleaner.app.apps.manager.data.AppUsageStatsManagerImpl
+import com.d4rk.cleaner.app.apps.manager.data.PackageManagerFacadeImpl
 import com.d4rk.cleaner.app.apps.manager.domain.interfaces.ApkFileManager
 import com.d4rk.cleaner.app.apps.manager.domain.interfaces.ApkInstaller
 import com.d4rk.cleaner.app.apps.manager.domain.interfaces.ApkSharer
 import com.d4rk.cleaner.app.apps.manager.domain.interfaces.AppInfoOpener
 import com.d4rk.cleaner.app.apps.manager.domain.interfaces.AppSharer
 import com.d4rk.cleaner.app.apps.manager.domain.interfaces.AppUninstaller
-import com.d4rk.cleaner.app.apps.manager.domain.interfaces.PackageManagerFacade
 import com.d4rk.cleaner.app.apps.manager.domain.interfaces.AppUsageStatsManager
+import com.d4rk.cleaner.app.apps.manager.domain.interfaces.PackageManagerFacade
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.GetApkFilesFromStorageUseCase
-import com.d4rk.cleaner.app.apps.manager.domain.usecases.GetInstalledAppsUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.GetAppsLastUsedUseCase
+import com.d4rk.cleaner.app.apps.manager.domain.usecases.GetInstalledAppsUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.InstallApkUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.OpenAppInfoUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.ShareApkUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.ShareAppUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.UninstallAppUseCase
 import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
+import com.d4rk.cleaner.app.clean.contacts.data.ContactsRepository
+import com.d4rk.cleaner.app.clean.contacts.data.ContactsRepositoryImpl
+import com.d4rk.cleaner.app.clean.contacts.domain.usecases.DeleteOlderContactsUseCase
+import com.d4rk.cleaner.app.clean.contacts.domain.usecases.GetDuplicateContactsUseCase
+import com.d4rk.cleaner.app.clean.contacts.domain.usecases.MergeContactsUseCase
+import com.d4rk.cleaner.app.clean.contacts.ui.ContactsCleanerViewModel
+import com.d4rk.cleaner.app.clean.largefiles.ui.LargeFilesViewModel
 import com.d4rk.cleaner.app.clean.memory.data.MemoryRepositoryImpl
 import com.d4rk.cleaner.app.clean.memory.domain.interfaces.MemoryRepository
 import com.d4rk.cleaner.app.clean.memory.domain.usecases.GetRamInfoUseCase
@@ -39,6 +46,7 @@ import com.d4rk.cleaner.app.clean.scanner.domain.`interface`.ScannerRepositoryIn
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.AnalyzeFilesUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.DeleteFilesUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetFileTypesUseCase
+import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetLargestFilesUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetPromotedAppUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.MoveToTrashUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.UpdateTrashSizeUseCase
@@ -47,8 +55,12 @@ import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashFilesUseCase
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.GetTrashSizeUseCase
 import com.d4rk.cleaner.app.clean.trash.domain.usecases.RestoreFromTrashUseCase
 import com.d4rk.cleaner.app.clean.trash.ui.TrashViewModel
-import com.d4rk.cleaner.app.clean.largefiles.ui.LargeFilesViewModel
-import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetLargestFilesUseCase
+import com.d4rk.cleaner.app.clean.whatsapp.details.ui.DetailsViewModel
+import com.d4rk.cleaner.app.clean.whatsapp.summary.data.WhatsAppCleanerRepositoryImpl
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.repository.WhatsAppCleanerRepository
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.DeleteWhatsAppMediaUseCase
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.GetWhatsAppMediaSummaryUseCase
+import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsappCleanerSummaryViewModel
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.CompressImageUseCase
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.GetImageDimensionsUseCase
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.GetOptimizedDestinationFileUseCase
@@ -65,9 +77,9 @@ import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
-val appModule : Module = module {
+val appModule: Module = module {
     single<DataStore> { DataStore(context = get()) }
-    single<AdsCoreManager> { AdsCoreManager(context = get() , buildInfoProvider = get()) }
+    single<AdsCoreManager> { AdsCoreManager(context = get(), buildInfoProvider = get()) }
     single { KtorClient().createClient() }
 
     single<List<String>>(qualifier = named(name = "startup_entries")) {
@@ -81,19 +93,28 @@ val appModule : Module = module {
     single<OnboardingProvider> { AppOnboardingProvider() }
 
     single<AppUpdateManager> { AppUpdateManagerFactory.create(get()) }
-    factory<PerformInAppUpdateUseCase> { (launcher : ActivityResultLauncher<IntentSenderRequest>) ->
-        PerformInAppUpdateUseCase(appUpdateManager = get() , updateResultLauncher = launcher)
+    factory<PerformInAppUpdateUseCase> { (launcher: ActivityResultLauncher<IntentSenderRequest>) ->
+        PerformInAppUpdateUseCase(appUpdateManager = get(), updateResultLauncher = launcher)
     }
 
-    viewModel<MainViewModel> { (launcher : ActivityResultLauncher<IntentSenderRequest>) ->
+    viewModel<MainViewModel> { (launcher: ActivityResultLauncher<IntentSenderRequest>) ->
         MainViewModel(
             performInAppUpdateUseCase = get { parametersOf(launcher) },
             getTrashSizeUseCase = get(),
         )
     }
 
-    single<ScannerRepositoryInterface> { ScannerRepositoryImpl(application = get() , dataStore = get()) }
-    single<com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetStorageInfoUseCase> { com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetStorageInfoUseCase(homeRepository = get()) }
+    single<ScannerRepositoryInterface> {
+        ScannerRepositoryImpl(
+            application = get(),
+            dataStore = get()
+        )
+    }
+    single<com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetStorageInfoUseCase> {
+        com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetStorageInfoUseCase(
+            homeRepository = get()
+        )
+    }
     single<GetFileTypesUseCase> { GetFileTypesUseCase(homeRepository = get()) }
     single<AnalyzeFilesUseCase> { AnalyzeFilesUseCase(homeRepository = get()) }
     single<DeleteFilesUseCase> { DeleteFilesUseCase(homeRepository = get()) }
@@ -117,6 +138,31 @@ val appModule : Module = module {
             dataStore = get()
         )
     }
+
+    single<ContactsRepository> { ContactsRepositoryImpl(context = get()) }
+    single { GetDuplicateContactsUseCase(repository = get()) }
+    single { DeleteOlderContactsUseCase(repository = get()) }
+    single { MergeContactsUseCase(repository = get()) }
+    viewModel {
+        ContactsCleanerViewModel(
+            getDuplicatesUseCase = get(),
+            deleteOlderUseCase = get(),
+            mergeContactsUseCase = get(),
+            dispatchers = get()
+        )
+    }
+
+    single<WhatsAppCleanerRepository> { WhatsAppCleanerRepositoryImpl(get()) }
+    single { GetWhatsAppMediaSummaryUseCase(repository = get()) }
+    single { DeleteWhatsAppMediaUseCase(repository = get()) }
+    viewModel {
+        WhatsappCleanerSummaryViewModel(
+            getSummaryUseCase = get(),
+            deleteUseCase = get(),
+            dispatchers = get()
+        )
+    }
+    viewModel { DetailsViewModel(dataStore = get(), dispatchers = get()) }
 
     single<PackageManagerFacade> { PackageManagerFacadeImpl(application = get()) }
     single<GetInstalledAppsUseCase> { GetInstalledAppsUseCase(packageManagerFacade = get()) }
@@ -156,7 +202,11 @@ val appModule : Module = module {
     single<GetRamInfoUseCase> { GetRamInfoUseCase(memoryRepository = get()) }
 
     viewModel<MemoryManagerViewModel> {
-        MemoryManagerViewModel(getStorageInfoUseCase = get() , getRamInfoUseCase = get() , dispatchers = get())
+        MemoryManagerViewModel(
+            getStorageInfoUseCase = get(),
+            getRamInfoUseCase = get(),
+            dispatchers = get()
+        )
     }
 
     single<GetTrashFilesUseCase> { GetTrashFilesUseCase(repository = get()) }

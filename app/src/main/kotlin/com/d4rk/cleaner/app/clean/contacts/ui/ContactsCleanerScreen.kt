@@ -68,7 +68,7 @@ fun ContactsCleanerScreen(activity: Activity) {
     val viewModel: ContactsCleanerViewModel = koinViewModel()
     val state = viewModel.uiState.collectAsState().value
     val scrollBehavior: TopAppBarScrollBehavior =
-        TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
+        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
 
     val context = LocalContext.current
     var permissionState by remember { mutableStateOf(ContactsPermissionState.CHECKING) }

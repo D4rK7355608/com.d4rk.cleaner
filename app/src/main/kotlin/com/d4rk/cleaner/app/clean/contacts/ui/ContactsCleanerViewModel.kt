@@ -40,6 +40,14 @@ class ContactsCleanerViewModel(
         launch(context = dispatchers.io) {
             getDuplicatesUseCase().collectLatest { result ->
                 _uiState.update { current ->
+
+                    println("result: $result")
+
+
+                    println("error: ${(result as? DataState.Error)?.error}")
+                    println("message error: ${current.errors}")
+
+
                     when (result) {
                         is DataState.Loading -> current.copy(screenState = ScreenState.IsLoading())
                         is DataState.Success -> current.copy(
