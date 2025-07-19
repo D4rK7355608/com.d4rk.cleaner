@@ -8,25 +8,27 @@ import kotlinx.coroutines.withContext
 import java.io.File
 
 class GetRealFileFromUriUseCase(private val context: Context) {
-    suspend operator fun invoke(uri: Uri): File? = withContext(Dispatchers.IO) {
-        if (uri.scheme == "content") {
-            context.contentResolver.query(uri, null, null, null, null)?.use { cursor ->
-                if (cursor.moveToFirst()) {
-                    val nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-                    val fileName = cursor.getString(nameIndex)
-                    val sanitizedFileName = fileName.replace(Regex("[^a-zA-Z0-9._-]"), "_")
-                    val file = File(context.cacheDir, sanitizedFileName)
-                    context.contentResolver.openInputStream(uri)?.use { input ->
-                        file.outputStream().use { output ->
-                            input.copyTo(output)
+    suspend operator fun invoke(uri: Uri): Result<File?> = withContext(Dispatchers.IO) {
+        runCatching {
+            if (uri.scheme == "content") {
+                context.contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+                    if (cursor.moveToFirst()) {
+                        val nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                        val fileName = cursor.getString(nameIndex)
+                        val sanitizedFileName = fileName.replace(Regex("[^a-zA-Z0-9._-]"), "_")
+                        val file = File(context.cacheDir, sanitizedFileName)
+                        context.contentResolver.openInputStream(uri)?.use { input ->
+                            file.outputStream().use { output ->
+                                input.copyTo(output)
+                            }
                         }
+                        return@runCatching file
                     }
-                    return@withContext file
                 }
+            } else if (uri.scheme == "file") {
+                return@runCatching File(uri.path!!)
             }
-        } else if (uri.scheme == "file") {
-            return@withContext File(uri.path!!)
+            null
         }
-        null
     }
 }

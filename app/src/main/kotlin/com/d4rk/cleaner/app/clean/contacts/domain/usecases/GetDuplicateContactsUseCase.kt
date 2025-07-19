@@ -13,6 +13,9 @@ class GetDuplicateContactsUseCase(private val repository: ContactsRepository) {
         emit(DataState.Loading())
         runCatching { repository.findDuplicates() }
             .onSuccess { emit(DataState.Success(it)) }
-            .onFailure { emit(DataState.Error(error = it.toError())) }
+            .onFailure {
+                println(it)
+                emit(DataState.Error(error = it.toError()))
+            }
     }
 }

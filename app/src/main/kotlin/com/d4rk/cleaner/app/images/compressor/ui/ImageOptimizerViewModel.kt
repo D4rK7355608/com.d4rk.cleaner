@@ -37,7 +37,7 @@ class ImageOptimizerViewModel(
                     val file = currentState.selectedImageUri?.let { uri ->
                         getRealFileFromUriUseCase(uri)
                     }
-                    val (w, h) = file?.let { getImageDimensionsUseCase(it) } ?: Pair(640, 480)
+                    val (w, h) = file?.getOrNull()?.let { getImageDimensionsUseCase(it) } ?: Pair(640, 480)
                     currentState.copy(currentTab = tab, compressedImageUri = currentState.selectedImageUri, manualWidth = w, manualHeight = h, manualQuality = 50)
                 }
                 else -> currentState.copy(currentTab = tab)
@@ -51,7 +51,7 @@ class ImageOptimizerViewModel(
             _uiState.emit(_uiState.value.copy(isLoading = true))
             val originalFile = _uiState.value.selectedImageUri?.let { uri ->
                 getRealFileFromUriUseCase(uri)
-            }
+            }?.getOrNull()
             val currentTab = _uiState.value.currentTab
             val quality = when (currentTab) {
                 0 -> _uiState.value.quickCompressValue
@@ -106,8 +106,8 @@ class ImageOptimizerViewModel(
     fun onImageSelected(uri: Uri) {
         viewModelScope.launch {
             val file = getRealFileFromUriUseCase(uri)
-            val (w, h) = file?.let { getImageDimensionsUseCase(it) } ?: Pair(640, 480)
-            val originalSizeKB: Double = file?.let { format(Locale.US, "%.2f", it.length() / 1024.0).toDouble() } ?: 0.0
+            val (w, h) = file.getOrNull()?.let { getImageDimensionsUseCase(it) } ?: Pair(640, 480)
+            val originalSizeKB: Double = file.getOrNull()?.let { format(Locale.US, "%.2f", it.length() / 1024.0).toDouble() } ?: 0.0
             _uiState.emit(
                 _uiState.value.copy(
                     selectedImageUri = uri,
@@ -125,7 +125,7 @@ class ImageOptimizerViewModel(
             _uiState.emit(_uiState.value.copy(isLoading = true))
             val originalFile = _uiState.value.selectedImageUri?.let { uri ->
                 getRealFileFromUriUseCase(uri)
-            }
+            }?.getOrNull()
             val currentTab = _uiState.value.currentTab
             val quality = when (currentTab) {
                 0 -> _uiState.value.quickCompressValue
@@ -156,8 +156,8 @@ class ImageOptimizerViewModel(
     }
 
     suspend fun getOriginalSizeInKB(uri: Uri): Int {
-        val file: File? = getRealFileFromUriUseCase(uri)
-        return file?.length()?.div(1024)?.toInt() ?: 0
+        val file: File? = getRealFileFromUriUseCase(uri).getOrNull()
+        return file?.length()?.div(1024)?.toInt() ?:  0
     }
 
     fun generateDynamicPresets(originalSizeKB: Int): List<String> {
