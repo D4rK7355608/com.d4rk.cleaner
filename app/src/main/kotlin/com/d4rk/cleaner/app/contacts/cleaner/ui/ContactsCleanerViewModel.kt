@@ -34,6 +34,8 @@ class ContactsCleanerViewModel(
 
     private fun loadDuplicates() {
         launch(context = dispatchers.io) {
+            _uiState.update { it.copy(screenState = ScreenState.IsLoading()) }
+
             runCatching { repository.findDuplicates() }
                 .onSuccess { groups ->
                     _uiState.update {

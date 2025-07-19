@@ -13,10 +13,10 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.lifecycle.Lifecycle
+import com.d4rk.android.libs.apptoolkit.core.ui.effects.LifecycleEventsEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.NoDataScreen
@@ -33,7 +33,7 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun ContactsCleanerScreen(activity: Activity) {
     val viewModel: ContactsCleanerViewModel = koinViewModel()
-    val uiState = viewModel.uiState.collectAsState().value
+    val state = viewModel.uiState.collectAsState().value
     val scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     LargeTopAppBarWithScaffold(
         title = stringResource(id = R.string.contacts_cleaner_title),
@@ -41,7 +41,7 @@ fun ContactsCleanerScreen(activity: Activity) {
         scrollBehavior = scrollBehavior
     ) { padding ->
         ScreenStateHandler(
-            screenState = uiState,
+            screenState = state,
             onLoading = { LoadingScreen() },
             onEmpty = { NoDataScreen(textMessage = R.string.no_duplicates_found) },
             onSuccess = @Composable { data: UiContactsCleanerModel ->
@@ -56,7 +56,7 @@ fun ContactsCleanerScreen(activity: Activity) {
         )
     }
 
-    LaunchedEffect(Unit) {
+    LifecycleEventsEffect(Lifecycle.Event.ON_RESUME) {
         viewModel.onEvent(ContactsCleanerEvent.LoadDuplicates)
     }
 }
