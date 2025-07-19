@@ -130,6 +130,7 @@
     <string name="whatsapp_cleaner">হোয়াটসঅ্যাপ ক্লিনার</string>
     <string name="all_clean">সব পরিষ্কার</string>
     <string name="whatsapp_cleaner_empty_message">আপনার হোয়াটসঅ্যাপ একদম পরিষ্কার! আর কিছু মুছতে নেই। আপনার দিন ভালো কাটুক!</string>
+    <string name="contacts_cleaner_empty_message">আপনার পরিচিতিগুলো ইতিমধ্যেই সুশৃঙ্খল! পরিষ্কার করার মতো কিছু নেই।</string>
     <string name="total_files_format">%1$s ফাইল</string>
     <string name="delete_selected">নির্বাচিত মুছে ফেলুন</string>
     <string name="sort_options">সাজানোর অপশন</string>

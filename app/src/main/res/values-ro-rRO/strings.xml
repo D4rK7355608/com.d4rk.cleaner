@@ -133,6 +133,7 @@
     <string name="whatsapp_cleaner">Curățător WhatsApp</string>
     <string name="all_clean">Toate curate</string>
     <string name="whatsapp_cleaner_empty_message">WhatsApp-ul tău este impecabil! Nu mai ai ce curăța. Bucură-te de zi!</string>
+    <string name="contacts_cleaner_empty_message">Contactele tale sunt deja organizate! Nu ai nimic de curățat.</string>
     <string name="total_files_format">%1$s fișiere</string>
     <string name="delete_selected">Șterge selecția</string>
     <string name="sort_options">Opțiuni de sortare</string>

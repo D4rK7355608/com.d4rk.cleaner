@@ -127,6 +127,7 @@
     <string name="whatsapp_cleaner">WhatsApp 클리너</string>
     <string name="all_clean">모두 깨끗합니다</string>
     <string name="whatsapp_cleaner_empty_message">WhatsApp이 깔끔합니다! 더 이상 정리할 것이 없어요. 좋은 하루 보내세요!</string>
+    <string name="contacts_cleaner_empty_message">연락처가 이미 정리되었습니다! 정리할 것이 없어요.</string>
     <string name="total_files_format">%1$s개 파일</string>
     <string name="delete_selected">선택 삭제</string>
     <string name="sort_options">정렬 옵션</string>

@@ -130,6 +130,7 @@
     <string name="whatsapp_cleaner">WhatsApp Cleaner</string>
     <string name="all_clean">Lahat malinis</string>
     <string name="whatsapp_cleaner_empty_message">Malinis na ang WhatsApp mo! Wala nang kailangang linisin. Enjoy sa araw mo!</string>
+    <string name="contacts_cleaner_empty_message">Ayos na ang iyong mga contact! Wala nang dapat linisin.</string>
     <string name="total_files_format">%1$s na file</string>
     <string name="delete_selected">Burahin ang Napili</string>
     <string name="sort_options">Mga opsyon sa pagsasaayos</string>

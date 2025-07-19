@@ -130,6 +130,7 @@
     <string name="whatsapp_cleaner">WhatsApp Tisztító</string>
     <string name="all_clean">Minden tiszta</string>
     <string name="whatsapp_cleaner_empty_message">A WhatsApp-od makulátlan! Nincs mit törölni. Szép napot!</string>
+    <string name="contacts_cleaner_empty_message">A névjegyeid már rendezettek! Nincs mit tisztítani.</string>
     <string name="total_files_format">%1$s fájl</string>
     <string name="delete_selected">Kijelöltek törlése</string>
     <string name="sort_options">Rendezési beállítások</string>

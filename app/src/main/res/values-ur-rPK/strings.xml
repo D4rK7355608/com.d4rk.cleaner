@@ -130,6 +130,7 @@
     <string name="whatsapp_cleaner">واٹس ایپ کلینر</string>
     <string name="all_clean">سب صاف</string>
     <string name="whatsapp_cleaner_empty_message">آپ کا واٹس ایپ بالکل صاف ہے! اب کچھ بھی صاف نہیں کرنا۔ اپنا دن اچھا گزاریں!</string>
+    <string name="contacts_cleaner_empty_message">آپ کے رابطے پہلے ہی منظم ہیں! صفائی کی ضرورت نہیں۔</string>
     <string name="total_files_format">%1$s فائلیں</string>
     <string name="delete_selected">منتخب حذف کریں</string>
     <string name="sort_options">ترتیب کے اختیارات</string>
