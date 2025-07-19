@@ -4,11 +4,14 @@ import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Context
 import android.provider.ContactsContract
+import android.os.Build
+import androidx.annotation.RequiresApi
 import android.telephony.PhoneNumberUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.d4rk.cleaner.app.contacts.cleaner.domain.data.model.RawContactInfo
 
+@RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 class ContactsRepositoryImpl(private val context: Context) : ContactsRepository {
     private val resolver = context.contentResolver
 
@@ -18,7 +21,7 @@ class ContactsRepositoryImpl(private val context: Context) : ContactsRepository 
             ContactsContract.RawContacts._ID,
             ContactsContract.RawContacts.CONTACT_ID,
             ContactsContract.RawContacts.DISPLAY_NAME_PRIMARY,
-            ContactsContract.RawContacts.CONTACT_LAST_UPDATED_TIMESTAMP,
+            ContactsContract.ContactsColumns.CONTACT_LAST_UPDATED_TIMESTAMP,
             ContactsContract.RawContacts.ACCOUNT_TYPE,
             ContactsContract.RawContacts.ACCOUNT_NAME
         )
@@ -26,7 +29,7 @@ class ContactsRepositoryImpl(private val context: Context) : ContactsRepository 
             val idIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts._ID)
             val contactIdIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.CONTACT_ID)
             val nameIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.DISPLAY_NAME_PRIMARY)
-            val updatedIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.CONTACT_LAST_UPDATED_TIMESTAMP)
+            val updatedIdx = cursor.getColumnIndexOrThrow(ContactsContract.ContactsColumns.CONTACT_LAST_UPDATED_TIMESTAMP)
             val typeIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.ACCOUNT_TYPE)
             val accIdx = cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.ACCOUNT_NAME)
             while (cursor.moveToNext()) {

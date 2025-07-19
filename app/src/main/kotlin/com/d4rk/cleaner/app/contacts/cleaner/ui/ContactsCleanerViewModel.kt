@@ -47,7 +47,10 @@ class ContactsCleanerViewModel(
                     _uiState.update {
                         it.copy(
                             screenState = ScreenState.Error(),
-                            errors = it.errors + UiSnackbar(UiTextHelper.DynamicString(e.message ?: "error"), true)
+                            errors = it.errors + UiSnackbar(
+                                message = UiTextHelper.DynamicString(e.message ?: "error"),
+                                isError = true
+                            )
                         )
                     }
                 }

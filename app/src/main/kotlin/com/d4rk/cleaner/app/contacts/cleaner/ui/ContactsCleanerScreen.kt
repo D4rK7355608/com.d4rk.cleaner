@@ -26,6 +26,7 @@ import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.contacts.cleaner.domain.actions.ContactsCleanerEvent
 import com.d4rk.cleaner.app.contacts.cleaner.domain.data.model.RawContactInfo
+import com.d4rk.cleaner.app.contacts.cleaner.domain.data.model.UiContactsCleanerModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,12 +43,11 @@ fun ContactsCleanerScreen(activity: Activity) {
         scrollBehavior = scrollBehavior
     ) { padding ->
         ScreenStateHandler(
-            screenState = uiState.screenState,
-            onLoading = { LoadingScreen(text = R.string.contacts_loading) },
+            screenState = uiState,
+            onLoading = { LoadingScreen() },
             onEmpty = { NoDataScreen(textMessage = R.string.no_duplicates_found) },
-            onError = { NoDataScreen(textMessage = R.string.contacts_permission_denied) }
-        ) { data ->
-            Column(
+            onSuccess = { data: UiContactsCleanerModel ->
+                Column(
                 modifier = Modifier
                     .padding(padding)
                     .fillMaxSize(),
@@ -61,7 +61,7 @@ fun ContactsCleanerScreen(activity: Activity) {
                     )
                 }
             }
-        }
+        )
     }
 
     LaunchedEffect(Unit) {
