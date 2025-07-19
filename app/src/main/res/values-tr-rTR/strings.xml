@@ -157,7 +157,7 @@
     <string name="open_large_files">Büyük dosyaları görüntüle</string>
     <string name="contacts_cleaner_card_title">Kişi Temizleyici</string>
     <string name="contacts_cleaner_card_subtitle">Yinelenen kişileri bulup birleştirin</string>
-    <string name="open_contacts_cleaner">Kişi Temizleyici'yi aç</string>
+    <string name="open_contacts_cleaner">Kişi Temizleyici\'yi aç</string>
     <string name="scan_cache">Önbelleği Tara</string>
     <string name="apks">APK\'lar</string>
     <string name="archives">Arşivler</string>

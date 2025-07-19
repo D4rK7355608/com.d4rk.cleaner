@@ -209,10 +209,10 @@
     <string name="contacts_cleaner_title">Nettoyeur de contacts</string>
     <string name="no_duplicates_found">Aucun doublon trouvé</string>
     <string name="contacts_loading">Analyse des contacts…</string>
-    <string name="contacts_permission_rationale">Nous avons besoin d'accéder à vos contacts pour trouver et fusionner les doublons. Les données ne quittent jamais votre appareil.</string>
+    <string name="contacts_permission_rationale">Nous avons besoin d\'accéder à vos contacts pour trouver et fusionner les doublons. Les données ne quittent jamais votre appareil.</string>
     <string name="keep_newest_remove_older">Garder le plus récent &amp; supprimer les anciens</string>
     <string name="merge_all_duplicates">Fusionner tous les doublons</string>
-    <string name="contacts_permission_denied">Permission refusée. Vous pouvez l'activer dans les paramètres système.</string>
+    <string name="contacts_permission_denied">Permission refusée. Vous pouvez l\'activer dans les paramètres système.</string>
 
     <!-- App manager -->
     <string name="search">Rechercher</string>
