@@ -11,4 +11,5 @@ sealed interface ContactsCleanerEvent : UiEvent {
     data class ToggleContactSelection(val contact: RawContactInfo) : ContactsCleanerEvent
     data object MergeSelectedContacts : ContactsCleanerEvent
     data object DeleteSelectedContacts : ContactsCleanerEvent
+    data object ToggleSelectAll : ContactsCleanerEvent
 }
