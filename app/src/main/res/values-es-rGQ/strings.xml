@@ -217,6 +217,8 @@
     <string name="contacts_permission_rationale">Necesitamos acceso a tus contactos para encontrar y combinar duplicados. Los datos nunca salen de tu dispositivo.</string>
     <string name="keep_newest_remove_older">Conservar el más reciente y borrar los demás</string>
     <string name="merge_all_duplicates">Combinar todos los duplicados</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">Permiso denegado. Puedes activarlo en los ajustes del sistema.</string>
     <string name="open_settings">Abrir ajustes</string>
 

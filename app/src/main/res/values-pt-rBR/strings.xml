@@ -218,6 +218,8 @@
     <string name="contacts_permission_rationale">Precisamos acessar seus contatos para localizar e mesclar duplicados. Seus dados nunca saem do dispositivo.</string>
     <string name="keep_newest_remove_older">Manter o mais recente &amp; remover os antigos</string>
     <string name="merge_all_duplicates">Mesclar todos os duplicados</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">Permissão negada. Você pode ativá-la nas configurações do sistema.</string>
     <string name="open_settings">Abrir configurações</string>
 

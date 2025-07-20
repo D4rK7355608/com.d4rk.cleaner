@@ -211,6 +211,8 @@
     <string name="contacts_permission_rationale">ডুপ্লিকেট খুঁজে মেশানোর জন্য আমাদের আপনার কন্টাক্ট অ্যাক্সেস দরকার। ডেটা কখনোই আপনার ডিভাইস ছাড়ে না।</string>
     <string name="keep_newest_remove_older">নতুনটি রাখুন, পুরোনো মুছে ফেলুন</string>
     <string name="merge_all_duplicates">সব ডুপ্লিকেট মিশিয়ে দিন</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">অনুমতি প্রত্যাখ্যান করা হয়েছে। সিস্টেম সেটিংসে এটি চালু করতে পারেন।</string>
     <string name="open_settings">সেটিংস খুলুন</string>
 

@@ -181,6 +181,13 @@ class ContactsRepositoryImpl(context: Context) : ContactsRepository {
         }
     }
 
+    override suspend fun deleteContacts(contacts: List<RawContactInfo>) = withContext(Dispatchers.IO) {
+        contacts.forEach { info ->
+            val uri = ContentUris.withAppendedId(ContactsContract.RawContacts.CONTENT_URI, info.rawContactId)
+            resolver.delete(uri, null, null)
+        }
+    }
+
     override suspend fun mergeContacts(group: List<RawContactInfo>) = withContext(Dispatchers.IO) {
         val keep = group.maxByOrNull { it.lastUpdated } ?: return@withContext
         group.filter { it != keep }.forEach { source ->

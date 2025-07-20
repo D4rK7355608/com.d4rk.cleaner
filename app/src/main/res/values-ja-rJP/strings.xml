@@ -204,6 +204,8 @@
     <string name="contacts_permission_rationale">重複を探して統合するために連絡先へのアクセスが必要です。データが端末の外に送信されることはありません。</string>
     <string name="keep_newest_remove_older">最新を残して古いものを削除</string>
     <string name="merge_all_duplicates">すべての重複を統合</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">権限が拒否されました。システム設定で有効にできます。</string>
     <string name="open_settings">設定を開く</string>
 

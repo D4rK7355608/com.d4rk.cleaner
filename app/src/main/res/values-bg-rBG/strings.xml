@@ -211,6 +211,8 @@
     <string name="contacts_permission_rationale">Имаме нужда от достъп до контактите ви, за да намерим и обединим дубликатите. Данните никога не напускат устройството ви.</string>
     <string name="keep_newest_remove_older">Запази най-новия и премахни по-старите</string>
     <string name="merge_all_duplicates">Обедини всички дубликати</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">Достъпът е отказан. Можете да го активирате в настройките.</string>
     <string name="open_settings">Отвори настройките</string>
 

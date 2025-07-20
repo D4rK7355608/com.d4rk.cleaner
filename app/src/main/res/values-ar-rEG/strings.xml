@@ -239,6 +239,8 @@
     <string name="contacts_permission_rationale">نحتاج للوصول إلى جهات الاتصال للعثور على المكررات ودمجها. لا تغادر بياناتك جهازك.</string>
     <string name="keep_newest_remove_older">احتفظ بالأحدث واحذف الأقدم</string>
     <string name="merge_all_duplicates">دمج كل المكررات</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">تم رفض الإذن. يمكنك تمكينه من إعدادات النظام.</string>
     <string name="open_settings">افتح الإعدادات</string>
 

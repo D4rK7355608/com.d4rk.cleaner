@@ -211,6 +211,8 @@
     <string name="contacts_permission_rationale">डुप्लीकेट खोजने और मिलाने के लिए हमें आपके संपर्कों की अनुमति चाहिए। डेटा कभी भी आपके डिवाइस से बाहर नहीं जाता।</string>
     <string name="keep_newest_remove_older">नवीनतम रखें और पुराने हटाएँ</string>
     <string name="merge_all_duplicates">सभी डुप्लीकेट मिलाएँ</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">अनुमति अस्वीकृत। आप इसे सिस्टम सेटिंग में सक्षम कर सकते हैं।</string>
     <string name="open_settings">सेटिंग खोलें</string>
 

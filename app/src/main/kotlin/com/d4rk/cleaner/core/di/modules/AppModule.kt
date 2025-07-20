@@ -32,6 +32,7 @@ import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
 import com.d4rk.cleaner.app.clean.contacts.data.ContactsRepository
 import com.d4rk.cleaner.app.clean.contacts.data.ContactsRepositoryImpl
 import com.d4rk.cleaner.app.clean.contacts.domain.usecases.DeleteOlderContactsUseCase
+import com.d4rk.cleaner.app.clean.contacts.domain.usecases.DeleteContactsUseCase
 import com.d4rk.cleaner.app.clean.contacts.domain.usecases.GetDuplicateContactsUseCase
 import com.d4rk.cleaner.app.clean.contacts.domain.usecases.MergeContactsUseCase
 import com.d4rk.cleaner.app.clean.contacts.ui.ContactsCleanerViewModel
@@ -142,11 +143,13 @@ val appModule: Module = module {
     single<ContactsRepository> { ContactsRepositoryImpl(context = get()) }
     single { GetDuplicateContactsUseCase(repository = get()) }
     single { DeleteOlderContactsUseCase(repository = get()) }
+    single { DeleteContactsUseCase(repository = get()) }
     single { MergeContactsUseCase(repository = get()) }
     viewModel {
         ContactsCleanerViewModel(
             getDuplicatesUseCase = get(),
             deleteOlderUseCase = get(),
+            deleteContactsUseCase = get(),
             mergeContactsUseCase = get(),
             dispatchers = get()
         )

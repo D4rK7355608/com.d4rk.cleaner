@@ -211,6 +211,8 @@
     <string name="contacts_permission_rationale">Duplikált névjegyek kereséséhez és egyesítéséhez hozzáférésre van szükségünk a névjegyekhez. Az adatok nem hagyják el a készüléket.</string>
     <string name="keep_newest_remove_older">Legújabb megtartása és a régiek törlése</string>
     <string name="merge_all_duplicates">Minden duplikátum egyesítése</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">Hozzáférés megtagadva. A rendszerbeállításokban engedélyezhető.</string>
     <string name="open_settings">Beállítások megnyitása</string>
 

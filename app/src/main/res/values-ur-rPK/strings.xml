@@ -211,6 +211,8 @@
     <string name="contacts_permission_rationale">ڈپلیکیٹ تلاش کرنے اور ملانے کے لیے ہمیں آپ کے کانٹیکٹس تک رسائی چاہیے۔ آپ کا ڈیٹا کبھی بھی آپ کی ڈیوائس سے باہر نہیں جاتا۔</string>
     <string name="keep_newest_remove_older">جدید کو رکھیں اور پرانے حذف کریں</string>
     <string name="merge_all_duplicates">تمام ڈپلیکیٹ ملائیں</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">اجازت مسترد کر دی گئی۔ آپ اسے سسٹم سیٹنگز میں فعال کر سکتے ہیں.</string>
     <string name="open_settings">سیٹنگز کھولیں</string>
 

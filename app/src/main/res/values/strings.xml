@@ -211,6 +211,8 @@
     <string name="contacts_permission_rationale">We need access to your contacts to find and merge duplicates. Data never leaves your device.</string>
     <string name="keep_newest_remove_older">Keep Newest &amp; Remove Older</string>
     <string name="merge_all_duplicates">Merge All Duplicates</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">Permission denied. You can enable it in system settings.</string>
     <string name="open_settings">Open Settings</string>
 
