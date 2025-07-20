@@ -137,8 +137,12 @@ fun ContactsCleanerScreen(activity: Activity) {
         }
     }
 
-    val selectedCount by remember(data) { // FIXME:Cannot infer type for this parameter. Specify it explicitly. && Not enough information to infer type argument for 'T'. && Unresolved reference 'data'.
-        derivedStateOf { data.duplicates.flatMap { it.contacts }.count { it.isSelected } } // FIXME: Cannot infer type for this parameter. Specify it explicitly.
+    val selectedCount by remember(state.data) {
+        derivedStateOf {
+            state.data?.duplicates
+                ?.flatMap { it.contacts }
+                ?.count { it.isSelected } ?: 0
+        }
     }
 
     Scaffold(
@@ -149,18 +153,18 @@ fun ContactsCleanerScreen(activity: Activity) {
             } , scrollBehavior = scrollBehavior)
         } ,
         bottomBar = {
-            AnimatedVisibility(visible = selectedCount > 0) { // FIXME: 'operator' modifier is required on 'FirNamedFunctionSymbol kotlin/compareTo' in 'compareTo'.
+            AnimatedVisibility(visible = selectedCount > 0) {
                 BottomAppBar(
                     actions = {
                         Text(text = pluralStringResource(R.plurals.items_selected, selectedCount, selectedCount))
                         Spacer(modifier = Modifier.weight(1f))
                         FilledTonalButton(
                             onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
-                            enabled = selectedCount >= 2 // FIXME:'operator' modifier is required on 'FirNamedFunctionSymbol kotlin/compareTo' in 'compareTo'.
+                            enabled = selectedCount >= 2
                         ) { Text(text = stringResource(id = R.string.merge)) }
                         FilledTonalButton(
                             onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) },
-                            enabled = selectedCount >= 1 // FIXME:'operator' modifier is required on 'FirNamedFunctionSymbol kotlin/compareTo' in 'compareTo'.
+                            enabled = selectedCount >= 1
                         ) { Text(text = stringResource(id = R.string.delete)) }
                     }
                 )
@@ -224,9 +228,6 @@ private fun ContactsCleanerContent(
     viewModel: ContactsCleanerViewModel,
     paddingValues: PaddingValues,
 ) {
-    val selectedCount by remember(data) { // FIXME: Property "selectedCount" is never used
-        derivedStateOf { data.duplicates.flatMap { it.contacts }.count { it.isSelected } }
-    }
 
     LazyColumn(
         modifier = Modifier
