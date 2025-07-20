@@ -221,6 +221,8 @@
     <string name="merge_all_duplicates">Fusionner tous les doublons</string>
     <string name="merge_groups">Merge Groups</string>
     <string name="keep_newest_in_each">Keep Newest in Each</string>
+    <string name="smart_clean">Nettoyer intelligemment</string>
+    <string name="smart_clean_all">Nettoyer tout intelligemment</string>
     <string name="contacts_permission_denied">Permission refusée. Vous pouvez l\'activer dans les paramètres système.</string>
     <string name="open_settings">Ouvrir les paramètres</string>
 

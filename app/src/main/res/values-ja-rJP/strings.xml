@@ -206,6 +206,8 @@
     <string name="merge_all_duplicates">すべての重複を統合</string>
     <string name="merge_groups">Merge Groups</string>
     <string name="keep_newest_in_each">Keep Newest in Each</string>
+    <string name="smart_clean">スマートクリーニング</string>
+    <string name="smart_clean_all">すべてをスマートにクリーニング</string>
     <string name="contacts_permission_denied">権限が拒否されました。システム設定で有効にできます。</string>
     <string name="open_settings">設定を開く</string>
 

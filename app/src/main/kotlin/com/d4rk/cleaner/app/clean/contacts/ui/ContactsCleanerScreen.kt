@@ -30,6 +30,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.SimCard
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.outlined.Contacts
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
@@ -215,7 +216,14 @@ fun ContactsCleanerScreen(activity: Activity) {
                                 SmallHorizontalSpacer()
                                 FilledTonalButton(
                                     onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) }
-                                ) { Text(text = stringResource(id = R.string.keep_newest_remove_older)) }
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.AutoAwesome,
+                                        contentDescription = null
+                                    )
+                                    SmallHorizontalSpacer()
+                                    Text(text = stringResource(id = R.string.smart_clean))
+                                }
                             }
                             SelectionState.MULTIPLE_GROUPS -> {
                                 val canMerge = state.data?.duplicates?.any { group ->
@@ -228,7 +236,14 @@ fun ContactsCleanerScreen(activity: Activity) {
                                 SmallHorizontalSpacer()
                                 FilledTonalButton(
                                     onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) }
-                                ) { Text(text = stringResource(id = R.string.keep_newest_in_each)) }
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.AutoAwesome,
+                                        contentDescription = null
+                                    )
+                                    SmallHorizontalSpacer()
+                                    Text(text = stringResource(id = R.string.smart_clean_all))
+                                }
                             }
                         }
                     }

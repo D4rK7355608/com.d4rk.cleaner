@@ -206,6 +206,8 @@
     <string name="merge_all_duplicates">รวมรายการที่ซ้ำทั้งหมด</string>
     <string name="merge_groups">Merge Groups</string>
     <string name="keep_newest_in_each">Keep Newest in Each</string>
+    <string name="smart_clean">ทำความสะอาดอัจฉริยะ</string>
+    <string name="smart_clean_all">ทำความสะอาดทั้งหมดอย่างอัจฉริยะ</string>
     <string name="contacts_permission_denied">ปฏิเสธการอนุญาต คุณสามารถเปิดได้ในตั้งค่าระบบ</string>
     <string name="open_settings">เปิดการตั้งค่า</string>
 

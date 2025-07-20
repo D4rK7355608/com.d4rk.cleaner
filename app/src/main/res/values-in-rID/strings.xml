@@ -206,6 +206,8 @@
     <string name="merge_all_duplicates">Gabungkan semua duplikat</string>
     <string name="merge_groups">Merge Groups</string>
     <string name="keep_newest_in_each">Keep Newest in Each</string>
+    <string name="smart_clean">Bersihkan Cerdas</string>
+    <string name="smart_clean_all">Bersihkan Semua Cerdas</string>
     <string name="contacts_permission_denied">Izin ditolak. Anda dapat mengaktifkannya di pengaturan sistem.</string>
     <string name="open_settings">Buka setelan</string>
 

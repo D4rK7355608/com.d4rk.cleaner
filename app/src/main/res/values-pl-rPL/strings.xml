@@ -227,6 +227,8 @@
     <string name="merge_all_duplicates">Połącz wszystkie duplikaty</string>
     <string name="merge_groups">Merge Groups</string>
     <string name="keep_newest_in_each">Keep Newest in Each</string>
+    <string name="smart_clean">Inteligentne czyszczenie</string>
+    <string name="smart_clean_all">Inteligentne czyszczenie wszystkich</string>
     <string name="contacts_permission_denied">Odmowa uprawnień. Możesz je włączyć w ustawieniach systemu.</string>
     <string name="open_settings">Otwórz ustawienia</string>
 

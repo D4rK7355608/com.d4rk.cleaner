@@ -220,6 +220,8 @@
     <string name="merge_all_duplicates">Combinar todos los duplicados</string>
     <string name="merge_groups">Merge Groups</string>
     <string name="keep_newest_in_each">Keep Newest in Each</string>
+    <string name="smart_clean">Limpieza inteligente</string>
+    <string name="smart_clean_all">Limpiar todo de forma inteligente</string>
     <string name="contacts_permission_denied">Permiso denegado. Puedes activarlo en los ajustes del sistema.</string>
     <string name="open_settings">Abrir ajustes</string>
 

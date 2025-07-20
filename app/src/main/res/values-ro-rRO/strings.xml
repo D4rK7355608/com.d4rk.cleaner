@@ -220,6 +220,8 @@
     <string name="merge_all_duplicates">Combină toate duplicatele</string>
     <string name="merge_groups">Merge Groups</string>
     <string name="keep_newest_in_each">Keep Newest in Each</string>
+    <string name="smart_clean">Curățare inteligentă</string>
+    <string name="smart_clean_all">Curățare inteligentă completă</string>
     <string name="contacts_permission_denied">Permisiune refuzată. O poți activa din setările sistemului.</string>
     <string name="open_settings">Deschide setările</string>
 

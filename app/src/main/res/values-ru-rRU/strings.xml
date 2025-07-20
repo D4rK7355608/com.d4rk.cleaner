@@ -227,6 +227,8 @@
     <string name="merge_all_duplicates">Объединить все дубликаты</string>
     <string name="merge_groups">Merge Groups</string>
     <string name="keep_newest_in_each">Keep Newest in Each</string>
+    <string name="smart_clean">Умная очистка</string>
+    <string name="smart_clean_all">Умная очистка всех</string>
     <string name="contacts_permission_denied">Доступ запрещён. Вы можете включить его в настройках системы.</string>
     <string name="open_settings">Открыть настройки</string>
 
