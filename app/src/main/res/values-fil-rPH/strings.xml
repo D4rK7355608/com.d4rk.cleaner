@@ -191,6 +191,11 @@
         <item quantity="other">Tanggalin ang %1$d item?</item>
     </plurals>
     <string name="delete">Burahin</string>
+    <string name="merge">Pagsamahin</string>
+    <plurals name="items_selected">
+        <item quantity="one">%d item ang napili</item>
+        <item quantity="other">%d na item ang napili</item>
+    </plurals>
     <string name="original">Orihinal</string>
     <string name="today">Ngayon</string>
     <string name="yesterday">Kahapon</string>

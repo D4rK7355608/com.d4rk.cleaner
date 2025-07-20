@@ -9,6 +9,10 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Contacts
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.SimCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.LaunchedEffect
@@ -27,16 +31,29 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.weight
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.lifecycle.Lifecycle
 import com.d4rk.android.libs.apptoolkit.core.ui.effects.LifecycleEventsEffect
 import androidx.compose.ui.Modifier
@@ -48,6 +65,7 @@ import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.contacts.domain.actions.ContactsCleanerEvent
 import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
+import com.d4rk.cleaner.app.clean.contacts.domain.data.model.DuplicateContactGroup
 import com.d4rk.cleaner.app.clean.contacts.domain.data.model.UiContactsCleanerModel
 import com.d4rk.cleaner.app.clean.contacts.ui.components.states.ContactsEmptyState
 import com.d4rk.cleaner.app.clean.contacts.ui.components.states.ContactsErrorState
@@ -178,49 +196,123 @@ private fun ContactsCleanerContent(
     viewModel: ContactsCleanerViewModel,
     paddingValues: PaddingValues,
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(paddingValues)
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(SizeConstants.LargeSize)
-    ) {
-        data.duplicates.forEach { group ->
-            ContactGroupItem(
-                group = group,
-                onDelete = { viewModel.onEvent(ContactsCleanerEvent.DeleteOlder(group)) },
-                onMerge = { viewModel.onEvent(ContactsCleanerEvent.MergeAll(group)) }
-            )
+    val selectedCount by remember(data) {
+        derivedStateOf { data.duplicates.flatMap { it.contacts }.count { it.isSelected } }
+    }
+
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        bottomBar = {
+            AnimatedVisibility(visible = selectedCount > 0) {
+                BottomAppBar(
+                    actions = {
+                        Text(text = pluralStringResource(R.plurals.items_selected, selectedCount, selectedCount))
+                        Spacer(modifier = Modifier.weight(1f))
+                        FilledTonalButton(
+                            onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
+                            enabled = selectedCount >= 2
+                        ) { Text(text = stringResource(id = R.string.merge)) }
+                        FilledTonalButton(
+                            onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) },
+                            enabled = selectedCount >= 1
+                        ) { Text(text = stringResource(id = R.string.delete)) }
+                    }
+                )
+            }
+        }
+    ) { innerPadding ->
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+            verticalArrangement = Arrangement.spacedBy(SizeConstants.LargeSize),
+            contentPadding = PaddingValues(vertical = SizeConstants.LargeSize)
+        ) {
+            items(items = data.duplicates, key = { group -> group.contacts.firstOrNull()?.rawContactId ?: group.hashCode() }) { group ->
+                ContactGroupItem(group = group, viewModel = viewModel)
+            }
         }
     }
 }
 
 @Composable
 private fun ContactGroupItem(
-    group: List<RawContactInfo>,
-    onDelete: () -> Unit,
-    onMerge: () -> Unit
+    group: DuplicateContactGroup,
+    viewModel: ContactsCleanerViewModel
 ) {
-    Column(
+    var isExpanded by remember { mutableStateOf(false) }
+    Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(SizeConstants.LargeSize),
-        verticalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize)
+            .padding(horizontal = SizeConstants.LargeSize)
+            .animateContentSize(),
+        colors = CardDefaults.cardColors()
     ) {
-        Text(text = group.firstOrNull()?.displayName ?: "")
-        RowActions(onDelete = onDelete, onMerge = onMerge)
+        Column(modifier = Modifier.fillMaxWidth()) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(SizeConstants.MediumSize),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                val allSelected = group.contacts.all { it.isSelected }
+                Checkbox(
+                    checked = allSelected,
+                    onCheckedChange = { viewModel.onEvent(ContactsCleanerEvent.ToggleGroupSelection(group.contacts)) }
+                )
+                Column(modifier = Modifier.padding(start = SizeConstants.MediumSize)) {
+                    Text(text = group.contacts.firstOrNull()?.displayName ?: "")
+                    Text(text = "${group.contacts.size} ${stringResource(id = R.string.duplicates)}")
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                IconButton(onClick = { isExpanded = !isExpanded }) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowDropDown,
+                        contentDescription = null,
+                        modifier = Modifier.rotate(if (isExpanded) 180f else 0f)
+                    )
+                }
+            }
+
+            AnimatedVisibility(visible = isExpanded) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = SizeConstants.MediumSize),
+                    verticalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize)
+                ) {
+                    group.contacts.forEach { contact ->
+                        ContactDetailRow(contact = contact, viewModel = viewModel)
+                    }
+                }
+            }
+        }
     }
 }
 
 @Composable
-private fun RowActions(onDelete: () -> Unit, onMerge: () -> Unit) {
-    Column(verticalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize)) {
-        Button(onClick = onDelete, modifier = Modifier.fillMaxWidth()) {
-            Text(text = stringResource(id = R.string.keep_newest_remove_older))
+private fun ContactDetailRow(contact: RawContactInfo, viewModel: ContactsCleanerViewModel) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = SizeConstants.LargeSize),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Checkbox(
+            checked = contact.isSelected,
+            onCheckedChange = { viewModel.onEvent(ContactsCleanerEvent.ToggleContactSelection(contact)) }
+        )
+        Column(modifier = Modifier.weight(1f).padding(start = SizeConstants.MediumSize)) {
+            Text(text = contact.displayName)
+            contact.phones.firstOrNull()?.let { Text(text = it, style = MaterialTheme.typography.bodySmall) }
+            contact.emails.firstOrNull()?.let { Text(text = it, style = MaterialTheme.typography.bodySmall) }
         }
-        Button(onClick = onMerge, modifier = Modifier.fillMaxWidth()) {
-            Text(text = stringResource(id = R.string.merge_all_duplicates))
+        val icon = when {
+            contact.accountType?.contains("sim", true) == true -> Icons.Default.SimCard
+            contact.accountType?.contains("google", true) == true -> Icons.Default.AccountCircle
+            else -> Icons.Default.Person
         }
+        Icon(imageVector = icon, contentDescription = null)
     }
 }
 

@@ -211,6 +211,15 @@
         <item quantity="other">هل تريد حذف %1$d ملف؟</item>
     </plurals>
     <string name="delete">حذف</string>
+    <string name="merge">دمج</string>
+    <plurals name="items_selected">
+        <item quantity="zero">تم تحديد 0 عنصر</item>
+        <item quantity="one">تم تحديد عنصر واحد</item>
+        <item quantity="two">تم تحديد عنصرين</item>
+        <item quantity="few">تم تحديد %d عناصر</item>
+        <item quantity="many">تم تحديد %d عنصراً</item>
+        <item quantity="other">تم تحديد %d عنصر</item>
+    </plurals>
     <string name="original">الأصلي</string>
     <string name="today">النهاردة</string>
     <string name="yesterday">امبارح</string>

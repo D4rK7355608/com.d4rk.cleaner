@@ -191,6 +191,11 @@
         <item quantity="other">Да изтрия %1$d елемента?</item>
     </plurals>
     <string name="delete">Изтриване</string>
+    <string name="merge">Обединяване</string>
+    <plurals name="items_selected">
+        <item quantity="one">%d избран елемент</item>
+        <item quantity="other">%d избрани елемента</item>
+    </plurals>
     <string name="original">Оригинал</string>
     <string name="today">Днес</string>
     <string name="yesterday">Вчера</string>

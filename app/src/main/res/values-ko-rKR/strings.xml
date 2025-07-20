@@ -186,6 +186,11 @@
         <item quantity="other">%1$d개 항목을 삭제할까요?</item>
     </plurals>
     <string name="delete">삭제</string>
+    <string name="merge">병합</string>
+    <plurals name="items_selected">
+        <item quantity="one">%d개 선택됨</item>
+        <item quantity="other">%d개 선택됨</item>
+    </plurals>
     <string name="original">원본</string>
     <string name="today">오늘</string>
     <string name="yesterday">어제</string>

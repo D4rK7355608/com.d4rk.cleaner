@@ -191,6 +191,11 @@
         <item quantity="other">%1$d öğeyi sil?</item>
     </plurals>
     <string name="delete">Sil</string>
+    <string name="merge">Birleştir</string>
+    <plurals name="items_selected">
+        <item quantity="one">%d öğe seçildi</item>
+        <item quantity="other">%d öğe seçildi</item>
+    </plurals>
     <string name="original">Orijinal</string>
     <string name="today">Bugün</string>
     <string name="yesterday">Dün</string>

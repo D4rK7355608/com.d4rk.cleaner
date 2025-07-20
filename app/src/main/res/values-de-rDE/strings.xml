@@ -191,6 +191,11 @@
         <item quantity="other">%1$d Elemente löschen?</item>
     </plurals>
     <string name="delete">Löschen</string>
+    <string name="merge">Zusammenführen</string>
+    <plurals name="items_selected">
+        <item quantity="one">%d Element ausgewählt</item>
+        <item quantity="other">%d Elemente ausgewählt</item>
+    </plurals>
     <string name="original">Original</string>
     <string name="today">Heute</string>
     <string name="yesterday">Gestern</string>

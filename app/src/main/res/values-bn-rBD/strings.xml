@@ -191,6 +191,11 @@
         <item quantity="other">কী %1$d আইটেম মুছে ফেলতে চান?</item>
     </plurals>
     <string name="delete">মুছুন</string>
+    <string name="merge">মার্জ করুন</string>
+    <plurals name="items_selected">
+        <item quantity="one">%d আইটেম নির্বাচিত</item>
+        <item quantity="other">%d আইটেম নির্বাচিত</item>
+    </plurals>
     <string name="original">মূল</string>
     <string name="today">আজ</string>
     <string name="yesterday">গতকাল</string>

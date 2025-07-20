@@ -196,6 +196,12 @@
         <item quantity="many">Excluir %1$d itens?</item>
     </plurals>
     <string name="delete">Excluir</string>
+    <string name="merge">Mesclar</string>
+    <plurals name="items_selected">
+        <item quantity="one">%d item selecionado</item>
+        <item quantity="other">%d itens selecionados</item>
+        <item quantity="many">%d itens selecionados</item>
+    </plurals>
     <string name="original">Original</string>
     <string name="today">Hoje</string>
     <string name="yesterday">Ontem</string>

@@ -191,6 +191,11 @@
         <item quantity="other">Delete %1$d items?</item>
     </plurals>
     <string name="delete">Delete</string>
+    <string name="merge">Merge</string>
+    <plurals name="items_selected">
+        <item quantity="one">%d item selected</item>
+        <item quantity="other">%d items selected</item>
+    </plurals>
     <string name="original">Original</string>
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
