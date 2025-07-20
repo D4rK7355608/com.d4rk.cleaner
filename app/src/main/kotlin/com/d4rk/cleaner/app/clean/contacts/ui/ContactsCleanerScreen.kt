@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountCircle
@@ -53,6 +54,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -147,17 +149,33 @@ fun ContactsCleanerScreen(activity: Activity) {
     }
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            LargeTopAppBar(title = { Text(modifier = Modifier.animateContentSize() , text = stringResource(id = R.string.contacts_cleaner_title)) } , navigationIcon = {
-                AnimatedIconButtonDirection(icon = Icons.AutoMirrored.Filled.ArrowBack , contentDescription = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.go_back) , onClick = { activity.finish() })
-            } , scrollBehavior = scrollBehavior)
-        } ,
+            LargeTopAppBar(title = {
+                Text(
+                    modifier = Modifier.animateContentSize(),
+                    text = stringResource(id = R.string.contacts_cleaner_title)
+                )
+            }, navigationIcon = {
+                AnimatedIconButtonDirection(
+                    icon = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.go_back),
+                    onClick = { activity.finish() })
+            }, scrollBehavior = scrollBehavior)
+        },
         bottomBar = {
             AnimatedVisibility(visible = selectedCount > 0) {
                 BottomAppBar(
                     actions = {
-                        Text(text = pluralStringResource(R.plurals.items_selected, selectedCount, selectedCount))
+                        Text(
+                            text = pluralStringResource(
+                                R.plurals.items_selected,
+                                selectedCount,
+                                selectedCount
+                            )
+                        )
                         Spacer(modifier = Modifier.weight(1f))
                         FilledTonalButton(
                             onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
@@ -230,15 +248,21 @@ private fun ContactsCleanerContent(
     viewModel: ContactsCleanerViewModel,
     paddingValues: PaddingValues,
 ) {
+    val listState = rememberLazyListState()
 
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(paddingValues),
+        state = listState,
         verticalArrangement = Arrangement.spacedBy(SizeConstants.LargeSize),
         contentPadding = PaddingValues(vertical = SizeConstants.LargeSize)
     ) {
-        items(items = data.duplicates, key = { group -> group.contacts.firstOrNull()?.rawContactId ?: group.hashCode() }) { group ->
+        items(
+            items = data.duplicates,
+            key = { group ->
+                group.contacts.firstOrNull()?.rawContactId ?: group.hashCode()
+            }) { group ->
             ContactGroupItem(group = group, viewModel = viewModel)
         }
     }
@@ -267,7 +291,13 @@ private fun ContactGroupItem(
                 val allSelected = group.contacts.all { it.isSelected }
                 Checkbox(
                     checked = allSelected,
-                    onCheckedChange = { viewModel.onEvent(ContactsCleanerEvent.ToggleGroupSelection(group.contacts)) }
+                    onCheckedChange = {
+                        viewModel.onEvent(
+                            ContactsCleanerEvent.ToggleGroupSelection(
+                                group.contacts
+                            )
+                        )
+                    }
                 )
                 Column(modifier = Modifier.padding(start = SizeConstants.MediumSize)) {
                     Text(text = group.contacts.firstOrNull()?.displayName ?: "")
@@ -309,12 +339,22 @@ private fun ContactDetailRow(contact: RawContactInfo, viewModel: ContactsCleaner
     ) {
         Checkbox(
             checked = contact.isSelected,
-            onCheckedChange = { viewModel.onEvent(ContactsCleanerEvent.ToggleContactSelection(contact)) }
+            onCheckedChange = {
+                viewModel.onEvent(
+                    ContactsCleanerEvent.ToggleContactSelection(
+                        contact
+                    )
+                )
+            }
         )
-        Column(modifier = Modifier.weight(1f).padding(start = SizeConstants.MediumSize)) {
+        Column(modifier = Modifier
+            .weight(1f)
+            .padding(start = SizeConstants.MediumSize)) {
             Text(text = contact.displayName)
-            contact.phones.firstOrNull()?.let { Text(text = it, style = MaterialTheme.typography.bodySmall) }
-            contact.emails.firstOrNull()?.let { Text(text = it, style = MaterialTheme.typography.bodySmall) }
+            contact.phones.firstOrNull()
+                ?.let { Text(text = it, style = MaterialTheme.typography.bodySmall) }
+            contact.emails.firstOrNull()
+                ?.let { Text(text = it, style = MaterialTheme.typography.bodySmall) }
         }
         val icon = when {
             contact.accountType?.contains("sim", true) == true -> Icons.Default.SimCard
