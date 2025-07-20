@@ -51,7 +51,7 @@ class ContactsCleanerViewModel(
     }
 
     private fun loadDuplicates() {
-        launch(context = dispatchers.io) {
+        launch(context = dispatchers.default) {
             getDuplicatesUseCase().collectLatest { result ->
                 _uiState.update { current ->
 
@@ -134,55 +134,59 @@ class ContactsCleanerViewModel(
     }
 
     private fun handleToggleGroupSelection(group: List<RawContactInfo>) {
-        _uiState.update { current ->
-            val updated = current.data?.duplicates?.map { duplicateGroup ->
-                if (duplicateGroup.contacts == group) {
-                    val shouldSelect = duplicateGroup.contacts.any { !it.isSelected }
-                    val updatedContacts = duplicateGroup.contacts.map { it.copy(isSelected = shouldSelect) }
-                    duplicateGroup.copy(contacts = updatedContacts, isSelected = shouldSelect)
-                } else {
-                    duplicateGroup
+        launch(context = dispatchers.default) {
+            _uiState.update { current ->
+                val updated = current.data?.duplicates?.map { duplicateGroup ->
+                    if (duplicateGroup.contacts == group) {
+                        val shouldSelect = duplicateGroup.contacts.any { !it.isSelected }
+                        val updatedContacts = duplicateGroup.contacts.map { it.copy(isSelected = shouldSelect) }
+                        duplicateGroup.copy(contacts = updatedContacts, isSelected = shouldSelect)
+                    } else {
+                        duplicateGroup
+                    }
                 }
+                current.copy(data = current.data?.copy(duplicates = updated ?: emptyList()))
             }
-            current.copy(data = current.data?.copy(duplicates = updated ?: emptyList()))
         }
     }
 
     private fun handleToggleContactSelection(contact: RawContactInfo) {
-        _uiState.update { current ->
-            val updatedGroups = current.data?.duplicates?.map { group ->
-                val updatedContacts = group.contacts.map { raw ->
-                    if (raw.rawContactId == contact.rawContactId) raw.copy(isSelected = !raw.isSelected) else raw
+        launch(context = dispatchers.default) {
+            _uiState.update { current ->
+                val updatedGroups = current.data?.duplicates?.map { group ->
+                    val updatedContacts = group.contacts.map { raw ->
+                        if (raw.rawContactId == contact.rawContactId) raw.copy(isSelected = !raw.isSelected) else raw
+                    }
+                    val groupSelected = updatedContacts.all { it.isSelected }
+                    group.copy(contacts = updatedContacts, isSelected = groupSelected)
                 }
-                val groupSelected = updatedContacts.all { it.isSelected }
-                group.copy(contacts = updatedContacts, isSelected = groupSelected)
+                current.copy(data = current.data?.copy(duplicates = updatedGroups ?: emptyList()))
             }
-            current.copy(data = current.data?.copy(duplicates = updatedGroups ?: emptyList()))
         }
     }
 
     private fun handleMergeSelectedContacts() {
-        val groups = _uiState.value.data?.duplicates ?: emptyList()
-        val selectedGroups = groups.mapNotNull { group ->
-            val contacts = group.contacts.filter { it.isSelected }
-            if (contacts.size >= 2) contacts else null
-        }
-        if (selectedGroups.isEmpty()) return
-        launch(context = dispatchers.io) {
+        launch(context = dispatchers.default) {
+            val groups = _uiState.value.data?.duplicates ?: emptyList()
+            val selectedGroups = groups.mapNotNull { group ->
+                val contacts = group.contacts.filter { it.isSelected }
+                if (contacts.size >= 2) contacts else null
+            }
+            if (selectedGroups.isEmpty()) return@launch
             selectedGroups.forEach { merge(it) }
             onEvent(ContactsCleanerEvent.LoadDuplicates)
         }
     }
 
     private fun handleDeleteSelectedContacts() {
-        val groups = _uiState.value.data?.duplicates ?: emptyList()
-        val selectedGroups = groups.mapNotNull { group ->
-            val contacts = group.contacts.filter { it.isSelected }
-            if (contacts.isNotEmpty()) contacts else null
-        }
-        if (selectedGroups.isEmpty()) return
-        val totalSelected = selectedGroups.sumOf { it.size }
-        launch(context = dispatchers.io) {
+        launch(context = dispatchers.default) {
+            val groups = _uiState.value.data?.duplicates ?: emptyList()
+            val selectedGroups = groups.mapNotNull { group ->
+                val contacts = group.contacts.filter { it.isSelected }
+                if (contacts.isNotEmpty()) contacts else null
+            }
+            if (selectedGroups.isEmpty()) return@launch
+            val totalSelected = selectedGroups.sumOf { it.size }
             if (totalSelected == 1) {
                 deleteContacts(selectedGroups.first())
             } else {
@@ -197,15 +201,17 @@ class ContactsCleanerViewModel(
     }
 
     private fun handleToggleSelectAll() {
-        _uiState.update { current ->
-            val shouldSelect = current.data?.duplicates
-                ?.flatMap { it.contacts }
-                ?.any { !it.isSelected } ?: false
-            val updatedGroups = current.data?.duplicates?.map { group ->
-                val updatedContacts = group.contacts.map { it.copy(isSelected = shouldSelect) }
-                group.copy(contacts = updatedContacts, isSelected = shouldSelect)
+        launch(context = dispatchers.default) {
+            _uiState.update { current ->
+                val shouldSelect = current.data?.duplicates
+                    ?.flatMap { it.contacts }
+                    ?.any { !it.isSelected } ?: false
+                val updatedGroups = current.data?.duplicates?.map { group ->
+                    val updatedContacts = group.contacts.map { it.copy(isSelected = shouldSelect) }
+                    group.copy(contacts = updatedContacts, isSelected = shouldSelect)
+                }
+                current.copy(data = current.data?.copy(duplicates = updatedGroups ?: emptyList()))
             }
-            current.copy(data = current.data?.copy(duplicates = updatedGroups ?: emptyList()))
         }
     }
 }
