@@ -284,7 +284,7 @@ class ScannerViewModel(
 
                             val includeDuplicates = dataStore.deleteDuplicateFiles.first()
                             val (groupedFiles, duplicateOriginals, duplicateGroups) =
-                                withContext(dispatchers.default) {
+                                withContext(dispatchers.io) {
                                     computeGroupedFiles(
                                         scannedFiles = result.data.first,
                                         emptyFolders = result.data.second,
