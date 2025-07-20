@@ -188,7 +188,6 @@
     <string name="delete">刪除</string>
     <string name="merge">合併</string>
     <plurals name="items_selected">
-        <item quantity="one">已選取 %d 項</item>
         <item quantity="other">已選取 %d 項</item>
     </plurals>
     <string name="original">原始</string>

@@ -188,7 +188,6 @@
     <string name="delete">Xóa</string>
     <string name="merge">Gộp</string>
     <plurals name="items_selected">
-        <item quantity="one">Đã chọn %d mục</item>
         <item quantity="other">Đã chọn %d mục</item>
     </plurals>
     <string name="original">Bản gốc</string>

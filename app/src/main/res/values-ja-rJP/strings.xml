@@ -185,7 +185,6 @@
     <string name="delete">削除</string>
     <string name="merge">統合</string>
     <plurals name="items_selected">
-        <item quantity="one">%d 件選択済み</item>
         <item quantity="other">%d 件選択済み</item>
     </plurals>
     <string name="original">オリジナル</string>

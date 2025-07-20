@@ -198,6 +198,7 @@
     <string name="delete">Eliminar</string>
     <string name="merge">Combinar</string>
     <plurals name="items_selected">
+        <item quantity="many">%d elementos seleccionados</item>
         <item quantity="one">%d elemento seleccionado</item>
         <item quantity="other">%d elementos seleccionados</item>
     </plurals>

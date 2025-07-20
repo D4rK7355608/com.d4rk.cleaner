@@ -199,6 +199,7 @@
     <string name="merge">Unisci</string>
     <plurals name="items_selected">
         <item quantity="one">%d elemento selezionato</item>
+        <item quantity="many">%d elementi selezionati</item>
         <item quantity="other">%d elementi selezionati</item>
     </plurals>
     <string name="original">Originale</string>

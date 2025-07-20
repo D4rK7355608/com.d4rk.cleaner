@@ -188,7 +188,6 @@
     <string name="delete">ลบ</string>
     <string name="merge">รวม</string>
     <plurals name="items_selected">
-        <item quantity="one">เลือก %d รายการ</item>
         <item quantity="other">เลือก %d รายการ</item>
     </plurals>
     <string name="original">ต้นฉบับ</string>

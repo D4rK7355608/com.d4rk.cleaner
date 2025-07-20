@@ -62,6 +62,7 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.AnimatedIconB
 import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
+import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallHorizontalSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.effects.LifecycleEventsEffect
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
@@ -162,6 +163,7 @@ fun ContactsCleanerScreen(activity: Activity) {
                             onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
                             enabled = selectedCount >= 2
                         ) { Text(text = stringResource(id = R.string.merge)) }
+                        SmallHorizontalSpacer()
                         FilledTonalButton(
                             onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) },
                             enabled = selectedCount >= 1

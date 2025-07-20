@@ -200,6 +200,7 @@
     <string name="merge">Fusionner</string>
     <plurals name="items_selected">
         <item quantity="one">%d élément sélectionné</item>
+        <item quantity="many">%d éléments sélectionnés</item>
         <item quantity="other">%d éléments sélectionnés</item>
     </plurals>
     <string name="original">Original</string>
