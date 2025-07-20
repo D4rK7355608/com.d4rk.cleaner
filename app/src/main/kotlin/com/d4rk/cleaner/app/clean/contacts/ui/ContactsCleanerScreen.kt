@@ -280,7 +280,7 @@ private fun ContactsCleanerContent(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = SizeConstants.LargeSize, vertical = SizeConstants.MediumSize),
+                    .padding(horizontal = SizeConstants.LargeSize),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 TriStateCheckbox(
