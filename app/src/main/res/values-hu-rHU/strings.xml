@@ -213,6 +213,8 @@
     <string name="merge_all_duplicates">Minden duplikátum egyesítése</string>
     <string name="merge_groups">Merge Groups</string>
     <string name="keep_newest_in_each">Keep Newest in Each</string>
+    <string name="smart_clean">Intelligens tisztítás</string>
+    <string name="smart_clean_all">Minden intelligens tisztítása</string>
     <string name="contacts_permission_denied">Hozzáférés megtagadva. A rendszerbeállításokban engedélyezhető.</string>
     <string name="open_settings">Beállítások megnyitása</string>
 

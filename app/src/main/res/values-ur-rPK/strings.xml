@@ -213,6 +213,8 @@
     <string name="merge_all_duplicates">تمام ڈپلیکیٹ ملائیں</string>
     <string name="merge_groups">Merge Groups</string>
     <string name="keep_newest_in_each">Keep Newest in Each</string>
+    <string name="smart_clean">سمارٹ صفائی</string>
+    <string name="smart_clean_all">تمام کی سمارٹ صفائی</string>
     <string name="contacts_permission_denied">اجازت مسترد کر دی گئی۔ آپ اسے سسٹم سیٹنگز میں فعال کر سکتے ہیں.</string>
     <string name="open_settings">سیٹنگز کھولیں</string>
 

@@ -213,6 +213,8 @@
     <string name="merge_all_duplicates">সব ডুপ্লিকেট মিশিয়ে দিন</string>
     <string name="merge_groups">Merge Groups</string>
     <string name="keep_newest_in_each">Keep Newest in Each</string>
+    <string name="smart_clean">বুদ্ধিমান পরিষ্কার</string>
+    <string name="smart_clean_all">সব বুদ্ধিমান পরিষ্কার</string>
     <string name="contacts_permission_denied">অনুমতি প্রত্যাখ্যান করা হয়েছে। সিস্টেম সেটিংসে এটি চালু করতে পারেন।</string>
     <string name="open_settings">সেটিংস খুলুন</string>
 

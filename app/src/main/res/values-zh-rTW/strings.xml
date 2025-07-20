@@ -206,6 +206,8 @@
     <string name="merge_all_duplicates">合併所有重複項</string>
     <string name="merge_groups">Merge Groups</string>
     <string name="keep_newest_in_each">Keep Newest in Each</string>
+    <string name="smart_clean">智慧清理</string>
+    <string name="smart_clean_all">智慧清理全部</string>
     <string name="contacts_permission_denied">權限被拒。你可以在系統設定中啟用它。</string>
     <string name="open_settings">開啟設定</string>
 

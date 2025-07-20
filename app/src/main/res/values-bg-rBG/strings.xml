@@ -213,6 +213,8 @@
     <string name="merge_all_duplicates">Обедини всички дубликати</string>
     <string name="merge_groups">Merge Groups</string>
     <string name="keep_newest_in_each">Keep Newest in Each</string>
+    <string name="smart_clean">Умно почистване</string>
+    <string name="smart_clean_all">Умно почистване на всичко</string>
     <string name="contacts_permission_denied">Достъпът е отказан. Можете да го активирате в настройките.</string>
     <string name="open_settings">Отвори настройките</string>
 
