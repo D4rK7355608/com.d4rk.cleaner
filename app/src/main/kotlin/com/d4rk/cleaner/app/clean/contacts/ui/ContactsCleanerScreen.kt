@@ -1,74 +1,77 @@
 package com.d4rk.cleaner.app.clean.contacts.ui
 
-import android.app.Activity
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Contacts
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.SimCard
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.platform.LocalContext
-import androidx.core.app.ActivityCompat
-import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
-import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.weight
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.SimCard
+import androidx.compose.material.icons.outlined.Contacts
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.Scaffold
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.LargeTopAppBar
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
-import androidx.lifecycle.Lifecycle
-import com.d4rk.android.libs.apptoolkit.core.ui.effects.LifecycleEventsEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.core.app.ActivityCompat
+import androidx.lifecycle.Lifecycle
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.AnimatedIconButtonDirection
+import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
-import com.d4rk.android.libs.apptoolkit.core.ui.components.navigation.LargeTopAppBarWithScaffold
+import com.d4rk.android.libs.apptoolkit.core.ui.effects.LifecycleEventsEffect
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.contacts.domain.actions.ContactsCleanerEvent
-import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
 import com.d4rk.cleaner.app.clean.contacts.domain.data.model.DuplicateContactGroup
+import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
 import com.d4rk.cleaner.app.clean.contacts.domain.data.model.UiContactsCleanerModel
 import com.d4rk.cleaner.app.clean.contacts.ui.components.states.ContactsEmptyState
 import com.d4rk.cleaner.app.clean.contacts.ui.components.states.ContactsErrorState
+import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.viewmodel.koinViewModel
 
 private enum class ContactsPermissionState { CHECKING, GRANTED, RATIONALE, DENIED }
@@ -134,13 +137,38 @@ fun ContactsCleanerScreen(activity: Activity) {
         }
     }
 
-    when (permissionState) {
-        ContactsPermissionState.GRANTED -> {
-            LargeTopAppBarWithScaffold(
-                title = stringResource(id = R.string.contacts_cleaner_title),
-                onBackClicked = { activity.finish() },
-                scrollBehavior = scrollBehavior
-            ) { paddingValues ->
+    val selectedCount by remember(data) { // FIXME:Cannot infer type for this parameter. Specify it explicitly. && Not enough information to infer type argument for 'T'. && Unresolved reference 'data'.
+        derivedStateOf { data.duplicates.flatMap { it.contacts }.count { it.isSelected } } // FIXME: Cannot infer type for this parameter. Specify it explicitly.
+    }
+
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        topBar = {
+            LargeTopAppBar(title = { Text(modifier = Modifier.animateContentSize() , text = stringResource(id = R.string.contacts_cleaner_title)) } , navigationIcon = {
+                AnimatedIconButtonDirection(icon = Icons.AutoMirrored.Filled.ArrowBack , contentDescription = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.go_back) , onClick = { activity.finish() })
+            } , scrollBehavior = scrollBehavior)
+        } ,
+        bottomBar = {
+            AnimatedVisibility(visible = selectedCount > 0) { // FIXME: 'operator' modifier is required on 'FirNamedFunctionSymbol kotlin/compareTo' in 'compareTo'.
+                BottomAppBar(
+                    actions = {
+                        Text(text = pluralStringResource(R.plurals.items_selected, selectedCount, selectedCount))
+                        Spacer(modifier = Modifier.weight(1f))
+                        FilledTonalButton(
+                            onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
+                            enabled = selectedCount >= 2 // FIXME:'operator' modifier is required on 'FirNamedFunctionSymbol kotlin/compareTo' in 'compareTo'.
+                        ) { Text(text = stringResource(id = R.string.merge)) }
+                        FilledTonalButton(
+                            onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) },
+                            enabled = selectedCount >= 1 // FIXME:'operator' modifier is required on 'FirNamedFunctionSymbol kotlin/compareTo' in 'compareTo'.
+                        ) { Text(text = stringResource(id = R.string.delete)) }
+                    }
+                )
+            }
+        }
+    ) { paddingValues ->
+        when (permissionState) {
+            ContactsPermissionState.GRANTED -> {
                 ScreenStateHandler(
                     screenState = state,
                     onLoading = {
@@ -162,31 +190,31 @@ fun ContactsCleanerScreen(activity: Activity) {
                         }
                     }
                 )
+
+                LifecycleEventsEffect(Lifecycle.Event.ON_RESUME) {
+                    viewModel.onEvent(ContactsCleanerEvent.LoadDuplicates)
+                }
             }
 
-            LifecycleEventsEffect(Lifecycle.Event.ON_RESUME) {
-                viewModel.onEvent(ContactsCleanerEvent.LoadDuplicates)
-            }
-        }
-
-        ContactsPermissionState.RATIONALE -> {
-            PermissionRationaleDialog(onRequest = {
-                permissionLauncher.launch(
-                    arrayOf(
-                        Manifest.permission.READ_CONTACTS,
-                        Manifest.permission.WRITE_CONTACTS
+            ContactsPermissionState.RATIONALE -> {
+                PermissionRationaleDialog(onRequest = {
+                    permissionLauncher.launch(
+                        arrayOf(
+                            Manifest.permission.READ_CONTACTS,
+                            Manifest.permission.WRITE_CONTACTS
+                        )
                     )
-                )
-            }) {
-                permissionState = ContactsPermissionState.DENIED
+                }) {
+                    permissionState = ContactsPermissionState.DENIED
+                }
             }
-        }
 
-        ContactsPermissionState.DENIED -> {
-            PermissionDeniedScreen(onOpenSettings = { openAppSettings(activity) })
-        }
+            ContactsPermissionState.DENIED -> {
+                PermissionDeniedScreen(onOpenSettings = { openAppSettings(activity) })
+            }
 
-        ContactsPermissionState.CHECKING -> Unit
+            ContactsPermissionState.CHECKING -> Unit
+        }
     }
 }
 
@@ -196,41 +224,19 @@ private fun ContactsCleanerContent(
     viewModel: ContactsCleanerViewModel,
     paddingValues: PaddingValues,
 ) {
-    val selectedCount by remember(data) {
+    val selectedCount by remember(data) { // FIXME: Property "selectedCount" is never used
         derivedStateOf { data.duplicates.flatMap { it.contacts }.count { it.isSelected } }
     }
 
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        bottomBar = {
-            AnimatedVisibility(visible = selectedCount > 0) {
-                BottomAppBar(
-                    actions = {
-                        Text(text = pluralStringResource(R.plurals.items_selected, selectedCount, selectedCount))
-                        Spacer(modifier = Modifier.weight(1f))
-                        FilledTonalButton(
-                            onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
-                            enabled = selectedCount >= 2
-                        ) { Text(text = stringResource(id = R.string.merge)) }
-                        FilledTonalButton(
-                            onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) },
-                            enabled = selectedCount >= 1
-                        ) { Text(text = stringResource(id = R.string.delete)) }
-                    }
-                )
-            }
-        }
-    ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            verticalArrangement = Arrangement.spacedBy(SizeConstants.LargeSize),
-            contentPadding = PaddingValues(vertical = SizeConstants.LargeSize)
-        ) {
-            items(items = data.duplicates, key = { group -> group.contacts.firstOrNull()?.rawContactId ?: group.hashCode() }) { group ->
-                ContactGroupItem(group = group, viewModel = viewModel)
-            }
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues),
+        verticalArrangement = Arrangement.spacedBy(SizeConstants.LargeSize),
+        contentPadding = PaddingValues(vertical = SizeConstants.LargeSize)
+    ) {
+        items(items = data.duplicates, key = { group -> group.contacts.firstOrNull()?.rawContactId ?: group.hashCode() }) { group ->
+            ContactGroupItem(group = group, viewModel = viewModel)
         }
     }
 }

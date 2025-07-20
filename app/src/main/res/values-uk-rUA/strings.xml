@@ -201,7 +201,7 @@
         <item quantity="other">Видалити %1$d елементів?</item>
     </plurals>
     <string name="delete">Видалити</string>
-    <string name="merge">Об'єднати</string>
+    <string name="merge">Об\'єднати</string>
     <plurals name="items_selected">
         <item quantity="one">Вибрано %d елемент</item>
         <item quantity="few">Вибрано %d елементи</item>

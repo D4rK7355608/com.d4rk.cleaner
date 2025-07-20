@@ -117,7 +117,7 @@ class ContactsCleanerViewModel(
 
     private fun handleToggleGroupSelection(group: List<RawContactInfo>) {
         _uiState.update { current ->
-            val updated = current.data.duplicates.map { duplicateGroup ->
+            val updated = current.data?.duplicates?.map { duplicateGroup ->
                 if (duplicateGroup.contacts == group) {
                     val shouldSelect = duplicateGroup.contacts.any { !it.isSelected }
                     val updatedContacts = duplicateGroup.contacts.map { it.copy(isSelected = shouldSelect) }
@@ -126,30 +126,30 @@ class ContactsCleanerViewModel(
                     duplicateGroup
                 }
             }
-            current.copy(data = current.data.copy(duplicates = updated))
+            current.copy(data = current.data?.copy(duplicates = updated ?: emptyList()))
         }
     }
 
     private fun handleToggleContactSelection(contact: RawContactInfo) {
         _uiState.update { current ->
-            val updatedGroups = current.data.duplicates.map { group ->
+            val updatedGroups = current.data?.duplicates?.map { group ->
                 val updatedContacts = group.contacts.map { raw ->
                     if (raw.rawContactId == contact.rawContactId) raw.copy(isSelected = !raw.isSelected) else raw
                 }
                 val groupSelected = updatedContacts.all { it.isSelected }
                 group.copy(contacts = updatedContacts, isSelected = groupSelected)
             }
-            current.copy(data = current.data.copy(duplicates = updatedGroups))
+            current.copy(data = current.data?.copy(duplicates = updatedGroups ?: emptyList()))
         }
     }
 
     private fun handleMergeSelectedContacts() {
-        val selected = _uiState.value.data.duplicates.flatMap { it.contacts.filter { contact -> contact.isSelected } }
-        if (selected.size >= 2) merge(selected)
+        val selected = _uiState.value.data?.duplicates?.flatMap { it.contacts.filter { contact -> contact.isSelected } }
+        if (selected?.size?.let { it >= 2 } == true) merge(selected)
     }
 
     private fun handleDeleteSelectedContacts() {
-        val selected = _uiState.value.data.duplicates.flatMap { it.contacts.filter { contact -> contact.isSelected } }
-        if (selected.isNotEmpty()) deleteOlder(selected)
+        val selected = _uiState.value.data?.duplicates?.flatMap { it.contacts.filter { contact -> contact.isSelected } }
+        if (selected?.isNotEmpty() == true) deleteOlder(selected)
     }
 }
