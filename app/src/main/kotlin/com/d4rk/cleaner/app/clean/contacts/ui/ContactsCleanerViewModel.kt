@@ -13,6 +13,7 @@ import com.d4rk.cleaner.app.clean.contacts.domain.actions.ContactsCleanerAction
 import com.d4rk.cleaner.app.clean.contacts.domain.actions.ContactsCleanerEvent
 import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
 import com.d4rk.cleaner.app.clean.contacts.domain.data.model.UiContactsCleanerModel
+import com.d4rk.cleaner.app.clean.contacts.domain.data.model.DuplicateContactGroup
 import com.d4rk.cleaner.core.utils.extensions.asUiText
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
@@ -33,6 +34,10 @@ class ContactsCleanerViewModel(
             ContactsCleanerEvent.LoadDuplicates -> loadDuplicates()
             is ContactsCleanerEvent.DeleteOlder -> deleteOlder(event.group)
             is ContactsCleanerEvent.MergeAll -> merge(event.group)
+            is ContactsCleanerEvent.ToggleGroupSelection -> handleToggleGroupSelection(event.group)
+            is ContactsCleanerEvent.ToggleContactSelection -> handleToggleContactSelection(event.contact)
+            ContactsCleanerEvent.MergeSelectedContacts -> handleMergeSelectedContacts()
+            ContactsCleanerEvent.DeleteSelectedContacts -> handleDeleteSelectedContacts()
         }
     }
 
@@ -52,7 +57,14 @@ class ContactsCleanerViewModel(
                         is DataState.Loading -> current.copy(screenState = ScreenState.IsLoading())
                         is DataState.Success -> current.copy(
                             screenState = if (result.data.isEmpty()) ScreenState.NoData() else ScreenState.Success(),
-                            data = UiContactsCleanerModel(result.data)
+                            data = UiContactsCleanerModel(
+                                result.data.map { group ->
+                                    DuplicateContactGroup(
+                                        contacts = group.map { it.copy(isSelected = false) },
+                                        isSelected = false
+                                    )
+                                }
+                            )
                         )
                         is DataState.Error -> current.copy(
                             screenState = ScreenState.Error(),
@@ -101,5 +113,43 @@ class ContactsCleanerViewModel(
                 onEvent(ContactsCleanerEvent.LoadDuplicates)
             }
         }
+    }
+
+    private fun handleToggleGroupSelection(group: List<RawContactInfo>) {
+        _uiState.update { current ->
+            val updated = current.data.duplicates.map { duplicateGroup ->
+                if (duplicateGroup.contacts == group) {
+                    val shouldSelect = duplicateGroup.contacts.any { !it.isSelected }
+                    val updatedContacts = duplicateGroup.contacts.map { it.copy(isSelected = shouldSelect) }
+                    duplicateGroup.copy(contacts = updatedContacts, isSelected = shouldSelect)
+                } else {
+                    duplicateGroup
+                }
+            }
+            current.copy(data = current.data.copy(duplicates = updated))
+        }
+    }
+
+    private fun handleToggleContactSelection(contact: RawContactInfo) {
+        _uiState.update { current ->
+            val updatedGroups = current.data.duplicates.map { group ->
+                val updatedContacts = group.contacts.map { raw ->
+                    if (raw.rawContactId == contact.rawContactId) raw.copy(isSelected = !raw.isSelected) else raw
+                }
+                val groupSelected = updatedContacts.all { it.isSelected }
+                group.copy(contacts = updatedContacts, isSelected = groupSelected)
+            }
+            current.copy(data = current.data.copy(duplicates = updatedGroups))
+        }
+    }
+
+    private fun handleMergeSelectedContacts() {
+        val selected = _uiState.value.data.duplicates.flatMap { it.contacts.filter { contact -> contact.isSelected } }
+        if (selected.size >= 2) merge(selected)
+    }
+
+    private fun handleDeleteSelectedContacts() {
+        val selected = _uiState.value.data.duplicates.flatMap { it.contacts.filter { contact -> contact.isSelected } }
+        if (selected.isNotEmpty()) deleteOlder(selected)
     }
 }

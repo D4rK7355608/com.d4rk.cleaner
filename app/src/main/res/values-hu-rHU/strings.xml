@@ -191,6 +191,11 @@
         <item quantity="other">Töröljem a(z) %1$d elemet?</item>
     </plurals>
     <string name="delete">Törlés</string>
+    <string name="merge">Egyesítés</string>
+    <plurals name="items_selected">
+        <item quantity="one">%d elem kijelölve</item>
+        <item quantity="other">%d elem kijelölve</item>
+    </plurals>
     <string name="original">Eredeti</string>
     <string name="today">Ma</string>
     <string name="yesterday">Tegnap</string>

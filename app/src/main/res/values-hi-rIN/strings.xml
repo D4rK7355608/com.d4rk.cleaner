@@ -191,6 +191,11 @@
         <item quantity="other">%1$d आइटम हटाएँ?</item>
     </plurals>
     <string name="delete">हटाएं</string>
+    <string name="merge">मिलाएँ</string>
+    <plurals name="items_selected">
+        <item quantity="one">%d आइटम चुना गया</item>
+        <item quantity="other">%d आइटम चुने गए</item>
+    </plurals>
     <string name="original">मूल</string>
     <string name="today">आज</string>
     <string name="yesterday">कल</string>

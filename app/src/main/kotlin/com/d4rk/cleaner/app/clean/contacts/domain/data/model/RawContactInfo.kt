@@ -8,5 +8,6 @@ data class RawContactInfo(
     val accountName: String?,
     val lastUpdated: Long,
     val phones: List<String>,
-    val emails: List<String>
+    val emails: List<String>,
+    val isSelected: Boolean = false
 )

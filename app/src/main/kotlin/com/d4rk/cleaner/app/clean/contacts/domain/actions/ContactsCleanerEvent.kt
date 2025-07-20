@@ -7,4 +7,8 @@ sealed interface ContactsCleanerEvent : UiEvent {
     data object LoadDuplicates : ContactsCleanerEvent
     data class DeleteOlder(val group: List<RawContactInfo>) : ContactsCleanerEvent
     data class MergeAll(val group: List<RawContactInfo>) : ContactsCleanerEvent
+    data class ToggleGroupSelection(val group: List<RawContactInfo>) : ContactsCleanerEvent
+    data class ToggleContactSelection(val contact: RawContactInfo) : ContactsCleanerEvent
+    data object MergeSelectedContacts : ContactsCleanerEvent
+    data object DeleteSelectedContacts : ContactsCleanerEvent
 }

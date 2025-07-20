@@ -191,6 +191,11 @@
         <item quantity="other">Ta bort %1$d objekt?</item>
     </plurals>
     <string name="delete">Radera</string>
+    <string name="merge">Slå ihop</string>
+    <plurals name="items_selected">
+        <item quantity="one">%d objekt markerat</item>
+        <item quantity="other">%d objekt markerade</item>
+    </plurals>
     <string name="original">Original</string>
     <string name="today">Idag</string>
     <string name="yesterday">Igår</string>

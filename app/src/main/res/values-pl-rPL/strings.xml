@@ -201,6 +201,13 @@
         <item quantity="other">Usunąć %1$d elementów?</item>
     </plurals>
     <string name="delete">Usuń</string>
+    <string name="merge">Scal</string>
+    <plurals name="items_selected">
+        <item quantity="one">%d element zaznaczony</item>
+        <item quantity="few">%d elementy zaznaczone</item>
+        <item quantity="many">%d elementów zaznaczonych</item>
+        <item quantity="other">%d elementów zaznaczonych</item>
+    </plurals>
     <string name="original">Oryginał</string>
     <string name="today">Dzisiaj</string>
     <string name="yesterday">Wczoraj</string>

@@ -186,6 +186,11 @@
         <item quantity="other">Hapus %1$d item?</item>
     </plurals>
     <string name="delete">Hapus</string>
+    <string name="merge">Gabungkan</string>
+    <plurals name="items_selected">
+        <item quantity="one">%d item dipilih</item>
+        <item quantity="other">%d item dipilih</item>
+    </plurals>
     <string name="original">Asli</string>
     <string name="today">Hari ini</string>
     <string name="yesterday">Kemarin</string>

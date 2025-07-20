@@ -196,6 +196,12 @@
         <item quantity="other">Șterge %1$d elemente?</item>
     </plurals>
     <string name="delete">Șterge</string>
+    <string name="merge">Combină</string>
+    <plurals name="items_selected">
+        <item quantity="one">%d element selectat</item>
+        <item quantity="few">%d elemente selectate</item>
+        <item quantity="other">%d de elemente selectate</item>
+    </plurals>
     <string name="original">Original</string>
     <string name="today">Astăzi</string>
     <string name="yesterday">Ieri</string>

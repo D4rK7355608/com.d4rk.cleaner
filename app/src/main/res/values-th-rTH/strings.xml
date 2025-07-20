@@ -186,6 +186,11 @@
         <item quantity="other">ลบ %1$d รายการหรือไม่?</item>
     </plurals>
     <string name="delete">ลบ</string>
+    <string name="merge">รวม</string>
+    <plurals name="items_selected">
+        <item quantity="one">เลือก %d รายการ</item>
+        <item quantity="other">เลือก %d รายการ</item>
+    </plurals>
     <string name="original">ต้นฉบับ</string>
     <string name="today">วันนี้</string>
     <string name="yesterday">เมื่อวาน</string>
