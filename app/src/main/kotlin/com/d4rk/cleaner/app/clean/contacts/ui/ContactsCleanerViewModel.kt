@@ -38,6 +38,7 @@ class ContactsCleanerViewModel(
             is ContactsCleanerEvent.ToggleContactSelection -> handleToggleContactSelection(event.contact)
             ContactsCleanerEvent.MergeSelectedContacts -> handleMergeSelectedContacts()
             ContactsCleanerEvent.DeleteSelectedContacts -> handleDeleteSelectedContacts()
+            ContactsCleanerEvent.ToggleSelectAll -> handleToggleSelectAll()
         }
     }
 
@@ -151,5 +152,18 @@ class ContactsCleanerViewModel(
     private fun handleDeleteSelectedContacts() {
         val selected = _uiState.value.data?.duplicates?.flatMap { it.contacts.filter { contact -> contact.isSelected } }
         if (selected?.isNotEmpty() == true) deleteOlder(selected)
+    }
+
+    private fun handleToggleSelectAll() {
+        _uiState.update { current ->
+            val shouldSelect = current.data?.duplicates
+                ?.flatMap { it.contacts }
+                ?.any { !it.isSelected } ?: false
+            val updatedGroups = current.data?.duplicates?.map { group ->
+                val updatedContacts = group.contacts.map { it.copy(isSelected = shouldSelect) }
+                group.copy(contacts = updatedContacts, isSelected = shouldSelect)
+            }
+            current.copy(data = current.data?.copy(duplicates = updatedGroups ?: emptyList()))
+        }
     }
 }
