@@ -204,6 +204,8 @@
     <string name="contacts_permission_rationale">我們需要存取你的聯絡人以找出並合併重複項。資料不會離開你的裝置。</string>
     <string name="keep_newest_remove_older">保留最新 &amp; 刪除較舊</string>
     <string name="merge_all_duplicates">合併所有重複項</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">權限被拒。你可以在系統設定中啟用它。</string>
     <string name="open_settings">開啟設定</string>
 

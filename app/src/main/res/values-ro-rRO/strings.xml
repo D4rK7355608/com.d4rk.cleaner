@@ -218,6 +218,8 @@
     <string name="contacts_permission_rationale">Avem nevoie de acces la contacte pentru a găsi și îmbina duplicatele. Datele nu părăsesc niciodată dispozitivul.</string>
     <string name="keep_newest_remove_older">Păstrează cel mai nou și șterge-le pe cele vechi</string>
     <string name="merge_all_duplicates">Combină toate duplicatele</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">Permisiune refuzată. O poți activa din setările sistemului.</string>
     <string name="open_settings">Deschide setările</string>
 

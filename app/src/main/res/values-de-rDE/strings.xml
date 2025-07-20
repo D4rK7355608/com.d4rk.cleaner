@@ -211,6 +211,8 @@
     <string name="contacts_permission_rationale">Wir benötigen Zugriff auf deine Kontakte, um Duplikate zu finden und zusammenzuführen. Daten verlassen dein Gerät nie.</string>
     <string name="keep_newest_remove_older">Neuester behalten &amp; ältere entfernen</string>
     <string name="merge_all_duplicates">Alle Duplikate zusammenführen</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">Berechtigung verweigert. Du kannst sie in den Systemeinstellungen aktivieren.</string>
     <string name="open_settings">Einstellungen öffnen</string>
 

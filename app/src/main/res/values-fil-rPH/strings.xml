@@ -211,6 +211,8 @@
     <string name="contacts_permission_rationale">Kailangan naming ma-access ang iyong mga contact para mahanap at pagsamahin ang mga dobleng entry. Hindi umaalis ang datos sa iyong device.</string>
     <string name="keep_newest_remove_older">Panatilihin ang pinakabago at alisin ang luma</string>
     <string name="merge_all_duplicates">Pagsamahin lahat ng dobleng contact</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">Tinanggihan ang permiso. Maaari mo itong paganahin sa mga setting ng system.</string>
     <string name="open_settings">Buksan ang mga setting</string>
 

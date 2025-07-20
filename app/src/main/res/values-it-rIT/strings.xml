@@ -218,6 +218,8 @@
     <string name="contacts_permission_rationale">Abbiamo bisogno di accedere ai tuoi contatti per trovare e unire i duplicati. I dati non lasciano mai il tuo dispositivo.</string>
     <string name="keep_newest_remove_older">Mantieni il più recente e rimuovi gli altri</string>
     <string name="merge_all_duplicates">Unisci tutti i duplicati</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">Permesso negato. Puoi abilitarlo nelle impostazioni di sistema.</string>
     <string name="open_settings">Apri impostazioni</string>
 

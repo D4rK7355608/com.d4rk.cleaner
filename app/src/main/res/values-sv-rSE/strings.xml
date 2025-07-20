@@ -211,6 +211,8 @@
     <string name="contacts_permission_rationale">Vi behöver åtkomst till dina kontakter för att hitta och slå ihop dubletter. Data lämnar aldrig din enhet.</string>
     <string name="keep_newest_remove_older">Behåll senaste &amp; ta bort äldre</string>
     <string name="merge_all_duplicates">Slå ihop alla dubletter</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">Behörighet nekad. Du kan aktivera den i systeminställningarna.</string>
     <string name="open_settings">Öppna inställningar</string>
 

@@ -204,6 +204,8 @@
     <string name="contacts_permission_rationale">Chúng tôi cần quyền truy cập danh bạ để tìm và gộp các bản trùng. Dữ liệu của bạn không bao giờ rời khỏi thiết bị.</string>
     <string name="keep_newest_remove_older">Giữ mới nhất &amp; xóa bản cũ</string>
     <string name="merge_all_duplicates">Gộp tất cả bản trùng</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">Quyền bị từ chối. Bạn có thể bật lại trong cài đặt hệ thống.</string>
     <string name="open_settings">Mở cài đặt</string>
 

@@ -225,6 +225,8 @@
     <string name="contacts_permission_rationale">Нам нужен доступ к вашим контактам, чтобы найти и объединить дубликаты. Данные никогда не покидают ваше устройство.</string>
     <string name="keep_newest_remove_older">Сохранить новый &amp; удалить старые</string>
     <string name="merge_all_duplicates">Объединить все дубликаты</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">Доступ запрещён. Вы можете включить его в настройках системы.</string>
     <string name="open_settings">Открыть настройки</string>
 

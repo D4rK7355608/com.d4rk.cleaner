@@ -204,6 +204,8 @@
     <string name="contacts_permission_rationale">Kami memerlukan akses ke kontak Anda untuk menemukan dan menggabungkan duplikat. Data tidak pernah meninggalkan perangkat Anda.</string>
     <string name="keep_newest_remove_older">Simpan yang terbaru &amp; hapus yang lama</string>
     <string name="merge_all_duplicates">Gabungkan semua duplikat</string>
+    <string name="merge_groups">Merge Groups</string>
+    <string name="keep_newest_in_each">Keep Newest in Each</string>
     <string name="contacts_permission_denied">Izin ditolak. Anda dapat mengaktifkannya di pengaturan sistem.</string>
     <string name="open_settings">Buka setelan</string>
 

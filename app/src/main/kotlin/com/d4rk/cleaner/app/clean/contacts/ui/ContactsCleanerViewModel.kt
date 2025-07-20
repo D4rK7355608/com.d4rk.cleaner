@@ -9,6 +9,7 @@ import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
 import com.d4rk.cleaner.app.clean.contacts.domain.usecases.DeleteOlderContactsUseCase
 import com.d4rk.cleaner.app.clean.contacts.domain.usecases.GetDuplicateContactsUseCase
 import com.d4rk.cleaner.app.clean.contacts.domain.usecases.MergeContactsUseCase
+import com.d4rk.cleaner.app.clean.contacts.domain.usecases.DeleteContactsUseCase
 import com.d4rk.cleaner.app.clean.contacts.domain.actions.ContactsCleanerAction
 import com.d4rk.cleaner.app.clean.contacts.domain.actions.ContactsCleanerEvent
 import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
@@ -21,6 +22,7 @@ import kotlinx.coroutines.flow.update
 class ContactsCleanerViewModel(
     private val getDuplicatesUseCase: GetDuplicateContactsUseCase,
     private val deleteOlderUseCase: DeleteOlderContactsUseCase,
+    private val deleteContactsUseCase: DeleteContactsUseCase,
     private val mergeContactsUseCase: MergeContactsUseCase,
     private val dispatchers: DispatcherProvider
 ) : ScreenViewModel<UiContactsCleanerModel, ContactsCleanerEvent, ContactsCleanerAction>(
@@ -32,8 +34,14 @@ class ContactsCleanerViewModel(
     override fun onEvent(event: ContactsCleanerEvent) {
         when (event) {
             ContactsCleanerEvent.LoadDuplicates -> loadDuplicates()
-            is ContactsCleanerEvent.DeleteOlder -> deleteOlder(event.group)
-            is ContactsCleanerEvent.MergeAll -> merge(event.group)
+            is ContactsCleanerEvent.DeleteOlder -> launch(dispatchers.io) {
+                deleteOlder(event.group)
+                onEvent(ContactsCleanerEvent.LoadDuplicates)
+            }
+            is ContactsCleanerEvent.MergeAll -> launch(dispatchers.io) {
+                merge(event.group)
+                onEvent(ContactsCleanerEvent.LoadDuplicates)
+            }
             is ContactsCleanerEvent.ToggleGroupSelection -> handleToggleGroupSelection(event.group)
             is ContactsCleanerEvent.ToggleContactSelection -> handleToggleContactSelection(event.contact)
             ContactsCleanerEvent.MergeSelectedContacts -> handleMergeSelectedContacts()
@@ -80,38 +88,47 @@ class ContactsCleanerViewModel(
         }
     }
 
-    private fun deleteOlder(group: List<RawContactInfo>) {
-        launch(context = dispatchers.io) {
-            deleteOlderUseCase(group).collectLatest { result ->
-                if (result is DataState.Error) {
-                    _uiState.update { current ->
-                        current.copy(
-                            errors = current.errors + UiSnackbar(
-                                message = result.error.asUiText(),
-                                isError = true
-                            )
+    private suspend fun deleteOlder(group: List<RawContactInfo>) {
+        deleteOlderUseCase(group).collectLatest { result ->
+            if (result is DataState.Error) {
+                _uiState.update { current ->
+                    current.copy(
+                        errors = current.errors + UiSnackbar(
+                            message = result.error.asUiText(),
+                            isError = true
                         )
-                    }
+                    )
                 }
-                onEvent(ContactsCleanerEvent.LoadDuplicates)
             }
         }
     }
 
-    private fun merge(group: List<RawContactInfo>) {
-        launch(context = dispatchers.io) {
-            mergeContactsUseCase(group).collectLatest { result ->
-                if (result is DataState.Error) {
-                    _uiState.update { current ->
-                        current.copy(
-                            errors = current.errors + UiSnackbar(
-                                message = result.error.asUiText(),
-                                isError = true
-                            )
+    private suspend fun merge(group: List<RawContactInfo>) {
+        mergeContactsUseCase(group).collectLatest { result ->
+            if (result is DataState.Error) {
+                _uiState.update { current ->
+                    current.copy(
+                        errors = current.errors + UiSnackbar(
+                            message = result.error.asUiText(),
+                            isError = true
                         )
-                    }
+                    )
                 }
-                onEvent(ContactsCleanerEvent.LoadDuplicates)
+            }
+        }
+    }
+
+    private suspend fun deleteContacts(contacts: List<RawContactInfo>) {
+        deleteContactsUseCase(contacts).collectLatest { result ->
+            if (result is DataState.Error) {
+                _uiState.update { current ->
+                    current.copy(
+                        errors = current.errors + UiSnackbar(
+                            message = result.error.asUiText(),
+                            isError = true
+                        )
+                    )
+                }
             }
         }
     }
@@ -145,13 +162,38 @@ class ContactsCleanerViewModel(
     }
 
     private fun handleMergeSelectedContacts() {
-        val selected = _uiState.value.data?.duplicates?.flatMap { it.contacts.filter { contact -> contact.isSelected } }
-        if (selected?.size?.let { it >= 2 } == true) merge(selected)
+        val groups = _uiState.value.data?.duplicates ?: emptyList()
+        val selectedGroups = groups.mapNotNull { group ->
+            val contacts = group.contacts.filter { it.isSelected }
+            if (contacts.size >= 2) contacts else null
+        }
+        if (selectedGroups.isEmpty()) return
+        launch(context = dispatchers.io) {
+            selectedGroups.forEach { merge(it) }
+            onEvent(ContactsCleanerEvent.LoadDuplicates)
+        }
     }
 
     private fun handleDeleteSelectedContacts() {
-        val selected = _uiState.value.data?.duplicates?.flatMap { it.contacts.filter { contact -> contact.isSelected } }
-        if (selected?.isNotEmpty() == true) deleteOlder(selected)
+        val groups = _uiState.value.data?.duplicates ?: emptyList()
+        val selectedGroups = groups.mapNotNull { group ->
+            val contacts = group.contacts.filter { it.isSelected }
+            if (contacts.isNotEmpty()) contacts else null
+        }
+        if (selectedGroups.isEmpty()) return
+        val totalSelected = selectedGroups.sumOf { it.size }
+        launch(context = dispatchers.io) {
+            if (totalSelected == 1) {
+                deleteContacts(selectedGroups.first())
+            } else {
+                selectedGroups.forEach { contacts ->
+                    if (contacts.size > 1) {
+                        deleteOlder(contacts)
+                    }
+                }
+            }
+            onEvent(ContactsCleanerEvent.LoadDuplicates)
+        }
     }
 
     private fun handleToggleSelectAll() {

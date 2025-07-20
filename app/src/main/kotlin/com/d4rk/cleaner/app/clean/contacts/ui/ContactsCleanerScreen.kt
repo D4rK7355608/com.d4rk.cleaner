@@ -88,6 +88,7 @@ import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.viewmodel.koinViewModel
 
 private enum class ContactsPermissionState { CHECKING, GRANTED, RATIONALE, DENIED }
+private enum class SelectionState { SINGLE, SAME_GROUP, MULTIPLE_GROUPS }
 
 private fun openAppSettings(activity: Activity) {
     val intent = Intent(
@@ -158,6 +159,19 @@ fun ContactsCleanerScreen(activity: Activity) {
         }
     }
 
+    val selectionState by remember(state.data) {
+        derivedStateOf {
+            val groups = state.data?.duplicates ?: emptyList()
+            val selectedGroups = groups.filter { group -> group.contacts.any { it.isSelected } }
+            val total = selectedGroups.sumOf { it.contacts.count { it.isSelected } }
+            when {
+                total == 1 -> SelectionState.SINGLE
+                selectedGroups.size == 1 -> SelectionState.SAME_GROUP
+                else -> SelectionState.MULTIPLE_GROUPS
+            }
+        }
+    }
+
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -187,15 +201,36 @@ fun ContactsCleanerScreen(activity: Activity) {
                             )
                         )
                         Spacer(modifier = Modifier.weight(1f))
-                        FilledTonalButton(
-                            onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
-                            enabled = selectedCount >= 2
-                        ) { Text(text = stringResource(id = R.string.merge)) }
-                        SmallHorizontalSpacer()
-                        FilledTonalButton(
-                            onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) },
-                            enabled = selectedCount >= 1
-                        ) { Text(text = stringResource(id = R.string.delete)) }
+                        when (selectionState) {
+                            SelectionState.SINGLE -> {
+                                FilledTonalButton(
+                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) }
+                                ) { Text(text = stringResource(id = R.string.delete)) }
+                            }
+                            SelectionState.SAME_GROUP -> {
+                                FilledTonalButton(
+                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
+                                    enabled = selectedCount >= 2
+                                ) { Text(text = stringResource(id = R.string.merge)) }
+                                SmallHorizontalSpacer()
+                                FilledTonalButton(
+                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) }
+                                ) { Text(text = stringResource(id = R.string.keep_newest_remove_older)) }
+                            }
+                            SelectionState.MULTIPLE_GROUPS -> {
+                                val canMerge = state.data?.duplicates?.any { group ->
+                                    group.contacts.count { it.isSelected } >= 2
+                                } ?: false
+                                FilledTonalButton(
+                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
+                                    enabled = canMerge
+                                ) { Text(text = stringResource(id = R.string.merge_groups)) }
+                                SmallHorizontalSpacer()
+                                FilledTonalButton(
+                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) }
+                                ) { Text(text = stringResource(id = R.string.keep_newest_in_each)) }
+                            }
+                        }
                     }
                 )
             }
