@@ -24,7 +24,7 @@ class DetailsViewModel(
 ) {
 
     init {
-        launch(dispatchers.io) {
+        launch {
             dataStore.whatsappGridView.collectLatest { isGrid ->
                 _uiState.updateData(newState = _uiState.value.screenState) { current ->
                     current.copy(isGridView = isGrid)
@@ -47,22 +47,24 @@ class DetailsViewModel(
     }
 
     private fun setFiles(list: List<File>) {
-        val sorted = sort(list)
-        _uiState.update { current ->
-            val data = current.data ?: UiWhatsAppDetailsModel()
-            current.copy(
-                data = data.copy(
-                    files = sorted,
-                    suggested = sort(getJunkCandidates(sorted))
-                ),
-                screenState = if (sorted.isEmpty()) ScreenState.NoData() else ScreenState.Success()
-            )
+        launch(dispatchers.default) {
+            val sorted = sort(list)
+            _uiState.update { current ->
+                val data = current.data ?: UiWhatsAppDetailsModel()
+                current.copy(
+                    data = data.copy(
+                        files = sorted,
+                        suggested = sort(getJunkCandidates(sorted))
+                    ),
+                    screenState = if (sorted.isEmpty()) ScreenState.NoData() else ScreenState.Success()
+                )
+            }
         }
     }
 
     private fun toggleView() {
         val new = !(_uiState.value.data?.isGridView ?: true)
-        launch(dispatchers.io) { dataStore.saveWhatsAppGridView(new) }
+        launch { dataStore.saveWhatsAppGridView(new) }
         _uiState.updateData(ScreenState.Success()) { it.copy(isGridView = new) }
     }
 
@@ -78,14 +80,16 @@ class DetailsViewModel(
                 )
             )
         }
-        _uiState.update { current ->
-            val sorted = sort(current.data?.files ?: emptyList())
-            current.copy(
-                data = current.data?.copy(
-                    files = sorted,
-                    suggested = sort(getJunkCandidates(sorted))
+        launch(dispatchers.default) {
+            _uiState.update { current ->
+                val sorted = sort(current.data?.files ?: emptyList())
+                current.copy(
+                    data = current.data?.copy(
+                        files = sorted,
+                        suggested = sort(getJunkCandidates(sorted))
+                    )
                 )
-            )
+            }
         }
     }
 
