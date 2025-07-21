@@ -19,6 +19,12 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
@@ -80,6 +86,22 @@ import com.d4rk.cleaner.app.clean.whatsapp.utils.helpers.openFile
 import com.google.common.io.Files.getFileExtension
 import kotlinx.coroutines.launch
 import java.io.File
+
+private class ListPagingSource(private val data: List<File>) : PagingSource<Int, File>() {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, File> {
+        val start = params.key ?: 0
+        val end = (start + params.loadSize).coerceAtMost(data.size)
+        val sub = data.subList(start, end)
+        val next = if (end >= data.size) null else end
+        return LoadResult.Page(
+            data = sub,
+            prevKey = if (start == 0) null else start - params.loadSize,
+            nextKey = next
+        )
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, File>): Int? = state.anchorPosition
+}
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -348,6 +370,9 @@ fun DetailsScreenContent(
     files: List<File>
 ) {
     val context : Context = LocalContext.current
+    val pagingItems = remember(files) {
+        Pager(PagingConfig(pageSize = 50)) { ListPagingSource(files) }.flow
+    }.collectAsLazyPagingItems()
 
     Column(modifier = Modifier
         .fillMaxSize()) {
@@ -388,7 +413,7 @@ fun DetailsScreenContent(
                 }
             } else {
                 LazyColumn(modifier = Modifier.weight(1f)) {
-                    items(files) { file ->
+                    items(pagingItems) { file ->
                         val checked = file in selected
                         val fileExtension = remember(file.name) { getFileExtension(file.name) }
                         val imageExt = remember { context.resources.getStringArray(R.array.image_extensions).toList() }

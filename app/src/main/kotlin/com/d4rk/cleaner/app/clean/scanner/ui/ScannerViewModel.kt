@@ -44,6 +44,8 @@ import com.d4rk.cleaner.core.domain.model.network.Errors
 import com.d4rk.cleaner.core.utils.extensions.clearClipboardCompat
 import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
 import com.d4rk.cleaner.app.clean.scanner.utils.helpers.CleaningProgressBus
+import androidx.paging.PagingData
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -58,6 +60,8 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import com.d4rk.cleaner.core.utils.extensions.md5
 import androidx.core.content.ContextCompat.startForegroundService
+import com.d4rk.cleaner.app.clean.scanner.services.CleaningService
+import kotlinx.coroutines.runBlocking
 
 private const val RESULT_DELAY_MS = 3600L
 
@@ -266,7 +270,7 @@ class ScannerViewModel(
         }
 
         launch(dispatchers.io) {
-            analyzeFilesUseCase().collectLatest { result: DataState<Pair<List<File>, List<File>>, Errors> ->
+            analyzeFilesUseCase().collectLatest { result: DataState<Flow<PagingData<File>>, Errors> ->
                 _uiState.update { currentState: UiStateScreen<UiScannerModel> ->
                     val currentData: UiScannerModel = currentState.data ?: UiScannerModel()
                     when (result) {
@@ -297,11 +301,12 @@ class ScannerViewModel(
                             )
 
                             val includeDuplicates = dataStore.deleteDuplicateFiles.first()
+                            val allFiles = withContext(dispatchers.io) { result.data.toList() }
                             val (groupedFiles, duplicateOriginals, duplicateGroups) =
                                 withContext(dispatchers.io) {
                                     computeGroupedFiles(
-                                        scannedFiles = result.data.first,
-                                        emptyFolders = result.data.second,
+                                        scannedFiles = allFiles,
+                                        emptyFolders = emptyList(),
                                         fileTypesData = fileTypesData,
                                         preferences = preferences,
                                         includeDuplicates = includeDuplicates
@@ -311,8 +316,8 @@ class ScannerViewModel(
                                 screenState = ScreenState.Success(),
                                 data = currentData.copy(
                                     analyzeState = currentData.analyzeState.copy(
-                                        scannedFileList = result.data.first,
-                                        emptyFolderList = result.data.second,
+                                        scannedFileList = allFiles,
+                                        emptyFolderList = emptyList(),
                                         groupedFiles = groupedFiles,
                                         duplicateOriginals = duplicateOriginals,
                                         duplicateGroups = duplicateGroups,
@@ -485,15 +490,18 @@ class ScannerViewModel(
                     result = result,
                     errorMessage = UiTextHelper.StringResource(R.string.failed_to_move_files_to_trash)
                 ) { _: Unit, currentData: UiScannerModel ->
-                    val (groupedFilesUpdated2, duplicateOriginals2, duplicateGroups2) = computeGroupedFiles(
-                        scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile: File ->
-                            files.any { movedFile: File -> existingFile.absolutePath == movedFile.absolutePath }
-                        },
-                        emptyFolders = currentData.analyzeState.emptyFolderList,
-                        fileTypesData = currentData.analyzeState.fileTypesData,
-                        preferences = mapOf(),
-                        includeDuplicates = includeDuplicates
-                    )
+                    val (groupedFilesUpdated2, duplicateOriginals2, duplicateGroups2) =
+                        runBlocking(dispatchers.io) {
+                            computeGroupedFiles(
+                                scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile: File ->
+                                    files.any { movedFile: File -> existingFile.absolutePath == movedFile.absolutePath }
+                                },
+                                emptyFolders = currentData.analyzeState.emptyFolderList,
+                                fileTypesData = currentData.analyzeState.fileTypesData,
+                                preferences = mapOf(),
+                                includeDuplicates = includeDuplicates
+                            )
+                        }
 
                     currentData.copy(
                         analyzeState = currentData.analyzeState.copy(
@@ -714,15 +722,18 @@ class ScannerViewModel(
                     result = result,
                     errorMessage = UiTextHelper.StringResource(R.string.failed_to_delete_files)
                 ) { _: Unit, currentData: UiScannerModel ->
-                    val (groupedFilesUpdated, duplicateOriginals, duplicateGroups) = computeGroupedFiles(
-                        scannedFiles = currentData.analyzeState.scannedFileList.filterNot {
-                            filesToDelete.contains(it)
-                        },
-                        emptyFolders = currentData.analyzeState.emptyFolderList,
-                        fileTypesData = currentData.analyzeState.fileTypesData,
-                        preferences = mapOf(),
-                        includeDuplicates = includeDuplicates
-                    )
+                    val (groupedFilesUpdated, duplicateOriginals, duplicateGroups) =
+                        runBlocking(dispatchers.io) {
+                            computeGroupedFiles(
+                                scannedFiles = currentData.analyzeState.scannedFileList.filterNot {
+                                    filesToDelete.contains(it)
+                                },
+                                emptyFolders = currentData.analyzeState.emptyFolderList,
+                                fileTypesData = currentData.analyzeState.fileTypesData,
+                                preferences = mapOf(),
+                                includeDuplicates = includeDuplicates
+                            )
+                        }
 
                     currentData.copy(analyzeState = currentData.analyzeState.copy(scannedFileList = currentData.analyzeState.scannedFileList.filterNot {
                         filesToDelete.contains(it)
@@ -814,15 +825,18 @@ class ScannerViewModel(
                     result = result,
                     errorMessage = UiTextHelper.StringResource(R.string.failed_to_move_files_to_trash)
                 ) { _, currentData ->
-                    val (groupedFilesUpdated3, duplicateOriginals3, duplicateGroups3) = computeGroupedFiles(
-                        scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile ->
-                            filesToMove.any { movedFile -> existingFile.absolutePath == movedFile.absolutePath }
-                        },
-                        emptyFolders = currentData.analyzeState.emptyFolderList,
-                        fileTypesData = currentData.analyzeState.fileTypesData,
-                        preferences = mapOf(),
-                        includeDuplicates = includeDuplicates
-                    )
+                    val (groupedFilesUpdated3, duplicateOriginals3, duplicateGroups3) =
+                        runBlocking(dispatchers.io) {
+                            computeGroupedFiles(
+                                scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile ->
+                                    filesToMove.any { movedFile -> existingFile.absolutePath == movedFile.absolutePath }
+                                },
+                                emptyFolders = currentData.analyzeState.emptyFolderList,
+                                fileTypesData = currentData.analyzeState.fileTypesData,
+                                preferences = mapOf(),
+                                includeDuplicates = includeDuplicates
+                            )
+                        }
 
                     currentData.copy(analyzeState = currentData.analyzeState.copy(scannedFileList = currentData.analyzeState.scannedFileList.filterNot { existingFile ->
                         filesToMove.any { movedFile -> existingFile.absolutePath == movedFile.absolutePath }
@@ -1119,6 +1133,14 @@ class ScannerViewModel(
 
     private fun postSnackbar(message : UiTextHelper , isError : Boolean) {
         screenState.showSnackbar(snackbar = UiSnackbar(message = message , isError = isError , timeStamp = System.currentTimeMillis() , type = ScreenMessageType.SNACKBAR))
+    }
+
+    private suspend fun Flow<PagingData<File>>.toList(): List<File> {
+        val list = mutableListOf<File>()
+        collectLatest { pagingData ->
+            pagingData.collect { list.add(it) }
+        }
+        return list
     }
 
     override fun onCleared() {

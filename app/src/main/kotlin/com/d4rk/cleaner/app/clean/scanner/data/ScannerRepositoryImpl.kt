@@ -15,7 +15,11 @@ import com.d4rk.cleaner.app.clean.scanner.utils.helpers.StorageUtils
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.utils.extensions.clearClipboardCompat
 import com.d4rk.cleaner.core.utils.extensions.md5
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -90,41 +94,13 @@ class ScannerRepositoryImpl(
         }
     }
 
-    override suspend fun getAllFiles() : Pair<List<File> , List<File>> {
-        val files : MutableList<File> = mutableListOf()
-        val emptyFolders : MutableList<File> = mutableListOf()
-        val stack : ArrayDeque<File> = ArrayDeque()
-        val root : File = Environment.getExternalStorageDirectory()
-        stack.addFirst(element = root)
-
-        val trashDir = File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash")
-
-        while (stack.isNotEmpty()) {
-            val currentFile : File = stack.removeFirst()
-            if (currentFile.isDirectory) {
-                if (! currentFile.absolutePath.startsWith(trashDir.absolutePath)) {
-                    currentFile.listFiles()?.let { children ->
-                        if (children.isEmpty()) {
-                            emptyFolders.add(currentFile)
-                        }
-                        else {
-                            children.forEach { child ->
-                                if (child.isDirectory) {
-                                    stack.addLast(child)
-                                }
-                                else {
-                                    files.add(child)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            else {
-                files.add(currentFile)
-            }
-        }
-        return Pair(files , emptyFolders)
+    override fun getAllFiles(): Flow<PagingData<File>> {
+        val trashDir = File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "Trash")
+        val root = Environment.getExternalStorageDirectory()
+        return Pager(
+            config = PagingConfig(pageSize = 50, enablePlaceholders = false),
+            pagingSourceFactory = { FilesPagingSource(root = root, trashDir = trashDir) }
+        ).flow
     }
 
     override suspend fun getTrashFiles() : List<File> {
