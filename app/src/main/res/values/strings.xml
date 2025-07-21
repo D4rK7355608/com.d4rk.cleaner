@@ -378,4 +378,5 @@
     <string name="no_files_selected_to_clean">No files selected to clean.</string>
     <string name="failed_to_update_trash_size">Failed to update trash size: %1$s</string>
     <string name="no_cleaning_options_selected">Please choose your cleaning preferences in settings to proceed.</string>
+    <string name="deleting_files_progress">Deleting files… %1$d%%</string>
 </resources>

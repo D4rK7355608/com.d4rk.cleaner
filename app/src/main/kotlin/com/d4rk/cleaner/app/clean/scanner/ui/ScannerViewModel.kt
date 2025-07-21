@@ -3,6 +3,7 @@ package com.d4rk.cleaner.app.clean.scanner.ui
 import android.app.Application
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
 import androidx.core.net.toUri
 import com.d4rk.android.libs.apptoolkit.core.di.DispatcherProvider
 import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
@@ -42,6 +43,7 @@ import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.domain.model.network.Errors
 import com.d4rk.cleaner.core.utils.extensions.clearClipboardCompat
 import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
+import com.d4rk.cleaner.app.clean.scanner.utils.helpers.CleaningProgressBus
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -55,6 +57,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 import com.d4rk.cleaner.core.utils.extensions.md5
+import androidx.core.content.ContextCompat.startForegroundService
 
 private const val RESULT_DELAY_MS = 3600L
 
@@ -120,6 +123,17 @@ class ScannerViewModel(
         launch(dispatchers.io) {
             CleaningEventBus.events.collectLatest {
                 onEvent(ScannerEvent.RefreshData)
+            }
+        }
+        launch(dispatchers.io) {
+            CleaningProgressBus.progress.collectLatest { progress ->
+                _uiState.update { state ->
+                    val data = state.data ?: UiScannerModel()
+                    state.copy(data = data.copy(analyzeState = data.analyzeState.copy(cleaningProgress = progress)))
+                }
+                if (progress == 100) {
+                    refreshData()
+                }
             }
         }
     }
@@ -330,13 +344,13 @@ class ScannerViewModel(
         }
     }
 
-    private fun computeGroupedFiles(
+    private suspend fun computeGroupedFiles(
         scannedFiles: List<File>,
         emptyFolders: List<File>,
         fileTypesData: FileTypesData,
         preferences: Map<String, Boolean>,
         includeDuplicates: Boolean
-    ): Triple<Map<String, List<File>>, Set<File>, List<List<File>>> {
+    ): Triple<Map<String, List<File>>, Set<File>, List<List<File>>> = withContext(dispatchers.default) {
         val knownExtensions: Set<String> =
             (fileTypesData.imageExtensions + fileTypesData.videoExtensions + fileTypesData.audioExtensions + fileTypesData.officeExtensions + fileTypesData.archiveExtensions + fileTypesData.apkExtensions + fileTypesData.fontExtensions + fileTypesData.windowsExtensions).toSet()
 
@@ -399,17 +413,18 @@ class ScannerViewModel(
             value.isNotEmpty() || (key == emptyFoldersTitle && preferences[ExtensionsConstants.EMPTY_FOLDERS] == true)
         }
 
-        return Triple(filteredMap, duplicateOriginals, duplicateGroups)
+        Triple(filteredMap, duplicateOriginals, duplicateGroups)
     }
 
-    private fun findDuplicateGroups(files: List<File>): List<List<File>> {
-        val hashMap = mutableMapOf<String, MutableList<File>>()
-        files.filter { it.isFile }.forEach { file ->
-            val hash = file.md5() ?: return@forEach
-            hashMap.getOrPut(hash) { mutableListOf() }.add(file)
+    private suspend fun findDuplicateGroups(files: List<File>): List<List<File>> =
+        withContext(dispatchers.default) {
+            val hashMap = mutableMapOf<String, MutableList<File>>()
+            files.filter { it.isFile }.forEach { file ->
+                val hash = file.md5() ?: return@forEach
+                hashMap.getOrPut(hash) { mutableListOf() }.add(file)
+            }
+            hashMap.values.filter { it.size > 1 }
         }
-        return hashMap.values.filter { it.size > 1 }
-    }
 
 
     private fun deleteFiles(files: Set<File>) {
@@ -433,48 +448,10 @@ class ScannerViewModel(
                 )
             }
 
-
-            deleteFilesUseCase(filesToDelete = files).collectLatest { result: DataState<Unit, Errors> ->
-                val includeDuplicates = dataStore.deleteDuplicateFiles.first()
-                _uiState.applyResult(
-                    result = result,
-                    errorMessage = UiTextHelper.StringResource(R.string.failed_to_delete_files)
-                ) { data, currentData ->
-                    val (groupedFilesUpdated, duplicateOriginals, duplicateGroups) = computeGroupedFiles(
-                        scannedFiles = currentData.analyzeState.scannedFileList.filterNot { files.contains(it) },
-                        emptyFolders = currentData.analyzeState.emptyFolderList,
-                        fileTypesData = currentData.analyzeState.fileTypesData,
-                        preferences = mapOf(),
-                        includeDuplicates = includeDuplicates
-                    )
-
-                    currentData.copy(analyzeState = currentData.analyzeState.copy(
-                        scannedFileList = currentData.analyzeState.scannedFileList.filterNot {
-                            files.contains(it)
-                        },
-                        groupedFiles = groupedFilesUpdated,
-                        duplicateOriginals = duplicateOriginals,
-                        duplicateGroups = duplicateGroups,
-                        selectedFilesCount = 0,
-                        areAllFilesSelected = false,
-                        fileSelectionMap = emptyMap(),
-                        isAnalyzeScreenVisible = false),
-                        storageInfo = currentData.storageInfo.copy(
-                            isFreeSpaceLoading = true,
-                            isCleanedSpaceLoading = true
-                        ))
-                }
-
-                if (result is DataState.Success) {
-                    launch {
-                        dataStore.saveLastScanTimestamp(timestamp = System.currentTimeMillis())
-                    }
-                    loadInitialData()
-                    loadWhatsAppMedia()
-                    loadClipboardData()
-                    CleaningEventBus.notifyCleaned()
-                }
+            val intent = Intent(application, CleaningService::class.java).apply {
+                putExtra(CleaningService.EXTRA_PATHS, files.map { it.absolutePath }.toTypedArray())
             }
+            startForegroundService(application, intent)
         }
     }
 
@@ -595,21 +572,31 @@ class ScannerViewModel(
     }
 
     fun toggleSelectAllFiles() {
-        _uiState.update { state: UiStateScreen<UiScannerModel> ->
-            val currentData: UiScannerModel = state.data ?: UiScannerModel()
-            val newState: Boolean = !currentData.analyzeState.areAllFilesSelected
-            val visibleFiles: List<File> = currentData.analyzeState.groupedFiles.values.flatten()
-            val duplicateOriginals = currentData.analyzeState.duplicateOriginals
-            state.copy(
-                data = currentData.copy(
-                    analyzeState = currentData.analyzeState.copy(
-                        areAllFilesSelected = newState,
-                        fileSelectionMap = if (newState) visibleFiles.associateWith { file ->
-                            if (file in duplicateOriginals) currentData.analyzeState.fileSelectionMap[file] == true else true
-                        } else emptyMap(),
-                        selectedFilesCount = if (newState) visibleFiles.count { file ->
-                            file !in duplicateOriginals || currentData.analyzeState.fileSelectionMap[file] == true
-                        } else 0)))
+        launch(dispatchers.default) {
+            val current = _uiState.value.data ?: UiScannerModel()
+            val visibleFiles = current.analyzeState.groupedFiles.values.flatten()
+            val duplicateOriginals = current.analyzeState.duplicateOriginals
+            val newState = !current.analyzeState.areAllFilesSelected
+            val selection = if (newState) {
+                visibleFiles.associateWith { file ->
+                    if (file in duplicateOriginals) current.analyzeState.fileSelectionMap[file] == true else true
+                }
+            } else emptyMap()
+            val count = if (newState) {
+                visibleFiles.count { file -> file !in duplicateOriginals || current.analyzeState.fileSelectionMap[file] == true }
+            } else 0
+            _uiState.update { state ->
+                val data = state.data ?: UiScannerModel()
+                state.copy(
+                    data = data.copy(
+                        analyzeState = data.analyzeState.copy(
+                            areAllFilesSelected = newState,
+                            fileSelectionMap = selection,
+                            selectedFilesCount = count
+                        )
+                    )
+                )
+            }
         }
     }
 

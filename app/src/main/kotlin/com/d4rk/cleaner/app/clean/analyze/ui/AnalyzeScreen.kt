@@ -58,7 +58,7 @@ fun AnalyzeScreen(
                 }
 
                 CleaningState.Cleaning -> {
-                    CleaningAnimationScreen()
+                    CleaningAnimationScreen(progress = data.analyzeState.cleaningProgress)
                 }
 
                 CleaningState.ReadyToClean -> {

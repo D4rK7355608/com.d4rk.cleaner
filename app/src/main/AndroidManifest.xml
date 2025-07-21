@@ -209,5 +209,10 @@
             android:value="eu_consent_policy" />
 
         <receiver android:name=".app.notifications.notifications.CleanupDismissReceiver" android:exported="false" />
+
+        <service
+            android:name=".app.clean.scanner.services.CleaningService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
     </application>
 </manifest>
