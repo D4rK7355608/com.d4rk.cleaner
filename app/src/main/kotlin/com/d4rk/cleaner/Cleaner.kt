@@ -77,7 +77,7 @@ class Cleaner : BaseCoreManager(), SingletonImageLoader.Factory, DefaultLifecycl
             }
             .diskCache {
                 DiskCache.Builder()
-                    .directory(context.cacheDir.resolve("image_cache"))
+                    .directory(context.cacheDir.resolve(relative = "image_cache"))
                     .maxSizePercent(percent = 0.02)
                     .build()
             }

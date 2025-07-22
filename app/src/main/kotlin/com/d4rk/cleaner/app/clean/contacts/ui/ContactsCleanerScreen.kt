@@ -164,7 +164,7 @@ fun ContactsCleanerScreen(activity: Activity) {
         derivedStateOf {
             val groups = state.data?.duplicates ?: emptyList()
             val selectedGroups = groups.filter { group -> group.contacts.any { it.isSelected } }
-            val total = selectedGroups.sumOf { it.contacts.count { it.isSelected } }
+            val total = selectedGroups.sumOf { group -> group.contacts.count { contact -> contact.isSelected } }
             when {
                 total == 1 -> SelectionState.SINGLE
                 selectedGroups.size == 1 -> SelectionState.SAME_GROUP
