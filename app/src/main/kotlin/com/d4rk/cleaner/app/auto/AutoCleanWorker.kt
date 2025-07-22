@@ -13,6 +13,12 @@ import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
 import com.d4rk.cleaner.core.utils.extensions.md5
 import com.d4rk.cleaner.app.images.utils.ImageHashUtils
 import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
+import androidx.paging.PagingData
+import androidx.paging.map
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.first
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -41,7 +47,8 @@ class AutoCleanWorker(
 
         val filesState = analyzeFiles().first { it !is DataState.Loading }
         if (filesState !is DataState.Success) return Result.success()
-        val (files, emptyFolders) = filesState.data
+        val files = withContext(Dispatchers.IO) { filesState.data.toList() }
+        val emptyFolders = emptyList<File>()
 
         val typesState = getFileTypes().first { it !is DataState.Loading }
         val types = if (typesState is DataState.Success) typesState.data else FileTypesData()
@@ -126,5 +133,16 @@ class AutoCleanWorker(
             hashMap.getOrPut(hash) { mutableListOf() }.add(file)
         }
         return hashMap.values.filter { it.size > 1 }
+    }
+
+    private suspend fun Flow<PagingData<File>>.toList(): List<File> {
+        val list = mutableListOf<File>()
+        this.collectLatest { pagingData ->
+            pagingData.map { file ->
+                list.add(file)
+                file
+            }
+        }
+        return list
     }
 }

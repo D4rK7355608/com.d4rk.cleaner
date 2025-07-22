@@ -3,12 +3,12 @@ agp = "8.11.1"
 aboutlibraries = "12.2.4"
 kotlin = "2.2.0"
 google-services = "4.4.3"
-google-firebase-crashlytics = "3.0.4"
+google-firebase-crashlytics = "3.0.5"
 coilVideoVersion = "3.2.0"
 compressor = "3.0.1"
 constraintlayoutCompose = "1.1.1"
 lottie = "6.6.7"
-paging = "3.2.1"
+paging = "3.3.6"
 
 [libraries]
 androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }

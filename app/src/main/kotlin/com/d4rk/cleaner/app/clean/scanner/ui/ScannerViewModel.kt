@@ -4,7 +4,10 @@ import android.app.Application
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import androidx.core.content.ContextCompat.startForegroundService
 import androidx.core.net.toUri
+import androidx.paging.PagingData
+import androidx.paging.map
 import com.d4rk.android.libs.apptoolkit.core.di.DispatcherProvider
 import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.ScreenState
@@ -44,10 +47,10 @@ import com.d4rk.cleaner.core.domain.model.network.Errors
 import com.d4rk.cleaner.core.utils.extensions.clearClipboardCompat
 import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
 import com.d4rk.cleaner.app.clean.scanner.utils.helpers.CleaningProgressBus
-import androidx.paging.PagingData
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.delay
+import com.d4rk.cleaner.core.utils.extensions.md5
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -58,8 +61,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
-import com.d4rk.cleaner.core.utils.extensions.md5
-import androidx.core.content.ContextCompat.startForegroundService
 import com.d4rk.cleaner.app.clean.scanner.services.CleaningService
 import kotlinx.coroutines.runBlocking
 
@@ -1137,8 +1138,11 @@ class ScannerViewModel(
 
     private suspend fun Flow<PagingData<File>>.toList(): List<File> {
         val list = mutableListOf<File>()
-        collectLatest { pagingData ->
-            pagingData.collect { list.add(it) }
+        this.collectLatest { pagingData ->
+            pagingData.map { file ->
+                list.add(file)
+                file
+            }
         }
         return list
     }
