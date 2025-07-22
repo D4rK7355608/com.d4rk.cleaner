@@ -136,12 +136,10 @@ class AutoCleanWorker(
     }
 
     private suspend fun Flow<PagingData<File>>.toList(): List<File> {
+        val pagingData = first()
         val list = mutableListOf<File>()
-        this.collectLatest { pagingData ->
-            pagingData.map { file ->
-                list.add(file)
-                file
-            }
+        pagingData.collect { file ->
+            list.add(file)
         }
         return list
     }

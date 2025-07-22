@@ -413,7 +413,8 @@ fun DetailsScreenContent(
                 }
             } else {
                 LazyColumn(modifier = Modifier.weight(1f)) {
-                    items(pagingItems) { file ->
+                    items(pagingItems.itemCount) { index ->
+                        val file = pagingItems[index] ?: return@items
                         val checked = file in selected
                         val fileExtension = remember(file.name) { getFileExtension(file.name) }
                         val imageExt = remember { context.resources.getStringArray(R.array.image_extensions).toList() }
