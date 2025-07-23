@@ -599,8 +599,9 @@ class ScannerViewModel(
     fun toggleSelectAllFiles() {
         _uiState.update { state: UiStateScreen<UiScannerModel> ->
             val currentData: UiScannerModel = state.data ?: UiScannerModel()
-            val newState: Boolean = !currentData.analyzeState.areAllFilesSelected
             val visibleFiles: List<FileEntry> = currentData.analyzeState.groupedFiles.values.flatten()
+            val hasFiles = visibleFiles.isNotEmpty()
+            val newState: Boolean = if (hasFiles) !currentData.analyzeState.areAllFilesSelected else false
             val duplicateOriginals = currentData.analyzeState.duplicateOriginals
             state.copy(
                 data = currentData.copy(
@@ -611,7 +612,10 @@ class ScannerViewModel(
                         } else emptyMap(),
                         selectedFilesCount = if (newState) visibleFiles.count { file ->
                             file !in duplicateOriginals || currentData.analyzeState.fileSelectionMap[file] == true
-                        } else 0)))
+                        } else 0
+                    )
+                )
+            )
         }
     }
 

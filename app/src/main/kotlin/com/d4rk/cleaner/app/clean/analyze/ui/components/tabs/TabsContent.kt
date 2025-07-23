@@ -91,12 +91,19 @@ fun TabsContent(
                         pagerState.animateScrollToPage(page = index)
                     }
                 } , text = {
+                    val hasFiles = filesWithoutOriginals.isNotEmpty()
                     Row(
                         verticalAlignment = Alignment.CenterVertically , horizontalArrangement = Arrangement.Start
                     ) {
-                        TriStateCheckbox(state = toggleState , onClick = {
-                            viewModel.toggleSelectFilesForCategory(category = title)
-                        })
+                        TriStateCheckbox(
+                            state = toggleState,
+                            onClick = {
+                                if (hasFiles) {
+                                    viewModel.toggleSelectFilesForCategory(category = title)
+                                }
+                            },
+                            enabled = hasFiles
+                        )
                         Text(text = title)
                     }
                 })
