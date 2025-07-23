@@ -158,14 +158,16 @@ val appModule: Module = module {
     single<WhatsAppCleanerRepository> { WhatsAppCleanerRepositoryImpl(get()) }
     single { GetWhatsAppMediaSummaryUseCase(repository = get()) }
     single { DeleteWhatsAppMediaUseCase(repository = get()) }
+    single { GetWhatsAppMediaFilesUseCase(repository = get()) }
     viewModel {
         WhatsappCleanerSummaryViewModel(
             getSummaryUseCase = get(),
             deleteUseCase = get(),
+            getFilesUseCase = get(),
             dispatchers = get()
         )
     }
-    viewModel { DetailsViewModel(dataStore = get(), dispatchers = get()) }
+    viewModel { DetailsViewModel(dataStore = get(), dispatchers = get(), getFilesUseCase = get()) }
 
     single<PackageManagerFacade> { PackageManagerFacadeImpl(application = get()) }
     single<GetInstalledAppsUseCase> { GetInstalledAppsUseCase(packageManagerFacade = get()) }

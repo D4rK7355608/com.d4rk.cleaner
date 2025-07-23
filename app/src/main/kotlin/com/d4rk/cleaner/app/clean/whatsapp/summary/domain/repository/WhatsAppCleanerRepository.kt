@@ -5,5 +5,6 @@ import java.io.File
 
 interface WhatsAppCleanerRepository {
     suspend fun getMediaSummary(): WhatsAppMediaSummary
+    suspend fun listMediaFiles(type: String, offset: Int, limit: Int): List<File>
     suspend fun deleteFiles(files: List<File>)
 }

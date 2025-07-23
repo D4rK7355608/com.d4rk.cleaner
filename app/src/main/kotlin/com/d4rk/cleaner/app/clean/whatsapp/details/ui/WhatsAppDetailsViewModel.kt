@@ -5,10 +5,12 @@ import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.ScreenState
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.updateData
 import com.d4rk.android.libs.apptoolkit.core.ui.base.ScreenViewModel
+import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
 import com.d4rk.cleaner.app.clean.whatsapp.details.domain.actions.WhatsAppDetailsAction
 import com.d4rk.cleaner.app.clean.whatsapp.details.domain.actions.WhatsAppDetailsEvent
 import com.d4rk.cleaner.app.clean.whatsapp.details.domain.model.UiWhatsAppDetailsModel
 import com.d4rk.cleaner.core.data.datastore.DataStore
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.GetWhatsAppMediaFilesUseCase
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import java.io.File
@@ -16,9 +18,12 @@ import java.util.concurrent.TimeUnit
 
 enum class SortType { NAME, DATE, SIZE }
 
+private const val PAGE_SIZE = 100
+
 class DetailsViewModel(
     private val dataStore: DataStore,
     private val dispatchers: DispatcherProvider,
+    private val getFilesUseCase: GetWhatsAppMediaFilesUseCase,
 ) : ScreenViewModel<UiWhatsAppDetailsModel, WhatsAppDetailsEvent, WhatsAppDetailsAction>(
     initialState = UiStateScreen(data = UiWhatsAppDetailsModel())
 ) {
@@ -35,7 +40,7 @@ class DetailsViewModel(
 
     override fun onEvent(event: WhatsAppDetailsEvent) {
         when (event) {
-            is WhatsAppDetailsEvent.SetFiles -> setFiles(event.files)
+            is WhatsAppDetailsEvent.LoadFiles -> loadFiles(event.type, event.page)
             WhatsAppDetailsEvent.ToggleView -> toggleView()
             is WhatsAppDetailsEvent.ApplySort -> applySort(
                 type = event.type,
@@ -43,6 +48,18 @@ class DetailsViewModel(
                 start = event.startDate,
                 end = event.endDate
             )
+        }
+    }
+
+    private fun loadFiles(type: String, page: Int) {
+        launch(dispatchers.io) {
+            getFilesUseCase(type, page * PAGE_SIZE, PAGE_SIZE).collectLatest { result ->
+                when (result) {
+                    is DataState.Success -> setFiles(result.data)
+                    is DataState.Error -> _uiState.update { it.copy(screenState = ScreenState.Error()) }
+                    else -> {}
+                }
+            }
         }
     }
 

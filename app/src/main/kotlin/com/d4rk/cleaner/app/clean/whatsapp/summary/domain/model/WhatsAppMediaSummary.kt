@@ -27,7 +27,7 @@ data class WhatsAppMediaSummary(
             wallpapers,
             stickers,
             profilePhotos,
-        ).any { it.files.isNotEmpty() }
+        ).any { it.count > 0 }
 
     val totalBytes: Long
         get() = listOf(

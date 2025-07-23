@@ -150,23 +150,7 @@ fun DetailsScreen(
                 )
             },
             onSuccess = { data ->
-                val summary = data.mediaSummary
-                val files = when (title) {
-                    WhatsAppMediaConstants.IMAGES -> summary.images.files
-                    WhatsAppMediaConstants.VIDEOS -> summary.videos.files
-                    WhatsAppMediaConstants.DOCUMENTS -> summary.documents.files
-                    WhatsAppMediaConstants.AUDIOS -> summary.audios.files
-                    WhatsAppMediaConstants.STATUSES -> summary.statuses.files
-                    WhatsAppMediaConstants.VOICE_NOTES -> summary.voiceNotes.files
-                    WhatsAppMediaConstants.VIDEO_NOTES -> summary.videoNotes.files
-                    WhatsAppMediaConstants.GIFS -> summary.gifs.files
-                    WhatsAppMediaConstants.WALLPAPERS -> summary.wallpapers.files
-                    WhatsAppMediaConstants.STICKERS -> summary.stickers.files
-                    WhatsAppMediaConstants.PROFILE_PHOTOS -> summary.profilePhotos.files
-                    else -> emptyList()
-                }
-
-                LaunchedEffect(files) { detailsViewModel.onEvent(WhatsAppDetailsEvent.SetFiles(files)) }
+                LaunchedEffect(title) { detailsViewModel.onEvent(WhatsAppDetailsEvent.LoadFiles(title)) }
 
                 val receivedFiles = remember(sortedFiles) {
                     sortedFiles.filterNot {
