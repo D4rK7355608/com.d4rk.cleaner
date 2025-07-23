@@ -116,7 +116,7 @@ android {
 dependencies {
 
     // App Core
-    implementation(dependencyNotation = "com.github.D4rK7355608:AppToolkit:1.0.38") {
+    implementation(dependencyNotation = "com.github.MihaiCristianCondrea:AppToolkit:1.0.40") {
         isTransitive = true
     }
 
@@ -125,5 +125,4 @@ dependencies {
     // Image Compression
     implementation(dependencyNotation = libs.compressor)
     implementation(dependencyNotation = libs.coil3.coil.video)
-    implementation(dependencyNotation = libs.lottie.compose)
 }

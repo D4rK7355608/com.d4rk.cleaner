@@ -1,14 +1,12 @@
 # Version 3.5.0:
 
-- **New**: Implemented an automatic scheduling feature for daily cleaning routines.
-- **New**: Introduced functionality to suggest uninstallation of rarely used applications, utilizing UsageStats for analysis.
-- **New**: Implemented a new search bar in App Manager screen to easily find your apps.
-- **New**: Now Smart cleaner have the capability to recognize and identify large files.
-- **Minor**: Small UI/UX improvements over the entire app.
-- **Minor**: Improved how the duplicate cleaner finds the files especially for similar images.
-- **Minor**: The Smart Cleaner now features a refreshed icon for improved visual clarity.
-- **Minor**: Refined animations within the scanner screen for a smoother user experience.
-- **Minor**: Tapping storage categories in Memory Manager now opens the corresponding folders.
+- **New**: Added automatic scheduling for daily cleaning routines.
+- **New**: Added suggestions to uninstall rarely used applications.
+- **New**: Added large files cleaner.
+- **New**: Added duplicate contacts cleaner
+- **Minor**: Enhanced search in app manager.
+- **Minor**: UI/UX improvements over the entire app.
+- **Minor**: Improved cleaning & analyze algorithm.
 
 # Version 3.4.0:
 

@@ -250,17 +250,6 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
                 ExtraTinyVerticalSpacer()
 
                 SwitchPreferenceItem(
-                    title = stringResource(id = R.string.clipboard_clean) ,
-                    checked = clipboardClean ,
-                ) { isChecked ->
-                    CoroutineScope(Dispatchers.IO).launch {
-                        dataStore.saveClipboardClean(isChecked)
-                    }
-                }
-
-                ExtraTinyVerticalSpacer()
-
-                SwitchPreferenceItem(
                     title = stringResource(id = R.string.preference_streak_reminder),
                     checked = streakReminderEnabled,
                 ) { isChecked ->

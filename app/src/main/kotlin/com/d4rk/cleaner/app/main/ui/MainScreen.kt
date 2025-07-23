@@ -31,8 +31,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.d4rk.android.libs.apptoolkit.app.main.domain.model.BottomBarItem
+import com.d4rk.android.libs.apptoolkit.app.main.ui.components.dialogs.ChangelogDialog
 import com.d4rk.android.libs.apptoolkit.app.main.ui.components.navigation.BottomNavigationBar
 import com.d4rk.android.libs.apptoolkit.app.main.ui.components.navigation.LeftNavigationRail
+import com.d4rk.android.libs.apptoolkit.app.settings.utils.providers.BuildInfoProvider
 import com.d4rk.android.libs.apptoolkit.core.domain.model.navigation.NavigationDrawerItem
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.snackbar.DefaultSnackbarHost
@@ -47,7 +49,9 @@ import com.d4rk.cleaner.app.main.ui.components.navigation.handleNavigationItemCl
 import com.d4rk.cleaner.app.main.utils.constants.NavigationRoutes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.qualifier.named
 
 @Composable
 fun MainScreen() {
@@ -125,6 +129,10 @@ fun MainScaffoldTabletContent() {
     val uiState: UiMainScreen = screenState.data ?: UiMainScreen()
     val navController: NavHostController = rememberNavController()
 
+    val changelogUrl: String = koinInject(qualifier = named("github_changelog"))
+    val buildInfoProvider: BuildInfoProvider = koinInject()
+    var showChangelog by remember { mutableStateOf(false) }
+
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route ?: navController.currentDestination?.route
     val appManagerEntry = remember(backStackEntry) {
@@ -172,7 +180,8 @@ fun MainScaffoldTabletContent() {
             onDrawerItemClick = { item: NavigationDrawerItem ->
                 handleNavigationItemClick(
                     context = context,
-                    item = item
+                    item = item,
+                    onChangelogRequested = { showChangelog = true },
                 )
             },
             content = {
@@ -181,5 +190,13 @@ fun MainScaffoldTabletContent() {
                     snackbarHostState = snackBarHostState,
                     paddingValues = PaddingValues())
             })
+    }
+
+    if (showChangelog) {
+        ChangelogDialog(
+            changelogUrl = changelogUrl,
+            buildInfoProvider = buildInfoProvider,
+            onDismiss = { showChangelog = false }
+        )
     }
 }
