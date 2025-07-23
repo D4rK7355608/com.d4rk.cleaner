@@ -66,6 +66,7 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Lifecycle
@@ -164,7 +165,8 @@ fun ContactsCleanerScreen(activity: Activity) {
         derivedStateOf {
             val groups = state.data?.duplicates ?: emptyList()
             val selectedGroups = groups.filter { group -> group.contacts.any { it.isSelected } }
-            val total = selectedGroups.sumOf { group -> group.contacts.count { contact -> contact.isSelected } }
+            val total =
+                selectedGroups.sumOf { group -> group.contacts.count { contact -> contact.isSelected } }
             when {
                 total == 1 -> SelectionState.SINGLE
                 selectedGroups.size == 1 -> SelectionState.SAME_GROUP
@@ -195,11 +197,13 @@ fun ContactsCleanerScreen(activity: Activity) {
                 BottomAppBar(
                     actions = {
                         Text(
+                            modifier = Modifier.weight(1f, fill = false),
                             text = pluralStringResource(
                                 R.plurals.items_selected,
                                 selectedCount,
                                 selectedCount
-                            )
+                            ),
+                            overflow = TextOverflow.Ellipsis
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         when (selectionState) {
@@ -208,6 +212,7 @@ fun ContactsCleanerScreen(activity: Activity) {
                                     onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) }
                                 ) { Text(text = stringResource(id = R.string.delete)) }
                             }
+
                             SelectionState.SAME_GROUP -> {
                                 FilledTonalButton(
                                     onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
@@ -225,6 +230,7 @@ fun ContactsCleanerScreen(activity: Activity) {
                                     Text(text = stringResource(id = R.string.smart_clean))
                                 }
                             }
+
                             SelectionState.MULTIPLE_GROUPS -> {
                                 val canMerge = state.data?.duplicates?.any { group ->
                                     group.contacts.count { it.isSelected } >= 2
@@ -392,7 +398,9 @@ private fun ContactGroupItem(
                 )
                 Column(modifier = Modifier.padding(start = SizeConstants.MediumSize)) {
                     Text(text = group.contacts.firstOrNull()?.displayName ?: "")
-                    AssistChip(onClick = {}, label = { Text(text = "${group.contacts.size} ${stringResource(id = R.string.duplicates)}") })
+                    AssistChip(
+                        onClick = {},
+                        label = { Text(text = "${group.contacts.size} ${stringResource(id = R.string.duplicates)}") })
                 }
                 Spacer(modifier = Modifier.weight(1f))
                 IconButton(onClick = { isExpanded = !isExpanded }) {
