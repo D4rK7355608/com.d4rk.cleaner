@@ -71,10 +71,10 @@ fun TabsContent(
                 val duplicateOriginals = data.analyzeState.duplicateOriginals
                 val filesWithoutOriginals = allFilesInCategory.filterNot { it in duplicateOriginals }
                 val allCategorySelected = filesWithoutOriginals.all { file ->
-                    data.analyzeState.fileSelectionMap[file] == true
+                    data.analyzeState.fileSelectionMap[file.path] == true
                 }
                 val noneSelected = filesWithoutOriginals.none { file ->
-                    data.analyzeState.fileSelectionMap[file] == true
+                    data.analyzeState.fileSelectionMap[file.path] == true
                 }
                 val toggleState = when {
                     filesWithoutOriginals.isEmpty() -> ToggleableState.Off

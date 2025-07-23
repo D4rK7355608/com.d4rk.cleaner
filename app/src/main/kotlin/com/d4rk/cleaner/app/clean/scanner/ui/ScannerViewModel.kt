@@ -54,6 +54,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.yield
 import java.io.File
 import com.d4rk.cleaner.core.utils.extensions.partialMd5
 
