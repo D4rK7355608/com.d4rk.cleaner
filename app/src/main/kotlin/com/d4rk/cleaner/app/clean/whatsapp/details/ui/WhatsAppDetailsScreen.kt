@@ -29,7 +29,8 @@ import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.FolderOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.Checkbox
+import androidx.compose.material3.TriStateCheckbox
+import androidx.compose.ui.state.ToggleableState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -376,9 +377,9 @@ fun DetailsScreenContent(
                                         )
                                     }
                             )
-                            Checkbox(
-                                checked = checked,
-                                onCheckedChange = {
+                            TriStateCheckbox(
+                                state = if (checked) ToggleableState.On else ToggleableState.Off,
+                                onClick = {
                                     if (checked) selected.remove(file) else selected.add(file)
                                 },
                                 modifier = Modifier.align(Alignment.TopEnd)
@@ -415,9 +416,9 @@ fun DetailsScreenContent(
                             } else {
                                 FileListItem(file = file, modifier = Modifier.weight(1f))
                             }
-                            Checkbox(
-                                checked = checked,
-                                onCheckedChange = {
+                            TriStateCheckbox(
+                                state = if (checked) ToggleableState.On else ToggleableState.Off,
+                                onClick = {
                                     if (checked) selected.remove(file) else selected.add(file)
                                 },
                                 modifier = Modifier.align(Alignment.CenterVertically)
@@ -471,9 +472,9 @@ private fun SmartSuggestionsCard(
                                     )
                                 }
                         )
-                        Checkbox(
-                            checked = checked,
-                            onCheckedChange = {
+                        TriStateCheckbox(
+                            state = if (checked) ToggleableState.On else ToggleableState.Off,
+                            onClick = {
                                 if (checked) selected.remove(file) else selected.add(file)
                             },
                             modifier = Modifier.align(Alignment.TopEnd)

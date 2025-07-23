@@ -5,7 +5,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Checkbox
+import androidx.compose.material3.TriStateCheckbox
+import androidx.compose.ui.state.ToggleableState
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRowDefaults
@@ -40,7 +41,13 @@ fun CustomTabLayout(
     ) {
         items.forEachIndexed { index, text ->
             val files = filesPerTab.getOrNull(index) ?: emptyList()
-            val isChecked = files.isNotEmpty() && files.all { it in selectedFiles }
+            val allSelected = files.isNotEmpty() && files.all { it in selectedFiles }
+            val noneSelected = files.none { it in selectedFiles }
+            val toggleState = when {
+                allSelected -> ToggleableState.On
+                noneSelected -> ToggleableState.Off
+                else -> ToggleableState.Indeterminate
+            }
 
             Tab(
                 modifier = Modifier
@@ -52,9 +59,11 @@ fun CustomTabLayout(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Start
                     ) {
-                        Checkbox(
-                            checked = isChecked,
-                            onCheckedChange = { onTabCheckedChange(index, it) },
+                        TriStateCheckbox(
+                            state = toggleState,
+                            onClick = {
+                                onTabCheckedChange(index, toggleState != ToggleableState.On)
+                            },
                         )
                         Text(
                             modifier = Modifier.basicMarquee(),

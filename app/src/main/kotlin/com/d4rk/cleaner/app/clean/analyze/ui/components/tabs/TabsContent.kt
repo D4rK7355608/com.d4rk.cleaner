@@ -11,7 +11,8 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Close
-import androidx.compose.material3.Checkbox
+import androidx.compose.material3.TriStateCheckbox
+import androidx.compose.ui.state.ToggleableState
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRowDefaults
@@ -67,8 +68,17 @@ fun TabsContent(
             tabs.forEachIndexed { index , title ->
                 val allFilesInCategory : List<File> = groupedFiles[title] ?: emptyList()
                 val duplicateOriginals = data.analyzeState.duplicateOriginals
-                val isCategoryChecked : Boolean = allFilesInCategory.filterNot { it in duplicateOriginals }.all { file ->
+                val filesWithoutOriginals = allFilesInCategory.filterNot { it in duplicateOriginals }
+                val allCategorySelected = filesWithoutOriginals.all { file ->
                     data.analyzeState.fileSelectionMap[file] == true
+                }
+                val noneSelected = filesWithoutOriginals.none { file ->
+                    data.analyzeState.fileSelectionMap[file] == true
+                }
+                val toggleState = when {
+                    allCategorySelected -> ToggleableState.On
+                    noneSelected -> ToggleableState.Off
+                    else -> ToggleableState.Indeterminate
                 }
 
                 Tab(modifier = Modifier
@@ -82,7 +92,7 @@ fun TabsContent(
                     Row(
                         verticalAlignment = Alignment.CenterVertically , horizontalArrangement = Arrangement.Start
                     ) {
-                        Checkbox(checked = isCategoryChecked , onCheckedChange = {
+                        TriStateCheckbox(state = toggleState , onClick = {
                             viewModel.toggleSelectFilesForCategory(category = title)
                         })
                         Text(text = title)
