@@ -10,7 +10,7 @@ import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetFileTypesUseCase
 import com.d4rk.cleaner.app.settings.cleaning.utils.constants.ExtensionsConstants
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
-import com.d4rk.cleaner.core.utils.extensions.md5
+import com.d4rk.cleaner.core.utils.extensions.partialMd5
 import com.d4rk.cleaner.app.images.utils.ImageHashUtils
 import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
 import kotlinx.coroutines.flow.first
@@ -58,7 +58,8 @@ class AutoCleanWorker(
             ExtensionsConstants.EMPTY_FOLDERS to dataStore.deleteEmptyFolders.first(),
             ExtensionsConstants.OTHER_EXTENSIONS to dataStore.deleteOtherFiles.first()
         )
-        val includeDuplicates = dataStore.deleteDuplicateFiles.first()
+        val includeDuplicates = dataStore.deleteDuplicateFiles.first() &&
+            dataStore.duplicateScanEnabled.first()
         val deepDuplicateSearch = dataStore.deepDuplicateSearch.first()
         val toDelete = computeFilesToClean(files, emptyFolders, types, prefs, includeDuplicates, deepDuplicateSearch)
         if (toDelete.isEmpty()) return Result.success()
@@ -121,7 +122,7 @@ class AutoCleanWorker(
             val hash = if (deepSearch && extension in imageExtensions) {
                 ImageHashUtils.perceptualHash(file)
             } else {
-                file.md5()
+                file.partialMd5()
             } ?: return@forEach
             hashMap.getOrPut(hash) { mutableListOf() }.add(file)
         }
