@@ -445,12 +445,12 @@ class ScannerViewModel(
 
             val fileObjs = files.map { it.toFile() }.toSet()
             deleteFilesUseCase(filesToDelete = fileObjs).collectLatest { result: DataState<Unit, Errors> ->
+                val includeDuplicates = dataStore.deleteDuplicateFiles.first() &&
+                    dataStore.duplicateScanEnabled.first()
                 _uiState.applyResult(
                     result = result,
                     errorMessage = UiTextHelper.StringResource(R.string.failed_to_delete_files)
                 ) { data, currentData ->
-                    val includeDuplicates = dataStore.deleteDuplicateFiles.first() &&
-                        dataStore.duplicateScanEnabled.first()
                     val (groupedFilesUpdated, duplicateOriginals, duplicateGroups) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot { files.contains(it) }.map { it.toFile() },
                         emptyFolders = currentData.analyzeState.emptyFolderList.map { it.toFile() },
@@ -521,8 +521,6 @@ class ScannerViewModel(
                     result = result,
                     errorMessage = UiTextHelper.StringResource(R.string.failed_to_move_files_to_trash)
                 ) { _: Unit, currentData: UiScannerModel ->
-                    val includeDuplicates = dataStore.deleteDuplicateFiles.first() &&
-                        dataStore.duplicateScanEnabled.first()
                     val (groupedFilesUpdated2, duplicateOriginals2, duplicateGroups2) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile ->
                             files.any { moved -> existingFile.path == moved.path }
