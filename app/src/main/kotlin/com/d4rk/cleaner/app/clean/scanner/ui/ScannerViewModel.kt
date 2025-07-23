@@ -91,16 +91,11 @@ class ScannerViewModel(
     private val _clipboardPreview = MutableStateFlow<String?>(null)
     val clipboardPreview: StateFlow<String?> = _clipboardPreview
 
-    private val _clipboardDetectedSensitive = MutableStateFlow(false)
-    val clipboardDetectedSensitive: StateFlow<Boolean> = _clipboardDetectedSensitive
-
     private val _cleanStreak = MutableStateFlow(0)
     val cleanStreak: StateFlow<Int> = _cleanStreak
 
     private val _showStreakCard = MutableStateFlow(true)
     val showStreakCard: StateFlow<Boolean> = _showStreakCard
-    private val _showStreakCardPref = MutableStateFlow(true)
-    val showStreakCardPref: StateFlow<Boolean> = _showStreakCardPref
     private val _streakHideUntil = MutableStateFlow(0L)
     val streakHideUntil: StateFlow<Long> = _streakHideUntil
 
@@ -1054,7 +1049,8 @@ class ScannerViewModel(
     }
 
     fun onCleanApks(apkFiles: List<File>) {
-        deleteFiles(apkFiles.toSet())
+        val entries = apkFiles.map { FileEntry(it.absolutePath, it.length(), it.lastModified()) }.toSet()
+        deleteFiles(entries)
     }
 
     fun onCleanWhatsAppFiles() {
@@ -1086,7 +1082,6 @@ class ScannerViewModel(
     private fun loadStreakCardVisibility() {
         launch(dispatchers.io) {
             combine(dataStore.showStreakCard, dataStore.streakHideUntil) { show, hide ->
-                _showStreakCardPref.value = show
                 _streakHideUntil.value = hide
                 show && hide <= System.currentTimeMillis()
             }.collect { visible ->
@@ -1121,7 +1116,6 @@ class ScannerViewModel(
             clipboardManager.clearClipboardCompat()
         }
         _clipboardPreview.value = null
-        _clipboardDetectedSensitive.value = false
         CleaningEventBus.notifyCleaned()
     }
 
@@ -1129,14 +1123,6 @@ class ScannerViewModel(
         val text = clipboardManager.primaryClip?.takeIf { it.itemCount > 0 }
             ?.getItemAt(0)?.coerceToText(application)?.toString()?.trim()
         _clipboardPreview.value = text
-        _clipboardDetectedSensitive.value = text?.let { detectSensitive(it) } ?: false
-    }
-
-    private fun detectSensitive(text: String): Boolean {
-        val urlPattern = Regex("https?://")
-        val emailPattern = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")
-        val pwdPattern = Regex("(?i)password")
-        return urlPattern.containsMatchIn(text) || emailPattern.containsMatchIn(text) || pwdPattern.containsMatchIn(text)
     }
 
     private fun postSnackbar(message : UiTextHelper , isError : Boolean) {
