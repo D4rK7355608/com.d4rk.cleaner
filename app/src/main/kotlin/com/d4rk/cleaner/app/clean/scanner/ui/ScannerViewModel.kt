@@ -368,7 +368,11 @@ class ScannerViewModel(
         }.toSet() else emptySet()
 
         scannedFiles.forEach { file: File ->
-            val entry = FileEntry(file.absolutePath, file.length(), file.lastModified())
+            val entry = FileEntry(
+                path = file.absolutePath,
+                size = if (file.isDirectory) 0 else file.length(),
+                modified = file.lastModified()
+            )
             if (includeDuplicates && entry.path in duplicateFiles) {
                 duplicatesTitle?.let { title -> filesMap.getOrPut(title) { mutableListOf() }.add(entry) }
             } else {
@@ -577,7 +581,11 @@ class ScannerViewModel(
     fun onFileSelectionChange(file: File, isChecked: Boolean) {
         _uiState.update { state: UiStateScreen<UiScannerModel> ->
             val currentData: UiScannerModel = state.data ?: UiScannerModel()
-            val entry = FileEntry(file.absolutePath, file.length(), file.lastModified())
+            val entry = FileEntry(
+                path = file.absolutePath,
+                size = if (file.isDirectory) 0 else file.length(),
+                modified = file.lastModified()
+            )
             val updatedFileSelectionStates: Map<FileEntry, Boolean> =
                 currentData.analyzeState.fileSelectionMap.toMutableMap()
                     .apply { this[entry] = isChecked }
@@ -667,7 +675,11 @@ class ScannerViewModel(
                 val duplicateOriginals = currentData.analyzeState.duplicateOriginals
                 val updatedSelectionMap = currentData.analyzeState.fileSelectionMap.toMutableMap().apply {
                     files.forEach { file ->
-                        val entry = FileEntry(file.absolutePath, file.length(), file.lastModified())
+                        val entry = FileEntry(
+                            path = file.absolutePath,
+                            size = if (file.isDirectory) 0 else file.length(),
+                            modified = file.lastModified()
+                        )
                         if (isChecked && entry in duplicateOriginals && (this[entry] != true)) {
                             // keep unchecked
                         } else {
