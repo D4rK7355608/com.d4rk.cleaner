@@ -3,6 +3,7 @@ package com.d4rk.cleaner.app.clean.memory.ui
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.app.DownloadManager
 import android.os.Environment
 import android.provider.Settings
 import androidx.compose.animation.animateContentSize
@@ -156,22 +157,40 @@ private fun handleStorageItemClick(context: Context, category: String) {
                 context.startActivity(intent)
             }
         }
-        context.getString(R.string.music) -> FileManagerHelper.openFolderOrSettings(
-            context,
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC)
-        )
-        context.getString(R.string.images) -> FileManagerHelper.openFolderOrSettings(
-            context,
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-        )
-        context.getString(R.string.documents) -> FileManagerHelper.openFolderOrSettings(
-            context,
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
-        )
-        context.getString(R.string.downloads) -> FileManagerHelper.openFolderOrSettings(
-            context,
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-        )
+        context.getString(R.string.music) ->
+            FileManagerHelper.openFolderOrToast(
+                context,
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC)
+            )
+        context.getString(R.string.images) -> {
+            val galleryIntent = Intent(Intent.ACTION_VIEW).apply {
+                type = "image/*"
+            }
+            if (galleryIntent.resolveActivity(pm) != null) {
+                context.startActivity(galleryIntent)
+            } else {
+                FileManagerHelper.openFolderOrToast(
+                    context,
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                )
+            }
+        }
+        context.getString(R.string.documents) ->
+            FileManagerHelper.openFolderOrToast(
+                context,
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
+            )
+        context.getString(R.string.downloads) -> {
+            val downloadsIntent = Intent(DownloadManager.ACTION_VIEW_DOWNLOADS)
+            if (downloadsIntent.resolveActivity(pm) != null) {
+                context.startActivity(downloadsIntent)
+            } else {
+                FileManagerHelper.openFolderOrToast(
+                    context,
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                )
+            }
+        }
         context.getString(R.string.other_files) -> FileManagerHelper.openFolderOrSettings(
             context,
             Environment.getExternalStorageDirectory()
