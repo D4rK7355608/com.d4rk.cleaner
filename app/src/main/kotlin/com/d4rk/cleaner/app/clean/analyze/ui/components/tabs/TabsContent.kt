@@ -71,10 +71,10 @@ fun TabsContent(
                 val duplicateOriginals = data.analyzeState.duplicateOriginals
                 val filesWithoutOriginals = allFilesInCategory.filterNot { it in duplicateOriginals }
                 val allCategorySelected = filesWithoutOriginals.all { file ->
-                    data.analyzeState.fileSelectionMap[file] == true
+                    data.analyzeState.fileSelectionMap[file.path] == true
                 }
                 val noneSelected = filesWithoutOriginals.none { file ->
-                    data.analyzeState.fileSelectionMap[file] == true
+                    data.analyzeState.fileSelectionMap[file.path] == true
                 }
                 val toggleState = when {
                     filesWithoutOriginals.isEmpty() -> ToggleableState.Off
@@ -141,7 +141,7 @@ fun TabsContent(
             DuplicateGroupsSection(
                 modifier = Modifier ,
                 filesByDate = filesByDate ,
-                fileSelectionStates = data.analyzeState.fileSelectionMap.mapKeys { File(it.key.path) } ,
+                fileSelectionStates = data.analyzeState.fileSelectionMap.mapKeys { File(it.key) } ,
                 onFileSelectionChange = viewModel::onFileSelectionChange ,
                 onDateSelectionChange = { files, checked -> viewModel.onEvent(ScannerEvent.ToggleSelectFilesForDate(files , checked)) } ,
                 originals = data.analyzeState.duplicateOriginals.map { File(it.path) }.toSet() ,
@@ -151,7 +151,7 @@ fun TabsContent(
             FilesByDateSection(
                 modifier = Modifier ,
                 filesByDate = filesByDateRaw ,
-                fileSelectionStates = data.analyzeState.fileSelectionMap.mapKeys { File(it.key.path) } ,
+                fileSelectionStates = data.analyzeState.fileSelectionMap.mapKeys { File(it.key) } ,
                 onFileSelectionChange = viewModel::onFileSelectionChange ,
                 onDateSelectionChange = { files, checked -> viewModel.onEvent(ScannerEvent.ToggleSelectFilesForDate(files , checked)) } ,
                 originals = data.analyzeState.duplicateOriginals.map { File(it.path) }.toSet() ,

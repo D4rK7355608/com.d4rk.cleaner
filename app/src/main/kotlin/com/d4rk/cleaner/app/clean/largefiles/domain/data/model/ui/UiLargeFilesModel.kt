@@ -4,6 +4,7 @@ import java.io.File
 
 data class UiLargeFilesModel(
     val files: List<File> = emptyList(),
-    val fileSelectionStates: Map<File, Boolean> = emptyMap(),
+    /** Map of file paths to selection state */
+    val fileSelectionStates: Map<String, Boolean> = emptyMap(),
     val selectedFileCount: Int = 0
 )

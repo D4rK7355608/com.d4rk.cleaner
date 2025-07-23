@@ -26,6 +26,7 @@ import com.d4rk.cleaner.app.clean.analyze.ui.components.FilesByDateSection
 import com.d4rk.cleaner.app.clean.largefiles.domain.actions.LargeFilesEvent
 import com.d4rk.cleaner.app.clean.largefiles.domain.data.model.ui.UiLargeFilesModel
 import org.koin.compose.viewmodel.koinViewModel
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -73,7 +74,7 @@ fun LargeFilesScreen(activity: LargeFilesActivity) {
                             height = Dimension.fillToConstraints
                         },
                         filesByDate = filesByDate,
-                        fileSelectionStates = data.fileSelectionStates,
+                        fileSelectionStates = data.fileSelectionStates.mapKeys { File(it.key) },
                         onFileSelectionChange = { file, checked ->
                             viewModel.onEvent(LargeFilesEvent.OnFileSelectionChange(file, checked))
                         },
