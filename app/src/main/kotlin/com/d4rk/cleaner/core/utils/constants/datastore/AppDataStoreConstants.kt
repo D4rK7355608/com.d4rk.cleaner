@@ -24,6 +24,7 @@ object AppDataStoreConstants : DataStoreNamesConstants() {
     const val DATA_STORE_DELETE_IMAGE_FILES = "delete_image_files"
     const val DATA_STORE_DELETE_DUPLICATE_FILES = "delete_duplicate_files"
     const val DATA_STORE_DEEP_DUPLICATE_SEARCH = "deep_duplicate_search"
+    const val DATA_STORE_ENABLE_DUPLICATE_SCAN = "enable_duplicate_scan"
     const val DATA_STORE_DELETE_OFFICE_FILES = "delete_office_files"
     const val DATA_STORE_DELETE_WINDOWS_FILES = "delete_windows_files"
     const val DATA_STORE_DELETE_FONT_FILES = "delete_font_files"

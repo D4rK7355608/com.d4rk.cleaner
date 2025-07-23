@@ -14,7 +14,7 @@ import com.d4rk.cleaner.app.clean.scanner.domain.`interface`.ScannerRepositoryIn
 import com.d4rk.cleaner.app.clean.scanner.utils.helpers.StorageUtils
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.utils.extensions.clearClipboardCompat
-import com.d4rk.cleaner.core.utils.extensions.md5
+import com.d4rk.cleaner.core.utils.extensions.partialMd5
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
@@ -258,7 +258,7 @@ class ScannerRepositoryImpl(
                 }
             ) { file ->
                 if (file.length() >= minSize && file.absolutePath !in trashed) {
-                    val hash = file.md5() ?: return@scan
+                    val hash = file.partialMd5() ?: return@scan
                     if (seenHashes.add(hash)) {
                         val type = fileType(file)
                         groups.getOrPut(type) { mutableListOf() }.add(file)

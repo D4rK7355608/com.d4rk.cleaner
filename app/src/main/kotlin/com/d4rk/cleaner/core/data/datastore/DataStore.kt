@@ -284,6 +284,17 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         }
     }
 
+    private val duplicateScanEnabledKey = booleanPreferencesKey(name = AppDataStoreConstants.DATA_STORE_ENABLE_DUPLICATE_SCAN)
+    val duplicateScanEnabled: Flow<Boolean> = dataStore.data.map { prefs ->
+        prefs[duplicateScanEnabledKey] ?: true
+    }
+
+    suspend fun saveDuplicateScanEnabled(enabled: Boolean) {
+        dataStore.edit { prefs ->
+            prefs[duplicateScanEnabledKey] = enabled
+        }
+    }
+
     private val clipboardCleanKey = booleanPreferencesKey(name = AppDataStoreConstants.DATA_STORE_CLIPBOARD_CLEAN)
     val clipboardClean : Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[clipboardCleanKey] == true
