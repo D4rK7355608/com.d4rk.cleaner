@@ -116,7 +116,7 @@ fun TrashItemsList(
     FilesByDateSection(
         modifier = modifier ,
         filesByDate = filesByDate ,
-        fileSelectionStates = uiState.fileSelectionStates ,
+        fileSelectionStates = uiState.fileSelectionStates.mapKeys { File(it.key) } ,
         onFileSelectionChange = { file , isChecked ->
             viewModel.onEvent(TrashEvent.OnFileSelectionChange(file , isChecked))
         } ,

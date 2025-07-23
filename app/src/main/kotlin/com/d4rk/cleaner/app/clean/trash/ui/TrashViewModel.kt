@@ -108,7 +108,7 @@ class TrashViewModel(
     private fun onFileSelectionChange(file : File , isChecked : Boolean) {
         _uiState.updateData(newState = _uiState.value.screenState) { currentData ->
             val updatedSelections = currentData.fileSelectionStates.toMutableMap().apply {
-                this[file] = isChecked
+                this[file.absolutePath] = isChecked
             }
             currentData.copy(
                 fileSelectionStates = updatedSelections , selectedFileCount = updatedSelections.count { it.value })
@@ -117,7 +117,8 @@ class TrashViewModel(
 
     private fun restoreSelectedFromTrash() {
         launch(context = dispatchers.io) {
-            val filesToRestore = _uiState.value.data?.fileSelectionStates?.filter { it.value }?.keys ?: emptySet()
+            val pathsToRestore = _uiState.value.data?.fileSelectionStates?.filter { it.value }?.keys ?: emptySet()
+            val filesToRestore = pathsToRestore.map { File(it) }.toSet()
             if (filesToRestore.isEmpty()) {
                 sendAction(TrashAction.ShowSnackbar(UiSnackbar(message = UiTextHelper.DynamicString("No files selected to restore."))))
                 return@launch
@@ -151,7 +152,8 @@ class TrashViewModel(
 
     private fun deleteSelectedPermanently() {
         launch(context = dispatchers.io) {
-            val filesToDelete = _uiState.value.data?.fileSelectionStates?.filter { it.value }?.keys ?: emptySet()
+            val pathsToDelete = _uiState.value.data?.fileSelectionStates?.filter { it.value }?.keys ?: emptySet()
+            val filesToDelete = pathsToDelete.map { File(it) }.toSet()
             if (filesToDelete.isEmpty()) {
                 sendAction(TrashAction.ShowSnackbar(UiSnackbar(message = UiTextHelper.DynamicString("No files selected to delete."))))
                 return@launch

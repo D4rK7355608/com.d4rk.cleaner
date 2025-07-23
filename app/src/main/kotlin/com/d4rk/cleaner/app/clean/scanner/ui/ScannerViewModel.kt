@@ -587,51 +587,67 @@ class ScannerViewModel(
     }
 
     fun onFileSelectionChange(file: File, isChecked: Boolean) {
-        _uiState.update { state: UiStateScreen<UiScannerModel> ->
-            val currentData: UiScannerModel = state.data ?: UiScannerModel()
-            val entry = FileEntry(
-                path = file.absolutePath,
-                size = if (file.isDirectory) 0 else file.length(),
-                modified = file.lastModified()
-            )
-            val updatedFileSelectionStates: Map<FileEntry, Boolean> =
-                currentData.analyzeState.fileSelectionMap.toMutableMap()
-                    .apply { this[entry] = isChecked }
-            val visibleFiles: List<FileEntry> = currentData.analyzeState.groupedFiles.values.flatten()
-            val selectedVisibleCount: Int =
-                updatedFileSelectionStates.filterKeys { it in visibleFiles }.count { it.value }
-            state.copy(
-                data = currentData.copy(
-                    analyzeState = currentData.analyzeState.copy(
-                        fileSelectionMap = updatedFileSelectionStates,
-                        selectedFilesCount = selectedVisibleCount,
-                        areAllFilesSelected = selectedVisibleCount == visibleFiles.size && visibleFiles.isNotEmpty()
+        launch(context = dispatchers.default) {
+            _uiState.update { state: UiStateScreen<UiScannerModel> ->
+                val currentData: UiScannerModel = state.data ?: UiScannerModel()
+                val path = file.absolutePath
+                val updatedFileSelectionStates: MutableMap<String, Boolean> =
+                    currentData.analyzeState.fileSelectionMap.toMutableMap().apply {
+                        this[path] = isChecked
+                    }
+                val visibleFiles: List<FileEntry> = currentData.analyzeState.groupedFiles.values.flatten()
+                val visiblePaths = visibleFiles.map { it.path }
+                val selectedVisibleCount: Int =
+                    updatedFileSelectionStates.filterKeys { it in visiblePaths }.count { it.value }
+                state.copy(
+                    data = currentData.copy(
+                        analyzeState = currentData.analyzeState.copy(
+                            fileSelectionMap = updatedFileSelectionStates,
+                            selectedFilesCount = selectedVisibleCount,
+                            areAllFilesSelected = selectedVisibleCount == visibleFiles.size && visibleFiles.isNotEmpty()
+                        )
                     )
                 )
-            )
+            }
         }
     }
 
     fun toggleSelectAllFiles() {
-        _uiState.update { state: UiStateScreen<UiScannerModel> ->
-            val currentData: UiScannerModel = state.data ?: UiScannerModel()
-            val visibleFiles: List<FileEntry> = currentData.analyzeState.groupedFiles.values.flatten()
-            val hasFiles = visibleFiles.isNotEmpty()
-            val newState: Boolean = if (hasFiles) !currentData.analyzeState.areAllFilesSelected else false
-            val duplicateOriginals = currentData.analyzeState.duplicateOriginals
-            state.copy(
-                data = currentData.copy(
-                    analyzeState = currentData.analyzeState.copy(
-                        areAllFilesSelected = newState,
-                        fileSelectionMap = if (newState) visibleFiles.associateWith { file ->
-                            if (file in duplicateOriginals) currentData.analyzeState.fileSelectionMap[file] == true else true
-                        } else emptyMap(),
-                        selectedFilesCount = if (newState) visibleFiles.count { file ->
-                            file !in duplicateOriginals || currentData.analyzeState.fileSelectionMap[file] == true
-                        } else 0
+        launch(context = dispatchers.default) {
+            _uiState.update { state: UiStateScreen<UiScannerModel> ->
+                val currentData: UiScannerModel = state.data ?: UiScannerModel()
+                val visibleFiles: List<FileEntry> = currentData.analyzeState.groupedFiles.values.flatten()
+                val visiblePaths = visibleFiles.map { it.path }
+                val hasFiles = visibleFiles.isNotEmpty()
+                val newState: Boolean = if (hasFiles) !currentData.analyzeState.areAllFilesSelected else false
+                val duplicateOriginals = currentData.analyzeState.duplicateOriginals.map { it.path }.toSet()
+
+                val updatedMap: MutableMap<String, Boolean> = if (newState) {
+                    val base = currentData.analyzeState.fileSelectionMap.toMutableMap()
+                    visibleFiles.chunked(200).forEach { chunk ->
+                        chunk.forEach { file ->
+                            val path = file.path
+                            base[path] = if (path in duplicateOriginals) base[path] == true else true
+                        }
+                        yield()
+                    }
+                    base
+                } else mutableMapOf()
+
+                val selectedVisibleCount = if (newState) {
+                    updatedMap.filterKeys { it in visiblePaths }.count { it.value }
+                } else 0
+
+                state.copy(
+                    data = currentData.copy(
+                        analyzeState = currentData.analyzeState.copy(
+                            areAllFilesSelected = newState,
+                            fileSelectionMap = updatedMap,
+                            selectedFilesCount = selectedVisibleCount
+                        )
                     )
                 )
-            )
+            }
         }
     }
 
@@ -639,29 +655,25 @@ class ScannerViewModel(
         launch(context = dispatchers.default) {
             _uiState.update { currentState: UiStateScreen<UiScannerModel> ->
                 val currentData: UiScannerModel = currentState.data ?: UiScannerModel()
-                val filesInCategory: List<FileEntry> =
-                    currentData.analyzeState.groupedFiles[category] ?: emptyList()
+                val filesInCategory: List<FileEntry> = currentData.analyzeState.groupedFiles[category] ?: emptyList()
                 if (filesInCategory.isEmpty()) return@update currentState
-                val duplicateOriginals = currentData.analyzeState.duplicateOriginals
-                val currentSelectionMap: Map<FileEntry, Boolean> =
-                    currentData.analyzeState.fileSelectionMap
-                val allSelected: Boolean = filesInCategory.filterNot { it in duplicateOriginals }.all { currentSelectionMap[it] == true }
-                val updatedSelectionMap: MutableMap<FileEntry, Boolean> =
-                    currentSelectionMap.toMutableMap().apply {
-                        filesInCategory.forEach { file: FileEntry ->
-                            if (file in duplicateOriginals) {
-                                if (allSelected) this[file] = false else this[file] = currentSelectionMap[file] ?: false
-                            } else {
-                                this[file] = !allSelected
-                            }
+                val duplicateOriginals = currentData.analyzeState.duplicateOriginals.map { it.path }.toSet()
+                val currentSelectionMap: Map<String, Boolean> = currentData.analyzeState.fileSelectionMap
+                val allSelected: Boolean = filesInCategory.filterNot { it.path in duplicateOriginals }.all { currentSelectionMap[it.path] == true }
+                val updatedSelectionMap: MutableMap<String, Boolean> = currentSelectionMap.toMutableMap().apply {
+                    filesInCategory.forEach { file: FileEntry ->
+                        val path = file.path
+                        if (path in duplicateOriginals) {
+                            if (allSelected) this[path] = false else this[path] = currentSelectionMap[path] ?: false
+                        } else {
+                            this[path] = !allSelected
                         }
                     }
+                }
 
-                val visibleFiles: List<FileEntry> =
-                    currentData.analyzeState.groupedFiles.values.flatten()
-                val selectedVisibleCount: Int = updatedSelectionMap.filterKeys {
-                    it in visibleFiles
-                }.count { it.value }
+                val visibleFiles: List<FileEntry> = currentData.analyzeState.groupedFiles.values.flatten()
+                val visiblePaths = visibleFiles.map { it.path }
+                val selectedVisibleCount: Int = updatedSelectionMap.filterKeys { it in visiblePaths }.count { it.value }
 
                 currentState.copy(
                     data = currentData.copy(
@@ -680,24 +692,21 @@ class ScannerViewModel(
         launch(context = dispatchers.default) {
             _uiState.update { currentState: UiStateScreen<UiScannerModel> ->
                 val currentData = currentState.data ?: UiScannerModel()
-                val duplicateOriginals = currentData.analyzeState.duplicateOriginals
+                val duplicateOriginals = currentData.analyzeState.duplicateOriginals.map { it.path }.toSet()
                 val updatedSelectionMap = currentData.analyzeState.fileSelectionMap.toMutableMap().apply {
                     files.forEach { file ->
-                        val entry = FileEntry(
-                            path = file.absolutePath,
-                            size = if (file.isDirectory) 0 else file.length(),
-                            modified = file.lastModified()
-                        )
-                        if (isChecked && entry in duplicateOriginals && (this[entry] != true)) {
+                        val path = file.absolutePath
+                        if (isChecked && path in duplicateOriginals && (this[path] != true)) {
                             // keep unchecked
                         } else {
-                            this[entry] = isChecked
+                            this[path] = isChecked
                         }
                     }
                 }
 
                 val visibleFiles = currentData.analyzeState.groupedFiles.values.flatten()
-                val selectedVisibleCount = updatedSelectionMap.filterKeys { it in visibleFiles }.count { it.value }
+                val visiblePaths = visibleFiles.map { it.path }
+                val selectedVisibleCount = updatedSelectionMap.filterKeys { it in visiblePaths }.count { it.value }
 
                 currentState.copy(
                     data = currentData.copy(
@@ -739,8 +748,9 @@ class ScannerViewModel(
                 return@launch
             }
 
-            val filesToDelete: Set<FileEntry> =
+            val selectedPaths: Set<String> =
                 currentScreenData.analyzeState.fileSelectionMap.filter { it.value }.keys
+            val filesToDelete: Set<File> = selectedPaths.map { File(it) }.toSet()
             if (filesToDelete.isEmpty()) {
                 postSnackbar(
                     message = UiTextHelper.StringResource(R.string.no_files_selected_to_clean),
@@ -751,24 +761,20 @@ class ScannerViewModel(
 
             val includeDuplicates = dataStore.deleteDuplicateFiles.first() &&
                 dataStore.duplicateScanEnabled.first()
-            deleteFilesUseCase(filesToDelete = filesToDelete.map { it.toFile() }.toSet()).collectLatest { result: DataState<Unit, Errors> ->
+            deleteFilesUseCase(filesToDelete = filesToDelete).collectLatest { result: DataState<Unit, Errors> ->
                 _uiState.applyResult(
                     result = result,
                     errorMessage = UiTextHelper.StringResource(R.string.failed_to_delete_files)
                 ) { _: Unit, currentData: UiScannerModel ->
                     val (groupedFilesUpdated, duplicateOriginals, duplicateGroups) = computeGroupedFiles(
-                        scannedFiles = currentData.analyzeState.scannedFileList.filterNot {
-                            filesToDelete.contains(it)
-                        }.map { it.toFile() },
+                        scannedFiles = currentData.analyzeState.scannedFileList.filterNot { it.path in selectedPaths }.map { it.toFile() },
                         emptyFolders = currentData.analyzeState.emptyFolderList.map { it.toFile() },
                         fileTypesData = currentData.analyzeState.fileTypesData,
                         preferences = mapOf(),
                         includeDuplicates = includeDuplicates
                     )
 
-                    currentData.copy(analyzeState = currentData.analyzeState.copy(scannedFileList = currentData.analyzeState.scannedFileList.filterNot {
-                        filesToDelete.contains(it)
-                    },
+                    currentData.copy(analyzeState = currentData.analyzeState.copy(scannedFileList = currentData.analyzeState.scannedFileList.filterNot { it.path in selectedPaths },
                         groupedFiles = groupedFilesUpdated,
                         duplicateOriginals = duplicateOriginals,
                         duplicateGroups = duplicateGroups,
@@ -838,8 +844,9 @@ class ScannerViewModel(
                 return@launch
             }
 
-            val filesToMove: List<FileEntry> =
+            val selectedPaths: List<String> =
                 currentScreenData.analyzeState.fileSelectionMap.filter { it.value }.keys.toList()
+            val filesToMove: List<File> = selectedPaths.map { File(it) }
             if (filesToMove.isEmpty()) {
                 postSnackbar(
                     message = UiTextHelper.StringResource(R.string.no_files_selected_move_to_trash),
@@ -848,7 +855,7 @@ class ScannerViewModel(
                 return@launch
             }
 
-            val fileObjs = filesToMove.map { it.toFile() }
+            val fileObjs = filesToMove
             val totalFileSizeToMove: Long = fileObjs.sumOf { it.length() }
 
             val includeDuplicates = dataStore.deleteDuplicateFiles.first() &&
@@ -860,7 +867,7 @@ class ScannerViewModel(
                 ) { _, currentData ->
                     val (groupedFilesUpdated3, duplicateOriginals3, duplicateGroups3) = computeGroupedFiles(
                         scannedFiles = currentData.analyzeState.scannedFileList.filterNot { existingFile ->
-                            filesToMove.any { moved -> existingFile.path == moved.path }
+                            existingFile.path in selectedPaths
                         }.map { it.toFile() },
                         emptyFolders = currentData.analyzeState.emptyFolderList.map { it.toFile() },
                         fileTypesData = currentData.analyzeState.fileTypesData,
@@ -869,7 +876,7 @@ class ScannerViewModel(
                     )
 
                     currentData.copy(analyzeState = currentData.analyzeState.copy(scannedFileList = currentData.analyzeState.scannedFileList.filterNot { existingFile ->
-                        filesToMove.any { movedFile -> existingFile.path == movedFile.path }
+                        existingFile.path in selectedPaths
                     },
 
                         groupedFiles = groupedFilesUpdated3,
