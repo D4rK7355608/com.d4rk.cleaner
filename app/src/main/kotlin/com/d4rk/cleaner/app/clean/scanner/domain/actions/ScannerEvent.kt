@@ -2,13 +2,14 @@ package com.d4rk.cleaner.app.clean.scanner.domain.actions
 
 import com.d4rk.android.libs.apptoolkit.core.ui.base.handling.UiEvent
 import java.io.File
+import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.FileEntry
 
 sealed class ScannerEvent : UiEvent {
     object LoadInitialData : ScannerEvent()
     object AnalyzeFiles : ScannerEvent()
     object RefreshData : ScannerEvent()
-    data class DeleteFiles(val files : Set<File>) : ScannerEvent()
-    data class MoveToTrash(val files : List<File>) : ScannerEvent()
+    data class DeleteFiles(val files : Set<FileEntry>) : ScannerEvent()
+    data class MoveToTrash(val files : List<FileEntry>) : ScannerEvent()
     data class ToggleAnalyzeScreen(val visible : Boolean) : ScannerEvent()
     data class OnFileSelectionChange(val file : File , val isChecked : Boolean) : ScannerEvent()
     object ToggleSelectAllFiles : ScannerEvent()

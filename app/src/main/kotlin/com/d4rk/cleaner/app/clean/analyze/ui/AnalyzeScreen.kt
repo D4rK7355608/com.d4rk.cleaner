@@ -27,7 +27,7 @@ import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.UiScannerModel
 import com.d4rk.cleaner.app.clean.scanner.ui.ScannerViewModel
 import com.d4rk.cleaner.app.clean.scanner.ui.components.TwoRowButtons
 import kotlinx.coroutines.CoroutineScope
-import java.io.File
+import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.FileEntry
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -38,7 +38,7 @@ fun AnalyzeScreen(
 ) {
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val hasSelectedFiles: Boolean = data.analyzeState.selectedFilesCount > 0
-    val groupedFiles: Map<String, List<File>> = data.analyzeState.groupedFiles
+    val groupedFiles: Map<String, List<FileEntry>> = data.analyzeState.groupedFiles
 
     Column(
         modifier = Modifier

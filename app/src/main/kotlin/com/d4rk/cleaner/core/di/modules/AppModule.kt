@@ -61,6 +61,7 @@ import com.d4rk.cleaner.app.clean.whatsapp.summary.data.WhatsAppCleanerRepositor
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.repository.WhatsAppCleanerRepository
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.DeleteWhatsAppMediaUseCase
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.GetWhatsAppMediaSummaryUseCase
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.GetWhatsAppMediaFilesUseCase
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsappCleanerSummaryViewModel
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.CompressImageUseCase
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.GetImageDimensionsUseCase
@@ -158,14 +159,16 @@ val appModule: Module = module {
     single<WhatsAppCleanerRepository> { WhatsAppCleanerRepositoryImpl(get()) }
     single { GetWhatsAppMediaSummaryUseCase(repository = get()) }
     single { DeleteWhatsAppMediaUseCase(repository = get()) }
+    single { GetWhatsAppMediaFilesUseCase(repository = get()) }
     viewModel {
         WhatsappCleanerSummaryViewModel(
             getSummaryUseCase = get(),
             deleteUseCase = get(),
+            getFilesUseCase = get(),
             dispatchers = get()
         )
     }
-    viewModel { DetailsViewModel(dataStore = get(), dispatchers = get()) }
+    viewModel { DetailsViewModel(dataStore = get(), dispatchers = get(), getFilesUseCase = get()) }
 
     single<PackageManagerFacade> { PackageManagerFacadeImpl(application = get()) }
     single<GetInstalledAppsUseCase> { GetInstalledAppsUseCase(packageManagerFacade = get()) }

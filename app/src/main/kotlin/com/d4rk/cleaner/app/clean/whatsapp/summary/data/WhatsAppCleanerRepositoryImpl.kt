@@ -33,10 +33,14 @@ class WhatsAppCleanerRepositoryImpl(private val application: Application) : What
             if (!dir.exists()) return DirectorySummary()
             val files = dir.walkTopDown()
                 .filter { it.isFile && it.name != ".nomedia" }
-                .toList()
-            val size = files.sumOf { it.length() }
+            var count = 0
+            var size = 0L
+            files.forEach {
+                count++
+                size += it.length()
+            }
             val formatted = Formatter.formatFileSize(application, size)
-            return DirectorySummary(files, size, formatted)
+            return DirectorySummary(count, size, formatted)
         }
 
         val directories = WhatsAppMediaConstants.DIRECTORIES
@@ -78,6 +82,18 @@ class WhatsAppCleanerRepositoryImpl(private val application: Application) : What
         files.forEach { file ->
             if (file.exists()) file.deleteRecursively()
         }
+    }
+
+    override suspend fun listMediaFiles(type: String, offset: Int, limit: Int): List<File> = withContext(Dispatchers.IO) {
+        val base = getWhatsAppMediaDir()
+        val dirName = WhatsAppMediaConstants.DIRECTORIES[type] ?: return@withContext emptyList<File>()
+        val dir = File(base, dirName)
+        if (!dir.exists()) return@withContext emptyList<File>()
+        dir.walkTopDown()
+            .filter { it.isFile && it.name != ".nomedia" }
+            .drop(offset)
+            .take(limit)
+            .toList()
     }
 
 }

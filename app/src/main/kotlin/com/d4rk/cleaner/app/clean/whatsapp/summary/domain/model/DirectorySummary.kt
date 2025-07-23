@@ -1,12 +1,12 @@
 package com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model
 
-import java.io.File
-
 /**
- * Holds file list and size info for a WhatsApp media directory.
+ * Holds metadata information for a WhatsApp media directory.
+ * Only lightweight properties are kept in memory to avoid
+ * loading every file eagerly.
  */
 data class DirectorySummary(
-    val files: List<File> = emptyList(),
+    val count: Int = 0,
     val totalBytes: Long = 0L,
     val formattedSize: String = "0 B"
 )

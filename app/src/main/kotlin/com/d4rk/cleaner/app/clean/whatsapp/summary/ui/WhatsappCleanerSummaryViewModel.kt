@@ -12,8 +12,10 @@ import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.actions.WhatsAppCleane
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.UiWhatsAppCleanerModel
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.DeleteWhatsAppMediaUseCase
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.GetWhatsAppMediaSummaryUseCase
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.GetWhatsAppMediaFilesUseCase
 import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
 import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
+import com.d4rk.cleaner.app.clean.whatsapp.utils.constants.WhatsAppMediaConstants
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import java.io.File
@@ -21,6 +23,7 @@ import java.io.File
 class WhatsappCleanerSummaryViewModel(
     private val getSummaryUseCase: GetWhatsAppMediaSummaryUseCase,
     private val deleteUseCase: DeleteWhatsAppMediaUseCase,
+    private val getFilesUseCase: GetWhatsAppMediaFilesUseCase,
     private val dispatchers: DispatcherProvider
 ) : ScreenViewModel<UiWhatsAppCleanerModel, WhatsAppCleanerEvent, WhatsAppCleanerAction>(
     initialState = UiStateScreen(data = UiWhatsAppCleanerModel())
@@ -66,20 +69,15 @@ class WhatsappCleanerSummaryViewModel(
     }
 
     private fun cleanAll() {
-        val files = _uiState.value.data?.mediaSummary?.let { summary ->
-            summary.images.files +
-                    summary.videos.files +
-                    summary.documents.files +
-                    summary.audios.files +
-                    summary.statuses.files +
-                    summary.voiceNotes.files +
-                    summary.videoNotes.files +
-                    summary.gifs.files +
-                    summary.wallpapers.files +
-                    summary.stickers.files +
-                    summary.profilePhotos.files
-        } ?: emptyList()
         launch(context = dispatchers.io) {
+            val types = WhatsAppMediaConstants.DIRECTORIES.keys
+            val files = mutableListOf<File>()
+            for (type in types) {
+                getFilesUseCase(type, 0, Int.MAX_VALUE).collectLatest { res ->
+                    if (res is DataState.Success) files.addAll(res.data)
+                }
+            }
+
             deleteUseCase(files).collectLatest { result ->
                 val freed = files.sumOf { it.length() }
                 if (result is DataState.Success) {

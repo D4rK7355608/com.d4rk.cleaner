@@ -160,77 +160,77 @@ private fun WhatsappCleanerSummaryScreenContent(
                 type = WhatsAppMediaConstants.IMAGES,
                 name = images,
                 icon = R.drawable.ic_image,
-                count = summary.images.files.size,
+                count = summary.images.count,
                 size = summary.images.formattedSize
             ),
             DirectoryItem(
                 type = WhatsAppMediaConstants.VIDEOS,
                 name = videos,
                 icon = R.drawable.ic_video_file,
-                count = summary.videos.files.size,
+                count = summary.videos.count,
                 size = summary.videos.formattedSize
             ),
             DirectoryItem(
                 type = WhatsAppMediaConstants.DOCUMENTS,
                 name = docs,
                 icon = R.drawable.ic_description,
-                count = summary.documents.files.size,
+                count = summary.documents.count,
                 size = summary.documents.formattedSize
             ),
             DirectoryItem(
                 type = WhatsAppMediaConstants.AUDIOS,
                 name = audios,
                 icon = R.drawable.ic_audio_file,
-                count = summary.audios.files.size,
+                count = summary.audios.count,
                 size = summary.audios.formattedSize
             ),
             DirectoryItem(
                 type = WhatsAppMediaConstants.STATUSES,
                 name = statuses,
                 icon = R.drawable.ic_web_stories,
-                count = summary.statuses.files.size,
+                count = summary.statuses.count,
                 size = summary.statuses.formattedSize
             ),
             DirectoryItem(
                 type = WhatsAppMediaConstants.VOICE_NOTES,
                 name = voiceNotes,
                 icon = R.drawable.ic_voice_selection,
-                count = summary.voiceNotes.files.size,
+                count = summary.voiceNotes.count,
                 size = summary.voiceNotes.formattedSize
             ),
             DirectoryItem(
                 type = WhatsAppMediaConstants.VIDEO_NOTES,
                 name = videoNotes,
                 icon = R.drawable.ic_video_file,
-                count = summary.videoNotes.files.size,
+                count = summary.videoNotes.count,
                 size = summary.videoNotes.formattedSize
             ),
             DirectoryItem(
                 type = WhatsAppMediaConstants.GIFS,
                 name = gifs,
                 icon = R.drawable.ic_gif,
-                count = summary.gifs.files.size,
+                count = summary.gifs.count,
                 size = summary.gifs.formattedSize
             ),
             DirectoryItem(
                 type = WhatsAppMediaConstants.WALLPAPERS,
                 name = wallpapers,
                 icon = R.drawable.ic_wallpaper,
-                count = summary.wallpapers.files.size,
+                count = summary.wallpapers.count,
                 size = summary.wallpapers.formattedSize
             ),
             DirectoryItem(
                 type = WhatsAppMediaConstants.STICKERS,
                 name = stickers,
                 icon = R.drawable.ic_ar_stickers,
-                count = summary.stickers.files.size,
+                count = summary.stickers.count,
                 size = summary.stickers.formattedSize
             ),
             DirectoryItem(
                 type = WhatsAppMediaConstants.PROFILE_PHOTOS,
                 name = profiles,
                 icon = R.drawable.ic_person_pin,
-                count = summary.profilePhotos.files.size,
+                count = summary.profilePhotos.count,
                 size = summary.profilePhotos.formattedSize
             ),
         ).filter { it.size != "0 B" }
