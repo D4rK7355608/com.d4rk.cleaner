@@ -38,7 +38,9 @@ fun AnalyzeScreen(
 ) {
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val hasSelectedFiles: Boolean = data.analyzeState.selectedFilesCount > 0
-    val groupedFiles: Map<String, List<File>> = data.analyzeState.groupedFiles
+    val groupedFiles: Map<String, List<File>> = data.analyzeState.groupedFiles.mapValues { entry ->
+        entry.value.map { File(it.path) }
+    }
 
     Column(
         modifier = Modifier

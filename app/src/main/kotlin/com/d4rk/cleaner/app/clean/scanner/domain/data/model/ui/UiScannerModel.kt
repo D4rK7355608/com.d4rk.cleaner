@@ -4,6 +4,7 @@ package com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui
 
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
 import java.io.File
+import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.FileEntry
 
 data class UiScannerModel(
     val storageInfo : StorageInfo = StorageInfo() ,
@@ -18,16 +19,16 @@ data class UiAnalyzeModel(
     var state : CleaningState = CleaningState.Idle ,
     var cleaningType : CleaningType = CleaningType.NONE ,
     var isAnalyzeScreenVisible : Boolean = false ,
-    var scannedFileList : List<File> = emptyList() ,
-    var emptyFolderList : List<File> = emptyList() ,
+    var scannedFileList : List<FileEntry> = emptyList() ,
+    var emptyFolderList : List<FileEntry> = emptyList() ,
     var areAllFilesSelected : Boolean = false ,
-    var fileSelectionMap : Map<File , Boolean> = emptyMap() ,
+    var fileSelectionMap : Map<FileEntry , Boolean> = emptyMap() ,
     var selectedFilesCount : Int = 0 ,
-    var groupedFiles : Map<String , List<File>> = emptyMap() ,
+    var groupedFiles : Map<String , List<FileEntry>> = emptyMap() ,
     /** Set of original files when duplicates are detected */
-    var duplicateOriginals : Set<File> = emptySet() ,
+    var duplicateOriginals : Set<FileEntry> = emptySet() ,
     /** Groups of duplicate files starting with the original */
-    var duplicateGroups: List<List<File>> = emptyList(),
+    var duplicateGroups: List<List<FileEntry>> = emptyList(),
     var fileTypesData : FileTypesData = FileTypesData() ,
     var isDeleteForeverConfirmationDialogVisible : Boolean = false ,
     var isMoveToTrashConfirmationDialogVisible : Boolean = false ,
