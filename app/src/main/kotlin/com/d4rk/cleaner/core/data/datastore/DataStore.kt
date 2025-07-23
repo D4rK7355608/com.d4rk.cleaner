@@ -278,7 +278,7 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         prefs[deepDuplicateSearchKey] == true
     }
 
-    suspend fun saveDeepDuplicateSearch(enabled: Boolean) {
+    suspend fun saveDeepDuplicateSearch(enabled: Boolean) { // FIXME: Function "saveDeepDuplicateSearch" is never used
         dataStore.edit { prefs ->
             prefs[deepDuplicateSearchKey] = enabled
         }
@@ -289,22 +289,12 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         prefs[duplicateScanEnabledKey] ?: true
     }
 
-    suspend fun saveDuplicateScanEnabled(enabled: Boolean) {
+    suspend fun saveDuplicateScanEnabled(enabled: Boolean) { // FIXME: Function "saveDuplicateScanEnabled" is never used
         dataStore.edit { prefs ->
             prefs[duplicateScanEnabledKey] = enabled
         }
     }
 
-    private val clipboardCleanKey = booleanPreferencesKey(name = AppDataStoreConstants.DATA_STORE_CLIPBOARD_CLEAN)
-    val clipboardClean : Flow<Boolean> = dataStore.data.map { preferences ->
-        preferences[clipboardCleanKey] == true
-    }
-
-    suspend fun saveClipboardClean(isChecked : Boolean) {
-        dataStore.edit { preferences ->
-            preferences[clipboardCleanKey] = isChecked
-        }
-    }
 
     private val storagePermissionGrantedKey = booleanPreferencesKey(AppDataStoreConstants.DATA_STORE_PERMISSION_STORAGE_GRANTED)
     val storagePermissionGranted: Flow<Boolean> = dataStore.data.map { prefs ->
@@ -416,10 +406,9 @@ class DataStore(val context : Context) : CommonDataStore(context = context) {
         prefs[autoCleanFrequencyDaysKey] ?: 7
     }
 
-    suspend fun saveAutoCleanFrequencyDays(days: Int) {
+    suspend fun saveAutoCleanFrequencyDays(days: Int) { // FIXME: Function "saveAutoCleanFrequencyDays" is never used
         dataStore.edit { prefs ->
             prefs[autoCleanFrequencyDaysKey] = days
         }
     }
-
 }

@@ -45,7 +45,6 @@ fun CleaningSettingsList(paddingValues : PaddingValues) {
     val otherExtensions : Boolean by dataStore.deleteOtherFiles.collectAsState(initial = false)
     val deleteImageFiles : Boolean by dataStore.deleteImageFiles.collectAsState(initial = false)
     val deleteDuplicateFiles: Boolean by dataStore.deleteDuplicateFiles.collectAsState(initial = false)
-    val clipboardClean : Boolean by dataStore.clipboardClean.collectAsState(initial = false)
     val streakReminderEnabled: Boolean by dataStore.streakReminderEnabled.collectAsState(initial = false)
     val showStreakCardPref: Boolean by dataStore.showStreakCard.collectAsState(initial = true)
     val autoCleanEnabled: Boolean by dataStore.autoCleanEnabled.collectAsState(initial = false)

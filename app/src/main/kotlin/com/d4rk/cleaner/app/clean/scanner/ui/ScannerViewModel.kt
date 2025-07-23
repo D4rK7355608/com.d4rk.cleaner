@@ -1013,7 +1013,6 @@ class ScannerViewModel(
                     dataStore.deleteFontFiles.first(),
                     dataStore.deleteOtherFiles.first(),
                     dataStore.deleteImageFiles.first(),
-                    dataStore.clipboardClean.first(),
                     dataStore.deleteDuplicateFiles.first()
                 ).any { it }
 
