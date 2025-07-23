@@ -61,7 +61,7 @@ object FileManagerHelper {
                 folder
             )
 
-            val baseIntent = Intent(Intent.ACTION_VIEW).setDataAndType(uri, "*/*")
+            val baseIntent = Intent(Intent.ACTION_VIEW).setDataAndType(uri, "resource/folder")
             baseIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
 
             val explorerPackages = listOf(
@@ -112,6 +112,60 @@ object FileManagerHelper {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+            }
+        }
+    }
+
+    fun openFolderOrToast(context: Context, folder: File) {
+        val pm = context.packageManager
+        runCatching {
+            val uri = FileProvider.getUriForFile(
+                context,
+                context.packageName + ".fileprovider",
+                folder
+            )
+
+            val baseIntent = Intent(Intent.ACTION_VIEW).setDataAndType(uri, "resource/folder")
+            baseIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+            val explorerPackages = listOf(
+                "com.google.android.apps.nbu.files",
+                "com.android.documentsui",
+                "com.sec.android.app.myfiles",
+                "com.mi.android.fileexplorer"
+            )
+
+            var started = false
+            for (pkg in explorerPackages) {
+                val intent = Intent(baseIntent).setPackage(pkg)
+                if (intent.resolveActivity(pm) != null) {
+                    context.startActivity(intent)
+                    started = true
+                    break
+                }
+            }
+
+            if (!started && baseIntent.resolveActivity(pm) != null) {
+                context.startActivity(baseIntent)
+                started = true
+            }
+
+            if (!started) {
+                if (!launchFileManager(context, pm)) {
+                    Toast.makeText(
+                        context,
+                        context.getString(R.string.no_application_found),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }.onFailure {
+            if (!launchFileManager(context, pm)) {
+                Toast.makeText(
+                    context,
+                    context.getString(R.string.something_went_wrong),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
