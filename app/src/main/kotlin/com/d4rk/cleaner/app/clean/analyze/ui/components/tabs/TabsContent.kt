@@ -136,7 +136,7 @@ fun TabsContent(
                 fileSelectionStates = data.analyzeState.fileSelectionMap.mapKeys { File(it.key.path) } ,
                 onFileSelectionChange = viewModel::onFileSelectionChange ,
                 onDateSelectionChange = { files, checked -> viewModel.onEvent(ScannerEvent.ToggleSelectFilesForDate(files , checked)) } ,
-                originals = data.analyzeState.duplicateOriginals ,
+                originals = data.analyzeState.duplicateOriginals.map { File(it.path) }.toSet() ,
                 view = view
             )
         } else {
@@ -146,7 +146,7 @@ fun TabsContent(
                 fileSelectionStates = data.analyzeState.fileSelectionMap.mapKeys { File(it.key.path) } ,
                 onFileSelectionChange = viewModel::onFileSelectionChange ,
                 onDateSelectionChange = { files, checked -> viewModel.onEvent(ScannerEvent.ToggleSelectFilesForDate(files , checked)) } ,
-                originals = data.analyzeState.duplicateOriginals ,
+                originals = data.analyzeState.duplicateOriginals.map { File(it.path) }.toSet() ,
                 view = view
             )
         }

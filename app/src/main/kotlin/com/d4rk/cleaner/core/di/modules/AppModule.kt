@@ -61,6 +61,7 @@ import com.d4rk.cleaner.app.clean.whatsapp.summary.data.WhatsAppCleanerRepositor
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.repository.WhatsAppCleanerRepository
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.DeleteWhatsAppMediaUseCase
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.GetWhatsAppMediaSummaryUseCase
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.GetWhatsAppMediaFilesUseCase
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsappCleanerSummaryViewModel
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.CompressImageUseCase
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.GetImageDimensionsUseCase
