@@ -26,6 +26,21 @@ class ContactsRepositoryImpl(context: Context) : ContactsRepository {
         return da == db || da.endsWith(db) || db.endsWith(da)
     }
 
+    private fun mergeDisplayName(group: List<RawContactInfo>): String {
+        val parts = linkedSetOf<String>()
+        group.forEach { info ->
+            info.displayName.split(" ").forEach { word ->
+                val trimmed = word.trim()
+                if (trimmed.isNotEmpty() &&
+                    parts.none { it.equals(trimmed, ignoreCase = true) }
+                ) {
+                    parts.add(trimmed)
+                }
+            }
+        }
+        return parts.joinToString(" ")
+    }
+
     private fun getContactLastUpdated(contactId: Long): Long {
         val projection = arrayOf(ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP)
         resolver.query(
@@ -190,6 +205,25 @@ class ContactsRepositoryImpl(context: Context) : ContactsRepository {
 
     override suspend fun mergeContacts(group: List<RawContactInfo>) = withContext(Dispatchers.IO) {
         val keep = group.maxByOrNull { it.lastUpdated } ?: return@withContext
+
+        val newName = mergeDisplayName(group)
+        if (newName.isNotBlank() && !newName.equals(keep.displayName, ignoreCase = true)) {
+            val where = "${ContactsContract.Data.RAW_CONTACT_ID}=? AND ${ContactsContract.Data.MIMETYPE}=?"
+            val args = arrayOf(keep.rawContactId.toString(), ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+            val values = ContentValues().apply {
+                put(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, newName)
+            }
+            val updated = resolver.update(ContactsContract.Data.CONTENT_URI, values, where, args)
+            if (updated == 0) {
+                val insertValues = ContentValues().apply {
+                    put(ContactsContract.Data.RAW_CONTACT_ID, keep.rawContactId)
+                    put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+                    put(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, newName)
+                }
+                resolver.insert(ContactsContract.Data.CONTENT_URI, insertValues)
+            }
+        }
+
         group.filter { it != keep }.forEach { source ->
             source.phones.forEach { phone ->
                 val values = ContentValues().apply {
