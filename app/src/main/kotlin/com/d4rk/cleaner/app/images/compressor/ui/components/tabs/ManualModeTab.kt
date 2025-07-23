@@ -36,79 +36,113 @@ import com.d4rk.cleaner.app.images.compressor.ui.ImageOptimizerViewModel
 import kotlinx.coroutines.delay
 
 @Composable
-fun ManualModeTab(viewModel : ImageOptimizerViewModel) {
-    val state : State<UiImageOptimizerState> = viewModel.uiState.collectAsState()
-    val focusManager : FocusManager = LocalFocusManager.current
+fun ManualModeTab(viewModel: ImageOptimizerViewModel) {
+    val state: State<UiImageOptimizerState> = viewModel.uiState.collectAsState()
+    val focusManager: FocusManager = LocalFocusManager.current
 
-    val defaultWidth : Int = if (state.value.manualWidth != 0) state.value.manualWidth else 640
-    val defaultHeight : Int = if (state.value.manualHeight != 0) state.value.manualHeight else 480
+    val defaultWidth: Int = if (state.value.manualWidth != 0) state.value.manualWidth else 640
+    val defaultHeight: Int = if (state.value.manualHeight != 0) state.value.manualHeight else 480
 
-    var widthText : String by remember { mutableStateOf(value = defaultWidth.toString()) }
-    var heightText : String by remember { mutableStateOf(value = defaultHeight.toString()) }
-    var qualityValue : Float by remember { mutableFloatStateOf(value = state.value.manualQuality.toFloat()) }
+    var widthText: String by remember { mutableStateOf(value = defaultWidth.toString()) }
+    var heightText: String by remember { mutableStateOf(value = defaultHeight.toString()) }
+    var qualityValue: Float by remember { mutableFloatStateOf(value = state.value.manualQuality.toFloat()) }
 
-    var widthFocused : Boolean by remember { mutableStateOf(value = false) }
-    var heightFocused : Boolean by remember { mutableStateOf(value = false) }
+    var widthFocused: Boolean by remember { mutableStateOf(value = false) }
+    var heightFocused: Boolean by remember { mutableStateOf(value = false) }
 
-    val aspectRatio : Float = defaultWidth.toFloat() / defaultHeight.toFloat()
+    val aspectRatio: Float = defaultWidth.toFloat() / defaultHeight.toFloat()
 
-    LaunchedEffect(key1 = widthText , key2 = heightText) {
+    LaunchedEffect(key1 = widthText, key2 = heightText) {
         delay(timeMillis = 400L)
-        if (! widthFocused && ! heightFocused) {
+        if (!widthFocused && !heightFocused) {
             viewModel.setManualCompressSettings(
-                width = widthText.toIntOrNull() ?: defaultWidth , height = heightText.toIntOrNull() ?: defaultHeight , quality = qualityValue.toInt()
+                width = widthText.toIntOrNull() ?: defaultWidth,
+                height = heightText.toIntOrNull() ?: defaultHeight,
+                quality = qualityValue.toInt()
             )
         }
     }
 
     Column(modifier = Modifier.padding(all = SizeConstants.LargeSize)) {
         Row(modifier = Modifier.fillMaxWidth()) {
-            OutlinedTextField(value = widthText , onValueChange = { newValue : String ->
-                widthText = newValue
-                val newWidth : Int? = newValue.toIntOrNull()
-                if (newWidth != null && defaultWidth != 0) {
-                    val newHeight : Int = (newWidth / aspectRatio).toInt()
-                    heightText = newHeight.toString()
-                }
-            } , label = { Text(text = stringResource(id = R.string.width)) } , singleLine = true , keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number , imeAction = ImeAction.Done) , keyboardActions = KeyboardActions(onDone = {
-                focusManager.clearFocus()
-                viewModel.setManualCompressSettings(
-                    width = widthText.toIntOrNull() ?: defaultWidth , height = heightText.toIntOrNull() ?: defaultHeight , quality = qualityValue.toInt()
-                )
-            }) , modifier = Modifier
+            OutlinedTextField(
+                value = widthText,
+                onValueChange = { newValue: String ->
+                    widthText = newValue
+                    val newWidth: Int? = newValue.toIntOrNull()
+                    if (newWidth != null && defaultWidth != 0) {
+                        val newHeight: Int = (newWidth / aspectRatio).toInt()
+                        heightText = newHeight.toString()
+                    }
+                },
+                label = { Text(text = stringResource(id = R.string.width)) },
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Number,
+                    imeAction = ImeAction.Done
+                ),
+                keyboardActions = KeyboardActions(onDone = {
+                    focusManager.clearFocus()
+                    viewModel.setManualCompressSettings(
+                        width = widthText.toIntOrNull() ?: defaultWidth,
+                        height = heightText.toIntOrNull() ?: defaultHeight,
+                        quality = qualityValue.toInt()
+                    )
+                }),
+                modifier = Modifier
                     .weight(weight = 1f)
                     .padding(end = SizeConstants.SmallSize)
                     .onFocusChanged { focusState -> widthFocused = focusState.isFocused })
-            OutlinedTextField(value = heightText , onValueChange = { newValue : String ->
-                heightText = newValue
-                val newHeight : Int? = newValue.toIntOrNull()
-                if (newHeight != null && defaultHeight != 0) {
-                    val newWidth : Int = (newHeight * aspectRatio).toInt()
-                    widthText = newWidth.toString()
-                }
-            } , label = { Text(text = stringResource(id = R.string.height)) } , singleLine = true , keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number , imeAction = ImeAction.Done) , keyboardActions = KeyboardActions(onDone = {
-                focusManager.clearFocus()
-                viewModel.setManualCompressSettings(
-                    width = widthText.toIntOrNull() ?: defaultWidth , height = heightText.toIntOrNull() ?: defaultHeight , quality = qualityValue.toInt()
-                )
-            }) , modifier = Modifier
+            OutlinedTextField(
+                value = heightText,
+                onValueChange = { newValue: String ->
+                    heightText = newValue
+                    val newHeight: Int? = newValue.toIntOrNull()
+                    if (newHeight != null && defaultHeight != 0) {
+                        val newWidth: Int = (newHeight * aspectRatio).toInt()
+                        widthText = newWidth.toString()
+                    }
+                },
+                label = { Text(text = stringResource(id = R.string.height)) },
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Number,
+                    imeAction = ImeAction.Done
+                ),
+                keyboardActions = KeyboardActions(onDone = {
+                    focusManager.clearFocus()
+                    viewModel.setManualCompressSettings(
+                        width = widthText.toIntOrNull() ?: defaultWidth,
+                        height = heightText.toIntOrNull() ?: defaultHeight,
+                        quality = qualityValue.toInt()
+                    )
+                }),
+                modifier = Modifier
                     .weight(weight = 1f)
                     .onFocusChanged { focusState -> heightFocused = focusState.isFocused })
         }
         SmallVerticalSpacer()
         Text(
-            text = stringResource(id = R.string.quality) , style = MaterialTheme.typography.bodyLarge
+            text = stringResource(id = R.string.quality), style = MaterialTheme.typography.bodyLarge
         )
         ExtraSmallVerticalSpacer()
         Row(
-            modifier = Modifier.fillMaxWidth() , verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
         ) {
             Text(text = "${qualityValue.toInt()}%")
-            Slider(value = qualityValue , onValueChange = { newValue : Float -> qualityValue = newValue } , onValueChangeFinished = {
-                viewModel.setManualCompressSettings(
-                    width = widthText.toIntOrNull() ?: defaultWidth , height = heightText.toIntOrNull() ?: defaultHeight , quality = qualityValue.toInt()
-                )
-            } , valueRange = 0f..100f , steps = 99 , modifier = Modifier.weight(1f))
+            Slider(
+                value = qualityValue,
+                onValueChange = { newValue: Float -> qualityValue = newValue },
+                onValueChangeFinished = {
+                    viewModel.setManualCompressSettings(
+                        width = widthText.toIntOrNull() ?: defaultWidth,
+                        height = heightText.toIntOrNull() ?: defaultHeight,
+                        quality = qualityValue.toInt()
+                    )
+                },
+                valueRange = 0f..100f,
+                steps = 99,
+                modifier = Modifier.weight(1f))
         }
     }
 }

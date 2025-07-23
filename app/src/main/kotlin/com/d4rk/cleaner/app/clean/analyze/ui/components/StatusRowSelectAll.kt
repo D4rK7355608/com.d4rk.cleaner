@@ -20,34 +20,34 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.UiScannerModel
 
 @Composable
-fun StatusRowSelectAll(data : UiScannerModel , view : View , onClickSelectAll : () -> Unit) {
+fun StatusRowSelectAll(data: UiScannerModel, view: View, onClickSelectAll: () -> Unit) {
     Row(
-        modifier = Modifier.fillMaxWidth() ,
-        verticalAlignment = Alignment.CenterVertically ,
-        horizontalArrangement = Arrangement.SpaceBetween ,
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        val statusText : String = if (data.analyzeState.selectedFilesCount > 0) {
+        val statusText: String = if (data.analyzeState.selectedFilesCount > 0) {
             pluralStringResource(
-                id = R.plurals.status_selected_files , count = data.analyzeState.selectedFilesCount , data.analyzeState.selectedFilesCount
+                id = R.plurals.status_selected_files,
+                count = data.analyzeState.selectedFilesCount,
+                data.analyzeState.selectedFilesCount
             )
-        }
-        else {
+        } else {
             stringResource(id = R.string.status_no_files_selected)
         }
-        val statusColor : Color by animateColorAsState(
+        val statusColor: Color by animateColorAsState(
             targetValue = if (data.analyzeState.selectedFilesCount > 0) {
                 MaterialTheme.colorScheme.primary
-            }
-            else {
+            } else {
                 MaterialTheme.colorScheme.secondary
-            } , animationSpec = tween() , label = "Selected Files Status Color Animation"
+            }, animationSpec = tween(), label = "Selected Files Status Color Animation"
         )
 
         Text(
-            text = statusText , color = statusColor , modifier = Modifier.animateContentSize()
+            text = statusText, color = statusColor, modifier = Modifier.animateContentSize()
         )
         SelectAllComposable(
-            selected = data.analyzeState.areAllFilesSelected , view = view , onClickSelectAll = {
+            selected = data.analyzeState.areAllFilesSelected, view = view, onClickSelectAll = {
                 onClickSelectAll()
             })
     }

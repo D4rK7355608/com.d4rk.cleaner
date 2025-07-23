@@ -5,6 +5,6 @@ import com.d4rk.cleaner.app.apps.manager.domain.data.model.AppManagerItem
 
 sealed class AppManagerEvent : UiEvent {
     object LoadAppData : AppManagerEvent()
-    data class ShareItem(val item : AppManagerItem) : AppManagerEvent()
+    data class ShareItem(val item: AppManagerItem) : AppManagerEvent()
     data object DismissSnackbar : AppManagerEvent()
 }

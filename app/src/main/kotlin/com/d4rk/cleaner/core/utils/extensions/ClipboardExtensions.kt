@@ -10,6 +10,7 @@ fun ClipboardManager.clearClipboardCompat() {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.P -> {
                 clearPrimaryClip()
             }
+
             else -> {
                 val emptyClip = ClipData.newPlainText("", "")
                 setPrimaryClip(emptyClip)

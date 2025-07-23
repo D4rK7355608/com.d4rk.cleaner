@@ -25,7 +25,11 @@ fun DirectoryGrid(items: List<DirectoryItem>, onOpenDetails: (String) -> Unit) {
                     .animateContentSize()
             ) {
                 for (item in chunk) {
-                    DirectoryCard(item = item, onOpenDetails = onOpenDetails, modifier = Modifier.weight(1f))
+                    DirectoryCard(
+                        item = item,
+                        onOpenDetails = onOpenDetails,
+                        modifier = Modifier.weight(1f)
+                    )
                 }
                 if (chunk.size == 1) {
                     androidx.compose.foundation.layout.Spacer(modifier = Modifier.weight(1f))

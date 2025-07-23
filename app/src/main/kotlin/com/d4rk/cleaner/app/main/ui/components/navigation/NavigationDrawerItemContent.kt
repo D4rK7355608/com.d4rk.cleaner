@@ -15,20 +15,23 @@ import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 
 @Composable
-fun NavigationDrawerItemContent(item : NavigationDrawerItem , handleNavigationItemClick : () -> Unit = {}) {
-    val title : String = stringResource(id = item.title)
+fun NavigationDrawerItemContent(
+    item: NavigationDrawerItem,
+    handleNavigationItemClick: () -> Unit = {}
+) {
+    val title: String = stringResource(id = item.title)
 
-    NavigationDrawerItem(label = { Text(text = title) } , selected = false , onClick = {
+    NavigationDrawerItem(label = { Text(text = title) }, selected = false, onClick = {
         handleNavigationItemClick()
-    } , icon = {
+    }, icon = {
         Icon(imageVector = item.selectedIcon, contentDescription = title)
-    } , badge = {
+    }, badge = {
         if (item.badgeText.isNotBlank()) {
             Text(text = item.badgeText)
         }
-    } , modifier = Modifier
-            .padding(paddingValues = NavigationDrawerItemDefaults.ItemPadding)
-            .bounceClick())
+    }, modifier = Modifier
+        .padding(paddingValues = NavigationDrawerItemDefaults.ItemPadding)
+        .bounceClick())
 
     if (item.title == R.string.trash) {
         HorizontalDivider(modifier = Modifier.padding(all = SizeConstants.SmallSize))

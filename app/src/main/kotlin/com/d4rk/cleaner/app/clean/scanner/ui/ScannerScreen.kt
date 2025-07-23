@@ -34,7 +34,7 @@ import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHostState) {
+fun ScannerScreen(paddingValues: PaddingValues, snackbarHostState: SnackbarHostState) {
     val context: Context = LocalContext.current
     val view: View = LocalView.current
     val viewModel: ScannerViewModel = koinViewModel()
@@ -88,7 +88,11 @@ fun ScannerScreen(paddingValues: PaddingValues , snackbarHostState: SnackbarHost
         }
     }
 
-    DefaultSnackbarHandler(screenState = uiState , snackbarHostState = snackbarHostState , getDismissEvent = { ScannerEvent.DismissSnackbar } , onEvent = { viewModel.onEvent(event = it) })
+    DefaultSnackbarHandler(
+        screenState = uiState,
+        snackbarHostState = snackbarHostState,
+        getDismissEvent = { ScannerEvent.DismissSnackbar },
+        onEvent = { viewModel.onEvent(event = it) })
 
     if (streakDialogVisible) {
         HideStreakAlertDialog(

@@ -9,17 +9,27 @@ import com.d4rk.android.libs.apptoolkit.app.settings.utils.constants.SettingsCon
 import com.d4rk.android.libs.apptoolkit.app.settings.utils.providers.PrivacySettingsProvider
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.IntentsHelper
 
-class AppPrivacySettingsProvider(val context : Context) : PrivacySettingsProvider {
+class AppPrivacySettingsProvider(val context: Context) : PrivacySettingsProvider {
 
     override fun openPermissionsScreen() {
-        IntentsHelper.openActivity(context = context , activityClass = PermissionsActivity::class.java)
+        IntentsHelper.openActivity(
+            context = context,
+            activityClass = PermissionsActivity::class.java
+        )
     }
 
     override fun openAdsScreen() {
-        IntentsHelper.openActivity(context = context , activityClass = AdsSettingsActivity::class.java)
+        IntentsHelper.openActivity(
+            context = context,
+            activityClass = AdsSettingsActivity::class.java
+        )
     }
 
     override fun openUsageAndDiagnosticsScreen() {
-        GeneralSettingsActivity.start(context = context , title = context.getString(R.string.usage_and_diagnostics) , contentKey = SettingsContent.USAGE_AND_DIAGNOSTICS)
+        GeneralSettingsActivity.start(
+            context = context,
+            title = context.getString(R.string.usage_and_diagnostics),
+            contentKey = SettingsContent.USAGE_AND_DIAGNOSTICS
+        )
     }
 }

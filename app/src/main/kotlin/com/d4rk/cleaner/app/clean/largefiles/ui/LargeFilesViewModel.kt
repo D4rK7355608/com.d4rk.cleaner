@@ -34,7 +34,11 @@ class LargeFilesViewModel(
     override fun onEvent(event: LargeFilesEvent) {
         when (event) {
             LargeFilesEvent.LoadLargeFiles -> loadLargeFiles()
-            is LargeFilesEvent.OnFileSelectionChange -> onFileSelectionChange(event.file, event.isChecked)
+            is LargeFilesEvent.OnFileSelectionChange -> onFileSelectionChange(
+                event.file,
+                event.isChecked
+            )
+
             LargeFilesEvent.DeleteSelectedFiles -> deleteSelected()
         }
     }
@@ -47,9 +51,14 @@ class LargeFilesViewModel(
                         is DataState.Loading -> current.copy(screenState = ScreenState.IsLoading())
                         is DataState.Success -> current.copy(
                             screenState = if (result.data.isEmpty()) ScreenState.NoData() else ScreenState.Success(),
-                            data = current.data?.copy(files = result.data, fileSelectionStates = emptyMap(), selectedFileCount = 0)
+                            data = current.data?.copy(
+                                files = result.data,
+                                fileSelectionStates = emptyMap(),
+                                selectedFileCount = 0
+                            )
                                 ?: UiLargeFilesModel(files = result.data)
                         )
+
                         is DataState.Error -> current.copy(
                             screenState = ScreenState.Error(),
                             errors = current.errors + UiSnackbar(
@@ -65,7 +74,8 @@ class LargeFilesViewModel(
 
     private fun onFileSelectionChange(file: File, isChecked: Boolean) {
         _uiState.updateData(newState = _uiState.value.screenState) { current ->
-            val updated = current.fileSelectionStates.toMutableMap().apply { this[file.absolutePath] = isChecked }
+            val updated = current.fileSelectionStates.toMutableMap()
+                .apply { this[file.absolutePath] = isChecked }
             current.copy(
                 fileSelectionStates = updated,
                 selectedFileCount = updated.count { it.value }
@@ -75,16 +85,31 @@ class LargeFilesViewModel(
 
     private fun deleteSelected() {
         launch(context = dispatchers.io) {
-            val filePaths = _uiState.value.data?.fileSelectionStates?.filter { it.value }?.keys ?: emptySet()
+            val filePaths =
+                _uiState.value.data?.fileSelectionStates?.filter { it.value }?.keys ?: emptySet()
             val files = filePaths.map { File(it) }.toSet()
             if (files.isEmpty()) {
-                sendAction(LargeFilesAction.ShowSnackbar(UiSnackbar(message = UiTextHelper.DynamicString("No files selected"))))
+                sendAction(
+                    LargeFilesAction.ShowSnackbar(
+                        UiSnackbar(
+                            message = UiTextHelper.DynamicString(
+                                "No files selected"
+                            )
+                        )
+                    )
+                )
                 return@launch
             }
             deleteFilesUseCase(files).collectLatest { result ->
                 if (result is DataState.Error) {
                     _uiState.update { current ->
-                        current.copy(errors = current.errors + UiSnackbar(message = UiTextHelper.DynamicString("Failed to delete files: ${result.error}"), isError = true))
+                        current.copy(
+                            errors = current.errors + UiSnackbar(
+                                message = UiTextHelper.DynamicString(
+                                    "Failed to delete files: ${result.error}"
+                                ), isError = true
+                            )
+                        )
                     }
                 }
                 onEvent(LargeFilesEvent.LoadLargeFiles)

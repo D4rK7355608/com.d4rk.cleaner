@@ -115,7 +115,10 @@ fun SortAlertDialog(
                         ),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(text = stringResource(id = R.string.descending), modifier = Modifier.weight(1f))
+                    Text(
+                        text = stringResource(id = R.string.descending),
+                        modifier = Modifier.weight(1f)
+                    )
                     CustomSwitch(
                         checked = isDescending.value,
                         onCheckedChange = { isDescending.value = it }

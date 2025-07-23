@@ -19,7 +19,7 @@ import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.UiScannerModel
 import com.d4rk.cleaner.app.clean.scanner.ui.ScannerViewModel
 
 @Composable
-fun DeleteOrTrashConfirmation(data: UiScannerModel , viewModel: ScannerViewModel) {
+fun DeleteOrTrashConfirmation(data: UiScannerModel, viewModel: ScannerViewModel) {
     val isDeleteDialog = data.analyzeState.isDeleteForeverConfirmationDialogVisible
 
     val titleRes =

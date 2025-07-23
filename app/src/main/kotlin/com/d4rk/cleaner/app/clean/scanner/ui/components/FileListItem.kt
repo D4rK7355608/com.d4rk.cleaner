@@ -32,11 +32,32 @@ fun FileListItem(file: File, modifier: Modifier = Modifier) {
     val context: Context = LocalContext.current
     val fileExtension = remember(file.name) { getFileExtension(file.name) }
     val size = remember(file.length()) { Formatter.formatShortFileSize(context, file.length()) }
-    val audioExtensions = remember { context.resources.getStringArray(R.array.audio_extensions).toList() }
-    val apkExtensions = remember { context.resources.getStringArray(R.array.apk_extensions).toList() }
-    val isAudio = remember(fileExtension) { audioExtensions.any { it.equals(fileExtension, ignoreCase = true) } }
-    val isApk = remember(fileExtension) { apkExtensions.any { it.equals(fileExtension, ignoreCase = true) } }
-    val fileIcon = if (isAudio) R.drawable.ic_audio_file else remember(fileExtension) { getFileIcon(fileExtension, context) }
+    val audioExtensions =
+        remember { context.resources.getStringArray(R.array.audio_extensions).toList() }
+    val apkExtensions =
+        remember { context.resources.getStringArray(R.array.apk_extensions).toList() }
+    val isAudio = remember(fileExtension) {
+        audioExtensions.any {
+            it.equals(
+                fileExtension,
+                ignoreCase = true
+            )
+        }
+    }
+    val isApk = remember(fileExtension) {
+        apkExtensions.any {
+            it.equals(
+                fileExtension,
+                ignoreCase = true
+            )
+        }
+    }
+    val fileIcon = if (isAudio) R.drawable.ic_audio_file else remember(fileExtension) {
+        getFileIcon(
+            fileExtension,
+            context
+        )
+    }
 
     Row(
         modifier = modifier
@@ -69,7 +90,9 @@ fun FileListItem(file: File, modifier: Modifier = Modifier) {
                 modifier = Modifier.size(40.dp)
             )
         }
-        Column(modifier = Modifier.padding(start = 8.dp).weight(1f)) {
+        Column(modifier = Modifier
+            .padding(start = 8.dp)
+            .weight(1f)) {
             Text(
                 text = file.name,
                 style = MaterialTheme.typography.bodyMedium,

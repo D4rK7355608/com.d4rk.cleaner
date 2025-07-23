@@ -13,37 +13,40 @@ import java.util.UUID
 object StorageUtils {
 
     fun getStorageInfo(
-        context : Context , callback : (used : String , total : String , totalSpace : Long , usageProgress : Float , freeSize : Int) -> Unit
+        context: Context,
+        callback: (used: String, total: String, totalSpace: Long, usageProgress: Float, freeSize: Int) -> Unit
     ) {
-        val storageManager : StorageManager = context.getSystemService(Context.STORAGE_SERVICE) as StorageManager
-        val totalSize : Long
-        val usedSize : Long
+        val storageManager: StorageManager =
+            context.getSystemService(Context.STORAGE_SERVICE) as StorageManager
+        val totalSize: Long
+        val usedSize: Long
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val storageStatsManager : StorageStatsManager = context.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
-            val storageVolume : StorageVolume = storageManager.primaryStorageVolume
-            val uuidStr : String? = storageVolume.uuid
-            val uuid : UUID = if (uuidStr == null) StorageManager.UUID_DEFAULT else UUID.fromString(uuidStr)
+            val storageStatsManager: StorageStatsManager =
+                context.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
+            val storageVolume: StorageVolume = storageManager.primaryStorageVolume
+            val uuidStr: String? = storageVolume.uuid
+            val uuid: UUID =
+                if (uuidStr == null) StorageManager.UUID_DEFAULT else UUID.fromString(uuidStr)
             totalSize = storageStatsManager.getTotalBytes(uuid)
             usedSize = totalSize - storageStatsManager.getFreeBytes(uuid)
-        }
-        else {
+        } else {
             val statFs = StatFs(Environment.getExternalStorageDirectory().path)
             totalSize = statFs.blockSizeLong * statFs.blockCountLong
             usedSize = totalSize - (statFs.blockSizeLong * statFs.availableBlocksLong)
         }
-        val usedFormatted : String = String.format(
+        val usedFormatted: String = String.format(
             Locale.US,
             "%.2f",
             usedSize / (1024.0 * 1024.0 * 1024.0)
         )
-        val totalFormatted : String = String.format(
+        val totalFormatted: String = String.format(
             Locale.US,
             "%.2f",
             totalSize / (1024.0 * 1024.0 * 1024.0)
         )
-        val usageProgress : Float = usedSize.toFloat() / totalSize.toFloat()
+        val usageProgress: Float = usedSize.toFloat() / totalSize.toFloat()
         val freeSize = totalSize - usedSize
-        val freeSpacePercentage : Int = ((freeSize.toDouble() / totalSize.toDouble()) * 100).toInt()
-        callback(usedFormatted , totalFormatted , totalSize , usageProgress , freeSpacePercentage)
+        val freeSpacePercentage: Int = ((freeSize.toDouble() / totalSize.toDouble()) * 100).toInt()
+        callback(usedFormatted, totalFormatted, totalSize, usageProgress, freeSpacePercentage)
     }
 }

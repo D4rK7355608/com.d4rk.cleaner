@@ -51,12 +51,12 @@ fun MemoryManagerShimmer(paddingValues: PaddingValues) {
             .padding(paddingValues)
     ) {
         HorizontalPager(
-                state = pagerState,
-                modifier = Modifier
-                        .fillMaxWidth()
-                        .hapticPagerSwipe(pagerState = pagerState),
-                userScrollEnabled = false,
-                contentPadding = PaddingValues(horizontal = 24.dp)
+            state = pagerState,
+            modifier = Modifier
+                .fillMaxWidth()
+                .hapticPagerSwipe(pagerState = pagerState),
+            userScrollEnabled = false,
+            contentPadding = PaddingValues(horizontal = 24.dp)
         ) { page ->
             val pageOffset = remember(pagerState.currentPage, page) {
                 (pagerState.currentPage - page).absoluteValue.toFloat()

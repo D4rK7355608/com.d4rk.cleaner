@@ -14,21 +14,23 @@ import java.io.File
 
 @Composable
 fun FilesGrid(
-    files : List<File> ,
-    fileSelectionStates : Map<File , Boolean> ,
-    onFileSelectionChange : (File , Boolean) -> Unit ,
+    files: List<File>,
+    fileSelectionStates: Map<File, Boolean>,
+    onFileSelectionChange: (File, Boolean) -> Unit,
     originals: Set<File> = emptySet(),
-    view : View ,
+    view: View,
 ) {
-    val columns : Int = if (ScreenHelper.isTablet(context = LocalContext.current)) 6 else 3
+    val columns: Int = if (ScreenHelper.isTablet(context = LocalContext.current)) 6 else 3
 
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
         NonLazyGrid(
-            columns = columns , itemCount = files.size , modifier = Modifier.padding(horizontal = SizeConstants.SmallSize)
+            columns = columns,
+            itemCount = files.size,
+            modifier = Modifier.padding(horizontal = SizeConstants.SmallSize)
         ) { index ->
-            val file : File = files[index]
+            val file: File = files[index]
             FileCard(
                 file = file,
                 isChecked = fileSelectionStates[file] == true,

@@ -36,26 +36,30 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TrashScreen(activity : TrashActivity) {
+fun TrashScreen(activity: TrashActivity) {
 
-    val viewModel : TrashViewModel = koinViewModel()
+    val viewModel: TrashViewModel = koinViewModel()
 
-    val view : View = LocalView.current
-    val uiStateScreen : UiStateScreen<UiTrashModel> by viewModel.uiState.collectAsState()
+    val view: View = LocalView.current
+    val uiStateScreen: UiStateScreen<UiTrashModel> by viewModel.uiState.collectAsState()
 
     LargeTopAppBarWithScaffold(
-        title = stringResource(id = R.string.trash) , onBackClicked = { activity.finish() }) { paddingValues ->
-        ScreenStateHandler(screenState = uiStateScreen , onLoading = {
+        title = stringResource(id = R.string.trash),
+        onBackClicked = { activity.finish() }) { paddingValues ->
+        ScreenStateHandler(screenState = uiStateScreen, onLoading = {
             LoadingScreen()
-        } , onEmpty = {
-            NoDataScreen(textMessage = R.string.trash_is_empty , icon = Icons.Outlined.RestoreFromTrash)
-        } , onSuccess = { trashModel ->
+        }, onEmpty = {
+            NoDataScreen(
+                textMessage = R.string.trash_is_empty,
+                icon = Icons.Outlined.RestoreFromTrash
+            )
+        }, onSuccess = { trashModel ->
             ConstraintLayout(
                 modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues)
+                    .fillMaxSize()
+                    .padding(paddingValues)
             ) {
-                val (list , buttons) = createRefs()
+                val (list, buttons) = createRefs()
                 val enabled = trashModel.selectedFileCount > 0
 
                 TrashItemsList(
@@ -66,33 +70,33 @@ fun TrashScreen(activity : TrashActivity) {
                         bottom.linkTo(buttons.top)
                         width = Dimension.fillToConstraints
                         height = Dimension.fillToConstraints
-                    } ,
-                    trashFiles = trashModel.trashFiles ,
-                    uiState = trashModel ,
-                    viewModel = viewModel ,
-                    view = view ,
+                    },
+                    trashFiles = trashModel.trashFiles,
+                    uiState = trashModel,
+                    viewModel = viewModel,
+                    view = view,
                 )
 
                 TwoRowButtons(
                     modifier = Modifier
-                            .padding(SizeConstants.LargeSize)
-                            .constrainAs(buttons) {
-                                bottom.linkTo(parent.bottom)
-                                start.linkTo(parent.start)
-                                end.linkTo(parent.end)
-                                width = Dimension.fillToConstraints
-                            } ,
-                    enabled = enabled ,
+                        .padding(SizeConstants.LargeSize)
+                        .constrainAs(buttons) {
+                            bottom.linkTo(parent.bottom)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                            width = Dimension.fillToConstraints
+                        },
+                    enabled = enabled,
                     onStartButtonClick = {
                         viewModel.onEvent(TrashEvent.RestoreSelectedFiles)
-                    } ,
-                    onStartButtonIcon = Icons.Outlined.Restore ,
-                    onStartButtonText = R.string.restore ,
+                    },
+                    onStartButtonIcon = Icons.Outlined.Restore,
+                    onStartButtonText = R.string.restore,
                     onEndButtonClick = {
                         viewModel.onEvent(TrashEvent.DeleteSelectedFilesPermanently)
-                    } ,
-                    onEndButtonIcon = Icons.Outlined.DeleteForever ,
-                    onEndButtonText = R.string.delete_forever ,
+                    },
+                    onEndButtonIcon = Icons.Outlined.DeleteForever,
+                    onEndButtonText = R.string.delete_forever,
                 )
             }
         })
@@ -101,28 +105,30 @@ fun TrashScreen(activity : TrashActivity) {
 
 @Composable
 fun TrashItemsList(
-    modifier : Modifier ,
-    trashFiles : List<File> ,
-    uiState : UiTrashModel ,
-    viewModel : TrashViewModel ,
-    view : View ,
+    modifier: Modifier,
+    trashFiles: List<File>,
+    uiState: UiTrashModel,
+    viewModel: TrashViewModel,
+    view: View,
 ) {
     val filesByDate = remember(trashFiles) {
         trashFiles.groupBy { file ->
-            SimpleDateFormat("yyyy-MM-dd" , Locale.getDefault()).format(Date(file.lastModified()))
+            SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(file.lastModified()))
         }
     }
 
     FilesByDateSection(
-        modifier = modifier ,
-        filesByDate = filesByDate ,
-        fileSelectionStates = uiState.fileSelectionStates.mapKeys { File(it.key) } ,
-        onFileSelectionChange = { file , isChecked ->
-            viewModel.onEvent(TrashEvent.OnFileSelectionChange(file , isChecked))
-        } ,
-        onDateSelectionChange = { files, checked -> files.forEach { file ->
-            viewModel.onEvent(TrashEvent.OnFileSelectionChange(file, checked))
-        } },
+        modifier = modifier,
+        filesByDate = filesByDate,
+        fileSelectionStates = uiState.fileSelectionStates.mapKeys { File(it.key) },
+        onFileSelectionChange = { file, isChecked ->
+            viewModel.onEvent(TrashEvent.OnFileSelectionChange(file, isChecked))
+        },
+        onDateSelectionChange = { files, checked ->
+            files.forEach { file ->
+                viewModel.onEvent(TrashEvent.OnFileSelectionChange(file, checked))
+            }
+        },
         view = view
     )
 }

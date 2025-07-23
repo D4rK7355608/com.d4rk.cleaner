@@ -8,9 +8,9 @@ import com.d4rk.cleaner.core.utils.extensions.toError
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class GetRamInfoUseCase(private val memoryRepository : MemoryRepository) {
+class GetRamInfoUseCase(private val memoryRepository: MemoryRepository) {
 
-    operator fun invoke() : Flow<DataState<RamInfo , Errors>> = flow {
+    operator fun invoke(): Flow<DataState<RamInfo, Errors>> = flow {
         runCatching {
             memoryRepository.getRamInfo()
         }.onSuccess { ramInfo ->

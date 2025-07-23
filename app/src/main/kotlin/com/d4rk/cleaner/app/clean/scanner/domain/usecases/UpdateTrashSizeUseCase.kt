@@ -7,15 +7,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class UpdateTrashSizeUseCase(
-    private val homeRepository : ScannerRepositoryInterface
+    private val homeRepository: ScannerRepositoryInterface
 ) {
-    operator fun invoke(sizeChange : Long) : Flow<DataState<Unit , Errors>> = flow {
+    operator fun invoke(sizeChange: Long): Flow<DataState<Unit, Errors>> = flow {
         runCatching {
             if (sizeChange > 0) {
                 homeRepository.addTrashSize(size = sizeChange)
-            }
-            else if (sizeChange < 0) {
-                homeRepository.subtractTrashSize(size = - sizeChange)
+            } else if (sizeChange < 0) {
+                homeRepository.subtractTrashSize(size = -sizeChange)
             }
             emit(DataState.Success(data = Unit))
         }

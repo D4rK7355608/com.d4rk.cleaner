@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.res.Resources
 import com.d4rk.cleaner.R
 
-fun getFileIcon(extension : String , context : Context) : Int {
-    val lowercaseExtension : String = extension.lowercase()
-    val resources : Resources = context.resources
+fun getFileIcon(extension: String, context: Context): Int {
+    val lowercaseExtension: String = extension.lowercase()
+    val resources: Resources = context.resources
     return when (lowercaseExtension) {
         in resources.getStringArray(R.array.apk_extensions) -> {
             R.drawable.ic_apk_document

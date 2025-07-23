@@ -23,13 +23,13 @@ import java.util.Locale
 
 @Composable
 fun DuplicateGroupsSection(
-    modifier : Modifier ,
-    filesByDate : Map<String , List<List<File>>> ,
-    fileSelectionStates : Map<File , Boolean> ,
-    onFileSelectionChange : (File , Boolean) -> Unit ,
-    onDateSelectionChange: (List<File>, Boolean) -> Unit ,
+    modifier: Modifier,
+    filesByDate: Map<String, List<List<File>>>,
+    fileSelectionStates: Map<File, Boolean>,
+    onFileSelectionChange: (File, Boolean) -> Unit,
+    onDateSelectionChange: (List<File>, Boolean) -> Unit,
     originals: Set<File> = emptySet(),
-    view : View ,
+    view: View,
 ) {
     val context = LocalContext.current
     val windowInfo = LocalWindowInfo.current
@@ -41,17 +41,21 @@ fun DuplicateGroupsSection(
     LazyColumn(
         modifier = modifier.fillMaxSize()
     ) {
-        val sortedDates : List<String> = filesByDate.keys.sortedByDescending { dateString ->
-            SimpleDateFormat("yyyy-MM-dd" , Locale.getDefault()).parse(dateString)
+        val sortedDates: List<String> = filesByDate.keys.sortedByDescending { dateString ->
+            SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(dateString)
         }
 
         sortedDates.forEach { date ->
-            val groups : List<List<File>> = filesByDate[date] ?: emptyList()
-            val allFiles : List<File> = groups.flatten()
+            val groups: List<List<File>> = filesByDate[date] ?: emptyList()
+            val allFiles: List<File> = groups.flatten()
             if (allFiles.isNotEmpty()) {
                 item(key = date) {
                     DateHeader(
-                        files = allFiles , fileSelectionStates = fileSelectionStates , onFileSelectionChange = onFileSelectionChange , onDateSelectionChange = onDateSelectionChange , view = view
+                        files = allFiles,
+                        fileSelectionStates = fileSelectionStates,
+                        onFileSelectionChange = onFileSelectionChange,
+                        onDateSelectionChange = onDateSelectionChange,
+                        view = view
                     )
                 }
             }
@@ -59,9 +63,9 @@ fun DuplicateGroupsSection(
             items(groups) { group ->
                 Row(
                     modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = SizeConstants.SmallSize)
-                            .horizontalScroll(rememberScrollState())
+                        .fillMaxWidth()
+                        .padding(horizontal = SizeConstants.SmallSize)
+                        .horizontalScroll(rememberScrollState())
                 ) {
                     group.forEach { file ->
                         FileCard(
@@ -71,7 +75,10 @@ fun DuplicateGroupsSection(
                             isOriginal = file in originals,
                             view = view,
                             modifier = Modifier
-                                .padding(end = SizeConstants.SmallSize, top = SizeConstants.MediumSize)
+                                .padding(
+                                    end = SizeConstants.SmallSize,
+                                    top = SizeConstants.MediumSize
+                                )
                                 .width(cardSize)
                         )
                     }

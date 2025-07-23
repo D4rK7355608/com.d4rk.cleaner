@@ -28,10 +28,10 @@ fun ShimmerLoadingScreen(paddingValues: PaddingValues) {
         items(count = itemCount) {
             AppItemPlaceholder(
                 modifier = Modifier.padding(
-                        start = SizeConstants.SmallSize,
-                        end = SizeConstants.SmallSize,
-                        top = SizeConstants.SmallSize
-                    )
+                    start = SizeConstants.SmallSize,
+                    end = SizeConstants.SmallSize,
+                    top = SizeConstants.SmallSize
+                )
             )
         }
     }

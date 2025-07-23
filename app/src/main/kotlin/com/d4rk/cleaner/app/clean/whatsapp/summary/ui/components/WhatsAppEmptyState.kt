@@ -34,7 +34,7 @@ import org.koin.core.qualifier.named
 
 @Composable
 fun WhatsAppEmptyState(
-    paddingValues : PaddingValues,
+    paddingValues: PaddingValues,
     adsConfig: AdsConfig = koinInject(qualifier = named(name = "banner_medium_rectangle"))
 ) {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.finish_anim))

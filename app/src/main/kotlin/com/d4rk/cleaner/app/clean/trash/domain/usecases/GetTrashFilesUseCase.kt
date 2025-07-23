@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.flow
 import java.io.File
 
 class GetTrashFilesUseCase(
-    private val repository : ScannerRepositoryInterface
+    private val repository: ScannerRepositoryInterface
 ) {
-    operator fun invoke() : Flow<DataState<List<File> , Errors>> = flow {
+    operator fun invoke(): Flow<DataState<List<File>, Errors>> = flow {
         runCatching {
             val trashFiles = repository.getTrashFiles()
             emit(DataState.Success(data = trashFiles))

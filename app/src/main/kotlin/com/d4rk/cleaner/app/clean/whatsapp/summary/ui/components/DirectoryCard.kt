@@ -26,7 +26,11 @@ import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.model.DirectoryItem
 
 @Composable
-fun DirectoryCard(item: DirectoryItem, onOpenDetails: (String) -> Unit, modifier: Modifier = Modifier) {
+fun DirectoryCard(
+    item: DirectoryItem,
+    onOpenDetails: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Card(
         modifier = modifier
             .padding(all = SizeConstants.ExtraSmallSize)

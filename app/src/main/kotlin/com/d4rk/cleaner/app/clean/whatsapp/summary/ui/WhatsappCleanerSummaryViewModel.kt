@@ -29,7 +29,9 @@ class WhatsappCleanerSummaryViewModel(
     initialState = UiStateScreen(data = UiWhatsAppCleanerModel())
 ) {
 
-    init { onEvent(WhatsAppCleanerEvent.LoadMedia) }
+    init {
+        onEvent(WhatsAppCleanerEvent.LoadMedia)
+    }
 
     override fun onEvent(event: WhatsAppCleanerEvent) {
         when (event) {
@@ -55,6 +57,7 @@ class WhatsappCleanerSummaryViewModel(
                                 totalSize = result.data.formattedTotalSize
                             )
                         )
+
                         is DataState.Error -> current.copy(
                             screenState = ScreenState.Error(),
                             errors = current.errors + UiSnackbar(

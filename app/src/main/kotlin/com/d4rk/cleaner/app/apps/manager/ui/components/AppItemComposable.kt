@@ -109,8 +109,8 @@ fun AppItemComposable(
                 IconButton(
                     icon = Icons.Outlined.MoreVert,
                     onClick = {
-                    showMenu = true
-                })
+                        showMenu = true
+                    })
 
                 DropdownMenu(expanded = showMenu, onDismissRequest = {
                     showMenu = false

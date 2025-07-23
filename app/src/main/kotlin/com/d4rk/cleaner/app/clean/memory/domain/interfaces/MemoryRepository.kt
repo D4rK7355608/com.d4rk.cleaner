@@ -4,6 +4,6 @@ import com.d4rk.cleaner.app.clean.memory.domain.data.model.RamInfo // Assuming t
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
 
 interface MemoryRepository {
-    suspend fun getStorageInfo() : StorageInfo
-    fun getRamInfo() : RamInfo
+    suspend fun getStorageInfo(): StorageInfo
+    fun getRamInfo(): RamInfo
 }

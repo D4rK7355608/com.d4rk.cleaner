@@ -25,16 +25,24 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.supervisorScope
 
-class MemoryManagerViewModel(private val getStorageInfoUseCase : GetStorageInfoUseCase , private val getRamInfoUseCase : GetRamInfoUseCase , private val dispatchers : DispatcherProvider) :
-    ScreenViewModel<UiMemoryManagerScreen , MemoryEvent , MemoryAction>(initialState = UiStateScreen(data = UiMemoryManagerScreen())) {
+class MemoryManagerViewModel(
+    private val getStorageInfoUseCase: GetStorageInfoUseCase,
+    private val getRamInfoUseCase: GetRamInfoUseCase,
+    private val dispatchers: DispatcherProvider
+) :
+    ScreenViewModel<UiMemoryManagerScreen, MemoryEvent, MemoryAction>(
+        initialState = UiStateScreen(
+            data = UiMemoryManagerScreen()
+        )
+    ) {
 
-    private var ramUpdateJob : Job? = null
+    private var ramUpdateJob: Job? = null
 
     init {
         onEvent(MemoryEvent.LoadMemoryData)
     }
 
-    override fun onEvent(event : MemoryEvent) {
+    override fun onEvent(event: MemoryEvent) {
         when (event) {
             MemoryEvent.LoadMemoryData -> loadMemoryData()
             MemoryEvent.ToggleListExpanded -> toggleListExpanded()
@@ -48,18 +56,24 @@ class MemoryManagerViewModel(private val getStorageInfoUseCase : GetStorageInfoU
                     getStorageInfoUseCase().collectLatest { result ->
                         _uiState.update { current ->
                             val updatedErrors = if (result is DataState.Error) {
-                                current.errors + listOf(UiSnackbar(message = UiTextHelper.DynamicString("Failed to load storage info: ${result.error}") , isError = true))
-                            }
-                            else current.errors
+                                current.errors + listOf(
+                                    UiSnackbar(
+                                        message = UiTextHelper.DynamicString(
+                                            "Failed to load storage info: ${result.error}"
+                                        ), isError = true
+                                    )
+                                )
+                            } else current.errors
 
                             current.copy(
                                 data = current.data?.copy(
-                                    storageInfo = (result as? DataState.Success)?.data ?: current.data?.storageInfo
-                                ) , screenState = when (result) {
+                                    storageInfo = (result as? DataState.Success)?.data
+                                        ?: current.data?.storageInfo
+                                ), screenState = when (result) {
                                     is DataState.Loading -> ScreenState.IsLoading()
                                     is DataState.Error -> ScreenState.Error()
                                     is DataState.Success -> current.screenState
-                                } , errors = updatedErrors
+                                }, errors = updatedErrors
                             )
                         }
                     }
@@ -70,10 +84,12 @@ class MemoryManagerViewModel(private val getStorageInfoUseCase : GetStorageInfoU
                         _uiState.update { current ->
                             val updatedErrors = if (result is DataState.Error) {
                                 current.errors + listOf(
-                                    UiSnackbar(message = UiTextHelper.DynamicString("Failed to load RAM info: ${result.error}") , isError = true)
+                                    UiSnackbar(
+                                        message = UiTextHelper.DynamicString("Failed to load RAM info: ${result.error}"),
+                                        isError = true
+                                    )
                                 )
-                            }
-                            else current.errors
+                            } else current.errors
 
                             val newRamInfo = (result as? DataState.Success)?.data
                             val newState = when (result) {
@@ -84,7 +100,9 @@ class MemoryManagerViewModel(private val getStorageInfoUseCase : GetStorageInfoU
                             }
 
                             current.copy(
-                                data = current.data?.copy(ramInfo = newRamInfo ?: current.data?.ramInfo) , screenState = newState , errors = updatedErrors
+                                data = current.data?.copy(
+                                    ramInfo = newRamInfo ?: current.data?.ramInfo
+                                ), screenState = newState, errors = updatedErrors
                             )
                         }
 
@@ -94,7 +112,7 @@ class MemoryManagerViewModel(private val getStorageInfoUseCase : GetStorageInfoU
                     }
                 }
 
-                joinAll(storageJob , ramJob)
+                joinAll(storageJob, ramJob)
             }
         }
     }
@@ -144,7 +162,7 @@ class MemoryManagerViewModel(private val getStorageInfoUseCase : GetStorageInfoU
 
     private fun toggleListExpanded() {
         _uiState.updateData(ScreenState.Success()) {
-            it.copy(listExpanded = ! it.listExpanded)
+            it.copy(listExpanded = !it.listExpanded)
         }
     }
 

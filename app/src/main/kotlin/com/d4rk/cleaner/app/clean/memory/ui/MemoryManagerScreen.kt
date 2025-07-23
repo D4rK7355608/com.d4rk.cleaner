@@ -61,42 +61,58 @@ import org.koin.core.qualifier.named
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun MemoryManagerComposable(paddingValues : PaddingValues) {
-    val viewModel : MemoryManagerViewModel = koinViewModel()
-    val uiState : UiStateScreen<UiMemoryManagerScreen> by viewModel.uiState.collectAsState()
-    val context : Context = LocalContext.current
+fun MemoryManagerComposable(paddingValues: PaddingValues) {
+    val viewModel: MemoryManagerViewModel = koinViewModel()
+    val uiState: UiStateScreen<UiMemoryManagerScreen> by viewModel.uiState.collectAsState()
+    val context: Context = LocalContext.current
 
     LaunchedEffect(key1 = true) {
-        if (! PermissionsHelper.hasStoragePermissions(context)) {
+        if (!PermissionsHelper.hasStoragePermissions(context)) {
             PermissionsHelper.requestStoragePermissions(context as Activity)
         }
-        if (! PermissionsHelper.hasUsageAccessPermissions(context)) {
+        if (!PermissionsHelper.hasUsageAccessPermissions(context)) {
             PermissionsHelper.requestUsageAccess(context as Activity)
         }
     }
 
-    ScreenStateHandler(screenState = uiState , onLoading = {
+    ScreenStateHandler(screenState = uiState, onLoading = {
         MemoryManagerShimmer(paddingValues = paddingValues)
-    } , onEmpty = {
-        NoDataScreen(icon = Icons.Outlined.Memory , showRetry = true , onRetry = { viewModel.onEvent(MemoryEvent.LoadMemoryData) })
-    } , onSuccess = { screenData ->
-        MemoryManagerScreenContent(viewModel = viewModel , screenData = screenData , paddingValues = paddingValues)
+    }, onEmpty = {
+        NoDataScreen(
+            icon = Icons.Outlined.Memory,
+            showRetry = true,
+            onRetry = { viewModel.onEvent(MemoryEvent.LoadMemoryData) })
+    }, onSuccess = { screenData ->
+        MemoryManagerScreenContent(
+            viewModel = viewModel,
+            screenData = screenData,
+            paddingValues = paddingValues
+        )
     })
 }
 
 @Composable
-fun MemoryManagerScreenContent(viewModel : MemoryManagerViewModel , screenData : UiMemoryManagerScreen , paddingValues : PaddingValues , adsConfig : AdsConfig = koinInject(qualifier = named(name = "large_banner"))) {
-    val carouselItems = listOf(screenData.storageInfo , screenData.ramInfo)
-    val pagerState : PagerState = rememberPagerState { carouselItems.size }
+fun MemoryManagerScreenContent(
+    viewModel: MemoryManagerViewModel,
+    screenData: UiMemoryManagerScreen,
+    paddingValues: PaddingValues,
+    adsConfig: AdsConfig = koinInject(qualifier = named(name = "large_banner"))
+) {
+    val carouselItems = listOf(screenData.storageInfo, screenData.ramInfo)
+    val pagerState: PagerState = rememberPagerState { carouselItems.size }
     val context = LocalContext.current
 
     Column(
         modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(paddingValues = paddingValues)
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(paddingValues = paddingValues)
     ) {
-        CustomCarousel(items = carouselItems , sidePadding = 24.dp , pagerState = pagerState) { item ->
+        CustomCarousel(
+            items = carouselItems,
+            sidePadding = 24.dp,
+            pagerState = pagerState
+        ) { item ->
             when (item) {
                 is StorageInfo -> StorageInfoCard(item)
                 is RamInfo -> RamInfoCard(item)
@@ -106,18 +122,22 @@ fun MemoryManagerScreenContent(viewModel : MemoryManagerViewModel , screenData :
 
         LargeVerticalSpacer()
 
-        AdBanner(modifier = Modifier.padding(bottom = SizeConstants.MediumSize) , adsConfig = adsConfig)
+        AdBanner(
+            modifier = Modifier.padding(bottom = SizeConstants.MediumSize),
+            adsConfig = adsConfig
+        )
 
         Row(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize()
-                    .padding(horizontal = SizeConstants.LargeSize) , verticalAlignment = Alignment.CenterVertically
+                .fillMaxWidth()
+                .animateContentSize()
+                .padding(horizontal = SizeConstants.LargeSize),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = stringResource(id = R.string.categories) ,
-                modifier = Modifier.weight(1f) ,
-                style = MaterialTheme.typography.headlineSmall ,
+                text = stringResource(id = R.string.categories),
+                modifier = Modifier.weight(1f),
+                style = MaterialTheme.typography.headlineSmall,
             )
 
             SmallHorizontalSpacer()
@@ -151,17 +171,20 @@ private fun handleStorageItemClick(context: Context, category: String) {
                 context.startActivity(intent)
             }
         }
+
         context.getString(R.string.system) -> {
             val intent = Intent(Settings.ACTION_INTERNAL_STORAGE_SETTINGS)
             if (intent.resolveActivity(pm) != null) {
                 context.startActivity(intent)
             }
         }
+
         context.getString(R.string.music) ->
             FileManagerHelper.openFolderOrToast(
                 context,
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC)
             )
+
         context.getString(R.string.images) -> {
             val galleryIntent = Intent(Intent.ACTION_VIEW).apply {
                 type = "image/*"
@@ -175,11 +198,13 @@ private fun handleStorageItemClick(context: Context, category: String) {
                 )
             }
         }
+
         context.getString(R.string.documents) ->
             FileManagerHelper.openFolderOrToast(
                 context,
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
             )
+
         context.getString(R.string.downloads) -> {
             val downloadsIntent = Intent(DownloadManager.ACTION_VIEW_DOWNLOADS)
             if (downloadsIntent.resolveActivity(pm) != null) {
@@ -191,6 +216,7 @@ private fun handleStorageItemClick(context: Context, category: String) {
                 )
             }
         }
+
         context.getString(R.string.other_files) -> FileManagerHelper.openFolderOrSettings(
             context,
             Environment.getExternalStorageDirectory()

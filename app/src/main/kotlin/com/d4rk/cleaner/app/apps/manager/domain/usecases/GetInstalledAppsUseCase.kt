@@ -8,8 +8,8 @@ import com.d4rk.cleaner.core.domain.model.network.Errors
 import kotlinx.coroutines.flow.Flow
 
 
-class GetInstalledAppsUseCase(private val packageManagerFacade : PackageManagerFacade) {
-    operator fun invoke() : Flow<DataState<List<ApplicationInfo> , Errors>> {
+class GetInstalledAppsUseCase(private val packageManagerFacade: PackageManagerFacade) {
+    operator fun invoke(): Flow<DataState<List<ApplicationInfo>, Errors>> {
         return packageManagerFacade.getInstalledApplications(flags = PackageManager.GET_META_DATA)
     }
 }

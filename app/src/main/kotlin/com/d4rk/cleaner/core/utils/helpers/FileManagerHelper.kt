@@ -25,6 +25,7 @@ object FileManagerHelper {
         }
         return false
     }
+
     fun openFile(context: Context, file: File) {
         runCatching {
             val uri = FileProvider.getUriForFile(
@@ -43,15 +44,18 @@ object FileManagerHelper {
                     context.getString(R.string.no_application_found),
                     Toast.LENGTH_SHORT
                 ).show()
+
                 is IllegalArgumentException -> Toast.makeText(
                     context,
                     context.getString(R.string.something_went_wrong),
                     Toast.LENGTH_SHORT
                 ).show()
+
                 else -> throw exception
             }
         }
     }
+
     fun openFolderOrSettings(context: Context, folder: File) {
         val pm = context.packageManager
         runCatching {

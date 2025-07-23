@@ -16,24 +16,27 @@ fun StorageBreakdownGrid(
 ) {
     Column(
         modifier = Modifier
-                .fillMaxWidth()
-                .animateContentSize()
-                .padding(horizontal = SizeConstants.MediumSize)
+            .fillMaxWidth()
+            .animateContentSize()
+            .padding(horizontal = SizeConstants.MediumSize)
     ) {
-        storageBreakdown.entries.toList().chunked(size = 2).forEach { chunk : List<Map.Entry<String , Long>> ->
-            Row(modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize()) {
-                for (item : Map.Entry<String , Long> in chunk) {
-                    val (icon : String , size : Long) = item
-                    StorageBreakdownItem(
-                        icon = icon,
-                        size = size,
-                        modifier = Modifier.weight(weight = 1f),
-                        onClick = { onItemClick(icon) }
-                    )
+        storageBreakdown.entries.toList().chunked(size = 2)
+            .forEach { chunk: List<Map.Entry<String, Long>> ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .animateContentSize()
+                ) {
+                    for (item: Map.Entry<String, Long> in chunk) {
+                        val (icon: String, size: Long) = item
+                        StorageBreakdownItem(
+                            icon = icon,
+                            size = size,
+                            modifier = Modifier.weight(weight = 1f),
+                            onClick = { onItemClick(icon) }
+                        )
+                    }
                 }
             }
-        }
     }
 }

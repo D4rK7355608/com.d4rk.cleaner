@@ -9,7 +9,11 @@ import kotlinx.coroutines.flow.flow
 import java.io.File
 
 class GetWhatsAppMediaFilesUseCase(private val repository: WhatsAppCleanerRepository) {
-    operator fun invoke(type: String, offset: Int, limit: Int): Flow<DataState<List<File>, Errors>> = flow {
+    operator fun invoke(
+        type: String,
+        offset: Int,
+        limit: Int
+    ): Flow<DataState<List<File>, Errors>> = flow {
         emit(DataState.Loading())
         runCatching { repository.listMediaFiles(type, offset, limit) }
             .onSuccess { emit(DataState.Success(it)) }

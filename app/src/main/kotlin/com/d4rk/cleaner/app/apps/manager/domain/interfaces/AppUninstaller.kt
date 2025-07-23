@@ -5,5 +5,5 @@ import com.d4rk.cleaner.core.domain.model.network.Errors
 import kotlinx.coroutines.flow.Flow
 
 interface AppUninstaller {
-    fun uninstallApp(packageName : String) : Flow<DataState<Unit , Errors>>
+    fun uninstallApp(packageName: String): Flow<DataState<Unit, Errors>>
 }

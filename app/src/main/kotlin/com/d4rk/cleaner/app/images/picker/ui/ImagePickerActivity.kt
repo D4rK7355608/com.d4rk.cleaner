@@ -14,21 +14,22 @@ import androidx.compose.ui.Modifier
 import com.d4rk.android.libs.apptoolkit.app.theme.style.AppTheme
 
 class ImagePickerActivity : AppCompatActivity() {
-    private val viewModel : ImagePickerViewModel by viewModels()
+    private val viewModel: ImagePickerViewModel by viewModels()
 
-    private val pickMediaLauncher = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        viewModel.setSelectedImageUri(uri)
-    }
+    private val pickMediaLauncher =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+            viewModel.setSelectedImageUri(uri)
+        }
 
-    override fun onCreate(savedInstanceState : Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    ImagePickerComposable(activity = this@ImagePickerActivity , viewModel)
+                    ImagePickerComposable(activity = this@ImagePickerActivity, viewModel)
                 }
             }
         }

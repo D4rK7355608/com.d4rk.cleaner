@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.flow
 import java.io.File
 
 class AnalyzeFilesUseCase(
-    private val homeRepository : ScannerRepositoryInterface
+    private val homeRepository: ScannerRepositoryInterface
 ) {
-    operator fun invoke() : Flow<DataState<Pair<List<File> , List<File>> , Errors>> = flow {
+    operator fun invoke(): Flow<DataState<Pair<List<File>, List<File>>, Errors>> = flow {
         emit(DataState.Loading())
         runCatching {
             val result = homeRepository.getAllFiles()

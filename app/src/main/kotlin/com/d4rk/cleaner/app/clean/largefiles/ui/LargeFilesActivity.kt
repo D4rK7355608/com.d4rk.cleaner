@@ -16,7 +16,10 @@ class LargeFilesActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContent {
             AppTheme {
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
                     LargeFilesScreen(activity = this@LargeFilesActivity)
                 }
             }

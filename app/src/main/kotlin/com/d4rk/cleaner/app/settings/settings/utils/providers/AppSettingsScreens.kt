@@ -6,6 +6,10 @@ import com.d4rk.cleaner.app.settings.cleaning.ui.CleaningSettingsList
 import com.d4rk.cleaner.app.settings.settings.utils.constants.SettingsConstants
 
 class AppSettingsScreens {
-    val customScreens : Map<String , @Composable (PaddingValues) -> Unit> = mapOf(
-        SettingsConstants.KEY_SETTINGS_CLEANING to { paddingValues -> CleaningSettingsList(paddingValues = paddingValues) })
+    val customScreens: Map<String, @Composable (PaddingValues) -> Unit> = mapOf(
+        SettingsConstants.KEY_SETTINGS_CLEANING to { paddingValues ->
+            CleaningSettingsList(
+                paddingValues = paddingValues
+            )
+        })
 }

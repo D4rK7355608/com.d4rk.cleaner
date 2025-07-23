@@ -50,6 +50,7 @@ fun WeeklyCleanStreakCard(
             count = streakDays,
             streakDays
         )
+
         else -> stringResource(id = R.string.clean_streak_perfect_week_message)
     }
 

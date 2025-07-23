@@ -43,14 +43,14 @@ fun StorageBreakdownItem(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
-    val storageIcons : Map<String , ImageVector> = mapOf(
-        stringResource(id = R.string.installed_apps) to Icons.Outlined.Apps ,
-        stringResource(id = R.string.system) to Icons.Outlined.Android ,
-        stringResource(id = R.string.music) to Icons.Outlined.MusicNote ,
-        stringResource(id = R.string.images) to Icons.Outlined.Image ,
-        stringResource(id = R.string.documents) to Icons.Outlined.FolderOpen ,
-        stringResource(id = R.string.downloads) to Icons.Outlined.Download ,
-        stringResource(id = R.string.other_files) to Icons.Outlined.FolderOpen ,
+    val storageIcons: Map<String, ImageVector> = mapOf(
+        stringResource(id = R.string.installed_apps) to Icons.Outlined.Apps,
+        stringResource(id = R.string.system) to Icons.Outlined.Android,
+        stringResource(id = R.string.music) to Icons.Outlined.MusicNote,
+        stringResource(id = R.string.images) to Icons.Outlined.Image,
+        stringResource(id = R.string.documents) to Icons.Outlined.FolderOpen,
+        stringResource(id = R.string.downloads) to Icons.Outlined.Download,
+        stringResource(id = R.string.other_files) to Icons.Outlined.FolderOpen,
     )
     Card(
         modifier = modifier
@@ -61,18 +61,21 @@ fun StorageBreakdownItem(
     ) {
         Row(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize()
-                    .padding(all = SizeConstants.LargeSize) , verticalAlignment = Alignment.CenterVertically
+                .fillMaxWidth()
+                .animateContentSize()
+                .padding(all = SizeConstants.LargeSize),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Card(
-                modifier = Modifier.size(size = 48.dp) ,
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer) ,
+                modifier = Modifier.size(size = 48.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
             ) {
-                Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Icon(
-                        modifier = Modifier.bounceClick() ,
-                        imageVector = storageIcons[icon] ?: Icons.Outlined.SnippetFolder , contentDescription = icon , tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        modifier = Modifier.bounceClick(),
+                        imageVector = storageIcons[icon] ?: Icons.Outlined.SnippetFolder,
+                        contentDescription = icon,
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                 }
             }
@@ -81,12 +84,12 @@ fun StorageBreakdownItem(
 
             Column {
                 Text(
-                    text = icon ,
-                    style = MaterialTheme.typography.bodyMedium ,
-                    fontWeight = FontWeight.Bold ,
-                    modifier = Modifier.basicMarquee() ,
+                    text = icon,
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.basicMarquee(),
                 )
-                Text(text = formatSize(size) , style = MaterialTheme.typography.bodySmall)
+                Text(text = formatSize(size), style = MaterialTheme.typography.bodySmall)
             }
         }
     }

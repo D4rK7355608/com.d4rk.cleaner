@@ -22,15 +22,20 @@ import com.d4rk.cleaner.app.clean.scanner.domain.actions.ScannerEvent
 import com.d4rk.cleaner.app.clean.scanner.ui.ScannerViewModel
 
 @Composable
-fun NoFilesFoundScreen(viewModel : ScannerViewModel) {
-    Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center) {
+fun NoFilesFoundScreen(viewModel: ScannerViewModel) {
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Icon(
-                imageVector = Icons.Outlined.FolderOff , contentDescription = null , modifier = Modifier.size(size = 64.dp) , tint = MaterialTheme.colorScheme.onSurface
+                imageVector = Icons.Outlined.FolderOff,
+                contentDescription = null,
+                modifier = Modifier.size(size = 64.dp),
+                tint = MaterialTheme.colorScheme.onSurface
             )
             LargeVerticalSpacer()
             Text(
-                text = stringResource(id = R.string.no_files_found) , style = MaterialTheme.typography.bodyLarge , color = MaterialTheme.colorScheme.onSurface
+                text = stringResource(id = R.string.no_files_found),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface
             )
 
             OutlinedIconButtonWithText(

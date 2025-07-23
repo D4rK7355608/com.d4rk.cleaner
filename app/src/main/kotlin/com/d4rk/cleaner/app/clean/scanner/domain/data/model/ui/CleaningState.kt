@@ -7,6 +7,7 @@ package com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui
 enum class CleaningState {
     Idle,
     Analyzing,
+
     /**
      * Files have been analyzed and the user can review the results.
      */

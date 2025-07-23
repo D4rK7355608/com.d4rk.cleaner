@@ -56,11 +56,13 @@ fun StorageProgressButton(
     size: Dp = 240.dp,
     onClick: () -> Unit = {}
 ) {
-    val view : View = LocalView.current
+    val view: View = LocalView.current
     val isVisible = remember { mutableStateOf(true) }
 
-    val animatedProgress : Float by animateFloatAsState(
-        targetValue = progress , animationSpec = tween(durationMillis = 1000 , easing = LinearOutSlowInEasing) , label = "Storage Progress Load Animation"
+    val animatedProgress: Float by animateFloatAsState(
+        targetValue = progress,
+        animationSpec = tween(durationMillis = 1000, easing = LinearOutSlowInEasing),
+        label = "Storage Progress Load Animation"
     )
 
     Box(
@@ -68,32 +70,33 @@ fun StorageProgressButton(
         modifier = modifier.size(size)
     ) {
         CircularProgressIndicator(
-            progress = { 1f } ,
-            modifier = Modifier.fillMaxSize() ,
-            color = MaterialTheme.colorScheme.primaryContainer ,
-            strokeWidth = SizeConstants.ExtraSmallSize ,
+            progress = { 1f },
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.primaryContainer,
+            strokeWidth = SizeConstants.ExtraSmallSize,
         )
         CircularProgressIndicator(
-            progress = { animatedProgress } ,
+            progress = { animatedProgress },
             modifier = Modifier
-                    .animateContentSize()
-                    .fillMaxSize() ,
-            color = MaterialTheme.colorScheme.primary ,
-            strokeWidth = SizeConstants.ExtraSmallSize ,
-            strokeCap = StrokeCap.Round ,
+                .animateContentSize()
+                .fillMaxSize(),
+            color = MaterialTheme.colorScheme.primary,
+            strokeWidth = SizeConstants.ExtraSmallSize,
+            strokeCap = StrokeCap.Round,
         )
 
         AnimatedVisibility(
-            visible = isVisible.value , enter = scaleIn() , exit = scaleOut()
+            visible = isVisible.value, enter = scaleIn(), exit = scaleOut()
         ) {
-            FilledTonalButton(modifier = Modifier
+            FilledTonalButton(
+                modifier = Modifier
                     .animateContentSize()
                     .fillMaxSize()
                     .padding(all = SizeConstants.SmallSize)
-                    .bounceClick() , onClick = {
+                    .bounceClick(), onClick = {
                 view.playSoundEffect(SoundEffectConstants.CLICK)
                 onClick()
-            } , colors = ButtonDefaults.filledTonalButtonColors()) {
+            }, colors = ButtonDefaults.filledTonalButtonColors()) {
                 Text(
                     text = stringResource(id = R.string.quick_scan),
                     textAlign = TextAlign.Center,
@@ -105,16 +108,17 @@ fun StorageProgressButton(
 }
 
 @Composable
-fun StorageProgressBar(storageInfo : StorageInfo) {
-    val progress : Float = (storageInfo.usedStorage.toFloat() / storageInfo.storageUsageProgress).coerceIn(
-        0f , 1f
-    )
+fun StorageProgressBar(storageInfo: StorageInfo) {
+    val progress: Float =
+        (storageInfo.usedStorage.toFloat() / storageInfo.storageUsageProgress).coerceIn(
+            0f, 1f
+        )
     LinearProgressIndicator(
-        progress = { progress } ,
+        progress = { progress },
         modifier = Modifier
-                .fillMaxWidth()
-                .animateContentSize()
-                .height(SizeConstants.SmallSize) ,
-        color = MaterialTheme.colorScheme.primary ,
+            .fillMaxWidth()
+            .animateContentSize()
+            .height(SizeConstants.SmallSize),
+        color = MaterialTheme.colorScheme.primary,
     )
 }

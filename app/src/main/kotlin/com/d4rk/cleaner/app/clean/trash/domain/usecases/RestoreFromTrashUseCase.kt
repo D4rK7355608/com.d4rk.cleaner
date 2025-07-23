@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.flow
 import java.io.File
 
 class RestoreFromTrashUseCase(
-    private val repository : ScannerRepositoryInterface
+    private val repository: ScannerRepositoryInterface
 ) {
-    operator fun invoke(filesToRestore : Set<File>) : Flow<DataState<Unit , Errors>> = flow {
+    operator fun invoke(filesToRestore: Set<File>): Flow<DataState<Unit, Errors>> = flow {
         runCatching {
             repository.restoreFromTrash(filesToRestore)
             emit(DataState.Success(Unit))

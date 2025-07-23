@@ -27,7 +27,7 @@ val settingsModule = module {
     single<SettingsProvider> { AppSettingsProvider() }
 
     viewModel {
-        SettingsViewModel(settingsProvider = get() , dispatcherProvider = get())
+        SettingsViewModel(settingsProvider = get(), dispatcherProvider = get())
     }
 
     single<AboutSettingsProvider> { AppAboutSettingsProvider(context = get()) }
@@ -37,14 +37,23 @@ val settingsModule = module {
     single<BuildInfoProvider> { AppBuildInfoProvider(context = get()) }
     single { AppSettingsScreens() }
 
-    single<GeneralSettingsContentProvider> { GeneralSettingsContentProvider(deviceProvider = get() , advancedProvider = get() , displayProvider = get() , privacyProvider = get() , configProvider = get() , customScreens = get<AppSettingsScreens>().customScreens) }
+    single<GeneralSettingsContentProvider> {
+        GeneralSettingsContentProvider(
+            deviceProvider = get(),
+            advancedProvider = get(),
+            displayProvider = get(),
+            privacyProvider = get(),
+            configProvider = get(),
+            customScreens = get<AppSettingsScreens>().customScreens
+        )
+    }
     viewModel {
         GeneralSettingsViewModel()
     }
 
     single<PermissionsProvider> { PermissionsSettingsProvider() }
     viewModel {
-        PermissionsViewModel(settingsProvider = get() , dispatcherProvider = get())
+        PermissionsViewModel(settingsProvider = get(), dispatcherProvider = get())
     }
 
     viewModel {

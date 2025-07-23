@@ -82,10 +82,12 @@ fun ImagePickerComposable(
                     activity.selectImage()
                 },
                 text = { Text(text = stringResource(id = R.string.choose_image)) },
-                icon = { Icon(
-                    imageVector = Icons.Outlined.AddPhotoAlternate,
-                    contentDescription = null
-                ) },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Outlined.AddPhotoAlternate,
+                        contentDescription = null
+                    )
+                },
                 expanded = isFabExtended.value,
                 modifier = Modifier.bounceClick()
             )

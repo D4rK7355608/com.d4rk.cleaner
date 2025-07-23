@@ -126,13 +126,22 @@ fun DetailsScreen(
         actions = {
             AnimatedIconButtonDirection(
                 visible = hasFiles,
-                icon = if (isGrid) Icons.AutoMirrored.Filled.ViewList else Icons.Filled.GridView , contentDescription = null , onClick = {
-                detailsViewModel.onEvent(WhatsAppDetailsEvent.ToggleView)
-            } , fromRight = true)
+                icon = if (isGrid) Icons.AutoMirrored.Filled.ViewList else Icons.Filled.GridView,
+                contentDescription = null,
+                onClick = {
+                    detailsViewModel.onEvent(WhatsAppDetailsEvent.ToggleView)
+                },
+                fromRight = true)
 
-            AnimatedIconButtonDirection(  visible = true,icon = Icons.AutoMirrored.Filled.Sort , contentDescription = null , onClick = {
-                showSort = hasFiles
-            } , durationMillis = 400 , fromRight = true)
+            AnimatedIconButtonDirection(
+                visible = true,
+                icon = Icons.AutoMirrored.Filled.Sort,
+                contentDescription = null,
+                onClick = {
+                    showSort = hasFiles
+                },
+                durationMillis = 400,
+                fromRight = true)
 
         },
         title = localizedTitle,
@@ -150,7 +159,13 @@ fun DetailsScreen(
                 )
             },
             onSuccess = { data ->
-                LaunchedEffect(title) { detailsViewModel.onEvent(WhatsAppDetailsEvent.LoadFiles(title)) }
+                LaunchedEffect(title) {
+                    detailsViewModel.onEvent(
+                        WhatsAppDetailsEvent.LoadFiles(
+                            title
+                        )
+                    )
+                }
 
                 val receivedFiles = remember(sortedFiles) {
                     sortedFiles.filterNot {
@@ -184,8 +199,8 @@ fun DetailsScreen(
                 if (tabFiles.isEmpty()) {
                     Box(
                         modifier = Modifier
-                                .fillMaxSize()
-                                .padding(paddingValues),
+                            .fillMaxSize()
+                            .padding(paddingValues),
                         contentAlignment = Alignment.Center
                     ) {
                         NoDataScreen(
@@ -200,12 +215,14 @@ fun DetailsScreen(
                     var selectedTabIndex by remember { mutableIntStateOf(0) }
                     val scope = rememberCoroutineScope()
 
-                    LaunchedEffect(pagerState.currentPage) { selectedTabIndex = pagerState.currentPage }
+                    LaunchedEffect(pagerState.currentPage) {
+                        selectedTabIndex = pagerState.currentPage
+                    }
 
                     Column(
                         modifier = Modifier
-                                .fillMaxSize()
-                                .padding(paddingValues)
+                            .fillMaxSize()
+                            .padding(paddingValues)
                     ) {
                         if (suggested.isNotEmpty()) {
                             SmartSuggestionsCard(
@@ -218,7 +235,7 @@ fun DetailsScreen(
                         if (tabs.size > 1) {
                             CustomTabLayout(
                                 modifier = Modifier
-                                        .fillMaxWidth(),
+                                    .fillMaxWidth(),
                                 selectedItemIndex = selectedTabIndex,
                                 items = tabs,
                                 filesPerTab = tabFiles,
@@ -230,7 +247,8 @@ fun DetailsScreen(
                                 onTabCheckedChange = { index, checked ->
                                     val listFiles = tabFiles.getOrNull(index) ?: emptyList()
                                     if (checked) {
-                                        listFiles.filterNot { it in selected }.forEach { selected.add(it) }
+                                        listFiles.filterNot { it in selected }
+                                            .forEach { selected.add(it) }
                                     } else {
                                         selected.removeAll(listFiles)
                                     }
@@ -241,8 +259,8 @@ fun DetailsScreen(
                         HorizontalPager(
                             state = pagerState,
                             modifier = Modifier
-                                    .weight(1f)
-                                    .fillMaxWidth(),
+                                .weight(1f)
+                                .fillMaxWidth(),
                         ) { page ->
                             val list = tabFiles.getOrNull(page) ?: emptyList()
 
@@ -272,8 +290,8 @@ fun DetailsScreen(
 
                         IconButtonWithText(
                             modifier = Modifier
-                                    .align(Alignment.CenterHorizontally)
-                                    .padding(8.dp),
+                                .align(Alignment.CenterHorizontally)
+                                .padding(8.dp),
                             onClick = { showConfirm = true },
                             enabled = selected.isNotEmpty(),
                             iconContentDescription = null,
@@ -332,10 +350,12 @@ fun DetailsScreenContent(
     isGrid: Boolean,
     files: List<File>
 ) {
-    val context : Context = LocalContext.current
+    val context: Context = LocalContext.current
 
-    Column(modifier = Modifier
-        .fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
         if (files.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text(text = context.getString(R.string.no_files_found))
@@ -355,7 +375,9 @@ fun DetailsScreenContent(
                                     .pointerInput(file) {
                                         detectTapGestures(
                                             onLongPress = {
-                                                if (checked) selected.remove(file) else selected.add(file)
+                                                if (checked) selected.remove(file) else selected.add(
+                                                    file
+                                                )
                                             },
                                             onTap = { openFile(context, file) }
                                         )
@@ -376,8 +398,12 @@ fun DetailsScreenContent(
                     items(files) { file ->
                         val checked = file in selected
                         val fileExtension = remember(file.name) { getFileExtension(file.name) }
-                        val imageExt = remember { context.resources.getStringArray(R.array.image_extensions).toList() }
-                        val videoExt = remember { context.resources.getStringArray(R.array.video_extensions).toList() }
+                        val imageExt = remember {
+                            context.resources.getStringArray(R.array.image_extensions).toList()
+                        }
+                        val videoExt = remember {
+                            context.resources.getStringArray(R.array.video_extensions).toList()
+                        }
                         val isMedia = remember(fileExtension) {
                             imageExt.any { it.equals(fileExtension, ignoreCase = true) } ||
                                     videoExt.any { it.equals(fileExtension, ignoreCase = true) }
@@ -389,7 +415,9 @@ fun DetailsScreenContent(
                                 .pointerInput(file) {
                                     detectTapGestures(
                                         onLongPress = {
-                                            if (checked) selected.remove(file) else selected.add(file)
+                                            if (checked) selected.remove(file) else selected.add(
+                                                file
+                                            )
                                         },
                                         onTap = { openFile(context, file) }
                                     )
@@ -450,7 +478,9 @@ private fun SmartSuggestionsCard(
                                 .pointerInput(file) {
                                     detectTapGestures(
                                         onLongPress = {
-                                            if (checked) selected.remove(file) else selected.add(file)
+                                            if (checked) selected.remove(file) else selected.add(
+                                                file
+                                            )
                                         },
                                         onTap = { openFile(context, file) }
                                     )

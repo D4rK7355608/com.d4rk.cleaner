@@ -49,20 +49,24 @@ import java.io.File
 
 @Composable
 fun FileCard(
-    modifier : Modifier = Modifier ,
-    file : File , onCheckedChange : (Boolean) -> Unit ,
-    isChecked : Boolean ,
+    modifier: Modifier = Modifier,
+    file: File, onCheckedChange: (Boolean) -> Unit,
+    isChecked: Boolean,
     isOriginal: Boolean = false,
-    view : View ,
+    view: View,
 ) {
-    val isFolder : Boolean = file.isDirectory
-    val context : Context = LocalContext.current
-    val fileExtension : String = remember(key1 = file.name) { getFileExtension(file.name) }
+    val isFolder: Boolean = file.isDirectory
+    val context: Context = LocalContext.current
+    val fileExtension: String = remember(key1 = file.name) { getFileExtension(file.name) }
 
-    val imageExtensions : List<String> = remember { context.resources.getStringArray(R.array.image_extensions).toList() }
-    val videoExtensions : List<String> = remember { context.resources.getStringArray(R.array.video_extensions).toList() }
-    val officeExtensions : List<String> = remember { context.resources.getStringArray(R.array.microsoft_office_extensions).toList() }
-    val apkExtensions : List<String> = remember { context.resources.getStringArray(R.array.apk_extensions).toList() }
+    val imageExtensions: List<String> =
+        remember { context.resources.getStringArray(R.array.image_extensions).toList() }
+    val videoExtensions: List<String> =
+        remember { context.resources.getStringArray(R.array.video_extensions).toList() }
+    val officeExtensions: List<String> =
+        remember { context.resources.getStringArray(R.array.microsoft_office_extensions).toList() }
+    val apkExtensions: List<String> =
+        remember { context.resources.getStringArray(R.array.apk_extensions).toList() }
 
     Card(
         modifier = modifier
@@ -72,40 +76,50 @@ fun FileCard(
                 if (!file.isDirectory) {
                     FileManagerHelper.openFile(context, file)
                 }
-            } ,
+            },
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             if (isFolder) {
                 Icon(
-                    imageVector = Icons.Outlined.Folder , contentDescription = null , modifier = Modifier
+                    imageVector = Icons.Outlined.Folder,
+                    contentDescription = null,
+                    modifier = Modifier
                         .size(size = 24.dp)
                         .align(alignment = Alignment.Center)
                 )
-            }
-            else {
+            } else {
                 when (fileExtension) {
                     in imageExtensions -> {
                         AsyncImage(
                             model = remember(key1 = file) {
-                                ImageRequest.Builder(context = context).data(data = file).size(size = 64).crossfade(enable = true).build()
-                            } ,
-                            contentScale = ContentScale.FillWidth ,
-                            contentDescription = file.name ,
-                            modifier = Modifier.fillMaxWidth() ,
+                                ImageRequest.Builder(context = context).data(data = file)
+                                    .size(size = 64).crossfade(enable = true).build()
+                            },
+                            contentScale = ContentScale.FillWidth,
+                            contentDescription = file.name,
+                            modifier = Modifier.fillMaxWidth(),
                         )
                     }
 
                     in videoExtensions -> {
                         AsyncImage(model = remember(file) {
-                            ImageRequest.Builder(context = context).data(data = file).decoderFactory { result , options , _ ->
-                                VideoFrameDecoder(source = result.source , options = options)
-                            }.videoFramePercent(framePercent = 0.5).crossfade(enable = true).build()
-                        } , contentDescription = file.name , contentScale = ContentScale.Crop , modifier = Modifier.fillMaxSize())
+                            ImageRequest.Builder(context = context).data(data = file)
+                                .decoderFactory { result, options, _ ->
+                                    VideoFrameDecoder(source = result.source, options = options)
+                                }.videoFramePercent(framePercent = 0.5).crossfade(enable = true)
+                                .build()
+                        },
+                            contentDescription = file.name,
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize())
                     }
 
                     in apkExtensions -> {
                         val icon = remember(file.path) {
-                            context.packageManager.getPackageArchiveInfo(file.path, 0)?.applicationInfo?.apply {
+                            context.packageManager.getPackageArchiveInfo(
+                                file.path,
+                                0
+                            )?.applicationInfo?.apply {
                                 sourceDir = file.path
                                 publicSourceDir = file.path
                             }?.loadIcon(context.packageManager)
@@ -134,23 +148,23 @@ fun FileCard(
                             val pdfBitmap = remember(file) { loadPdfThumbnail(file) }
                             if (pdfBitmap != null) {
                                 Image(
-                                    bitmap = pdfBitmap.asImageBitmap() ,
-                                    contentDescription = file.name ,
-                                    contentScale = ContentScale.FillWidth ,
+                                    bitmap = pdfBitmap.asImageBitmap(),
+                                    contentDescription = file.name,
+                                    contentScale = ContentScale.FillWidth,
                                     modifier = Modifier.fillMaxWidth()
                                 )
                             } else {
                                 Icon(
-                                    imageVector = Icons.Outlined.PictureAsPdf ,
-                                    contentDescription = null , modifier = Modifier
+                                    imageVector = Icons.Outlined.PictureAsPdf,
+                                    contentDescription = null, modifier = Modifier
                                         .size(size = 24.dp)
                                         .align(alignment = Alignment.Center)
                                 )
                             }
                         } else {
                             Icon(
-                                imageVector = Icons.Outlined.Description ,
-                                contentDescription = null , modifier = Modifier
+                                imageVector = Icons.Outlined.Description,
+                                contentDescription = null, modifier = Modifier
                                     .size(size = 24.dp)
                                     .align(alignment = Alignment.Center)
                             )
@@ -158,13 +172,15 @@ fun FileCard(
                     }
 
                     else -> {
-                        val fileIcon : Int = remember(key1 = fileExtension) {
+                        val fileIcon: Int = remember(key1 = fileExtension) {
                             getFileIcon(
-                                extension = fileExtension , context = context
+                                extension = fileExtension, context = context
                             )
                         }
                         Icon(
-                            painter = painterResource(id = fileIcon) , contentDescription = null , modifier = Modifier
+                            painter = painterResource(id = fileIcon),
+                            contentDescription = null,
+                            modifier = Modifier
                                 .size(size = 24.dp)
                                 .align(alignment = Alignment.Center)
                         )
@@ -172,10 +188,10 @@ fun FileCard(
                 }
             }
 
-            Checkbox(checked = isChecked , onCheckedChange = { checked ->
+            Checkbox(checked = isChecked, onCheckedChange = { checked ->
                 view.playSoundEffect(SoundEffectConstants.CLICK)
                 onCheckedChange(checked)
-            } , modifier = Modifier.align(alignment = Alignment.TopEnd))
+            }, modifier = Modifier.align(alignment = Alignment.TopEnd))
 
             if (isOriginal) {
                 Text(
@@ -197,7 +213,10 @@ fun FileCard(
                     .align(alignment = Alignment.BottomCenter)
             ) {
                 Text(
-                    text = file.name , maxLines = 1 , overflow = TextOverflow.Ellipsis , modifier = Modifier
+                    text = file.name,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
                         .basicMarquee()
                         .padding(all = SizeConstants.SmallSize)
                 )

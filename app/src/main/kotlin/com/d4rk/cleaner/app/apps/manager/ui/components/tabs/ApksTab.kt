@@ -22,9 +22,12 @@ import com.d4rk.cleaner.app.apps.manager.ui.components.ShimmerLoadingScreen
 
 @Composable
 fun ApksTab(
-    apkFiles : List<ApkInfo> , isLoading : Boolean , viewModel : AppManagerViewModel , paddingValues : PaddingValues = PaddingValues()
+    apkFiles: List<ApkInfo>,
+    isLoading: Boolean,
+    viewModel: AppManagerViewModel,
+    paddingValues: PaddingValues = PaddingValues()
 ) {
-    Crossfade(targetState = isLoading , label = "ApksTab") { targetIsLoading ->
+    Crossfade(targetState = isLoading, label = "ApksTab") { targetIsLoading ->
         when {
             targetIsLoading -> {
                 ShimmerLoadingScreen(paddingValues)
@@ -32,19 +35,30 @@ fun ApksTab(
 
             apkFiles.isEmpty() -> {
                 NoDataScreen(
-                    textMessage = R.string.no_app_installed , showRetry = true , onRetry = {
+                    textMessage = R.string.no_app_installed, showRetry = true, onRetry = {
                         viewModel.onEvent(event = AppManagerEvent.LoadAppData)
-                    }, icon = Icons.Outlined.Android)
+                    }, icon = Icons.Outlined.Android
+                )
             }
 
             else -> {
-                LazyColumn(contentPadding = PaddingValues(horizontal = SizeConstants.ExtraTinySize) , verticalArrangement = Arrangement.spacedBy(space = SizeConstants.ExtraTinySize) , modifier = Modifier.fillMaxSize()) {
-                    itemsIndexed(items = apkFiles , key = { _ : Int , apkInfo : ApkInfo -> apkInfo.id }) { _ : Int , apkInfo : ApkInfo ->
+                LazyColumn(
+                    contentPadding = PaddingValues(horizontal = SizeConstants.ExtraTinySize),
+                    verticalArrangement = Arrangement.spacedBy(space = SizeConstants.ExtraTinySize),
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    itemsIndexed(
+                        items = apkFiles,
+                        key = { _: Int, apkInfo: ApkInfo -> apkInfo.id }) { _: Int, apkInfo: ApkInfo ->
 
                         ApkItem(
-                            apkPath = apkInfo.path , viewModel = viewModel , modifier = Modifier
-                                    .animateItem()
-                                    .padding(start = SizeConstants.SmallSize , end = SizeConstants.SmallSize , top = SizeConstants.SmallSize)
+                            apkPath = apkInfo.path, viewModel = viewModel, modifier = Modifier
+                                .animateItem()
+                                .padding(
+                                    start = SizeConstants.SmallSize,
+                                    end = SizeConstants.SmallSize,
+                                    top = SizeConstants.SmallSize
+                                )
                         )
                     }
                 }

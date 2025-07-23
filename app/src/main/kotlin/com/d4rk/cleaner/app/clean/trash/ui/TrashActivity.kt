@@ -12,14 +12,14 @@ import com.d4rk.android.libs.apptoolkit.app.theme.style.AppTheme
 
 class TrashActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState : Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                     TrashScreen(activity = this@TrashActivity)
                 }

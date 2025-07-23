@@ -13,7 +13,8 @@ import kotlinx.coroutines.flow.flow
 class AppUsageStatsManagerImpl(private val application: Application) : AppUsageStatsManager {
     override fun getAppsLastUsed(): Flow<DataState<Map<String, Long>, Errors>> = flow {
         runCatching {
-            val usageManager = application.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
+            val usageManager =
+                application.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
             val end = System.currentTimeMillis()
             val stats = usageManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, 0, end)
             stats.associate { it.packageName to it.lastTimeUsed }

@@ -35,9 +35,19 @@ class CleanupNotifier(private val context: Context) {
             .setContentText(message)
             .setContentIntent(pendingIntent)
             .setDeleteIntent(deleteIntent)
-            .setColor(MaterialColors.getColor(context, com.google.android.material.R.attr.colorPrimary, 0))
+            .setColor(
+                MaterialColors.getColor(
+                    context,
+                    com.google.android.material.R.attr.colorPrimary,
+                    0
+                )
+            )
             .setAutoCancel(true)
-            .addAction(R.drawable.ic_cleaner_notify, context.getString(R.string.scan_now), pendingIntent)
+            .addAction(
+                R.drawable.ic_cleaner_notify,
+                context.getString(R.string.scan_now),
+                pendingIntent
+            )
             .build()
 
         NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, notification)
@@ -46,7 +56,11 @@ class CleanupNotifier(private val context: Context) {
     private fun createChannelIfNeeded() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = context.getString(R.string.cleanup_notification_title)
-            val channel = NotificationChannel(NOTIFICATION_CHANNEL, name, NotificationManager.IMPORTANCE_DEFAULT)
+            val channel = NotificationChannel(
+                NOTIFICATION_CHANNEL,
+                name,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
             NotificationManagerCompat.from(context).createNotificationChannel(channel)
         }
     }

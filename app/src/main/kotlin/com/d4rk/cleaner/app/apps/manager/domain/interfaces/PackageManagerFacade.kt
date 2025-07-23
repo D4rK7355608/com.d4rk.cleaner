@@ -6,5 +6,5 @@ import com.d4rk.cleaner.core.domain.model.network.Errors
 import kotlinx.coroutines.flow.Flow
 
 interface PackageManagerFacade {
-    fun getInstalledApplications(flags : Int) : Flow<DataState<List<ApplicationInfo> , Errors>>
+    fun getInstalledApplications(flags: Int): Flow<DataState<List<ApplicationInfo>, Errors>>
 }

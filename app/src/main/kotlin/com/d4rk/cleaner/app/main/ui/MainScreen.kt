@@ -55,27 +55,26 @@ import org.koin.core.qualifier.named
 
 @Composable
 fun MainScreen() {
-    val viewModel : MainViewModel = koinViewModel()
-    val screenState : UiStateScreen<UiMainScreen> by viewModel.uiState.collectAsState()
-    val context : Context = LocalContext.current
-    val isTabletOrLandscape : Boolean = ScreenHelper.isLandscapeOrTablet(context = context)
+    val viewModel: MainViewModel = koinViewModel()
+    val screenState: UiStateScreen<UiMainScreen> by viewModel.uiState.collectAsState()
+    val context: Context = LocalContext.current
+    val isTabletOrLandscape: Boolean = ScreenHelper.isLandscapeOrTablet(context = context)
 
     if (isTabletOrLandscape) {
         MainScaffoldTabletContent()
-    }
-    else {
+    } else {
         NavigationDrawer(screenState = screenState)
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScaffoldContent(drawerState : DrawerState) {
-    val scrollBehavior : TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-    val snackBarHostState : SnackbarHostState = remember { SnackbarHostState() }
+fun MainScaffoldContent(drawerState: DrawerState) {
+    val scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+    val snackBarHostState: SnackbarHostState = remember { SnackbarHostState() }
 
-    val coroutineScope : CoroutineScope = rememberCoroutineScope()
-    val navController : NavHostController = rememberNavController()
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
+    val navController: NavHostController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
     val appManagerEntry = remember(backStackEntry) {
@@ -84,20 +83,30 @@ fun MainScaffoldContent(drawerState : DrawerState) {
     val appManagerViewModel: AppManagerViewModel? = appManagerEntry?.let { entry ->
         koinViewModel(viewModelStoreOwner = entry)
     }
-    val searchQuery by appManagerViewModel?.searchQuery?.collectAsState() ?: remember { mutableStateOf("") }
+    val searchQuery by appManagerViewModel?.searchQuery?.collectAsState()
+        ?: remember { mutableStateOf("") }
     val bottomItems = listOf(
         BottomBarItem(
-            route = NavigationRoutes.ROUTE_HOME , icon = Icons.Outlined.CleaningServices , selectedIcon = Icons.Filled.CleaningServices , title = R.string.scanner
-        ) ,
+            route = NavigationRoutes.ROUTE_HOME,
+            icon = Icons.Outlined.CleaningServices,
+            selectedIcon = Icons.Filled.CleaningServices,
+            title = R.string.scanner
+        ),
         BottomBarItem(
-            route = NavigationRoutes.ROUTE_APP_MANAGER , icon = Icons.Sharp.AppRegistration , selectedIcon = Icons.Rounded.AppRegistration , title = R.string.app_manager
-        ) ,
+            route = NavigationRoutes.ROUTE_APP_MANAGER,
+            icon = Icons.Sharp.AppRegistration,
+            selectedIcon = Icons.Rounded.AppRegistration,
+            title = R.string.app_manager
+        ),
         BottomBarItem(
-            route = NavigationRoutes.ROUTE_MEMORY_MANAGER , icon = Icons.Sharp.Storage , selectedIcon = Icons.Rounded.Storage , title = R.string.memory_manager
-        ) ,
+            route = NavigationRoutes.ROUTE_MEMORY_MANAGER,
+            icon = Icons.Sharp.Storage,
+            selectedIcon = Icons.Rounded.Storage,
+            title = R.string.memory_manager
+        ),
     )
 
-    Scaffold(modifier = Modifier.imePadding() , topBar = {
+    Scaffold(modifier = Modifier.imePadding(), topBar = {
         CleanerTopAppBar(
             navigationIcon = if (drawerState.isOpen) Icons.AutoMirrored.Outlined.MenuOpen else Icons.Default.Menu,
             onNavigationIconClick = { coroutineScope.launch { drawerState.open() } },
@@ -106,12 +115,16 @@ fun MainScaffoldContent(drawerState : DrawerState) {
             searchQuery = searchQuery,
             onSearchQueryChange = { query -> appManagerViewModel?.onSearchQueryChange(query) }
         )
-    } , snackbarHost = {
+    }, snackbarHost = {
         DefaultSnackbarHost(snackbarState = snackBarHostState)
-    } , bottomBar = {
-        BottomNavigationBar(navController = navController , items = bottomItems)
+    }, bottomBar = {
+        BottomNavigationBar(navController = navController, items = bottomItems)
     }) { paddingValues ->
-        AppNavigationHost(navController = navController , snackbarHostState = snackBarHostState , paddingValues = paddingValues)
+        AppNavigationHost(
+            navController = navController,
+            snackbarHostState = snackBarHostState,
+            paddingValues = paddingValues
+        )
     }
 }
 
@@ -141,18 +154,28 @@ fun MainScaffoldTabletContent() {
     val appManagerViewModel: AppManagerViewModel? = appManagerEntry?.let { entry ->
         koinViewModel(viewModelStoreOwner = entry)
     }
-    val searchQuery by appManagerViewModel?.searchQuery?.collectAsState() ?: remember { mutableStateOf("") }
+    val searchQuery by appManagerViewModel?.searchQuery?.collectAsState()
+        ?: remember { mutableStateOf("") }
 
     val bottomItems = listOf(
         BottomBarItem(
-            route = NavigationRoutes.ROUTE_HOME , icon = Icons.Outlined.CleaningServices , selectedIcon = Icons.Filled.CleaningServices , title = R.string.scanner
-        ) ,
+            route = NavigationRoutes.ROUTE_HOME,
+            icon = Icons.Outlined.CleaningServices,
+            selectedIcon = Icons.Filled.CleaningServices,
+            title = R.string.scanner
+        ),
         BottomBarItem(
-            route = NavigationRoutes.ROUTE_APP_MANAGER , icon = Icons.Sharp.AppRegistration , selectedIcon = Icons.Rounded.AppRegistration , title = R.string.app_manager
-        ) ,
+            route = NavigationRoutes.ROUTE_APP_MANAGER,
+            icon = Icons.Sharp.AppRegistration,
+            selectedIcon = Icons.Rounded.AppRegistration,
+            title = R.string.app_manager
+        ),
         BottomBarItem(
-            route = NavigationRoutes.ROUTE_MEMORY_MANAGER , icon = Icons.Sharp.Storage , selectedIcon = Icons.Rounded.Storage , title = R.string.memory_manager
-        ) ,
+            route = NavigationRoutes.ROUTE_MEMORY_MANAGER,
+            icon = Icons.Sharp.Storage,
+            selectedIcon = Icons.Rounded.Storage,
+            title = R.string.memory_manager
+        ),
     )
 
     Scaffold(
@@ -188,7 +211,8 @@ fun MainScaffoldTabletContent() {
                 AppNavigationHost(
                     navController = navController,
                     snackbarHostState = snackBarHostState,
-                    paddingValues = PaddingValues())
+                    paddingValues = PaddingValues()
+                )
             })
     }
 

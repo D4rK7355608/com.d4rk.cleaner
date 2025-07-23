@@ -36,6 +36,7 @@ class StreakReminderWorker(
                 R.string.streak_notification_milestone_format,
                 streak
             )
+
             else -> applicationContext.getString(R.string.streak_notification_daily)
         }
 

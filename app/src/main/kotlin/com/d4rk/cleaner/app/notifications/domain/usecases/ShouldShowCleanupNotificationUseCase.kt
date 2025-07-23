@@ -30,7 +30,8 @@ class ShouldShowCleanupNotificationUseCase(
 
         val storageRatio = if (storageInfo.storageUsageProgress == 0f) 0f
         else storageInfo.usedStorage.toFloat() / storageInfo.storageUsageProgress
-        val ramRatio = if (ramInfo.totalRam == 0L) 0f else ramInfo.usedRam.toFloat() / ramInfo.totalRam
+        val ramRatio =
+            if (ramInfo.totalRam == 0L) 0f else ramInfo.usedRam.toFloat() / ramInfo.totalRam
 
         val storageHigh = storageRatio >= 0.8f
         val ramHigh = ramRatio >= 0.9f

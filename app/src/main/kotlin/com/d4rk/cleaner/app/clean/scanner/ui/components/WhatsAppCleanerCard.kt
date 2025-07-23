@@ -48,8 +48,8 @@ fun WhatsAppCleanerCard(
     onCleanClick: () -> Unit
 ) {
     OutlinedCard(
-        modifier = modifier.fillMaxWidth() ,
-        shape = RoundedCornerShape(SizeConstants.ExtraLargeSize) ,
+        modifier = modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(SizeConstants.ExtraLargeSize),
     ) {
         Column(
             modifier = Modifier
@@ -143,8 +143,8 @@ private fun CategoryRow(
                 .padding(start = SizeConstants.MediumSize)
                 .fillMaxWidth()
                 .horizontalScroll(state = rememberScrollState())
-                .animateContentSize() ,
-            horizontalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize) ,
+                .animateContentSize(),
+            horizontalArrangement = Arrangement.spacedBy(SizeConstants.SmallSize),
             verticalAlignment = Alignment.CenterVertically
         ) {
             preview.forEach { file ->

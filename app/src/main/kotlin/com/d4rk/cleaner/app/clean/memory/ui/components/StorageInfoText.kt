@@ -6,6 +6,6 @@ import androidx.compose.runtime.Composable
 import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter.format as formatSize
 
 @Composable
-fun StorageInfoText(label : String , size : Long) {
-    Text(text = "$label ${formatSize(size)}" , style = MaterialTheme.typography.bodyMedium)
+fun StorageInfoText(label: String, size: Long) {
+    Text(text = "$label ${formatSize(size)}", style = MaterialTheme.typography.bodyMedium)
 }

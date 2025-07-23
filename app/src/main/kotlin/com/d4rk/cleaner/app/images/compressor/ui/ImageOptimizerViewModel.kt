@@ -20,26 +20,44 @@ import java.util.Locale
 class ImageOptimizerViewModel(
     application: Application,
     private val compressImageUseCase: CompressImageUseCase = CompressImageUseCase(application.applicationContext),
-    private val getRealFileFromUriUseCase: GetRealFileFromUriUseCase = GetRealFileFromUriUseCase(application.applicationContext),
+    private val getRealFileFromUriUseCase: GetRealFileFromUriUseCase = GetRealFileFromUriUseCase(
+        application.applicationContext
+    ),
     private val getImageDimensionsUseCase: GetImageDimensionsUseCase = GetImageDimensionsUseCase(),
     private val getDestinationFileUseCase: GetOptimizedDestinationFileUseCase = GetOptimizedDestinationFileUseCase()
 ) : ViewModel() {
 
-    private val _uiState: MutableStateFlow<UiImageOptimizerState> = MutableStateFlow(UiImageOptimizerState())
+    private val _uiState: MutableStateFlow<UiImageOptimizerState> =
+        MutableStateFlow(UiImageOptimizerState())
     val uiState: StateFlow<UiImageOptimizerState> = _uiState.asStateFlow()
 
     fun setCurrentTab(tab: Int) {
         viewModelScope.launch {
             val currentState = _uiState.value
             val newState = when (tab) {
-                1 -> currentState.copy(currentTab = tab, compressedImageUri = currentState.selectedImageUri, fileSizeKB = 0)
+                1 -> currentState.copy(
+                    currentTab = tab,
+                    compressedImageUri = currentState.selectedImageUri,
+                    fileSizeKB = 0
+                )
+
                 2 -> {
                     val file = currentState.selectedImageUri?.let { uri ->
                         getRealFileFromUriUseCase(uri)
                     }
-                    val (w, h) = file?.getOrNull()?.let { getImageDimensionsUseCase(it) } ?: Pair(640, 480)
-                    currentState.copy(currentTab = tab, compressedImageUri = currentState.selectedImageUri, manualWidth = w, manualHeight = h, manualQuality = 50)
+                    val (w, h) = file?.getOrNull()?.let { getImageDimensionsUseCase(it) } ?: Pair(
+                        640,
+                        480
+                    )
+                    currentState.copy(
+                        currentTab = tab,
+                        compressedImageUri = currentState.selectedImageUri,
+                        manualWidth = w,
+                        manualHeight = h,
+                        manualQuality = 50
+                    )
                 }
+
                 else -> currentState.copy(currentTab = tab)
             }
             _uiState.value = newState
@@ -61,14 +79,20 @@ class ImageOptimizerViewModel(
             }
             val (targetWidth, targetHeight) = when (currentTab) {
                 0, 1 -> originalFile?.let { getImageDimensionsUseCase(it) } ?: Pair(640, 480)
-                2 -> if (_uiState.value.manualWidth > 0 && _uiState.value.manualHeight > 0) Pair(_uiState.value.manualWidth, _uiState.value.manualHeight) else Pair(640, 480)
+                2 -> if (_uiState.value.manualWidth > 0 && _uiState.value.manualHeight > 0) Pair(
+                    _uiState.value.manualWidth,
+                    _uiState.value.manualHeight
+                ) else Pair(640, 480)
+
                 else -> Pair(640, 480)
             }
             val destinationFile = originalFile?.let { getDestinationFileUseCase(it) }
             val compressedFile = originalFile?.let { file ->
                 runCatching {
-                    val desiredBytes = if (currentTab == 1 && _uiState.value.fileSizeKB > 0) _uiState.value.fileSizeKB * 1024L else null
-                    val tempFile = compressImageUseCase(file, quality, targetWidth, targetHeight, desiredBytes)
+                    val desiredBytes =
+                        if (currentTab == 1 && _uiState.value.fileSizeKB > 0) _uiState.value.fileSizeKB * 1024L else null
+                    val tempFile =
+                        compressImageUseCase(file, quality, targetWidth, targetHeight, desiredBytes)
                     destinationFile?.apply { tempFile.copyTo(this, overwrite = true) }
                     destinationFile
                 }.getOrElse { e ->
@@ -77,7 +101,11 @@ class ImageOptimizerViewModel(
                 }
             }
             _uiState.emit(
-                _uiState.value.copy(isLoading = false, compressedImageUri = compressedFile?.let { Uri.fromFile(it) } ?: _uiState.value.selectedImageUri, showSaveSnackbar = true)
+                _uiState.value.copy(
+                    isLoading = false,
+                    compressedImageUri = compressedFile?.let { Uri.fromFile(it) }
+                        ?: _uiState.value.selectedImageUri,
+                    showSaveSnackbar = true)
             )
         }
     }
@@ -98,7 +126,13 @@ class ImageOptimizerViewModel(
 
     fun setManualCompressSettings(width: Int, height: Int, quality: Int) {
         viewModelScope.launch {
-            _uiState.emit(_uiState.value.copy(manualWidth = width, manualHeight = height, manualQuality = quality))
+            _uiState.emit(
+                _uiState.value.copy(
+                    manualWidth = width,
+                    manualHeight = height,
+                    manualQuality = quality
+                )
+            )
             previewCompressImage()
         }
     }
@@ -107,7 +141,9 @@ class ImageOptimizerViewModel(
         viewModelScope.launch {
             val file = getRealFileFromUriUseCase(uri)
             val (w, h) = file.getOrNull()?.let { getImageDimensionsUseCase(it) } ?: Pair(640, 480)
-            val originalSizeKB: Double = file.getOrNull()?.let { format(Locale.US, "%.2f", it.length() / 1024.0).toDouble() } ?: 0.0
+            val originalSizeKB: Double =
+                file.getOrNull()?.let { format(Locale.US, "%.2f", it.length() / 1024.0).toDouble() }
+                    ?: 0.0
             _uiState.emit(
                 _uiState.value.copy(
                     selectedImageUri = uri,
@@ -135,12 +171,17 @@ class ImageOptimizerViewModel(
             }
             val (targetWidth, targetHeight) = when (currentTab) {
                 0, 1 -> originalFile?.let { getImageDimensionsUseCase(it) } ?: Pair(640, 480)
-                2 -> if (_uiState.value.manualWidth > 0 && _uiState.value.manualHeight > 0) Pair(_uiState.value.manualWidth, _uiState.value.manualHeight) else Pair(640, 480)
+                2 -> if (_uiState.value.manualWidth > 0 && _uiState.value.manualHeight > 0) Pair(
+                    _uiState.value.manualWidth,
+                    _uiState.value.manualHeight
+                ) else Pair(640, 480)
+
                 else -> Pair(640, 480)
             }
             val previewFile = originalFile?.let { file ->
                 runCatching {
-                    val desiredBytes = if (currentTab == 1 && _uiState.value.fileSizeKB > 0) _uiState.value.fileSizeKB * 1024L else null
+                    val desiredBytes =
+                        if (currentTab == 1 && _uiState.value.fileSizeKB > 0) _uiState.value.fileSizeKB * 1024L else null
                     compressImageUseCase(file, quality, targetWidth, targetHeight, desiredBytes)
                 }.getOrElse { e ->
                     e.printStackTrace()
@@ -150,14 +191,18 @@ class ImageOptimizerViewModel(
             val newSizeKB: Double = previewFile?.let { it.length() / 1024.0 } ?: 0.0
             val roundedSizeKB: Double = format(Locale.US, "%.2f", newSizeKB).toDouble()
             _uiState.emit(
-                _uiState.value.copy(isLoading = false, compressedImageUri = previewFile?.let { Uri.fromFile(it) } ?: _uiState.value.selectedImageUri, compressedSizeKB = roundedSizeKB)
+                _uiState.value.copy(
+                    isLoading = false,
+                    compressedImageUri = previewFile?.let { Uri.fromFile(it) }
+                        ?: _uiState.value.selectedImageUri,
+                    compressedSizeKB = roundedSizeKB)
             )
         }
     }
 
     suspend fun getOriginalSizeInKB(uri: Uri): Int {
         val file: File? = getRealFileFromUriUseCase(uri).getOrNull()
-        return file?.length()?.div(1024)?.toInt() ?:  0
+        return file?.length()?.div(1024)?.toInt() ?: 0
     }
 
     fun generateDynamicPresets(originalSizeKB: Int): List<String> {

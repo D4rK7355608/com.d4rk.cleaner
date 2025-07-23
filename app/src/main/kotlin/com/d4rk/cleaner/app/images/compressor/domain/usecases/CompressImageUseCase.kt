@@ -18,7 +18,13 @@ class CompressImageUseCase(private val context: Context) {
         format: Bitmap.CompressFormat = Bitmap.CompressFormat.JPEG
     ): File = withContext(Dispatchers.IO) {
         if (desiredSizeBytes != null) {
-            compressImageToTargetSize(originalFile, targetWidth, targetHeight, desiredSizeBytes, format)
+            compressImageToTargetSize(
+                originalFile,
+                targetWidth,
+                targetHeight,
+                desiredSizeBytes,
+                format
+            )
         } else {
             compressImageUsingNative(originalFile, quality, targetWidth, targetHeight, format)
         }
@@ -60,7 +66,8 @@ class CompressImageUseCase(private val context: Context) {
                 minQuality = finalQuality + 1
             }
         }
-        compressedFile = File(context.cacheDir, "native_compressed_${System.currentTimeMillis()}.jpg")
+        compressedFile =
+            File(context.cacheDir, "native_compressed_${System.currentTimeMillis()}.jpg")
         compressedFile.outputStream().use { out ->
             scaledBitmap.compress(format, finalQuality, out)
         }
@@ -76,7 +83,8 @@ class CompressImageUseCase(private val context: Context) {
     ): File {
         val originalBitmap = BitmapFactory.decodeFile(originalFile.absolutePath)
         val scaledBitmap = originalBitmap.scale(targetWidth, targetHeight)
-        val outputFile = File(context.cacheDir, "native_compressed_${System.currentTimeMillis()}.jpg")
+        val outputFile =
+            File(context.cacheDir, "native_compressed_${System.currentTimeMillis()}.jpg")
         outputFile.outputStream().use { out ->
             scaledBitmap.compress(format, quality, out)
         }

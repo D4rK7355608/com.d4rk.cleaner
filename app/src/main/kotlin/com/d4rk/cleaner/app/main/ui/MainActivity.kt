@@ -76,21 +76,21 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleStartup() {
         lifecycleScope.launch {
-            val isFirstLaunch : Boolean = dataStore.startup.first()
+            val isFirstLaunch: Boolean = dataStore.startup.first()
 
             if (!dataStore.isStreakReminderInitialized()) {
                 val hasPermission =
                     Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
-                        ContextCompat.checkSelfPermission(
-                            this@MainActivity,
-                            Manifest.permission.POST_NOTIFICATIONS
-                        ) == PackageManager.PERMISSION_GRANTED
+                            ContextCompat.checkSelfPermission(
+                                this@MainActivity,
+                                Manifest.permission.POST_NOTIFICATIONS
+                            ) == PackageManager.PERMISSION_GRANTED
                 if (hasPermission) {
                     dataStore.saveStreakReminderEnabled(true)
                 }
             }
 
-            val trashDir = File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash")
+            val trashDir = File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "Trash")
             val actualTrashSize = withContext(Dispatchers.IO) { calculateDirectorySize(trashDir) }
             val storedTrashSize = dataStore.trashSize.first()
             when {
@@ -102,22 +102,24 @@ class MainActivity : AppCompatActivity() {
 
             if (isFirstLaunch) {
                 startStartupActivity()
-            }
-            else {
+            } else {
                 setMainActivityContent()
             }
         }
     }
 
     private fun startStartupActivity() {
-        IntentsHelper.openActivity(context = this , activityClass = StartupActivity::class.java)
+        IntentsHelper.openActivity(context = this, activityClass = StartupActivity::class.java)
         finish()
     }
 
     private fun setMainActivityContent() {
         setContent {
             AppTheme {
-                Surface(modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
                     MainScreen()
                 }
             }
@@ -144,11 +146,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun calculateDirectorySize(directory : File) : Long {
-        if (! directory.exists()) return 0L
+    private fun calculateDirectorySize(directory: File): Long {
+        if (!directory.exists()) return 0L
 
         var totalSize = 0L
-        directory.listFiles()?.forEach { file : File ->
+        directory.listFiles()?.forEach { file: File ->
             totalSize += if (file.isFile) file.length() else calculateDirectorySize(file)
         }
         return totalSize

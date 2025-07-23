@@ -11,37 +11,41 @@ import java.util.Locale
 
 @Composable
 fun FilesByDateSection(
-    modifier : Modifier ,
-    filesByDate : Map<String , List<File>> ,
-    fileSelectionStates : Map<File , Boolean> ,
-    onFileSelectionChange : (File , Boolean) -> Unit ,
-    onDateSelectionChange: (List<File>, Boolean) -> Unit ,
+    modifier: Modifier,
+    filesByDate: Map<String, List<File>>,
+    fileSelectionStates: Map<File, Boolean>,
+    onFileSelectionChange: (File, Boolean) -> Unit,
+    onDateSelectionChange: (List<File>, Boolean) -> Unit,
     originals: Set<File> = emptySet(),
-    view : View ,
+    view: View,
 ) {
     LazyColumn(
         modifier = modifier.fillMaxSize()
     ) {
-        val sortedDates : List<String> = filesByDate.keys.sortedByDescending { dateString ->
-            SimpleDateFormat("yyyy-MM-dd" , Locale.getDefault()).parse(dateString)
+        val sortedDates: List<String> = filesByDate.keys.sortedByDescending { dateString ->
+            SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(dateString)
         }
 
         sortedDates.forEach { date ->
-            val files : List<File> = filesByDate[date] ?: emptyList()
+            val files: List<File> = filesByDate[date] ?: emptyList()
             if (files.isNotEmpty()) {
                 item(key = date) {
                     DateHeader(
-                        files = files , fileSelectionStates = fileSelectionStates , onFileSelectionChange = onFileSelectionChange , onDateSelectionChange = onDateSelectionChange , view = view
+                        files = files,
+                        fileSelectionStates = fileSelectionStates,
+                        onFileSelectionChange = onFileSelectionChange,
+                        onDateSelectionChange = onDateSelectionChange,
+                        view = view
                     )
                 }
 
                 item(key = "$date-grid") {
                     FilesGrid(
-                        files = files ,
-                        fileSelectionStates = fileSelectionStates ,
-                        onFileSelectionChange = onFileSelectionChange ,
-                        originals = originals ,
-                        view = view ,
+                        files = files,
+                        fileSelectionStates = fileSelectionStates,
+                        onFileSelectionChange = onFileSelectionChange,
+                        originals = originals,
+                        view = view,
                     )
                 }
             }

@@ -24,33 +24,49 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 class ScannerRepositoryImpl(
-    private val application : Application , private val dataStore : DataStore
+    private val application: Application, private val dataStore: DataStore
 ) : ScannerRepositoryInterface {
 
-    private val trashDir : File = File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash")
+    private val trashDir: File =
+        File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "Trash")
 
-    override suspend fun getStorageInfo() : UiScannerModel {
+    override suspend fun getStorageInfo(): UiScannerModel {
         return suspendCoroutine { continuation ->
-            StorageUtils.getStorageInfo(context = application) { _ , _ , _ , usageProgress , freeSpacePercentage ->
+            StorageUtils.getStorageInfo(context = application) { _, _, _, usageProgress, freeSpacePercentage ->
                 continuation.resume(
-                    UiScannerModel(storageInfo = StorageInfo(storageUsageProgress = usageProgress , freeSpacePercentage = freeSpacePercentage))
+                    UiScannerModel(
+                        storageInfo = StorageInfo(
+                            storageUsageProgress = usageProgress,
+                            freeSpacePercentage = freeSpacePercentage
+                        )
+                    )
                 )
             }
         }
     }
 
-    override suspend fun getFileTypes() : FileTypesData {
+    override suspend fun getFileTypes(): FileTypesData {
         return suspendCoroutine { continuation ->
-            val apkExtensions : List<String> = application.resources.getStringArray(R.array.apk_extensions).toList()
-            val imageExtensions : List<String> = application.resources.getStringArray(R.array.image_extensions).toList()
-            val videoExtensions : List<String> = application.resources.getStringArray(R.array.video_extensions).toList()
-            val audioExtensions : List<String> = application.resources.getStringArray(R.array.audio_extensions).toList()
-            val fontExtensions : List<String> = application.resources.getStringArray(R.array.font_extensions).toList()
-            val windowsExtensions : List<String> = application.resources.getStringArray(R.array.windows_extensions).toList()
-            val archiveExtensions : List<String> = application.resources.getStringArray(R.array.archive_extensions).toList()
-            val officeExtensions : List<String> = application.resources.getStringArray(R.array.microsoft_office_extensions).toList()
-            val genericExtensions : List<String> = application.resources.getStringArray(R.array.generic_extensions).toList()
-            val fileTypesTitles : List<String> = application.resources.getStringArray(R.array.file_types_titles).toList()
+            val apkExtensions: List<String> =
+                application.resources.getStringArray(R.array.apk_extensions).toList()
+            val imageExtensions: List<String> =
+                application.resources.getStringArray(R.array.image_extensions).toList()
+            val videoExtensions: List<String> =
+                application.resources.getStringArray(R.array.video_extensions).toList()
+            val audioExtensions: List<String> =
+                application.resources.getStringArray(R.array.audio_extensions).toList()
+            val fontExtensions: List<String> =
+                application.resources.getStringArray(R.array.font_extensions).toList()
+            val windowsExtensions: List<String> =
+                application.resources.getStringArray(R.array.windows_extensions).toList()
+            val archiveExtensions: List<String> =
+                application.resources.getStringArray(R.array.archive_extensions).toList()
+            val officeExtensions: List<String> =
+                application.resources.getStringArray(R.array.microsoft_office_extensions).toList()
+            val genericExtensions: List<String> =
+                application.resources.getStringArray(R.array.generic_extensions).toList()
+            val fileTypesTitles: List<String> =
+                application.resources.getStringArray(R.array.file_types_titles).toList()
 
             val knownExtensions = mutableSetOf<String>().apply {
                 addAll(elements = apkExtensions.map { it.lowercase() })
@@ -64,78 +80,78 @@ class ScannerRepositoryImpl(
                 addAll(elements = genericExtensions.map { it.lowercase() })
             }
 
-            val allFoundExtensions : MutableSet<String> = mutableSetOf()
+            val allFoundExtensions: MutableSet<String> = mutableSetOf()
             DirectoryScanner.scan(Environment.getExternalStorageDirectory()) { file ->
-                val ext : String = file.extension.lowercase()
+                val ext: String = file.extension.lowercase()
                 if (ext.isNotEmpty()) {
                     allFoundExtensions.add(ext)
                 }
             }
 
-            val otherExtensions : List<String> = (allFoundExtensions - knownExtensions).toList().sorted()
+            val otherExtensions: List<String> =
+                (allFoundExtensions - knownExtensions).toList().sorted()
 
             val fileTypesData = FileTypesData(
-                apkExtensions = apkExtensions ,
-                imageExtensions = imageExtensions ,
-                videoExtensions = videoExtensions ,
-                audioExtensions = audioExtensions ,
-                archiveExtensions = archiveExtensions ,
-                fileTypesTitles = fileTypesTitles ,
-                fontExtensions = fontExtensions ,
-                windowsExtensions = windowsExtensions ,
-                officeExtensions = officeExtensions ,
+                apkExtensions = apkExtensions,
+                imageExtensions = imageExtensions,
+                videoExtensions = videoExtensions,
+                audioExtensions = audioExtensions,
+                archiveExtensions = archiveExtensions,
+                fileTypesTitles = fileTypesTitles,
+                fontExtensions = fontExtensions,
+                windowsExtensions = windowsExtensions,
+                officeExtensions = officeExtensions,
                 otherExtensions = otherExtensions
             )
             continuation.resume(value = fileTypesData)
         }
     }
 
-    override suspend fun getAllFiles() : Pair<List<File> , List<File>> {
-        val files : MutableList<File> = mutableListOf()
-        val emptyFolders : MutableList<File> = mutableListOf()
-        val stack : ArrayDeque<File> = ArrayDeque()
-        val root : File = Environment.getExternalStorageDirectory()
+    override suspend fun getAllFiles(): Pair<List<File>, List<File>> {
+        val files: MutableList<File> = mutableListOf()
+        val emptyFolders: MutableList<File> = mutableListOf()
+        val stack: ArrayDeque<File> = ArrayDeque()
+        val root: File = Environment.getExternalStorageDirectory()
         stack.addFirst(element = root)
 
-        val trashDir = File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash")
+        val trashDir =
+            File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "Trash")
 
         while (stack.isNotEmpty()) {
-            val currentFile : File = stack.removeFirst()
+            val currentFile: File = stack.removeFirst()
             if (currentFile.isDirectory) {
-                if (! currentFile.absolutePath.startsWith(trashDir.absolutePath)) {
+                if (!currentFile.absolutePath.startsWith(trashDir.absolutePath)) {
                     currentFile.listFiles()?.let { children ->
                         if (children.isEmpty()) {
                             emptyFolders.add(currentFile)
-                        }
-                        else {
+                        } else {
                             children.forEach { child ->
                                 if (child.isDirectory) {
                                     stack.addLast(child)
-                                }
-                                else {
+                                } else {
                                     files.add(child)
                                 }
                             }
                         }
                     }
                 }
-            }
-            else {
+            } else {
                 files.add(currentFile)
             }
         }
-        return Pair(files , emptyFolders)
+        return Pair(files, emptyFolders)
     }
 
-    override suspend fun getTrashFiles() : List<File> {
+    override suspend fun getTrashFiles(): List<File> {
         return withContext(context = Dispatchers.IO) { // Assuming you have Dispatchers available or inject them
-            val trashDir = File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) , "Trash")
+            val trashDir =
+                File(application.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "Trash")
             if (trashDir.exists()) trashDir.listFiles()?.toList() ?: emptyList()
             else emptyList()
         }
     }
 
-    override suspend fun deleteFiles(filesToDelete : Set<File>) {
+    override suspend fun deleteFiles(filesToDelete: Set<File>) {
         var totalSize = 0L
         filesToDelete.forEach { file ->
             if (file.exists()) {
@@ -150,41 +166,45 @@ class ScannerRepositoryImpl(
     }
 
     private fun clearClipboardImplementation() {
-        val clipboardManager : ClipboardManager = application.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager ?: return
+        val clipboardManager: ClipboardManager =
+            application.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager ?: return
 
         runCatching {
             clipboardManager.clearClipboardCompat()
         }
     }
 
-    override suspend fun moveToTrash(filesToMove : List<File>) {
-        if (! trashDir.exists()) {
+    override suspend fun moveToTrash(filesToMove: List<File>) {
+        if (!trashDir.exists()) {
             trashDir.mkdirs()
         }
 
         filesToMove.forEach { file ->
             if (file.exists()) {
-                val destination = File(trashDir , file.name)
+                val destination = File(trashDir, file.name)
 
                 if (file.renameTo(destination)) {
                     dataStore.addTrashFileOriginalPath(originalPath = file.absolutePath)
                     dataStore.addTrashSize(size = file.length())
                     MediaScannerConnection.scanFile(
-                        application , arrayOf(destination.absolutePath , file.absolutePath) , null , null
+                        application,
+                        arrayOf(destination.absolutePath, file.absolutePath),
+                        null,
+                        null
                     )
                 }
             }
         }
     }
 
-    override suspend fun restoreFromTrash(filesToRestore : Set<File>) {
-        val originalPaths : Set<String> = dataStore.trashFileOriginalPaths.first()
+    override suspend fun restoreFromTrash(filesToRestore: Set<File>) {
+        val originalPaths: Set<String> = dataStore.trashFileOriginalPaths.first()
         filesToRestore.forEach { file ->
             if (file.exists()) {
-                val originalPath : String? = originalPaths.firstOrNull { File(it).name == file.name }
+                val originalPath: String? = originalPaths.firstOrNull { File(it).name == file.name }
                 if (originalPath != null) {
                     val destinationFile = File(originalPath)
-                    val destinationParent : File? = destinationFile.parentFile
+                    val destinationParent: File? = destinationFile.parentFile
 
                     if (destinationParent?.exists() == false) {
                         destinationParent.mkdirs()
@@ -194,19 +214,25 @@ class ScannerRepositoryImpl(
                         dataStore.removeTrashFileOriginalPath(originalPath)
                         dataStore.subtractTrashSize(size = file.length())
                         MediaScannerConnection.scanFile(
-                            application , arrayOf(destinationFile.absolutePath , file.absolutePath) , null , null
+                            application,
+                            arrayOf(destinationFile.absolutePath, file.absolutePath),
+                            null,
+                            null
                         )
                     }
-                }
-                else {
-                    val downloadsDir : File = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                    val destinationFile = File(downloadsDir , file.name)
+                } else {
+                    val downloadsDir: File =
+                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                    val destinationFile = File(downloadsDir, file.name)
 
                     if (file.renameTo(destinationFile)) {
                         dataStore.removeTrashFileOriginalPath(file.absolutePath)
                         dataStore.subtractTrashSize(size = file.length())
                         MediaScannerConnection.scanFile(
-                            application , arrayOf(destinationFile.absolutePath , file.absolutePath) , null , null
+                            application,
+                            arrayOf(destinationFile.absolutePath, file.absolutePath),
+                            null,
+                            null
                         )
                     }
                 }
@@ -214,11 +240,11 @@ class ScannerRepositoryImpl(
         }
     }
 
-    override suspend fun addTrashSize(size : Long) {
+    override suspend fun addTrashSize(size: Long) {
         dataStore.addTrashSize(size = size)
     }
 
-    override suspend fun subtractTrashSize(size : Long) {
+    override suspend fun subtractTrashSize(size: Long) {
         dataStore.subtractTrashSize(size = size)
     }
 
@@ -229,12 +255,19 @@ class ScannerRepositoryImpl(
             val trashed = dataStore.trashFileOriginalPaths.first()
 
             // Load extension lists for basic type detection
-            val apkExt = application.resources.getStringArray(R.array.apk_extensions).map { it.lowercase() }
-            val videoExt = application.resources.getStringArray(R.array.video_extensions).map { it.lowercase() }
-            val imageExt = application.resources.getStringArray(R.array.image_extensions).map { it.lowercase() }
-            val audioExt = application.resources.getStringArray(R.array.audio_extensions).map { it.lowercase() }
-            val archiveExt = application.resources.getStringArray(R.array.archive_extensions).map { it.lowercase() }
-            val officeExt = application.resources.getStringArray(R.array.microsoft_office_extensions).map { it.lowercase() }
+            val apkExt =
+                application.resources.getStringArray(R.array.apk_extensions).map { it.lowercase() }
+            val videoExt = application.resources.getStringArray(R.array.video_extensions)
+                .map { it.lowercase() }
+            val imageExt = application.resources.getStringArray(R.array.image_extensions)
+                .map { it.lowercase() }
+            val audioExt = application.resources.getStringArray(R.array.audio_extensions)
+                .map { it.lowercase() }
+            val archiveExt = application.resources.getStringArray(R.array.archive_extensions)
+                .map { it.lowercase() }
+            val officeExt =
+                application.resources.getStringArray(R.array.microsoft_office_extensions)
+                    .map { it.lowercase() }
 
             fun fileType(file: File): String = when (file.extension.lowercase()) {
                 in videoExt -> "video"
@@ -253,8 +286,8 @@ class ScannerRepositoryImpl(
                 root = root,
                 skipDir = { dir ->
                     dir.absolutePath.startsWith(trashDir.absolutePath) ||
-                        dir.absolutePath.startsWith(File(root, "Android").absolutePath) ||
-                        dir.isHidden
+                            dir.absolutePath.startsWith(File(root, "Android").absolutePath) ||
+                            dir.isHidden
                 }
             ) { file ->
                 if (file.length() >= minSize && file.absolutePath !in trashed) {

@@ -18,5 +18,6 @@ object ApiPaths {
 }
 
 object ApiConstants {
-    const val BASE_REPOSITORY_URL: String = "${ApiHost.GITHUB_RAW_URL}/${ApiHost.USERNAME}/${ApiHost.API_REPO}/refs/heads/${ApiHost.API_BRANCH}/${ApiHost.API_FOLDER_PATH}"
+    const val BASE_REPOSITORY_URL: String =
+        "${ApiHost.GITHUB_RAW_URL}/${ApiHost.USERNAME}/${ApiHost.API_REPO}/refs/heads/${ApiHost.API_BRANCH}/${ApiHost.API_FOLDER_PATH}"
 }

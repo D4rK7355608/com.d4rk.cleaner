@@ -34,36 +34,41 @@ import com.d4rk.cleaner.R
  */
 @Composable
 fun SelectAllComposable(
-    selected : Boolean , view : View , onClickSelectAll : () -> Unit
+    selected: Boolean, view: View, onClickSelectAll: () -> Unit
 ) {
 
     Row(
         modifier = Modifier
-                .fillMaxWidth()
-                .animateContentSize() , verticalAlignment = Alignment.CenterVertically , horizontalArrangement = Arrangement.End
+            .fillMaxWidth()
+            .animateContentSize(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.End
     ) {
-        val interactionSource : MutableInteractionSource = remember { MutableInteractionSource() }
+        val interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
         FilterChip(
-            modifier = Modifier.bounceClick() ,
-            selected = selected ,
+            modifier = Modifier.bounceClick(),
+            selected = selected,
             onClick = {
                 onClickSelectAll()
                 view.playSoundEffect(SoundEffectConstants.CLICK)
-            } ,
-            label = { Text(text = stringResource(id = R.string.select_all)) } ,
+            },
+            label = { Text(text = stringResource(id = R.string.select_all)) },
             leadingIcon = {
                 AnimatedContent(
                     targetState = selected,
-                    transitionSpec = { SelectAllTransitions.fadeScale } , label = "Checkmark Animation"
+                    transitionSpec = { SelectAllTransitions.fadeScale },
+                    label = "Checkmark Animation"
                 ) { targetChecked ->
                     if (targetChecked) {
                         Icon(
-                            imageVector = Icons.Filled.Check , contentDescription = null , modifier = Modifier.size(size = 18.dp)
+                            imageVector = Icons.Filled.Check,
+                            contentDescription = null,
+                            modifier = Modifier.size(size = 18.dp)
                         )
                     }
                 }
-            } ,
-            interactionSource = interactionSource ,
+            },
+            interactionSource = interactionSource,
         )
     }
 }

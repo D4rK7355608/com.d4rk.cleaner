@@ -22,15 +22,15 @@ import com.d4rk.cleaner.app.main.domain.model.UiMainScreen
 import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 
 class MainViewModel(
-    private val performInAppUpdateUseCase : PerformInAppUpdateUseCase,
+    private val performInAppUpdateUseCase: PerformInAppUpdateUseCase,
     private val getTrashSizeUseCase: GetTrashSizeUseCase,
-) : ScreenViewModel<UiMainScreen , MainEvent , MainAction>(initialState = UiStateScreen(data = UiMainScreen())) {
+) : ScreenViewModel<UiMainScreen, MainEvent, MainAction>(initialState = UiStateScreen(data = UiMainScreen())) {
 
     init {
         onEvent(event = MainEvent.LoadNavigation)
     }
 
-    override fun onEvent(event : MainEvent) {
+    override fun onEvent(event: MainEvent) {
         when (event) {
             is MainEvent.LoadNavigation -> loadNavigationItems()
             is MainEvent.CheckForUpdates -> checkAppUpdate()
@@ -39,7 +39,7 @@ class MainViewModel(
 
     private fun checkAppUpdate() {
         launch {
-            performInAppUpdateUseCase(param = Unit).collect { _ : DataState<Int , Errors> -> }
+            performInAppUpdateUseCase(param = Unit).collect { _: DataState<Int, Errors> -> }
         }
     }
 
@@ -52,24 +52,24 @@ class MainViewModel(
                 copy(
                     navigationDrawerItems = listOf(
                         NavigationDrawerItem(
-                            title = com.d4rk.cleaner.R.string.image_optimizer ,
-                            selectedIcon = Icons.Outlined.Photo ,
-                        ) , NavigationDrawerItem(
-                            title = com.d4rk.cleaner.R.string.trash ,
-                            selectedIcon = Icons.Outlined.Delete ,
-                            badgeText = trashBadge ,
-                        ) , NavigationDrawerItem(
-                            title = R.string.settings ,
-                            selectedIcon = Icons.Outlined.Settings ,
-                        ) , NavigationDrawerItem(
-                            title = R.string.help_and_feedback ,
-                            selectedIcon = Icons.AutoMirrored.Outlined.HelpOutline ,
-                        ) , NavigationDrawerItem(
-                            title = R.string.updates ,
-                            selectedIcon = Icons.AutoMirrored.Outlined.EventNote ,
-                        ) , NavigationDrawerItem(
-                            title = R.string.share ,
-                            selectedIcon = Icons.Outlined.Share ,
+                            title = com.d4rk.cleaner.R.string.image_optimizer,
+                            selectedIcon = Icons.Outlined.Photo,
+                        ), NavigationDrawerItem(
+                            title = com.d4rk.cleaner.R.string.trash,
+                            selectedIcon = Icons.Outlined.Delete,
+                            badgeText = trashBadge,
+                        ), NavigationDrawerItem(
+                            title = R.string.settings,
+                            selectedIcon = Icons.Outlined.Settings,
+                        ), NavigationDrawerItem(
+                            title = R.string.help_and_feedback,
+                            selectedIcon = Icons.AutoMirrored.Outlined.HelpOutline,
+                        ), NavigationDrawerItem(
+                            title = R.string.updates,
+                            selectedIcon = Icons.AutoMirrored.Outlined.EventNote,
+                        ), NavigationDrawerItem(
+                            title = R.string.share,
+                            selectedIcon = Icons.Outlined.Share,
                         )
                     )
                 )

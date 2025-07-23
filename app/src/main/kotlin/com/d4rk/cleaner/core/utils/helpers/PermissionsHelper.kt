@@ -26,25 +26,25 @@ object PermissionsHelper {
      * @param context The application context.
      * @return True if all required permissions are granted, false otherwise.
      */
-    fun hasStoragePermissions(context : Context) : Boolean {
-        val hasStoragePermissions : Boolean = when {
+    fun hasStoragePermissions(context: Context): Boolean {
+        val hasStoragePermissions: Boolean = when {
             Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q -> ContextCompat.checkSelfPermission(
-                context , Manifest.permission.WRITE_EXTERNAL_STORAGE
+                context, Manifest.permission.WRITE_EXTERNAL_STORAGE
             ) == PackageManager.PERMISSION_GRANTED
 
             Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2 -> ContextCompat.checkSelfPermission(
-                context , Manifest.permission.READ_EXTERNAL_STORAGE
+                context, Manifest.permission.READ_EXTERNAL_STORAGE
             ) == PackageManager.PERMISSION_GRANTED
 
             else -> true
         }
 
-        val hasManageStoragePermission : Boolean = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            Environment.isExternalStorageManager()
-        }
-        else {
-            true
-        }
+        val hasManageStoragePermission: Boolean =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                Environment.isExternalStorageManager()
+            } else {
+                true
+            }
 
         return hasStoragePermissions && hasManageStoragePermission
     }
@@ -54,25 +54,24 @@ object PermissionsHelper {
      *
      * @param activity The Activity instance required to request permissions.
      */
-    fun requestStoragePermissions(activity : Activity) {
-        val requiredPermissions : MutableList<String> = mutableListOf(
-            Manifest.permission.WRITE_EXTERNAL_STORAGE , Manifest.permission.READ_EXTERNAL_STORAGE
+    fun requestStoragePermissions(activity: Activity) {
+        val requiredPermissions: MutableList<String> = mutableListOf(
+            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE
         )
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (! Environment.isExternalStorageManager()) {
+            if (!Environment.isExternalStorageManager()) {
                 val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
-                val uri : Uri = Uri.fromParts("package" , activity.packageName , null)
+                val uri: Uri = Uri.fromParts("package", activity.packageName, null)
                 intent.data = uri
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
 
-                val packageManager : PackageManager = activity.packageManager
+                val packageManager: PackageManager = activity.packageManager
                 if (intent.resolveActivity(packageManager) != null) {
                     runCatching { activity.startActivity(intent) }
-                }
-                else {
+                } else {
                     val fallbackIntent = Intent(
-                        Settings.ACTION_APPLICATION_DETAILS_SETTINGS , uri
+                        Settings.ACTION_APPLICATION_DETAILS_SETTINGS, uri
                     )
                     fallbackIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                     if (fallbackIntent.resolveActivity(packageManager) != null) {
@@ -84,24 +83,25 @@ object PermissionsHelper {
         }
 
         ActivityCompat.requestPermissions(
-            activity , requiredPermissions.toTypedArray() , AppPermissionsConstants.REQUEST_CODE_STORAGE_PERMISSIONS
+            activity,
+            requiredPermissions.toTypedArray(),
+            AppPermissionsConstants.REQUEST_CODE_STORAGE_PERMISSIONS
         )
     }
 
-    fun hasUsageAccessPermissions(context : Context) : Boolean {
-        val hasUsageStatsPermission : Boolean = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+    fun hasUsageAccessPermissions(context: Context): Boolean {
+        val hasUsageStatsPermission: Boolean = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             isAccessGranted(context)
-        }
-        else {
+        } else {
             true
         }
 
         return hasUsageStatsPermission
     }
 
-    fun requestUsageAccess(activity : Activity) {
+    fun requestUsageAccess(activity: Activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (! isAccessGranted(activity)) {
+            if (!isAccessGranted(activity)) {
                 val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                 activity.startActivity(intent)
@@ -115,12 +115,14 @@ object PermissionsHelper {
      * @param context The application context.
      * @return True if access is granted, false otherwise.
      */
-    private fun isAccessGranted(context : Context) : Boolean = runCatching {
-        val packageManager : PackageManager = context.packageManager
-        val applicationInfo : ApplicationInfo = packageManager.getApplicationInfo(context.packageName , 0)
-        val appOpsManager : AppOpsManager = context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
-        @Suppress("DEPRECATION") val mode : Int = appOpsManager.checkOpNoThrow(
-            AppOpsManager.OPSTR_GET_USAGE_STATS , applicationInfo.uid , applicationInfo.packageName
+    private fun isAccessGranted(context: Context): Boolean = runCatching {
+        val packageManager: PackageManager = context.packageManager
+        val applicationInfo: ApplicationInfo =
+            packageManager.getApplicationInfo(context.packageName, 0)
+        val appOpsManager: AppOpsManager =
+            context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+        @Suppress("DEPRECATION") val mode: Int = appOpsManager.checkOpNoThrow(
+            AppOpsManager.OPSTR_GET_USAGE_STATS, applicationInfo.uid, applicationInfo.packageName
         )
         return mode == AppOpsManager.MODE_ALLOWED
     }.getOrElse { false }

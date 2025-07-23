@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.flow
 import java.io.File
 
 class DeleteFilesUseCase(
-    private val homeRepository : ScannerRepositoryInterface
+    private val homeRepository: ScannerRepositoryInterface
 ) {
     operator fun invoke(filesToDelete: Set<File>): Flow<DataState<Unit, Errors>> = flow {
         runCatching {

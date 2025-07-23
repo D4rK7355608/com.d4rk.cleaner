@@ -34,10 +34,10 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FileSizeTab(viewModel : ImageOptimizerViewModel) {
-    val state : State<UiImageOptimizerState> = viewModel.uiState.collectAsState()
-    val coroutineScope : CoroutineScope = rememberCoroutineScope()
-    var originalSizeKB : Int by remember { mutableIntStateOf(value = 0) }
+fun FileSizeTab(viewModel: ImageOptimizerViewModel) {
+    val state: State<UiImageOptimizerState> = viewModel.uiState.collectAsState()
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
+    var originalSizeKB: Int by remember { mutableIntStateOf(value = 0) }
 
     LaunchedEffect(key1 = state.value.selectedImageUri) {
         state.value.selectedImageUri?.let { uri ->
@@ -45,45 +45,43 @@ fun FileSizeTab(viewModel : ImageOptimizerViewModel) {
         }
     }
 
-    val presetSizes : List<String> = if (originalSizeKB > 0) {
+    val presetSizes: List<String> = if (originalSizeKB > 0) {
         viewModel.generateDynamicPresets(originalSizeKB)
-    }
-    else {
+    } else {
         stringArrayResource(id = R.array.file_sizes).toList()
     }
 
-    var fileSizeText : String = if (state.value.fileSizeKB == 0) {
+    var fileSizeText: String = if (state.value.fileSizeKB == 0) {
         stringResource(id = R.string.default_value)
-    }
-    else {
+    } else {
         state.value.fileSizeKB.toString()
     }
 
-    var expanded : Boolean by remember { mutableStateOf(value = false) }
+    var expanded: Boolean by remember { mutableStateOf(value = false) }
 
     Column(modifier = Modifier.padding(all = SizeConstants.LargeSize)) {
-        ExposedDropdownMenuBox(expanded = expanded , onExpandedChange = { expanded = ! expanded }) {
+        ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }) {
             OutlinedTextField(
-                value = fileSizeText ,
-                              onValueChange = { newValue ->
-                                  fileSizeText = newValue
-                                  coroutineScope.launch {
-                                      viewModel.setFileSize(size = newValue.toIntOrNull() ?: 0)
-                                  }
-                              } ,
-                              label = { Text(text = stringResource(id = R.string.file_size)) } ,
-                              singleLine = true ,
-                              keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number) ,
-                              supportingText = { Text(text = stringResource(id = R.string.enter_a_value)) } ,
-                              trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) } ,
-                              isError = fileSizeText.isNotEmpty() && fileSizeText.toFloatOrNull() == null ,
-                              modifier = Modifier
-                                      .menuAnchor(type = MenuAnchorType.PrimaryNotEditable , enabled = true)
-                                      .fillMaxWidth()
-                                      .padding(top = SizeConstants.MediumSize))
-            ExposedDropdownMenu(expanded = expanded , onDismissRequest = { expanded = false }) {
+                value = fileSizeText,
+                onValueChange = { newValue ->
+                    fileSizeText = newValue
+                    coroutineScope.launch {
+                        viewModel.setFileSize(size = newValue.toIntOrNull() ?: 0)
+                    }
+                },
+                label = { Text(text = stringResource(id = R.string.file_size)) },
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                supportingText = { Text(text = stringResource(id = R.string.enter_a_value)) },
+                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                isError = fileSizeText.isNotEmpty() && fileSizeText.toFloatOrNull() == null,
+                modifier = Modifier
+                    .menuAnchor(type = MenuAnchorType.PrimaryNotEditable, enabled = true)
+                    .fillMaxWidth()
+                    .padding(top = SizeConstants.MediumSize))
+            ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
                 presetSizes.forEach { size ->
-                    DropdownMenuItem(text = { Text(text = "$size KB") } , onClick = {
+                    DropdownMenuItem(text = { Text(text = "$size KB") }, onClick = {
                         fileSizeText = size
                         coroutineScope.launch {
                             viewModel.setFileSize(size = size.toIntOrNull() ?: 0)

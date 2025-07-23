@@ -29,9 +29,9 @@ import kotlinx.coroutines.supervisorScope
 import org.koin.android.ext.android.getKoin
 
 class Cleaner : BaseCoreManager(), SingletonImageLoader.Factory, DefaultLifecycleObserver {
-    private var currentActivity : Activity? = null
+    private var currentActivity: Activity? = null
 
-    private val adsCoreManager : AdsCoreManager by lazy { getKoin().get<AdsCoreManager>() }
+    private val adsCoreManager: AdsCoreManager by lazy { getKoin().get<AdsCoreManager>() }
 
     override fun onCreate() {
         initializeKoin(context = this)
@@ -52,7 +52,7 @@ class Cleaner : BaseCoreManager(), SingletonImageLoader.Factory, DefaultLifecycl
         ProcessLifecycleOwner.get().lifecycle.addObserver(observer = this)
     }
 
-    override suspend fun onInitializeApp() : Unit = supervisorScope {
+    override suspend fun onInitializeApp(): Unit = supervisorScope {
         listOf(async { initializeAds() }).awaitAll()
     }
 
@@ -64,9 +64,9 @@ class Cleaner : BaseCoreManager(), SingletonImageLoader.Factory, DefaultLifecycl
         currentActivity?.let { adsCoreManager.showAdIfAvailable(it) }
     }
 
-    override fun onActivityCreated(activity : Activity , savedInstanceState : Bundle?) {}
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
 
-    override fun onActivityStarted(activity : Activity) {
+    override fun onActivityStarted(activity: Activity) {
         currentActivity = activity
     }
 

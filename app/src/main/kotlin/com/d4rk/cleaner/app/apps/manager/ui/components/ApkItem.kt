@@ -45,35 +45,42 @@ import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 import java.io.File
 
 @Composable
-fun ApkItem(apkPath : String , viewModel : AppManagerViewModel , modifier : Modifier) {
-    val context : Context = LocalContext.current
-    val view : View = LocalView.current
+fun ApkItem(apkPath: String, viewModel: AppManagerViewModel, modifier: Modifier) {
+    val context: Context = LocalContext.current
+    val view: View = LocalView.current
     val apkFile = File(apkPath)
-    var showMenu : Boolean by remember { mutableStateOf(value = false) }
+    var showMenu: Boolean by remember { mutableStateOf(value = false) }
 
     val model = remember(apkPath) {
-        context.packageManager.getPackageArchiveInfo(apkPath , 0)?.applicationInfo?.loadIcon(context.packageManager)
+        context.packageManager.getPackageArchiveInfo(
+            apkPath,
+            0
+        )?.applicationInfo?.loadIcon(context.packageManager)
     }
 
     OutlinedCard(modifier = modifier) {
 
         Row(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(SizeConstants.LargeSize)
-                    .clip(RoundedCornerShape(SizeConstants.LargeSize)) , verticalAlignment = Alignment.CenterVertically
+                .fillMaxWidth()
+                .padding(SizeConstants.LargeSize)
+                .clip(RoundedCornerShape(SizeConstants.LargeSize)),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             AsyncImage(
-                model = model , contentDescription = null , modifier = Modifier.size(48.dp) , contentScale = ContentScale.Fit
+                model = model,
+                contentDescription = null,
+                modifier = Modifier.size(48.dp),
+                contentScale = ContentScale.Fit
             )
             Column(
                 modifier = Modifier
-                        .padding(SizeConstants.LargeSize)
-                        .weight(1f)
+                    .padding(SizeConstants.LargeSize)
+                    .weight(1f)
             ) {
                 Text(
-                    text = apkFile.name ,
-                    style = MaterialTheme.typography.titleMedium ,
+                    text = apkFile.name,
+                    style = MaterialTheme.typography.titleMedium,
                 )
                 Text(
                     text = FileSizeFormatter.format(apkFile.length()),
@@ -88,22 +95,39 @@ fun ApkItem(apkPath : String , viewModel : AppManagerViewModel , modifier : Modi
                         showMenu = true
                     })
 
-                DropdownMenu(expanded = showMenu , onDismissRequest = {
+                DropdownMenu(expanded = showMenu, onDismissRequest = {
                     showMenu = false
                 }) {
-                    DropdownMenuItem(modifier = Modifier.bounceClick() , text = { Text(stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.share)) } , leadingIcon = {
-                        Icon(imageVector = Icons.Outlined.Share , contentDescription = null)
-                    } , onClick = {
-                        view.playSoundEffect(SoundEffectConstants.CLICK)
-                        viewModel.onEvent(AppManagerEvent.ShareItem(AppManagerItem.ApkFile(apkPath)))
-                    })
+                    DropdownMenuItem(
+                        modifier = Modifier.bounceClick(),
+                        text = { Text(stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.share)) },
+                        leadingIcon = {
+                            Icon(imageVector = Icons.Outlined.Share, contentDescription = null)
+                        },
+                        onClick = {
+                            view.playSoundEffect(SoundEffectConstants.CLICK)
+                            viewModel.onEvent(
+                                AppManagerEvent.ShareItem(
+                                    AppManagerItem.ApkFile(
+                                        apkPath
+                                    )
+                                )
+                            )
+                        })
 
-                    DropdownMenuItem(modifier = Modifier.bounceClick() , text = { Text(stringResource(id = R.string.install)) } , leadingIcon = {
-                        Icon(imageVector = Icons.Outlined.InstallMobile , contentDescription = null)
-                    } , onClick = {
-                        view.playSoundEffect(SoundEffectConstants.CLICK)
-                        viewModel.installApk(apkPath)
-                    })
+                    DropdownMenuItem(
+                        modifier = Modifier.bounceClick(),
+                        text = { Text(stringResource(id = R.string.install)) },
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Outlined.InstallMobile,
+                                contentDescription = null
+                            )
+                        },
+                        onClick = {
+                            view.playSoundEffect(SoundEffectConstants.CLICK)
+                            viewModel.installApk(apkPath)
+                        })
                 }
             }
         }

@@ -32,9 +32,9 @@ import kotlinx.coroutines.CoroutineScope
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun AnalyzeScreen(
-    view: View ,
-    viewModel: ScannerViewModel ,
-    data: UiScannerModel ,
+    view: View,
+    viewModel: ScannerViewModel,
+    data: UiScannerModel,
 ) {
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val hasSelectedFiles: Boolean = data.analyzeState.selectedFilesCount > 0

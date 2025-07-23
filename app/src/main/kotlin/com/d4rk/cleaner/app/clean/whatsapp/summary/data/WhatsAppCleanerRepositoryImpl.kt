@@ -11,13 +11,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 
-class WhatsAppCleanerRepositoryImpl(private val application: Application) : WhatsAppCleanerRepository {
+class WhatsAppCleanerRepositoryImpl(private val application: Application) :
+    WhatsAppCleanerRepository {
 
     private fun getWhatsAppMediaDir(): File {
-        val scoped = File(Environment.getExternalStorageDirectory(),
-            "Android/media/com.whatsapp/WhatsApp/Media")
-        val legacy = File(Environment.getExternalStorageDirectory(),
-            "WhatsApp/Media")
+        val scoped = File(
+            Environment.getExternalStorageDirectory(),
+            "Android/media/com.whatsapp/WhatsApp/Media"
+        )
+        val legacy = File(
+            Environment.getExternalStorageDirectory(),
+            "WhatsApp/Media"
+        )
         return when {
             scoped.exists() -> scoped
             legacy.exists() -> legacy
@@ -84,16 +89,18 @@ class WhatsAppCleanerRepositoryImpl(private val application: Application) : What
         }
     }
 
-    override suspend fun listMediaFiles(type: String, offset: Int, limit: Int): List<File> = withContext(Dispatchers.IO) {
-        val base = getWhatsAppMediaDir()
-        val dirName = WhatsAppMediaConstants.DIRECTORIES[type] ?: return@withContext emptyList<File>()
-        val dir = File(base, dirName)
-        if (!dir.exists()) return@withContext emptyList<File>()
-        dir.walkTopDown()
-            .filter { it.isFile && it.name != ".nomedia" }
-            .drop(offset)
-            .take(limit)
-            .toList()
-    }
+    override suspend fun listMediaFiles(type: String, offset: Int, limit: Int): List<File> =
+        withContext(Dispatchers.IO) {
+            val base = getWhatsAppMediaDir()
+            val dirName =
+                WhatsAppMediaConstants.DIRECTORIES[type] ?: return@withContext emptyList<File>()
+            val dir = File(base, dirName)
+            if (!dir.exists()) return@withContext emptyList<File>()
+            dir.walkTopDown()
+                .filter { it.isFile && it.name != ".nomedia" }
+                .drop(offset)
+                .take(limit)
+                .toList()
+        }
 
 }

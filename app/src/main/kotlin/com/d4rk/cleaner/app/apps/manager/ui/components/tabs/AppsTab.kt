@@ -27,7 +27,7 @@ fun AppsTab(
     viewModel: AppManagerViewModel,
     paddingValues: PaddingValues = PaddingValues(),
 ) {
-    Crossfade(targetState = isLoading , label = "AppsTabCrossfade") { isLoadingState ->
+    Crossfade(targetState = isLoading, label = "AppsTabCrossfade") { isLoadingState ->
         when {
             isLoadingState -> {
                 ShimmerLoadingScreen(paddingValues)
@@ -35,7 +35,7 @@ fun AppsTab(
 
             apps.isEmpty() -> {
                 NoDataScreen(
-                    textMessage = R.string.no_app_installed , showRetry = true , onRetry = {
+                    textMessage = R.string.no_app_installed, showRetry = true, onRetry = {
                         viewModel.onEvent(event = AppManagerEvent.LoadAppData)
                     })
             }
@@ -43,20 +43,27 @@ fun AppsTab(
             else -> {
                 val context = LocalContext.current
                 val packageManager = context.packageManager
-                val sorted = apps.sortedBy { packageManager.getApplicationLabel(it).toString().lowercase() }
+                val sorted =
+                    apps.sortedBy { packageManager.getApplicationLabel(it).toString().lowercase() }
                 LazyColumn(
                     contentPadding = PaddingValues(horizontal = SizeConstants.ExtraTinySize),
                     verticalArrangement = Arrangement.spacedBy(space = SizeConstants.ExtraTinySize),
                     modifier = Modifier.fillMaxSize(),
                 ) {
-                    itemsIndexed(items = sorted, key = { _: Int, app: ApplicationInfo -> app.packageName }) { _: Int, app: ApplicationInfo ->
+                    itemsIndexed(
+                        items = sorted,
+                        key = { _: Int, app: ApplicationInfo -> app.packageName }) { _: Int, app: ApplicationInfo ->
                         AppItemComposable(
                             app = app,
                             lastUsed = usageStats[app.packageName],
                             viewModel = viewModel,
                             modifier = Modifier
                                 .animateItem()
-                                .padding(start = SizeConstants.SmallSize, end = SizeConstants.SmallSize, top = SizeConstants.SmallSize)
+                                .padding(
+                                    start = SizeConstants.SmallSize,
+                                    end = SizeConstants.SmallSize,
+                                    top = SizeConstants.SmallSize
+                                )
                         )
                     }
                 }

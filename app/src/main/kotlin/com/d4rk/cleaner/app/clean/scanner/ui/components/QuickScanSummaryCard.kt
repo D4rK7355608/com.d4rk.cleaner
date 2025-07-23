@@ -69,8 +69,8 @@ fun QuickScanSummaryCard(
     )
 
     OutlinedCard(
-        modifier = modifier.fillMaxWidth() ,
-        shape = RoundedCornerShape(size = SizeConstants.ExtraLargeSize) ,
+        modifier = modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(size = SizeConstants.ExtraLargeSize),
     ) {
         Row(
             modifier = Modifier

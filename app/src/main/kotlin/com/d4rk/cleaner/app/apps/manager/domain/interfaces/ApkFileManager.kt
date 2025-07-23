@@ -6,5 +6,5 @@ import com.d4rk.cleaner.core.domain.model.network.Errors
 import kotlinx.coroutines.flow.Flow
 
 interface ApkFileManager {
-    fun getApkFilesFromStorage() : Flow<DataState<List<ApkInfo> , Errors>>
+    fun getApkFilesFromStorage(): Flow<DataState<List<ApkInfo>, Errors>>
 }

@@ -5,5 +5,5 @@ import com.d4rk.cleaner.core.domain.model.network.Errors
 import kotlinx.coroutines.flow.Flow
 
 interface AppInfoOpener {
-    fun openAppInfo(packageName : String) : Flow<DataState<Unit , Errors>>
+    fun openAppInfo(packageName: String): Flow<DataState<Unit, Errors>>
 }

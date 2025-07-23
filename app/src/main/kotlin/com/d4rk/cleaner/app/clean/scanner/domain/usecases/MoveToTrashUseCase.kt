@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.flow
 import java.io.File
 
 class MoveToTrashUseCase(
-    private val homeRepository : ScannerRepositoryInterface
+    private val homeRepository: ScannerRepositoryInterface
 ) {
-    operator fun invoke(filesToMove : List<File>) : Flow<DataState<Unit , Errors>> = flow {
+    operator fun invoke(filesToMove: List<File>): Flow<DataState<Unit, Errors>> = flow {
         runCatching {
             emit(DataState.Loading())
             homeRepository.moveToTrash(filesToMove)

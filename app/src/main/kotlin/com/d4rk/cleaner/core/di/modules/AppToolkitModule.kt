@@ -14,7 +14,7 @@ import org.koin.core.module.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
-val appToolkitModule : Module = module {
+val appToolkitModule: Module = module {
     single<StartupProvider> { AppStartupProvider() }
 
     single(createdAtStart = true) { BillingRepository.getInstance(context = get()) }
@@ -45,5 +45,10 @@ val appToolkitModule : Module = module {
 
     single(qualifier = named("github_token")) { BuildConfig.GITHUB_TOKEN }
 
-    single<HelpScreenConfig> { HelpScreenConfig(versionName = BuildConfig.VERSION_NAME , versionCode = BuildConfig.VERSION_CODE) }
+    single<HelpScreenConfig> {
+        HelpScreenConfig(
+            versionName = BuildConfig.VERSION_NAME,
+            versionCode = BuildConfig.VERSION_CODE
+        )
+    }
 }

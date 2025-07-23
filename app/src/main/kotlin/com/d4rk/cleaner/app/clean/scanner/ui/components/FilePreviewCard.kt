@@ -46,19 +46,25 @@ import java.io.File
 fun FilePreviewCard(file: File, modifier: Modifier = Modifier) {
     val context: Context = LocalContext.current
     val fileExtension: String = remember(file.name) { getFileExtension(file.name) }
-    val imageExtensions = remember { context.resources.getStringArray(R.array.image_extensions).toList() }
-    val videoExtensions = remember { context.resources.getStringArray(R.array.video_extensions).toList() }
-    val officeExtensions = remember { context.resources.getStringArray(R.array.microsoft_office_extensions).toList() }
-    val apkExtensions = remember { context.resources.getStringArray(R.array.apk_extensions).toList() }
+    val imageExtensions =
+        remember { context.resources.getStringArray(R.array.image_extensions).toList() }
+    val videoExtensions =
+        remember { context.resources.getStringArray(R.array.video_extensions).toList() }
+    val officeExtensions =
+        remember { context.resources.getStringArray(R.array.microsoft_office_extensions).toList() }
+    val apkExtensions =
+        remember { context.resources.getStringArray(R.array.apk_extensions).toList() }
     val imageLoader = LocalContext.current.imageLoader
 
     Card(
         modifier = modifier.aspectRatio(1f),
         shape = RoundedCornerShape(SizeConstants.MediumSize)
     ) {
-        Box(modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.surfaceVariant)) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.surfaceVariant)
+        ) {
             if (file.isDirectory) {
                 Icon(
                     imageVector = Icons.Outlined.Folder,
@@ -72,7 +78,8 @@ fun FilePreviewCard(file: File, modifier: Modifier = Modifier) {
                     in imageExtensions -> {
                         AsyncImage(
                             model = remember(file) {
-                                ImageRequest.Builder(context).data(file).size(64).crossfade(true).build()
+                                ImageRequest.Builder(context).data(file).size(64).crossfade(true)
+                                    .build()
                             },
                             imageLoader = imageLoader,
                             contentDescription = file.name,
@@ -80,21 +87,27 @@ fun FilePreviewCard(file: File, modifier: Modifier = Modifier) {
                             modifier = Modifier.fillMaxWidth()
                         )
                     }
+
                     in videoExtensions -> {
                         AsyncImage(
                             model = remember(file) {
-                                ImageRequest.Builder(context).data(file).decoderFactory { result, options, _ ->
-                                    VideoFrameDecoder(result.source, options)
-                                }.videoFramePercent(0.5).crossfade(true).build()
+                                ImageRequest.Builder(context).data(file)
+                                    .decoderFactory { result, options, _ ->
+                                        VideoFrameDecoder(result.source, options)
+                                    }.videoFramePercent(0.5).crossfade(true).build()
                             },
                             contentDescription = file.name,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
                     }
+
                     in apkExtensions -> {
                         val icon = remember(file.path) {
-                            context.packageManager.getPackageArchiveInfo(file.path, 0)?.applicationInfo?.apply {
+                            context.packageManager.getPackageArchiveInfo(
+                                file.path,
+                                0
+                            )?.applicationInfo?.apply {
                                 sourceDir = file.path
                                 publicSourceDir = file.path
                             }?.loadIcon(context.packageManager)
@@ -117,6 +130,7 @@ fun FilePreviewCard(file: File, modifier: Modifier = Modifier) {
                             )
                         }
                     }
+
                     in officeExtensions -> {
                         if (fileExtension.lowercase() == "pdf") {
                             val pdfBitmap = remember(file) { loadPdfThumbnail(file) }
@@ -146,8 +160,10 @@ fun FilePreviewCard(file: File, modifier: Modifier = Modifier) {
                             )
                         }
                     }
+
                     else -> {
-                        val fileIcon = remember(fileExtension) { getFileIcon(fileExtension, context) }
+                        val fileIcon =
+                            remember(fileExtension) { getFileIcon(fileExtension, context) }
                         Icon(
                             painter = painterResource(id = fileIcon),
                             contentDescription = null,

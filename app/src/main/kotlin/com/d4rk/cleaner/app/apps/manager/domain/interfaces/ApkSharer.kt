@@ -6,5 +6,5 @@ import com.d4rk.cleaner.core.domain.model.network.Errors
 import kotlinx.coroutines.flow.Flow
 
 interface ApkSharer {
-    fun prepareShareIntent(apkPath : String) : Flow<DataState<Intent , Errors>>
+    fun prepareShareIntent(apkPath: String): Flow<DataState<Intent, Errors>>
 }

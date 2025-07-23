@@ -74,7 +74,10 @@ fun CleanerTopAppBar(
     TopAppBar(
         title = {
             Box(
-                modifier = Modifier.fillMaxSize().animateContentSize(), contentAlignment = Alignment.CenterStart
+                modifier = Modifier
+                    .fillMaxSize()
+                    .animateContentSize(),
+                contentAlignment = Alignment.CenterStart
             ) {
                 AnimatedVisibility(
                     visible = showSearch,
@@ -83,9 +86,9 @@ fun CleanerTopAppBar(
                 ) {
                     OutlinedTextField(
                         modifier = Modifier
-                                .height(48.dp)
-                                .clip(CircleShape)
-                                .fillMaxWidth(),
+                            .height(48.dp)
+                            .clip(CircleShape)
+                            .fillMaxWidth(),
                         shape = CircleShape,
                         value = searchQuery,
                         onValueChange = onSearchQueryChange,

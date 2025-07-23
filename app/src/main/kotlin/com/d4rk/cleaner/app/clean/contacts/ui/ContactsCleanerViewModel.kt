@@ -29,7 +29,9 @@ class ContactsCleanerViewModel(
     initialState = UiStateScreen(data = UiContactsCleanerModel())
 ) {
 
-    init { onEvent(ContactsCleanerEvent.LoadDuplicates) }
+    init {
+        onEvent(ContactsCleanerEvent.LoadDuplicates)
+    }
 
     override fun onEvent(event: ContactsCleanerEvent) {
         when (event) {
@@ -38,10 +40,12 @@ class ContactsCleanerViewModel(
                 deleteOlder(event.group)
                 onEvent(ContactsCleanerEvent.LoadDuplicates)
             }
+
             is ContactsCleanerEvent.MergeAll -> launch(dispatchers.io) {
                 merge(event.group)
                 onEvent(ContactsCleanerEvent.LoadDuplicates)
             }
+
             is ContactsCleanerEvent.ToggleGroupSelection -> handleToggleGroupSelection(event.group)
             is ContactsCleanerEvent.ToggleContactSelection -> handleToggleContactSelection(event.contact)
             ContactsCleanerEvent.MergeSelectedContacts -> handleMergeSelectedContacts()
@@ -75,6 +79,7 @@ class ContactsCleanerViewModel(
                                 }
                             )
                         )
+
                         is DataState.Error -> current.copy(
                             screenState = ScreenState.Error(),
                             errors = current.errors + UiSnackbar(
@@ -139,7 +144,8 @@ class ContactsCleanerViewModel(
                 val updated = current.data?.duplicates?.map { duplicateGroup ->
                     if (duplicateGroup.contacts == group) {
                         val shouldSelect = duplicateGroup.contacts.any { !it.isSelected }
-                        val updatedContacts = duplicateGroup.contacts.map { it.copy(isSelected = shouldSelect) }
+                        val updatedContacts =
+                            duplicateGroup.contacts.map { it.copy(isSelected = shouldSelect) }
                         duplicateGroup.copy(contacts = updatedContacts, isSelected = shouldSelect)
                     } else {
                         duplicateGroup

@@ -5,7 +5,7 @@ import java.io.File
 
 sealed interface TrashEvent : UiEvent {
     data object LoadTrashItems : TrashEvent
-    data class OnFileSelectionChange(val file : File , val isChecked : Boolean) : TrashEvent
+    data class OnFileSelectionChange(val file: File, val isChecked: Boolean) : TrashEvent
     data object RestoreSelectedFiles : TrashEvent
     data object DeleteSelectedFilesPermanently : TrashEvent
 }

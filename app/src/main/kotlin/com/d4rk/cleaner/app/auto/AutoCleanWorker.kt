@@ -59,9 +59,16 @@ class AutoCleanWorker(
             ExtensionsConstants.OTHER_EXTENSIONS to dataStore.deleteOtherFiles.first()
         )
         val includeDuplicates = dataStore.deleteDuplicateFiles.first() &&
-            dataStore.duplicateScanEnabled.first()
+                dataStore.duplicateScanEnabled.first()
         val deepDuplicateSearch = dataStore.deepDuplicateSearch.first()
-        val toDelete = computeFilesToClean(files, emptyFolders, types, prefs, includeDuplicates, deepDuplicateSearch)
+        val toDelete = computeFilesToClean(
+            files,
+            emptyFolders,
+            types,
+            prefs,
+            includeDuplicates,
+            deepDuplicateSearch
+        )
         if (toDelete.isEmpty()) return Result.success()
 
         deleteFiles(filesToDelete = toDelete.toSet()).collect {}
@@ -79,12 +86,17 @@ class AutoCleanWorker(
         deepDuplicateSearch: Boolean
     ): List<File> {
         val knownExtensions = (fileTypesData.imageExtensions + fileTypesData.videoExtensions +
-            fileTypesData.audioExtensions + fileTypesData.officeExtensions + fileTypesData.archiveExtensions +
-            fileTypesData.apkExtensions + fileTypesData.fontExtensions + fileTypesData.windowsExtensions).toSet()
+                fileTypesData.audioExtensions + fileTypesData.officeExtensions + fileTypesData.archiveExtensions +
+                fileTypesData.apkExtensions + fileTypesData.fontExtensions + fileTypesData.windowsExtensions).toSet()
         val result = mutableListOf<File>()
 
-        val duplicateGroups = if (includeDuplicates) findDuplicateGroups(scannedFiles, deepDuplicateSearch, fileTypesData.imageExtensions) else emptyList()
-        val duplicateFiles = if (includeDuplicates) duplicateGroups.flatten().toSet() else emptySet()
+        val duplicateGroups = if (includeDuplicates) findDuplicateGroups(
+            scannedFiles,
+            deepDuplicateSearch,
+            fileTypesData.imageExtensions
+        ) else emptyList()
+        val duplicateFiles =
+            if (includeDuplicates) duplicateGroups.flatten().toSet() else emptySet()
 
         scannedFiles.forEach { file ->
             if (includeDuplicates && file in duplicateFiles) {

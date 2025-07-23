@@ -16,14 +16,24 @@ import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
 import com.d4rk.cleaner.app.clean.scanner.ui.components.StorageProgressBar
 
 @Composable
-fun RamInfoCard(ramInfo : RamInfo) {
+fun RamInfoCard(ramInfo: RamInfo) {
     Column(modifier = Modifier.padding(all = SizeConstants.LargeSize)) {
-        Text(text = stringResource(id = R.string.ram_information) , style = MaterialTheme.typography.headlineSmall , fontWeight = FontWeight.Bold)
+        Text(
+            text = stringResource(id = R.string.ram_information),
+            style = MaterialTheme.typography.headlineSmall,
+            fontWeight = FontWeight.Bold
+        )
         SmallVerticalSpacer()
-        StorageProgressBar(StorageInfo(storageUsageProgress = ramInfo.totalRam.toFloat() , usedStorage = ramInfo.usedRam , freeStorage = ramInfo.availableRam))
+        StorageProgressBar(
+            StorageInfo(
+                storageUsageProgress = ramInfo.totalRam.toFloat(),
+                usedStorage = ramInfo.usedRam,
+                freeStorage = ramInfo.availableRam
+            )
+        )
         SmallVerticalSpacer()
-        StorageInfoText(label = stringResource(id = R.string.used_ram) , size = ramInfo.usedRam)
-        StorageInfoText(label = stringResource(id = R.string.free_ram) , size = ramInfo.availableRam)
-        StorageInfoText(label = stringResource(id = R.string.total_ram) , size = ramInfo.totalRam)
+        StorageInfoText(label = stringResource(id = R.string.used_ram), size = ramInfo.usedRam)
+        StorageInfoText(label = stringResource(id = R.string.free_ram), size = ramInfo.availableRam)
+        StorageInfoText(label = stringResource(id = R.string.total_ram), size = ramInfo.totalRam)
     }
 }

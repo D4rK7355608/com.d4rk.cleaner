@@ -67,7 +67,10 @@ fun PromotedAppCard(app: PromotedApp, modifier: Modifier = Modifier) {
             ) {
                 AsyncImage(
                     model = app.iconLogo,
-                    contentDescription = stringResource(R.string.promoted_app_icon_description, app.name),
+                    contentDescription = stringResource(
+                        R.string.promoted_app_icon_description,
+                        app.name
+                    ),
                     modifier = Modifier
                         .size(size = 48.dp)
                         .clip(CircleShape)

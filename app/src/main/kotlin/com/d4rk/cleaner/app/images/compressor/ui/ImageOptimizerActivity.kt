@@ -15,13 +15,13 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ImageOptimizerActivity : AppCompatActivity() {
-    private val viewModel : ImageOptimizerViewModel by viewModel()
+    private val viewModel: ImageOptimizerViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState : Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val selectedImageUriString : String? = intent.getStringExtra("selectedImageUri")
-        if (! selectedImageUriString.isNullOrEmpty()) {
+        val selectedImageUriString: String? = intent.getStringExtra("selectedImageUri")
+        if (!selectedImageUriString.isNullOrEmpty()) {
             lifecycleScope.launch {
                 viewModel.onImageSelected(selectedImageUriString.toUri())
             }
@@ -30,9 +30,9 @@ class ImageOptimizerActivity : AppCompatActivity() {
         setContent {
             AppTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize() , color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    ImageOptimizerScreen(activity = this@ImageOptimizerActivity , viewModel)
+                    ImageOptimizerScreen(activity = this@ImageOptimizerActivity, viewModel)
                 }
             }
         }

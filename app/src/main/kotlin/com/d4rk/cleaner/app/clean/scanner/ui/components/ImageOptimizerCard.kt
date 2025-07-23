@@ -32,8 +32,8 @@ fun ImageOptimizerCard(
     onOptimizeClick: () -> Unit,
 ) {
     OutlinedCard(
-        modifier = modifier.fillMaxWidth() ,
-        shape = RoundedCornerShape(SizeConstants.ExtraLargeSize) ,
+        modifier = modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(SizeConstants.ExtraLargeSize),
     ) {
         Column(
             modifier = Modifier

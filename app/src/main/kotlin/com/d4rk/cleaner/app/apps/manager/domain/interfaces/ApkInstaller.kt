@@ -5,5 +5,5 @@ import com.d4rk.cleaner.core.domain.model.network.Errors
 import kotlinx.coroutines.flow.Flow
 
 interface ApkInstaller {
-    fun installApk(apkPath : String) : Flow<DataState<Unit , Errors>>
+    fun installApk(apkPath: String): Flow<DataState<Unit, Errors>>
 }

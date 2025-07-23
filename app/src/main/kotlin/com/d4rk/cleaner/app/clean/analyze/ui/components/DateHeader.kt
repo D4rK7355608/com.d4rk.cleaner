@@ -22,31 +22,37 @@ import java.util.Date
 
 @Composable
 fun DateHeader(
-    files : List<File> ,
-    fileSelectionStates : Map<File , Boolean> ,
-    onFileSelectionChange : (File , Boolean) -> Unit ,
-    onDateSelectionChange : (List<File>, Boolean) -> Unit ,
-    view : View ,
+    files: List<File>,
+    fileSelectionStates: Map<File, Boolean>,
+    onFileSelectionChange: (File, Boolean) -> Unit,
+    onDateSelectionChange: (List<File>, Boolean) -> Unit,
+    view: View,
 ) {
-    val context : Context = LocalContext.current
+    val context: Context = LocalContext.current
     Row(
         modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = SizeConstants.SmallSize , vertical = SizeConstants.ExtraSmallSize) , verticalAlignment = Alignment.CenterVertically , horizontalArrangement = Arrangement.SpaceBetween
+            .fillMaxWidth()
+            .padding(horizontal = SizeConstants.SmallSize, vertical = SizeConstants.ExtraSmallSize),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
         if (files.isNotEmpty()) {
             Text(
-                modifier = Modifier.padding(start = SizeConstants.SmallSize) , text = TimeHelper.formatDate(date = Date(files[0].lastModified()) , context = context)
+                modifier = Modifier.padding(start = SizeConstants.SmallSize),
+                text = TimeHelper.formatDate(
+                    date = Date(files[0].lastModified()),
+                    context = context
+                )
             )
         }
-        val allFilesForDateSelected : Boolean = files.all { fileSelectionStates[it] == true }
+        val allFilesForDateSelected: Boolean = files.all { fileSelectionStates[it] == true }
         val noneSelected: Boolean = files.none { fileSelectionStates[it] == true }
         val toggleState = when {
             allFilesForDateSelected -> ToggleableState.On
             noneSelected -> ToggleableState.Off
             else -> ToggleableState.Indeterminate
         }
-        TriStateCheckbox(modifier = Modifier.bounceClick() , state = toggleState , onClick = {
+        TriStateCheckbox(modifier = Modifier.bounceClick(), state = toggleState, onClick = {
             view.playSoundEffect(SoundEffectConstants.CLICK)
             onDateSelectionChange(files, toggleState != ToggleableState.On)
         })

@@ -53,9 +53,11 @@ fun LargeFilesScreen(activity: LargeFilesActivity) {
             },
             onSuccess = { data: UiLargeFilesModel ->
                 println("onSuccess")
-                ConstraintLayout(modifier = Modifier
-                    .padding(padding)
-                    .fillMaxSize()) {
+                ConstraintLayout(
+                    modifier = Modifier
+                        .padding(padding)
+                        .fillMaxSize()
+                ) {
                     val (list, buttons) = createRefs()
                     val enabled = data.selectedFileCount > 0
                     val filesByDate = data.files.groupBy { file ->

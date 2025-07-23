@@ -29,10 +29,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
-fun QuickCompressTab(viewModel : ImageOptimizerViewModel) {
-    var sliderValue : Float by remember { mutableFloatStateOf(value = 50f) }
-    val selectedCompression : CompressionLevel = getCompressionLevelFromSliderValue(sliderValue = sliderValue)
-    val coroutineScope : CoroutineScope = rememberCoroutineScope()
+fun QuickCompressTab(viewModel: ImageOptimizerViewModel) {
+    var sliderValue: Float by remember { mutableFloatStateOf(value = 50f) }
+    val selectedCompression: CompressionLevel =
+        getCompressionLevelFromSliderValue(sliderValue = sliderValue)
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
 
     Column(modifier = Modifier.padding(all = SizeConstants.LargeSize)) {
         Row(modifier = Modifier.fillMaxWidth()) {
@@ -42,10 +43,11 @@ fun QuickCompressTab(viewModel : ImageOptimizerViewModel) {
                         sliderValue = compressionLevel.defaultPercentage.toFloat()
                         viewModel.setQuickCompressValue(sliderValue.toInt())
                     }
-                } , modifier = Modifier.weight(weight = 1f) , border = BorderStroke(
-                    width = 1.dp , color = if (selectedCompression == compressionLevel) MaterialTheme.colorScheme.primary
+                }, modifier = Modifier.weight(weight = 1f), border = BorderStroke(
+                    width = 1.dp,
+                    color = if (selectedCompression == compressionLevel) MaterialTheme.colorScheme.primary
                     else MaterialTheme.colorScheme.outline
-                ) , colors = ButtonDefaults.outlinedButtonColors(
+                ), colors = ButtonDefaults.outlinedButtonColors(
                     contentColor = if (selectedCompression == compressionLevel) MaterialTheme.colorScheme.primary
                     else MaterialTheme.colorScheme.onSurface
                 )) {
@@ -57,10 +59,15 @@ fun QuickCompressTab(viewModel : ImageOptimizerViewModel) {
 
         LargeVerticalSpacer()
 
-        Slider(value = sliderValue , onValueChange = { newValue -> sliderValue = newValue } , onValueChangeFinished = {
-            coroutineScope.launch {
-                viewModel.setQuickCompressValue(value = sliderValue.toInt())
-            }
-        } , valueRange = 0f..100f , steps = 99)
+        Slider(
+            value = sliderValue,
+            onValueChange = { newValue -> sliderValue = newValue },
+            onValueChangeFinished = {
+                coroutineScope.launch {
+                    viewModel.setQuickCompressValue(value = sliderValue.toInt())
+                }
+            },
+            valueRange = 0f..100f,
+            steps = 99)
     }
 }

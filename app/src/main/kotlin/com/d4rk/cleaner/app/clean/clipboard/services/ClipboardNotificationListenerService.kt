@@ -14,7 +14,7 @@ class ClipboardNotificationListenerService : NotificationListenerService() {
 
     override fun onCreate() {
         super.onCreate()
-        registerReceiver(screenReceiver , IntentFilter(Intent.ACTION_SCREEN_OFF))
+        registerReceiver(screenReceiver, IntentFilter(Intent.ACTION_SCREEN_OFF))
     }
 
     override fun onDestroy() {
@@ -30,7 +30,7 @@ class ClipboardNotificationListenerService : NotificationListenerService() {
     }
 
     private class ScreenReceiver : BroadcastReceiver() {
-        override fun onReceive(context: Context? , intent: Intent?) {
+        override fun onReceive(context: Context?, intent: Intent?) {
             if (intent?.action == Intent.ACTION_SCREEN_OFF) {
                 val manager = context?.getSystemService(CLIPBOARD_SERVICE) as? ClipboardManager
                 manager?.clearClipboardCompat()

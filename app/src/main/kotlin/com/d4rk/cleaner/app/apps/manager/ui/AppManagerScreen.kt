@@ -77,13 +77,13 @@ object AppManagerBadgeTransitions {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun AppManagerScreen(snackbarHostState : SnackbarHostState , paddingValues : PaddingValues) {
-    val viewModel : AppManagerViewModel = koinViewModel()
-    val context : Context = LocalContext.current
-    val uiState : UiStateScreen<UiAppManagerModel> by viewModel.uiState.collectAsState()
+fun AppManagerScreen(snackbarHostState: SnackbarHostState, paddingValues: PaddingValues) {
+    val viewModel: AppManagerViewModel = koinViewModel()
+    val context: Context = LocalContext.current
+    val uiState: UiStateScreen<UiAppManagerModel> by viewModel.uiState.collectAsState()
 
     LaunchedEffect(context) {
-        if (! PermissionsHelper.hasUsageAccessPermissions(context)) {
+        if (!PermissionsHelper.hasUsageAccessPermissions(context)) {
             PermissionsHelper.requestUsageAccess(context as Activity)
         }
     }
@@ -97,34 +97,48 @@ fun AppManagerScreen(snackbarHostState : SnackbarHostState , paddingValues : Pad
     }
 
     uiState.data?.let {
-        AppManagerScreenContent(viewModel = viewModel , screenData = it , paddingValues = paddingValues)
+        AppManagerScreenContent(
+            viewModel = viewModel,
+            screenData = it,
+            paddingValues = paddingValues
+        )
     }
 
-    DefaultSnackbarHandler(screenState = uiState , snackbarHostState = snackbarHostState , getDismissEvent = { AppManagerEvent.DismissSnackbar } , onEvent = { viewModel.onEvent(event = it) })
+    DefaultSnackbarHandler(
+        screenState = uiState,
+        snackbarHostState = snackbarHostState,
+        getDismissEvent = { AppManagerEvent.DismissSnackbar },
+        onEvent = { viewModel.onEvent(event = it) })
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiAppManagerModel , paddingValues : PaddingValues) {
-    val tabs : List<String> = listOf(
-        stringResource(id = R.string.installed_apps) ,
-        stringResource(id = R.string.system_apps) ,
-        stringResource(id = R.string.app_install_files) ,
+fun AppManagerScreenContent(
+    viewModel: AppManagerViewModel,
+    screenData: UiAppManagerModel,
+    paddingValues: PaddingValues
+) {
+    val tabs: List<String> = listOf(
+        stringResource(id = R.string.installed_apps),
+        stringResource(id = R.string.system_apps),
+        stringResource(id = R.string.app_install_files),
     )
 
-    val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
-    val coroutineScope : CoroutineScope = rememberCoroutineScope()
+    val pagerState: PagerState = rememberPagerState(pageCount = { tabs.size })
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val searchQuery by viewModel.searchQuery.collectAsState()
     val context = LocalContext.current
 
     val userApps = screenData.installedApps.filter { app: ApplicationInfo ->
         app.flags and ApplicationInfo.FLAG_SYSTEM == 0 &&
-                context.packageManager.getApplicationLabel(app).toString().contains(searchQuery, ignoreCase = true)
+                context.packageManager.getApplicationLabel(app).toString()
+                    .contains(searchQuery, ignoreCase = true)
     }
 
     val systemApps = screenData.installedApps.filter { app: ApplicationInfo ->
         app.flags and ApplicationInfo.FLAG_SYSTEM != 0 &&
-                context.packageManager.getApplicationLabel(app).toString().contains(searchQuery, ignoreCase = true)
+                context.packageManager.getApplicationLabel(app).toString()
+                    .contains(searchQuery, ignoreCase = true)
     }
 
     val apkFilesFiltered = screenData.apkFiles.filter { apk ->
@@ -136,24 +150,24 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
 
     Column(
         modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
+            .fillMaxSize()
+            .padding(paddingValues)
     ) {
         TabRow(
-            selectedTabIndex = pagerState.currentPage ,
+            selectedTabIndex = pagerState.currentPage,
             indicator = { tabPositions ->
                 TabRowDefaults.PrimaryIndicator(
                     modifier = Modifier
-                            .fillMaxWidth()
-                            .tabIndicatorOffset(currentTabPosition = tabPositions[pagerState.currentPage]) ,
+                        .fillMaxWidth()
+                        .tabIndicatorOffset(currentTabPosition = tabPositions[pagerState.currentPage]),
                     shape = RoundedCornerShape(
-                        topStart = 3.dp ,
-                        topEnd = 3.dp ,
-                    ) ,
+                        topStart = 3.dp,
+                        topEnd = 3.dp,
+                    ),
                 )
-            } ,
+            },
         ) {
-            tabs.forEachIndexed { index , title ->
+            tabs.forEachIndexed { index, title ->
                 val count = when (index) {
                     0 -> userApps.size
                     1 -> systemApps.size
@@ -180,7 +194,9 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
                                 color = MaterialTheme.colorScheme.onSurface,
-                                modifier = Modifier.weight(1f).animateContentSize()
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .animateContentSize()
                             )
                             if (badgeVisible.value) {
                                 ExtraTinyHorizontalSpacer()
@@ -211,8 +227,8 @@ fun AppManagerScreenContent(viewModel : AppManagerViewModel , screenData : UiApp
         }
 
         HorizontalPager(
-            modifier = Modifier.hapticPagerSwipe(pagerState) ,
-            state = pagerState ,
+            modifier = Modifier.hapticPagerSwipe(pagerState),
+            state = pagerState,
         ) { page ->
             when (page) {
                 0 -> AppsTab(

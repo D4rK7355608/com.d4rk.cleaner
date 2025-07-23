@@ -51,8 +51,8 @@ fun ApkCleanerCard(
     val context: Context = LocalContext.current
 
     OutlinedCard(
-        modifier = modifier.fillMaxWidth() ,
-        shape = RoundedCornerShape(SizeConstants.ExtraLargeSize) ,
+        modifier = modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(SizeConstants.ExtraLargeSize),
     ) {
         Column(
             modifier = Modifier
@@ -91,12 +91,16 @@ fun ApkCleanerCard(
                 ) {
                     preview.forEach { apk ->
                         val appInfo = remember(apk.path) {
-                            context.packageManager.getPackageArchiveInfo(apk.path, 0)?.applicationInfo?.apply {
+                            context.packageManager.getPackageArchiveInfo(
+                                apk.path,
+                                0
+                            )?.applicationInfo?.apply {
                                 sourceDir = apk.path
                                 publicSourceDir = apk.path
                             }
                         }
-                        val appName = appInfo?.loadLabel(context.packageManager)?.toString() ?: File(apk.path).name
+                        val appName = appInfo?.loadLabel(context.packageManager)?.toString()
+                            ?: File(apk.path).name
                         val icon = appInfo?.loadIcon(context.packageManager)
 
                         ApkPreviewItem(

@@ -4,5 +4,5 @@ import android.content.Intent
 import com.d4rk.android.libs.apptoolkit.core.ui.base.handling.ActionEvent
 
 sealed class AppManagerAction : ActionEvent {
-    data class LaunchShareIntent(val intent : Intent) : AppManagerAction()
+    data class LaunchShareIntent(val intent: Intent) : AppManagerAction()
 }

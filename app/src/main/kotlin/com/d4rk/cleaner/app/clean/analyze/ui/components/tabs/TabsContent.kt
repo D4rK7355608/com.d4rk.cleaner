@@ -42,34 +42,40 @@ import java.util.Locale
 
 @Composable
 fun TabsContent(
-    groupedFiles : Map<String , List<FileEntry>> , viewModel : ScannerViewModel , view : View , coroutineScope : CoroutineScope , data : UiScannerModel
+    groupedFiles: Map<String, List<FileEntry>>,
+    viewModel: ScannerViewModel,
+    view: View,
+    coroutineScope: CoroutineScope,
+    data: UiScannerModel
 ) {
-    val tabs : List<String> = groupedFiles.keys.toList()
-    val pagerState : PagerState = rememberPagerState(pageCount = { tabs.size })
+    val tabs: List<String> = groupedFiles.keys.toList()
+    val pagerState: PagerState = rememberPagerState(pageCount = { tabs.size })
     val duplicatesTabTitle =
         data.analyzeState.fileTypesData.fileTypesTitles.getOrElse(10) { "Duplicates" }
     val hasDuplicatesTab = groupedFiles.containsKey(duplicatesTabTitle)
 
     Row(
-        modifier = Modifier.fillMaxWidth() , verticalAlignment = Alignment.CenterVertically
+        modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
     ) {
         ScrollableTabRow(
-            selectedTabIndex = pagerState.currentPage ,
-            modifier = Modifier.weight(weight = 1f) ,
-            edgePadding = 0.dp ,
+            selectedTabIndex = pagerState.currentPage,
+            modifier = Modifier.weight(weight = 1f),
+            edgePadding = 0.dp,
             indicator = { tabPositions ->
                 TabRowDefaults.PrimaryIndicator(
-                    modifier = Modifier.tabIndicatorOffset(currentTabPosition = tabPositions[pagerState.currentPage]) , shape = RoundedCornerShape(
-                        topStart = 3.dp ,
-                        topEnd = 3.dp ,
+                    modifier = Modifier.tabIndicatorOffset(currentTabPosition = tabPositions[pagerState.currentPage]),
+                    shape = RoundedCornerShape(
+                        topStart = 3.dp,
+                        topEnd = 3.dp,
                     )
                 )
-            } ,
+            },
         ) {
-            tabs.forEachIndexed { index , title ->
-                val allFilesInCategory : List<FileEntry> = groupedFiles[title] ?: emptyList()
+            tabs.forEachIndexed { index, title ->
+                val allFilesInCategory: List<FileEntry> = groupedFiles[title] ?: emptyList()
                 val duplicateOriginals = data.analyzeState.duplicateOriginals
-                val filesWithoutOriginals = allFilesInCategory.filterNot { it in duplicateOriginals }
+                val filesWithoutOriginals =
+                    allFilesInCategory.filterNot { it in duplicateOriginals }
                 val allCategorySelected = filesWithoutOriginals.all { file ->
                     data.analyzeState.fileSelectionMap[file.path] == true
                 }
@@ -83,30 +89,35 @@ fun TabsContent(
                     else -> ToggleableState.Indeterminate
                 }
 
-                Tab(modifier = Modifier
+                Tab(
+                    modifier = Modifier
                         .bounceClick()
-                        .clip(RoundedCornerShape(50)) , selected = pagerState.currentPage == index , onClick = {
-                    view.playSoundEffect(SoundEffectConstants.CLICK)
-                    coroutineScope.launch {
-                        pagerState.animateScrollToPage(page = index)
-                    }
-                } , text = {
-                    val hasFiles = filesWithoutOriginals.isNotEmpty()
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically , horizontalArrangement = Arrangement.Start
-                    ) {
-                        TriStateCheckbox(
-                            state = toggleState,
-                            onClick = {
-                                if (hasFiles) {
-                                    viewModel.toggleSelectFilesForCategory(category = title)
-                                }
-                            },
-                            enabled = hasFiles
-                        )
-                        Text(text = title)
-                    }
-                })
+                        .clip(RoundedCornerShape(50)),
+                    selected = pagerState.currentPage == index,
+                    onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
+                        coroutineScope.launch {
+                            pagerState.animateScrollToPage(page = index)
+                        }
+                    },
+                    text = {
+                        val hasFiles = filesWithoutOriginals.isNotEmpty()
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Start
+                        ) {
+                            TriStateCheckbox(
+                                state = toggleState,
+                                onClick = {
+                                    if (hasFiles) {
+                                        viewModel.toggleSelectFilesForCategory(category = title)
+                                    }
+                                },
+                                enabled = hasFiles
+                            )
+                            Text(text = title)
+                        }
+                    })
             }
         }
 
@@ -118,14 +129,17 @@ fun TabsContent(
     }
 
     HorizontalPager(
-        modifier = Modifier.hapticPagerSwipe(pagerState) ,
-        state = pagerState ,
+        modifier = Modifier.hapticPagerSwipe(pagerState),
+        state = pagerState,
     ) { page ->
         val filesForCurrentPage = groupedFiles[tabs[page]]?.map { File(it.path) } ?: emptyList()
 
         val filesByDateRaw = remember(filesForCurrentPage) {
             filesForCurrentPage.groupBy { file ->
-                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(file.lastModified()))
+                SimpleDateFormat(
+                    "yyyy-MM-dd",
+                    Locale.getDefault()
+                ).format(Date(file.lastModified()))
             }
         }
 
@@ -134,28 +148,46 @@ fun TabsContent(
             val filesByDate = remember(duplicateGroups) {
                 duplicateGroups.map { group -> group.map { File(it.path) } }.groupBy { grp ->
                     val firstFile = grp.first()
-                    SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(firstFile.lastModified()))
+                    SimpleDateFormat(
+                        "yyyy-MM-dd",
+                        Locale.getDefault()
+                    ).format(Date(firstFile.lastModified()))
                 }
             }
 
             DuplicateGroupsSection(
-                modifier = Modifier ,
-                filesByDate = filesByDate ,
-                fileSelectionStates = data.analyzeState.fileSelectionMap.mapKeys { File(it.key) } ,
-                onFileSelectionChange = viewModel::onFileSelectionChange ,
-                onDateSelectionChange = { files, checked -> viewModel.onEvent(ScannerEvent.ToggleSelectFilesForDate(files , checked)) } ,
-                originals = data.analyzeState.duplicateOriginals.map { File(it.path) }.toSet() ,
+                modifier = Modifier,
+                filesByDate = filesByDate,
+                fileSelectionStates = data.analyzeState.fileSelectionMap.mapKeys { File(it.key) },
+                onFileSelectionChange = viewModel::onFileSelectionChange,
+                onDateSelectionChange = { files, checked ->
+                    viewModel.onEvent(
+                        ScannerEvent.ToggleSelectFilesForDate(
+                            files,
+                            checked
+                        )
+                    )
+                },
+                originals = data.analyzeState.duplicateOriginals.map { File(it.path) }.toSet(),
                 view = view
             )
         } else {
             FilesByDateSection(
-                modifier = Modifier ,
-                filesByDate = filesByDateRaw ,
-                fileSelectionStates = data.analyzeState.fileSelectionMap.mapKeys { File(it.key) } ,
-                onFileSelectionChange = viewModel::onFileSelectionChange ,
-                onDateSelectionChange = { files, checked -> viewModel.onEvent(ScannerEvent.ToggleSelectFilesForDate(files , checked)) } ,
-                originals = data.analyzeState.duplicateOriginals.map { File(it.path) }.toSet() ,
+                modifier = Modifier,
+                filesByDate = filesByDateRaw,
+                fileSelectionStates = data.analyzeState.fileSelectionMap.mapKeys { File(it.key) },
+                onFileSelectionChange = viewModel::onFileSelectionChange,
+                onDateSelectionChange = { files, checked ->
+                    viewModel.onEvent(
+                        ScannerEvent.ToggleSelectFilesForDate(
+                            files,
+                            checked
+                        )
+                    )
+                },
+                originals = data.analyzeState.duplicateOriginals.map { File(it.path) }.toSet(),
                 view = view
             )
         }
-    }}
+    }
+}

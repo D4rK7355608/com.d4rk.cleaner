@@ -23,13 +23,13 @@ import java.io.File
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class TrashViewModel(
-    private val getTrashFilesUseCase : GetTrashFilesUseCase ,
-    private val deleteFilesUseCase : DeleteFilesUseCase ,
-    private val updateTrashSizeUseCase : UpdateTrashSizeUseCase ,
-    private val restoreFromTrashUseCase : RestoreFromTrashUseCase ,
-    private val dispatchers : DispatcherProvider ,
+    private val getTrashFilesUseCase: GetTrashFilesUseCase,
+    private val deleteFilesUseCase: DeleteFilesUseCase,
+    private val updateTrashSizeUseCase: UpdateTrashSizeUseCase,
+    private val restoreFromTrashUseCase: RestoreFromTrashUseCase,
+    private val dispatchers: DispatcherProvider,
     private val dataStore: DataStore,
-) : ScreenViewModel<UiTrashModel , TrashEvent , TrashAction>(
+) : ScreenViewModel<UiTrashModel, TrashEvent, TrashAction>(
     initialState = UiStateScreen(data = UiTrashModel())
 ) {
 
@@ -55,10 +55,14 @@ class TrashViewModel(
         }
     }
 
-    override fun onEvent(event : TrashEvent) {
+    override fun onEvent(event: TrashEvent) {
         when (event) {
             TrashEvent.LoadTrashItems -> loadTrashItems()
-            is TrashEvent.OnFileSelectionChange -> onFileSelectionChange(event.file , event.isChecked)
+            is TrashEvent.OnFileSelectionChange -> onFileSelectionChange(
+                event.file,
+                event.isChecked
+            )
+
             TrashEvent.RestoreSelectedFiles -> restoreSelectedFromTrash()
             TrashEvent.DeleteSelectedFilesPermanently -> deleteSelectedPermanently()
         }
@@ -76,27 +80,30 @@ class TrashViewModel(
                         is DataState.Success -> {
                             if (result.data.isEmpty()) {
                                 currentState.copy(
-                                    screenState = ScreenState.NoData() , data = currentState.data?.copy(
-                                        trashFiles = emptyList() ,
-                                        fileSelectionStates = emptyMap() ,
-                                        selectedFileCount = 0 ,
+                                    screenState = ScreenState.NoData(),
+                                    data = currentState.data?.copy(
+                                        trashFiles = emptyList(),
+                                        fileSelectionStates = emptyMap(),
+                                        selectedFileCount = 0,
                                     ) ?: UiTrashModel(trashFiles = emptyList())
                                 )
-                            }
-                            else {
+                            } else {
                                 currentState.copy(
-                                    screenState = ScreenState.Success() , data = currentState.data?.copy(
-                                        trashFiles = result.data ,
-                                        fileSelectionStates = emptyMap() ,
-                                        selectedFileCount = 0 ,
+                                    screenState = ScreenState.Success(),
+                                    data = currentState.data?.copy(
+                                        trashFiles = result.data,
+                                        fileSelectionStates = emptyMap(),
+                                        selectedFileCount = 0,
                                     ) ?: UiTrashModel(trashFiles = result.data)
                                 )
                             }
                         }
 
                         is DataState.Error -> currentState.copy(
-                            screenState = ScreenState.Error() , errors = currentState.errors + UiSnackbar(
-                                message = UiTextHelper.DynamicString("Failed to load trash items: ${result.error}") , isError = true
+                            screenState = ScreenState.Error(),
+                            errors = currentState.errors + UiSnackbar(
+                                message = UiTextHelper.DynamicString("Failed to load trash items: ${result.error}"),
+                                isError = true
                             )
                         )
                     }
@@ -105,22 +112,32 @@ class TrashViewModel(
         }
     }
 
-    private fun onFileSelectionChange(file : File , isChecked : Boolean) {
+    private fun onFileSelectionChange(file: File, isChecked: Boolean) {
         _uiState.updateData(newState = _uiState.value.screenState) { currentData ->
             val updatedSelections = currentData.fileSelectionStates.toMutableMap().apply {
                 this[file.absolutePath] = isChecked
             }
             currentData.copy(
-                fileSelectionStates = updatedSelections , selectedFileCount = updatedSelections.count { it.value })
+                fileSelectionStates = updatedSelections,
+                selectedFileCount = updatedSelections.count { it.value })
         }
     }
 
     private fun restoreSelectedFromTrash() {
         launch(context = dispatchers.io) {
-            val pathsToRestore = _uiState.value.data?.fileSelectionStates?.filter { it.value }?.keys ?: emptySet()
+            val pathsToRestore =
+                _uiState.value.data?.fileSelectionStates?.filter { it.value }?.keys ?: emptySet()
             val filesToRestore = pathsToRestore.map { File(it) }.toSet()
             if (filesToRestore.isEmpty()) {
-                sendAction(TrashAction.ShowSnackbar(UiSnackbar(message = UiTextHelper.DynamicString("No files selected to restore."))))
+                sendAction(
+                    TrashAction.ShowSnackbar(
+                        UiSnackbar(
+                            message = UiTextHelper.DynamicString(
+                                "No files selected to restore."
+                            )
+                        )
+                    )
+                )
                 return@launch
             }
 
@@ -129,19 +146,27 @@ class TrashViewModel(
             restoreFromTrashUseCase(filesToRestore).collectLatest { restoreResult ->
                 if (restoreResult is DataState.Success) {
 
-                    updateTrashSizeUseCase(- totalFileSizeToRestore).collectLatest { updateSizeResult ->
+                    updateTrashSizeUseCase(-totalFileSizeToRestore).collectLatest { updateSizeResult ->
                         if (updateSizeResult is DataState.Error) {
-                            _uiState.update { it.copy(errors = it.errors + UiSnackbar(message = UiTextHelper.DynamicString("Failed to update trash size: ${updateSizeResult.error}") , isError = true)) }
+                            _uiState.update {
+                                it.copy(
+                                    errors = it.errors + UiSnackbar(
+                                        message = UiTextHelper.DynamicString(
+                                            "Failed to update trash size: ${updateSizeResult.error}"
+                                        ), isError = true
+                                    )
+                                )
+                            }
                         }
 
                         onEvent(TrashEvent.LoadTrashItems)
                     }
-                }
-                else if (restoreResult is DataState.Error) {
+                } else if (restoreResult is DataState.Error) {
                     _uiState.update { currentState ->
                         currentState.copy(
                             errors = currentState.errors + UiSnackbar(
-                                message = UiTextHelper.DynamicString("Failed to restore files: ${restoreResult.error}") , isError = true
+                                message = UiTextHelper.DynamicString("Failed to restore files: ${restoreResult.error}"),
+                                isError = true
                             )
                         )
                     }
@@ -152,10 +177,19 @@ class TrashViewModel(
 
     private fun deleteSelectedPermanently() {
         launch(context = dispatchers.io) {
-            val pathsToDelete = _uiState.value.data?.fileSelectionStates?.filter { it.value }?.keys ?: emptySet()
+            val pathsToDelete =
+                _uiState.value.data?.fileSelectionStates?.filter { it.value }?.keys ?: emptySet()
             val filesToDelete = pathsToDelete.map { File(it) }.toSet()
             if (filesToDelete.isEmpty()) {
-                sendAction(TrashAction.ShowSnackbar(UiSnackbar(message = UiTextHelper.DynamicString("No files selected to delete."))))
+                sendAction(
+                    TrashAction.ShowSnackbar(
+                        UiSnackbar(
+                            message = UiTextHelper.DynamicString(
+                                "No files selected to delete."
+                            )
+                        )
+                    )
+                )
                 return@launch
             }
 
@@ -164,15 +198,14 @@ class TrashViewModel(
             deleteFilesUseCase(filesToDelete).collectLatest { deleteResult ->
                 if (deleteResult is DataState.Success) {
 
-                    updateTrashSizeUseCase(- totalFileSizeToDelete).collectLatest { updateSizeResult ->
+                    updateTrashSizeUseCase(-totalFileSizeToDelete).collectLatest { updateSizeResult ->
                         if (updateSizeResult is DataState.Error) {
                             handleOperationError("Failed to update trash size: ${updateSizeResult.error}")
                         }
 
                         onEvent(TrashEvent.LoadTrashItems)
                     }
-                }
-                else if (deleteResult is DataState.Error) {
+                } else if (deleteResult is DataState.Error) {
                     handleOperationError("Failed to delete files permanently: ${deleteResult.error}")
 
                 }
@@ -180,12 +213,12 @@ class TrashViewModel(
         }
     }
 
-    private fun handleOperationError(message : String) {
+    private fun handleOperationError(message: String) {
         _uiState.update { currentState ->
             currentState.copy(
 
                 errors = currentState.errors + UiSnackbar(
-                    message = UiTextHelper.DynamicString(message) , isError = true
+                    message = UiTextHelper.DynamicString(message), isError = true
                 )
             )
         }

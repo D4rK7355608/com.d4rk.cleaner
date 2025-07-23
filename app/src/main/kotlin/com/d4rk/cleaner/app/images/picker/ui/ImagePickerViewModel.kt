@@ -14,7 +14,8 @@ class ImagePickerViewModel(
     private val showFabUseCase: ShowFabUseCase = ShowFabUseCase()
 ) : ViewModel() {
 
-    private val _uiState: MutableStateFlow<UiImagePickerModel> = MutableStateFlow(UiImagePickerModel())
+    private val _uiState: MutableStateFlow<UiImagePickerModel> =
+        MutableStateFlow(UiImagePickerModel())
     val uiState: StateFlow<UiImagePickerModel> = _uiState.asStateFlow()
 
     init {

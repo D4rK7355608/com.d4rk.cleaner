@@ -6,8 +6,8 @@ import com.d4rk.cleaner.app.apps.manager.domain.interfaces.ApkFileManager
 import com.d4rk.cleaner.core.domain.model.network.Errors
 import kotlinx.coroutines.flow.Flow
 
-class GetApkFilesFromStorageUseCase(private val apkFileManager : ApkFileManager) {
-    operator fun invoke() : Flow<DataState<List<ApkInfo> , Errors>> {
+class GetApkFilesFromStorageUseCase(private val apkFileManager: ApkFileManager) {
+    operator fun invoke(): Flow<DataState<List<ApkInfo>, Errors>> {
         return apkFileManager.getApkFilesFromStorage()
     }
 }

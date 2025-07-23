@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class GetFileTypesUseCase(
-    private val homeRepository : ScannerRepositoryInterface
+    private val homeRepository: ScannerRepositoryInterface
 ) {
-    operator fun invoke() : Flow<DataState<FileTypesData , Errors>> = flow {
+    operator fun invoke(): Flow<DataState<FileTypesData, Errors>> = flow {
         runCatching {
             val fileTypesData = homeRepository.getFileTypes()
             emit(DataState.Success(data = fileTypesData))

@@ -19,31 +19,38 @@ import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
 
 @Composable
-fun StorageInfoCard(storageInfo : StorageInfo) {
+fun StorageInfoCard(storageInfo: StorageInfo) {
     Column(
         modifier = Modifier
-                .padding(all = SizeConstants.LargeSize)
-                .animateContentSize()
+            .padding(all = SizeConstants.LargeSize)
+            .animateContentSize()
     ) {
-        Text(modifier = Modifier.basicMarquee() , text = stringResource(id = R.string.storage_information) , style = MaterialTheme.typography.headlineSmall , fontWeight = FontWeight.Bold)
+        Text(
+            modifier = Modifier.basicMarquee(),
+            text = stringResource(id = R.string.storage_information),
+            style = MaterialTheme.typography.headlineSmall,
+            fontWeight = FontWeight.Bold
+        )
         SmallVerticalSpacer()
         LinearProgressIndicator(
             progress = {
                 if (storageInfo.storageUsageProgress.toLong() == 0L) {
                     0f
-                }
-                else {
+                } else {
                     storageInfo.usedStorage.toFloat() / storageInfo.storageUsageProgress
                 }
-            } ,
+            },
             modifier = Modifier
-                    .fillMaxWidth()
-                    .height(height = SizeConstants.SmallSize) ,
-            color = MaterialTheme.colorScheme.primary ,
+                .fillMaxWidth()
+                .height(height = SizeConstants.SmallSize),
+            color = MaterialTheme.colorScheme.primary,
         )
         SmallVerticalSpacer()
-        StorageInfoText(label = stringResource(id = R.string.used) , size = storageInfo.usedStorage)
-        StorageInfoText(label = stringResource(id = R.string.free) , size = storageInfo.freeStorage)
-        StorageInfoText(label = stringResource(id = R.string.total) , size = storageInfo.storageUsageProgress.toLong())
+        StorageInfoText(label = stringResource(id = R.string.used), size = storageInfo.usedStorage)
+        StorageInfoText(label = stringResource(id = R.string.free), size = storageInfo.freeStorage)
+        StorageInfoText(
+            label = stringResource(id = R.string.total),
+            size = storageInfo.storageUsageProgress.toLong()
+        )
     }
 }
