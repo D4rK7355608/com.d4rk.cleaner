@@ -9,6 +9,8 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -193,19 +195,24 @@ fun ContactsCleanerScreen(activity: Activity) {
             }, scrollBehavior = scrollBehavior)
         },
         bottomBar = {
-            AnimatedVisibility(visible = selectedCount > 0) {
+            AnimatedVisibility(
+                visible = selectedCount > 0,
+                enter = slideInVertically(initialOffsetY = { it }),
+                exit = slideOutVertically(targetOffsetY = { it })
+            ) {
                 BottomAppBar(
                     actions = {
                         Text(
-                            modifier = Modifier.weight(1f, fill = false),
+                            modifier = Modifier.weight(weight = 1f, fill = true),
                             text = pluralStringResource(
                                 R.plurals.items_selected,
                                 selectedCount,
                                 selectedCount
                             ),
-                            overflow = TextOverflow.Ellipsis
+                            overflow = TextOverflow.Ellipsis,
+                            maxLines = 1
                         )
-                        Spacer(modifier = Modifier.weight(1f))
+                        SmallHorizontalSpacer()
                         when (selectionState) {
                             SelectionState.SINGLE -> {
                                 FilledTonalButton(
