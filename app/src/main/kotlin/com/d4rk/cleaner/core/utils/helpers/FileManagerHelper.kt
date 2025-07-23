@@ -4,12 +4,27 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.provider.Settings
+import android.content.pm.PackageManager
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.d4rk.cleaner.R
 import java.io.File
 
 object FileManagerHelper {
+
+    private fun launchFileManager(context: Context, pm: PackageManager): Boolean {
+        val launchPackages = listOf(
+            "com.google.android.apps.nbu.files",
+            "com.android.documentsui"
+        )
+        for (pkg in launchPackages) {
+            pm.getLaunchIntentForPackage(pkg)?.let {
+                context.startActivity(it)
+                return true
+            }
+        }
+        return false
+    }
     fun openFile(context: Context, file: File) {
         runCatching {
             val uri = FileProvider.getUriForFile(
@@ -38,6 +53,7 @@ object FileManagerHelper {
         }
     }
     fun openFolderOrSettings(context: Context, folder: File) {
+        val pm = context.packageManager
         runCatching {
             val uri = FileProvider.getUriForFile(
                 context,
@@ -47,9 +63,7 @@ object FileManagerHelper {
 
             val baseIntent = Intent(Intent.ACTION_VIEW).setDataAndType(uri, "*/*")
             baseIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            val pm = context.packageManager
 
-            // Try common file explorer packages first (Files by Google, Samsung, Xiaomi)
             val explorerPackages = listOf(
                 "com.google.android.apps.nbu.files", // Files by Google
                 "com.android.documentsui", // AOSP/Pixel
@@ -73,23 +87,32 @@ object FileManagerHelper {
             }
 
             if (!started) {
+                if (!launchFileManager(context, pm)) {
+                    val settingsIntent = Intent(Settings.ACTION_INTERNAL_STORAGE_SETTINGS)
+                    if (settingsIntent.resolveActivity(pm) != null) {
+                        context.startActivity(settingsIntent)
+                    } else {
+                        Toast.makeText(
+                            context,
+                            context.getString(R.string.no_application_found),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        }.onFailure {
+            if (!launchFileManager(context, pm)) {
                 val settingsIntent = Intent(Settings.ACTION_INTERNAL_STORAGE_SETTINGS)
                 if (settingsIntent.resolveActivity(pm) != null) {
                     context.startActivity(settingsIntent)
                 } else {
                     Toast.makeText(
                         context,
-                        context.getString(R.string.no_application_found),
+                        context.getString(R.string.something_went_wrong),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
             }
-        }.onFailure {
-            Toast.makeText(
-                context,
-                context.getString(R.string.something_went_wrong),
-                Toast.LENGTH_SHORT
-            ).show()
         }
     }
 }
