@@ -77,6 +77,7 @@ fun TabsContent(
                     data.analyzeState.fileSelectionMap[file] == true
                 }
                 val toggleState = when {
+                    filesWithoutOriginals.isEmpty() -> ToggleableState.Off
                     allCategorySelected -> ToggleableState.On
                     noneSelected -> ToggleableState.Off
                     else -> ToggleableState.Indeterminate

@@ -621,6 +621,7 @@ class ScannerViewModel(
                 val currentData: UiScannerModel = currentState.data ?: UiScannerModel()
                 val filesInCategory: List<FileEntry> =
                     currentData.analyzeState.groupedFiles[category] ?: emptyList()
+                if (filesInCategory.isEmpty()) return@update currentState
                 val duplicateOriginals = currentData.analyzeState.duplicateOriginals
                 val currentSelectionMap: Map<FileEntry, Boolean> =
                     currentData.analyzeState.fileSelectionMap
