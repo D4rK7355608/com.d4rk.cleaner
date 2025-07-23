@@ -23,11 +23,11 @@ import com.d4rk.cleaner.app.clean.analyze.ui.components.dialogs.DeleteOrTrashCon
 import com.d4rk.cleaner.app.clean.analyze.ui.components.tabs.TabsContent
 import com.d4rk.cleaner.app.clean.nofilesfound.ui.NoFilesFoundScreen
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.CleaningState
+import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.FileEntry
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.UiScannerModel
 import com.d4rk.cleaner.app.clean.scanner.ui.ScannerViewModel
 import com.d4rk.cleaner.app.clean.scanner.ui.components.TwoRowButtons
 import kotlinx.coroutines.CoroutineScope
-import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.FileEntry
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable

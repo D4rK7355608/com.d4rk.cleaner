@@ -1,5 +1,7 @@
 package com.d4rk.cleaner.core.utils.helpers
 
+import com.d4rk.cleaner.core.data.datastore.DataStore
+import com.d4rk.cleaner.core.utils.constants.TimeConstants
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -7,8 +9,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import com.d4rk.cleaner.core.data.datastore.DataStore
-import com.d4rk.cleaner.core.utils.constants.TimeConstants
 
 object StreakTracker : KoinComponent {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)

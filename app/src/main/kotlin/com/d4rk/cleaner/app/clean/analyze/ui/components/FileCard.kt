@@ -1,7 +1,6 @@
 package com.d4rk.cleaner.app.clean.analyze.ui.components
 
 import android.content.Context
-import com.d4rk.cleaner.core.utils.helpers.FileManagerHelper
 import android.view.SoundEffectConstants
 import android.view.View
 import androidx.compose.foundation.Image
@@ -44,6 +43,7 @@ import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.clean.scanner.utils.helpers.getFileIcon
 import com.d4rk.cleaner.app.clean.scanner.utils.helpers.loadPdfThumbnail
+import com.d4rk.cleaner.core.utils.helpers.FileManagerHelper
 import com.google.common.io.Files.getFileExtension
 import java.io.File
 

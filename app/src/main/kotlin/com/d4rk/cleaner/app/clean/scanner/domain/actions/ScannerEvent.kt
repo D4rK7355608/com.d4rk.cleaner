@@ -1,8 +1,8 @@
 package com.d4rk.cleaner.app.clean.scanner.domain.actions
 
 import com.d4rk.android.libs.apptoolkit.core.ui.base.handling.UiEvent
-import java.io.File
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.FileEntry
+import java.io.File
 
 sealed class ScannerEvent : UiEvent {
     object LoadInitialData : ScannerEvent()

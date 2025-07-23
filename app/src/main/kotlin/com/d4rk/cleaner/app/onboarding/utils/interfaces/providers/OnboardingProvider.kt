@@ -8,6 +8,7 @@ import android.os.Build
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AutoDelete
 import androidx.compose.material.icons.outlined.CleaningServices
+import androidx.core.content.ContextCompat
 import com.d4rk.android.libs.apptoolkit.app.oboarding.domain.data.model.ui.OnboardingPage
 import com.d4rk.android.libs.apptoolkit.app.oboarding.ui.components.pages.CrashlyticsOnboardingPageTab
 import com.d4rk.android.libs.apptoolkit.app.oboarding.ui.components.pages.FinalOnboardingPageTab
@@ -18,7 +19,6 @@ import com.d4rk.cleaner.app.main.ui.MainActivity
 import com.d4rk.cleaner.app.onboarding.ui.tabs.StoragePermissionOnboardingTab
 import com.d4rk.cleaner.app.onboarding.utils.constants.OnboardingKeys
 import com.d4rk.cleaner.core.data.datastore.DataStore
-import androidx.core.content.ContextCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

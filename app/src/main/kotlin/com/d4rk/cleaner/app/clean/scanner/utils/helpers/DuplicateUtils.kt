@@ -1,7 +1,7 @@
 package com.d4rk.cleaner.app.clean.scanner.utils.helpers
 
-import java.io.File
 import com.d4rk.cleaner.core.utils.extensions.partialMd5
+import java.io.File
 
 /**
  * Groups duplicate files by their original version.

@@ -3,8 +3,6 @@ package com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui
 /** State of the cleaning process. */
 
 import com.d4rk.cleaner.app.clean.memory.domain.data.model.StorageInfo
-import java.io.File
-import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.FileEntry
 
 data class UiScannerModel(
     val storageInfo : StorageInfo = StorageInfo() ,

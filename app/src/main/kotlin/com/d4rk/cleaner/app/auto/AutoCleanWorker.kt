@@ -3,21 +3,21 @@ package com.d4rk.cleaner.app.auto
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
 import com.d4rk.cleaner.app.clean.scanner.domain.data.model.ui.FileTypesData
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.AnalyzeFilesUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.DeleteFilesUseCase
 import com.d4rk.cleaner.app.clean.scanner.domain.usecases.GetFileTypesUseCase
+import com.d4rk.cleaner.app.images.utils.ImageHashUtils
 import com.d4rk.cleaner.app.settings.cleaning.utils.constants.ExtensionsConstants
 import com.d4rk.cleaner.core.data.datastore.DataStore
-import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
 import com.d4rk.cleaner.core.utils.extensions.partialMd5
-import com.d4rk.cleaner.app.images.utils.ImageHashUtils
-import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
+import com.d4rk.cleaner.core.utils.helpers.CleaningEventBus
 import kotlinx.coroutines.flow.first
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import kotlin.time.Duration.Companion.days
 import java.io.File
+import kotlin.time.Duration.Companion.days
 
 class AutoCleanWorker(
     appContext: Context,

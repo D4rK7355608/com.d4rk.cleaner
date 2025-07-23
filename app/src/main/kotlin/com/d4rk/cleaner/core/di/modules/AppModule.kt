@@ -31,8 +31,8 @@ import com.d4rk.cleaner.app.apps.manager.domain.usecases.UninstallAppUseCase
 import com.d4rk.cleaner.app.apps.manager.ui.AppManagerViewModel
 import com.d4rk.cleaner.app.clean.contacts.data.ContactsRepository
 import com.d4rk.cleaner.app.clean.contacts.data.ContactsRepositoryImpl
-import com.d4rk.cleaner.app.clean.contacts.domain.usecases.DeleteOlderContactsUseCase
 import com.d4rk.cleaner.app.clean.contacts.domain.usecases.DeleteContactsUseCase
+import com.d4rk.cleaner.app.clean.contacts.domain.usecases.DeleteOlderContactsUseCase
 import com.d4rk.cleaner.app.clean.contacts.domain.usecases.GetDuplicateContactsUseCase
 import com.d4rk.cleaner.app.clean.contacts.domain.usecases.MergeContactsUseCase
 import com.d4rk.cleaner.app.clean.contacts.ui.ContactsCleanerViewModel
@@ -60,8 +60,8 @@ import com.d4rk.cleaner.app.clean.whatsapp.details.ui.DetailsViewModel
 import com.d4rk.cleaner.app.clean.whatsapp.summary.data.WhatsAppCleanerRepositoryImpl
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.repository.WhatsAppCleanerRepository
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.DeleteWhatsAppMediaUseCase
-import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.GetWhatsAppMediaSummaryUseCase
 import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.GetWhatsAppMediaFilesUseCase
+import com.d4rk.cleaner.app.clean.whatsapp.summary.domain.usecases.GetWhatsAppMediaSummaryUseCase
 import com.d4rk.cleaner.app.clean.whatsapp.summary.ui.WhatsappCleanerSummaryViewModel
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.CompressImageUseCase
 import com.d4rk.cleaner.app.images.compressor.domain.usecases.GetImageDimensionsUseCase

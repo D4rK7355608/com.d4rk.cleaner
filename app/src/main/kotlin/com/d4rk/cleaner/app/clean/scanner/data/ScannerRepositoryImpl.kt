@@ -15,11 +15,11 @@ import com.d4rk.cleaner.app.clean.scanner.utils.helpers.StorageUtils
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.core.utils.extensions.clearClipboardCompat
 import com.d4rk.cleaner.core.utils.extensions.partialMd5
+import com.d4rk.cleaner.core.utils.helpers.DirectoryScanner
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import java.io.File
-import com.d4rk.cleaner.core.utils.helpers.DirectoryScanner
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 

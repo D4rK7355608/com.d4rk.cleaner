@@ -20,10 +20,10 @@ import com.d4rk.cleaner.app.apps.manager.domain.actions.AppManagerEvent
 import com.d4rk.cleaner.app.apps.manager.domain.data.model.AppManagerItem
 import com.d4rk.cleaner.app.apps.manager.domain.data.model.ui.UiAppManagerModel
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.GetApkFilesFromStorageUseCase
+import com.d4rk.cleaner.app.apps.manager.domain.usecases.GetAppsLastUsedUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.GetInstalledAppsUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.InstallApkUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.OpenAppInfoUseCase
-import com.d4rk.cleaner.app.apps.manager.domain.usecases.GetAppsLastUsedUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.ShareApkUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.ShareAppUseCase
 import com.d4rk.cleaner.app.apps.manager.domain.usecases.UninstallAppUseCase

@@ -1,9 +1,8 @@
 package com.d4rk.cleaner.app.images.utils
 
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import java.io.File
 import androidx.core.graphics.scale
+import java.io.File
 
 object ImageHashUtils {
     fun perceptualHash(file: File): String? = runCatching {

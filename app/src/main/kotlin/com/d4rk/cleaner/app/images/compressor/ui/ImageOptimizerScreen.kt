@@ -2,8 +2,8 @@ package com.d4rk.cleaner.app.images.compressor.ui
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,7 +21,6 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
@@ -33,8 +32,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -51,6 +50,7 @@ import com.d4rk.cleaner.app.images.compressor.ui.components.tabs.FileSizeTab
 import com.d4rk.cleaner.app.images.compressor.ui.components.tabs.ManualModeTab
 import com.d4rk.cleaner.app.images.compressor.ui.components.tabs.QuickCompressTab
 import com.d4rk.cleaner.core.data.datastore.DataStore
+import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject

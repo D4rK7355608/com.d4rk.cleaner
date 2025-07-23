@@ -20,8 +20,8 @@ import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.ExtraTinyVert
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
-import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.d4rk.cleaner.app.auto.AutoCleanScheduler
+import com.d4rk.cleaner.core.data.datastore.DataStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

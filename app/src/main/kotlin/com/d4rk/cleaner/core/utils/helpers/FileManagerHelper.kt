@@ -3,8 +3,8 @@ package com.d4rk.cleaner.core.utils.helpers
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.provider.Settings
 import android.content.pm.PackageManager
+import android.provider.Settings
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.d4rk.cleaner.R

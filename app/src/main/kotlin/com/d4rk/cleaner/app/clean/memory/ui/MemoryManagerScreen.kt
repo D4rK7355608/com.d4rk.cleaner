@@ -1,9 +1,9 @@
 package com.d4rk.cleaner.app.clean.memory.ui
 
 import android.app.Activity
+import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
-import android.app.DownloadManager
 import android.os.Environment
 import android.provider.Settings
 import androidx.compose.animation.animateContentSize

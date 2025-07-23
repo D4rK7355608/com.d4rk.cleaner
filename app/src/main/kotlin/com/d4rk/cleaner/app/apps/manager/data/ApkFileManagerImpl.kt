@@ -10,9 +10,9 @@ import com.d4rk.cleaner.app.apps.manager.domain.data.model.ApkInfo
 import com.d4rk.cleaner.app.apps.manager.domain.interfaces.ApkFileManager
 import com.d4rk.cleaner.core.domain.model.network.Errors
 import com.d4rk.cleaner.core.utils.extensions.toError
+import com.d4rk.cleaner.core.utils.helpers.DirectoryScanner
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import com.d4rk.cleaner.core.utils.helpers.DirectoryScanner
 
 class ApkFileManagerImpl(private val application : Application) : ApkFileManager {
     override fun getApkFilesFromStorage() : Flow<DataState<List<ApkInfo> , Errors>> = flow {

@@ -1,20 +1,20 @@
 package com.d4rk.cleaner.app.clean.contacts.ui
 
 import com.d4rk.android.libs.apptoolkit.core.di.DispatcherProvider
+import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.ScreenState
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiSnackbar
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.base.ScreenViewModel
-import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
+import com.d4rk.cleaner.app.clean.contacts.domain.actions.ContactsCleanerAction
+import com.d4rk.cleaner.app.clean.contacts.domain.actions.ContactsCleanerEvent
+import com.d4rk.cleaner.app.clean.contacts.domain.data.model.DuplicateContactGroup
+import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
+import com.d4rk.cleaner.app.clean.contacts.domain.data.model.UiContactsCleanerModel
+import com.d4rk.cleaner.app.clean.contacts.domain.usecases.DeleteContactsUseCase
 import com.d4rk.cleaner.app.clean.contacts.domain.usecases.DeleteOlderContactsUseCase
 import com.d4rk.cleaner.app.clean.contacts.domain.usecases.GetDuplicateContactsUseCase
 import com.d4rk.cleaner.app.clean.contacts.domain.usecases.MergeContactsUseCase
-import com.d4rk.cleaner.app.clean.contacts.domain.usecases.DeleteContactsUseCase
-import com.d4rk.cleaner.app.clean.contacts.domain.actions.ContactsCleanerAction
-import com.d4rk.cleaner.app.clean.contacts.domain.actions.ContactsCleanerEvent
-import com.d4rk.cleaner.app.clean.contacts.domain.data.model.RawContactInfo
-import com.d4rk.cleaner.app.clean.contacts.domain.data.model.UiContactsCleanerModel
-import com.d4rk.cleaner.app.clean.contacts.domain.data.model.DuplicateContactGroup
 import com.d4rk.cleaner.core.utils.extensions.asUiText
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
