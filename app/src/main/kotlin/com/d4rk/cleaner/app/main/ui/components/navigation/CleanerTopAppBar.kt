@@ -82,7 +82,7 @@ fun CleanerTopAppBar(
                 AnimatedVisibility(
                     visible = showSearch,
                     enter = TopAppBarTransitions.titleEnter,
-                    exit = TopAppBarTransitions.titleExit
+                    exit = TopAppBarTransitions.titleExit,
                 ) {
                     OutlinedTextField(
                         modifier = Modifier
@@ -124,6 +124,7 @@ fun CleanerTopAppBar(
                 icon = navigationIcon,
                 contentDescription = stringResource(id = ToolkitR.string.go_back),
                 onClick = { onNavigationIconClick() },
+                vibrate = false
             )
         },
         actions = {
