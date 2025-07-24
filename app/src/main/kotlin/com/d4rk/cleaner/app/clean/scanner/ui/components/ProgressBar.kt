@@ -15,12 +15,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.TonalIconButtonWithText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -88,21 +87,18 @@ fun StorageProgressButton(
         AnimatedVisibility(
             visible = isVisible.value, enter = scaleIn(), exit = scaleOut()
         ) {
-            FilledTonalButton(
+            TonalIconButtonWithText(
                 modifier = Modifier
                     .animateContentSize()
                     .fillMaxSize()
                     .padding(all = SizeConstants.SmallSize)
-                    .bounceClick(), onClick = {
-                view.playSoundEffect(SoundEffectConstants.CLICK)
-                onClick()
-            }, colors = ButtonDefaults.filledTonalButtonColors()) {
-                Text(
-                    text = stringResource(id = R.string.quick_scan),
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.labelMedium
-                )
-            }
+                    .bounceClick(),
+                onClick = {
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
+                    onClick()
+                },
+                label = stringResource(id = R.string.quick_scan)
+            )
         }
     }
 }

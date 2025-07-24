@@ -16,7 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.OutlinedButton
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.OutlinedIconButtonWithText
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
@@ -112,19 +112,20 @@ fun ImageOptimizerScreen(
                         }
                     }
 
-                    OutlinedButton(
+                    OutlinedIconButtonWithText(
                         onClick = {
                             coroutineScope.launch { viewModel.optimizeImage() }
-                        }, enabled = if (pagerState.currentPage == 1) {
+                        },
+                        enabled = if (pagerState.currentPage == 1) {
                             uiState.fileSizeKB != 0
                         } else {
                             true
-                        }, modifier = Modifier
+                        },
+                        modifier = Modifier
                             .padding(all = SizeConstants.MediumSize)
-                            .align(Alignment.CenterHorizontally)
-                    ) {
-                        Text(text = stringResource(id = R.string.optimize_image))
-                    }
+                            .align(Alignment.CenterHorizontally),
+                        label = stringResource(id = R.string.optimize_image)
+                    )
 
                     if (adsState) {
                         AdBanner(
@@ -199,27 +200,30 @@ fun ImageOptimizerScreen(
                     }
                 }
 
-                OutlinedButton(onClick = {
-                    coroutineScope.launch {
-                        viewModel.optimizeImage()
-                    }
-                }, enabled = if (pagerState.currentPage == 1) {
-                    uiState.fileSizeKB != 0
-                } else {
-                    true
-                }, modifier = Modifier
-                    .constrainAs(ref = compressButton) {
-                        start.linkTo(anchor = parent.start)
-                        end.linkTo(anchor = parent.end)
-                        if (adsState) {
-                            bottom.linkTo(anchor = adView.top)
-                        } else {
-                            bottom.linkTo(anchor = parent.bottom)
+                OutlinedIconButtonWithText(
+                    onClick = {
+                        coroutineScope.launch {
+                            viewModel.optimizeImage()
                         }
-                    }
-                    .padding(all = SizeConstants.MediumSize)) {
-                    Text(text = stringResource(id = R.string.optimize_image))
-                }
+                    },
+                    enabled = if (pagerState.currentPage == 1) {
+                        uiState.fileSizeKB != 0
+                    } else {
+                        true
+                    },
+                    modifier = Modifier
+                        .constrainAs(ref = compressButton) {
+                            start.linkTo(anchor = parent.start)
+                            end.linkTo(anchor = parent.end)
+                            if (adsState) {
+                                bottom.linkTo(anchor = adView.top)
+                            } else {
+                                bottom.linkTo(anchor = parent.bottom)
+                            }
+                        }
+                        .padding(all = SizeConstants.MediumSize),
+                    label = stringResource(id = R.string.optimize_image)
+                )
 
                 if (adsState) {
                     AdBanner(modifier = Modifier.constrainAs(ref = adView) {
