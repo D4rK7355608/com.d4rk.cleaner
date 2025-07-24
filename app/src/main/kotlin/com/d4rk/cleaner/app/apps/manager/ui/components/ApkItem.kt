@@ -1,8 +1,6 @@
 package com.d4rk.cleaner.app.apps.manager.ui.components
 
 import android.content.Context
-import android.view.SoundEffectConstants
-import android.view.View
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,7 +13,7 @@ import androidx.compose.material.icons.outlined.InstallMobile
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
+import com.d4rk.android.libs.apptoolkit.core.ui.components.dropdown.CommonDropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
@@ -30,12 +28,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.IconButton
-import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R
 import com.d4rk.cleaner.app.apps.manager.domain.actions.AppManagerEvent
@@ -47,7 +43,6 @@ import java.io.File
 @Composable
 fun ApkItem(apkPath: String, viewModel: AppManagerViewModel, modifier: Modifier) {
     val context: Context = LocalContext.current
-    val view: View = LocalView.current
     val apkFile = File(apkPath)
     var showMenu: Boolean by remember { mutableStateOf(value = false) }
 
@@ -98,36 +93,25 @@ fun ApkItem(apkPath: String, viewModel: AppManagerViewModel, modifier: Modifier)
                 DropdownMenu(expanded = showMenu, onDismissRequest = {
                     showMenu = false
                 }) {
-                    DropdownMenuItem(
-                        modifier = Modifier.bounceClick(),
-                        text = { Text(stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.share)) },
-                        leadingIcon = {
-                            Icon(imageVector = Icons.Outlined.Share, contentDescription = null)
-                        },
+                    CommonDropdownMenuItem(
+                        textResId = com.d4rk.android.libs.apptoolkit.R.string.share,
+                        icon = Icons.Outlined.Share,
                         onClick = {
-                            view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.onEvent(
                                 AppManagerEvent.ShareItem(
-                                    AppManagerItem.ApkFile(
-                                        apkPath
-                                    )
+                                    AppManagerItem.ApkFile(apkPath)
                                 )
                             )
-                        })
+                        }
+                    )
 
-                    DropdownMenuItem(
-                        modifier = Modifier.bounceClick(),
-                        text = { Text(stringResource(id = R.string.install)) },
-                        leadingIcon = {
-                            Icon(
-                                imageVector = Icons.Outlined.InstallMobile,
-                                contentDescription = null
-                            )
-                        },
+                    CommonDropdownMenuItem(
+                        textResId = R.string.install,
+                        icon = Icons.Outlined.InstallMobile,
                         onClick = {
-                            view.playSoundEffect(SoundEffectConstants.CLICK)
                             viewModel.installApk(apkPath)
-                        })
+                        }
+                    )
                 }
             }
         }

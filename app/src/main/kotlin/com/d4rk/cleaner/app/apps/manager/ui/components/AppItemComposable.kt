@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
-import android.view.SoundEffectConstants
-import android.view.View
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,8 +17,7 @@ import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
+import com.d4rk.android.libs.apptoolkit.core.ui.components.dropdown.CommonDropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
@@ -35,12 +32,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.IconButton
-import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.cleaner.R.string
 import com.d4rk.cleaner.app.apps.manager.domain.actions.AppManagerEvent
@@ -59,7 +54,6 @@ fun AppItemComposable(
 ) {
     val context: Context = LocalContext.current
 
-    @OptIn(ExperimentalMaterial3Api::class) val view: View = LocalView.current
     val packageManager: PackageManager = context.packageManager
     val appName: String = app.loadLabel(packageManager).toString()
     val apkPath: String = app.publicSourceDir
@@ -115,39 +109,31 @@ fun AppItemComposable(
                 DropdownMenu(expanded = showMenu, onDismissRequest = {
                     showMenu = false
                 }) {
-                    DropdownMenuItem(leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.DeleteForever,
-                            contentDescription = null
-                        )
-                    }, modifier = Modifier.bounceClick(), text = {
-                        Text(text = stringResource(id = string.uninstall))
-                    }, onClick = {
-                        view.playSoundEffect(SoundEffectConstants.CLICK)
-                        viewModel.uninstallApp(app.packageName)
-                    })
-                    DropdownMenuItem(leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.Share,
-                            contentDescription = null
-                        )
-                    }, modifier = Modifier.bounceClick(), text = {
-                        Text(text = stringResource(id = com.d4rk.android.libs.apptoolkit.R.string.share))
-                    }, onClick = {
-                        view.playSoundEffect(SoundEffectConstants.CLICK)
-                        viewModel.onEvent(AppManagerEvent.ShareItem(AppManagerItem.InstalledApp(app.packageName)))
-                    })
-                    DropdownMenuItem(leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.Info,
-                            contentDescription = null
-                        )
-                    }, modifier = Modifier.bounceClick(), text = {
-                        Text(text = stringResource(id = string.app_info))
-                    }, onClick = {
-                        view.playSoundEffect(SoundEffectConstants.CLICK)
-                        viewModel.openAppInfo(app.packageName)
-                    })
+                    CommonDropdownMenuItem(
+                        textResId = string.uninstall,
+                        icon = Icons.Outlined.DeleteForever,
+                        onClick = {
+                            viewModel.uninstallApp(app.packageName)
+                        }
+                    )
+                    CommonDropdownMenuItem(
+                        textResId = com.d4rk.android.libs.apptoolkit.R.string.share,
+                        icon = Icons.Outlined.Share,
+                        onClick = {
+                            viewModel.onEvent(
+                                AppManagerEvent.ShareItem(
+                                    AppManagerItem.InstalledApp(app.packageName)
+                                )
+                            )
+                        }
+                    )
+                    CommonDropdownMenuItem(
+                        textResId = string.app_info,
+                        icon = Icons.Outlined.Info,
+                        onClick = {
+                            viewModel.openAppInfo(app.packageName)
+                        }
+                    )
                 }
             }
         }
