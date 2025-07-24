@@ -24,7 +24,6 @@ import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.VolunteerActivism
 import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -48,7 +47,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.app.support.ui.SupportActivity
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.AnimatedIconButtonDirection
-import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
+import com.d4rk.android.libs.apptoolkit.core.ui.components.dropdown.CommonDropdownMenuItem
 import com.d4rk.android.libs.apptoolkit.core.utils.constants.ui.SizeConstants
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.IntentsHelper
 import com.d4rk.cleaner.R
@@ -138,19 +137,14 @@ fun CleanerTopAppBar(
             )
 
             DropdownMenu(expanded = expandedMenu, onDismissRequest = { expandedMenu = false }) {
-                DropdownMenuItem(
-                    modifier = Modifier.bounceClick(),
-                    text = { Text(stringResource(id = ToolkitR.string.support_us)) },
+                CommonDropdownMenuItem(
+                    textResId = ToolkitR.string.support_us,
+                    icon = Icons.Outlined.VolunteerActivism,
                     onClick = {
                         expandedMenu = false
                         IntentsHelper.openActivity(context, SupportActivity::class.java)
-                    },
-                    leadingIcon = {
-                        Icon(
-                            Icons.Outlined.VolunteerActivism,
-                            contentDescription = stringResource(id = ToolkitR.string.support_us)
-                        )
-                    })
+                    }
+                )
             }
         },
         scrollBehavior = scrollBehavior
