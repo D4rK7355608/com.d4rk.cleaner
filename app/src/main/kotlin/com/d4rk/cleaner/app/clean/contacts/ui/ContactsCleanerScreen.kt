@@ -39,12 +39,10 @@ import androidx.compose.material.icons.outlined.ArrowDropDown
 import androidx.compose.material.icons.outlined.Contacts
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
@@ -78,6 +76,8 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Lifecycle
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.AnimatedIconButtonDirection
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.IconButton
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.IconButtonWithText
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.TonalIconButtonWithText
 import com.d4rk.android.libs.apptoolkit.core.ui.components.dialogs.BasicAlertDialog
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.LoadingScreen
 import com.d4rk.android.libs.apptoolkit.core.ui.components.layouts.ScreenStateHandler
@@ -218,48 +218,43 @@ fun ContactsCleanerScreen(activity: Activity) {
                         SmallHorizontalSpacer()
                         when (selectionState) {
                             SelectionState.SINGLE -> {
-                                FilledTonalButton(
-                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) }
-                                ) { Text(text = stringResource(id = R.string.delete)) }
+                                TonalIconButtonWithText(
+                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) },
+                                    label = stringResource(id = R.string.delete)
+                                )
                             }
 
                             SelectionState.SAME_GROUP -> {
-                                FilledTonalButton(
+                                TonalIconButtonWithText(
                                     onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
-                                    enabled = selectedCount >= 2
-                                ) { Text(text = stringResource(id = R.string.merge)) }
+                                    enabled = selectedCount >= 2,
+                                    label = stringResource(id = R.string.merge)
+                                )
                                 SmallHorizontalSpacer()
-                                FilledTonalButton(
-                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) }
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Default.AutoAwesome,
-                                        contentDescription = null
-                                    )
-                                    SmallHorizontalSpacer()
-                                    Text(text = stringResource(id = R.string.smart_clean))
-                                }
+                                TonalIconButtonWithText(
+                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) },
+                                    icon = Icons.Default.AutoAwesome,
+                                    iconContentDescription = null,
+                                    label = stringResource(id = R.string.smart_clean)
+                                )
                             }
 
                             SelectionState.MULTIPLE_GROUPS -> {
                                 val canMerge = state.data?.duplicates?.any { group ->
                                     group.contacts.count { it.isSelected } >= 2
                                 } ?: false
-                                FilledTonalButton(
+                                TonalIconButtonWithText(
                                     onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
-                                    enabled = canMerge
-                                ) { Text(text = stringResource(id = R.string.merge_groups)) }
+                                    enabled = canMerge,
+                                    label = stringResource(id = R.string.merge_groups)
+                                )
                                 SmallHorizontalSpacer()
-                                FilledTonalButton(
-                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) }
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Default.AutoAwesome,
-                                        contentDescription = null
-                                    )
-                                    SmallHorizontalSpacer()
-                                    Text(text = stringResource(id = R.string.smart_clean_all))
-                                }
+                                TonalIconButtonWithText(
+                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) },
+                                    icon = Icons.Default.AutoAwesome,
+                                    iconContentDescription = null,
+                                    label = stringResource(id = R.string.smart_clean_all)
+                                )
                             }
                         }
                     }
@@ -543,8 +538,9 @@ private fun PermissionDeniedScreen(onOpenSettings: () -> Unit) {
             text = stringResource(id = R.string.contacts_permission_denied),
             style = MaterialTheme.typography.bodyMedium
         )
-        Button(onClick = onOpenSettings) {
-            Text(text = stringResource(id = R.string.open_settings))
-        }
+        IconButtonWithText(
+            onClick = onOpenSettings,
+            label = stringResource(id = R.string.open_settings)
+        )
     }
 }
