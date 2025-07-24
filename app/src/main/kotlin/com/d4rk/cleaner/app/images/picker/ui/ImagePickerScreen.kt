@@ -2,8 +2,6 @@ package com.d4rk.cleaner.app.images.picker.ui
 
 import android.content.Context
 import android.content.Intent
-import android.view.SoundEffectConstants
-import android.view.View
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -29,7 +27,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.fab.AnimatedExtendedFloatingActionButton
@@ -46,7 +43,6 @@ fun ImagePickerComposable(
     viewModel: ImagePickerViewModel
 ) {
     val context: Context = LocalContext.current
-    val view: View = LocalView.current
     val uiState by viewModel.uiState.collectAsState()
     val isFabVisible = uiState.isFabVisible
 
@@ -71,14 +67,12 @@ fun ImagePickerComposable(
         title = stringResource(id = R.string.image_optimizer),
         onBackClicked = {
             activity.finish()
-            view.playSoundEffect(SoundEffectConstants.CLICK)
         },
         scrollBehavior = scrollBehavior,
         floatingActionButton = {
             AnimatedExtendedFloatingActionButton(
                 visible = isFabVisible,
                 onClick = {
-                    view.playSoundEffect(SoundEffectConstants.CLICK)
                     activity.selectImage()
                 },
                 text = { Text(text = stringResource(id = R.string.choose_image)) },

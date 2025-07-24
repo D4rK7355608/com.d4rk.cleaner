@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
+import android.view.SoundEffectConstants
 import android.view.View
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -388,6 +389,7 @@ private fun ContactGroupItem(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
                         haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                         viewModel.onEvent(
                             ContactsCleanerEvent.ToggleGroupSelection(group.contacts)
@@ -400,6 +402,7 @@ private fun ContactGroupItem(
                 Checkbox(
                     checked = allSelected,
                     onCheckedChange = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
                         haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                         viewModel.onEvent(
                             ContactsCleanerEvent.ToggleGroupSelection(group.contacts)
@@ -439,10 +442,12 @@ private fun ContactGroupItem(
 @Composable
 private fun ContactDetailRow(contact: RawContactInfo, viewModel: ContactsCleanerViewModel) {
     val haptic = LocalHapticFeedback.current
+    val view : View = LocalView.current
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
+                view.playSoundEffect(SoundEffectConstants.CLICK)
                 haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                 viewModel.onEvent(
                     ContactsCleanerEvent.ToggleContactSelection(contact)
@@ -454,6 +459,7 @@ private fun ContactDetailRow(contact: RawContactInfo, viewModel: ContactsCleaner
         Checkbox(
             checked = contact.isSelected,
             onCheckedChange = {
+                view.playSoundEffect(SoundEffectConstants.CLICK)
                 haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                 viewModel.onEvent(
                     ContactsCleanerEvent.ToggleContactSelection(contact)
