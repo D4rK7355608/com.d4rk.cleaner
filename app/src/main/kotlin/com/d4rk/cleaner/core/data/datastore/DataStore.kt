@@ -300,11 +300,6 @@ class DataStore(val context: Context) : CommonDataStore(context = context) {
         prefs[deepDuplicateSearchKey] == true
     }
 
-    suspend fun saveDeepDuplicateSearch(enabled: Boolean) { // FIXME: Function "saveDeepDuplicateSearch" is never used
-        dataStore.edit { prefs ->
-            prefs[deepDuplicateSearchKey] = enabled
-        }
-    }
 
     private val duplicateScanEnabledKey =
         booleanPreferencesKey(name = AppDataStoreConstants.DATA_STORE_ENABLE_DUPLICATE_SCAN)
@@ -312,11 +307,6 @@ class DataStore(val context: Context) : CommonDataStore(context = context) {
         prefs[duplicateScanEnabledKey] ?: true
     }
 
-    suspend fun saveDuplicateScanEnabled(enabled: Boolean) { // FIXME: Function "saveDuplicateScanEnabled" is never used
-        dataStore.edit { prefs ->
-            prefs[duplicateScanEnabledKey] = enabled
-        }
-    }
 
 
     private val storagePermissionGrantedKey =
@@ -439,9 +429,5 @@ class DataStore(val context: Context) : CommonDataStore(context = context) {
         prefs[autoCleanFrequencyDaysKey] ?: 7
     }
 
-    suspend fun saveAutoCleanFrequencyDays(days: Int) { // FIXME: Function "saveAutoCleanFrequencyDays" is never used
-        dataStore.edit { prefs ->
-            prefs[autoCleanFrequencyDaysKey] = days
-        }
-    }
+
 }
