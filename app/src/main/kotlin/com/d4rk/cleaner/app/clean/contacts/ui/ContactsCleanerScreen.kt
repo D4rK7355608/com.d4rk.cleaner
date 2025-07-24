@@ -11,8 +11,10 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,6 +28,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowLeft
@@ -61,6 +64,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -338,10 +342,18 @@ private fun ContactsCleanerContent(
                 else -> ToggleableState.Indeterminate
             }
             val haptic = LocalHapticFeedback.current
+            val view: View = LocalView.current
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = SizeConstants.LargeSize),
+                    .background(MaterialTheme.colorScheme.surface)
+                    .clip(CircleShape)
+                    .padding(horizontal = SizeConstants.LargeSize)
+                    .clickable {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
+                        haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
+                        viewModel.onEvent(ContactsCleanerEvent.ToggleSelectAll)
+                    },
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 TriStateCheckbox(
@@ -351,7 +363,11 @@ private fun ContactsCleanerContent(
                         viewModel.onEvent(ContactsCleanerEvent.ToggleSelectAll)
                     }
                 )
-                Text(text = stringResource(id = R.string.select_all))
+                Text(
+                    text = stringResource(id = R.string.select_all),
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(start = SizeConstants.SmallSize)
+                )
             }
         }
         items(
@@ -376,7 +392,9 @@ private fun ContactGroupItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = SizeConstants.LargeSize)
-            .animateContentSize(),
+            .animateContentSize(
+                animationSpec = tween(durationMillis = 300)
+            ),
         colors = CardDefaults.cardColors()
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
