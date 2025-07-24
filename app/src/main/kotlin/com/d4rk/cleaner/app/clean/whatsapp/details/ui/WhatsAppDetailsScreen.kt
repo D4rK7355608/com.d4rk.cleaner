@@ -26,7 +26,6 @@ import androidx.compose.material.icons.automirrored.filled.ViewList
 import androidx.compose.material.icons.filled.GridView
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.FolderOff
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -496,18 +495,16 @@ private fun SmartSuggestionsCard(
                     }
                 }
             }
-            Button(
+            IconButtonWithText(
                 onClick = {
                     selected.clear()
                     selected.addAll(suggested)
                     onShowConfirmChange(true)
                 },
-                modifier = Modifier.align(Alignment.End)
-            ) {
-                Icon(imageVector = Icons.Outlined.Delete, contentDescription = null)
-                ExtraSmallHorizontalSpacer()
-                Text(text = stringResource(id = R.string.delete_all_suggested))
-            }
+                modifier = Modifier.align(Alignment.End),
+                label = stringResource(id = R.string.delete_all_suggested),
+                icon = Icons.Outlined.Delete
+            )
         }
     }
 }

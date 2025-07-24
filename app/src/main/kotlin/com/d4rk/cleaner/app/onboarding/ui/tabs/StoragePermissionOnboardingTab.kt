@@ -14,9 +14,9 @@ import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Storage
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
+import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.OutlinedIconButtonWithText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -27,7 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.Lifecycle
-import com.d4rk.android.libs.apptoolkit.core.ui.components.modifiers.bounceClick
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.LargeVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.components.spacers.SmallVerticalSpacer
 import com.d4rk.android.libs.apptoolkit.core.ui.effects.LifecycleEventsEffect
@@ -147,12 +146,10 @@ private fun PermissionCard(
             }
             if (!granted) {
                 LargeVerticalSpacer()
-                OutlinedButton(
-                    modifier = Modifier.bounceClick(),
-                    onClick = onClick
-                ) {
-                    Text(text = stringResource(id = R.string.button_grant_permission))
-                }
+                OutlinedIconButtonWithText(
+                    onClick = onClick,
+                    label = stringResource(id = R.string.button_grant_permission)
+                )
             }
         }
     }
