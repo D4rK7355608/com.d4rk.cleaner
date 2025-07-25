@@ -78,6 +78,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Lifecycle
+import com.d4rk.android.libs.apptoolkit.core.domain.model.ads.AdsConfig
+import com.d4rk.android.libs.apptoolkit.core.ui.components.ads.AdBanner
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.AnimatedIconButtonDirection
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.IconButton
 import com.d4rk.android.libs.apptoolkit.core.ui.components.buttons.IconButtonWithText
@@ -96,7 +98,9 @@ import com.d4rk.cleaner.app.clean.contacts.domain.data.model.UiContactsCleanerMo
 import com.d4rk.cleaner.app.clean.contacts.ui.components.states.ContactsEmptyState
 import com.d4rk.cleaner.app.clean.contacts.ui.components.states.ContactsErrorState
 import com.d4rk.cleaner.core.utils.helpers.PermissionsHelper
+import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.qualifier.named
 
 private enum class ContactsPermissionState { CHECKING, GRANTED, RATIONALE, DENIED }
 private enum class SelectionState { SINGLE, SAME_GROUP, MULTIPLE_GROUPS }
@@ -119,6 +123,8 @@ fun ContactsCleanerScreen(activity: Activity) {
 
     val context = LocalContext.current
     var permissionState by remember { mutableStateOf(ContactsPermissionState.CHECKING) }
+
+    val bottomBarAdConfig: AdsConfig = koinInject(qualifier = named(name = "full_banner"))
 
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -207,62 +213,66 @@ fun ContactsCleanerScreen(activity: Activity) {
                 enter = slideInVertically(initialOffsetY = { it }),
                 exit = slideOutVertically(targetOffsetY = { it })
             ) {
-                BottomAppBar(
-                    actions = {
-                        Text(
-                            modifier = Modifier.weight(weight = 1f, fill = true),
-                            text = pluralStringResource(
-                                R.plurals.items_selected,
-                                selectedCount,
-                                selectedCount
-                            ),
-                            overflow = TextOverflow.Ellipsis,
-                            maxLines = 1
-                        )
-                        SmallHorizontalSpacer()
-                        when (selectionState) {
-                            SelectionState.SINGLE -> {
-                                TonalIconButtonWithText(
-                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) },
-                                    label = stringResource(id = R.string.delete)
-                                )
-                            }
+                Column {
+                    AdBanner(modifier = Modifier.fillMaxWidth(), adsConfig = bottomBarAdConfig)
 
-                            SelectionState.SAME_GROUP -> {
-                                TonalIconButtonWithText(
-                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
-                                    enabled = selectedCount >= 2,
-                                    label = stringResource(id = R.string.merge)
-                                )
-                                SmallHorizontalSpacer()
-                                TonalIconButtonWithText(
-                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) },
-                                    icon = Icons.Default.AutoAwesome,
-                                    iconContentDescription = null,
-                                    label = stringResource(id = R.string.smart_clean)
-                                )
-                            }
+                    BottomAppBar(
+                        actions = {
+                            Text(
+                                modifier = Modifier.weight(weight = 1f, fill = true),
+                                text = pluralStringResource(
+                                    R.plurals.items_selected,
+                                    selectedCount,
+                                    selectedCount
+                                ),
+                                overflow = TextOverflow.Ellipsis,
+                                maxLines = 1
+                            )
+                            SmallHorizontalSpacer()
+                            when (selectionState) {
+                                SelectionState.SINGLE -> {
+                                    TonalIconButtonWithText(
+                                        onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) },
+                                        label = stringResource(id = R.string.delete)
+                                    )
+                                }
 
-                            SelectionState.MULTIPLE_GROUPS -> {
-                                val canMerge = state.data?.duplicates?.any { group ->
-                                    group.contacts.count { it.isSelected } >= 2
-                                } ?: false
-                                TonalIconButtonWithText(
-                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
-                                    enabled = canMerge,
-                                    label = stringResource(id = R.string.merge_groups)
-                                )
-                                SmallHorizontalSpacer()
-                                TonalIconButtonWithText(
-                                    onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) },
-                                    icon = Icons.Default.AutoAwesome,
-                                    iconContentDescription = null,
-                                    label = stringResource(id = R.string.smart_clean_all)
-                                )
+                                SelectionState.SAME_GROUP -> {
+                                    TonalIconButtonWithText(
+                                        onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
+                                        enabled = selectedCount >= 2,
+                                        label = stringResource(id = R.string.merge)
+                                    )
+                                    SmallHorizontalSpacer()
+                                    TonalIconButtonWithText(
+                                        onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) },
+                                        icon = Icons.Default.AutoAwesome,
+                                        iconContentDescription = null,
+                                        label = stringResource(id = R.string.smart_clean)
+                                    )
+                                }
+
+                                SelectionState.MULTIPLE_GROUPS -> {
+                                    val canMerge = state.data?.duplicates?.any { group ->
+                                        group.contacts.count { it.isSelected } >= 2
+                                    } ?: false
+                                    TonalIconButtonWithText(
+                                        onClick = { viewModel.onEvent(ContactsCleanerEvent.MergeSelectedContacts) },
+                                        enabled = canMerge,
+                                        label = stringResource(id = R.string.merge_groups)
+                                    )
+                                    SmallHorizontalSpacer()
+                                    TonalIconButtonWithText(
+                                        onClick = { viewModel.onEvent(ContactsCleanerEvent.DeleteSelectedContacts) },
+                                        icon = Icons.Default.AutoAwesome,
+                                        iconContentDescription = null,
+                                        label = stringResource(id = R.string.smart_clean_all)
+                                    )
+                                }
                             }
                         }
-                    }
-                )
+                    )
+                }
             }
         }
     ) { paddingValues ->
