@@ -369,6 +369,7 @@ private fun ContactsCleanerContent(
                 TriStateCheckbox(
                     state = toggleState,
                     onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
                         haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                         viewModel.onEvent(ContactsCleanerEvent.ToggleSelectAll)
                     }
@@ -422,9 +423,15 @@ private fun ContactGroupItem(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 val allSelected = group.contacts.all { it.isSelected }
-                Checkbox(
-                    checked = allSelected,
-                    onCheckedChange = {
+                val noneSelected = group.contacts.none { it.isSelected }
+                val toggleState = when {
+                    allSelected -> ToggleableState.On
+                    noneSelected -> ToggleableState.Off
+                    else -> ToggleableState.Indeterminate
+                }
+                TriStateCheckbox(
+                    state = toggleState,
+                    onClick = {
                         view.playSoundEffect(SoundEffectConstants.CLICK)
                         haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                         viewModel.onEvent(
