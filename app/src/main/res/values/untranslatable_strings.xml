@@ -2,5 +2,5 @@
 <resources>
     <string name="app_name" translatable="false">Cleaner</string>
     <string name="app_full_name" translatable="false">Smart Cleaner for Android</string>
-    <string name="copyright" translatable="false">Copyright ©2020-2025, D4rK</string>
+    <string name="copyright" translatable="false">Copyright ©2020-2025, Mihai-Cristian Condrea</string>
 </resources>

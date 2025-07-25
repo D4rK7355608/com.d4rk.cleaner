@@ -8,10 +8,7 @@ import androidx.compose.material.icons.outlined.Photo
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Share
 import com.d4rk.android.libs.apptoolkit.R
-import com.d4rk.android.libs.apptoolkit.app.main.domain.usecases.PerformInAppUpdateUseCase
 import com.d4rk.android.libs.apptoolkit.core.domain.model.navigation.NavigationDrawerItem
-import com.d4rk.android.libs.apptoolkit.core.domain.model.network.DataState
-import com.d4rk.android.libs.apptoolkit.core.domain.model.network.Errors
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.UiStateScreen
 import com.d4rk.android.libs.apptoolkit.core.domain.model.ui.successData
 import com.d4rk.android.libs.apptoolkit.core.ui.base.ScreenViewModel
@@ -22,7 +19,6 @@ import com.d4rk.cleaner.app.main.domain.model.UiMainScreen
 import com.d4rk.cleaner.core.utils.helpers.FileSizeFormatter
 
 class MainViewModel(
-    private val performInAppUpdateUseCase: PerformInAppUpdateUseCase,
     private val getTrashSizeUseCase: GetTrashSizeUseCase,
 ) : ScreenViewModel<UiMainScreen, MainEvent, MainAction>(initialState = UiStateScreen(data = UiMainScreen())) {
 
@@ -33,13 +29,6 @@ class MainViewModel(
     override fun onEvent(event: MainEvent) {
         when (event) {
             is MainEvent.LoadNavigation -> loadNavigationItems()
-            is MainEvent.CheckForUpdates -> checkAppUpdate()
-        }
-    }
-
-    private fun checkAppUpdate() {
-        launch {
-            performInAppUpdateUseCase(param = Unit).collect { _: DataState<Int, Errors> -> }
         }
     }
 

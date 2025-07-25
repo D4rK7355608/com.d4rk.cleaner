@@ -3,7 +3,9 @@
     <shortcut
         android:enabled="true"
         android:icon="@mipmap/ic_shortcut_settings"
-        android:shortcutId="settings"
+        android:shortcutDisabledMessage="@string/settings_disabled_message"
+        android:shortcutId="openSettings"
+        android:shortcutLongLabel="@string/long_settings_label"
         android:shortcutShortLabel="@string/settings">
         <intent
             android:action="android.intent.action.VIEW"

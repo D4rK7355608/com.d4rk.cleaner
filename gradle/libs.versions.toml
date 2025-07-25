@@ -4,7 +4,7 @@ aboutlibraries = "12.2.4"
 kotlin = "2.2.0"
 google-services = "4.4.3"
 google-firebase-crashlytics = "3.0.5"
-coilVideoVersion = "3.2.0"
+coilVideoVersion = "3.3.0"
 compressor = "3.0.1"
 constraintlayoutCompose = "1.1.1"
 

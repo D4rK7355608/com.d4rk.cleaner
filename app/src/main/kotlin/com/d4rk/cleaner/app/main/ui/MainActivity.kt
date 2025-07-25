@@ -19,15 +19,16 @@ import androidx.compose.ui.Modifier
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
+import com.d4rk.android.libs.apptoolkit.app.main.utils.InAppUpdateHelper
 import com.d4rk.android.libs.apptoolkit.app.startup.ui.StartupActivity
 import com.d4rk.android.libs.apptoolkit.app.theme.style.AppTheme
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ConsentFormHelper
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ConsentManagerHelper
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.IntentsHelper
 import com.d4rk.android.libs.apptoolkit.core.utils.helpers.ReviewHelper
-import com.d4rk.cleaner.app.main.domain.actions.MainEvent
 import com.d4rk.cleaner.core.data.datastore.DataStore
 import com.google.android.gms.ads.MobileAds
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.ump.ConsentInformation
 import com.google.android.ump.UserMessagingPlatform
 import kotlinx.coroutines.CoroutineScope
@@ -44,7 +45,8 @@ class MainActivity : AppCompatActivity() {
 
     private val dataStore: DataStore by inject()
     private var updateResultLauncher: ActivityResultLauncher<IntentSenderRequest> =
-        registerForActivityResult(contract = ActivityResultContracts.StartIntentSenderForResult()) {}
+            registerForActivityResult(contract = ActivityResultContracts.StartIntentSenderForResult()) {}
+
     private lateinit var viewModel: MainViewModel
     private var keepSplashVisible: Boolean = true
 
@@ -61,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.onEvent(event = MainEvent.CheckForUpdates)
+        checkForUpdates()
         checkUserConsent()
     }
 
@@ -143,6 +145,15 @@ class MainActivity : AppCompatActivity() {
                 lifecycleScope.launch { dataStore.setHasPromptedReview(value = true) }
             }
             dataStore.incrementSessionCount()
+        }
+    }
+
+    private fun checkForUpdates() {
+        lifecycleScope.launch {
+            InAppUpdateHelper.performUpdate(
+                appUpdateManager = AppUpdateManagerFactory.create(this@MainActivity),
+                updateResultLauncher = updateResultLauncher,
+            )
         }
     }
 
